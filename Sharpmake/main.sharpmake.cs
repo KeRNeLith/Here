@@ -33,7 +33,7 @@ namespace Here.Sharpmake
             conf.SolutionFileName = @"[solution.Name]";
 
             conf.AddProject<Maybe>(target);
-            conf.AddProject<SampleMaybe>(target);
+            conf.AddProject<Maybe_Tests>(target);
         }
     }
 }

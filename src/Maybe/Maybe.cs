@@ -72,12 +72,14 @@ namespace Here.Maybes
 
         public bool Equals(Maybe<T> other)
         {
-            return EqualityComparer<T>.Default.Equals(_value, other._value) && _hasValue.Equals(other._hasValue);
+            return EqualityComparer<T>.Default.Equals(_value, other._value) 
+                && _hasValue.Equals(other._hasValue);
         }
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(null, obj))
+                return false;
             return obj is Maybe<T> && Equals((Maybe<T>)obj);
         }
 

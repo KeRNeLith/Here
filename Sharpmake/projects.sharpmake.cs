@@ -2,6 +2,7 @@ using System.IO;
 using Sharpmake;
 
 [module: Sharpmake.Include("common.sharpmake.cs")]
+[module: Sharpmake.Include("unittests.sharpmake.cs")]
 
 namespace Here.Sharpmake
 {
@@ -20,20 +21,12 @@ namespace Here.Sharpmake
         }
     }
 
+    // Tests
     [Generate]
-    internal class SampleMaybe : HereBaseProject
+    internal class Maybe_Tests : UnitTests<Maybe>
     {
-        public SampleMaybe()
+        public Maybe_Tests()
         {
-        }
-
-        [Configure]
-        public override void ConfigureAll(Configuration conf, Target target)
-        {
-            base.ConfigureAll(conf, target);
-            conf.Output = Configuration.OutputType.DotNetConsoleApp;
-
-            conf.AddPrivateDependency<Maybe>(target);
         }
     }
 }
