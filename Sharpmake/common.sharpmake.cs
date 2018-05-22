@@ -38,15 +38,15 @@ namespace Here.Sharpmake
             AddTargets(Settings.GetDefaultTargets());
 
             // Sources
-            SourceRootPath = Path.Combine(@"[project.RootPath]", "[project.Name]");
+            SourceRootPath = Path.Combine(@"[project.RootPath]", @"[project.Name]");
         }
 
         public virtual void ConfigureAll(Configuration conf, Target target)
         {
             // Project settings
             conf.ProjectFileName = "[project.Name]";
-            conf.ProjectPath = Path.Combine(@"[project.RootPath]", "[project.Name]");
-            conf.TargetPath = Path.Combine(RootPath, "bin", "[project.Name]");
+            conf.ProjectPath = Path.Combine(@"[project.RootPath]", @"[project.Name]");
+            conf.TargetPath = Path.Combine(@"[project.HereRootPath]", "bin", @"[project.Name]", @"[target.Optimization]");
 
             conf.Options.Add(Options.CSharp.LanguageVersion.CSharp7);
 

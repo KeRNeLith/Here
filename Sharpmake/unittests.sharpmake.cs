@@ -20,6 +20,8 @@ namespace Here.Sharpmake
             base.ConfigureAll(conf, target);
             conf.Output = Configuration.OutputType.DotNetClassLibrary;
 
+            conf.TargetPath = Path.Combine(@"[project.HereRootPath]", "bin", "Tests", @"[target.Optimization]");
+
             conf.ReferencesByNuGetPackage.Add(Externs.NUnit, Externs.NUnitVersion);
             conf.ReferencesByNuGetPackage.Add(Externs.NUnitTestAdapter, Externs.NUnitTestAdapterVersion);
         }
