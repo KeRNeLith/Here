@@ -5,7 +5,7 @@ using Sharpmake;
 
 namespace Here.Sharpmake
 {
-    internal static class SplashDiagramMain
+    internal static class HereMain
     {
         [Main]
         public static void SharpmakeMain(Arguments arguments)
