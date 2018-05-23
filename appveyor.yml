@@ -1,0 +1,41 @@
+version: '{build}'
+image: Visual Studio 2017
+
+# Setup
+install:
+  - cmd: ./generateSolution.bat
+
+# Assembly infos & csproj patching
+assembly_info:
+  patch: true
+  file: '**\\AssemblyInfo.*'
+  assembly_version: $(appveyor_repo_tag_name)
+  assembly_file_version: $(appveyor_repo_tag_name)
+  assembly_informational_version: $(appveyor_repo_tag_name)
+
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: $(appveyor_repo_tag_name)
+  package_version: $(appveyor_repo_tag_name)
+  assembly_version: $(appveyor_repo_tag_name)
+  file_version: $(appveyor_repo_tag_name)
+  informational_version: $(appveyor_repo_tag_name)
+
+# Build configurations
+platform:
+  - Any CPU
+
+configuration:
+  - Debug
+  - Release
+
+matrix:
+  fast_finish: true
+
+# Build
+before_build:
+  - nuget restore
+
+build:
+  verbosity: normal
