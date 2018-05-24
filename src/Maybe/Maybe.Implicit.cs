@@ -14,11 +14,11 @@ namespace Here.Maybes
         }
 
         /// <summary>
-        /// Implicit convertion from <see cref="Maybe{Maybe{T}}"/> to <see cref="Maybe{T}"/>.
+        /// Implicit convertion from <see cref="Maybe{U}"/> (where U is a <see cref="Maybe{T}"/>) to a <see cref="Maybe{T}"/>.
         /// </summary>
         /// <param name="embeddedMaybe">A <see cref="Maybe{T}"/> that encapsulate another <see cref="Maybe{T}"/>.</param>
         /// <returns>The simple corresponding <see cref="Maybe{T}"/>.</returns>
-        public static implicit operator Maybe<T>([NotNull] Maybe<Maybe<T>> embeddedMaybe)
+        public static implicit operator Maybe<T>(Maybe<Maybe<T>> embeddedMaybe)
         {
             return embeddedMaybe.HasValue ? embeddedMaybe.Value : None;
         }

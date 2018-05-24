@@ -1,6 +1,6 @@
-﻿using JetBrains.Annotations;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 
 namespace Here.Maybes
 {
@@ -15,12 +15,10 @@ namespace Here.Maybes
         /// </summary>
         public static readonly Maybe<T> None = new Maybe<T>();
 
-        private readonly bool _hasValue;
-
         /// <summary>
         /// Flag that indicate if this <see cref="Maybe{T}"/> has a value.
         /// </summary>
-        public bool HasValue => _hasValue;
+        public bool HasValue { get; }
 
         /// <summary>
         /// Flag that indicate if this <see cref="Maybe{T}"/> has no value.
@@ -30,12 +28,14 @@ namespace Here.Maybes
         /// <summary>
         /// Maybe value.
         /// </summary>
+        [NotNull]
         private readonly T _value;
 
         /// <summary>
         /// Get the value stored in the <see cref="Maybe{T}"/> if present otherwise throws.
         /// </summary>
         /// <exception cref="InvalidOperationException"> if no value is present.</exception>
+        [NotNull]
         public T Value
         {
             get
@@ -49,17 +49,17 @@ namespace Here.Maybes
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="hasValue">Flag that indicate if this <see cref="Maybe{T}"/> has a value.</param>
         /// <param name="value"><see cref="Maybe{T}"/> value.</param>
-        private Maybe(T value)
+        private Maybe([NotNull] T value)
         {
-            _hasValue = true;
+            HasValue = true;
             _value = value;
         }
 
         /// <summary>
         /// Construct a <see cref="Maybe{T}"/> with a value.
         /// </summary>
+        /// <param name="value"><see cref="Maybe{T}"/> value.</param>
         public static Maybe<T> Some([NotNull] T value)
         {
             if (value == null)
@@ -73,19 +73,19 @@ namespace Here.Maybes
         public bool Equals(Maybe<T> other)
         {
             return EqualityComparer<T>.Default.Equals(_value, other._value) 
-                && _hasValue.Equals(other._hasValue);
+                && HasValue.Equals(other.HasValue);
         }
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj))
+            if (obj is null)
                 return false;
-            return obj is Maybe<T> && Equals((Maybe<T>)obj);
+            return obj is Maybe<T> maybe && Equals(maybe);
         }
 
         public override int GetHashCode()
         {
-            return (EqualityComparer<T>.Default.GetHashCode(_value) * 397) ^ _hasValue.GetHashCode();
+            return (EqualityComparer<T>.Default.GetHashCode(_value) * 397) ^ HasValue.GetHashCode();
         }
 
         public static bool operator==(Maybe<T> maybe1, Maybe<T> maybe2)

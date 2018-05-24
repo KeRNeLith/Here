@@ -1,4 +1,6 @@
-﻿namespace Here.Maybes
+﻿using JetBrains.Annotations;
+
+namespace Here.Maybes
 {
     /// <summary>
     /// Empty maybe implementation.
@@ -16,6 +18,7 @@
         /// <summary>
         /// No value.
         /// </summary>
+        [NotNull]
         public static NoneClass None { get; } = new NoneClass();
     }
 }
