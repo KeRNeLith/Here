@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using Here.Maybes.Extensions;
 using System.Collections.Generic;
+using System;
 
 namespace Here.Maybes.Tests
 {
@@ -12,9 +13,16 @@ namespace Here.Maybes.Tests
     {
         #region Test classes
 
-        private class TestClass
+        private class TestClass : IEquatable<TestClass>
         {
             public int TestInt { get; set; }
+
+            public bool Equals(TestClass other)
+            {
+                if (other == null)
+                    return false;
+                return TestInt == other.TestInt;
+            }
 
             public override string ToString()
             {
@@ -24,6 +32,35 @@ namespace Here.Maybes.Tests
 
         private struct TestStruct
         {
+        }
+
+        #endregion
+
+        #region Test methods
+
+        private int GetInt()
+        {
+            return 12;
+        }
+
+        private int? GetNullableInt()
+        {
+            return 42;
+        }
+
+        private int? GetNullNullableInt()
+        {
+            return null;
+        }
+
+        private TestClass GetTestClass()
+        {
+            return new TestClass();
+        }
+
+        private TestClass GetNullTestClass()
+        {
+            return null;
         }
 
         #endregion
@@ -56,6 +93,31 @@ namespace Here.Maybes.Tests
 
             TestClass testObjectNull = null;
             maybeClass = MaybeExtensions.ToMaybe(testObjectNull);
+            Assert.IsFalse(maybeClass.HasValue);
+        }
+
+        [Test]
+        public void ReturnToMaybe()
+        {
+            // Value type
+            Maybe<int> maybeInt = GetInt();
+            Assert.IsTrue(maybeInt.HasValue);
+            Assert.AreEqual(12, maybeInt.Value);
+
+            // Nullable
+            Maybe<int?> maybeNullableInt = GetNullableInt();
+            Assert.IsTrue(maybeNullableInt.HasValue);
+            Assert.AreEqual(42, maybeNullableInt.Value);
+
+            maybeNullableInt = GetNullNullableInt();
+            Assert.IsFalse(maybeNullableInt.HasValue);
+
+            // Reference type
+            Maybe<TestClass> maybeClass = GetTestClass();
+            Assert.IsTrue(maybeClass.HasValue);
+            Assert.AreEqual(new TestClass(), maybeClass.Value);
+
+            maybeClass = GetNullTestClass();
             Assert.IsFalse(maybeClass.HasValue);
         }
 

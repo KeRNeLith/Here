@@ -14,6 +14,17 @@ namespace Here.Maybes
         }
 
         /// <summary>
+        /// Implicit constructor of <see cref="Maybe{T}"/>.
+        /// </summary>
+        public static implicit operator Maybe<T>(T value)
+        {
+            if (value == null)
+                return None;
+
+            return Some(value);
+        }
+
+        /// <summary>
         /// Implicit convertion from <see cref="Maybe{U}"/> (where U is a <see cref="Maybe{T}"/>) to a <see cref="Maybe{T}"/>.
         /// </summary>
         /// <param name="embeddedMaybe">A <see cref="Maybe{T}"/> that encapsulate another <see cref="Maybe{T}"/>.</param>
