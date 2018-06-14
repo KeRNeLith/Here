@@ -44,8 +44,7 @@ namespace Here.Maybes.Tests
         public void ToMaybe()
         {
             // Value type
-            int integer = 1;
-            var maybeInt = integer.ToMaybe();
+            var maybeInt = 1.ToMaybe();
             Assert.IsTrue(maybeInt.HasValue);
             Assert.AreEqual(1, maybeInt.Value);
 
@@ -114,22 +113,19 @@ namespace Here.Maybes.Tests
         public void StringToMaybe()
         {
             Maybe<string> maybeString;
-
-            string testEmpty = string.Empty;
-            maybeString = testEmpty.NoneIfEmpty();
+            
+            maybeString = string.Empty.NoneIfEmpty();
             Assert.IsFalse(maybeString.HasValue);
-
-            string testEmpty2 = "";
-            maybeString = testEmpty2.NoneIfEmpty();
+            
+            maybeString = "".NoneIfEmpty();
             Assert.IsFalse(maybeString.HasValue);
 
             string testNull = null;
             // ReSharper disable once ExpressionIsAlwaysNull
             maybeString = MaybeExtensions.NoneIfEmpty(testNull);
             Assert.IsFalse(maybeString.HasValue);
-
-            string notEmpty = "test";
-            maybeString = notEmpty.NoneIfEmpty();
+            
+            maybeString = "test".NoneIfEmpty();
             Assert.IsTrue(maybeString.HasValue);
             Assert.AreEqual("test", maybeString.Value);
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JetBrains.Annotations;
+using System;
 using System.Collections.Generic;
 
 namespace Here.Maybes.Extensions
@@ -13,7 +14,8 @@ namespace Here.Maybes.Extensions
         /// </summary>
         /// <param name="enumerable">Enumerable collection.</param>
         /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>
-        public static Maybe<T> FirstOrNone<T>(this IEnumerable<T> enumerable)
+        [NotNull]
+        public static Maybe<T> FirstOrNone<T>([NotNull] this IEnumerable<T> enumerable)
         {
             return enumerable.FirstOrNone(item => true);
         }
@@ -23,7 +25,8 @@ namespace Here.Maybes.Extensions
         /// </summary>
         /// <param name="enumerable">Enumerable collection.</param>
         /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>
-        public static Maybe<T> FirstOrNone<T>(this IEnumerable<T> enumerable, Predicate<T> predicate) 
+        [NotNull]
+        public static Maybe<T> FirstOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull] Predicate<T> predicate) 
         {
             foreach(var item in enumerable)
             {
@@ -39,7 +42,8 @@ namespace Here.Maybes.Extensions
         /// </summary>
         /// <param name="enumerable">Enumerable collection.</param>
         /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>
-        public static Maybe<T> LastOrNone<T>(this IEnumerable<T> enumerable)
+        [NotNull]
+        public static Maybe<T> LastOrNone<T>([NotNull] this IEnumerable<T> enumerable)
         {
             return enumerable.LastOrNone(item => true);
         }
@@ -49,7 +53,8 @@ namespace Here.Maybes.Extensions
         /// </summary>
         /// <param name="enumerable">Enumerable collection.</param>
         /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>
-        public static Maybe<T> LastOrNone<T>(this IEnumerable<T> enumerable, Predicate<T> predicate)
+        [NotNull]
+        public static Maybe<T> LastOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull] Predicate<T> predicate)
         {
             T matchedItem = default(T);
             bool match = false;
