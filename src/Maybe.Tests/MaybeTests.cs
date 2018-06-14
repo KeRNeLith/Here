@@ -7,22 +7,8 @@ namespace Here.Maybes.Tests
     /// Tests for <see cref="Maybe{T}"/>.
     /// </summary>
     [TestFixture]
-    internal class MaybeTests
+    internal class MaybeTests : MaybeTestsBase
     {
-        #region Test class
-
-        private class TestClass
-        {
-            public int TestInt { get; set; }
-
-            public override string ToString()
-            {
-                return $"TestClass: {TestInt}";
-            }
-        }
-
-        #endregion
-
         [Test]
         public void MaybeConstruction()
         {

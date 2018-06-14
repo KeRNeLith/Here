@@ -16,7 +16,7 @@ namespace Here.Maybes
         /// <summary>
         /// Implicit constructor of <see cref="Maybe{T}"/>.
         /// </summary>
-        public static implicit operator Maybe<T>(T value)
+        public static implicit operator Maybe<T>([CanBeNull] T value)
         {
             if (value == null)
                 return None;
@@ -29,7 +29,7 @@ namespace Here.Maybes
         /// </summary>
         /// <param name="embeddedMaybe">A <see cref="Maybe{T}"/> that encapsulate another <see cref="Maybe{T}"/>.</param>
         /// <returns>The simple corresponding <see cref="Maybe{T}"/>.</returns>
-        public static implicit operator Maybe<T>(Maybe<Maybe<T>> embeddedMaybe)
+        public static implicit operator Maybe<T>([NotNull] Maybe<Maybe<T>> embeddedMaybe)
         {
             return embeddedMaybe.HasValue ? embeddedMaybe.Value : None;
         }

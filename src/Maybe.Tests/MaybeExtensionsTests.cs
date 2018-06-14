@@ -9,33 +9,8 @@ namespace Here.Maybes.Tests
     /// Tests for <see cref="Maybe{T}"/>.
     /// </summary>
     [TestFixture]
-    internal class MaybeExtensionsTests
+    internal class MaybeExtensionsTests : MaybeTestsBase
     {
-        #region Test classes
-
-        private class TestClass : IEquatable<TestClass>
-        {
-            public int TestInt { get; set; }
-
-            public bool Equals(TestClass other)
-            {
-                if (other == null)
-                    return false;
-                return TestInt == other.TestInt;
-            }
-
-            public override string ToString()
-            {
-                return $"TestClass: {TestInt}";
-            }
-        }
-
-        private struct TestStruct
-        {
-        }
-
-        #endregion
-
         #region Test methods
 
         private int GetInt()
