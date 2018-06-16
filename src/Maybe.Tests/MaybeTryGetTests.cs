@@ -35,7 +35,7 @@ namespace Here.Maybes.Tests
                 [42] = "string 42",
                 [88] = "string 88",
             };
-
+            
             maybeString = readonlyDictionaryIntString.TryGetReadonlyValue(42);
             Assert.IsTrue(maybeString.HasValue);
             Assert.AreEqual("string 42", maybeString.Value);

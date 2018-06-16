@@ -1,5 +1,6 @@
 ﻿using Here.Maybes.Extensions;
 using NUnit.Framework;
+using System;
 
 namespace Here.Maybes.Tests
 {
@@ -57,6 +58,8 @@ namespace Here.Maybes.Tests
             Assert.IsTrue(maybeResult.HasValue);
             Assert.AreEqual(12, maybeResult.Value);
 
+            Assert.AreEqual(12, maybeInt.OrDefault());
+
             // Empty maybe
             Maybe<int> emptyMaybeInt = Maybe.None;
             Assert.AreEqual(42, emptyMaybeInt.Or(42));
@@ -69,6 +72,7 @@ namespace Here.Maybes.Tests
             maybeResult = emptyMaybeInt.Or(() => null);
             Assert.IsFalse(maybeResult.HasValue);
 
+            Assert.AreEqual(0, emptyMaybeInt.OrDefault());
 
             Maybe<TestClass> maybeResultClass;
 
@@ -88,6 +92,8 @@ namespace Here.Maybes.Tests
             Assert.IsTrue(maybeResultClass.HasValue);
             Assert.AreSame(testObject, maybeResultClass.Value);
 
+            Assert.AreSame(testObject, maybeClass.OrDefault());
+
             // Empty maybe class
             Maybe<TestClass> emptyMaybeClass = Maybe.None;
             Assert.AreSame(defaultTestObject, emptyMaybeClass.Or(defaultTestObject));
@@ -99,6 +105,23 @@ namespace Here.Maybes.Tests
             Assert.IsFalse(maybeResultClass.HasValue);
             maybeResultClass = emptyMaybeClass.Or(() => null);
             Assert.IsFalse(maybeResultClass.HasValue);
+
+            Assert.AreEqual(null, emptyMaybeClass.OrDefault());
+        }
+
+        [Test]
+        public void MaybeOrThrows()
+        {
+            // Maybe with value
+            var maybeInt = Maybe<int>.Some(12);
+            Assert.DoesNotThrow(() => maybeInt.OrThrows(new InvalidOperationException()));
+            Assert.DoesNotThrow(() => maybeInt.OrThrows(() => new InvalidOperationException()));
+            Assert.AreEqual(12, maybeInt.OrThrows(new InvalidOperationException()));
+
+            // Empty maybe
+            Maybe<int> emptyMaybeInt = Maybe.None;
+            Assert.Throws<InvalidOperationException>(() => emptyMaybeInt.OrThrows(new InvalidOperationException()));
+            Assert.Throws<InvalidOperationException>(() => emptyMaybeInt.OrThrows(() =>  new InvalidOperationException()));
         }
     }
 }

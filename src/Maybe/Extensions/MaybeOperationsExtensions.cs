@@ -41,13 +41,14 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Returns this <see cref="Maybe{T}"/> value if it has value otherwise returns <paramref name="orValue"/>.
+        /// Returns this <see cref="Maybe{T}"/> value if it has value, otherwise returns <paramref name="orValue"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in the <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> to check.</param>
         /// <param name="orValue">Value to use as fallback if this <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>This <see cref="Maybe{T}"/> value, or <paramref name="orValue"/>.</returns>
-		public static T Or<T>(this Maybe<T> maybe, T orValue)
+        [NotNull]
+        public static T Or<T>(this Maybe<T> maybe, [NotNull] T orValue)
         {
             if (maybe.HasValue)
                 return maybe.Value;
@@ -55,12 +56,13 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Returns this <see cref="Maybe{T}"/> value if it has one otherwise returns a value from <paramref name="orFunc"/>.
+        /// Returns this <see cref="Maybe{T}"/> value if it has one, otherwise returns a value from <paramref name="orFunc"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in the <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> to check.</param>
         /// <param name="orFunc">Function called if the <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>This <see cref="Maybe{T}"/> value, or the result of <paramref name="orFunc"/>.</returns>
+        [CanBeNull]
         public static T Or<T>(this Maybe<T> maybe, [NotNull] Func<T> orFunc)
         {
             if (maybe.HasValue)
@@ -69,7 +71,51 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Returns this <see cref="Maybe{T}"/> if it has a value otherwise returns a <see cref="Maybe{T}"/> from <paramref name="orFunc"/>.
+        /// Returns this <see cref="Maybe{T}"/> value if it has one, otherwise the default value of <typeparamref name="T"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in the <see cref="Maybe{T}"/>.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> to check.</param>
+        /// <returns>This <see cref="Maybe{T}"/> value, or the default to <typeparamref name="T"/>.</returns>
+        [CanBeNull]
+        public static T OrDefault<T>(this Maybe<T> maybe)
+        {
+            if (maybe.HasValue)
+                return maybe.Value;
+            return default(T);
+        }
+
+        /// <summary>
+        /// Returns this <see cref="Maybe{T}"/> value if it has one, otherwise throws the given exception.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in the <see cref="Maybe{T}"/>.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> to check.</param>
+        /// <param name="exception">The exception to throw if this <see cref="Maybe{T}"/> has no value.</param>
+        /// <returns>This <see cref="Maybe{T}"/> value.</returns>
+        [NotNull]
+        public static T OrThrows<T>(this Maybe<T> maybe, [NotNull] Exception exception)
+        {
+            if (maybe.HasValue)
+                return maybe.Value;
+            throw exception;
+        }
+
+        /// <summary>
+        /// Returns this <see cref="Maybe{T}"/> value if it has one, otherwise throws the given exception.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in the <see cref="Maybe{T}"/>.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> to check.</param>
+        /// <param name="exceptionFunc">The factory exception method used to throw if this <see cref="Maybe{T}"/> has no value.</param>
+        /// <returns>This <see cref="Maybe{T}"/> value.</returns>
+        [NotNull]
+        public static T OrThrows<T>(this Maybe<T> maybe, [NotNull] Func<Exception> exceptionFunc)
+        {
+            if (maybe.HasValue)
+                return maybe.Value;
+            throw exceptionFunc();
+        }
+
+        /// <summary>
+        /// Returns this <see cref="Maybe{T}"/> if it has a value, otherwise returns a <see cref="Maybe{T}"/> from <paramref name="orFunc"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in the <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> to check.</param>
