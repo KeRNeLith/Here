@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using Here.Maybes.Extensions;
 using System.Collections.Generic;
-using System;
 
 namespace Here.Maybes.Tests
 {
@@ -66,7 +65,8 @@ namespace Here.Maybes.Tests
             Assert.AreSame(testObject, maybeClass.Value);
 
             TestClass testObjectNull = null;
-            maybeClass = MaybeExtensions.ToMaybe(testObjectNull);
+            // ReSharper disable once ExpressionIsAlwaysNull
+            maybeClass = testObjectNull.ToMaybe();
             Assert.IsFalse(maybeClass.HasValue);
         }
 
@@ -122,7 +122,7 @@ namespace Here.Maybes.Tests
 
             string testNull = null;
             // ReSharper disable once ExpressionIsAlwaysNull
-            maybeString = MaybeExtensions.NoneIfEmpty(testNull);
+            maybeString = testNull.NoneIfEmpty();
             Assert.IsFalse(maybeString.HasValue);
             
             maybeString = "test".NoneIfEmpty();

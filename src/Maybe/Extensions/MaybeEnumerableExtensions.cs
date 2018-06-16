@@ -14,7 +14,6 @@ namespace Here.Maybes.Extensions
         /// </summary>
         /// <param name="enumerable">Enumerable collection.</param>
         /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>
-        [NotNull]
         public static Maybe<T> FirstOrNone<T>([NotNull] this IEnumerable<T> enumerable)
         {
             return enumerable.FirstOrNone(item => true);
@@ -24,8 +23,8 @@ namespace Here.Maybes.Extensions
         /// Get a <see cref="Maybe{T}"/> of the first element of this <see cref="IEnumerable{T}"/> that matches <see cref="Predicate{T}"/>.
         /// </summary>
         /// <param name="enumerable">Enumerable collection.</param>
+        /// <param name="predicate"><see cref="Predicate{T}"/> to check on items.</param>
         /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>
-        [NotNull]
         public static Maybe<T> FirstOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull] Predicate<T> predicate) 
         {
             foreach(var item in enumerable)
@@ -42,7 +41,6 @@ namespace Here.Maybes.Extensions
         /// </summary>
         /// <param name="enumerable">Enumerable collection.</param>
         /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>
-        [NotNull]
         public static Maybe<T> LastOrNone<T>([NotNull] this IEnumerable<T> enumerable)
         {
             return enumerable.LastOrNone(item => true);
@@ -52,8 +50,8 @@ namespace Here.Maybes.Extensions
         /// Get a <see cref="Maybe{T}"/> of the last element of this <see cref="IEnumerable{T}"/> that matches <see cref="Predicate{T}"/>.
         /// </summary>
         /// <param name="enumerable">Enumerable collection.</param>
+        /// <param name="predicate"><see cref="Predicate{T}"/> to check on items.</param>
         /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>
-        [NotNull]
         public static Maybe<T> LastOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull] Predicate<T> predicate)
         {
             T matchedItem = default(T);

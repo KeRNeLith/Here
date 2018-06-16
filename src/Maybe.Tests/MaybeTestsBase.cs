@@ -1,7 +1,4 @@
-﻿using NUnit.Framework;
-using Here.Maybes.Extensions;
-using System.Collections.Generic;
-using System;
+﻿using System;
 
 namespace Here.Maybes.Tests
 {

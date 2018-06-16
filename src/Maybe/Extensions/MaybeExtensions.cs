@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using JetBrains.Annotations;
 
 namespace Here.Maybes.Extensions
 {
@@ -12,7 +13,6 @@ namespace Here.Maybes.Extensions
 		/// </summary>
 		/// <param name="value">Value to convert.</param>
 		/// <returns>Corresponding <see cref="Maybe{T}"/>.</returns>
-        [NotNull]
         public static Maybe<T> ToMaybe<T>([CanBeNull] this T value)
         {
             return value != null
@@ -25,13 +25,10 @@ namespace Here.Maybes.Extensions
 		/// </summary>
 		/// <param name="nullable"><see cref="Nullable{T}"/> to convert.</param>
 		/// <returns>Corresponding <see cref="Maybe{T}"/>.</returns>
-        [NotNull]
-        public static Maybe<T> ToMaybe<T>([NotNull] this T? nullable)
+        public static Maybe<T> ToMaybe<T>([CanBeNull] this T? nullable)
             where T : struct
         {
-            return nullable.HasValue
-                ? nullable.Value.ToMaybe()
-                : Maybe.None;
+            return nullable?.ToMaybe() ?? Maybe.None;
         }
 
         /// <summary>
@@ -39,7 +36,7 @@ namespace Here.Maybes.Extensions
 		/// </summary>
 		/// <param name="maybe"><see cref="Maybe{T}"/> to convert.</param>
 		/// <returns>Corresponding <see cref="Nullable{T}"/>.</returns>
-        public static T? ToNullable<T>([NotNull] this Maybe<T> maybe)
+        public static T? ToNullable<T>(this Maybe<T> maybe)
             where T : struct
         {
             return maybe.HasValue
@@ -48,11 +45,10 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert the string to a <see cref="Maybe{string}"/>.
+        /// Convert the string to a <see cref="Maybe{String}"/>.
         /// </summary>
         /// <param name="str">String to convert.</param>
-        /// <returns>The corresponding <see cref="Maybe{string}"/>.</returns>
-        [NotNull]
+        /// <returns>The corresponding <see cref="Maybe{String}"/>.</returns>
         public static Maybe<string> NoneIfEmpty([CanBeNull] this string str)
         {
             return string.IsNullOrEmpty(str)

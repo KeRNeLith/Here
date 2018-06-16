@@ -50,7 +50,7 @@ namespace Here.Maybes.Tests
             maybeResult = maybeInt.Or(() => 25);
             Assert.IsTrue(maybeResult.HasValue);
             Assert.AreEqual(12, maybeResult.Value);
-            maybeResult = maybeInt.Or(() => Maybe.None);
+            maybeResult = maybeInt.Or(() => Maybe<int>.None);
             Assert.IsTrue(maybeResult.HasValue);
             Assert.AreEqual(12, maybeResult.Value);
             maybeResult = maybeInt.Or(() => null);
@@ -64,7 +64,7 @@ namespace Here.Maybes.Tests
             maybeResult = emptyMaybeInt.Or(() => 42);
             Assert.IsTrue(maybeResult.HasValue);
             Assert.AreEqual(42, maybeResult.Value);
-            maybeResult = emptyMaybeInt.Or(() => Maybe.None);
+            maybeResult = emptyMaybeInt.Or(() => Maybe<int>.None);
             Assert.IsFalse(maybeResult.HasValue);
             maybeResult = emptyMaybeInt.Or(() => null);
             Assert.IsFalse(maybeResult.HasValue);
@@ -81,7 +81,7 @@ namespace Here.Maybes.Tests
             maybeResultClass = maybeClass.Or(() => defaultTestObject);
             Assert.IsTrue(maybeResultClass.HasValue);
             Assert.AreSame(testObject, maybeResultClass.Value);
-            maybeResultClass = maybeClass.Or(() => Maybe.None);
+            maybeResultClass = maybeClass.Or(() => Maybe<TestClass>.None);
             Assert.IsTrue(maybeResultClass.HasValue);
             Assert.AreSame(testObject, maybeResultClass.Value);
             maybeResultClass = maybeClass.Or(() => null);
@@ -95,8 +95,8 @@ namespace Here.Maybes.Tests
             maybeResultClass = emptyMaybeClass.Or(() => defaultTestObject);
             Assert.IsTrue(maybeResultClass.HasValue);
             Assert.AreSame(defaultTestObject, maybeResultClass.Value);
-            maybeResultClass = emptyMaybeClass.Or(() => Maybe.None);
-            Assert.IsFalse(maybeResult.HasValue);
+            maybeResultClass = emptyMaybeClass.Or(() => Maybe<TestClass>.None);
+            Assert.IsFalse(maybeResultClass.HasValue);
             maybeResultClass = emptyMaybeClass.Or(() => null);
             Assert.IsFalse(maybeResultClass.HasValue);
         }

@@ -128,8 +128,10 @@ namespace Here.Maybes.Tests
             Assert.IsTrue(maybeClass != emptyMaybeClass);
 
             // Mixed
+            // ReSharper disable SuspiciousTypeConversion.Global
             Assert.IsFalse(maybeInt.Equals(maybeClass));
             Assert.IsFalse(maybeClass.Equals(maybeInt));
+            // ReSharper restore SuspiciousTypeConversion.Global
 
             // With flatten
             var embedMaybeInt = Maybe<Maybe<int>>.Some(Maybe<int>.Some(12));
@@ -201,10 +203,10 @@ namespace Here.Maybes.Tests
                 Assert.Fail("!MaybeClass should not be true.");
 
             var emptyMaybeClass = Maybe<TestClass>.None;
-            if (emptyMaybeInt)
+            if (emptyMaybeClass)
                 Assert.Fail("EmptyMaybeClass should not be true.");
 
-            if (!emptyMaybeInt)
+            if (!emptyMaybeClass)
             {
             }
             else

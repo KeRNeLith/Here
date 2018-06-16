@@ -15,8 +15,7 @@ namespace Here.Maybes.Extensions
         /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
         /// <param name="then">Treatment to do.</param>
         /// <returns>This <see cref="Maybe{T}"/>.</returns>
-        [NotNull]
-        public static Maybe<T> If<T>([NotNull] this Maybe<T> maybe, [NotNull] Action<T> then)
+        public static Maybe<T> If<T>(this Maybe<T> maybe, [NotNull] Action<T> then)
         {
             if (maybe.HasValue)
                 then(maybe.Value);
@@ -31,8 +30,7 @@ namespace Here.Maybes.Extensions
         /// <param name="then">Treatment to do with this <see cref="Maybe{T}"/> value.</param>
         /// <param name="else">Treatment to do if this <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>This <see cref="Maybe{T}"/>.</returns>
-        [NotNull]
-        public static Maybe<T> IfElse<T>([NotNull] this Maybe<T> maybe, [NotNull] Action<T> then, [NotNull] Action @else)
+        public static Maybe<T> IfElse<T>(this Maybe<T> maybe, [NotNull] Action<T> then, [NotNull] Action @else)
         {
             if (maybe.HasValue)
                 then(maybe.Value);
@@ -49,7 +47,7 @@ namespace Here.Maybes.Extensions
         /// <param name="maybe"><see cref="Maybe{T}"/> to check.</param>
         /// <param name="orValue">Value to use as fallback if this <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>This <see cref="Maybe{T}"/> value, or <paramref name="orValue"/>.</returns>
-		public static T Or<T>([NotNull] this Maybe<T> maybe, T orValue)
+		public static T Or<T>(this Maybe<T> maybe, T orValue)
         {
             if (maybe.HasValue)
                 return maybe.Value;
@@ -63,7 +61,7 @@ namespace Here.Maybes.Extensions
         /// <param name="maybe"><see cref="Maybe{T}"/> to check.</param>
         /// <param name="orFunc">Function called if the <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>This <see cref="Maybe{T}"/> value, or the result of <paramref name="orFunc"/>.</returns>
-        public static T Or<T>([NotNull] this Maybe<T> maybe, [NotNull] Func<T> orFunc)
+        public static T Or<T>(this Maybe<T> maybe, [NotNull] Func<T> orFunc)
         {
             if (maybe.HasValue)
                 return maybe.Value;
@@ -77,7 +75,7 @@ namespace Here.Maybes.Extensions
         /// <param name="maybe"><see cref="Maybe{T}"/> to check.</param>
         /// <param name="orFunc">Function called if the <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>This <see cref="Maybe{T}"/>, or the result of <paramref name="orFunc"/>.</returns>
-        public static Maybe<T> Or<T>([NotNull] this Maybe<T> maybe, [NotNull] Func<Maybe<T>> orFunc)
+        public static Maybe<T> Or<T>(this Maybe<T> maybe, [NotNull] Func<Maybe<T>> orFunc)
         {
             if (maybe.HasValue)
                 return maybe;
