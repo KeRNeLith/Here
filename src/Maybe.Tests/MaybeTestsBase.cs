@@ -26,6 +26,21 @@ namespace Here.Maybes.Tests
             }
         }
 
+        protected class TestClassLeaf : TestClass, IEquatable<TestClassLeaf>
+        {
+            public bool Equals(TestClassLeaf other)
+            {
+                if (other == null)
+                    return false;
+                return Equals(other);
+            }
+
+            public override string ToString()
+            {
+                return $"TestLeaf: {TestInt}";
+            }
+        }
+
         protected struct TestStruct
         {
         }

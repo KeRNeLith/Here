@@ -12,6 +12,7 @@ namespace Here.Maybes.Extensions
         /// <summary>
         /// Get a <see cref="Maybe{T}"/> of the first element of this <see cref="IEnumerable{T}"/>.
         /// </summary>
+        /// <typeparam name="T">Template type of this <see cref="IEnumerable{T}"/>.</typeparam>
         /// <param name="enumerable">Enumerable collection.</param>
         /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>
         public static Maybe<T> FirstOrNone<T>([NotNull] this IEnumerable<T> enumerable)
@@ -22,6 +23,7 @@ namespace Here.Maybes.Extensions
         /// <summary>
         /// Get a <see cref="Maybe{T}"/> of the first element of this <see cref="IEnumerable{T}"/> that matches <see cref="Predicate{T}"/>.
         /// </summary>
+        /// <typeparam name="T">Template type of this <see cref="IEnumerable{T}"/>.</typeparam>
         /// <param name="enumerable">Enumerable collection.</param>
         /// <param name="predicate"><see cref="Predicate{T}"/> to check on items.</param>
         /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>
@@ -39,6 +41,7 @@ namespace Here.Maybes.Extensions
         /// <summary>
         /// Get a <see cref="Maybe{T}"/> of the last element of this <see cref="IEnumerable{T}"/>.
         /// </summary>
+        /// <typeparam name="T">Template type of this <see cref="IEnumerable{T}"/>.</typeparam>
         /// <param name="enumerable">Enumerable collection.</param>
         /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>
         public static Maybe<T> LastOrNone<T>([NotNull] this IEnumerable<T> enumerable)
@@ -49,6 +52,7 @@ namespace Here.Maybes.Extensions
         /// <summary>
         /// Get a <see cref="Maybe{T}"/> of the last element of this <see cref="IEnumerable{T}"/> that matches <see cref="Predicate{T}"/>.
         /// </summary>
+        /// <typeparam name="T">Template type of this <see cref="IEnumerable{T}"/>.</typeparam>
         /// <param name="enumerable">Enumerable collection.</param>
         /// <param name="predicate"><see cref="Predicate{T}"/> to check on items.</param>
         /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>

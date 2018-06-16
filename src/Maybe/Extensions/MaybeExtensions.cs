@@ -11,6 +11,7 @@ namespace Here.Maybes.Extensions
         /// <summary>
 		/// Convert the value to the corresponding <see cref="Maybe{T}"/>.
 		/// </summary>
+        /// <typeparam name="T">Type of the value to wrap.</typeparam>
 		/// <param name="value">Value to convert.</param>
 		/// <returns>Corresponding <see cref="Maybe{T}"/>.</returns>
         public static Maybe<T> ToMaybe<T>([CanBeNull] this T value)
@@ -23,6 +24,7 @@ namespace Here.Maybes.Extensions
         /// <summary>
 		/// Convert <see cref="Nullable{T}"/> to the corresponding <see cref="Maybe{T}"/>.
 		/// </summary>
+        /// <typeparam name="T">Type of the value to wrap.</typeparam>
 		/// <param name="nullable"><see cref="Nullable{T}"/> to convert.</param>
 		/// <returns>Corresponding <see cref="Maybe{T}"/>.</returns>
         public static Maybe<T> ToMaybe<T>([CanBeNull] this T? nullable)
@@ -34,6 +36,7 @@ namespace Here.Maybes.Extensions
         /// <summary>
 		/// Convert <see cref="Maybe{T}"/> to the corresponding <see cref="Nullable{T}"/>.
 		/// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
 		/// <param name="maybe"><see cref="Maybe{T}"/> to convert.</param>
 		/// <returns>Corresponding <see cref="Nullable{T}"/>.</returns>
         public static T? ToNullable<T>(this Maybe<T> maybe)

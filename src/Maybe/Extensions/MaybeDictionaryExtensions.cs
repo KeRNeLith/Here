@@ -12,8 +12,8 @@ namespace Here.Maybes.Extensions
         /// <summary>
         /// Try to get the value for the given key in the dictionary.
         /// </summary>
-        /// <typeparam name="TKey"><see cref="Type"/> of the <see cref="IDictionary{TKey, TValue}"/> key.</typeparam>
-        /// <typeparam name="TValue"><see cref="Type"/> of the <see cref="IDictionary{TKey, TValue}"/> value.</typeparam>
+        /// <typeparam name="TKey"><see cref="Type"/> of this <see cref="IDictionary{TKey, TValue}"/> key.</typeparam>
+        /// <typeparam name="TValue"><see cref="Type"/> of this <see cref="IDictionary{TKey, TValue}"/> value.</typeparam>
         /// <param name="dictionary"><see cref="IDictionary{TKey, TValue}"/> on which performing treatment.</param>
         /// <param name="key">Searched key.</param>
         /// <returns><see cref="Maybe{TValue}"/> that wrap the result of the get.</returns>
@@ -26,9 +26,9 @@ namespace Here.Maybes.Extensions
         /// <summary>
         /// Try to get the value for the given key in the dictionary.
         /// </summary>
-        /// <typeparam name="TKey"><see cref="Type"/> of the <see cref="IDictionary{TKey, TValue}"/> key.</typeparam>
-        /// <typeparam name="TValue"><see cref="Type"/> of the <see cref="IDictionary{TKey, TValue}"/> value.</typeparam>
-        /// <param name="dictionary"><see cref="IDictionary{TKey, TValue}"/> on which performing treatment.</param>
+        /// <typeparam name="TKey"><see cref="Type"/> of this <see cref="IReadOnlyDictionary{TKey, TValue}"/> key.</typeparam>
+        /// <typeparam name="TValue"><see cref="Type"/> of this <see cref="IReadOnlyDictionary{TKey, TValue}"/> value.</typeparam>
+        /// <param name="dictionary"><see cref="IReadOnlyDictionary{TKey, TValue}"/> on which performing treatment.</param>
         /// <param name="key">Searched key.</param>
         /// <returns><see cref="Maybe{TValue}"/> that wrap the result of the get.</returns>
         public static Maybe<TValue> TryGetReadonlyValue<TKey, TValue>([NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary, [NotNull] TKey key)

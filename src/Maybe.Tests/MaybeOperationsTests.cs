@@ -121,7 +121,50 @@ namespace Here.Maybes.Tests
             // Empty maybe
             Maybe<int> emptyMaybeInt = Maybe.None;
             Assert.Throws<InvalidOperationException>(() => emptyMaybeInt.OrThrows(new InvalidOperationException()));
-            Assert.Throws<InvalidOperationException>(() => emptyMaybeInt.OrThrows(() =>  new InvalidOperationException()));
+            Assert.Throws<InvalidOperationException>(() => emptyMaybeInt.OrThrows(() => new InvalidOperationException()));
+        }
+
+        [Test]
+        public void MaybeCast()
+        {
+            // Value type
+            // Maybe with value
+            var maybeInt = Maybe<int>.Some(12);
+            var maybeFloat = maybeInt.Cast(intVal => intVal + 0.1f);
+            Assert.IsTrue(maybeFloat.HasValue);
+            Assert.AreEqual(12.1f, maybeFloat.Value);
+
+            // Empty maybe
+            Maybe<int> emptyMaybeInt = Maybe.None;
+            maybeFloat = emptyMaybeInt.Cast(intVal => intVal + 0.1f);
+            Assert.IsFalse(maybeFloat.HasValue);
+
+
+            // Reference type
+            // Maybe with value
+            var testObjectLeaf = new TestClassLeaf { TestInt = 12 };
+            var maybeClassLeaf = Maybe<TestClassLeaf>.Some(testObjectLeaf);
+            maybeFloat = maybeClassLeaf.Cast(obj => obj.TestInt + 0.2f);
+            Assert.IsTrue(maybeFloat.HasValue);
+            Assert.AreEqual(12.2f, maybeFloat.Value);
+
+            var maybeClass = maybeClassLeaf.Cast<TestClassLeaf, TestClass>();
+            Assert.IsTrue(maybeClass.HasValue);
+            Assert.AreSame(testObjectLeaf, maybeClass.Value);
+
+            // Invalid conversion
+            var testObject = new TestClass { TestInt = 42 };
+            maybeClass = Maybe<TestClass>.Some(testObject);
+            maybeClassLeaf = maybeClass.Cast<TestClass, TestClassLeaf>();
+            Assert.IsFalse(maybeClassLeaf.HasValue);
+
+            // Empty maybe
+            Maybe<TestClassLeaf> emptyMaybeClassLeaf = Maybe.None;
+            maybeFloat = emptyMaybeClassLeaf.Cast(obj => obj.TestInt + 0.2f);
+            Assert.IsFalse(maybeFloat.HasValue);
+
+            maybeClass = emptyMaybeClassLeaf.Cast<TestClassLeaf, TestClass>();
+            Assert.IsFalse(maybeClass.HasValue);
         }
     }
 }
