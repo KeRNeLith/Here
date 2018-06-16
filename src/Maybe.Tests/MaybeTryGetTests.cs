@@ -127,7 +127,7 @@ namespace Here.Maybes.Tests
                 yield return new TestCaseData(string.Empty, false, null);
                 yield return new TestCaseData("string", false, null);
                 yield return new TestCaseData("1024", false, null);
-                yield return new TestCaseData("100,1", false, null);
+                yield return new TestCaseData("100.1", false, null);
                 yield return new TestCaseData("-100", false, null);
                 yield return new TestCaseData("100", true, (byte)100);
                 yield return new TestCaseData("+100", true, (byte)100);
@@ -156,7 +156,7 @@ namespace Here.Maybes.Tests
                 yield return new TestCaseData(string.Empty, false, null);
                 yield return new TestCaseData("string", false, null);
                 yield return new TestCaseData("-200", false, null);
-                yield return new TestCaseData("-3,6", false, null);
+                yield return new TestCaseData("-3.6", false, null);
                 yield return new TestCaseData("10,1", false, null);
                 yield return new TestCaseData("985", false, null);
                 yield return new TestCaseData("100", true, (sbyte)100);
@@ -186,8 +186,8 @@ namespace Here.Maybes.Tests
                 yield return new TestCaseData(string.Empty, false, null);
                 yield return new TestCaseData("string", false, null);
                 yield return new TestCaseData("-35000", false, null);
-                yield return new TestCaseData("-3,6", false, null);
-                yield return new TestCaseData("10,1", false, null);
+                yield return new TestCaseData("-3.6", false, null);
+                yield return new TestCaseData("10.1", false, null);
                 yield return new TestCaseData("35000", false, null);
                 yield return new TestCaseData("100", true, (short)100);
                 yield return new TestCaseData("+100", true, (short)100);
@@ -216,8 +216,8 @@ namespace Here.Maybes.Tests
                 yield return new TestCaseData(string.Empty, false, null);
                 yield return new TestCaseData("string", false, null);
                 yield return new TestCaseData("-10", false, null);
-                yield return new TestCaseData("10,1", false, null);
-                yield return new TestCaseData("66 000", false, null);
+                yield return new TestCaseData("10.1", false, null);
+                yield return new TestCaseData("66000", false, null);
                 yield return new TestCaseData("100", true, (ushort)100);
                 yield return new TestCaseData("+100", true, (ushort)100);
                 yield return new TestCaseData("   20   ", true, (ushort)20);
@@ -244,7 +244,7 @@ namespace Here.Maybes.Tests
                 yield return new TestCaseData(string.Empty, false, null);
                 yield return new TestCaseData("string", false, null);
                 yield return new TestCaseData("-2200000000", false, null);
-                yield return new TestCaseData("10,1", false, null);
+                yield return new TestCaseData("10.1", false, null);
                 yield return new TestCaseData("2200000000", false, null);
                 yield return new TestCaseData("100", true, 100);
                 yield return new TestCaseData("+100", true, 100);
@@ -272,7 +272,7 @@ namespace Here.Maybes.Tests
                 yield return new TestCaseData(string.Empty, false, null);
                 yield return new TestCaseData("string", false, null);
                 yield return new TestCaseData("-2", false, null);
-                yield return new TestCaseData("10,1", false, null);
+                yield return new TestCaseData("10.1", false, null);
                 yield return new TestCaseData("5000000000", false, null);
                 yield return new TestCaseData("100", true, 100u);
                 yield return new TestCaseData("   20   ", true, 20u);
@@ -299,7 +299,7 @@ namespace Here.Maybes.Tests
                 yield return new TestCaseData(string.Empty, false, null);
                 yield return new TestCaseData("string", false, null);
                 yield return new TestCaseData("-10000000000000000000", false, null);
-                yield return new TestCaseData("10,1", false, null);
+                yield return new TestCaseData("10.1", false, null);
                 yield return new TestCaseData("10000000000000000000", false, null);
                 yield return new TestCaseData("100", true, 100L);
                 yield return new TestCaseData("-100", true, -100L);
@@ -327,7 +327,7 @@ namespace Here.Maybes.Tests
                 yield return new TestCaseData(string.Empty, false, null);
                 yield return new TestCaseData("string", false, null);
                 yield return new TestCaseData("-100", false, null);
-                yield return new TestCaseData("10,1", false, null);
+                yield return new TestCaseData("10.1", false, null);
                 yield return new TestCaseData("19000000000000000000", false, null);
                 yield return new TestCaseData("100", true, 100ul);
                 yield return new TestCaseData("   20   ", true, 20ul);
@@ -377,8 +377,8 @@ namespace Here.Maybes.Tests
                 yield return new TestCaseData(null, false, null);
                 yield return new TestCaseData(string.Empty, false, null);
                 yield return new TestCaseData("string", false, null);
-                yield return new TestCaseData("100,1", true, 100.1f);
-                yield return new TestCaseData("   -20,2   ", true, -20.2f);
+                yield return new TestCaseData("100.1", true, 100.1f);
+                yield return new TestCaseData("   -20.2   ", true, -20.2f);
             }
         }
 
@@ -401,8 +401,8 @@ namespace Here.Maybes.Tests
                 yield return new TestCaseData(null, false, null);
                 yield return new TestCaseData(string.Empty, false, null);
                 yield return new TestCaseData("string", false, null);
-                yield return new TestCaseData("100,1", true, 100.1);
-                yield return new TestCaseData("   -20,2   ", true, -20.2);
+                yield return new TestCaseData("100.1", true, 100.1);
+                yield return new TestCaseData("   -20.2   ", true, -20.2);
             }
         }
 

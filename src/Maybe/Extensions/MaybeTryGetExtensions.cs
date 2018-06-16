@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using JetBrains.Annotations;
 
 namespace Here.Maybes.Extensions
@@ -19,6 +20,16 @@ namespace Here.Maybes.Extensions
         public delegate bool TryGet<in TInput, TValue>([CanBeNull] TInput input, out TValue value);
 
         /// <summary>
+        /// Try parse delegate that fit common parse methods.
+        /// </summary>
+        /// <typeparam name="TInput"><see cref="Type"/> of the input.</typeparam>
+        /// <typeparam name="TValue"><see cref="Type"/> of the value to try get.</typeparam>
+        /// <param name="input">Input of the Try parse.</param>
+        /// <param name="value">Obtained value.</param>
+        /// <returns>Indicate if the get succeed.</returns>
+        public delegate bool TryParse<in TInput, TValue>([CanBeNull] TInput input, NumberStyles style, IFormatProvider culture, out TValue value);
+
+        /// <summary>
 		/// Create a Get methods that try to get a value from input with given try get function 
         /// and create a <see cref="Maybe{TValue}"/> with the result. TryGet methods are like int.TryParse, etc.
 		/// </summary>
@@ -27,9 +38,25 @@ namespace Here.Maybes.Extensions
 		/// <param name="tryFunc">Try get method.</param>
 		/// <returns>The result of the try get as <see cref="Maybe{TValue}"/></returns>
         [NotNull]
-		public static Func<TInput, Maybe<TValue>> CreateGet<TInput, TValue>([NotNull] TryGet<TInput, TValue> tryFunc)
+		public static Func<TInput, Maybe<TValue>> CreateGet<TInput, TValue>([NotNull] TryGet<TInput, TValue> tryGetFunc)
         {
-            return input => tryFunc(input, out TValue result)
+            return input => tryGetFunc(input, out TValue result)
+                ? result.ToMaybe()
+                : Maybe.None;
+        }
+
+        /// <summary>
+		/// Create a Get methods that try to get a value from input with given try get function 
+        /// and create a <see cref="Maybe{TValue}"/> with the result. TryGet methods are like int.TryParse, etc.
+		/// </summary>
+		/// <typeparam name="TInput"><see cref="Type"/> of the input/key.</typeparam>
+        /// <typeparam name="TValue"><see cref="Type"/> of the value to try get.</typeparam>
+		/// <param name="tryFunc">Try get method.</param>
+		/// <returns>The result of the try get as <see cref="Maybe{TValue}"/></returns>
+        [NotNull]
+        public static Func<TInput, Maybe<TValue>> CreateParse<TInput, TValue>([NotNull] TryParse<TInput, TValue> tryParseFunc)
+        {
+            return input => tryParseFunc(input, NumberStyles.Any, CultureInfo.CreateSpecificCulture("en-US"), out TValue result)
                 ? result.ToMaybe()
                 : Maybe.None;
         }
@@ -164,7 +191,7 @@ namespace Here.Maybes.Extensions
         /// <returns><see cref="Maybe{Single}"/> that wrap the result of the parse.</returns>
         public static Maybe<float> TryParseFloat([CanBeNull] this string str)
         {
-            var getter = CreateGet<string, float>(float.TryParse);
+            var getter = CreateParse<string, float>(float.TryParse);
             return getter(str);
         }
 
@@ -175,7 +202,7 @@ namespace Here.Maybes.Extensions
         /// <returns><see cref="Maybe{Double}"/> that wrap the result of the parse.</returns>
         public static Maybe<double> TryParseDouble([CanBeNull] this string str)
         {
-            var getter = CreateGet<string, double>(double.TryParse);
+            var getter = CreateParse<string, double>(double.TryParse);
             return getter(str);
         }
         
