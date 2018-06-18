@@ -81,21 +81,6 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-		/// Select via the <paramref name="selector"/> method something from this <see cref="Maybe{TIn}"/> if it has value.
-		/// </summary>
-		/// <typeparam name="TIn">Type of the value embedded in this <see cref="Maybe{TIn}"/>.</typeparam>
-        /// <typeparam name="TOut">Type of the embedded type in the selected <see cref="Maybe{TOut}"/>.</typeparam>
-		/// <param name="maybe"><see cref="Maybe{TIn}"/> on which performing treatment.</param>
-		/// <param name="selector">Method called to select the <see cref="Maybe{TOut}"/> from this <see cref="Maybe{TIn}"/>.</param>
-		/// <returns>A <see cref="Maybe{TOut}"/> result of the selection.</returns>
-        public static Maybe<TOut> SelectMany<TIn, TOut>(this Maybe<TIn> maybe, [NotNull] Func<TIn, Maybe<TOut>> selector)
-        {
-            if (maybe.HasValue)
-                return selector(maybe.Value);
-            return Maybe.None;
-        }
-
-        /// <summary>
 		/// Returns this <see cref="Maybe{T}"/> if it has value and match the <paramref name="predicate"/>.
 		/// </summary>
 		/// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
