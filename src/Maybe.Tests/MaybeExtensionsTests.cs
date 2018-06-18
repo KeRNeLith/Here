@@ -142,6 +142,9 @@ namespace Here.Maybes.Tests
             Assert.IsTrue(maybeInt.HasValue);
             Assert.AreEqual(2, maybeInt.Value);
 
+            maybeInt = enumerableInts.FirstOrNone(value => value == 4);
+            Assert.IsFalse(maybeInt.HasValue);
+            
             IEnumerable<int> enumerableInts2 = new List<int>();
             maybeInt = enumerableInts2.FirstOrNone();
             Assert.IsFalse(maybeInt.HasValue);
@@ -156,6 +159,9 @@ namespace Here.Maybes.Tests
             maybeNullable = enumerableNullableInts.FirstOrNone(value => value.HasValue && value.Value == 2);
             Assert.IsTrue(maybeNullable.HasValue);
             Assert.AreEqual(2, maybeNullable.Value);
+
+            maybeNullable = enumerableNullableInts.FirstOrNone(value => value == 4);
+            Assert.IsFalse(maybeNullable.HasValue);
 
             IEnumerable<int?> enumerableNullableInts2 = new List<int?> { null, null };
             maybeNullable = enumerableNullableInts2.FirstOrNone();
@@ -173,24 +179,28 @@ namespace Here.Maybes.Tests
             var testObj1 = new TestClass();
             var testObj2 = new TestClass();
             IEnumerable<TestClass> enumerableTestClass = new List<TestClass> { testObj1, testObj2 };
-            var maybeNullable2 = enumerableTestClass.FirstOrNone();
-            Assert.IsTrue(maybeNullable2.HasValue);
-            Assert.AreSame(testObj1, maybeNullable2.Value);
-            maybeNullable2 = enumerableTestClass.FirstOrNone(value => ReferenceEquals(testObj2, value));
-            Assert.IsTrue(maybeNullable2.HasValue);
-            Assert.AreSame(testObj2, maybeNullable2.Value);
+            var maybeClass = enumerableTestClass.FirstOrNone();
+            Assert.IsTrue(maybeClass.HasValue);
+            Assert.AreSame(testObj1, maybeClass.Value);
+            maybeClass = enumerableTestClass.FirstOrNone(value => ReferenceEquals(testObj2, value));
+            Assert.IsTrue(maybeClass.HasValue);
+            Assert.AreSame(testObj2, maybeClass.Value);
+
+            var testObj3 = new TestClass();
+            maybeClass = enumerableTestClass.FirstOrNone(value => ReferenceEquals(testObj3, value));
+            Assert.IsFalse(maybeClass.HasValue);
 
             IEnumerable<TestClass> enumerableTestClass2 = new List<TestClass> { null, null };
-            maybeNullable2 = enumerableTestClass2.FirstOrNone();
-            Assert.IsFalse(maybeNullable2.HasValue);
-            maybeNullable2 = enumerableTestClass2.FirstOrNone(value => ReferenceEquals(testObj1, value));
-            Assert.IsFalse(maybeNullable2.HasValue);
+            maybeClass = enumerableTestClass2.FirstOrNone();
+            Assert.IsFalse(maybeClass.HasValue);
+            maybeClass = enumerableTestClass2.FirstOrNone(value => ReferenceEquals(testObj1, value));
+            Assert.IsFalse(maybeClass.HasValue);
 
             IEnumerable<TestClass> enumerableTestClass3 = new List<TestClass>();
-            maybeNullable2 = enumerableTestClass3.FirstOrNone();
-            Assert.IsFalse(maybeNullable2.HasValue);
-            maybeNullable2 = enumerableTestClass3.FirstOrNone(value => ReferenceEquals(testObj1, value));
-            Assert.IsFalse(maybeNullable2.HasValue);
+            maybeClass = enumerableTestClass3.FirstOrNone();
+            Assert.IsFalse(maybeClass.HasValue);
+            maybeClass = enumerableTestClass3.FirstOrNone(value => ReferenceEquals(testObj1, value));
+            Assert.IsFalse(maybeClass.HasValue);
         }
 
         [Test]
@@ -204,6 +214,9 @@ namespace Here.Maybes.Tests
             maybeInt = enumerableInts.LastOrNone(value => value == 1);
             Assert.IsTrue(maybeInt.HasValue);
             Assert.AreEqual(1, maybeInt.Value);
+
+            maybeInt = enumerableInts.LastOrNone(value => value == 4);
+            Assert.IsFalse(maybeInt.HasValue);
 
             IEnumerable<int> enumerableInts2 = new List<int>();
             maybeInt = enumerableInts2.LastOrNone();
@@ -219,6 +232,9 @@ namespace Here.Maybes.Tests
             maybeNullable = enumerableNullableInts.LastOrNone(value => value.HasValue && value.Value == 1);
             Assert.IsTrue(maybeNullable.HasValue);
             Assert.AreEqual(1, maybeNullable.Value);
+
+            maybeNullable = enumerableNullableInts.LastOrNone(value => value.HasValue && value.Value == 4);
+            Assert.IsFalse(maybeNullable.HasValue);
 
             IEnumerable<int?> enumerableNullableInts2 = new List<int?> { null, null };
             maybeNullable = enumerableNullableInts2.LastOrNone();
@@ -236,24 +252,28 @@ namespace Here.Maybes.Tests
             var testObj1 = new TestClass();
             var testObj2 = new TestClass();
             IEnumerable<TestClass> enumerableTestClass = new List<TestClass> { testObj1, testObj2 };
-            var maybeNullable2 = enumerableTestClass.LastOrNone();
-            Assert.IsTrue(maybeNullable2.HasValue);
-            Assert.AreSame(testObj2, maybeNullable2.Value);
-            maybeNullable2 = enumerableTestClass.LastOrNone(value => ReferenceEquals(testObj1, value));
-            Assert.IsTrue(maybeNullable2.HasValue);
-            Assert.AreSame(testObj1, maybeNullable2.Value);
+            var maybeClass = enumerableTestClass.LastOrNone();
+            Assert.IsTrue(maybeClass.HasValue);
+            Assert.AreSame(testObj2, maybeClass.Value);
+            maybeClass = enumerableTestClass.LastOrNone(value => ReferenceEquals(testObj1, value));
+            Assert.IsTrue(maybeClass.HasValue);
+            Assert.AreSame(testObj1, maybeClass.Value);
+
+            var testObj3 = new TestClass();
+            maybeClass = enumerableTestClass.LastOrNone(value => ReferenceEquals(testObj3, value));
+            Assert.IsFalse(maybeClass.HasValue);
 
             IEnumerable<TestClass> enumerableTestClass2 = new List<TestClass> { null, null };
-            maybeNullable2 = enumerableTestClass2.LastOrNone();
-            Assert.IsFalse(maybeNullable2.HasValue);
-            maybeNullable2 = enumerableTestClass2.LastOrNone(value => ReferenceEquals(testObj1, value));
-            Assert.IsFalse(maybeNullable2.HasValue);
+            maybeClass = enumerableTestClass2.LastOrNone();
+            Assert.IsFalse(maybeClass.HasValue);
+            maybeClass = enumerableTestClass2.LastOrNone(value => ReferenceEquals(testObj1, value));
+            Assert.IsFalse(maybeClass.HasValue);
 
             IEnumerable<TestClass> enumerableTestClass3 = new List<TestClass>();
-            maybeNullable2 = enumerableTestClass3.LastOrNone();
-            Assert.IsFalse(maybeNullable2.HasValue);
-            maybeNullable2 = enumerableTestClass3.LastOrNone(value => ReferenceEquals(testObj1, value));
-            Assert.IsFalse(maybeNullable2.HasValue);
+            maybeClass = enumerableTestClass3.LastOrNone();
+            Assert.IsFalse(maybeClass.HasValue);
+            maybeClass = enumerableTestClass3.LastOrNone(value => ReferenceEquals(testObj1, value));
+            Assert.IsFalse(maybeClass.HasValue);
         }
     }
 }
