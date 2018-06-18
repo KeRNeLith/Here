@@ -149,7 +149,7 @@ namespace Here.Maybes.Extensions
         /// <typeparam name="TFrom">Type of the value embedded in this <see cref="Maybe{TFrom}"/>.</typeparam>
         /// <typeparam name="TTo">Type of the value embedded in the converted <see cref="Maybe{TTo}"/>.</typeparam>
         /// <param name="maybe"><see cref="Maybe{TFrom}"/> to convert.</param>
-        /// <param name="orFunc">Function called to convert this <see cref="Maybe{TFrom}"/>.</param>
+        /// <param name="converter">Function called to convert this <see cref="Maybe{TFrom}"/>.</param>
         /// <returns>The conversion of this <see cref="Maybe{TFrom}"/> to <see cref="Maybe{TTo}"/>.</returns>
         public static Maybe<TTo> Cast<TFrom, TTo>(this Maybe<TFrom> maybe, [NotNull] Func<TFrom, TTo> converter)
         {

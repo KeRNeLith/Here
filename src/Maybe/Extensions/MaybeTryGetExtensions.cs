@@ -35,7 +35,7 @@ namespace Here.Maybes.Extensions
 		/// </summary>
 		/// <typeparam name="TInput"><see cref="Type"/> of the input/key.</typeparam>
         /// <typeparam name="TValue"><see cref="Type"/> of the value to try get.</typeparam>
-		/// <param name="tryFunc">Try get method.</param>
+		/// <param name="tryGetFunc">Try get method.</param>
 		/// <returns>The result of the try get as <see cref="Maybe{TValue}"/></returns>
         [NotNull]
 		public static Func<TInput, Maybe<TValue>> CreateGet<TInput, TValue>([NotNull] TryGet<TInput, TValue> tryGetFunc)
@@ -51,7 +51,7 @@ namespace Here.Maybes.Extensions
 		/// </summary>
 		/// <typeparam name="TInput"><see cref="Type"/> of the input/key.</typeparam>
         /// <typeparam name="TValue"><see cref="Type"/> of the value to try get.</typeparam>
-		/// <param name="tryFunc">Try get method.</param>
+		/// <param name="tryParseFunc">Try get method.</param>
 		/// <returns>The result of the try get as <see cref="Maybe{TValue}"/></returns>
         [NotNull]
         public static Func<TInput, Maybe<TValue>> CreateParse<TInput, TValue>([NotNull] TryParse<TInput, TValue> tryParseFunc)
