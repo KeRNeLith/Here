@@ -8,6 +8,7 @@
 It handles and encapsulates the logic of functional based object including the following ones.
 
 - The `Maybe<T>`, also called Option or Monad. This structure encapsulates the concept of having a value or not. This mechanic safely handle a traditional null return.
+For more details on `Maybe<T>` usage see the following [tips](src/Maybe/README.md).
 
 ---
 
