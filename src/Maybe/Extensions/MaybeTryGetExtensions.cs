@@ -45,6 +45,8 @@ namespace Here.Maybes.Extensions
                 : Maybe.None;
         }
 
+        private static CultureInfo _parseCultureInfo = new CultureInfo("en-US");
+
         /// <summary>
 		/// Create a Get methods that try to get a value from input with given try get function 
         /// and create a <see cref="Maybe{TValue}"/> with the result. TryGet methods are like int.TryParse, etc.
@@ -56,7 +58,7 @@ namespace Here.Maybes.Extensions
         [NotNull]
         public static Func<TInput, Maybe<TValue>> CreateParse<TInput, TValue>([NotNull] TryParse<TInput, TValue> tryParseFunc)
         {
-            return input => tryParseFunc(input, NumberStyles.Any, CultureInfo.CreateSpecificCulture("en-US"), out TValue result)
+            return input => tryParseFunc(input, NumberStyles.Any, _parseCultureInfo, out TValue result)
                 ? result.ToMaybe()
                 : Maybe.None;
         }

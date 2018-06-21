@@ -14,7 +14,8 @@ For more details on `Maybe<T>` usage see the following [tips](src/Maybe/README.m
 
 ## Target
 
-- C# Framework 4.5
+- .NET Standard 1.0
+- .NET Framework 4.5.2
 
 ---
 
@@ -24,11 +25,3 @@ For more details on `Maybe<T>` usage see the following [tips](src/Maybe/README.m
 - NUnit (for unit testing)
 
 ---
-
-## How to contribute?
-
-The project use the solution generator Sharpmake to generate the solution and project files (.csproj).
-
-To start working on Here, you simply have to run the `generateSolution.bat` at repository root. It will create all needed files.
-
-If you need more informations about Sharpmake, consult the [GitHub repository](https://github.com/ubisoftinc/Sharpmake).

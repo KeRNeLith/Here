@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.0;net452</TargetFrameworks>
+	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	<Title>Here.Maybe</Title>
+	<Version>1.0.0</Version>
+	<Copyright>Copyright © 2018</Copyright>
+	<Description>.NET library that provide mainly functional features for C#.</Description>
+	<Authors>Alexandre Rabérin</Authors>
+	<Company>Alexandre Rabérin</Company>
+	<PackageTags>Here Functional Maybe Monad</PackageTags>
+	<AssemblyVersion>1.0.0</AssemblyVersion>
+	<FileVersion>1.0.0</FileVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="11.1.0" />
+  </ItemGroup>
+</Project>

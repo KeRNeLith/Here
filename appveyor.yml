@@ -1,4 +1,4 @@
-version: '{build}'
+version: '0.0.{build}'
 image: Visual Studio 2017
 
 # Setup
@@ -16,10 +16,6 @@ init:
     {
         $env:Build_Version = "$($env:APPVEYOR_BUILD_VERSION)";
     }
-
-# Installation
-install:
-  - cmd: ./generateSolution.bat
 
 # Assembly infos & csproj patching
 assembly_info:
