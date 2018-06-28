@@ -24,6 +24,19 @@ namespace Here.Maybes.Tests
         }
 
         [Test]
+        public void MaybeElse()
+        {
+            int counter = 0;
+            var maybeInt = Maybe<int>.Some(12);
+            maybeInt.Else(() => ++counter);
+            Assert.AreEqual(0, counter);
+
+            var emptyMaybeInt = Maybe<int>.None;
+            emptyMaybeInt.Else(() => ++counter);
+            Assert.AreEqual(1, counter);
+        }
+
+        [Test]
         public void MaybeIfElse()
         {
             int counterIf = 0;

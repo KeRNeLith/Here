@@ -9,7 +9,7 @@ namespace Here.Maybes.Extensions
     public static class MaybeOperationsExtensions
     {
         /// <summary>
-        /// Call the "then" function if this <see cref="Maybe{T}"/> has a value.
+        /// Call the <paramref name="then"/> function if this <see cref="Maybe{T}"/> has a value.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
@@ -23,7 +23,21 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Call the "then" function if this <see cref="Maybe{T}"/> has a value, otherwise call "else".
+        /// Call the <paramref name="else"/> function if this <see cref="Maybe{T}"/> has no value.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="else">Treatment to do.</param>
+        /// <returns>This <see cref="Maybe{T}"/>.</returns>
+        public static Maybe<T> Else<T>(this Maybe<T> maybe, [NotNull] Action @else)
+        {
+            if (maybe.HasNoValue)
+                @else();
+            return maybe;
+        }
+
+        /// <summary>
+        /// Call the <paramref name="then"/> function if this <see cref="Maybe{T}"/> has a value, otherwise call <paramref name="else"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
