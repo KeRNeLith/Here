@@ -1,4 +1,5 @@
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/KeRNeLith/Here?branch=master&svg=true)](https://ci.appveyor.com/project/KeRNeLith/Here)
+[![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/KeRNeLith/Here/blob/master/LICENSE)
 
 # Here
 
@@ -8,7 +9,7 @@
 It handles and encapsulates the logic of functional based object including the following ones.
 
 - The `Maybe<T>`, also called Option or Monad. This structure encapsulates the concept of having a value or not. This mechanic safely handle a traditional null return.
-For more details on `Maybe<T>` usage see the following [tips](src/Maybe/README.md).
+For more details on `Maybe<T>` usage see the following [tips](src/Here/Maybe/README.md).
 
 ---
 
