@@ -1,3 +1,4 @@
+[![Nuget downloads](https://img.shields.io/nuget/v/here.svg)](https://www.nuget.org/packages/Here)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/KeRNeLith/Here?branch=master&svg=true)](https://ci.appveyor.com/project/KeRNeLith/Here)
 [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/KeRNeLith/Here/blob/master/LICENSE)
 
@@ -24,5 +25,13 @@ For more details on `Maybe<T>` usage see the following [tips](src/Here/Maybe/REA
 
 - JetBrains.Annotations
 - NUnit (for unit testing)
+
+---
+
+## Installation
+
+Here is available on [NuGet](https://www.nuget.org/packages/Here)
+
+	PM> Install-Package Here
 
 ---
