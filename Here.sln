@@ -2,9 +2,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maybe", "src\Maybe\Maybe.csproj", "{D5762C6B-C87B-28BB-C2A8-60B33343641D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Here", "src\Here\Here.csproj", "{D5762C6B-C87B-28BB-C2A8-60B33343641D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maybe.Tests", "src\Maybe.Tests\Maybe.Tests.csproj", "{125C0F86-EA89-B12B-AEDF-B83E2B9623AC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Here.Tests", "src\Here.Tests\Here.Tests.csproj", "{125C0F86-EA89-B12B-AEDF-B83E2B9623AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
