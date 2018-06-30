@@ -17,6 +17,11 @@ init:
         $env:Build_Version = "$($env:APPVEYOR_BUILD_VERSION)";
     }
 
+# Installation
+install:
+# Chocolatey SonarQube
+  - cinst msbuild-sonarqube-runner
+
 # Assembly infos & csproj patching
 assembly_info:
   patch: true
@@ -51,6 +56,11 @@ before_build:
 
 build:
   verbosity: normal
+
+build_script:
+  - MSBuild.SonarQube.Runner.exe begin /k:"here" /d:sonar.organization="kernelith-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="31a2e0d98897cc07dc0569128e3f85f4d48e273f"
+  - msbuild
+  - MSBuild.SonarQube.Runner.exe end /d:"sonar.login=31a2e0d98897cc07dc0569128e3f85f4d48e273f"
 
 # Artifact
 artifacts:  
