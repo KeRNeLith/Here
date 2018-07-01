@@ -1,13 +1,18 @@
 version: '0.0.{build}'
 image: Visual Studio 2017
 
-# Setup
+# Setup environment
 pull_requests:
   do_not_increment_build_number: true
 
 environment:
   SONARQUBE_TOKEN:
     secure: AcQvaWq+gT9KdC+7oE75vDwW9mizfTw6qYH3vtiZTjSh9jA8ouoMq1j/sk6zB0fI
+  NUnitConsoleVersion: 3.8.0
+  OpenCoverVersion: 4.6.519
+  CoverallsVersion: 1.0.0
+  COVERALLS_REPO_TOKEN:
+    secure: MaVjwKULJGzSUnO0RzW40VNwTZ5AuTL4k5zN1FEkXLzrnoQNEMRlJzzA39D74W33
 
 # Setup build version
 init:
@@ -20,11 +25,6 @@ init:
     {
         $env:Build_Version = "$($env:APPVEYOR_BUILD_VERSION)";
     }
-
-# Installation
-install:
-# Chocolatey SonarQube
-  - cinst msbuild-sonarqube-runner
 
 # Assembly infos & csproj patching
 assembly_info:
@@ -56,6 +56,9 @@ matrix:
 
 # Build
 before_build:
+# Chocolatey SonarQube
+  - cinst msbuild-sonarqube-runner
+# NuGet restore
   - nuget restore
 
 build:
@@ -65,6 +68,27 @@ build_script:
   - ps: MSBuild.SonarQube.Runner.exe begin /k:"here" /d:sonar.organization="kernelith-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="$env:SONARQUBE_TOKEN"
   - msbuild
   - ps: MSBuild.SonarQube.Runner.exe end /d:"sonar.login=$env:SONARQUBE_TOKEN"
+
+before_test:
+# NuGet packages for coverage
+  - ps: nuget install NUnit.Console -Version $env:NUnitConsoleVersion -OutputDirectory tools
+  - ps: nuget install OpenCover -Version $env:OpenCoverVersion -OutputDirectory tools
+# .Net tool for coverage
+  - ps: dotnet tool install --tool-path tools --version $env:CoverallsVersion coveralls.net
+
+after_test: 
+# Coverage
+# Setup variables
+  - ps: $opencover = (Resolve-Path "tools\OpenCover.*\tools\OpenCover.Console.exe").ToString()
+  - ps: $nunitConsole = (Resolve-Path "tools\NUnit.ConsoleRunner.*\tools\nunit3-console.exe").ToString()
+  - ps: $coveralls = (Resolve-Path "tools\csmacnz.Coveralls.exe").ToString()
+# Assemblies to test (only consider .NET Framework 4.5, because if taking those from target netcoreapp1.0 coverage fails)
+  - ps: $testAssemblies = (ls src\*.Tests\bin\$env:Configuration\net45\*Tests.dll | % FullName | sort-object -Unique)
+# Generate coverage report
+  - ps: >-
+      & $opencover -register:user -filter:"+[*]* -[*.Test*]*" -target:"$nunitConsole" -targetargs:"$testAssemblies" -log:Warn -output:coverage.xml
+  - ps: >-
+      & $coveralls --opencover -i coverage.xml --repoToken $env:COVERALLS_REPO_TOKEN --useRelativePaths --commitId $env:APPVEYOR_REPO_COMMIT --commitBranch $env:APPVEYOR_REPO_BRANCH --commitAuthor $env:APPVEYOR_REPO_COMMIT_AUTHOR --commitEmail $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL --commitMessage $env:APPVEYOR_REPO_COMMIT_MESSAGE --jobId $env:APPVEYOR_BUILD_NUMBER --serviceName appveyor
 
 # Artifact
 artifacts:  

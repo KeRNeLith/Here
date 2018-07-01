@@ -1,7 +1,10 @@
-[![Nuget downloads](https://img.shields.io/nuget/v/here.svg)](https://www.nuget.org/packages/Here)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/KeRNeLith/Here?branch=master&svg=true)](https://ci.appveyor.com/project/KeRNeLith/Here)
-[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=here&metric=alert_status)](https://sonarcloud.io/dashboard?id=here)
-[![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/KeRNeLith/Here/blob/master/LICENSE)
+| | |
+| --- | --- |
+| **Build** | [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/KeRNeLith/Here?branch=master&svg=true)](https://ci.appveyor.com/project/KeRNeLith/Here) |
+| **Coverage** | [![Coverage Status](https://coveralls.io/repos/github/KeRNeLith/Here/badge.svg?branch=master)](https://coveralls.io/github/KeRNeLith/Here?branch=master) | 
+| **Quality** | [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=here&metric=alert_status)](https://sonarcloud.io/dashboard?id=here) | 
+| **Nuget** | [![Nuget downloads](https://img.shields.io/nuget/v/here.svg)](https://www.nuget.org/packages/Here) |
+| **License** | [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/KeRNeLith/Here/blob/master/LICENSE) |
 
 # Here
 
@@ -17,7 +20,7 @@ For more details on `Maybe<T>` usage see the following [tips](src/Here/Maybe/REA
 
 ## Target
 
-- .NET Standard 1.0
+- .NET Standard 1.1
 - .NET Framework 4.5.2
 
 ---
