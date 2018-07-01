@@ -45,7 +45,7 @@ namespace Here.Maybes.Extensions
                 : Maybe.None;
         }
 
-        private static CultureInfo _parseCultureInfo = new CultureInfo("en-US");
+        private static readonly CultureInfo ParseCultureInfo = new CultureInfo("en-US");
 
         /// <summary>
 		/// Create a Get methods that try to get a value from input with given try get function 
@@ -58,7 +58,7 @@ namespace Here.Maybes.Extensions
         [NotNull]
         public static Func<TInput, Maybe<TValue>> CreateParse<TInput, TValue>([NotNull] TryParse<TInput, TValue> tryParseFunc)
         {
-            return input => tryParseFunc(input, NumberStyles.Any, _parseCultureInfo, out TValue result)
+            return input => tryParseFunc(input, NumberStyles.Any, ParseCultureInfo, out TValue result)
                 ? result.ToMaybe()
                 : Maybe.None;
         }

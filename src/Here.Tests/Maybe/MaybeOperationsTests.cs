@@ -55,13 +55,11 @@ namespace Here.Maybes.Tests
         [Test]
         public void MaybeOr()
         {
-            Maybe<int> maybeResult;
-
             // Maybe with value
             var maybeInt = Maybe<int>.Some(12);
             Assert.AreEqual(12, maybeInt.Or(25));
             Assert.AreEqual(12, maybeInt.Or(() => 25));
-            maybeResult = maybeInt.Or(() => 25);
+            Maybe<int> maybeResult = maybeInt.Or(() => 25);
             Assert.IsTrue(maybeResult.HasValue);
             Assert.AreEqual(12, maybeResult.Value);
             maybeResult = maybeInt.Or(() => Maybe<int>.None);

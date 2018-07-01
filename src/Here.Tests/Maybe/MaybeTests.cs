@@ -9,6 +9,31 @@ namespace Here.Maybes.Tests
     [TestFixture]
     internal class MaybeTests : MaybeTestsBase
     {
+        #region Test classes
+
+        private class Person
+        {
+            private readonly string _name;
+
+            public Person(string name)
+            {
+                _name = name;
+            }
+
+            public override bool Equals(object obj)
+            {
+                return obj is Person otherPerson
+                    && _name.Equals(otherPerson._name, StringComparison.Ordinal);
+            }
+
+            public override int GetHashCode()
+            {
+                return _name.GetHashCode();
+            }
+        }
+
+        #endregion
+
         [Test]
         public void MaybeConstruction()
         {
@@ -50,6 +75,10 @@ namespace Here.Maybes.Tests
             Assert.IsFalse(emptyMaybeClass2.HasValue);
             Assert.IsTrue(emptyMaybeClass2.HasNoValue);
             Assert.Throws<InvalidOperationException>(() => { var unused = emptyMaybeClass2.Value; });
+
+            // Null value
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => Maybe<TestClass>.Some(null));
         }
 
         [Test]
@@ -143,6 +172,35 @@ namespace Here.Maybes.Tests
             Assert.IsTrue(maybeClass.Equals(embedMaybeClass));
             var embedMaybeClass2 = Maybe<Maybe<TestClass>>.Some(Maybe<TestClass>.Some(new TestClass { TestInt = 99 }));
             Assert.IsFalse(maybeClass.Equals(embedMaybeClass2));
+
+            // Equals with a null value
+            Assert.IsFalse(maybeInt.Equals(null));
+        }
+
+        [Test]
+        public void MaybeHashCode()
+        {
+            // Equals values
+            Maybe<Person> p1 = new Person("Foo Bar");
+            Maybe<Person> p2 = new Person("Foo Bar");
+            Assert.AreNotSame(p1, p2);
+            Assert.IsTrue(p1.Equals(p2));
+            Assert.IsTrue(p2.Equals(p1));
+            Assert.IsTrue(p1.GetHashCode() == p2.GetHashCode());
+
+            // Different values
+            Maybe<Person> p3 = new Person("Bar Foo");
+            Assert.AreNotSame(p1, p3);
+            Assert.IsFalse(p1.Equals(p3));
+            Assert.IsFalse(p3.Equals(p1));
+            Assert.IsFalse(p1.GetHashCode() == p3.GetHashCode());
+
+            // Empty maybe
+            Maybe<Person> empty = Maybe.None;
+            Assert.AreNotSame(p1, empty);
+            Assert.IsFalse(p1.Equals(empty));
+            Assert.IsFalse(empty.Equals(p1));
+            Assert.IsFalse(p1.GetHashCode() == empty.GetHashCode());
         }
 
         [Test]
