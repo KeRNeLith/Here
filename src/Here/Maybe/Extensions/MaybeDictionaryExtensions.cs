@@ -19,8 +19,7 @@ namespace Here.Maybes.Extensions
         /// <returns><see cref="Maybe{TValue}"/> that wrap the result of the get.</returns>
         public static Maybe<TValue> TryGetValue<TKey, TValue>([NotNull] this IDictionary<TKey, TValue> dictionary, [NotNull] TKey key)
         {
-            var getter = MaybeTryGetExtensions.CreateGet<TKey, TValue>(dictionary.TryGetValue);
-            return getter(key);
+            return TryGetValue<TKey, TValue>(dictionary.TryGetValue, key);
         }
 
         /// <summary>
@@ -33,7 +32,13 @@ namespace Here.Maybes.Extensions
         /// <returns><see cref="Maybe{TValue}"/> that wrap the result of the get.</returns>
         public static Maybe<TValue> TryGetReadonlyValue<TKey, TValue>([NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary, [NotNull] TKey key)
         {
-            var getter = MaybeTryGetExtensions.CreateGet<TKey, TValue>(dictionary.TryGetValue);
+            return TryGetValue<TKey, TValue>(dictionary.TryGetValue, key);
+        }
+
+        // Helper method to try get a value
+        private static Maybe<TValue> TryGetValue<TKey, TValue>(MaybeTryGetExtensions.TryGet<TKey, TValue> tryGetFunc, [NotNull] TKey key)
+        {
+            var getter = MaybeTryGetExtensions.CreateGet(tryGetFunc);
             return getter(key);
         }
     }
