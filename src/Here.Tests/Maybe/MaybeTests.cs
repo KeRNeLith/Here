@@ -174,7 +174,7 @@ namespace Here.Maybes.Tests
             Assert.IsFalse(maybeClass.Equals(embedMaybeClass2));
 
             // Equals with a null value
-            Assert.IsFalse(maybeInt.Equals(null));
+            Assert.IsFalse(maybeInt.Equals((object)null));
         }
 
         [Test]
