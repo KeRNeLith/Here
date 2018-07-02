@@ -1,16 +1,17 @@
-﻿using NUnit.Framework;
+﻿using System;
 using System.Collections.Generic;
-using Here.Maybes.Extensions;
 using JetBrains.Annotations;
-using System;
+using NUnit.Framework;
+using Here.Maybes;
+using Here.Maybes.Extensions;
 
-namespace Here.Maybes.Tests
+namespace Here.Tests.Maybes
 {
     /// <summary>
     /// Tests for <see cref="Maybe{T}"/> try get.
     /// </summary>
     [TestFixture]
-    internal class MaybeTryGetTests : MaybeTestsBase
+    internal class MaybeTryGetTests : HereTestsBase
     {
         [Test]
         public void TryGetDictionaries()

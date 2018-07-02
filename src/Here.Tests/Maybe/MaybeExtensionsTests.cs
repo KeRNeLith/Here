@@ -1,14 +1,15 @@
-﻿using NUnit.Framework;
+﻿using System.Collections.Generic;
+using NUnit.Framework;
+using Here.Maybes;
 using Here.Maybes.Extensions;
-using System.Collections.Generic;
 
-namespace Here.Maybes.Tests
+namespace Here.Tests.Maybes
 {
     /// <summary>
     /// Tests for <see cref="Maybe{T}"/>.
     /// </summary>
     [TestFixture]
-    internal class MaybeExtensionsTests : MaybeTestsBase
+    internal class MaybeExtensionsTests : HereTestsBase
     {
         #region Test methods
 

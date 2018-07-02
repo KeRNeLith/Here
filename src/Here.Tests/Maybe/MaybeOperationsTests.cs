@@ -1,14 +1,15 @@
-﻿using Here.Maybes.Extensions;
+﻿using System;
 using NUnit.Framework;
-using System;
+using Here.Maybes;
+using Here.Maybes.Extensions;
 
-namespace Here.Maybes.Tests
+namespace Here.Tests.Maybes
 {
     /// <summary>
     /// Tests for <see cref="Maybe{T}"/>.
     /// </summary>
     [TestFixture]
-    internal class MaybeOperationsTests : MaybeTestsBase
+    internal class MaybeOperationsTests : HereTestsBase
     {
         [Test]
         public void MaybeIf()
