@@ -65,9 +65,8 @@ build:
   verbosity: normal
 
 build_script:
-  - ps: MSBuild.SonarQube.Runner.exe begin /k:"here" /d:sonar.organization="kernelith-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="$env:SONARQUBE_TOKEN"
+  - ps: MSBuild.SonarQube.Runner.exe begin /k:"here" /d:sonar.organization="kernelith-github" /d:sonar.host.url="https://sonarcloud.io" /d:"sonar.branch.name=$env:APPVEYOR_REPO_BRANCH" /d:sonar.cs.opencover.reportsPaths="coverage.xml" /d:sonar.login="$env:SONARQUBE_TOKEN"
   - msbuild
-  - ps: MSBuild.SonarQube.Runner.exe end /d:"sonar.login=$env:SONARQUBE_TOKEN"
 
 before_test:
 # NuGet packages for coverage
@@ -87,6 +86,7 @@ after_test:
 # Generate coverage report
   - ps: >-
       & $opencover -register:user -filter:"+[*]* -[*.Test*]*" -target:"$nunitConsole" -targetargs:"$testAssemblies" -log:Warn -output:coverage.xml
+  - ps: SonarScanner.MSBuild.exe end /d:"sonar.login=$env:SONARQUBE_TOKEN"
   - ps: >-
       & $coveralls --opencover -i coverage.xml --repoToken $env:COVERALLS_REPO_TOKEN --useRelativePaths --commitId $env:APPVEYOR_REPO_COMMIT --commitBranch $env:APPVEYOR_REPO_BRANCH --commitAuthor $env:APPVEYOR_REPO_COMMIT_AUTHOR --commitEmail $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL --commitMessage $env:APPVEYOR_REPO_COMMIT_MESSAGE --jobId $env:APPVEYOR_BUILD_NUMBER --serviceName appveyor
 
