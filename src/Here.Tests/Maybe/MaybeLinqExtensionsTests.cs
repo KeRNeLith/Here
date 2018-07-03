@@ -110,6 +110,29 @@ namespace Here.Tests.Maybes
         }
 
         [Test]
+        public void MaybeOfType()
+        {
+            // Cast succeed
+            var testObjectLeaf = new TestClassLeaf();
+            var maybeTestClass = Maybe<TestClass>.Some(testObjectLeaf);
+            var maybeTestClassLeaf = maybeTestClass.OfType<TestClassLeaf>();
+            Assert.IsTrue(maybeTestClassLeaf.HasValue);
+            Assert.AreSame(testObjectLeaf, maybeTestClassLeaf.Value);
+
+            // Cast failed
+            // From Value type
+            var maybeInt = Maybe<int>.Some(12);
+            maybeTestClass = maybeInt.OfType<TestClass>();
+            Assert.IsFalse(maybeTestClass.HasValue);
+
+            // From Reference type
+            var testObject = new TestClass();
+            maybeTestClass = Maybe<TestClass>.Some(testObject);
+            maybeTestClassLeaf = maybeTestClass.OfType<TestClassLeaf>();
+            Assert.IsFalse(maybeTestClassLeaf.HasValue);
+        }
+
+        [Test]
         public void MaybeForEach()
         {
             // Maybe with value

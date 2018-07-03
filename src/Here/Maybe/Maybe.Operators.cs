@@ -1,4 +1,6 @@
-﻿namespace Here.Maybes
+﻿using Here.Maybes.Extensions;
+
+namespace Here.Maybes
 {
     // Operators
     public partial struct Maybe<T>
@@ -49,6 +51,17 @@
             if (leftOperand.HasValue)
                 return rightOperand;
             return None;
+        }
+
+        /// <summary>
+		/// Returns this <see cref="Maybe{T}"/> as a <see cref="Maybe{TOut}"/> if it has a value and is of type <typeparamref name="TOut"/>.
+		/// </summary>
+        /// <typeparam name="TOut">Type of the value embedded in the resulting <see cref="Maybe{TOut}"/>.</typeparam>
+		/// <returns>This casted as <see cref="Maybe{TOut}"/>.</returns>
+		public Maybe<TOut> OfType<TOut>()
+            where TOut : class
+        {
+            return this.Cast<T, TOut>();
         }
     }
 }
