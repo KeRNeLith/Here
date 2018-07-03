@@ -55,6 +55,22 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
+        /// Call the <paramref name="then"/> function if this <see cref="Maybe{T}"/> has a value.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <typeparam name="TResult">Type of the returned value.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="then">Treatment to do with this <see cref="Maybe{T}"/> value.</param>
+        /// <param name="else">Treatment to do if this <see cref="Maybe{T}"/> has no value.</param>
+        /// <returns>Result of the treatment.</returns>
+        public static TResult IfElse<T, TResult>(this Maybe<T> maybe, [NotNull] Func<T, TResult> then, [NotNull] Func<TResult> @else)
+        {
+            if (maybe.HasValue)
+                return then(maybe.Value);
+            return @else();
+        }
+
+        /// <summary>
         /// Returns this <see cref="Maybe{T}"/> value if it has value, otherwise returns <paramref name="orValue"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>

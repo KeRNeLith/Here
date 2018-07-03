@@ -42,12 +42,38 @@ namespace Here.Maybes.Tests
             int counterIf = 0;
             int counterElse = 0;
             var maybeInt = Maybe<int>.Some(12);
-            maybeInt.IfElse(value => ++counterIf, () => ++counterElse);
+            maybeInt.IfElse(
+                value => 
+                {
+                    ++counterIf;
+                }, 
+                () => ++counterElse);
             Assert.AreEqual(1, counterIf);
             Assert.AreEqual(0, counterElse);
 
             var emptyMaybeInt = Maybe<int>.None;
-            emptyMaybeInt.IfElse(value => ++counterIf, () => ++counterElse);
+            emptyMaybeInt.IfElse(
+                value =>
+                {
+                    ++counterIf;
+                }, 
+                () => ++counterElse);
+            Assert.AreEqual(1, counterIf);
+            Assert.AreEqual(1, counterElse);
+        }
+
+        [Test]
+        public void MaybeIfElseReturnResult()
+        {
+            int counterIf = 0;
+            int counterElse = 0;
+            var maybeInt = Maybe<int>.Some(12);
+            Assert.AreEqual(1, maybeInt.IfElse(value => ++counterIf, () => ++counterElse));
+            Assert.AreEqual(1, counterIf);
+            Assert.AreEqual(0, counterElse);
+
+            var emptyMaybeInt = Maybe<int>.None;
+            Assert.AreEqual(1, emptyMaybeInt.IfElse(value => ++counterIf, () => ++counterElse));
             Assert.AreEqual(1, counterIf);
             Assert.AreEqual(1, counterElse);
         }
