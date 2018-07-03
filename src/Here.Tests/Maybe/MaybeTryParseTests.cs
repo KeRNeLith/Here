@@ -1,50 +1,18 @@
-﻿using NUnit.Framework;
+﻿using System;
 using System.Collections.Generic;
-using Here.Maybes.Extensions;
 using JetBrains.Annotations;
-using System;
+using NUnit.Framework;
+using Here.Maybes.Extensions;
 
 namespace Here.Maybes.Tests
 {
     /// <summary>
-    /// Tests for <see cref="Maybe{T}"/> try get.
+    /// Tests for <see cref="Maybe{T}"/> try parse.
     /// </summary>
     [TestFixture]
-    internal class MaybeTryGetTests : MaybeTestsBase
+    internal class MaybeTryParseTests : MaybeTestsBase
     {
-        [Test]
-        public void TryGetDictionaries()
-        {
-            // Dictionary
-            var dictionaryIntString = new Dictionary<int, string>
-            {
-                [2] = "string 2",
-                [12] = "string 12",
-            };
-
-            var maybeString = dictionaryIntString.TryGetValue(2);
-            Assert.IsTrue(maybeString.HasValue);
-            Assert.AreEqual("string 2", maybeString.Value);
-
-            maybeString = dictionaryIntString.TryGetValue(42);
-            Assert.IsFalse(maybeString.HasValue);
-            
-            // Readonly Dictionary
-            IReadOnlyDictionary<int, string> readonlyDictionaryIntString = new Dictionary<int, string>
-            {
-                [42] = "string 42",
-                [88] = "string 88",
-            };
-            
-            maybeString = readonlyDictionaryIntString.TryGetReadonlyValue(42);
-            Assert.IsTrue(maybeString.HasValue);
-            Assert.AreEqual("string 42", maybeString.Value);
-
-            maybeString = readonlyDictionaryIntString.TryGetReadonlyValue(12);
-            Assert.IsFalse(maybeString.HasValue);
-        }
-
-        #region Common TryParse
+        // Common TryParse
 
         /// <summary>
         /// Call the <paramref name="tryParseFunc"/> and check if the result match expected value.
@@ -412,8 +380,6 @@ namespace Here.Maybes.Tests
         {
             TryParseTest(input.TryParseDouble, mustHaveValue, expectedValue);
         }
-
-        #endregion
 
         #endregion
     }
