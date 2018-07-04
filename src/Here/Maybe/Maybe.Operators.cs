@@ -54,6 +54,19 @@ namespace Here.Maybes
         }
 
         /// <summary>
+        /// Convert this <see cref="Maybe{T}"/> if it has a value to a <see cref="Maybe{TOut}"/>.
+        /// </summary>
+        /// <typeparam name="TOut">Type of the value embedded in the converted <see cref="Maybe{TOut}"/>.</typeparam>
+        /// <returns>The conversion of this <see cref="Maybe{T}"/> to <see cref="Maybe{TOut}"/>.</returns>
+        public Maybe<TOut> Cast<TOut>()
+            where TOut : class
+        {
+            if (HasValue)
+                return Value as TOut;
+            return Maybe.None;
+        }
+
+        /// <summary>
 		/// Returns this <see cref="Maybe{T}"/> as a <see cref="Maybe{TOut}"/> if it has a value and is of type <typeparamref name="TOut"/>.
 		/// </summary>
         /// <typeparam name="TOut">Type of the value embedded in the resulting <see cref="Maybe{TOut}"/>.</typeparam>
@@ -61,7 +74,7 @@ namespace Here.Maybes
 		public Maybe<TOut> OfType<TOut>()
             where TOut : class
         {
-            return this.Cast<T, TOut>();
+            return Cast<TOut>();
         }
     }
 }

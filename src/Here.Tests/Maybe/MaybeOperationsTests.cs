@@ -185,14 +185,14 @@ namespace Here.Maybes.Tests
             Assert.IsTrue(maybeFloat.HasValue);
             Assert.AreEqual(12.2f, maybeFloat.Value);
 
-            var maybeClass = maybeClassLeaf.Cast<TestClassLeaf, TestClass>();
+            var maybeClass = maybeClassLeaf.Cast<TestClass>();
             Assert.IsTrue(maybeClass.HasValue);
             Assert.AreSame(testObjectLeaf, maybeClass.Value);
 
             // Invalid conversion
             var testObject = new TestClass { TestInt = 42 };
             maybeClass = Maybe<TestClass>.Some(testObject);
-            maybeClassLeaf = maybeClass.Cast<TestClass, TestClassLeaf>();
+            maybeClassLeaf = maybeClass.Cast<TestClassLeaf>();
             Assert.IsFalse(maybeClassLeaf.HasValue);
 
             // Empty maybe
@@ -200,7 +200,7 @@ namespace Here.Maybes.Tests
             maybeFloat = emptyMaybeClassLeaf.Cast(obj => obj.TestInt + 0.2f);
             Assert.IsFalse(maybeFloat.HasValue);
 
-            maybeClass = emptyMaybeClassLeaf.Cast<TestClassLeaf, TestClass>();
+            maybeClass = emptyMaybeClassLeaf.Cast<TestClass>();
             Assert.IsFalse(maybeClass.HasValue);
         }
     }
