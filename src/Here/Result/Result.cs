@@ -17,7 +17,7 @@ namespace Here.Results
         public bool IsSuccess => _logic.IsSuccess;
 
         /// <inheritdoc />
-        public bool IsWarning=> _logic.IsSuccess;
+        public bool IsWarning=> _logic.IsWarning;
 
         /// <inheritdoc />
         public bool IsFailure => _logic.IsFailure;
@@ -37,6 +37,15 @@ namespace Here.Results
         private Result(bool isWarning, bool isFailure, [CanBeNull] string message)
         {
             _logic = new ResultLogic(isWarning, isFailure, message);
+        }
+
+        /// <summary>
+        /// <see cref="Result"/> constructor.
+        /// </summary>
+        /// <param name="logic">Result logic.</param>
+        internal Result([NotNull] ResultLogic logic)
+        {
+            _logic = logic;
         }
 
         /// <inheritdoc />
@@ -89,7 +98,7 @@ namespace Here.Results
         /// <returns>A <see cref="Result{T}"/>.</returns>
         public static IResult<T> Warn<T>([CanBeNull] T value, [CanBeNull] string message)
         {
-            return new Result<T>(false, value, message);
+            return new Result<T>(true, value, message);
         }
 
         /// <summary>
@@ -108,7 +117,7 @@ namespace Here.Results
     /// <see cref="Result{T}"/> is an object that represents the result/state of a treatment.
     /// This <see cref="Result{T}"/> embed a <see cref="Value"/> resulting of the treatment.
     /// </summary>
-    public struct Result<T> : IResult<T>
+    public partial struct Result<T> : IResult<T>
     {
         /// <inheritdoc />
         public bool IsSuccess => _logic.IsSuccess;
