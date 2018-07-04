@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using JetBrains.Annotations;
 using NUnit.Framework;
 using Here.Maybes.Extensions;
@@ -12,6 +13,9 @@ namespace Here.Maybes.Tests
     [TestFixture]
     internal class MaybeTryParseTests : MaybeTestsBase
     {
+        private static readonly CultureInfo TestParseUSCultureInfo = new CultureInfo("en-US");
+        private static readonly CultureInfo TestParseFRCultureInfo = new CultureInfo("fr-FR");
+
         // Common TryParse
 
         /// <summary>
@@ -111,6 +115,12 @@ namespace Here.Maybes.Tests
             TryParseTest(input.TryParseByte, mustHaveValue, expectedValue);
         }
 
+        [TestCaseSource(nameof(CreateTryParseByteTestCases))]
+        public void TryParseByteCustom(string input, bool mustHaveValue, byte expectedValue)
+        {
+            TryParseTest(() => input.TryParseByte(NumberStyles.Any, TestParseUSCultureInfo), mustHaveValue, expectedValue);
+        }
+
         #endregion
 
         #region TryParse sbyte
@@ -125,7 +135,7 @@ namespace Here.Maybes.Tests
                 yield return new TestCaseData("string", false, null);
                 yield return new TestCaseData("-200", false, null);
                 yield return new TestCaseData("-3.6", false, null);
-                yield return new TestCaseData("10,1", false, null);
+                yield return new TestCaseData("10.1", false, null);
                 yield return new TestCaseData("985", false, null);
                 yield return new TestCaseData("100", true, (sbyte)100);
                 yield return new TestCaseData("+100", true, (sbyte)100);
@@ -136,9 +146,15 @@ namespace Here.Maybes.Tests
 
 
         [TestCaseSource(nameof(CreateTryParseSbyteTestCases))]
-        public void TryParseSbyte(string input, bool mustHaveValue, sbyte expectedValue)
+        public void TryParseSByte(string input, bool mustHaveValue, sbyte expectedValue)
         {
-            TryParseTest(input.TryParseSbyte, mustHaveValue, expectedValue);
+            TryParseTest(input.TryParseSByte, mustHaveValue, expectedValue);
+        }
+
+        [TestCaseSource(nameof(CreateTryParseSbyteTestCases))]
+        public void TryParseSByteCustom(string input, bool mustHaveValue, sbyte expectedValue)
+        {
+            TryParseTest(() => input.TryParseSByte(NumberStyles.Any, TestParseUSCultureInfo), mustHaveValue, expectedValue);
         }
 
         #endregion
@@ -171,6 +187,12 @@ namespace Here.Maybes.Tests
             TryParseTest(input.TryParseShort, mustHaveValue, expectedValue);
         }
 
+        [TestCaseSource(nameof(CreateTryParseShortTestCases))]
+        public void TryParseShortCustom(string input, bool mustHaveValue, short expectedValue)
+        {
+            TryParseTest(() => input.TryParseShort(NumberStyles.Any, TestParseUSCultureInfo), mustHaveValue, expectedValue);
+        }
+
         #endregion
 
         #region TryParse ushort
@@ -194,9 +216,15 @@ namespace Here.Maybes.Tests
 
 
         [TestCaseSource(nameof(CreateTryParseUshortTestCases))]
-        public void TryParseUshort(string input, bool mustHaveValue, ushort expectedValue)
+        public void TryParseUShort(string input, bool mustHaveValue, ushort expectedValue)
         {
-            TryParseTest(input.TryParseUshort, mustHaveValue, expectedValue);
+            TryParseTest(input.TryParseUShort, mustHaveValue, expectedValue);
+        }
+
+        [TestCaseSource(nameof(CreateTryParseUshortTestCases))]
+        public void TryParseUShortCustom(string input, bool mustHaveValue, ushort expectedValue)
+        {
+            TryParseTest(() => input.TryParseUShort(NumberStyles.Any, TestParseUSCultureInfo), mustHaveValue, expectedValue);
         }
 
         #endregion
@@ -227,6 +255,12 @@ namespace Here.Maybes.Tests
             TryParseTest(input.TryParseInt, mustHaveValue, expectedValue);
         }
 
+        [TestCaseSource(nameof(CreateTryParseIntTestCases))]
+        public void TryParseIntCustom(string input, bool mustHaveValue, int expectedValue)
+        {
+            TryParseTest(() => input.TryParseInt(NumberStyles.Any, TestParseUSCultureInfo), mustHaveValue, expectedValue);
+        }
+
         #endregion
 
         #region TryParse uint
@@ -249,9 +283,15 @@ namespace Here.Maybes.Tests
 
 
         [TestCaseSource(nameof(CreateTryParseUintTestCases))]
-        public void TryParseUint(string input, bool mustHaveValue, uint expectedValue)
+        public void TryParseUInt(string input, bool mustHaveValue, uint expectedValue)
         {
-            TryParseTest(input.TryParseUint, mustHaveValue, expectedValue);
+            TryParseTest(input.TryParseUInt, mustHaveValue, expectedValue);
+        }
+
+        [TestCaseSource(nameof(CreateTryParseUintTestCases))]
+        public void TryParseUIntCustom(string input, bool mustHaveValue, uint expectedValue)
+        {
+            TryParseTest(() => input.TryParseUInt(NumberStyles.Any, TestParseUSCultureInfo), mustHaveValue, expectedValue);
         }
 
         #endregion
@@ -282,6 +322,12 @@ namespace Here.Maybes.Tests
             TryParseTest(input.TryParseLong, mustHaveValue, expectedValue);
         }
 
+        [TestCaseSource(nameof(CreateTryParseLongTestCases))]
+        public void TryParseLongCustom(string input, bool mustHaveValue, long expectedValue)
+        {
+            TryParseTest(() => input.TryParseLong(NumberStyles.Any, TestParseUSCultureInfo), mustHaveValue, expectedValue);
+        }
+
         #endregion
 
         #region TryParse ulong
@@ -304,9 +350,15 @@ namespace Here.Maybes.Tests
 
 
         [TestCaseSource(nameof(CreateTryParseUlongTestCases))]
-        public void TryParseUlong(string input, bool mustHaveValue, ulong expectedValue)
+        public void TryParseULong(string input, bool mustHaveValue, ulong expectedValue)
         {
-            TryParseTest(input.TryParseUlong, mustHaveValue, expectedValue);
+            TryParseTest(input.TryParseULong, mustHaveValue, expectedValue);
+        }
+
+        [TestCaseSource(nameof(CreateTryParseUlongTestCases))]
+        public void TryParseULongCustom(string input, bool mustHaveValue, ulong expectedValue)
+        {
+            TryParseTest(() => input.TryParseULong(NumberStyles.Any, TestParseUSCultureInfo), mustHaveValue, expectedValue);
         }
 
         #endregion
@@ -333,6 +385,12 @@ namespace Here.Maybes.Tests
             TryParseTest(input.TryParseDecimal, mustHaveValue, expectedValue);
         }
 
+        [TestCaseSource(nameof(CreateTryParseDecimalTestCases))]
+        public void TryParseDecimalCustom(string input, bool mustHaveValue, decimal expectedValue)
+        {
+            TryParseTest(() => input.TryParseDecimal(NumberStyles.Any, TestParseUSCultureInfo), mustHaveValue, expectedValue);
+        }
+
         #endregion
 
         #region TryParse float
@@ -357,6 +415,31 @@ namespace Here.Maybes.Tests
             TryParseTest(input.TryParseFloat, mustHaveValue, expectedValue);
         }
 
+        [TestCaseSource(nameof(CreateTryParseFloatTestCases))]
+        public void TryParseFloatCustom(string input, bool mustHaveValue, float expectedValue)
+        {
+            TryParseTest(() => input.TryParseFloat(NumberStyles.Any, TestParseUSCultureInfo), mustHaveValue, expectedValue);
+        }
+
+        private static IEnumerable<TestCaseData> CreateTryParseFloatTestCases2
+        {
+            [UsedImplicitly]
+            get
+            {
+                yield return new TestCaseData(null, false, null);
+                yield return new TestCaseData(string.Empty, false, null);
+                yield return new TestCaseData("string", false, null);
+                yield return new TestCaseData("100,1", true, 100.1f);
+                yield return new TestCaseData("   20.2   ", false, null);
+            }
+        }
+
+        [TestCaseSource(nameof(CreateTryParseFloatTestCases2))]
+        public void TryParseFloatCustom2(string input, bool mustHaveValue, float expectedValue)
+        {
+            TryParseTest(() => input.TryParseFloat(NumberStyles.Any, TestParseFRCultureInfo), mustHaveValue, expectedValue);
+        }
+
         #endregion
 
         #region TryParse double
@@ -379,6 +462,31 @@ namespace Here.Maybes.Tests
         public void TryParseDouble(string input, bool mustHaveValue, double expectedValue)
         {
             TryParseTest(input.TryParseDouble, mustHaveValue, expectedValue);
+        }
+
+        [TestCaseSource(nameof(CreateTryParseDoubleTestCases))]
+        public void TryParseDoubleCustom(string input, bool mustHaveValue, double expectedValue)
+        {
+            TryParseTest(() => input.TryParseDouble(NumberStyles.Any, TestParseUSCultureInfo), mustHaveValue, expectedValue);
+        }
+
+        private static IEnumerable<TestCaseData> CreateTryParseDoubleTestCases2
+        {
+            [UsedImplicitly]
+            get
+            {
+                yield return new TestCaseData(null, false, null);
+                yield return new TestCaseData(string.Empty, false, null);
+                yield return new TestCaseData("string", false, null);
+                yield return new TestCaseData("100,1", true, 100.1);
+                yield return new TestCaseData("   20.2   ", false, null);
+            }
+        }
+
+        [TestCaseSource(nameof(CreateTryParseDoubleTestCases2))]
+        public void TryParseDoubleCustom2(string input, bool mustHaveValue, double expectedValue)
+        {
+            TryParseTest(() => input.TryParseDouble(NumberStyles.Any, TestParseFRCultureInfo), mustHaveValue, expectedValue);
         }
 
         #endregion

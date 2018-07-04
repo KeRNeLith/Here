@@ -134,7 +134,7 @@ namespace Here.Maybes.Extensions
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Maybe{SByte}"/> that wrap the result of the parse.</returns>
-        public static Maybe<sbyte> TryParseSbyte([CanBeNull] this string str)
+        public static Maybe<sbyte> TryParseSByte([CanBeNull] this string str)
         {
             var getter = CreateGet<string, sbyte>(sbyte.TryParse);
             return getter(str);
@@ -147,7 +147,7 @@ namespace Here.Maybes.Extensions
         /// <param name="style">Style number to use.</param>
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Maybe{SByte}"/> that wrap the result of the parse.</returns>
-        public static Maybe<sbyte> TryParseSbyte([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
+        public static Maybe<sbyte> TryParseSByte([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
         {
             var getter = CreateParse<string, sbyte>(sbyte.TryParse, style, culture);
             return getter(str);
@@ -182,7 +182,7 @@ namespace Here.Maybes.Extensions
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Maybe{UInt16}"/> that wrap the result of the parse.</returns>
-        public static Maybe<ushort> TryParseUshort([CanBeNull] this string str)
+        public static Maybe<ushort> TryParseUShort([CanBeNull] this string str)
         {       
             var getter = CreateGet<string, ushort>(ushort.TryParse);
             return getter(str);
@@ -195,7 +195,7 @@ namespace Here.Maybes.Extensions
         /// <param name="style">Style number to use.</param>
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Maybe{UInt16}"/> that wrap the result of the parse.</returns>
-        public static Maybe<ushort> TryParseUshort([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
+        public static Maybe<ushort> TryParseUShort([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
         {
             var getter = CreateParse<string, ushort>(ushort.TryParse, style, culture);
             return getter(str);
@@ -230,7 +230,7 @@ namespace Here.Maybes.Extensions
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Maybe{UInt32}"/> that wrap the result of the parse.</returns>
-        public static Maybe<uint> TryParseUint([CanBeNull] this string str)
+        public static Maybe<uint> TryParseUInt([CanBeNull] this string str)
         {
             var getter = CreateGet<string, uint>(uint.TryParse);
             return getter(str);
@@ -243,7 +243,7 @@ namespace Here.Maybes.Extensions
         /// <param name="style">Style number to use.</param>
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Maybe{UInt32}"/> that wrap the result of the parse.</returns>
-        public static Maybe<uint> TryParseUint([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
+        public static Maybe<uint> TryParseUInt([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
         {
             var getter = CreateParse<string, uint>(uint.TryParse, style, culture);
             return getter(str);
@@ -278,7 +278,7 @@ namespace Here.Maybes.Extensions
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Maybe{UInt64}"/> that wrap the result of the parse.</returns>
-        public static Maybe<ulong> TryParseUlong([CanBeNull] this string str)
+        public static Maybe<ulong> TryParseULong([CanBeNull] this string str)
         {
             var getter = CreateGet<string, ulong>(ulong.TryParse);
             return getter(str);
@@ -291,7 +291,7 @@ namespace Here.Maybes.Extensions
         /// <param name="style">Style number to use.</param>
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Maybe{UInt64}"/> that wrap the result of the parse.</returns>
-        public static Maybe<ulong> TryParseUlong([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
+        public static Maybe<ulong> TryParseULong([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
         {
             var getter = CreateParse<string, ulong>(ulong.TryParse, style, culture);
             return getter(str);
