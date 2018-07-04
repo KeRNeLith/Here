@@ -124,7 +124,7 @@ Maybe<float> maybeFloat = maybeInt.Cast(intValue => (float)intValue);
 // Let assume that we have a type TestClass and a type SubTestClass that inherits from TestClass
 var testObject = new SubTestClass()
 Maybe<TestClass> maybeTestClass = Maybe<TestClass>.Some(testObject);
-Maybe<SubTestClass> maybeSubTestClass = maybeTestClass.Cast<TestClass, SubTestClass>();
+Maybe<SubTestClass> maybeSubTestClass = maybeTestClass.Cast<SubTestClass>();
 ```
 
 ### Enumerable extensions

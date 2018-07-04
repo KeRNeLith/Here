@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Here.Result
+﻿namespace Here.Results
 {
 	// Implicit operators
     public partial struct Result<T>
