@@ -34,7 +34,7 @@ namespace Here.Results
             get
             {
                 if (IsSuccess && !IsWarning)
-                    throw new InvalidOperationException("There is no message a success Result.");
+                    throw new InvalidOperationException("There is no message for a success Result.");
 
                 return _message;
             }
@@ -49,7 +49,7 @@ namespace Here.Results
         public ResultLogic(bool isWarning, bool isFailure, [CanBeNull] string message)
         {
             // Warnings & Errors should have a message
-            if ((isWarning || isFailure) && message == null)
+            if ((isWarning || isFailure) && string.IsNullOrEmpty(message))
                 throw new ArgumentNullException(nameof(message), "Cannot initialize a not-success Result with a null message.");
 
             IsWarning = isWarning;

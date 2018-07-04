@@ -26,7 +26,7 @@ namespace Here.Results
         public string Message => _logic.Message;
 
         [NotNull]
-        private ResultLogic _logic;
+        private readonly ResultLogic _logic;
 
         /// <summary>
         /// <see cref="Result"/> constructor.
@@ -69,7 +69,8 @@ namespace Here.Results
         /// Get a success <see cref="Result"/> with warning.
         /// </summary>
         /// <returns>A <see cref="Result"/>.</returns>
-        public static Result Warn([CanBeNull] string message)
+        [ContractAnnotation("null => halt")]
+        public static Result Warn([NotNull] string message)
         {
             return new Result(true, false, message);
         }
@@ -78,7 +79,8 @@ namespace Here.Results
         /// Get a failure <see cref="Result"/>.
         /// </summary>
         /// <returns>A <see cref="Result"/>.</returns>
-        public static Result Fail([CanBeNull] string error)
+        [ContractAnnotation("null => halt")]
+        public static Result Fail([NotNull] string error)
         {
             return new Result(false, true, error);
         }
@@ -96,7 +98,8 @@ namespace Here.Results
         /// Get a success <see cref="Result{T}"/> with warning.
         /// </summary>
         /// <returns>A <see cref="Result{T}"/>.</returns>
-        public static Result<T> Warn<T>([CanBeNull] T value, [CanBeNull] string message)
+        [ContractAnnotation("message:null => halt")]
+        public static Result<T> Warn<T>([CanBeNull] T value, [NotNull] string message)
         {
             return new Result<T>(true, value, message);
         }
@@ -105,7 +108,8 @@ namespace Here.Results
         /// Get a failure <see cref="Result{T}"/>.
         /// </summary>
         /// <returns>A <see cref="Result{T}"/>.</returns>
-        public static Result<T> Fail<T>([CanBeNull] string error)
+        [ContractAnnotation("null => halt")]
+        public static Result<T> Fail<T>([NotNull] string error)
         {
             return new Result<T>(error);
         }
@@ -146,7 +150,7 @@ namespace Here.Results
         }
 
         [NotNull]
-        private ResultLogic _logic;
+        private readonly ResultLogic _logic;
 
         /// <summary>
         /// <see cref="Result{T}"/> success & warning constructor.
@@ -154,7 +158,7 @@ namespace Here.Results
         /// <param name="isWarning">Result warning flag.</param>
         /// <param name="value">Embedded value.</param>
         /// <param name="message">Result message.</param>
-        internal Result(bool isWarning, T value, [CanBeNull] string message)
+        internal Result(bool isWarning, [CanBeNull] T value, [CanBeNull] string message)
         {
             _logic = new ResultLogic(isWarning, false, message);
             _value = value;
@@ -164,7 +168,7 @@ namespace Here.Results
         /// <see cref="Result{T}"/> failure constructor.
         /// </summary>
         /// <param name="message">Result message.</param>
-        internal Result([CanBeNull] string message)
+        internal Result([NotNull] string message)
         {
             _logic = new ResultLogic(false, true, message);
             _value = default(T);

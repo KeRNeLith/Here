@@ -54,6 +54,10 @@ namespace Here.Tests.Results
             Assert.AreEqual("My warning", warning.Message);
             Assert.AreEqual(12, warning.Value);
 
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => Result.Warn(null));
+            Assert.Throws<ArgumentNullException>(() => Result.Warn(""));
+
             // failure result
             var failure = Result.Fail<int>("My failure");
             Assert.IsFalse(failure.IsSuccess);
@@ -61,6 +65,10 @@ namespace Here.Tests.Results
             Assert.IsTrue(failure.IsFailure);
             Assert.AreEqual("My failure", failure.Message);
             Assert.Throws<InvalidOperationException>(() => { var _ = failure.Value; });
+
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => Result.Fail(null));
+            Assert.Throws<ArgumentNullException>(() => Result.Fail(""));
         }
 
         [Test]
@@ -82,6 +90,10 @@ namespace Here.Tests.Results
             Assert.IsFalse(warningWithoutValue.IsFailure);
             Assert.AreEqual("My warning", warningWithoutValue.Message);
 
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => Result.Warn(12, null));
+            Assert.Throws<ArgumentNullException>(() => Result.Warn(12, ""));
+
             // failure result
             var failure = Result.Fail<int>("My failure");
             Result failureWithoutValue = failure;
@@ -89,6 +101,10 @@ namespace Here.Tests.Results
             Assert.IsFalse(failureWithoutValue.IsWarning);
             Assert.IsTrue(failureWithoutValue.IsFailure);
             Assert.AreEqual("My failure", failureWithoutValue.Message);
+
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => Result.Fail<int>(null));
+            Assert.Throws<ArgumentNullException>(() => Result.Fail<int>(""));
         }
 
         [Test]
