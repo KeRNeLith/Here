@@ -68,7 +68,7 @@ namespace Here.Tests.Results
         {
             // Ok result
             var ok = Result.Ok(42);
-            IResult okWithoutValue = ok;
+            Result okWithoutValue = ok;
             Assert.IsTrue(okWithoutValue.IsSuccess);
             Assert.IsFalse(okWithoutValue.IsWarning);
             Assert.IsFalse(okWithoutValue.IsFailure);
@@ -76,7 +76,7 @@ namespace Here.Tests.Results
 
             // Warning result
             var warning = Result.Warn(12, "My warning");
-            IResult warningWithoutValue = warning;
+            Result warningWithoutValue = warning;
             Assert.IsTrue(warningWithoutValue.IsSuccess);
             Assert.IsTrue(warningWithoutValue.IsWarning);
             Assert.IsFalse(warningWithoutValue.IsFailure);
@@ -84,7 +84,7 @@ namespace Here.Tests.Results
 
             // failure result
             var failure = Result.Fail<int>("My failure");
-            IResult failureWithoutValue = failure;
+            Result failureWithoutValue = failure;
             Assert.IsFalse(failureWithoutValue.IsSuccess);
             Assert.IsFalse(failureWithoutValue.IsWarning);
             Assert.IsTrue(failureWithoutValue.IsFailure);

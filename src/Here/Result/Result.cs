@@ -60,7 +60,7 @@ namespace Here.Results
         /// Get a success <see cref="Result"/>.
         /// </summary>
         /// <returns>A <see cref="Result"/>.</returns>
-        public static IResult Ok()
+        public static Result Ok()
         {
             return ResultOk;
         }
@@ -69,7 +69,7 @@ namespace Here.Results
         /// Get a success <see cref="Result"/> with warning.
         /// </summary>
         /// <returns>A <see cref="Result"/>.</returns>
-        public static IResult Warn([CanBeNull] string message)
+        public static Result Warn([CanBeNull] string message)
         {
             return new Result(true, false, message);
         }
@@ -78,7 +78,7 @@ namespace Here.Results
         /// Get a failure <see cref="Result"/>.
         /// </summary>
         /// <returns>A <see cref="Result"/>.</returns>
-        public static IResult Fail([CanBeNull] string error)
+        public static Result Fail([CanBeNull] string error)
         {
             return new Result(false, true, error);
         }
@@ -87,7 +87,7 @@ namespace Here.Results
         /// Get a success <see cref="Result{T}"/>.
         /// </summary>
         /// <returns>A <see cref="Result{T}"/>.</returns>
-        public static IResult<T> Ok<T>([CanBeNull] T value)
+        public static Result<T> Ok<T>([CanBeNull] T value)
         {
             return new Result<T>(false, value, null);
         }
@@ -96,7 +96,7 @@ namespace Here.Results
         /// Get a success <see cref="Result{T}"/> with warning.
         /// </summary>
         /// <returns>A <see cref="Result{T}"/>.</returns>
-        public static IResult<T> Warn<T>([CanBeNull] T value, [CanBeNull] string message)
+        public static Result<T> Warn<T>([CanBeNull] T value, [CanBeNull] string message)
         {
             return new Result<T>(true, value, message);
         }
@@ -105,7 +105,7 @@ namespace Here.Results
         /// Get a failure <see cref="Result{T}"/>.
         /// </summary>
         /// <returns>A <see cref="Result{T}"/>.</returns>
-        public static IResult<T> Fail<T>([CanBeNull] string error)
+        public static Result<T> Fail<T>([CanBeNull] string error)
         {
             return new Result<T>(error);
         }
