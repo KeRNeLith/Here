@@ -21,11 +21,6 @@ namespace Here.Results
         /// Indicate if this Result is a failure.
         /// </summary>
         bool IsFailure { get; }
-
-        /// <summary>
-        /// Message attached to this Result.
-        /// </summary>
-        string Message { get; }
     }
 
     /// <summary>

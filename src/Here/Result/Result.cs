@@ -55,6 +55,8 @@ namespace Here.Results
         }
 
         #region Factory methods
+
+        // Here to be easy to call
         
         /// <summary>
         /// Get a success <see cref="Result"/>.
