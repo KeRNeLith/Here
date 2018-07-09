@@ -18,7 +18,7 @@ namespace Here.Tests.Results
             Assert.IsTrue(ok.IsSuccess);
             Assert.IsFalse(ok.IsWarning);
             Assert.IsFalse(ok.IsFailure);
-            Assert.Throws<InvalidOperationException>(() => { var _ = ok.Message; });
+            Assert.IsNull(ok.Message);
 
             // Warning result
             var warning = Result.Warn("My warning");
@@ -43,7 +43,7 @@ namespace Here.Tests.Results
             Assert.IsTrue(ok.IsSuccess);
             Assert.IsFalse(ok.IsWarning);
             Assert.IsFalse(ok.IsFailure);
-            Assert.Throws<InvalidOperationException>(() => { var _ = ok.Message; });
+            Assert.IsNull(ok.Message);
             Assert.AreEqual(42, ok.Value);
 
             // Warning result
@@ -80,7 +80,7 @@ namespace Here.Tests.Results
             Assert.IsTrue(okWithoutValue.IsSuccess);
             Assert.IsFalse(okWithoutValue.IsWarning);
             Assert.IsFalse(okWithoutValue.IsFailure);
-            Assert.Throws<InvalidOperationException>(() => { var _ = okWithoutValue.Message; });
+            Assert.IsNull(okWithoutValue.Message);
 
             // Warning result
             var warning = Result.Warn(12, "My warning");

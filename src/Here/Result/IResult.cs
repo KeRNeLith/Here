@@ -21,12 +21,30 @@ namespace Here.Results
         /// Indicate if this Result is a failure.
         /// </summary>
         bool IsFailure { get; }
+
+        /// <summary>
+        /// Result message.
+        /// </summary>
+        [CanBeNull]
+        string Message { get; }
+    }
+
+    /// <summary>
+    /// Represents the result of an operation/treatment with a custom error object.
+    /// </summary>
+    public interface IResultError<TError> : IResult
+    {
+        /// <summary>
+        /// Error attached to a Result.
+        /// </summary>
+        [CanBeNull]
+        TError Error { get; }
     }
 
     /// <summary>
     /// Represents the result of an operation/treatment with a <see cref="Value"/>.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">Type of the embeded value.</typeparam>
     public interface IResult<out T> : IResult
     {
         /// <summary>

@@ -11,7 +11,7 @@ namespace Here.Results
         /// <summary>
         /// A success <see cref="Result"/>.
         /// </summary>
-        private static readonly Result ResultOk = new Result(false, false, null);
+        private static readonly Result ResultOk = new Result(new ResultLogic());
 
         /// <inheritdoc />
         public bool IsSuccess => _logic.IsSuccess;
@@ -31,21 +31,20 @@ namespace Here.Results
         /// <summary>
         /// <see cref="Result"/> constructor.
         /// </summary>
-        /// <param name="isWarning">Result warning flag.</param>
-        /// <param name="isFailure">Result failure flag.</param>
-        /// <param name="message">Result message.</param>
-        private Result(bool isWarning, bool isFailure, [CanBeNull] string message)
-        {
-            _logic = new ResultLogic(isWarning, isFailure, message);
-        }
-
-        /// <summary>
-        /// <see cref="Result"/> constructor.
-        /// </summary>
         /// <param name="logic">Result logic.</param>
         internal Result([NotNull] ResultLogic logic)
         {
             _logic = logic;
+        }
+
+        /// <summary>
+        /// <see cref="Result"/> "warning"/"failure" constructor.
+        /// </summary>
+        /// <param name="isWarning">Result warning flag.</param>
+        /// <param name="message">Result message.</param>
+        private Result(bool isWarning, [NotNull] string message)
+        {
+            _logic = new ResultLogic(isWarning, message);
         }
 
         /// <inheritdoc />
@@ -57,7 +56,9 @@ namespace Here.Results
         #region Factory methods
 
         // Here to be easy to call
-        
+
+        #region Result without value
+
         /// <summary>
         /// Get a success <see cref="Result"/>.
         /// </summary>
@@ -70,35 +71,44 @@ namespace Here.Results
         /// <summary>
         /// Get a success <see cref="Result"/> with warning.
         /// </summary>
+        /// <param name="message">Result message.</param>
         /// <returns>A <see cref="Result"/>.</returns>
         [ContractAnnotation("null => halt")]
         public static Result Warn([NotNull] string message)
         {
-            return new Result(true, false, message);
+            return new Result(true, message);
         }
 
         /// <summary>
         /// Get a failure <see cref="Result"/>.
-        /// </summary>
+        /// </summary> 
+        /// <param name="error">Result error message.</param>
         /// <returns>A <see cref="Result"/>.</returns>
         [ContractAnnotation("null => halt")]
         public static Result Fail([NotNull] string error)
         {
-            return new Result(false, true, error);
+            return new Result(false, error);
         }
+
+        #endregion
+
+        #region Result with Value
 
         /// <summary>
         /// Get a success <see cref="Result{T}"/>.
         /// </summary>
+        /// <param name="value">Result value.</param>
         /// <returns>A <see cref="Result{T}"/>.</returns>
         public static Result<T> Ok<T>([CanBeNull] T value)
         {
-            return new Result<T>(false, value, null);
+            return new Result<T>(value);
         }
 
         /// <summary>
         /// Get a success <see cref="Result{T}"/> with warning.
-        /// </summary>
+        /// </summary> 
+        /// <param name="value">Result value.</param>
+        /// <param name="message">Result message.</param>
         /// <returns>A <see cref="Result{T}"/>.</returns>
         [ContractAnnotation("message:null => halt")]
         public static Result<T> Warn<T>([CanBeNull] T value, [NotNull] string message)
@@ -109,12 +119,89 @@ namespace Here.Results
         /// <summary>
         /// Get a failure <see cref="Result{T}"/>.
         /// </summary>
+        /// <param name="error">Result error message.</param>
         /// <returns>A <see cref="Result{T}"/>.</returns>
         [ContractAnnotation("null => halt")]
         public static Result<T> Fail<T>([NotNull] string error)
         {
-            return new Result<T>(error);
+            return new Result<T>(false, default(T), error);
         }
+
+        #endregion
+
+        #region Result with Custom error
+
+        /// <summary>
+        /// Get a success <see cref="CustomResult{TError}"/>.
+        /// </summary>
+        /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
+        public static CustomResult<TError> Ok<TError>()
+        {
+            return CustomResult<TError>.ResultOk;
+        }
+
+        /// <summary>
+        /// Get a success <see cref="CustomResult{TError}"/> with warning.
+        /// </summary>
+        /// <param name="message">Result message.</param>
+        /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
+        [ContractAnnotation("message:null => halt")]
+        public static CustomResult<TError> Warn<TError>([NotNull] string message)
+        {
+            return new CustomResult<TError>(true, message, default(TError));
+        }
+
+        /// <summary>
+        /// Get a failure <see cref="CustomResult{TError}"/>.
+        /// </summary>
+        /// <param name="message">Result message.</param>
+        /// <param name="error">Result error object.</param>
+        /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
+        [ContractAnnotation("message:null => halt, error:null => halt")]
+        public static CustomResult<TError> Fail<T, TError>([NotNull] string message, [NotNull] TError error)
+        {
+            return new CustomResult<TError>(false, message, error);
+        }
+
+        #endregion
+
+        #region Result with Value + Custom error
+
+        /// <summary>
+        /// Get a success <see cref="Result{T, TError}"/>.
+        /// </summary>
+        /// <param name="value">Result value.</param>
+        /// <returns>A <see cref="Result{T, TError}"/>.</returns>
+        public static Result<T, TError> Ok<T, TError>([CanBeNull] T value)
+        {
+            return new Result<T, TError>(value);
+        }
+
+        /// <summary>
+        /// Get a success <see cref="Result{T, TError}"/> with warning.
+        /// </summary>
+        /// <param name="value">Result value.</param>
+        /// <param name="message">Result message.</param>
+        /// <returns>A <see cref="Result{T, TError}"/>.</returns>
+        [ContractAnnotation("message:null => halt")]
+        public static Result<T, TError> Warn<T, TError>([CanBeNull] T value, [NotNull] string message)
+        {
+            return new Result<T, TError>(value, message);
+        }
+
+        /// <summary>
+        /// Get a failure <see cref="Result{T, TError}"/>.
+        /// </summary>
+        /// <param name="message">Result message.</param>
+        /// <param name="error">Result error object.</param>
+        /// <returns>A <see cref="Result{T, TError}"/>.</returns>
+        [ContractAnnotation("message:null => halt, error:null => halt")]
+        public static Result<T, TError> Fail<T, TError>([NotNull] string message, [NotNull] TError error)
+        {
+            return new Result<T, TError>(message, error);
+        }
+
+        #endregion
 
         #endregion
     }
@@ -155,25 +242,25 @@ namespace Here.Results
         private readonly ResultLogic _logic;
 
         /// <summary>
-        /// <see cref="Result{T}"/> success & warning constructor.
+        /// <see cref="Result{T}"/> "ok" constructor.
         /// </summary>
-        /// <param name="isWarning">Result warning flag.</param>
-        /// <param name="value">Embedded value.</param>
-        /// <param name="message">Result message.</param>
-        internal Result(bool isWarning, [CanBeNull] T value, [CanBeNull] string message)
+        /// <param name="value">Result value.</param>
+        internal Result([CanBeNull] T value)
         {
-            _logic = new ResultLogic(isWarning, false, message);
+            _logic = new ResultLogic();
             _value = value;
         }
 
         /// <summary>
-        /// <see cref="Result{T}"/> failure constructor.
+        /// <see cref="Result{T}"/> "warning"/"error" constructor.
         /// </summary>
+        /// <param name="isWarning">Result warning flag.</param>
+        /// <param name="value">Embedded value.</param>
         /// <param name="message">Result message.</param>
-        internal Result([NotNull] string message)
+        internal Result(bool isWarning, [CanBeNull] T value, [NotNull] string message)
         {
-            _logic = new ResultLogic(false, true, message);
-            _value = default(T);
+            _logic = new ResultLogic(isWarning, message);
+            _value = value;
         }
 
         /// <inheritdoc />

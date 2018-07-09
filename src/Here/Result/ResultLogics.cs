@@ -1,10 +1,10 @@
-﻿using JetBrains.Annotations;
-using System;
+﻿using System;
+using JetBrains.Annotations;
 
 namespace Here.Results
 {
     /// <summary>
-    /// The <see cref="Result"/> interaction logic.
+    /// The Result interaction logic.
     /// </summary>
     internal class ResultLogic<TError>
     {
@@ -23,17 +23,23 @@ namespace Here.Results
         /// </summary>
         public bool IsFailure { get; }
 
+        /// <summary>
+        /// Result message.
+        /// </summary>
+        [CanBeNull]
+        public string Message { get; }
+
         private readonly TError _error;
 
         /// <summary>
         /// Result error object.
         /// </summary>
-        [NotNull]
+        [CanBeNull]
         public TError Error
         {
             get
             {
-                if (IsSuccess && !IsWarning)
+                if (IsSuccess || IsWarning)
                     throw new InvalidOperationException("There is no error object for a success or warning Result.");
 
                 return _error;
@@ -41,19 +47,33 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// <see cref="ResultLogic{TError}"/> constructor.
+        /// <see cref="ResultLogic{TError}"/> "ok" constructor.
+        /// </summary>
+        public ResultLogic()
+        {
+            IsWarning = false;
+            IsFailure = false;
+            Message = null;
+            _error = default(TError);
+        }
+
+        /// <summary>
+        /// <see cref="ResultLogic{TError}"/> "warning"/"failure" constructor.
         /// </summary>
         /// <param name="isWarning">Warning flag.</param>
-        /// <param name="isFailure">Failure flag.</param>
+        /// <param name="message">Message.</param>
         /// <param name="error">Error object.</param>
-        public ResultLogic(bool isWarning, bool isFailure, [CanBeNull] TError error)
+        public ResultLogic(bool isWarning, [NotNull] string message, [CanBeNull] TError error)
         {
-            // Warnings & Errors should have a message
-            if ((isWarning || isFailure) && error == null)
-                throw new ArgumentNullException(nameof(error), "Cannot initialize a warning or failure Result with a null error object.");
+            // Warning & Failure must have a message
+            if (string.IsNullOrEmpty(message))
+                throw new ArgumentNullException(nameof(message), "Cannot initialize a warning or failure Result with a null or empty message.");
+            if (!isWarning && error == null)
+                throw new ArgumentNullException(nameof(error), "Cannot initialize a failure Result with a null error object.");
 
             IsWarning = isWarning;
-            IsFailure = isFailure;
+            IsFailure = !isWarning;
+            Message = message;
             _error = error;
         }
 
@@ -69,28 +89,26 @@ namespace Here.Results
     }
 
     /// <summary>
-    /// The <see cref="Result"/> interaction logic for error object as string message.
+    /// The Result interaction logic specialized to only provide a message (for warning and error).
     /// </summary>
     internal sealed class ResultLogic : ResultLogic<string>
     {
         /// <summary>
-        /// Result message.
+        /// <see cref="ResultLogic"/> "ok" constructor.
         /// </summary>
-        [NotNull]
-        public string Message => Error;
+        public ResultLogic()
+            : base()
+        {
+        }
 
         /// <summary>
-        /// <see cref="ResultLogic"/> constructor.
+        /// <see cref="ResultLogic"/> "warning"/"error" constructor.
         /// </summary>
         /// <param name="isWarning">Warning flag.</param>
-        /// <param name="isFailure">Failure flag.</param>
-        /// <param name="message">Message.</param>
-        public ResultLogic(bool isWarning, bool isFailure, [CanBeNull] string message)
-            : base(isWarning, isFailure, message)
+        /// <param name="message">Result message.</param>
+        public ResultLogic(bool isWarning, [NotNull] string message)
+            : base(isWarning, message, isWarning ? null : message)
         {
-            // Warnings & Errors should have a message
-            if ((isWarning || isFailure) && string.IsNullOrEmpty(message))
-                throw new ArgumentNullException(nameof(message), "Cannot initialize a warning or error Result with a null or empty message.");
         }
     }
 }
