@@ -122,10 +122,8 @@ namespace Here.Results
         {
             if (logic.IsSuccess && !logic.IsWarning)
                 return new ResultLogic();
-
-            if (string.IsNullOrEmpty(logic.Message))
-                throw new ArgumentNullException(nameof(logic.Message), "Cannot initialize a warning or failure logic with a null or empty message.");
-
+            
+            // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return new ResultLogic(logic.IsWarning, logic.Message);
         }
 
