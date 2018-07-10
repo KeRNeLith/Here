@@ -9,6 +9,14 @@ namespace Here.Maybes.Extensions
     /// </summary>
     public static class MaybeDictionaryExtensions
     {
+        // Helper method to try get a value
+        [Pure]
+        private static Maybe<TValue> TryGetValue<TKey, TValue>(MaybeTryGetExtensions.TryGet<TKey, TValue> tryGetFunc, [NotNull] TKey key)
+        {
+            var getter = MaybeTryGetExtensions.CreateGet(tryGetFunc);
+            return getter(key);
+        }
+
         /// <summary>
         /// Try to get the value for the given key in the dictionary.
         /// </summary>
@@ -17,6 +25,7 @@ namespace Here.Maybes.Extensions
         /// <param name="dictionary"><see cref="IDictionary{TKey, TValue}"/> on which performing treatment.</param>
         /// <param name="key">Searched key.</param>
         /// <returns><see cref="Maybe{TValue}"/> that wrap the result of the get.</returns>
+        [PublicAPI, Pure]
         public static Maybe<TValue> TryGetValue<TKey, TValue>([NotNull] this IDictionary<TKey, TValue> dictionary, [NotNull] TKey key)
         {
             return TryGetValue<TKey, TValue>(dictionary.TryGetValue, key);
@@ -30,16 +39,10 @@ namespace Here.Maybes.Extensions
         /// <param name="dictionary"><see cref="IReadOnlyDictionary{TKey, TValue}"/> on which performing treatment.</param>
         /// <param name="key">Searched key.</param>
         /// <returns><see cref="Maybe{TValue}"/> that wrap the result of the get.</returns>
+        [PublicAPI, Pure]
         public static Maybe<TValue> TryGetReadonlyValue<TKey, TValue>([NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary, [NotNull] TKey key)
         {
             return TryGetValue<TKey, TValue>(dictionary.TryGetValue, key);
-        }
-
-        // Helper method to try get a value
-        private static Maybe<TValue> TryGetValue<TKey, TValue>(MaybeTryGetExtensions.TryGet<TKey, TValue> tryGetFunc, [NotNull] TKey key)
-        {
-            var getter = MaybeTryGetExtensions.CreateGet(tryGetFunc);
-            return getter(key);
         }
     }
 }

@@ -6,6 +6,7 @@ namespace Here.Results
     /// <summary>
     /// <see cref="Result"/> is an object that represents the result/state of a treatment.
     /// </summary>
+    [PublicAPI]
     public struct Result : IResult
     {
         /// <summary>
@@ -210,6 +211,7 @@ namespace Here.Results
     /// <see cref="Result{T}"/> is an object that represents the result/state of a treatment.
     /// This <see cref="Result{T}"/> embed a <see cref="Value"/> resulting of the treatment.
     /// </summary>
+    [PublicAPI]
     public partial struct Result<T> : IResult<T>
     {
         /// <inheritdoc />

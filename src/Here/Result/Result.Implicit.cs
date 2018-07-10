@@ -1,4 +1,6 @@
-﻿namespace Here.Results
+﻿using JetBrains.Annotations;
+
+namespace Here.Results
 {
 	// Implicit operators
     public partial struct Result<T>
@@ -8,6 +10,7 @@
         /// </summary>
         /// <param name="result"><see cref="Result{T}"/> to convert.</param>
         /// <returns>A corresponding <see cref="Result"/>.</returns>
+        [Pure]
         public static implicit operator Result(Result<T> result)
         {
             return new Result(result._logic);
@@ -21,6 +24,7 @@
         /// </summary>
         /// <param name="result"><see cref="CustomResult{TError}"/> to convert.</param>
         /// <returns>A corresponding <see cref="Result"/>.</returns>
+        [Pure]
         public static implicit operator Result(CustomResult<TError> result)
         {
             return new Result(ResultLogic.ToResultLogic(result._logic));
@@ -34,6 +38,7 @@
         /// </summary>
         /// <param name="result"><see cref="Result{T, TError}"/> to convert.</param>
         /// <returns>A corresponding <see cref="Result"/>.</returns>
+        [Pure]
         public static implicit operator Result(Result<T, TError> result)
         {
             return new Result(ResultLogic.ToResultLogic(result._logic));
@@ -44,6 +49,7 @@
         /// </summary>
         /// <param name="result"><see cref="Result{T, TError}"/> to convert.</param>
         /// <returns>A corresponding <see cref="CustomResult{TError}"/>.</returns>
+        [Pure]
         public static implicit operator CustomResult<TError>(Result<T, TError> result)
         {
             return new CustomResult<TError>(result._logic);
@@ -54,6 +60,7 @@
         /// </summary>
         /// <param name="result"><see cref="Result{T, TError}"/> to convert.</param>
         /// <returns>A corresponding <see cref="Result{T}"/>.</returns>
+        [Pure]
         public static implicit operator Result<T>(Result<T, TError> result)
         {
             return new Result<T>(

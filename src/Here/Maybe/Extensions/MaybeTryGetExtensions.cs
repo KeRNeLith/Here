@@ -39,8 +39,8 @@ namespace Here.Maybes.Extensions
         /// <typeparam name="TValue"><see cref="Type"/> of the value to try get.</typeparam>
 		/// <param name="tryGetFunc">Try get method.</param>
 		/// <returns>The result of the try get as <see cref="Maybe{TValue}"/></returns>
-        [NotNull]
-		public static Func<TInput, Maybe<TValue>> CreateGet<TInput, TValue>([NotNull] TryGet<TInput, TValue> tryGetFunc)
+        [NotNull, Pure]
+		public static Func<TInput, Maybe<TValue>> CreateGet<TInput, TValue>([NotNull, InstantHandle] TryGet<TInput, TValue> tryGetFunc)
         {
             return input => tryGetFunc(input, out TValue result)
                 ? result.ToMaybe()
@@ -57,8 +57,8 @@ namespace Here.Maybes.Extensions
         /// <typeparam name="TValue"><see cref="Type"/> of the value to try get.</typeparam>
 		/// <param name="tryParseFunc">Try get method.</param>
 		/// <returns>The result of the try get as <see cref="Maybe{TValue}"/></returns>
-        [NotNull]
-        public static Func<TInput, Maybe<TValue>> CreateDefaultParse<TInput, TValue>([NotNull] TryParse<TInput, TValue> tryParseFunc)
+        [NotNull, Pure]
+        public static Func<TInput, Maybe<TValue>> CreateDefaultParse<TInput, TValue>([NotNull, InstantHandle] TryParse<TInput, TValue> tryParseFunc)
         {
             return CreateParse(tryParseFunc, NumberStyles.Any, DefaultParseCultureInfo);
         }
@@ -73,8 +73,8 @@ namespace Here.Maybes.Extensions
         /// <param name="style">Style number to use.</param>
         /// <param name="culture">Format provider (culture) to use.</param>
 		/// <returns>The result of the try get as <see cref="Maybe{TValue}"/></returns>
-        [NotNull]
-        public static Func<TInput, Maybe<TValue>> CreateParse<TInput, TValue>([NotNull] TryParse<TInput, TValue> tryGetFunc, NumberStyles style, IFormatProvider culture)
+        [NotNull, Pure]
+        public static Func<TInput, Maybe<TValue>> CreateParse<TInput, TValue>([NotNull, InstantHandle] TryParse<TInput, TValue> tryGetFunc, NumberStyles style, IFormatProvider culture)
         {
             return input => tryGetFunc(input, style, culture, out TValue result)
                 ? result.ToMaybe()
@@ -88,6 +88,7 @@ namespace Here.Maybes.Extensions
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Maybe{Boolean}"/> that wrap the result of the parse.</returns>
+        [PublicAPI, Pure]
         public static Maybe<bool> TryParseBool([CanBeNull] this string str)
         {
             var getter = CreateGet<string, bool>(bool.TryParse);
@@ -99,6 +100,7 @@ namespace Here.Maybes.Extensions
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Maybe{Char}"/> that wrap the result of the parse.</returns>
+        [PublicAPI, Pure]
         public static Maybe<char> TryParseChar([CanBeNull] this string str)
         {
             var getter = CreateGet<string, char>(char.TryParse);
@@ -110,6 +112,7 @@ namespace Here.Maybes.Extensions
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Maybe{Byte}"/> that wrap the result of the parse.</returns>
+        [PublicAPI, Pure]
         public static Maybe<byte> TryParseByte([CanBeNull] this string str)
         {
             var getter = CreateGet<string, byte>(byte.TryParse);
@@ -123,6 +126,7 @@ namespace Here.Maybes.Extensions
         /// <param name="style">Style number to use.</param>
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Maybe{Byte}"/> that wrap the result of the parse.</returns>
+        [PublicAPI, Pure]
         public static Maybe<byte> TryParseByte([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
         {
             var getter = CreateParse<string, byte>(byte.TryParse, style, culture);
@@ -134,6 +138,7 @@ namespace Here.Maybes.Extensions
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Maybe{SByte}"/> that wrap the result of the parse.</returns>
+        [PublicAPI, Pure]
         public static Maybe<sbyte> TryParseSByte([CanBeNull] this string str)
         {
             var getter = CreateGet<string, sbyte>(sbyte.TryParse);
@@ -147,6 +152,7 @@ namespace Here.Maybes.Extensions
         /// <param name="style">Style number to use.</param>
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Maybe{SByte}"/> that wrap the result of the parse.</returns>
+        [PublicAPI, Pure]
         public static Maybe<sbyte> TryParseSByte([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
         {
             var getter = CreateParse<string, sbyte>(sbyte.TryParse, style, culture);
@@ -158,6 +164,7 @@ namespace Here.Maybes.Extensions
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Maybe{Int16}"/> that wrap the result of the parse.</returns>
+        [PublicAPI, Pure]
         public static Maybe<short> TryParseShort([CanBeNull] this string str)
         {
             var getter = CreateGet<string, short>(short.TryParse);
@@ -171,6 +178,7 @@ namespace Here.Maybes.Extensions
         /// <param name="style">Style number to use.</param>
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Maybe{Int16}"/> that wrap the result of the parse.</returns>
+        [PublicAPI, Pure]
         public static Maybe<short> TryParseShort([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
         {
             var getter = CreateParse<string, short>(short.TryParse, style, culture);
@@ -182,6 +190,7 @@ namespace Here.Maybes.Extensions
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Maybe{UInt16}"/> that wrap the result of the parse.</returns>
+        [PublicAPI, Pure]
         public static Maybe<ushort> TryParseUShort([CanBeNull] this string str)
         {       
             var getter = CreateGet<string, ushort>(ushort.TryParse);
@@ -195,6 +204,7 @@ namespace Here.Maybes.Extensions
         /// <param name="style">Style number to use.</param>
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Maybe{UInt16}"/> that wrap the result of the parse.</returns>
+        [PublicAPI, Pure]
         public static Maybe<ushort> TryParseUShort([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
         {
             var getter = CreateParse<string, ushort>(ushort.TryParse, style, culture);
@@ -206,6 +216,7 @@ namespace Here.Maybes.Extensions
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Maybe{Int32}"/> that wrap the result of the parse.</returns>
+        [PublicAPI, Pure]
         public static Maybe<int> TryParseInt([CanBeNull] this string str)
         {
             var getter = CreateGet<string, int>(int.TryParse);
@@ -219,6 +230,7 @@ namespace Here.Maybes.Extensions
         /// <param name="style">Style number to use.</param>
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Maybe{Int32}"/> that wrap the result of the parse.</returns>
+        [PublicAPI, Pure]
         public static Maybe<int> TryParseInt([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
         {
             var getter = CreateParse<string, int>(int.TryParse, style, culture);
@@ -230,6 +242,7 @@ namespace Here.Maybes.Extensions
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Maybe{UInt32}"/> that wrap the result of the parse.</returns>
+        [PublicAPI, Pure]
         public static Maybe<uint> TryParseUInt([CanBeNull] this string str)
         {
             var getter = CreateGet<string, uint>(uint.TryParse);
@@ -243,6 +256,7 @@ namespace Here.Maybes.Extensions
         /// <param name="style">Style number to use.</param>
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Maybe{UInt32}"/> that wrap the result of the parse.</returns>
+        [PublicAPI, Pure]
         public static Maybe<uint> TryParseUInt([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
         {
             var getter = CreateParse<string, uint>(uint.TryParse, style, culture);
@@ -254,6 +268,7 @@ namespace Here.Maybes.Extensions
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Maybe{Int64}"/> that wrap the result of the parse.</returns>
+        [PublicAPI, Pure]
         public static Maybe<long> TryParseLong([CanBeNull] this string str)
         {
             var getter = CreateGet<string, long>(long.TryParse);
@@ -267,6 +282,7 @@ namespace Here.Maybes.Extensions
         /// <param name="style">Style number to use.</param>
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Maybe{Int64}"/> that wrap the result of the parse.</returns>
+        [PublicAPI, Pure]
         public static Maybe<long> TryParseLong([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
         {
             var getter = CreateParse<string, long>(long.TryParse, style, culture);
@@ -278,6 +294,7 @@ namespace Here.Maybes.Extensions
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Maybe{UInt64}"/> that wrap the result of the parse.</returns>
+        [PublicAPI, Pure]
         public static Maybe<ulong> TryParseULong([CanBeNull] this string str)
         {
             var getter = CreateGet<string, ulong>(ulong.TryParse);
@@ -291,6 +308,7 @@ namespace Here.Maybes.Extensions
         /// <param name="style">Style number to use.</param>
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Maybe{UInt64}"/> that wrap the result of the parse.</returns>
+        [PublicAPI, Pure]
         public static Maybe<ulong> TryParseULong([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
         {
             var getter = CreateParse<string, ulong>(ulong.TryParse, style, culture);
@@ -302,6 +320,7 @@ namespace Here.Maybes.Extensions
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Maybe{Decimal}"/> that wrap the result of the parse.</returns>
+        [PublicAPI, Pure]
         public static Maybe<decimal> TryParseDecimal([CanBeNull] this string str)
         {
             var getter = CreateGet<string, decimal>(decimal.TryParse);
@@ -315,6 +334,7 @@ namespace Here.Maybes.Extensions
         /// <param name="style">Style number to use.</param>
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Maybe{Decimal}"/> that wrap the result of the parse.</returns>
+        [PublicAPI, Pure]
         public static Maybe<decimal> TryParseDecimal([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
         {
             var getter = CreateParse<string, decimal>(decimal.TryParse, style, culture);
@@ -326,6 +346,7 @@ namespace Here.Maybes.Extensions
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Maybe{Single}"/> that wrap the result of the parse.</returns>
+        [PublicAPI, Pure]
         public static Maybe<float> TryParseFloat([CanBeNull] this string str)
         {
             var getter = CreateDefaultParse<string, float>(float.TryParse);
@@ -339,6 +360,7 @@ namespace Here.Maybes.Extensions
         /// <param name="style">Style number to use.</param>
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Maybe{Single}"/> that wrap the result of the parse.</returns>
+        [PublicAPI, Pure]
         public static Maybe<float> TryParseFloat([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
         {
             var getter = CreateParse<string, float>(float.TryParse, style, culture);
@@ -350,6 +372,7 @@ namespace Here.Maybes.Extensions
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Maybe{Double}"/> that wrap the result of the parse.</returns>
+        [PublicAPI, Pure]
         public static Maybe<double> TryParseDouble([CanBeNull] this string str)
         {
             var getter = CreateDefaultParse<string, double>(double.TryParse);
@@ -363,6 +386,7 @@ namespace Here.Maybes.Extensions
         /// <param name="style">Style number to use.</param>
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Maybe{Double}"/> that wrap the result of the parse.</returns>
+        [PublicAPI, Pure]
         public static Maybe<double> TryParseDouble([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
         {
             var getter = CreateParse<string, double>(double.TryParse, style, culture);

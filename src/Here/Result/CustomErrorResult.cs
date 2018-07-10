@@ -6,6 +6,7 @@ namespace Here.Results
     /// <summary>
     /// <see cref="CustomResult{TError}"/> is an object that represents the result/state of a treatment with a custom error object.
     /// </summary>
+    [PublicAPI]
     public partial struct CustomResult<TError> : IResultError<TError>
     {
         /// <summary>
@@ -63,6 +64,7 @@ namespace Here.Results
     /// This <see cref="Result{T, TError}"/> embed a <see cref="Value"/> resulting of the treatment
     /// or a custom error if failed.
     /// </summary>
+    [PublicAPI]
     public partial struct Result<T, TError> : IResult<T>, IResultError<TError>
     {
         /// <inheritdoc />

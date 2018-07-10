@@ -15,6 +15,7 @@ namespace Here.Maybes.Extensions
         /// <typeparam name="T">Template type of this <see cref="IEnumerable{T}"/>.</typeparam>
         /// <param name="enumerable">Enumerable collection.</param>
         /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>
+        [PublicAPI, Pure]
         public static Maybe<T> FirstOrNone<T>([NotNull] this IEnumerable<T> enumerable)
         {
             return enumerable.FirstOrNone(item => true);
@@ -27,7 +28,8 @@ namespace Here.Maybes.Extensions
         /// <param name="enumerable">Enumerable collection.</param>
         /// <param name="predicate"><see cref="Predicate{T}"/> to check on items.</param>
         /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>
-        public static Maybe<T> FirstOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull] Predicate<T> predicate) 
+        [PublicAPI, Pure]
+        public static Maybe<T> FirstOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull, InstantHandle] Predicate<T> predicate) 
         {
             foreach(var item in enumerable)
             {
@@ -44,6 +46,7 @@ namespace Here.Maybes.Extensions
         /// <typeparam name="T">Template type of this <see cref="IEnumerable{T}"/>.</typeparam>
         /// <param name="enumerable">Enumerable collection.</param>
         /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>
+        [PublicAPI, Pure]
         public static Maybe<T> LastOrNone<T>([NotNull] this IEnumerable<T> enumerable)
         {
             return enumerable.LastOrNone(item => true);
@@ -56,7 +59,8 @@ namespace Here.Maybes.Extensions
         /// <param name="enumerable">Enumerable collection.</param>
         /// <param name="predicate"><see cref="Predicate{T}"/> to check on items.</param>
         /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>
-        public static Maybe<T> LastOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull] Predicate<T> predicate)
+        [PublicAPI, Pure]
+        public static Maybe<T> LastOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull, InstantHandle] Predicate<T> predicate)
         {
             T matchedItem = default(T);
             bool match = false;

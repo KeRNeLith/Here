@@ -118,6 +118,7 @@ namespace Here.Results
         /// <typeparam name="TError">Type of the custom error object.</typeparam>
         /// <param name="logic"><see cref="ResultLogic{TError}"/> to convert.</param>
         /// <returns>A corresponding <see cref="ResultLogic"/>.</returns>
+        [Pure]
         public static ResultLogic ToResultLogic<TError>(ResultLogic<TError> logic)
         {
             if (logic.IsSuccess && !logic.IsWarning)
