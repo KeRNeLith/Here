@@ -6,7 +6,7 @@ namespace Here.Results
     /// <summary>
     /// The Result interaction logic.
     /// </summary>
-    internal partial class ResultLogic<TError>
+    internal class ResultLogic<TError>
     {
         /// <summary>
         /// Indicate if it is a success.
@@ -97,7 +97,6 @@ namespace Here.Results
         /// <see cref="ResultLogic"/> "ok" constructor.
         /// </summary>
         public ResultLogic()
-            : base()
         {
         }
 
@@ -110,5 +109,26 @@ namespace Here.Results
             : base(isWarning, message, isWarning ? null : message)
         {
         }
+
+        #region Converter
+
+        /// <summary>
+        /// Convert a <see cref="ResultLogic{TError}"/> into a <see cref="ResultLogic"/>.
+        /// </summary>
+        /// <typeparam name="TError">Type of the custom error object.</typeparam>
+        /// <param name="logic"><see cref="ResultLogic{TError}"/> to convert.</param>
+        /// <returns>A corresponding <see cref="ResultLogic"/>.</returns>
+        public static ResultLogic ToResultLogic<TError>(ResultLogic<TError> logic)
+        {
+            if (logic.IsSuccess && !logic.IsWarning)
+                return new ResultLogic();
+
+            if (string.IsNullOrEmpty(logic.Message))
+                throw new ArgumentNullException(nameof(logic.Message), "Cannot initialize a warning or failure logic with a null or empty message.");
+
+            return new ResultLogic(logic.IsWarning, logic.Message);
+        }
+
+        #endregion
     }
 }

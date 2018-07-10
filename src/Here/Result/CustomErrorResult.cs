@@ -44,7 +44,7 @@ namespace Here.Results
         /// <see cref="Result"/> "warning"/"failure" constructor.
         /// </summary>
         /// <param name="isWarning">Result warning flag.</param>
-        /// <param name="isFailure">Result failure flag.</param>
+        /// <param name="message">Result message.</param>
         /// <param name="error">Result error.</param>
         internal CustomResult(bool isWarning, [NotNull] string message, [CanBeNull] TError error)
         {
@@ -110,7 +110,6 @@ namespace Here.Results
         /// <summary>
         /// <see cref="Result{T, TError}"/> "warning" constructor.
         /// </summary>
-        /// <param name="isWarning">Result warning flag.</param>
         /// <param name="value">Embedded value.</param>
         /// <param name="message">Result message.</param>
         internal Result([CanBeNull] T value, [NotNull] string message)

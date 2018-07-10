@@ -23,7 +23,7 @@
         /// <returns>A corresponding <see cref="Result"/>.</returns>
         public static implicit operator Result(CustomResult<TError> result)
         {
-            return new Result(result._logic);
+            return new Result(ResultLogic.ToResultLogic(result._logic));
         }
     }
 
@@ -36,7 +36,7 @@
         /// <returns>A corresponding <see cref="Result"/>.</returns>
         public static implicit operator Result(Result<T, TError> result)
         {
-            return new Result(result._logic);
+            return new Result(ResultLogic.ToResultLogic(result._logic));
         }
 
         /// <summary>
@@ -57,8 +57,8 @@
         public static implicit operator Result<T>(Result<T, TError> result)
         {
             return new Result<T>(
-                result.IsSuccess ? result.Value : default(T), 
-                result._logic);
+                result.IsSuccess ? result.Value : default(T),
+                ResultLogic.ToResultLogic(result._logic));
         }
     }
 }

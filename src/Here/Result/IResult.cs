@@ -32,7 +32,7 @@ namespace Here.Results
     /// <summary>
     /// Represents the result of an operation/treatment with a custom error object.
     /// </summary>
-    public interface IResultError<TError> : IResult
+    public interface IResultError<out TError> : IResult
     {
         /// <summary>
         /// Error attached to a Result.

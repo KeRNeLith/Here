@@ -67,7 +67,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void ResultTTErrorToResultImplicitConstruction()
+        public void ResultValueTErrorToResultImplicitConstruction()
         {
             // Ok result
             var ok = Result.Ok<int, Exception>(42);
@@ -95,7 +95,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void ResultTTErrorToCustomResultImplicitConstruction()
+        public void ResultValueTErrorToCustomResultImplicitConstruction()
         {
             // Ok result
             var ok = Result.Ok<int, Exception>(42);
@@ -127,7 +127,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void ResultTTErrorToResultTImplicitConstruction()
+        public void ResultValueTErrorToResultTImplicitConstruction()
         {
             // Ok result
             var ok = Result.Ok<int, Exception>(42);

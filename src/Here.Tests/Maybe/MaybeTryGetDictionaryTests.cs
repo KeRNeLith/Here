@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
+using Here.Maybes;
 using Here.Maybes.Extensions;
 
 namespace Here.Tests.Maybes

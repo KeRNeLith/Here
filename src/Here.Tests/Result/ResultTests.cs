@@ -135,10 +135,11 @@ namespace Here.Tests.Results
             Assert.Throws<InvalidOperationException>(() => { var _ = failure.Value; });
             Assert.AreSame(customErrorObject, failure.Error);
 
-            // ReSharper disable once AssignNullToNotNullAttribute
+            // ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => Result.Fail<int, Exception>(null, null));
             Assert.Throws<ArgumentNullException>(() => Result.Fail<int, Exception>("", null));
             Assert.Throws<ArgumentNullException>(() => Result.Fail<int, Exception>("My failure", null));
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Test]

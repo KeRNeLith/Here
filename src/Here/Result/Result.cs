@@ -157,7 +157,7 @@ namespace Here.Results
         /// <param name="message">Result message.</param>
         /// <param name="error">Result error object.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
-        [ContractAnnotation("message:null => halt, error:null => halt")]
+        [ContractAnnotation("message:null => halt; error:null => halt")]
         public static CustomResult<TError> CustomFail<TError>([NotNull] string message, [NotNull] TError error)
         {
             return new CustomResult<TError>(false, message, error);
@@ -195,7 +195,7 @@ namespace Here.Results
         /// <param name="message">Result message.</param>
         /// <param name="error">Result error object.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
-        [ContractAnnotation("message:null => halt, error:null => halt")]
+        [ContractAnnotation("message:null => halt; error:null => halt")]
         public static Result<T, TError> Fail<T, TError>([NotNull] string message, [NotNull] TError error)
         {
             return new Result<T, TError>(message, error);
