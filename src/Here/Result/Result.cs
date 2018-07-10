@@ -263,6 +263,17 @@ namespace Here.Results
             _value = value;
         }
 
+        /// <summary>
+        /// <see cref="Result{T}"/> constructor.
+        /// </summary>
+        /// <param name="value">Result value.</param>
+        /// <param name="logic">Result logic.</param>
+        internal Result([CanBeNull] T value, [NotNull] ResultLogic logic)
+        {
+            _logic = logic;
+            _value = value;
+        }
+
         /// <inheritdoc />
         public override string ToString()
         {

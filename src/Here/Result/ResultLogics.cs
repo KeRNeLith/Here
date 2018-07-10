@@ -6,7 +6,7 @@ namespace Here.Results
     /// <summary>
     /// The Result interaction logic.
     /// </summary>
-    internal class ResultLogic<TError>
+    internal partial class ResultLogic<TError>
     {
         /// <summary>
         /// Indicate if it is a success.

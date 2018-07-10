@@ -5,7 +5,7 @@ using Here.Results;
 namespace Here.Tests.Results
 {
     /// <summary>
-    /// Tests for <see cref="Result{T}"/>.
+    /// Tests for <see cref="Result"/>.
     /// </summary>
     [TestFixture]
     internal class ResultTests : HereTestsBase
@@ -140,43 +140,6 @@ namespace Here.Tests.Results
             Assert.Throws<ArgumentNullException>(() => Result.Fail<int, Exception>("", null));
             Assert.Throws<ArgumentNullException>(() => Result.Fail<int, Exception>("My failure", null));
         }
-
-        [Test]
-        public void ResultImplicitConstruction()
-        {
-            // Ok result
-            var ok = Result.Ok(42);
-            Result okWithoutValue = ok;
-            Assert.IsTrue(okWithoutValue.IsSuccess);
-            Assert.IsFalse(okWithoutValue.IsWarning);
-            Assert.IsFalse(okWithoutValue.IsFailure);
-            Assert.IsNull(okWithoutValue.Message);
-
-            // Warning result
-            var warning = Result.Warn(12, "My warning");
-            Result warningWithoutValue = warning;
-            Assert.IsTrue(warningWithoutValue.IsSuccess);
-            Assert.IsTrue(warningWithoutValue.IsWarning);
-            Assert.IsFalse(warningWithoutValue.IsFailure);
-            Assert.AreEqual("My warning", warningWithoutValue.Message);
-
-            // ReSharper disable once AssignNullToNotNullAttribute
-            Assert.Throws<ArgumentNullException>(() => Result.Warn(12, null));
-            Assert.Throws<ArgumentNullException>(() => Result.Warn(12, ""));
-
-            // failure result
-            var failure = Result.Fail<int>("My failure");
-            Result failureWithoutValue = failure;
-            Assert.IsFalse(failureWithoutValue.IsSuccess);
-            Assert.IsFalse(failureWithoutValue.IsWarning);
-            Assert.IsTrue(failureWithoutValue.IsFailure);
-            Assert.AreEqual("My failure", failureWithoutValue.Message);
-
-            // ReSharper disable once AssignNullToNotNullAttribute
-            Assert.Throws<ArgumentNullException>(() => Result.Fail<int>(null));
-            Assert.Throws<ArgumentNullException>(() => Result.Fail<int>(""));
-        }
-        // TODO other implicit with error
 
         [Test]
         public void ResultToString()
