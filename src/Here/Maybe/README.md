@@ -206,9 +206,9 @@ public static Func<TInput, Maybe<TValue>> CreateGet<TInput, TValue>([NotNull] Tr
 }
 
 // TryParse
-public static Func<TInput, Maybe<TValue>> CreateParse<TInput, TValue>([NotNull] TryParse<TInput, TValue> tryParseFunc)
+public static Func<TInput, Maybe<TValue>> CreateParse<TInput, TValue>([NotNull] TryParse<TInput, TValue> tryParseFunc, NumberStyles style, IFormatProvider culture)
 {
-    return input => tryParseFunc(input, NumberStyles.Any, CultureInfo.CreateSpecificCulture("en-US"), out TValue result)
+    return input => tryParseFunc(input, NumberStyles.Any, culture, out TValue result)
         ? result.ToMaybe()
         : Maybe.None;
 }
