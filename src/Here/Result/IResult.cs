@@ -5,6 +5,7 @@ namespace Here.Results
     /// <summary>
     /// Represents the result of an operation/treatment.
     /// </summary>
+    [PublicAPI]
     public interface IResult
     {
         /// <summary>
@@ -32,6 +33,7 @@ namespace Here.Results
     /// <summary>
     /// Represents the result of an operation/treatment with a custom error object.
     /// </summary>
+    [PublicAPI]
     public interface IResultError<out TError> : IResult
     {
         /// <summary>
@@ -45,6 +47,7 @@ namespace Here.Results
     /// Represents the result of an operation/treatment with a <see cref="Value"/>.
     /// </summary>
     /// <typeparam name="T">Type of the embeded value.</typeparam>
+    [PublicAPI]
     public interface IResult<out T> : IResult
     {
         /// <summary>

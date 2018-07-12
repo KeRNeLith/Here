@@ -8,6 +8,7 @@ namespace Here.Maybes
     /// <see cref="Maybe{T}"/> is an object that embed something or nothing.
     /// </summary>
     /// <typeparam name="T">Type of the value embedded in the <see cref="Maybe{T}"/>.</typeparam>
+    [PublicAPI]
     public partial struct Maybe<T> : IEquatable<Maybe<T>>
     {
         /// <summary>

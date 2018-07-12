@@ -14,6 +14,7 @@ namespace Here.Maybes.Extensions
         /// <typeparam name="T">Type of the value to wrap.</typeparam>
 		/// <param name="value">Value to convert.</param>
 		/// <returns>Corresponding <see cref="Maybe{T}"/>.</returns>
+        [PublicAPI, Pure]
         public static Maybe<T> ToMaybe<T>([CanBeNull] this T value)
         {
             return value != null
@@ -27,6 +28,7 @@ namespace Here.Maybes.Extensions
         /// <typeparam name="T">Type of the value to wrap.</typeparam>
 		/// <param name="nullable"><see cref="Nullable{T}"/> to convert.</param>
 		/// <returns>Corresponding <see cref="Maybe{T}"/>.</returns>
+        [PublicAPI, Pure]
         public static Maybe<T> ToMaybe<T>([CanBeNull] this T? nullable)
             where T : struct
         {
@@ -39,6 +41,7 @@ namespace Here.Maybes.Extensions
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
 		/// <param name="maybe"><see cref="Maybe{T}"/> to convert.</param>
 		/// <returns>Corresponding <see cref="Nullable{T}"/>.</returns>
+        [PublicAPI, Pure]
         public static T? ToNullable<T>(this Maybe<T> maybe)
             where T : struct
         {
@@ -52,6 +55,7 @@ namespace Here.Maybes.Extensions
         /// </summary>
         /// <param name="str">String to convert.</param>
         /// <returns>The corresponding <see cref="Maybe{String}"/>.</returns>
+        [PublicAPI, Pure]
         public static Maybe<string> NoneIfEmpty([CanBeNull] this string str)
         {
             return string.IsNullOrEmpty(str)
