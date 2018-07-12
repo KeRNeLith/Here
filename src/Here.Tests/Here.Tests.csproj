@@ -3,20 +3,21 @@
   <PropertyGroup>
     <TargetFrameworks>net45;net451;net452;net46;net461;netcoreapp1.0;netcoreapp2.0</TargetFrameworks>
 	<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-	<IsPackable>false</IsPackable>
+	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	<Title>Here</Title>
 	<Version>1.0.0</Version>
+	<AssemblyVersion>1.0.0</AssemblyVersion>
+	<FileVersion>1.0.0</FileVersion>
 	<Copyright>Copyright © 2018</Copyright>
 	<Description>Tests for Maybe features.</Description>
 	<Authors>Alexandre Rabérin</Authors>
 	<Owners>Alexandre Rabérin</Owners>
 	<Company>Alexandre Rabérin</Company>
-	<AssemblyVersion>1.0.0</AssemblyVersion>
-	<FileVersion>1.0.0</FileVersion>
+	<IsPackable>false</IsPackable>
 	<PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+	<PackageProjectUrl>https://github.com/KeRNeLith/Here</PackageProjectUrl>
 	<RepositoryType>GitHub</RepositoryType>
 	<RepositoryUrl>https://github.com/KeRNeLith/Here</RepositoryUrl>
-	<PackageProjectUrl>https://github.com/KeRNeLith/Here</PackageProjectUrl>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.2" />
