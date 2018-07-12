@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Globalization;
 using JetBrains.Annotations;
 using NUnit.Framework;
+using Here.Maybes;
 using Here.Maybes.Extensions;
 
-namespace Here.Maybes.Tests
+namespace Here.Tests.Maybes
 {
     /// <summary>
     /// Tests for <see cref="Maybe{T}"/> try parse.
     /// </summary>
     [TestFixture]
-    internal class MaybeTryParseTests : MaybeTestsBase
+    internal class MaybeTryParseTests : HereTestsBase
     {
         private static readonly CultureInfo TestParseUSCultureInfo = new CultureInfo("en-US");
         private static readonly CultureInfo TestParseFRCultureInfo = new CultureInfo("fr-FR");

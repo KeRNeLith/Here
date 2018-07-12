@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace Here.Maybes.Tests
+namespace Here.Tests
 {
     /// <summary>
-    /// Base class for Tests for <see cref="Maybe{T}"/>.
+    /// Base class for Tests.
     /// </summary>
-    internal class MaybeTestsBase
+    internal class HereTestsBase
     {
         #region Test classes
 

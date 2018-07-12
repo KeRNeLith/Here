@@ -1,13 +1,14 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
+using NUnit.Framework;
+using Here.Maybes;
 
-namespace Here.Maybes.Tests
+namespace Here.Tests.Maybes
 {
     /// <summary>
     /// Tests for <see cref="Maybe{T}"/>.
     /// </summary>
     [TestFixture]
-    internal class MaybeTests : MaybeTestsBase
+    internal class MaybeTests : HereTestsBase
     {
         #region Test classes
 

@@ -1,14 +1,15 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
+using Here.Maybes;
 using Here.Maybes.Extensions;
 
-namespace Here.Maybes.Tests
+namespace Here.Tests.Maybes
 {
     /// <summary>
     /// Tests for <see cref="Maybe{T}"/> try get dictionary.
     /// </summary>
     [TestFixture]
-    internal class MaybeTryGetTests : MaybeTestsBase
+    internal class MaybeTryGetTests : HereTestsBase
     {
         [Test]
         public void TryGetDictionaries()

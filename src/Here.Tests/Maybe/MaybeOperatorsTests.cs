@@ -1,12 +1,13 @@
 ﻿using NUnit.Framework;
+using Here.Maybes;
 
-namespace Here.Maybes.Tests
+namespace Here.Tests.Maybes
 {
     /// <summary>
     /// Tests for <see cref="Maybe{T}"/>.
     /// </summary>
     [TestFixture]
-    internal class MaybeOperatorsTests : MaybeTestsBase
+    internal class MaybeOperatorsTests : HereTestsBase
     {
         [Test]
         public void MaybeBoolOpertors()

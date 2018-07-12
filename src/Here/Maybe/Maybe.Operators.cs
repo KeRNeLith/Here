@@ -1,6 +1,4 @@
-﻿using Here.Maybes.Extensions;
-
-namespace Here.Maybes
+﻿namespace Here.Maybes
 {
     // Operators
     public partial struct Maybe<T>

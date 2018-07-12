@@ -16,6 +16,9 @@ It handles and encapsulates the logic of functional based object including the f
 - The `Maybe<T>`, also called Option or Monad. This structure encapsulates the concept of having a value or not. This mechanic safely handle a traditional null return.
 For more details on `Maybe<T>` usage see the following [tips](src/Here/Maybe/README.md).
 
+- The `Result`. This structure encapsulates treatments results. This provide an improved return state, and also a better error management.
+For more details on `Result` usage see the following [tips](src/Here/Result/README.md).
+
 ---
 
 ## Target
