@@ -3,14 +3,15 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard1.1;net452</TargetFrameworks>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	<IsPackable>true</IsPackable>
-	<PackageId>Here</PackageId>
+	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	<Title>Here</Title>
 	<Version>1.0.0</Version>
+	<AssemblyVersion>1.0.0</AssemblyVersion>
+	<FileVersion>1.0.0</FileVersion>
 	<Copyright>Copyright © 2018</Copyright>
 	<Description>.NET library that provide mainly functional features for C#.
 
-This means concept of Maybe (Monad).
+This means concept of Maybe (Monad) and Result.
 
 Supported platforms:
 - .NET Framework 4.5+
@@ -19,14 +20,27 @@ Supported platforms:
 	<Owners>Alexandre Rabérin</Owners>
 	<Authors>Alexandre Rabérin</Authors>
 	<Company>Alexandre Rabérin</Company>
-	<PackageTags>Here Functional C# Maybe Monad</PackageTags>
-	<AssemblyVersion>1.0.0</AssemblyVersion>
-	<FileVersion>1.0.0</FileVersion>
+	<IsPackable>true</IsPackable>
+	<PackageId>Here</PackageId>
+	<PackageReleaseNotes>➟ Release 0.1.0
+- General:
+    - Add JetBrains annotations on many methods of the library to clarify them.
+
+- For Maybe:
+    - Supports bitwise and logical AND and OR operators.
+    - New IfElse extensions.
+    - New Linq extension (OfType) and simplify usage of Cast too.
+    - Try parse now are available with custom arguments like those available in .NET Framework.
+
+- For Result:
+    - First implementation of Result.</PackageReleaseNotes>
+	<PackageTags>Here Functional C# Maybe Monad Result</PackageTags>
 	<PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+	<PackageProjectUrl>https://github.com/KeRNeLith/Here</PackageProjectUrl>
 	<RepositoryType>GitHub</RepositoryType>
 	<RepositoryUrl>https://github.com/KeRNeLith/Here</RepositoryUrl>
-	<PackageProjectUrl>https://github.com/KeRNeLith/Here</PackageProjectUrl>
   </PropertyGroup>
+
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -42,6 +56,7 @@ Supported platforms:
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="11.1.0" />
   </ItemGroup>

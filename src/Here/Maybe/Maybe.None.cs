@@ -6,6 +6,7 @@ namespace Here.Maybes
     /// Empty maybe implementation.
     /// Used for implicit construction.
     /// </summary>
+    [PublicAPI]
     public static class Maybe
     {
         /// <summary>
