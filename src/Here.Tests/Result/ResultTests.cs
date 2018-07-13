@@ -5,34 +5,25 @@ using Here.Results;
 namespace Here.Tests.Results
 {
     /// <summary>
-    /// Tests for <see cref="Result"/>.
+    /// Basic tests for <see cref="Result"/>, <see cref="Result{T}"/>, <see cref="CustomResult{TError}"/> and <see cref="Result{T, TError}"/>.
     /// </summary>
     [TestFixture]
-    internal class ResultTests : HereTestsBase
+    internal class ResultTests : ResultTestsBase
     {
         [Test]
         public void ResultConstruction()
         {
             // Ok result
             var ok = Result.Ok();
-            Assert.IsTrue(ok.IsSuccess);
-            Assert.IsFalse(ok.IsWarning);
-            Assert.IsFalse(ok.IsFailure);
-            Assert.IsNull(ok.Message);
+            CheckResultOK(ok);
 
             // Warning result
             var warning = Result.Warn("My warning");
-            Assert.IsTrue(warning.IsSuccess);
-            Assert.IsTrue(warning.IsWarning);
-            Assert.IsFalse(warning.IsFailure);
-            Assert.AreEqual("My warning", warning.Message);
+            CheckResultWarn(warning, "My warning");
 
             // failure result
             var failure = Result.Fail("My failure");
-            Assert.IsFalse(failure.IsSuccess);
-            Assert.IsFalse(failure.IsWarning);
-            Assert.IsTrue(failure.IsFailure);
-            Assert.AreEqual("My failure", failure.Message);
+            CheckResultFail(failure, "My failure");
         }
 
         [Test]
@@ -40,28 +31,16 @@ namespace Here.Tests.Results
         {
             // Ok result
             var ok = Result.CustomOk<Exception>();
-            Assert.IsTrue(ok.IsSuccess);
-            Assert.IsFalse(ok.IsWarning);
-            Assert.IsFalse(ok.IsFailure);
-            Assert.IsNull(ok.Message);
-            Assert.Throws<InvalidOperationException>(() => { var _ = ok.Error; });
+            CheckResultOK(ok);
 
             // Warning result
             var warning = Result.CustomWarn<Exception>("My warning");
-            Assert.IsTrue(warning.IsSuccess);
-            Assert.IsTrue(warning.IsWarning);
-            Assert.IsFalse(warning.IsFailure);
-            Assert.AreEqual("My warning", warning.Message);
-            Assert.Throws<InvalidOperationException>(() => { var _ = warning.Error; });
+            CheckResultWarn(warning, "My warning");
 
             // failure result
             var errorObject = new Exception("My failure error object");
             var failure = Result.CustomFail("My failure", errorObject);
-            Assert.IsFalse(failure.IsSuccess);
-            Assert.IsFalse(failure.IsWarning);
-            Assert.IsTrue(failure.IsFailure);
-            Assert.AreEqual("My failure", failure.Message);
-            Assert.AreSame(errorObject, failure.Error);
+            CheckResultFail(failure, "My failure", errorObject);
         }
 
         [Test]
@@ -69,19 +48,11 @@ namespace Here.Tests.Results
         {
             // Ok result
             var ok = Result.Ok(42);
-            Assert.IsTrue(ok.IsSuccess);
-            Assert.IsFalse(ok.IsWarning);
-            Assert.IsFalse(ok.IsFailure);
-            Assert.IsNull(ok.Message);
-            Assert.AreEqual(42, ok.Value);
+            CheckResultOK(ok, 42);
 
             // Warning result
             var warning = Result.Warn(12, "My warning");
-            Assert.IsTrue(warning.IsSuccess);
-            Assert.IsTrue(warning.IsWarning);
-            Assert.IsFalse(warning.IsFailure);
-            Assert.AreEqual("My warning", warning.Message);
-            Assert.AreEqual(12, warning.Value);
+            CheckResultWarn(warning, 12, "My warning");
 
             // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => Result.Warn(12, null));
@@ -89,11 +60,7 @@ namespace Here.Tests.Results
 
             // failure result
             var failure = Result.Fail<int>("My failure");
-            Assert.IsFalse(failure.IsSuccess);
-            Assert.IsFalse(failure.IsWarning);
-            Assert.IsTrue(failure.IsFailure);
-            Assert.AreEqual("My failure", failure.Message);
-            Assert.Throws<InvalidOperationException>(() => { var _ = failure.Value; });
+            CheckResultFail(failure, "My failure");
 
             // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => Result.Fail<int>(null));
@@ -105,21 +72,11 @@ namespace Here.Tests.Results
         {
             // Ok result
             var ok = Result.Ok<int, Exception>(42);
-            Assert.IsTrue(ok.IsSuccess);
-            Assert.IsFalse(ok.IsWarning);
-            Assert.IsFalse(ok.IsFailure);
-            Assert.IsNull(ok.Message);
-            Assert.AreEqual(42, ok.Value);
-            Assert.Throws<InvalidOperationException>(() => { var _ = ok.Error; });
+            CheckResultOK(ok, 42);
 
             // Warning result
             var warning = Result.Warn<int, Exception>(12, "My warning");
-            Assert.IsTrue(warning.IsSuccess);
-            Assert.IsTrue(warning.IsWarning);
-            Assert.IsFalse(warning.IsFailure);
-            Assert.AreEqual("My warning", warning.Message);
-            Assert.AreEqual(12, warning.Value);
-            Assert.Throws<InvalidOperationException>(() => { var _ = warning.Error; });
+            CheckResultWarn(warning, 12, "My warning");
 
             // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => Result.Warn<int, Exception>(12, null));
@@ -128,12 +85,7 @@ namespace Here.Tests.Results
             // failure result
             var customErrorObject = new Exception("My test exception");
             var failure = Result.Fail<int, Exception>("My failure", customErrorObject);
-            Assert.IsFalse(failure.IsSuccess);
-            Assert.IsFalse(failure.IsWarning);
-            Assert.IsTrue(failure.IsFailure);
-            Assert.AreEqual("My failure", failure.Message);
-            Assert.Throws<InvalidOperationException>(() => { var _ = failure.Value; });
-            Assert.AreSame(customErrorObject, failure.Error);
+            CheckResultFail(failure, "My failure", customErrorObject);
 
             // ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => Result.Fail<int, Exception>(null, null));

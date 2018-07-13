@@ -6,7 +6,7 @@ using Here.Maybes.Extensions;
 namespace Here.Tests.Maybes
 {
     /// <summary>
-    /// Tests for <see cref="Maybe{T}"/>.
+    /// Tests for <see cref="Maybe{T}"/> operations.
     /// </summary>
     [TestFixture]
     internal class MaybeOperationsTests : HereTestsBase

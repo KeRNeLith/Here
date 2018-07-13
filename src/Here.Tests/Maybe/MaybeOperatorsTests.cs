@@ -4,7 +4,7 @@ using Here.Maybes;
 namespace Here.Tests.Maybes
 {
     /// <summary>
-    /// Tests for <see cref="Maybe{T}"/>.
+    /// Tests for <see cref="Maybe{T}"/> operators.
     /// </summary>
     [TestFixture]
     internal class MaybeOperatorsTests : HereTestsBase
