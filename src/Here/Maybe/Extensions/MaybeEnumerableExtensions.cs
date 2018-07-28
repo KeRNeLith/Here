@@ -34,10 +34,10 @@ namespace Here.Maybes.Extensions
             foreach(var item in enumerable)
             {
                 if (predicate(item))
-                    return item.ToMaybe();
+                    return item;
             }
 
-            return Maybe.None;
+            return Maybe<T>.None;
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Here.Maybes.Extensions
                 }
             }
 
-            return match ? matchedItem.ToMaybe() : Maybe.None;
+            return match ? matchedItem : Maybe<T>.None;
         }
     }
 }

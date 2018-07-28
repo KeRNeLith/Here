@@ -176,7 +176,7 @@ namespace Here.Maybes.Extensions
         {
             if (maybe.HasValue)
                 return converter(maybe.Value);
-            return Maybe.None;
+            return Maybe<TTo>.None;
         }
     }
 }

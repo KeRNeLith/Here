@@ -69,7 +69,7 @@ namespace Here.Maybes
         {
             if (HasValue)
                 return Value as TOut;
-            return Maybe.None;
+            return Maybe<TOut>.None;
         }
 
         /// <summary>

@@ -83,7 +83,7 @@ namespace Here.Maybes.Extensions
         {
             if (maybe.HasValue)
                 return selector(maybe.Value);
-            return Maybe.None;
+            return Maybe<TOut>.None;
         }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace Here.Maybes.Extensions
         {
             if (MatchPredicate(maybe, predicate))
                 return maybe;
-            return Maybe.None;
+            return Maybe<T>.None;
         }
 
         /// <summary>

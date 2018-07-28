@@ -1,5 +1,4 @@
-﻿using System;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 
 namespace Here.Maybes.Extensions
 {
@@ -19,7 +18,7 @@ namespace Here.Maybes.Extensions
         {
             return value != null
                 ? Maybe<T>.Some(value)
-                : Maybe.None;
+                : Maybe<T>.None;
         }
 
         /// <summary>
@@ -32,7 +31,7 @@ namespace Here.Maybes.Extensions
         public static Maybe<T> ToMaybe<T>([CanBeNull] this T? nullable)
             where T : struct
         {
-            return nullable?.ToMaybe() ?? Maybe.None;
+            return nullable?.ToMaybe() ?? Maybe<T>.None;
         }
 
         /// <summary>
@@ -59,7 +58,7 @@ namespace Here.Maybes.Extensions
         public static Maybe<string> NoneIfEmpty([CanBeNull] this string str)
         {
             return string.IsNullOrEmpty(str)
-                ? Maybe.None
+                ? Maybe<string>.None
                 : Maybe<string>.Some(str);
         }
     }

@@ -48,6 +48,10 @@ namespace Here.Tests.Maybes
             Assert.IsTrue(maybeInt.HasValue);
             Assert.AreEqual(1, maybeInt.Value);
 
+            maybeInt = 1;
+            Assert.IsTrue(maybeInt.HasValue);
+            Assert.AreEqual(1, maybeInt.Value);
+
             // Nullable
             var testNullableNull = (int?)null;
             // ReSharper disable once ExpressionIsAlwaysNull
@@ -64,6 +68,11 @@ namespace Here.Tests.Maybes
             var maybeClass = testObject.ToMaybe();
             Assert.IsTrue(maybeClass.HasValue);
             Assert.AreSame(testObject, maybeClass.Value);
+
+            var testObject2 = new TestClass();
+            maybeClass = testObject2;
+            Assert.IsTrue(maybeClass.HasValue);
+            Assert.AreSame(testObject2, maybeClass.Value);
 
             TestClass testObjectNull = null;
             // ReSharper disable once ExpressionIsAlwaysNull
