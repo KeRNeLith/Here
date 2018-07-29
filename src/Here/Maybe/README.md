@@ -215,3 +215,25 @@ public static Func<TInput, Maybe<TValue>> CreateParse<TInput, TValue>([NotNull] 
 ```
 
 And use them for each basic type, but you can also create you own implementation in the same way.
+
+### Numeric Types casts
+
+Each numeric type, which means `byte`, `sbyte`, `short`, `ushort`, `int`, `uint`, `long`, `ulong`, `decimal`, `float` and `double` have support of the conversion to another numeric type and also to `bool`.
+
+This means that you can easily convert `Maybe<TNumeric>` to a `Maybe<TOtherNumeric>` or `Maybe<bool>`. Each `Maybe<TNumeric>` have extensions to do this. Here are some examples:
+
+```csharp
+Maybe<double> maybeDouble = Maybe<double>.Some(42.2d);
+
+// Double to bool
+Maybe<bool> maybeBool = maybeDouble.ToBool();   // True
+
+// Double to int
+Maybe<int> maybeInt = maybeDouble.ToInt();      // 42
+
+// Etc.
+
+// As a consequence you can chain calls like this:
+string myString = "51.52";
+Maybe<double> maybeDouble = myString.TryParseInt().ToDouble();  // 51
+```

@@ -22,18 +22,14 @@ Supported platforms:
 	<Company>Alexandre Rabérin</Company>
 	<IsPackable>true</IsPackable>
 	<PackageId>Here</PackageId>
-	<PackageReleaseNotes>➟ Release 0.1.0
-- General:
-    - Add JetBrains annotations on many methods of the library to clarify them.
-
+	<PackageReleaseNotes>➟ Release 0.2.0
 - For Maybe:
-    - Supports bitwise and logical AND and OR operators.
-    - New IfElse extensions.
-    - New Linq extension (OfType) and simplify usage of Cast too.
-    - Try parse now are available with custom arguments like those available in .NET Framework.
-
-- For Result:
-    - First implementation of Result.</PackageReleaseNotes>
+    - Little optimizations
+    - New IfOr and ElseOr extensions.
+    - Easy conversions between numeric Maybe (ToInt(), ToLong(), ToDouble(), etc.)
+    - Conversion from numeric Maybe to Maybe&lt;bool&gt;.
+    - Try Get Value for dictionaries supports null key queries.
+    - Try Get Value for dictionary&lt;TKey, object&gt; supports value cast to an expected type.</PackageReleaseNotes>
 	<PackageTags>Here Functional C# Maybe Monad Result</PackageTags>
 	<PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
 	<PackageProjectUrl>https://github.com/KeRNeLith/Here</PackageProjectUrl>
