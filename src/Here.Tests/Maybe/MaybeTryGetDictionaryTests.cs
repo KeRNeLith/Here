@@ -12,34 +12,88 @@ namespace Here.Tests.Maybes
     internal class MaybeTryGetTests : HereTestsBase
     {
         [Test]
-        public void TryGetDictionaries()
+        public void TryGetDictionariesTKeyTValue()
         {
             // Dictionary
-            var dictionaryIntString = new Dictionary<int, string>
+            var dictionaryStringString = new Dictionary<string, string>
             {
-                [2] = "string 2",
-                [12] = "string 12",
+                ["2"] = "string 2",
+                ["12"] = "string 12"
             };
 
-            var maybeString = dictionaryIntString.TryGetValue(2);
+            var maybeString = dictionaryStringString.TryGetValue("2");
             Assert.IsTrue(maybeString.HasValue);
             Assert.AreEqual("string 2", maybeString.Value);
 
-            maybeString = dictionaryIntString.TryGetValue(42);
+            maybeString = dictionaryStringString.TryGetValue("42");
             Assert.IsFalse(maybeString.HasValue);
-            
+
+            // Try get with a null key always return None result
+            maybeString = dictionaryStringString.TryGetValue(null);
+            Assert.IsFalse(maybeString.HasValue);
+
             // Readonly Dictionary
-            IReadOnlyDictionary<int, string> readonlyDictionaryIntString = new Dictionary<int, string>
+            IReadOnlyDictionary<string, string> readonlyDictionaryStringString = new Dictionary<string, string>
             {
-                [42] = "string 42",
-                [88] = "string 88",
+                ["42"] = "string 42",
+                ["88"] = "string 88"
             };
             
-            maybeString = readonlyDictionaryIntString.TryGetReadonlyValue(42);
+            maybeString = readonlyDictionaryStringString.TryGetReadonlyValue("42");
             Assert.IsTrue(maybeString.HasValue);
             Assert.AreEqual("string 42", maybeString.Value);
 
-            maybeString = readonlyDictionaryIntString.TryGetReadonlyValue(12);
+            maybeString = readonlyDictionaryStringString.TryGetReadonlyValue("12");
+            Assert.IsFalse(maybeString.HasValue);
+
+            // Try get with a null key always return None result
+            maybeString = readonlyDictionaryStringString.TryGetReadonlyValue(null);
+            Assert.IsFalse(maybeString.HasValue);
+        }
+
+        [Test]
+        public void TryGetDictionariesTKeyObject()
+        {
+            // Dictionary
+            var dictionaryStringObject = new Dictionary<string, object>
+            {
+                ["2"] = "string 2",
+                ["12"] = new TestClass { TestInt = 12 }
+            };
+
+            var maybeString = dictionaryStringObject.TryGetValue<string, string>("2");
+            Assert.IsTrue(maybeString.HasValue);
+            Assert.AreEqual("string 2", maybeString.Value);
+
+            var maybeClass = dictionaryStringObject.TryGetValue<string, TestClass>("2");
+            Assert.IsFalse(maybeClass.HasValue);
+
+            maybeString = dictionaryStringObject.TryGetValue<string, string>("42");
+            Assert.IsFalse(maybeString.HasValue);
+
+            // Try get with a null key always return None result
+            maybeString = dictionaryStringObject.TryGetValue<string, string>(null);
+            Assert.IsFalse(maybeString.HasValue);
+
+            // Readonly Dictionary
+            IReadOnlyDictionary<string, object> readonlyDictionaryStringObject = new Dictionary<string, object>
+            {
+                ["42"] = "string 42",
+                ["88"] = new TestClass { TestInt = 88 }
+            };
+
+            maybeString = readonlyDictionaryStringObject.TryGetReadonlyValue<string, string>("42");
+            Assert.IsTrue(maybeString.HasValue);
+            Assert.AreEqual("string 42", maybeString.Value);
+
+            maybeClass = readonlyDictionaryStringObject.TryGetReadonlyValue<string, TestClass>("42");
+            Assert.IsFalse(maybeClass.HasValue);
+
+            maybeString = readonlyDictionaryStringObject.TryGetReadonlyValue<string, string>("12");
+            Assert.IsFalse(maybeString.HasValue);
+
+            // Try get with a null key always return None result
+            maybeString = readonlyDictionaryStringObject.TryGetReadonlyValue<string, string>(null);
             Assert.IsFalse(maybeString.HasValue);
         }
     }

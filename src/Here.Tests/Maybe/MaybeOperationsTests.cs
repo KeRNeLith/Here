@@ -69,13 +69,83 @@ namespace Here.Tests.Maybes
             int counterIf = 0;
             int counterElse = 0;
             var maybeInt = Maybe<int>.Some(12);
-            Assert.AreEqual(1, maybeInt.IfElse(value => ++counterIf, () => ++counterElse));
+            Assert.AreEqual(42.2f, maybeInt.IfElse(
+                value =>
+                {
+                    ++counterIf;
+                    return 42.2f;
+                }, 
+                () =>
+                {
+                    ++counterElse;
+                    return 12.2f;
+                }));
             Assert.AreEqual(1, counterIf);
             Assert.AreEqual(0, counterElse);
 
             var emptyMaybeInt = Maybe<int>.None;
-            Assert.AreEqual(1, emptyMaybeInt.IfElse(value => ++counterIf, () => ++counterElse));
+            Assert.AreEqual(12.2f, emptyMaybeInt.IfElse(
+                value =>
+                {
+                    ++counterIf;
+                    return 42.2f;
+                },
+                () =>
+                {
+                    ++counterElse;
+                    return 12.2f;
+                }));
             Assert.AreEqual(1, counterIf);
+            Assert.AreEqual(1, counterElse);
+        }
+
+        [Test]
+        public void MaybeIfOrReturnResult()
+        {
+            int counterIf = 0;
+            var maybeInt = Maybe<int>.Some(12);
+            Assert.AreEqual(42.2f, maybeInt.IfOr(
+                value =>
+                {
+                    ++counterIf;
+                    return 42.2f;
+                },
+                12.2f));
+            Assert.AreEqual(1, counterIf);
+
+            var emptyMaybeInt = Maybe<int>.None;
+            Assert.AreEqual(12.2f, emptyMaybeInt.IfOr(
+                value =>
+                {
+                    ++counterIf;
+                    return 42.2f;
+                },
+                12.2f));
+            Assert.AreEqual(1, counterIf);
+        }
+
+        [Test]
+        public void MaybeElseOrReturnResult()
+        {
+            int counterElse = 0;
+            var maybeInt = Maybe<int>.Some(12);
+            Assert.AreEqual(42.2f, maybeInt.ElseOr(
+                () =>
+                {
+                    ++counterElse;
+                    return 12.2f;
+                },
+                42.2f));
+            Assert.AreEqual(0, counterElse);
+
+            var emptyMaybeInt = Maybe<int>.None;
+            Assert.AreEqual(12.2f, emptyMaybeInt.ElseOr(
+                () =>
+                {
+                    ++counterElse;
+                    return 12.2f;
+                },
+                42.2f));
             Assert.AreEqual(1, counterElse);
         }
 

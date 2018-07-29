@@ -22,7 +22,7 @@ namespace Here.Tests.Maybes
         /// <summary>
         /// Call the <paramref name="tryParseFunc"/> and check if the result match expected value.
         /// </summary>
-        private static void TryParseTest<T>(Func<Maybe<T>> tryParseFunc, bool mustHaveValue, T expectedValue)
+        private static void TryParseTest<T>([NotNull, InstantHandle] Func<Maybe<T>> tryParseFunc, bool mustHaveValue, T expectedValue)
         {
             var maybe = tryParseFunc();
             if (mustHaveValue)
