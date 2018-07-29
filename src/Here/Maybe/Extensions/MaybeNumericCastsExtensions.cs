@@ -27,6 +27,17 @@ namespace Here.Maybes.Extensions
         #region Byte to XXX
 
         /// <summary>
+        /// Convert this <see cref="Maybe{Byte}"/> to a <see cref="Maybe{Boolean}"/>.
+        /// </summary>
+        /// <param name="maybe">The <see cref="Maybe{Byte}"/> to convert.</param>
+        /// <returns>The result of the conversion.</returns>
+        [PublicAPI, Pure]
+        public static Maybe<bool> ToBool(this Maybe<byte> maybe)
+        {
+            return SafeConvert(maybe, Convert.ToBoolean);
+        }
+
+        /// <summary>
         /// Convert this <see cref="Maybe{Byte}"/> to a <see cref="Maybe{SByte}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Byte}"/> to convert.</param>
@@ -139,6 +150,17 @@ namespace Here.Maybes.Extensions
         #endregion
 
         #region SByte to XXX
+
+        /// <summary>
+        /// Convert this <see cref="Maybe{SByte}"/> to a <see cref="Maybe{Boolean}"/>.
+        /// </summary>
+        /// <param name="maybe">The <see cref="Maybe{SByte}"/> to convert.</param>
+        /// <returns>The result of the conversion.</returns>
+        [PublicAPI, Pure]
+        public static Maybe<bool> ToBool(this Maybe<sbyte> maybe)
+        {
+            return SafeConvert(maybe, Convert.ToBoolean);
+        }
 
         /// <summary>
         /// Convert this <see cref="Maybe{SByte}"/> to a <see cref="Maybe{Byte}"/>.
@@ -255,6 +277,17 @@ namespace Here.Maybes.Extensions
         #region Short to XXX
 
         /// <summary>
+        /// Convert this <see cref="Maybe{Int16}"/> to a <see cref="Maybe{Boolean}"/>.
+        /// </summary>
+        /// <param name="maybe">The <see cref="Maybe{Int16}"/> to convert.</param>
+        /// <returns>The result of the conversion.</returns>
+        [PublicAPI, Pure]
+        public static Maybe<bool> ToBool(this Maybe<short> maybe)
+        {
+            return SafeConvert(maybe, Convert.ToBoolean);
+        }
+
+        /// <summary>
         /// Convert this <see cref="Maybe{Int16}"/> to a <see cref="Maybe{Byte}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int16}"/> to convert.</param>
@@ -367,6 +400,17 @@ namespace Here.Maybes.Extensions
         #endregion
 
         #region UShort to XXX
+
+        /// <summary>
+        /// Convert this <see cref="Maybe{UInt16}"/> to a <see cref="Maybe{Boolean}"/>.
+        /// </summary>
+        /// <param name="maybe">The <see cref="Maybe{UInt16}"/> to convert.</param>
+        /// <returns>The result of the conversion.</returns>
+        [PublicAPI, Pure]
+        public static Maybe<bool> ToBool(this Maybe<ushort> maybe)
+        {
+            return SafeConvert(maybe, Convert.ToBoolean);
+        }
 
         /// <summary>
         /// Convert this <see cref="Maybe{UInt16}"/> to a <see cref="Maybe{Byte}"/>.
@@ -483,6 +527,17 @@ namespace Here.Maybes.Extensions
         #region Int to XXX
 
         /// <summary>
+        /// Convert this <see cref="Maybe{Int32}"/> to a <see cref="Maybe{Boolean}"/>.
+        /// </summary>
+        /// <param name="maybe">The <see cref="Maybe{Int32}"/> to convert.</param>
+        /// <returns>The result of the conversion.</returns>
+        [PublicAPI, Pure]
+        public static Maybe<bool> ToBool(this Maybe<int> maybe)
+        {
+            return SafeConvert(maybe, Convert.ToBoolean);
+        }
+
+        /// <summary>
         /// Convert this <see cref="Maybe{Int32}"/> to a <see cref="Maybe{Byte}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int32}"/> to convert.</param>
@@ -595,6 +650,17 @@ namespace Here.Maybes.Extensions
         #endregion
 
         #region UInt to XXX
+
+        /// <summary>
+        /// Convert this <see cref="Maybe{UInt32}"/> to a <see cref="Maybe{Boolean}"/>.
+        /// </summary>
+        /// <param name="maybe">The <see cref="Maybe{UInt32}"/> to convert.</param>
+        /// <returns>The result of the conversion.</returns>
+        [PublicAPI, Pure]
+        public static Maybe<bool> ToBool(this Maybe<uint> maybe)
+        {
+            return SafeConvert(maybe, Convert.ToBoolean);
+        }
 
         /// <summary>
         /// Convert this <see cref="Maybe{UInt32}"/> to a <see cref="Maybe{Byte}"/>.
@@ -711,6 +777,17 @@ namespace Here.Maybes.Extensions
         #region Long to XXX
 
         /// <summary>
+        /// Convert this <see cref="Maybe{Int64}"/> to a <see cref="Maybe{Boolean}"/>.
+        /// </summary>
+        /// <param name="maybe">The <see cref="Maybe{Int64}"/> to convert.</param>
+        /// <returns>The result of the conversion.</returns>
+        [PublicAPI, Pure]
+        public static Maybe<bool> ToBool(this Maybe<long> maybe)
+        {
+            return SafeConvert(maybe, Convert.ToBoolean);
+        }
+
+        /// <summary>
         /// Convert this <see cref="Maybe{Int64}"/> to a <see cref="Maybe{Byte}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int64}"/> to convert.</param>
@@ -823,6 +900,17 @@ namespace Here.Maybes.Extensions
         #endregion
 
         #region ULong to XXX
+
+        /// <summary>
+        /// Convert this <see cref="Maybe{UInt64}"/> to a <see cref="Maybe{Boolean}"/>.
+        /// </summary>
+        /// <param name="maybe">The <see cref="Maybe{UInt64}"/> to convert.</param>
+        /// <returns>The result of the conversion.</returns>
+        [PublicAPI, Pure]
+        public static Maybe<bool> ToBool(this Maybe<ulong> maybe)
+        {
+            return SafeConvert(maybe, Convert.ToBoolean);
+        }
 
         /// <summary>
         /// Convert this <see cref="Maybe{UInt64}"/> to a <see cref="Maybe{Byte}"/>.
@@ -939,6 +1027,17 @@ namespace Here.Maybes.Extensions
         #region Decimal to XXX
 
         /// <summary>
+        /// Convert this <see cref="Maybe{Decimal}"/> to a <see cref="Maybe{Boolean}"/>.
+        /// </summary>
+        /// <param name="maybe">The <see cref="Maybe{Decimal}"/> to convert.</param>
+        /// <returns>The result of the conversion.</returns>
+        [PublicAPI, Pure]
+        public static Maybe<bool> ToBool(this Maybe<decimal> maybe)
+        {
+            return SafeConvert(maybe, Convert.ToBoolean);
+        }
+
+        /// <summary>
         /// Convert this <see cref="Maybe{Decimal}"/> to a <see cref="Maybe{Byte}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Decimal}"/> to convert.</param>
@@ -1053,6 +1152,17 @@ namespace Here.Maybes.Extensions
         #region Float to XXX
 
         /// <summary>
+        /// Convert this <see cref="Maybe{Single}"/> to a <see cref="Maybe{Boolean}"/>.
+        /// </summary>
+        /// <param name="maybe">The <see cref="Maybe{Single}"/> to convert.</param>
+        /// <returns>The result of the conversion.</returns>
+        [PublicAPI, Pure]
+        public static Maybe<bool> ToBool(this Maybe<float> maybe)
+        {
+            return SafeConvert(maybe, Convert.ToBoolean);
+        }
+
+        /// <summary>
         /// Convert this <see cref="Maybe{Single}"/> to a <see cref="Maybe{Byte}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Single}"/> to convert.</param>
@@ -1165,6 +1275,17 @@ namespace Here.Maybes.Extensions
         #endregion
 
         #region Double to XXX
+
+        /// <summary>
+        /// Convert this <see cref="Maybe{Double}"/> to a <see cref="Maybe{Boolean}"/>.
+        /// </summary>
+        /// <param name="maybe">The <see cref="Maybe{Double}"/> to convert.</param>
+        /// <returns>The result of the conversion.</returns>
+        [PublicAPI, Pure]
+        public static Maybe<bool> ToBool(this Maybe<double> maybe)
+        {
+            return SafeConvert(maybe, Convert.ToBoolean);
+        }
 
         /// <summary>
         /// Convert this <see cref="Maybe{Double}"/> to a <see cref="Maybe{Byte}"/>.

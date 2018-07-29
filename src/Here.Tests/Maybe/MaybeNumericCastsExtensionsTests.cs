@@ -50,6 +50,218 @@ namespace Here.Tests.Maybes
             }
         }
 
+        #region Cast to Bool
+
+        private static IEnumerable<TestCaseData> CreateCastFromByteToBoolTestCases
+        {
+            [UsedImplicitly]
+            get
+            {
+                yield return new TestCaseData(null, false, null);
+                yield return new TestCaseData(Maybe<byte>.None, false, null);
+                yield return new TestCaseData(Maybe<byte>.Some(12), true, true);
+                yield return new TestCaseData(Maybe<byte>.Some(0), true, false);
+            }
+        }
+
+        [TestCaseSource(nameof(CreateCastFromByteToBoolTestCases))]
+        public void CastByteToBool(Maybe<byte> maybe, bool mustHaveValue, bool expectedValue)
+        {
+            CastTest(() => maybe.ToBool(), mustHaveValue, expectedValue);
+        }
+
+        private static IEnumerable<TestCaseData> CreateCastFromSByteToBoolTestCases
+        {
+            [UsedImplicitly]
+            get
+            {
+                yield return new TestCaseData(null, false, null);
+                yield return new TestCaseData(Maybe<sbyte>.None, false, null);
+                yield return new TestCaseData(Maybe<sbyte>.Some(12), true, true);
+                yield return new TestCaseData(Maybe<sbyte>.Some(0), true, false);
+                yield return new TestCaseData(Maybe<sbyte>.Some(-12), true, true);
+            }
+        }
+
+        [TestCaseSource(nameof(CreateCastFromSByteToBoolTestCases))]
+        public void CastSByteToBool(Maybe<sbyte> maybe, bool mustHaveValue, bool expectedValue)
+        {
+            CastTest(() => maybe.ToBool(), mustHaveValue, expectedValue);
+        }
+
+        private static IEnumerable<TestCaseData> CreateCastFromShortToBoolTestCases
+        {
+            [UsedImplicitly]
+            get
+            {
+                yield return new TestCaseData(null, false, null);
+                yield return new TestCaseData(Maybe<short>.None, false, null);
+                yield return new TestCaseData(Maybe<short>.Some(12), true, true);
+                yield return new TestCaseData(Maybe<short>.Some(0), true, false);
+                yield return new TestCaseData(Maybe<short>.Some(-12), true, true);
+            }
+        }
+
+        [TestCaseSource(nameof(CreateCastFromShortToBoolTestCases))]
+        public void CastShortToBool(Maybe<short> maybe, bool mustHaveValue, bool expectedValue)
+        {
+            CastTest(() => maybe.ToBool(), mustHaveValue, expectedValue);
+        }
+
+        private static IEnumerable<TestCaseData> CreateCastFromUShortToBoolTestCases
+        {
+            [UsedImplicitly]
+            get
+            {
+                yield return new TestCaseData(null, false, null);
+                yield return new TestCaseData(Maybe<ushort>.None, false, null);
+                yield return new TestCaseData(Maybe<ushort>.Some(12), true, true);
+                yield return new TestCaseData(Maybe<ushort>.Some(0), true, false);
+            }
+        }
+
+        [TestCaseSource(nameof(CreateCastFromUShortToBoolTestCases))]
+        public void CastUShortToBool(Maybe<ushort> maybe, bool mustHaveValue, bool expectedValue)
+        {
+            CastTest(() => maybe.ToBool(), mustHaveValue, expectedValue);
+        }
+
+        private static IEnumerable<TestCaseData> CreateCastFromIntToBoolTestCases
+        {
+            [UsedImplicitly]
+            get
+            {
+                yield return new TestCaseData(null, false, null);
+                yield return new TestCaseData(Maybe<int>.None, false, null);
+                yield return new TestCaseData(Maybe<int>.Some(-12), true, true);
+                yield return new TestCaseData(Maybe<int>.Some(0), true, false);
+                yield return new TestCaseData(Maybe<int>.Some(12), true, true);
+            }
+        }
+
+        [TestCaseSource(nameof(CreateCastFromIntToBoolTestCases))]
+        public void CastIntToBool(Maybe<int> maybe, bool mustHaveValue, bool expectedValue)
+        {
+            CastTest(() => maybe.ToBool(), mustHaveValue, expectedValue);
+        }
+
+        private static IEnumerable<TestCaseData> CreateCastFromUIntToBoolTestCases
+        {
+            [UsedImplicitly]
+            get
+            {
+                yield return new TestCaseData(null, false, null);
+                yield return new TestCaseData(Maybe<uint>.None, false, null);
+                yield return new TestCaseData(Maybe<uint>.Some(12u), true, true);
+                yield return new TestCaseData(Maybe<uint>.Some(0u), true, false);
+            }
+        }
+
+        [TestCaseSource(nameof(CreateCastFromUIntToBoolTestCases))]
+        public void CastUIntToBool(Maybe<uint> maybe, bool mustHaveValue, bool expectedValue)
+        {
+            CastTest(() => maybe.ToBool(), mustHaveValue, expectedValue);
+        }
+
+        private static IEnumerable<TestCaseData> CreateCastFromLongToBoolTestCases
+        {
+            [UsedImplicitly]
+            get
+            {
+                yield return new TestCaseData(null, false, null);
+                yield return new TestCaseData(Maybe<long>.None, false, null);
+                yield return new TestCaseData(Maybe<long>.Some(-250L), true, true);
+                yield return new TestCaseData(Maybe<long>.Some(0L), true, false);
+                yield return new TestCaseData(Maybe<long>.Some(300L), true, true);
+            }
+        }
+
+        [TestCaseSource(nameof(CreateCastFromLongToBoolTestCases))]
+        public void CastLongToBool(Maybe<long> maybe, bool mustHaveValue, bool expectedValue)
+        {
+            CastTest(() => maybe.ToBool(), mustHaveValue, expectedValue);
+        }
+
+        private static IEnumerable<TestCaseData> CreateCastFromULongToBoolTestCases
+        {
+            [UsedImplicitly]
+            get
+            {
+                yield return new TestCaseData(null, false, null);
+                yield return new TestCaseData(Maybe<ulong>.None, false, null);
+                yield return new TestCaseData(Maybe<ulong>.Some(0ul), true, false);
+                yield return new TestCaseData(Maybe<ulong>.Some(500ul), true, true);
+            }
+        }
+
+        [TestCaseSource(nameof(CreateCastFromULongToBoolTestCases))]
+        public void CastULongToBool(Maybe<ulong> maybe, bool mustHaveValue, bool expectedValue)
+        {
+            CastTest(() => maybe.ToBool(), mustHaveValue, expectedValue);
+        }
+
+        private static IEnumerable<TestCaseData> CreateCastFromDecimalToBoolTestCases
+        {
+            [UsedImplicitly]
+            get
+            {
+                yield return new TestCaseData(null, false, null);
+                yield return new TestCaseData(Maybe<decimal>.None, false, null);
+                yield return new TestCaseData(Maybe<decimal>.Some(-12m), true, true);
+                yield return new TestCaseData(Maybe<decimal>.Some(0m), true, false);
+                yield return new TestCaseData(Maybe<decimal>.Some(1.2m), true, true);
+                yield return new TestCaseData(Maybe<decimal>.Some(500m), true, true);
+            }
+        }
+
+        [TestCaseSource(nameof(CreateCastFromDecimalToBoolTestCases))]
+        public void CastDecimalToBool(Maybe<decimal> maybe, bool mustHaveValue, bool expectedValue)
+        {
+            CastTest(() => maybe.ToBool(), mustHaveValue, expectedValue);
+        }
+
+        private static IEnumerable<TestCaseData> CreateCastFromFloatToBoolTestCases
+        {
+            [UsedImplicitly]
+            get
+            {
+                yield return new TestCaseData(null, false, null);
+                yield return new TestCaseData(Maybe<float>.None, false, null);
+                yield return new TestCaseData(Maybe<float>.Some(-12f), true, true);
+                yield return new TestCaseData(Maybe<float>.Some(0f), true, false);
+                yield return new TestCaseData(Maybe<float>.Some(1.6f), true, true);
+                yield return new TestCaseData(Maybe<float>.Some(500f), true, true);
+            }
+        }
+
+        [TestCaseSource(nameof(CreateCastFromFloatToBoolTestCases))]
+        public void CastFloatToBool(Maybe<float> maybe, bool mustHaveValue, bool expectedValue)
+        {
+            CastTest(() => maybe.ToBool(), mustHaveValue, expectedValue);
+        }
+
+        private static IEnumerable<TestCaseData> CreateCastFromDoubleToBoolTestCases
+        {
+            [UsedImplicitly]
+            get
+            {
+                yield return new TestCaseData(null, false, null);
+                yield return new TestCaseData(Maybe<double>.None, false, null);
+                yield return new TestCaseData(Maybe<double>.Some(-12d), true, true);
+                yield return new TestCaseData(Maybe<double>.Some(0d), true, false);
+                yield return new TestCaseData(Maybe<double>.Some(1.6d), true, true);
+                yield return new TestCaseData(Maybe<double>.Some(250d), true, true);
+            }
+        }
+
+        [TestCaseSource(nameof(CreateCastFromDoubleToBoolTestCases))]
+        public void CastDoubleToBool(Maybe<double> maybe, bool mustHaveValue, bool expectedValue)
+        {
+            CastTest(() => maybe.ToBool(), mustHaveValue, expectedValue);
+        }
+
+        #endregion
+
         #region Cast to Byte
 
         private static IEnumerable<TestCaseData> CreateCastFromSByteToByteTestCases
