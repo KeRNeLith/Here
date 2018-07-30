@@ -5,7 +5,7 @@ using Here.Maybes;
 namespace Here.Tests.Maybes
 {
     /// <summary>
-    /// Tests for <see cref="Maybe{T}"/>.
+    /// Basic tests for <see cref="Maybe{T}"/>.
     /// </summary>
     [TestFixture]
     internal class MaybeTests : HereTestsBase

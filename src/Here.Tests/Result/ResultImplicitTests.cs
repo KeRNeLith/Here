@@ -5,7 +5,7 @@ using Here.Results;
 namespace Here.Tests.Results
 {
     /// <summary>
-    /// Tests for <see cref="Result"/>.
+    /// Tests for <see cref="Result"/>, <see cref="Result{T}"/>, <see cref="CustomResult{TError}"/> and <see cref="Result{T, TError}"/> implicit conversions.
     /// </summary>
     [TestFixture]
     internal class ResultImplicitTests : HereTestsBase
