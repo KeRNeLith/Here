@@ -27,6 +27,9 @@ namespace Here.Results
         public string Message => _logic.Message;
 
         /// <inheritdoc />
+        public Exception Exception => _logic.Exception;
+
+        /// <inheritdoc />
         public TError Error => _logic.Error;
 
         [NotNull]
@@ -47,9 +50,10 @@ namespace Here.Results
         /// <param name="isWarning">Result warning flag.</param>
         /// <param name="message">Result message.</param>
         /// <param name="error">Result error.</param>
-        internal CustomResult(bool isWarning, [NotNull] string message, [CanBeNull] TError error)
+        /// <param name="exception">Result embeded exception.</param>
+        internal CustomResult(bool isWarning, [NotNull] string message, [CanBeNull] TError error, [CanBeNull] Exception exception)
         {
-            _logic = new ResultLogic<TError>(isWarning, message, error);
+            _logic = new ResultLogic<TError>(isWarning, message, error, exception);
         }
 
         /// <inheritdoc />
@@ -78,6 +82,9 @@ namespace Here.Results
 
         /// <inheritdoc />
         public string Message => _logic.Message;
+
+        /// <inheritdoc />
+        public Exception Exception => _logic.Exception;
 
         /// <inheritdoc />
         public TError Error => _logic.Error;
@@ -114,9 +121,10 @@ namespace Here.Results
         /// </summary>
         /// <param name="value">Embedded value.</param>
         /// <param name="message">Result message.</param>
-        internal Result([CanBeNull] T value, [NotNull] string message)
+        /// <param name="exception">Result embeded exception.</param>
+        internal Result([CanBeNull] T value, [NotNull] string message, [CanBeNull] Exception exception)
         {
-            _logic = new ResultLogic<TError>(true, message, default(TError));
+            _logic = new ResultLogic<TError>(true, message, default(TError), exception);
             _value = value;
         }
 
@@ -125,9 +133,10 @@ namespace Here.Results
         /// </summary>
         /// <param name="message">Result message.</param>
         /// <param name="error">Result error object.</param>
-        internal Result([NotNull] string message, [NotNull] TError error)
+        /// <param name="exception">Result embeded exception.</param>
+        internal Result([NotNull] string message, [NotNull] TError error, [CanBeNull] Exception exception)
         {
-            _logic = new ResultLogic<TError>(false, message, error);
+            _logic = new ResultLogic<TError>(false, message, error, exception);
             _value = default(T);
         }
 

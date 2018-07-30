@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using JetBrains.Annotations;
 
 namespace Here.Maybes.Extensions
 {
@@ -22,7 +23,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-		/// Convert <see cref="Nullable{T}"/> to the corresponding <see cref="Maybe{T}"/>.
+		/// Convert <see cref="Nullable"/> to the corresponding <see cref="Maybe{T}"/>.
 		/// </summary>
         /// <typeparam name="T">Type of the value to wrap.</typeparam>
 		/// <param name="nullable"><see cref="Nullable{T}"/> to convert.</param>

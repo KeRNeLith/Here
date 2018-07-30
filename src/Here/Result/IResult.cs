@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using System;
+using JetBrains.Annotations;
 
 namespace Here.Results
 {
@@ -28,6 +29,12 @@ namespace Here.Results
         /// </summary>
         [CanBeNull]
         string Message { get; }
+
+        /// <summary>
+        /// Result exception.
+        /// </summary>
+        [CanBeNull]
+        Exception Exception { get; }
     }
 
     /// <summary>

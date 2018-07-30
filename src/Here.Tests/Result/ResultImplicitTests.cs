@@ -8,7 +8,7 @@ namespace Here.Tests.Results
     /// Tests for <see cref="Result"/>, <see cref="Result{T}"/>, <see cref="CustomResult{TError}"/> and <see cref="Result{T, TError}"/> implicit conversions.
     /// </summary>
     [TestFixture]
-    internal class ResultImplicitTests : HereTestsBase
+    internal class ResultImplicitTests : ResultTestsBase
     {
         [Test]
         public void ResultTToResultImplicitConstruction()
@@ -16,54 +16,56 @@ namespace Here.Tests.Results
             // Ok result
             var ok = Result.Ok(42);
             Result okWithoutValue = ok;
-            Assert.IsTrue(okWithoutValue.IsSuccess);
-            Assert.IsFalse(okWithoutValue.IsWarning);
-            Assert.IsFalse(okWithoutValue.IsFailure);
-            Assert.IsNull(okWithoutValue.Message);
+            CheckResultOk(okWithoutValue);
 
             // Warning result
             var warning = Result.Warn(12, "My warning");
             Result warningWithoutValue = warning;
-            Assert.IsTrue(warningWithoutValue.IsSuccess);
-            Assert.IsTrue(warningWithoutValue.IsWarning);
-            Assert.IsFalse(warningWithoutValue.IsFailure);
-            Assert.AreEqual("My warning", warningWithoutValue.Message);
+            CheckResultWarn(warningWithoutValue, "My warning");
+
+            var warnException = new Exception("Warning Exception");
+            warning = Result.Warn(12, "My warning", warnException);
+            warningWithoutValue = warning;
+            CheckResultWarn(warningWithoutValue, "My warning", warnException);
 
             // Failure result
             var failure = Result.Fail<int>("My failure");
             Result failureWithoutValue = failure;
-            Assert.IsFalse(failureWithoutValue.IsSuccess);
-            Assert.IsFalse(failureWithoutValue.IsWarning);
-            Assert.IsTrue(failureWithoutValue.IsFailure);
-            Assert.AreEqual("My failure", failureWithoutValue.Message);
+            CheckResultFail(failureWithoutValue, "My failure");
+
+            var failException = new Exception("Failure Exception");
+            failure = Result.Fail<int>("My failure", failException);
+            failureWithoutValue = failure;
+            CheckResultFail(failureWithoutValue, "My failure", failException);
         }
 
         [Test]
         public void CustomResultToResultImplicitConstruction()
         {
             // Ok result
-            var ok = Result.CustomOk<Exception>();
+            var ok = Result.CustomOk<CustomErrorTest>();
             Result okWithoutValue = ok;
-            Assert.IsTrue(okWithoutValue.IsSuccess);
-            Assert.IsFalse(okWithoutValue.IsWarning);
-            Assert.IsFalse(okWithoutValue.IsFailure);
-            Assert.IsNull(okWithoutValue.Message);
+            CheckResultOk(okWithoutValue);
 
             // Warning result
-            var warning = Result.CustomWarn<Exception>("My warning");
+            var warning = Result.CustomWarn<CustomErrorTest>("My warning");
             Result warningWithoutValue = warning;
-            Assert.IsTrue(warningWithoutValue.IsSuccess);
-            Assert.IsTrue(warningWithoutValue.IsWarning);
-            Assert.IsFalse(warningWithoutValue.IsFailure);
-            Assert.AreEqual("My warning", warningWithoutValue.Message);
+            CheckResultWarn(warningWithoutValue, "My warning");
+
+            var warnException = new Exception("Warning Exception");
+            warning = Result.CustomWarn<CustomErrorTest>("My warning", warnException);
+            warningWithoutValue = warning;
+            CheckResultWarn(warningWithoutValue, "My warning", warnException);
 
             // Failure result
-            var failure = Result.CustomFail("My failure", new Exception("My test exception"));
+            var failure = Result.CustomFail("My failure", new CustomErrorTest());
             Result failureWithoutValue = failure;
-            Assert.IsFalse(failureWithoutValue.IsSuccess);
-            Assert.IsFalse(failureWithoutValue.IsWarning);
-            Assert.IsTrue(failureWithoutValue.IsFailure);
-            Assert.AreEqual("My failure", failureWithoutValue.Message);
+            CheckResultFail(failureWithoutValue, "My failure");
+
+            var failException = new Exception("Failure Exception");
+            failure = Result.CustomFail("My failure", new CustomErrorTest(), failException);
+            failureWithoutValue = failure;
+            CheckResultFail(failureWithoutValue, "My failure", failException);
         }
 
         [Test]
@@ -72,89 +74,86 @@ namespace Here.Tests.Results
             // Ok result
             var ok = Result.Ok<int, Exception>(42);
             Result okWithoutValue = ok;
-            Assert.IsTrue(okWithoutValue.IsSuccess);
-            Assert.IsFalse(okWithoutValue.IsWarning);
-            Assert.IsFalse(okWithoutValue.IsFailure);
-            Assert.IsNull(okWithoutValue.Message);
+            CheckResultOk(okWithoutValue);
 
             // Warning result
-            var warning = Result.Warn<int, Exception>(42, "My warning");
+            var warning = Result.Warn<int, CustomErrorTest>(42, "My warning");
             Result warningWithoutValue = warning;
-            Assert.IsTrue(warningWithoutValue.IsSuccess);
-            Assert.IsTrue(warningWithoutValue.IsWarning);
-            Assert.IsFalse(warningWithoutValue.IsFailure);
-            Assert.AreEqual("My warning", warningWithoutValue.Message);
+            CheckResultWarn(warningWithoutValue, "My warning");
+
+            var warnException = new Exception("Warning Exception");
+            warning = Result.Warn<int, CustomErrorTest>(42, "My warning", warnException);
+            warningWithoutValue = warning;
+            CheckResultWarn(warningWithoutValue, "My warning", warnException);
 
             // Failure result
-            var failure = Result.Fail<int, Exception>("My failure", new Exception("My test exception"));
+            var failure = Result.Fail<int, CustomErrorTest>("My failure", new CustomErrorTest());
             Result failureWithoutValue = failure;
-            Assert.IsFalse(failureWithoutValue.IsSuccess);
-            Assert.IsFalse(failureWithoutValue.IsWarning);
-            Assert.IsTrue(failureWithoutValue.IsFailure);
-            Assert.AreEqual("My failure", failureWithoutValue.Message);
+            CheckResultFail(failureWithoutValue, "My failure");
+
+            var failException = new Exception("Failure Exception");
+            failure = Result.Fail<int, CustomErrorTest>("My failure", new CustomErrorTest(), failException);
+            failureWithoutValue = failure;
+            CheckResultFail(failureWithoutValue, "My failure", failException);
         }
 
         [Test]
         public void ResultValueTErrorToCustomResultImplicitConstruction()
         {
             // Ok result
-            var ok = Result.Ok<int, Exception>(42);
-            CustomResult<Exception> customResultOk = ok;
-            Assert.IsTrue(customResultOk.IsSuccess);
-            Assert.IsFalse(customResultOk.IsWarning);
-            Assert.IsFalse(customResultOk.IsFailure);
-            Assert.IsNull(customResultOk.Message);
-            Assert.Throws<InvalidOperationException>(() => { var _ = customResultOk.Error; });
+            var ok = Result.Ok<int, CustomErrorTest>(42);
+            CustomResult<CustomErrorTest> customResultOk = ok;
+            CheckResultOk(customResultOk);
 
             // Warning result
-            var warning = Result.Warn<int, Exception>(42, "My warning");
-            CustomResult<Exception> customResultWarning = warning;
-            Assert.IsTrue(customResultWarning.IsSuccess);
-            Assert.IsTrue(customResultWarning.IsWarning);
-            Assert.IsFalse(customResultWarning.IsFailure);
-            Assert.AreEqual("My warning", customResultWarning.Message);
-            Assert.Throws<InvalidOperationException>(() => { var _ = customResultWarning.Error; });
+            var warning = Result.Warn<int, CustomErrorTest>(42, "My warning");
+            CustomResult<CustomErrorTest> customResultWarning = warning;
+            CheckResultWarn(customResultWarning, "My warning");
+
+            var warnException = new Exception("Warning Exception");
+            warning = Result.Warn<int, CustomErrorTest>(42, "My warning", warnException);
+            customResultWarning = warning;
+            CheckResultWarn(customResultWarning, "My warning", warnException);
 
             // Failure result
-            var customErrorObject = new Exception("My test exception");
-            var failure = Result.Fail<int, Exception>("My failure", customErrorObject);
-            CustomResult<Exception> customResultFailure = failure;
-            Assert.IsFalse(customResultFailure.IsSuccess);
-            Assert.IsFalse(customResultFailure.IsWarning);
-            Assert.IsTrue(customResultFailure.IsFailure);
-            Assert.AreEqual("My failure", customResultFailure.Message);
-            Assert.AreSame(customErrorObject, customResultFailure.Error);
+            var customErrorObject = new CustomErrorTest { ErrorCode = -12 };
+            var failure = Result.Fail<int, CustomErrorTest>("My failure", customErrorObject);
+            CustomResult<CustomErrorTest> customResultFailure = failure;
+            CheckResultFail(customResultFailure, "My failure", customErrorObject);
+
+            var failException = new Exception("Failure Exception");
+            failure = Result.Fail<int, CustomErrorTest>("My failure", customErrorObject, failException);
+            customResultFailure = failure;
+            CheckResultFail(customResultFailure, "My failure", customErrorObject, failException);
         }
 
         [Test]
         public void ResultValueTErrorToResultTImplicitConstruction()
         {
             // Ok result
-            var ok = Result.Ok<int, Exception>(42);
+            var ok = Result.Ok<int, CustomErrorTest>(42);
             Result<int> okResultWithValue = ok;
-            Assert.IsTrue(okResultWithValue.IsSuccess);
-            Assert.IsFalse(okResultWithValue.IsWarning);
-            Assert.IsFalse(okResultWithValue.IsFailure);
-            Assert.IsNull(okResultWithValue.Message);
-            Assert.AreEqual(42, okResultWithValue.Value);
+            CheckResultOk(okResultWithValue, 42);
 
             // Warning result
-            var warning = Result.Warn<int, Exception>(42, "My warning");
+            var warning = Result.Warn<int, CustomErrorTest>(42, "My warning");
             Result<int> warningResultWithValue = warning;
-            Assert.IsTrue(warningResultWithValue.IsSuccess);
-            Assert.IsTrue(warningResultWithValue.IsWarning);
-            Assert.IsFalse(warningResultWithValue.IsFailure);
-            Assert.AreEqual("My warning", warningResultWithValue.Message);
-            Assert.AreEqual(42, warningResultWithValue.Value);
+            CheckResultWarn(warningResultWithValue, 42, "My warning");
+
+            var warnException = new Exception("Warning Exception");
+            warning = Result.Warn<int, CustomErrorTest>(42, "My warning", warnException);
+            warningResultWithValue = warning;
+            CheckResultWarn(warningResultWithValue, 42, "My warning", warnException);
 
             // Failure result
-            var failure = Result.Fail<int, Exception>("My failure", new Exception("My test exception"));
+            var failure = Result.Fail<int, CustomErrorTest>("My failure", new CustomErrorTest());
             Result<int> failureResultWithValue = failure;
-            Assert.IsFalse(failureResultWithValue.IsSuccess);
-            Assert.IsFalse(failureResultWithValue.IsWarning);
-            Assert.IsTrue(failureResultWithValue.IsFailure);
-            Assert.AreEqual("My failure", failureResultWithValue.Message);
-            Assert.Throws<InvalidOperationException>(() => { var _ = failureResultWithValue.Value; });
+            CheckResultFail(failureResultWithValue, "My failure");
+
+            var failException = new Exception("Failure Exception");
+            failure = Result.Fail<int, CustomErrorTest>("My failure", new CustomErrorTest(), failException);
+            failureResultWithValue = failure;
+            CheckResultFail(failureResultWithValue, "My failure", failException);
         }
     }
 }
