@@ -104,7 +104,6 @@ deploy:
       secure: ANF+joC2B+NahxCFbLPOjNvEAo36F2F4QJu6zLwoIf2I9KwkxKyCSuNxDpLmJmtU
     skip_symbols: true
     on:
-      branch: master
       configuration: Release
 # NuGet
   - provider: NuGet
