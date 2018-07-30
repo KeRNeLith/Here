@@ -26,6 +26,9 @@ namespace Here.Results
         /// <inheritdoc />
         public string Message => _logic.Message;
 
+        /// <inheritdoc />
+        public Exception Exception => _logic.Exception;
+
         [NotNull]
         private readonly ResultLogic _logic;
 
@@ -43,9 +46,10 @@ namespace Here.Results
         /// </summary>
         /// <param name="isWarning">Result warning flag.</param>
         /// <param name="message">Result message.</param>
-        private Result(bool isWarning, [NotNull] string message)
+        /// <param name="exception">Result embeded exception.</param>
+        private Result(bool isWarning, [NotNull] string message, [CanBeNull] Exception exception)
         {
-            _logic = new ResultLogic(isWarning, message);
+            _logic = new ResultLogic(isWarning, message, exception);
         }
 
         /// <inheritdoc />
@@ -73,22 +77,24 @@ namespace Here.Results
         /// Get a success <see cref="Result"/> with warning.
         /// </summary>
         /// <param name="message">Result message.</param>
+        /// <param name="exception">Result embeded exception.</param>
         /// <returns>A <see cref="Result"/>.</returns>
-        [ContractAnnotation("null => halt")]
-        public static Result Warn([NotNull] string message)
+        [ContractAnnotation("message:null => halt")]
+        public static Result Warn([NotNull] string message, [CanBeNull] Exception exception = null)
         {
-            return new Result(true, message);
+            return new Result(true, message, exception);
         }
 
         /// <summary>
         /// Get a failure <see cref="Result"/>.
         /// </summary> 
         /// <param name="error">Result error message.</param>
+        /// <param name="exception">Result embeded exception.</param>
         /// <returns>A <see cref="Result"/>.</returns>
-        [ContractAnnotation("null => halt")]
-        public static Result Fail([NotNull] string error)
+        [ContractAnnotation("error:null => halt")]
+        public static Result Fail([NotNull] string error, [CanBeNull] Exception exception = null)
         {
-            return new Result(false, error);
+            return new Result(false, error, exception);
         }
 
         #endregion
@@ -110,22 +116,24 @@ namespace Here.Results
         /// </summary> 
         /// <param name="value">Result value.</param>
         /// <param name="message">Result message.</param>
+        /// <param name="exception">Result embeded exception.</param>
         /// <returns>A <see cref="Result{T}"/>.</returns>
         [ContractAnnotation("message:null => halt")]
-        public static Result<T> Warn<T>([CanBeNull] T value, [NotNull] string message)
+        public static Result<T> Warn<T>([CanBeNull] T value, [NotNull] string message, [CanBeNull] Exception exception = null)
         {
-            return new Result<T>(true, value, message);
+            return new Result<T>(true, value, message, exception);
         }
 
         /// <summary>
         /// Get a failure <see cref="Result{T}"/>.
         /// </summary>
         /// <param name="error">Result error message.</param>
+        /// <param name="exception">Result embeded exception.</param>
         /// <returns>A <see cref="Result{T}"/>.</returns>
-        [ContractAnnotation("null => halt")]
-        public static Result<T> Fail<T>([NotNull] string error)
+        [ContractAnnotation("error:null => halt")]
+        public static Result<T> Fail<T>([NotNull] string error, [CanBeNull] Exception exception = null)
         {
-            return new Result<T>(false, default(T), error);
+            return new Result<T>(false, default(T), error, exception);
         }
 
         #endregion
@@ -145,11 +153,12 @@ namespace Here.Results
         /// Get a success <see cref="CustomResult{TError}"/> with warning.
         /// </summary>
         /// <param name="message">Result message.</param>
+        /// <param name="exception">Result embeded exception.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [ContractAnnotation("message:null => halt")]
-        public static CustomResult<TError> CustomWarn<TError>([NotNull] string message)
+        public static CustomResult<TError> CustomWarn<TError>([NotNull] string message, [CanBeNull] Exception exception = null)
         {
-            return new CustomResult<TError>(true, message, default(TError));
+            return new CustomResult<TError>(true, message, default(TError), exception);
         }
 
         /// <summary>
@@ -157,11 +166,12 @@ namespace Here.Results
         /// </summary>
         /// <param name="message">Result message.</param>
         /// <param name="error">Result error object.</param>
+        /// <param name="exception">Result embeded exception.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [ContractAnnotation("message:null => halt; error:null => halt")]
-        public static CustomResult<TError> CustomFail<TError>([NotNull] string message, [NotNull] TError error)
+        public static CustomResult<TError> CustomFail<TError>([NotNull] string message, [NotNull] TError error, [CanBeNull] Exception exception = null)
         {
-            return new CustomResult<TError>(false, message, error);
+            return new CustomResult<TError>(false, message, error, exception);
         }
 
         #endregion
@@ -183,11 +193,12 @@ namespace Here.Results
         /// </summary>
         /// <param name="value">Result value.</param>
         /// <param name="message">Result message.</param>
+        /// <param name="exception">Result embeded exception.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [ContractAnnotation("message:null => halt")]
-        public static Result<T, TError> Warn<T, TError>([CanBeNull] T value, [NotNull] string message)
+        public static Result<T, TError> Warn<T, TError>([CanBeNull] T value, [NotNull] string message, [CanBeNull] Exception exception = null)
         {
-            return new Result<T, TError>(value, message);
+            return new Result<T, TError>(value, message, exception);
         }
 
         /// <summary>
@@ -195,11 +206,12 @@ namespace Here.Results
         /// </summary>
         /// <param name="message">Result message.</param>
         /// <param name="error">Result error object.</param>
+        /// <param name="exception">Result embeded exception.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [ContractAnnotation("message:null => halt; error:null => halt")]
-        public static Result<T, TError> Fail<T, TError>([NotNull] string message, [NotNull] TError error)
+        public static Result<T, TError> Fail<T, TError>([NotNull] string message, [NotNull] TError error, [CanBeNull] Exception exception = null)
         {
-            return new Result<T, TError>(message, error);
+            return new Result<T, TError>(message, error, exception);
         }
 
         #endregion
@@ -226,6 +238,9 @@ namespace Here.Results
         /// <inheritdoc />
         public string Message => _logic.Message;
         
+        /// <inheritdoc />
+        public Exception Exception => _logic.Exception;
+
         private readonly T _value;
 
         /// <inheritdoc />
@@ -259,9 +274,10 @@ namespace Here.Results
         /// <param name="isWarning">Result warning flag.</param>
         /// <param name="value">Embedded value.</param>
         /// <param name="message">Result message.</param>
-        internal Result(bool isWarning, [CanBeNull] T value, [NotNull] string message)
+        /// <param name="exception">Result embeded exception.</param>
+        internal Result(bool isWarning, [CanBeNull] T value, [NotNull] string message, [CanBeNull] Exception exception)
         {
-            _logic = new ResultLogic(isWarning, message);
+            _logic = new ResultLogic(isWarning, message, exception);
             _value = value;
         }
 

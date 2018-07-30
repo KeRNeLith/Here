@@ -43,8 +43,8 @@ namespace Here.Maybes.Extensions
 		public static Func<TInput, Maybe<TValue>> CreateGet<TInput, TValue>([NotNull, InstantHandle] TryGet<TInput, TValue> tryGetFunc)
         {
             return input => tryGetFunc(input, out TValue result)
-                ? result.ToMaybe()
-                : Maybe.None;
+                ? result
+                : Maybe<TValue>.None;
         }
 
         private static readonly CultureInfo DefaultParseCultureInfo = new CultureInfo("en-US");
@@ -77,8 +77,8 @@ namespace Here.Maybes.Extensions
         public static Func<TInput, Maybe<TValue>> CreateParse<TInput, TValue>([NotNull, InstantHandle] TryParse<TInput, TValue> tryGetFunc, NumberStyles style, IFormatProvider culture)
         {
             return input => tryGetFunc(input, style, culture, out TValue result)
-                ? result.ToMaybe()
-                : Maybe.None;
+                ? result
+                : Maybe<TValue>.None;
         }
 
         #region Common TryParse

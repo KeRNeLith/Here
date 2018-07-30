@@ -19,11 +19,11 @@ namespace Here.Maybes.Extensions
         {
             return value != null
                 ? Maybe<T>.Some(value)
-                : Maybe.None;
+                : Maybe<T>.None;
         }
 
         /// <summary>
-		/// Convert <see cref="Nullable{T}"/> to the corresponding <see cref="Maybe{T}"/>.
+		/// Convert <see cref="Nullable"/> to the corresponding <see cref="Maybe{T}"/>.
 		/// </summary>
         /// <typeparam name="T">Type of the value to wrap.</typeparam>
 		/// <param name="nullable"><see cref="Nullable{T}"/> to convert.</param>
@@ -32,7 +32,7 @@ namespace Here.Maybes.Extensions
         public static Maybe<T> ToMaybe<T>([CanBeNull] this T? nullable)
             where T : struct
         {
-            return nullable?.ToMaybe() ?? Maybe.None;
+            return nullable?.ToMaybe() ?? Maybe<T>.None;
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Here.Maybes.Extensions
         public static Maybe<string> NoneIfEmpty([CanBeNull] this string str)
         {
             return string.IsNullOrEmpty(str)
-                ? Maybe.None
+                ? Maybe<string>.None
                 : Maybe<string>.Some(str);
         }
     }

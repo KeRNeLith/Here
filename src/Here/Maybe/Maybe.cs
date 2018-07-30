@@ -14,7 +14,7 @@ namespace Here.Maybes
         /// <summary>
         /// Nothing value.
         /// </summary>
-        public static readonly Maybe<T> None = new Maybe<T>();
+        public static readonly Maybe<T> None;
 
         /// <summary>
         /// Flag that indicate if this <see cref="Maybe{T}"/> has a value.

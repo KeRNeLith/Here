@@ -29,6 +29,12 @@ namespace Here.Results
         [CanBeNull]
         public string Message { get; }
 
+        /// <summary>
+        /// Result exception.
+        /// </summary>
+        [CanBeNull]
+        public Exception Exception { get; }
+
         private readonly TError _error;
 
         /// <summary>
@@ -55,6 +61,7 @@ namespace Here.Results
             IsFailure = false;
             Message = null;
             _error = default(TError);
+            Exception = null;
         }
 
         /// <summary>
@@ -63,7 +70,8 @@ namespace Here.Results
         /// <param name="isWarning">Warning flag.</param>
         /// <param name="message">Message.</param>
         /// <param name="error">Error object.</param>
-        public ResultLogic(bool isWarning, [NotNull] string message, [CanBeNull] TError error)
+        /// <param name="exception">Result embeded exception.</param>
+        public ResultLogic(bool isWarning, [NotNull] string message, [CanBeNull] TError error, [CanBeNull] Exception exception)
         {
             // Warning & Failure must have a message
             if (string.IsNullOrEmpty(message))
@@ -75,6 +83,7 @@ namespace Here.Results
             IsFailure = !isWarning;
             Message = message;
             _error = error;
+            Exception = exception;
         }
 
         /// <inheritdoc />
@@ -105,8 +114,9 @@ namespace Here.Results
         /// </summary>
         /// <param name="isWarning">Warning flag.</param>
         /// <param name="message">Result message.</param>
-        public ResultLogic(bool isWarning, [NotNull] string message)
-            : base(isWarning, message, isWarning ? null : message)
+        /// <param name="exception">Result embeded exception.</param>
+        public ResultLogic(bool isWarning, [NotNull] string message, [CanBeNull] Exception exception)
+            : base(isWarning, message, isWarning ? null : message, exception)
         {
         }
 
@@ -125,7 +135,7 @@ namespace Here.Results
                 return new ResultLogic();
             
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
-            return new ResultLogic(logic.IsWarning, logic.Message);
+            return new ResultLogic(logic.IsWarning, logic.Message, logic.Exception);
         }
 
         #endregion

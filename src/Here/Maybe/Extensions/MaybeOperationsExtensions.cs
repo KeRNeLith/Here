@@ -1,5 +1,5 @@
-﻿using JetBrains.Annotations;
-using System;
+﻿using System;
+using JetBrains.Annotations;
 
 namespace Here.Maybes.Extensions
 {
@@ -72,6 +72,40 @@ namespace Here.Maybes.Extensions
             if (maybe.HasValue)
                 return then(maybe.Value);
             return @else();
+        }
+
+        /// <summary>
+        /// Call the <paramref name="then"/> function if this <see cref="Maybe{T}"/> has a value, otherwise return the <paramref name="orValue"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <typeparam name="TResult">Type of the returned value.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="then">Treatment to do with this <see cref="Maybe{T}"/> value.</param>
+        /// <param name="orValue">Value to return if this <see cref="Maybe{T}"/> has no value.</param>
+        /// <returns>Result of the treatment.</returns>
+        [PublicAPI, CanBeNull]
+        public static TResult IfOr<T, TResult>(this Maybe<T> maybe, [NotNull, InstantHandle] Func<T, TResult> then, [NotNull] TResult orValue)
+        {
+            if (maybe.HasValue)
+                return then(maybe.Value);
+            return orValue;
+        }
+
+        /// <summary>
+        /// Call the <paramref name="else"/> function if this <see cref="Maybe{T}"/> has no value, otherwise return the <paramref name="orValue"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <typeparam name="TResult">Type of the returned value.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="else">Treatment to compute result value.</param>
+        /// <param name="orValue">Value to return if this <see cref="Maybe{T}"/> has a value.</param>
+        /// <returns>Result of the treatment.</returns>
+        [PublicAPI, CanBeNull]
+        public static TResult ElseOr<T, TResult>(this Maybe<T> maybe, [NotNull, InstantHandle] Func<TResult> @else, [NotNull] TResult orValue)
+        {
+            if (maybe.HasNoValue)
+                return @else();
+            return orValue;
         }
 
         /// <summary>
@@ -176,7 +210,7 @@ namespace Here.Maybes.Extensions
         {
             if (maybe.HasValue)
                 return converter(maybe.Value);
-            return Maybe.None;
+            return Maybe<TTo>.None;
         }
     }
 }
