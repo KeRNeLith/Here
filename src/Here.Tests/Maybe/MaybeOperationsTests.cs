@@ -9,7 +9,7 @@ namespace Here.Tests.Maybes
     /// Tests for <see cref="Maybe{T}"/> operations.
     /// </summary>
     [TestFixture]
-    internal class MaybeOperationsTests : HereTestsBase
+    internal class MaybeOperationsTests : MaybeTestsBase
     {
         [Test]
         public void MaybeIf()
@@ -156,15 +156,15 @@ namespace Here.Tests.Maybes
             var maybeInt = Maybe<int>.Some(12);
             Assert.AreEqual(12, maybeInt.Or(25));
             Assert.AreEqual(12, maybeInt.Or(() => 25));
+
             Maybe<int> maybeResult = maybeInt.Or(() => 25);
-            Assert.IsTrue(maybeResult.HasValue);
-            Assert.AreEqual(12, maybeResult.Value);
+            CheckMaybeValue(maybeResult, 12);
+
             maybeResult = maybeInt.Or(() => Maybe<int>.None);
-            Assert.IsTrue(maybeResult.HasValue);
-            Assert.AreEqual(12, maybeResult.Value);
+            CheckMaybeValue(maybeResult, 12);
+
             maybeResult = maybeInt.Or(() => null);
-            Assert.IsTrue(maybeResult.HasValue);
-            Assert.AreEqual(12, maybeResult.Value);
+            CheckMaybeValue(maybeResult, 12);
 
             Assert.AreEqual(12, maybeInt.OrDefault());
 
@@ -173,12 +173,13 @@ namespace Here.Tests.Maybes
             Assert.AreEqual(42, emptyMaybeInt.Or(42));
             Assert.AreEqual(42, emptyMaybeInt.Or(() => 42));
             maybeResult = emptyMaybeInt.Or(() => 42);
-            Assert.IsTrue(maybeResult.HasValue);
-            Assert.AreEqual(42, maybeResult.Value);
+            CheckMaybeValue(maybeResult, 42);
+
             maybeResult = emptyMaybeInt.Or(() => Maybe<int>.None);
-            Assert.IsFalse(maybeResult.HasValue);
+            CheckEmptyMaybe(maybeResult);
+
             maybeResult = emptyMaybeInt.Or(() => null);
-            Assert.IsFalse(maybeResult.HasValue);
+            CheckEmptyMaybe(maybeResult);
 
             Assert.AreEqual(0, emptyMaybeInt.OrDefault());
 
@@ -190,15 +191,15 @@ namespace Here.Tests.Maybes
             var maybeClass = Maybe<TestClass>.Some(testObject);
             Assert.AreSame(testObject, maybeClass.Or(defaultTestObject));
             Assert.AreSame(testObject, maybeClass.Or(() => defaultTestObject));
+
             maybeResultClass = maybeClass.Or(() => defaultTestObject);
-            Assert.IsTrue(maybeResultClass.HasValue);
-            Assert.AreSame(testObject, maybeResultClass.Value);
+            CheckMaybeSameValue(maybeResultClass, testObject);
+
             maybeResultClass = maybeClass.Or(() => Maybe<TestClass>.None);
-            Assert.IsTrue(maybeResultClass.HasValue);
-            Assert.AreSame(testObject, maybeResultClass.Value);
+            CheckMaybeSameValue(maybeResultClass, testObject);
+
             maybeResultClass = maybeClass.Or(() => null);
-            Assert.IsTrue(maybeResultClass.HasValue);
-            Assert.AreSame(testObject, maybeResultClass.Value);
+            CheckMaybeSameValue(maybeResultClass, testObject);
 
             Assert.AreSame(testObject, maybeClass.OrDefault());
 
@@ -206,13 +207,15 @@ namespace Here.Tests.Maybes
             Maybe<TestClass> emptyMaybeClass = Maybe.None;
             Assert.AreSame(defaultTestObject, emptyMaybeClass.Or(defaultTestObject));
             Assert.AreSame(defaultTestObject, emptyMaybeClass.Or(() => defaultTestObject));
+
             maybeResultClass = emptyMaybeClass.Or(() => defaultTestObject);
-            Assert.IsTrue(maybeResultClass.HasValue);
-            Assert.AreSame(defaultTestObject, maybeResultClass.Value);
+            CheckMaybeSameValue(maybeResultClass, defaultTestObject);
+
             maybeResultClass = emptyMaybeClass.Or(() => Maybe<TestClass>.None);
-            Assert.IsFalse(maybeResultClass.HasValue);
+            CheckEmptyMaybe(maybeResultClass);
+
             maybeResultClass = emptyMaybeClass.Or(() => null);
-            Assert.IsFalse(maybeResultClass.HasValue);
+            CheckEmptyMaybe(maybeResultClass);
 
             Assert.AreEqual(null, emptyMaybeClass.OrDefault());
         }
@@ -239,13 +242,12 @@ namespace Here.Tests.Maybes
             // Maybe with value
             var maybeInt = Maybe<int>.Some(12);
             var maybeFloat = maybeInt.Cast(intVal => intVal + 0.1f);
-            Assert.IsTrue(maybeFloat.HasValue);
-            Assert.AreEqual(12.1f, maybeFloat.Value);
+            CheckMaybeValue(maybeFloat, 12.1f);
 
             // Empty maybe
             Maybe<int> emptyMaybeInt = Maybe.None;
             maybeFloat = emptyMaybeInt.Cast(intVal => intVal + 0.1f);
-            Assert.IsFalse(maybeFloat.HasValue);
+            CheckEmptyMaybe(maybeFloat);
 
 
             // Reference type
@@ -253,26 +255,24 @@ namespace Here.Tests.Maybes
             var testObjectLeaf = new TestClassLeaf { TestInt = 12 };
             var maybeClassLeaf = Maybe<TestClassLeaf>.Some(testObjectLeaf);
             maybeFloat = maybeClassLeaf.Cast(obj => obj.TestInt + 0.2f);
-            Assert.IsTrue(maybeFloat.HasValue);
-            Assert.AreEqual(12.2f, maybeFloat.Value);
+            CheckMaybeValue(maybeFloat, 12.2f);
 
             var maybeClass = maybeClassLeaf.Cast<TestClass>();
-            Assert.IsTrue(maybeClass.HasValue);
-            Assert.AreSame(testObjectLeaf, maybeClass.Value);
+            CheckMaybeSameValue(maybeClass, testObjectLeaf);
 
             // Invalid conversion
             var testObject = new TestClass { TestInt = 42 };
             maybeClass = Maybe<TestClass>.Some(testObject);
             maybeClassLeaf = maybeClass.Cast<TestClassLeaf>();
-            Assert.IsFalse(maybeClassLeaf.HasValue);
+            CheckEmptyMaybe(maybeClassLeaf);
 
             // Empty maybe
             Maybe<TestClassLeaf> emptyMaybeClassLeaf = Maybe.None;
             maybeFloat = emptyMaybeClassLeaf.Cast(obj => obj.TestInt + 0.2f);
-            Assert.IsFalse(maybeFloat.HasValue);
+            CheckEmptyMaybe(maybeFloat);
 
             maybeClass = emptyMaybeClassLeaf.Cast<TestClass>();
-            Assert.IsFalse(maybeClass.HasValue);
+            CheckEmptyMaybe(maybeClass);
         }
     }
 }

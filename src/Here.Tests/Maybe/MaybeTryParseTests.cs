@@ -12,7 +12,7 @@ namespace Here.Tests.Maybes
     /// Tests for <see cref="Maybe{T}"/> try parse.
     /// </summary>
     [TestFixture]
-    internal class MaybeTryParseTests : HereTestsBase
+    internal class MaybeTryParseTests : MaybeTestsBase
     {
         private static readonly CultureInfo TestParseUSCultureInfo = new CultureInfo("en-US");
         private static readonly CultureInfo TestParseFRCultureInfo = new CultureInfo("fr-FR");
@@ -26,14 +26,9 @@ namespace Here.Tests.Maybes
         {
             var maybe = tryParseFunc();
             if (mustHaveValue)
-            {
-                Assert.IsTrue(maybe.HasValue);
-                Assert.AreEqual(expectedValue, maybe.Value);
-            }
+                CheckMaybeValue(maybe, expectedValue);
             else
-            {
-                Assert.IsFalse(maybe.HasValue);
-            }
+                CheckEmptyMaybe(maybe);
         }
 
         #region TryParse bool

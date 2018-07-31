@@ -8,7 +8,7 @@ namespace Here.Tests.Maybes
     /// Tests for <see cref="Maybe{T}"/> Linq implementation.
     /// </summary>
     [TestFixture]
-    internal class MaybeLinqExtensionsTests : HereTestsBase
+    internal class MaybeLinqExtensionsTests : MaybeTestsBase
     {
         [Test]
         public void MaybeAny()
@@ -69,26 +69,24 @@ namespace Here.Tests.Maybes
             // Maybe with value
             var maybeInt = Maybe<int>.Some(12);
             var maybeIntResult = maybeInt.Select(intValue => intValue + 1);
-            Assert.IsTrue(maybeIntResult.HasValue);
-            Assert.AreEqual(13, maybeIntResult.Value);
+            CheckMaybeValue(maybeIntResult, 13);
 
             // Empty maybe
             Maybe<int> emptyMaybeInt = Maybe.None;
             maybeIntResult = emptyMaybeInt.Select(intValue => intValue + 1);
-            Assert.IsFalse(maybeIntResult.HasValue);
+            CheckEmptyMaybe(maybeIntResult);
 
             // Reference type
             // Maybe with value
             var testObject = new TestClass { TestInt = 42 };
             var maybeClass = Maybe<TestClass>.Some(testObject);
             maybeIntResult = maybeClass.Select(obj => obj.TestInt);
-            Assert.IsTrue(maybeIntResult.HasValue);
-            Assert.AreEqual(42, maybeIntResult.Value);
+            CheckMaybeValue(maybeIntResult, 42);
 
             // Empty maybe
             Maybe<TestClass> emptyMaybeClass = Maybe.None;
             maybeIntResult = emptyMaybeClass.Select(obj => obj.TestInt);
-            Assert.IsFalse(maybeIntResult.HasValue);
+            CheckEmptyMaybe(maybeIntResult);
         }
 
         [Test]
@@ -97,16 +95,15 @@ namespace Here.Tests.Maybes
             // Maybe with value
             var maybeInt = Maybe<int>.Some(12);
             var maybeIntResult = maybeInt.Where(intValue => intValue == 12);
-            Assert.IsTrue(maybeIntResult.HasValue);
-            Assert.AreEqual(12, maybeIntResult.Value);
+            CheckMaybeValue(maybeIntResult, 12);
 
             maybeIntResult = maybeInt.Where(intValue => intValue == 13);
-            Assert.IsFalse(maybeIntResult.HasValue);
+            CheckEmptyMaybe(maybeIntResult);
 
             // Empty maybe
             Maybe<int> emptyMaybeInt = Maybe.None;
             maybeIntResult = emptyMaybeInt.Where(intValue => intValue == 1);
-            Assert.IsFalse(maybeIntResult.HasValue);
+            CheckEmptyMaybe(maybeIntResult);
         }
 
         [Test]
@@ -116,20 +113,19 @@ namespace Here.Tests.Maybes
             var testObjectLeaf = new TestClassLeaf();
             var maybeTestClass = Maybe<TestClass>.Some(testObjectLeaf);
             var maybeTestClassLeaf = maybeTestClass.OfType<TestClassLeaf>();
-            Assert.IsTrue(maybeTestClassLeaf.HasValue);
-            Assert.AreSame(testObjectLeaf, maybeTestClassLeaf.Value);
+            CheckMaybeSameValue(maybeTestClassLeaf, testObjectLeaf);
 
             // Cast failed
             // From Value type
             var maybeInt = Maybe<int>.Some(12);
             maybeTestClass = maybeInt.OfType<TestClass>();
-            Assert.IsFalse(maybeTestClass.HasValue);
+            CheckEmptyMaybe(maybeTestClass);
 
             // From Reference type
             var testObject = new TestClass();
             maybeTestClass = Maybe<TestClass>.Some(testObject);
             maybeTestClassLeaf = maybeTestClass.OfType<TestClassLeaf>();
-            Assert.IsFalse(maybeTestClassLeaf.HasValue);
+            CheckEmptyMaybe(maybeTestClassLeaf);
         }
 
         [Test]

@@ -11,7 +11,7 @@ namespace Here.Tests.Maybes
     /// Tests for <see cref="Maybe{T}"/> numeric casts extensions.
     /// </summary>
     [TestFixture]
-    internal class MaybeNumericCastsExtensionsTests : HereTestsBase
+    internal class MaybeNumericCastsExtensionsTests : MaybeTestsBase
     {
         /// <summary>
         /// Call the <paramref name="castFunc"/> and check if the result match expected value.
@@ -20,17 +20,10 @@ namespace Here.Tests.Maybes
         {
             var maybe = castFunc();
             if (mustHaveValue)
-            {
-                Assert.IsTrue(maybe.HasValue);
-                Assert.AreEqual(expectedValue, maybe.Value);
-            }
+                CheckMaybeValue(maybe, expectedValue);
             else
-            {
-                Assert.IsFalse(maybe.HasValue);
-            }
+                CheckEmptyMaybe(maybe);
         }
-
-        private static double Epslion = 0.00001;
 
         /// <summary>
         /// Call the <paramref name="castFunc"/> on the <paramref name="input"/> and check if the result match expected value.
@@ -40,14 +33,9 @@ namespace Here.Tests.Maybes
         {
             var maybe = castFunc(input);
             if (mustHaveValue)
-            {
-                Assert.IsTrue(maybe.HasValue);
-                Assert.AreEqual(expectedValue, maybe.Value, Epslion);
-            }
+                CheckMaybeNearValue(maybe, expectedValue);
             else
-            {
-                Assert.IsFalse(maybe.HasValue);
-            }
+                CheckEmptyMaybe(maybe);
         }
 
         #region Cast to Bool
