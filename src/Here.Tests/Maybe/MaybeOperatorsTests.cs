@@ -7,7 +7,7 @@ namespace Here.Tests.Maybes
     /// Tests for <see cref="Maybe{T}"/> operators.
     /// </summary>
     [TestFixture]
-    internal class MaybeOperatorsTests : HereTestsBase
+    internal class MaybeOperatorsTests : MaybeTestsBase
     {
         [Test]
         public void MaybeBoolOpertors()
@@ -68,11 +68,11 @@ namespace Here.Tests.Maybes
 
             var bitwiseOrResult = first | second;   // Should be None (Both none)
             Assert.AreEqual(Maybe<int>.None, bitwiseOrResult);
-            Assert.IsFalse(bitwiseOrResult.HasValue);
+            CheckEmptyMaybe(bitwiseOrResult);
 
             bitwiseOrResult = second | first;       // Should be None (Both none)
             Assert.AreEqual(Maybe<int>.None, bitwiseOrResult);
-            Assert.IsFalse(bitwiseOrResult.HasValue);
+            CheckEmptyMaybe(bitwiseOrResult);
 
             // One empty maybe and one with value
             first = Maybe<int>.None;
@@ -80,11 +80,11 @@ namespace Here.Tests.Maybes
 
             bitwiseOrResult = first | second;       // Second should always be selected (Has value)
             Assert.AreEqual(second, bitwiseOrResult);
-            Assert.IsTrue(bitwiseOrResult.HasValue);
+            CheckMaybeValue(bitwiseOrResult, 42);
 
             bitwiseOrResult = second | first;       // Second should always be selected (Has value)
             Assert.AreEqual(second, bitwiseOrResult);
-            Assert.IsTrue(bitwiseOrResult.HasValue);
+            CheckMaybeValue(bitwiseOrResult, 42);
 
             // Both maybes have values
             first = Maybe<int>.Some(12);
@@ -92,13 +92,11 @@ namespace Here.Tests.Maybes
 
             bitwiseOrResult = first | second;       // The first operand should always be selected (Both has value)
             Assert.AreEqual(first, bitwiseOrResult);
-            Assert.IsTrue(bitwiseOrResult.HasValue);
-            Assert.AreEqual(12, bitwiseOrResult.Value);
+            CheckMaybeValue(bitwiseOrResult, 12);
 
             bitwiseOrResult = second | first;       // The first operand should always be selected (Both has value)
             Assert.AreEqual(second, bitwiseOrResult);
-            Assert.IsTrue(bitwiseOrResult.HasValue);
-            Assert.AreEqual(42, bitwiseOrResult.Value);
+            CheckMaybeValue(bitwiseOrResult, 42);
         }
 
         [Test]
@@ -110,23 +108,21 @@ namespace Here.Tests.Maybes
 
             var logicalOrResult = first || second;  // Should be None (Both none)
             Assert.AreEqual(Maybe<int>.None, logicalOrResult);
-            Assert.IsFalse(logicalOrResult.HasValue);
+            CheckEmptyMaybe(logicalOrResult);
 
             logicalOrResult = second || first;      // Should be None (Both none)
             Assert.AreEqual(Maybe<int>.None, logicalOrResult);
-            Assert.IsFalse(logicalOrResult.HasValue);
+            CheckEmptyMaybe(logicalOrResult);
 
             // One empty maybe and one with value
             first = Maybe<int>.None;
             second = Maybe<int>.Some(42);
 
             logicalOrResult = first || second;       // Second should always be selected (Has value)
-            Assert.AreEqual(second, logicalOrResult);
-            Assert.IsTrue(logicalOrResult.HasValue);
+            CheckMaybeValue(logicalOrResult, 42);
 
             logicalOrResult = second || first;       // Second should always be selected (Has value)
-            Assert.AreEqual(second, logicalOrResult);
-            Assert.IsTrue(logicalOrResult.HasValue);
+            CheckMaybeValue(logicalOrResult, 42);
 
             // Both maybes have values
             first = Maybe<int>.Some(12);
@@ -134,13 +130,11 @@ namespace Here.Tests.Maybes
 
             logicalOrResult = first || second;       // The first operand should always be selected (Both has value)
             Assert.AreEqual(first, logicalOrResult);
-            Assert.IsTrue(logicalOrResult.HasValue);
-            Assert.AreEqual(12, logicalOrResult.Value);
+            CheckMaybeValue(logicalOrResult, 12);
 
             logicalOrResult = second || first;       // The first operand should always be selected (Both has value)
             Assert.AreEqual(second, logicalOrResult);
-            Assert.IsTrue(logicalOrResult.HasValue);
-            Assert.AreEqual(42, logicalOrResult.Value);
+            CheckMaybeValue(logicalOrResult, 42);
         }
 
         [Test]
@@ -152,11 +146,11 @@ namespace Here.Tests.Maybes
 
             var bitwiseAndResult = first & second;   // Should be None (Both none)
             Assert.AreEqual(Maybe<int>.None, bitwiseAndResult);
-            Assert.IsFalse(bitwiseAndResult.HasValue);
+            CheckEmptyMaybe(bitwiseAndResult);
 
             bitwiseAndResult = second & first;      // Should be None (Both none)
             Assert.AreEqual(Maybe<int>.None, bitwiseAndResult);
-            Assert.IsFalse(bitwiseAndResult.HasValue);
+            CheckEmptyMaybe(bitwiseAndResult);
 
             // One empty maybe and one with value
             first = Maybe<int>.None;
@@ -164,11 +158,11 @@ namespace Here.Tests.Maybes
 
             bitwiseAndResult = first & second;       // First should always be selected (Second hasn't a value so it's none)
             Assert.AreEqual(first, bitwiseAndResult);
-            Assert.IsFalse(bitwiseAndResult.HasValue);
+            CheckEmptyMaybe(bitwiseAndResult);
 
             bitwiseAndResult = second & first;       // First should always be selected (Second hasn't a value so it's none)
             Assert.AreEqual(first, bitwiseAndResult);
-            Assert.IsFalse(bitwiseAndResult.HasValue);
+            CheckEmptyMaybe(bitwiseAndResult);
 
             // Both maybes have values
             first = Maybe<int>.Some(12);
@@ -176,13 +170,11 @@ namespace Here.Tests.Maybes
 
             bitwiseAndResult = first & second;       // The second operand should always be selected
             Assert.AreEqual(second, bitwiseAndResult);
-            Assert.IsTrue(bitwiseAndResult.HasValue);
-            Assert.AreEqual(42, bitwiseAndResult.Value);
+            CheckMaybeValue(bitwiseAndResult, 42);
 
             bitwiseAndResult = second & first;       // The second operand should always be selected
             Assert.AreEqual(first, bitwiseAndResult);
-            Assert.IsTrue(bitwiseAndResult.HasValue);
-            Assert.AreEqual(12, bitwiseAndResult.Value);
+            CheckMaybeValue(bitwiseAndResult, 12);
         }
 
         [Test]
@@ -194,11 +186,11 @@ namespace Here.Tests.Maybes
 
             var logicalAndResult = first && second;   // Should be None (Both none)
             Assert.AreEqual(first, logicalAndResult);
-            Assert.IsFalse(logicalAndResult.HasValue);
+            CheckEmptyMaybe(logicalAndResult);
 
             logicalAndResult = second && first;      // Should be None (Both none)
             Assert.AreEqual(second, logicalAndResult);
-            Assert.IsFalse(logicalAndResult.HasValue);
+            CheckEmptyMaybe(logicalAndResult);
 
             // One empty maybe and one with value
             first = Maybe<int>.None;
@@ -206,11 +198,11 @@ namespace Here.Tests.Maybes
 
             logicalAndResult = first && second;       // First should always be selected (Second hasn't a value so it's none)
             Assert.AreEqual(first, logicalAndResult);
-            Assert.IsFalse(logicalAndResult.HasValue);
+            CheckEmptyMaybe(logicalAndResult);
 
             logicalAndResult = second && first;       // First should always be selected (Second hasn't a value so it's none)
             Assert.AreEqual(first, logicalAndResult);
-            Assert.IsFalse(logicalAndResult.HasValue);
+            CheckEmptyMaybe(logicalAndResult);
 
             // Both maybes have values
             first = Maybe<int>.Some(12);
@@ -218,13 +210,11 @@ namespace Here.Tests.Maybes
 
             logicalAndResult = first && second;       // The second operand should always be selected
             Assert.AreEqual(second, logicalAndResult);
-            Assert.IsTrue(logicalAndResult.HasValue);
-            Assert.AreEqual(42, logicalAndResult.Value);
+            CheckMaybeValue(logicalAndResult, 42);
 
             logicalAndResult = second && first;       // The second operand should always be selected
             Assert.AreEqual(first, logicalAndResult);
-            Assert.IsTrue(logicalAndResult.HasValue);
-            Assert.AreEqual(12, logicalAndResult.Value);
+            CheckMaybeValue(logicalAndResult, 12);
         }
     }
 }
