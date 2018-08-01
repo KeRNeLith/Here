@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using Here.Results;
+using JetBrains.Annotations;
 
 namespace Here.Maybes
 {
@@ -35,6 +36,28 @@ namespace Here.Maybes
         public static implicit operator Maybe<T>(Maybe<Maybe<T>> embeddedMaybe)
         {
             return embeddedMaybe.HasValue ? embeddedMaybe.Value : None;
+        }
+
+        /// <summary>
+        /// Implicit convertion from <see cref="Maybe{T}"/> to a <see cref="Result"/>.
+        /// </summary>
+        /// <param name="maybe">A <see cref="Maybe{T}"/> to convert.</param>
+        /// <returns>The corresponding <see cref="Result"/>.</returns>
+        [PublicAPI, Pure]
+        public static implicit operator Result(Maybe<T> maybe)
+        {
+            return maybe.ToResult();
+        }
+
+        /// <summary>
+        /// Implicit convertion from <see cref="Maybe{T}"/> to a <see cref="Result{T}"/>.
+        /// </summary>
+        /// <param name="maybe">A <see cref="Maybe{T}"/> to convert.</param>
+        /// <returns>The corresponding <see cref="Result{T}"/>.</returns>
+        [PublicAPI, Pure]
+        public static implicit operator Result<T>(Maybe<T> maybe)
+        {
+            return maybe.ToValueResult();
         }
     }
 }

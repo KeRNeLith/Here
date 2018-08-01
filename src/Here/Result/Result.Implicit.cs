@@ -1,8 +1,23 @@
 ﻿using JetBrains.Annotations;
+using Here.Maybes;
 
 namespace Here.Results
 {
-	// Implicit operators
+    // Implicit operators
+    public partial struct Result
+    {
+        /// <summary>
+        /// Implicit convertion from <see cref="Result"/> to a <see cref="Maybe{Boolean}"/>.
+        /// </summary>
+        /// <param name="result"><see cref="Result"/> to convert.</param>
+        /// <returns>A corresponding <see cref="Maybe{Boolean}"/>.</returns>
+        [PublicAPI, Pure]
+        public static implicit operator Maybe<bool>(Result result)
+        {
+            return result.ToMaybe();
+        }
+    }
+
     public partial struct Result<T>
     {
         /// <summary>
@@ -10,10 +25,21 @@ namespace Here.Results
         /// </summary>
         /// <param name="result"><see cref="Result{T}"/> to convert.</param>
         /// <returns>A corresponding <see cref="Result"/>.</returns>
-        [Pure]
+        [PublicAPI, Pure]
         public static implicit operator Result(Result<T> result)
         {
             return new Result(result._logic);
+        }
+
+        /// <summary>
+        /// Implicit convertion from <see cref="Result{T}"/> to a <see cref="Maybe{T}"/>.
+        /// </summary>
+        /// <param name="result"><see cref="Result{T}"/> to convert.</param>
+        /// <returns>A corresponding <see cref="Maybe{T}"/>.</returns>
+        [PublicAPI, Pure]
+        public static implicit operator Maybe<T>(Result<T> result)
+        {
+            return result.ToMaybe();
         }
     }
 
@@ -24,10 +50,21 @@ namespace Here.Results
         /// </summary>
         /// <param name="result"><see cref="CustomResult{TError}"/> to convert.</param>
         /// <returns>A corresponding <see cref="Result"/>.</returns>
-        [Pure]
+        [PublicAPI, Pure]
         public static implicit operator Result(CustomResult<TError> result)
         {
             return new Result(ResultLogic.ToResultLogic(result._logic));
+        }
+
+        /// <summary>
+        /// Implicit convertion from <see cref="CustomResult{TError}"/> to a <see cref="Maybe{Boolean}"/>.
+        /// </summary>
+        /// <param name="result"><see cref="CustomResult{TError}"/> to convert.</param>
+        /// <returns>A corresponding <see cref="Maybe{Boolean}"/>.</returns>
+        [PublicAPI, Pure]
+        public static implicit operator Maybe<bool>(CustomResult<TError> result)
+        {
+            return result.ToMaybe();
         }
     }
 
@@ -38,7 +75,7 @@ namespace Here.Results
         /// </summary>
         /// <param name="result"><see cref="Result{T, TError}"/> to convert.</param>
         /// <returns>A corresponding <see cref="Result"/>.</returns>
-        [Pure]
+        [PublicAPI, Pure]
         public static implicit operator Result(Result<T, TError> result)
         {
             return new Result(ResultLogic.ToResultLogic(result._logic));
@@ -49,7 +86,7 @@ namespace Here.Results
         /// </summary>
         /// <param name="result"><see cref="Result{T, TError}"/> to convert.</param>
         /// <returns>A corresponding <see cref="CustomResult{TError}"/>.</returns>
-        [Pure]
+        [PublicAPI, Pure]
         public static implicit operator CustomResult<TError>(Result<T, TError> result)
         {
             return new CustomResult<TError>(result._logic);
@@ -60,12 +97,23 @@ namespace Here.Results
         /// </summary>
         /// <param name="result"><see cref="Result{T, TError}"/> to convert.</param>
         /// <returns>A corresponding <see cref="Result{T}"/>.</returns>
-        [Pure]
+        [PublicAPI, Pure]
         public static implicit operator Result<T>(Result<T, TError> result)
         {
             return new Result<T>(
                 result.IsSuccess ? result.Value : default(T),
                 ResultLogic.ToResultLogic(result._logic));
+        }
+
+        /// <summary>
+        /// Implicit convertion from <see cref="Result{T, TError}"/> to a <see cref="Maybe{T}"/>.
+        /// </summary>
+        /// <param name="result"><see cref="Result{T}"/> to convert.</param>
+        /// <returns>A corresponding <see cref="Maybe{T}"/>.</returns>
+        [PublicAPI, Pure]
+        public static implicit operator Maybe<T>(Result<T, TError> result)
+        {
+            return result.ToMaybe();
         }
     }
 }
