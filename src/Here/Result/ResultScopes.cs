@@ -91,7 +91,7 @@ namespace Here.Results
         /// Run the given <paramref name="action"/> in a safe scope that always return a <see cref="Result"/>.
         /// </summary>
         /// <param name="action">Function to call.</param>
-        /// <param name="errorFactory">Function to create a custom error objec in case an exception is thrown.</param>
+        /// <param name="errorFactory">Function to create a custom error object in case an exception is thrown.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI]
         public static CustomResult<TError> SafeCustomResult<TError>([NotNull, InstantHandle] Func<CustomResult<TError>> action, [NotNull] Func<TError> errorFactory)
@@ -135,7 +135,7 @@ namespace Here.Results
         /// Run the given <paramref name="action"/> in a safe scope that always return a <see cref="Result"/>.
         /// </summary>
         /// <param name="action">Function to call.</param>
-        /// <param name="errorFactory">Function to create a custom error objec in case an exception is thrown.</param>
+        /// <param name="errorFactory">Function to create a custom error object in case an exception is thrown.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI]
         public static Result<T, TError> SafeValueCustomResult<T, TError>([NotNull, InstantHandle] Func<Result<T, TError>> action, [NotNull] Func<TError> errorFactory)

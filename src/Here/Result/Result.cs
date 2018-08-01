@@ -1,5 +1,6 @@
 ﻿using System;
 using JetBrains.Annotations;
+using Here.Maybes;
 
 namespace Here.Results
 {
@@ -7,7 +8,7 @@ namespace Here.Results
     /// <see cref="Result"/> is an object that represents the result/state of a treatment.
     /// </summary>
     [PublicAPI]
-    public struct Result : IResult
+    public partial struct Result : IResult
     {
         /// <summary>
         /// A success <see cref="Result"/>.
@@ -58,6 +59,15 @@ namespace Here.Results
             return _logic.ToString();
         }
 
+        /// <summary>
+        /// Convert this <see cref="Result"/> to a <see cref="Maybe{Boolean}"/>.
+        /// </summary>
+        /// <returns>The corresponding <see cref="Maybe{Boolean}"/>.</returns>
+        public Maybe<bool> ToMaybe()
+        {
+            return Maybe<bool>.Some(_logic.IsSuccess);
+        }
+
         #region Factory methods
 
         // Here to be easy to call
@@ -68,6 +78,7 @@ namespace Here.Results
         /// Get a success <see cref="Result"/>.
         /// </summary>
         /// <returns>A <see cref="Result"/>.</returns>
+        [PublicAPI, Pure]
         public static Result Ok()
         {
             return ResultOk;
@@ -79,6 +90,7 @@ namespace Here.Results
         /// <param name="message">Result message.</param>
         /// <param name="exception">Result embeded exception.</param>
         /// <returns>A <see cref="Result"/>.</returns>
+        [PublicAPI, Pure]
         [ContractAnnotation("message:null => halt")]
         public static Result Warn([NotNull] string message, [CanBeNull] Exception exception = null)
         {
@@ -91,6 +103,7 @@ namespace Here.Results
         /// <param name="error">Result error message.</param>
         /// <param name="exception">Result embeded exception.</param>
         /// <returns>A <see cref="Result"/>.</returns>
+        [PublicAPI, Pure]
         [ContractAnnotation("error:null => halt")]
         public static Result Fail([NotNull] string error, [CanBeNull] Exception exception = null)
         {
@@ -106,6 +119,7 @@ namespace Here.Results
         /// </summary>
         /// <param name="value">Result value.</param>
         /// <returns>A <see cref="Result{T}"/>.</returns>
+        [PublicAPI, Pure]
         public static Result<T> Ok<T>([CanBeNull] T value)
         {
             return new Result<T>(value);
@@ -118,6 +132,7 @@ namespace Here.Results
         /// <param name="message">Result message.</param>
         /// <param name="exception">Result embeded exception.</param>
         /// <returns>A <see cref="Result{T}"/>.</returns>
+        [PublicAPI, Pure]
         [ContractAnnotation("message:null => halt")]
         public static Result<T> Warn<T>([CanBeNull] T value, [NotNull] string message, [CanBeNull] Exception exception = null)
         {
@@ -130,6 +145,7 @@ namespace Here.Results
         /// <param name="error">Result error message.</param>
         /// <param name="exception">Result embeded exception.</param>
         /// <returns>A <see cref="Result{T}"/>.</returns>
+        [PublicAPI, Pure]
         [ContractAnnotation("error:null => halt")]
         public static Result<T> Fail<T>([NotNull] string error, [CanBeNull] Exception exception = null)
         {
@@ -144,6 +160,7 @@ namespace Here.Results
         /// Get a success <see cref="CustomResult{TError}"/>.
         /// </summary>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
+        [PublicAPI, Pure]
         public static CustomResult<TError> CustomOk<TError>()
         {
             return CustomResult<TError>.ResultOk;
@@ -155,6 +172,7 @@ namespace Here.Results
         /// <param name="message">Result message.</param>
         /// <param name="exception">Result embeded exception.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
+        [PublicAPI, Pure]
         [ContractAnnotation("message:null => halt")]
         public static CustomResult<TError> CustomWarn<TError>([NotNull] string message, [CanBeNull] Exception exception = null)
         {
@@ -168,6 +186,7 @@ namespace Here.Results
         /// <param name="error">Result error object.</param>
         /// <param name="exception">Result embeded exception.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
+        [PublicAPI, Pure]
         [ContractAnnotation("message:null => halt; error:null => halt")]
         public static CustomResult<TError> CustomFail<TError>([NotNull] string message, [NotNull] TError error, [CanBeNull] Exception exception = null)
         {
@@ -183,6 +202,7 @@ namespace Here.Results
         /// </summary>
         /// <param name="value">Result value.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
+        [PublicAPI, Pure]
         public static Result<T, TError> Ok<T, TError>([CanBeNull] T value)
         {
             return new Result<T, TError>(value);
@@ -195,6 +215,7 @@ namespace Here.Results
         /// <param name="message">Result message.</param>
         /// <param name="exception">Result embeded exception.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
+        [PublicAPI, Pure]
         [ContractAnnotation("message:null => halt")]
         public static Result<T, TError> Warn<T, TError>([CanBeNull] T value, [NotNull] string message, [CanBeNull] Exception exception = null)
         {
@@ -208,6 +229,7 @@ namespace Here.Results
         /// <param name="error">Result error object.</param>
         /// <param name="exception">Result embeded exception.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
+        [PublicAPI, Pure]
         [ContractAnnotation("message:null => halt; error:null => halt")]
         public static Result<T, TError> Fail<T, TError>([NotNull] string message, [NotNull] TError error, [CanBeNull] Exception exception = null)
         {
@@ -290,6 +312,17 @@ namespace Here.Results
         {
             _logic = logic;
             _value = value;
+        }
+
+        /// <summary>
+        /// Convert this <see cref="Result{T}"/> to a <see cref="Maybe{T}"/>.
+        /// </summary>
+        /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>
+        public Maybe<T> ToMaybe()
+        {
+            if (_logic.IsSuccess)
+                return Value;
+            return Maybe<T>.None;
         }
 
         /// <inheritdoc />

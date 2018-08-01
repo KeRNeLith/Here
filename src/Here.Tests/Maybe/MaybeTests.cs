@@ -8,7 +8,7 @@ namespace Here.Tests.Maybes
     /// Basic tests for <see cref="Maybe{T}"/>.
     /// </summary>
     [TestFixture]
-    internal class MaybeTests : HereTestsBase
+    internal class MaybeTests : MaybeTestsBase
     {
         #region Test classes
 
@@ -41,41 +41,29 @@ namespace Here.Tests.Maybes
             // Maybe value type
             // With value
             var maybeInt = Maybe<int>.Some(12);
-            Assert.IsTrue(maybeInt.HasValue);
-            Assert.IsFalse(maybeInt.HasNoValue);
-            Assert.AreEqual(12, maybeInt.Value);
+            CheckMaybeValue(maybeInt, 12);
 
             // No value
             var emptyMaybeInt = Maybe<int>.None;
-            Assert.IsFalse(emptyMaybeInt.HasValue);
-            Assert.IsTrue(emptyMaybeInt.HasNoValue);
-            Assert.Throws<InvalidOperationException>(() => { var unused = emptyMaybeInt.Value; });
+            CheckEmptyMaybe(emptyMaybeInt);
 
             // Implicit none
             Maybe<int> emptyMaybeInt2 = Maybe.None;
-            Assert.IsFalse(emptyMaybeInt2.HasValue);
-            Assert.IsTrue(emptyMaybeInt2.HasNoValue);
-            Assert.Throws<InvalidOperationException>(() => { var unused = emptyMaybeInt2.Value; });
+            CheckEmptyMaybe(emptyMaybeInt2);
 
             // Maybe reference type
             // With value
             var testValue = new TestClass { TestInt = 12 };
             var maybeClass = Maybe<TestClass>.Some(testValue);
-            Assert.IsTrue(maybeClass.HasValue);
-            Assert.IsFalse(maybeClass.HasNoValue);
-            Assert.AreSame(testValue, maybeClass.Value);
+            CheckMaybeSameValue(maybeClass, testValue);
 
             // No value
             var emptyMaybeClass = Maybe<TestClass>.None;
-            Assert.IsFalse(emptyMaybeClass.HasValue);
-            Assert.IsTrue(emptyMaybeClass.HasNoValue);
-            Assert.Throws<InvalidOperationException>(() => { var unused = emptyMaybeClass.Value; });
+            CheckEmptyMaybe(emptyMaybeClass);
 
             // Implicit none
             Maybe<TestClass> emptyMaybeClass2 = Maybe.None;
-            Assert.IsFalse(emptyMaybeClass2.HasValue);
-            Assert.IsTrue(emptyMaybeClass2.HasNoValue);
-            Assert.Throws<InvalidOperationException>(() => { var unused = emptyMaybeClass2.Value; });
+            CheckEmptyMaybe(emptyMaybeClass2);
 
             // Null value
             // ReSharper disable once AssignNullToNotNullAttribute
@@ -93,7 +81,7 @@ namespace Here.Tests.Maybes
             Assert.AreEqual(42, embedMaybeInt.Value.Value);
 
             Maybe<int> maybeInt = embedMaybeInt;
-            Assert.AreEqual(42, maybeInt.Value);
+            CheckMaybeValue(maybeInt, 42);
 
             // No value
             var emptyEmbedMaybeInt = Maybe<Maybe<int>>.Some(Maybe.None);
@@ -101,7 +89,7 @@ namespace Here.Tests.Maybes
             Assert.IsFalse(emptyEmbedMaybeInt.Value.HasValue);
 
             Maybe<int> emptyMaybeInt = emptyEmbedMaybeInt;
-            Assert.IsFalse(emptyMaybeInt.HasValue);
+            CheckEmptyMaybe(emptyMaybeInt);
 
             // Flatten Maybe reference type
             // With value
@@ -112,7 +100,7 @@ namespace Here.Tests.Maybes
             Assert.AreSame(testValue, embedMaybeClass.Value.Value);
 
             Maybe<TestClass> maybeClass = embedMaybeClass;
-            Assert.AreSame(testValue, maybeClass.Value);
+            CheckMaybeSameValue(maybeClass, testValue);
 
             // No value
             var emptyEmbedMaybeClass = Maybe<Maybe<TestClass>>.Some(Maybe.None);
@@ -120,7 +108,7 @@ namespace Here.Tests.Maybes
             Assert.IsFalse(emptyEmbedMaybeClass.Value.HasValue);
 
             Maybe<TestClass> emptyMaybeClass = emptyEmbedMaybeClass;
-            Assert.IsFalse(emptyMaybeClass.HasValue);
+            CheckEmptyMaybe(emptyMaybeClass);
         }
 
         [Test]

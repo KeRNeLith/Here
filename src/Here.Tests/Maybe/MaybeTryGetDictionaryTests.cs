@@ -9,7 +9,7 @@ namespace Here.Tests.Maybes
     /// Tests for <see cref="Maybe{T}"/> try get dictionary.
     /// </summary>
     [TestFixture]
-    internal class MaybeTryGetTests : HereTestsBase
+    internal class MaybeTryGetTests : MaybeTestsBase
     {
         [Test]
         public void TryGetDictionariesTKeyTValue()
@@ -22,15 +22,14 @@ namespace Here.Tests.Maybes
             };
 
             var maybeString = dictionaryStringString.TryGetValue("2");
-            Assert.IsTrue(maybeString.HasValue);
-            Assert.AreEqual("string 2", maybeString.Value);
+            CheckMaybeValue(maybeString, "string 2");
 
             maybeString = dictionaryStringString.TryGetValue("42");
-            Assert.IsFalse(maybeString.HasValue);
+            CheckEmptyMaybe(maybeString);
 
             // Try get with a null key always return None result
             maybeString = dictionaryStringString.TryGetValue(null);
-            Assert.IsFalse(maybeString.HasValue);
+            CheckEmptyMaybe(maybeString);
 
             // Readonly Dictionary
             IReadOnlyDictionary<string, string> readonlyDictionaryStringString = new Dictionary<string, string>
@@ -40,15 +39,14 @@ namespace Here.Tests.Maybes
             };
             
             maybeString = readonlyDictionaryStringString.TryGetReadonlyValue("42");
-            Assert.IsTrue(maybeString.HasValue);
-            Assert.AreEqual("string 42", maybeString.Value);
+            CheckMaybeValue(maybeString, "string 42");
 
             maybeString = readonlyDictionaryStringString.TryGetReadonlyValue("12");
-            Assert.IsFalse(maybeString.HasValue);
+            CheckEmptyMaybe(maybeString);
 
             // Try get with a null key always return None result
             maybeString = readonlyDictionaryStringString.TryGetReadonlyValue(null);
-            Assert.IsFalse(maybeString.HasValue);
+            CheckEmptyMaybe(maybeString);
         }
 
         [Test]
@@ -62,18 +60,17 @@ namespace Here.Tests.Maybes
             };
 
             var maybeString = dictionaryStringObject.TryGetValue<string, string>("2");
-            Assert.IsTrue(maybeString.HasValue);
-            Assert.AreEqual("string 2", maybeString.Value);
+            CheckMaybeValue(maybeString, "string 2");
 
             var maybeClass = dictionaryStringObject.TryGetValue<string, TestClass>("2");
-            Assert.IsFalse(maybeClass.HasValue);
+            CheckEmptyMaybe(maybeClass);
 
             maybeString = dictionaryStringObject.TryGetValue<string, string>("42");
-            Assert.IsFalse(maybeString.HasValue);
+            CheckEmptyMaybe(maybeString);
 
             // Try get with a null key always return None result
             maybeString = dictionaryStringObject.TryGetValue<string, string>(null);
-            Assert.IsFalse(maybeString.HasValue);
+            CheckEmptyMaybe(maybeString);
 
             // Readonly Dictionary
             IReadOnlyDictionary<string, object> readonlyDictionaryStringObject = new Dictionary<string, object>
@@ -83,18 +80,17 @@ namespace Here.Tests.Maybes
             };
 
             maybeString = readonlyDictionaryStringObject.TryGetReadonlyValue<string, string>("42");
-            Assert.IsTrue(maybeString.HasValue);
-            Assert.AreEqual("string 42", maybeString.Value);
+            CheckMaybeValue(maybeString, "string 42");
 
             maybeClass = readonlyDictionaryStringObject.TryGetReadonlyValue<string, TestClass>("42");
-            Assert.IsFalse(maybeClass.HasValue);
+            CheckEmptyMaybe(maybeClass);
 
             maybeString = readonlyDictionaryStringObject.TryGetReadonlyValue<string, string>("12");
-            Assert.IsFalse(maybeString.HasValue);
+            CheckEmptyMaybe(maybeString);
 
             // Try get with a null key always return None result
             maybeString = readonlyDictionaryStringObject.TryGetReadonlyValue<string, string>(null);
-            Assert.IsFalse(maybeString.HasValue);
+            CheckEmptyMaybe(maybeString);
         }
     }
 }

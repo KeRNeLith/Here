@@ -22,14 +22,17 @@ Supported platforms:
 	<Company>Alexandre Rabérin</Company>
 	<IsPackable>true</IsPackable>
 	<PackageId>Here</PackageId>
-	<PackageReleaseNotes>➟ Release 0.2.0
-- For Maybe:
-    - Little optimizations
-    - New IfOr and ElseOr extensions.
-    - Easy conversions between numeric Maybe (ToInt(), ToLong(), ToDouble(), etc.)
-    - Conversion from numeric Maybe to Maybe&lt;bool&gt;.
-    - Try Get Value for dictionaries supports null key queries.
-    - Try Get Value for dictionary&lt;TKey, object&gt; supports value cast to an expected type.</PackageReleaseNotes>
+	<PackageReleaseNotes>➟ Release 0.3.0
+- General:
+    - Add missing JetBrains annotations.
+
+- For Maybes:
+    - Add explicit and implicit converters to Result/Result&lt;T&gt;/CustomResult&lt;T, TError&gt;/Result&lt;T, TError&gt;.
+
+- For Results:
+    - Result can now always embed an Exception (for Warning and Failure).
+    - Add scopes to safely return a Result of any type.
+    - Add explicit and implicit converters to Maybe&lt;T&gt;.</PackageReleaseNotes>
 	<PackageTags>Here Functional C# Maybe Monad Result</PackageTags>
 	<PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
 	<PackageProjectUrl>https://github.com/KeRNeLith/Here</PackageProjectUrl>

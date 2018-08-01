@@ -26,7 +26,7 @@ namespace Here.Tests.Results
 
         #region Check Result
 
-        protected void CheckResultOk(Result result)
+        protected static void CheckResultOk(Result result)
         {
             Assert.IsTrue(result.IsSuccess);
             Assert.IsFalse(result.IsWarning);
@@ -35,7 +35,7 @@ namespace Here.Tests.Results
             Assert.IsNull(result.Exception);
         }
 
-        protected void CheckResultWarn(Result result, [NotNull] string expectedMessage, [CanBeNull] Exception expectedException = null)
+        protected static void CheckResultWarn(Result result, [NotNull] string expectedMessage, [CanBeNull] Exception expectedException = null)
         {
             Assert.IsTrue(result.IsSuccess);
             Assert.IsTrue(result.IsWarning);
@@ -47,7 +47,7 @@ namespace Here.Tests.Results
                 Assert.AreSame(expectedException, result.Exception);
         }
 
-        protected void CheckResultFail(Result result, [NotNull] string expectedError, [CanBeNull] Exception expectedException = null)
+        protected static void CheckResultFail(Result result, [NotNull] string expectedError, [CanBeNull] Exception expectedException = null)
         {
             Assert.IsFalse(result.IsSuccess);
             Assert.IsFalse(result.IsWarning);
@@ -63,7 +63,7 @@ namespace Here.Tests.Results
 
         #region Check Result<T>
 
-        protected void CheckResultOk<T>(Result<T> result, [CanBeNull] T expectedValue)
+        protected static void CheckResultOk<T>(Result<T> result, [CanBeNull] T expectedValue)
         {
             Assert.IsTrue(result.IsSuccess);
             Assert.IsFalse(result.IsWarning);
@@ -73,7 +73,7 @@ namespace Here.Tests.Results
             Assert.IsNull(result.Exception);
         }
 
-        protected void CheckResultWarn<T>(Result<T> result, [CanBeNull] T expectedValue, [NotNull] string expectedMessage, [CanBeNull] Exception expectedException = null)
+        protected static void CheckResultWarn<T>(Result<T> result, [CanBeNull] T expectedValue, [NotNull] string expectedMessage, [CanBeNull] Exception expectedException = null)
         {
             Assert.IsTrue(result.IsSuccess);
             Assert.IsTrue(result.IsWarning);
@@ -86,7 +86,7 @@ namespace Here.Tests.Results
                 Assert.AreSame(expectedException, result.Exception);
         }
 
-        protected void CheckResultFail<T>(Result<T> result, [NotNull] string expectedError, [CanBeNull] Exception expectedException = null)
+        protected static void CheckResultFail<T>(Result<T> result, [NotNull] string expectedError, [CanBeNull] Exception expectedException = null)
         {
             Assert.IsFalse(result.IsSuccess);
             Assert.IsFalse(result.IsWarning);
@@ -103,7 +103,7 @@ namespace Here.Tests.Results
 
         #region Check CustomResult<TError>
 
-        protected void CheckResultOk<TError>(CustomResult<TError> result)
+        protected static void CheckResultOk<TError>(CustomResult<TError> result)
         {
             Assert.IsTrue(result.IsSuccess);
             Assert.IsFalse(result.IsWarning);
@@ -113,7 +113,7 @@ namespace Here.Tests.Results
             Assert.IsNull(result.Exception);
         }
 
-        protected void CheckResultWarn<TError>(CustomResult<TError> result, [NotNull] string expectedMessage, [CanBeNull] Exception expectedException = null)
+        protected static void CheckResultWarn<TError>(CustomResult<TError> result, [NotNull] string expectedMessage, [CanBeNull] Exception expectedException = null)
         {
             Assert.IsTrue(result.IsSuccess);
             Assert.IsTrue(result.IsWarning);
@@ -126,7 +126,7 @@ namespace Here.Tests.Results
                 Assert.AreSame(expectedException, result.Exception);
         }
 
-        protected void CheckResultFail<TError>(CustomResult<TError> result, [NotNull] string expectedError, [NotNull] TError expectedErrorObject, [CanBeNull] Exception expectedException = null)
+        protected static void CheckResultFail<TError>(CustomResult<TError> result, [NotNull] string expectedError, [NotNull] TError expectedErrorObject, [CanBeNull] Exception expectedException = null)
         {
             Assert.IsFalse(result.IsSuccess);
             Assert.IsFalse(result.IsWarning);
@@ -143,7 +143,7 @@ namespace Here.Tests.Results
 
         #region Check Result<T, TError>
 
-        protected void CheckResultOk<T, TError>(Result<T, TError> result, [CanBeNull] T expectedValue)
+        protected static void CheckResultOk<T, TError>(Result<T, TError> result, [CanBeNull] T expectedValue)
         {
             Assert.IsTrue(result.IsSuccess);
             Assert.IsFalse(result.IsWarning);
@@ -154,7 +154,7 @@ namespace Here.Tests.Results
             Assert.IsNull(result.Exception);
         }
 
-        protected void CheckResultWarn<T, TError>(Result<T, TError> result, [CanBeNull] T expectedValue, [NotNull] string expectedMessage, [CanBeNull] Exception expectedException = null)
+        protected static void CheckResultWarn<T, TError>(Result<T, TError> result, [CanBeNull] T expectedValue, [NotNull] string expectedMessage, [CanBeNull] Exception expectedException = null)
         {
             Assert.IsTrue(result.IsSuccess);
             Assert.IsTrue(result.IsWarning);
@@ -168,7 +168,7 @@ namespace Here.Tests.Results
                 Assert.AreSame(expectedException, result.Exception);
         }
 
-        protected void CheckResultFail<T, TError>(Result<T, TError> result, [NotNull] string expectedError, [NotNull] TError expectedErrorObject, [CanBeNull] Exception expectedException = null)
+        protected static void CheckResultFail<T, TError>(Result<T, TError> result, [NotNull] string expectedError, [NotNull] TError expectedErrorObject, [CanBeNull] Exception expectedException = null)
         {
             Assert.IsFalse(result.IsSuccess);
             Assert.IsFalse(result.IsWarning);
