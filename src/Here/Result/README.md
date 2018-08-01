@@ -45,6 +45,7 @@ See below for some examples:
 Result simpleResult = Result.Ok();
 simpleResult = Result.Warn("Your Warning message.");
 simpleResult = Result.Fail("Your ERROR message.");
+simpleResult = Result.Fail("Your ERROR message.", new Exception("Embedded exception"));	// Example with an embedded exception
 
 // Result with value
 Result<int> resultValue = Result.Ok(42);
@@ -106,3 +107,75 @@ So the only to have a failed result is obviously to use the `Fail` construction,
 The necessity to have a message for warnings and errors is motivated by the need to force the developer of a treatment to explain error cases.
 
 Then you have `IResult<T>` and `IResultError<TError>` that respectively provide a `Value` and a custom `Error`.
+
+### Safe Scopes
+
+If you want to run code that should return a Result safely, you can use Result scopes to do this.
+
+There is at least one per Result type. Following is an example with the scope for `Result`.
+
+```csharp
+// Example 1
+public Result MyFunction()
+{
+    return ResultScope.SafeResult(() =>
+    {
+        // ...
+        // Your code
+
+        return Result.Ok();
+    });
+}
+
+// The call will give
+var result = MyFunction();   // Result.Ok()
+
+// Example 2
+public Result MyFunctionRaiseException()
+{
+    return ResultScope.SafeResult(() =>
+    {
+        // ...
+        // Your code that trigger an exception
+
+        return Result.Ok();
+    });
+}
+
+// The call will give
+var result = MyFunctionRaiseException();   // Result.Fail()
+
+// The scope catch exception and produce a Result that embed the thrown exception.
+// So you can keep focus on your code rather than exception that it can trigger.
+```
+
+### Bridge to Maybe
+
+It is possible to convert a `Result`, `Result<T>`, `CustomResult<TError>` or `Result<T, TError>` to a `Maybe<T>`.
+
+Conversions from a `Result` or a `CustomResult<TError>` give a `Maybe<bool>`, the other give a `Maybe<T>`.
+Each conversion can be done implicitly too.
+
+```csharp
+// Result without value
+Result resultOK = Result.Ok();
+
+Maybe<bool> maybeBool = resultOK.ToMaybe(); // Explicit => Maybe.Some(true)
+Maybe<bool> maybeBool = resultOK;           // Implicit => Maybe.Some(true)
+
+Result resultFail = Result.Fail("Failure");
+
+Maybe<bool> maybeBool = resultFail.ToMaybe(); // Explicit => Maybe.Some(false)
+Maybe<bool> maybeBool = resultFail;           // Implicit => Maybe.Some(false)
+
+// Result with value
+Result<int> resultOK = Result.Ok(12);
+
+Maybe<bool> maybeBool = resultOK.ToMaybe(); // Explicit => Maybe.Some(12)
+Maybe<bool> maybeBool = resultOK;           // Implicit => Maybe.Some(12)
+
+Result<int> resultFail = Result.Fail<int>("Failure");
+
+Maybe<bool> maybeBool = resultFail.ToMaybe(); // Explicit => Maybe.None
+Maybe<bool> maybeBool = resultFail;           // Implicit => Maybe.None
+```

@@ -237,3 +237,23 @@ Maybe<int> maybeInt = maybeDouble.ToInt();      // 42
 string myString = "51.52";
 Maybe<double> maybeDouble = myString.TryParseInt().ToDouble();  // 51
 ```
+
+### Bridge to Result
+
+It is possible to convert a `Maybe<T>` to a `Result`, `Result<T>`, `CustomResult<TError>` or `Result<T, TError>`.
+
+For the first two conversions, both also support implicit conversion.
+
+```csharp
+var maybeInt = Maybe<int>.Some(42);
+
+Result result = maybeInt.ToResult();    // Explicit => Result.OK
+Result result = maybeInt;               // Implicit => Result.OK
+
+
+var emptyMaybeInt = Maybe<int>.None;
+
+Result result = emptyMaybeInt.ToResult();    // Explicit => Result.Fail
+Result result = emptyMaybeInt.ToResult("Custom failure message");    // Explicit => Result.Fail
+Result result = emptyMaybeInt;               // Implicit => Result.Fail
+```
