@@ -1,5 +1,6 @@
 ﻿using System;
 using JetBrains.Annotations;
+using Here.Maybes;
 
 namespace Here.Results
 {
@@ -7,7 +8,7 @@ namespace Here.Results
     /// <see cref="Result"/> is an object that represents the result/state of a treatment.
     /// </summary>
     [PublicAPI]
-    public struct Result : IResult
+    public partial struct Result : IResult
     {
         /// <summary>
         /// A success <see cref="Result"/>.
@@ -56,6 +57,15 @@ namespace Here.Results
         public override string ToString()
         {
             return _logic.ToString();
+        }
+
+        /// <summary>
+        /// Convert this <see cref="Result"/> to a <see cref="Maybe{Boolean}"/>.
+        /// </summary>
+        /// <returns>The corresponding <see cref="Maybe{Boolean}"/>.</returns>
+        public Maybe<bool> ToMaybe()
+        {
+            return Maybe<bool>.Some(_logic.IsSuccess);
         }
 
         #region Factory methods
@@ -290,6 +300,17 @@ namespace Here.Results
         {
             _logic = logic;
             _value = value;
+        }
+
+        /// <summary>
+        /// Convert this <see cref="Result{T}"/> to a <see cref="Maybe{T}"/>.
+        /// </summary>
+        /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>
+        public Maybe<T> ToMaybe()
+        {
+            if (_logic.IsSuccess)
+                return Value;
+            return Maybe<T>.None;
         }
 
         /// <inheritdoc />

@@ -1,5 +1,6 @@
 ﻿using System;
 using JetBrains.Annotations;
+using Here.Maybes;
 
 namespace Here.Results
 {
@@ -54,6 +55,15 @@ namespace Here.Results
         internal CustomResult(bool isWarning, [NotNull] string message, [CanBeNull] TError error, [CanBeNull] Exception exception)
         {
             _logic = new ResultLogic<TError>(isWarning, message, error, exception);
+        }
+
+        /// <summary>
+        /// Convert this <see cref="CustomResult{TError}"/> to a <see cref="Maybe{Boolean}"/>.
+        /// </summary>
+        /// <returns>The corresponding <see cref="Maybe{Boolean}"/>.</returns>
+        public Maybe<bool> ToMaybe()
+        {
+            return Maybe<bool>.Some(_logic.IsSuccess);
         }
 
         /// <inheritdoc />
@@ -138,6 +148,17 @@ namespace Here.Results
         {
             _logic = new ResultLogic<TError>(false, message, error, exception);
             _value = default(T);
+        }
+
+        /// <summary>
+        /// Convert this <see cref="Result{T, TError}"/> to a <see cref="Maybe{T}"/>.
+        /// </summary>
+        /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>
+        public Maybe<T> ToMaybe()
+        {
+            if (_logic.IsSuccess)
+                return Value;
+            return Maybe<T>.None;
         }
 
         /// <inheritdoc />
