@@ -31,7 +31,7 @@ namespace Here.Results
         public Exception Exception => _logic.Exception;
 
         [NotNull]
-        private readonly ResultLogic _logic;
+        internal readonly ResultLogic _logic;
 
         /// <summary>
         /// <see cref="Result"/> constructor.
@@ -278,7 +278,7 @@ namespace Here.Results
         }
 
         [NotNull]
-        private readonly ResultLogic _logic;
+        internal readonly ResultLogic _logic;
 
         /// <summary>
         /// <see cref="Result{T}"/> "ok" constructor.

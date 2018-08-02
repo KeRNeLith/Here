@@ -34,7 +34,7 @@ namespace Here.Results
         public TError Error => _logic.Error;
 
         [NotNull]
-        private readonly ResultLogic<TError> _logic;
+        internal readonly ResultLogic<TError> _logic;
 
         /// <summary>
         /// <see cref="CustomResult{TError}"/> constructor.
@@ -114,7 +114,7 @@ namespace Here.Results
         }
 
         [NotNull]
-        private readonly ResultLogic<TError> _logic;
+        internal readonly ResultLogic<TError> _logic;
 
         /// <summary>
         /// <see cref="Result{T, TError}"/> "ok" constructor.
