@@ -67,7 +67,7 @@ namespace Here.Tests.Results
                 {
                     ++counter;
                     return Result.Ok();
-                }, true);
+                });
             Assert.AreEqual(1, counter);
             CheckResultOk(result);
 

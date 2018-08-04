@@ -1,6 +1,7 @@
 ﻿using System;
 using JetBrains.Annotations;
 using Here.Maybes;
+using System.Diagnostics;
 
 namespace Here.Results
 {
@@ -66,6 +67,17 @@ namespace Here.Results
         public Maybe<bool> ToMaybe()
         {
             return Maybe<bool>.Some(_logic.IsSuccess);
+        }
+
+        /// <summary>
+        /// Convert this <see cref="Result"/> to a failure <see cref="Result"/>.
+        /// This <see cref="Result"/> should be a warning or a failure.
+        /// </summary>
+        /// <returns>A fail <see cref="Result"/>.</returns>
+        internal Result ToFailResult()
+        {
+            Debug.Assert(_logic.IsSuccess && _logic.IsWarning, "Cannot convert a success Result to a failure.");
+            return Fail(_logic.Message, _logic.Exception);
         }
 
         #region Factory methods

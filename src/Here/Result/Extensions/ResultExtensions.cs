@@ -8,6 +8,28 @@ namespace Here.Results.Extensions
     /// </summary>
     public static class ResultExtensions
     {
+        /// <summary>
+        /// Check if the given result should be considered as a failure or not.
+        /// </summary>
+        /// <param name="result">Result to check.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <returns>True if the result is considered as a failure.</returns>
+        private static bool IsConsideredFailure(IResult result, bool treatWarningAsError)
+        {
+            return result.IsFailure || (treatWarningAsError && result.IsWarning);
+        }
+
+        /// <summary>
+        /// Check if the given result should be considered as a success or not.
+        /// </summary>
+        /// <param name="result">Result to check.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <returns>True if the result is considered as a success.</returns>
+        private static bool IsConsideredSuccess(IResult result, bool treatWarningAsError)
+        {
+            return !IsConsideredFailure(result, treatWarningAsError);
+        }
+
         #region Result
 
         /// <summary>
@@ -20,13 +42,10 @@ namespace Here.Results.Extensions
         [PublicAPI]
         public static Result OnSuccess(this Result result, [NotNull, InstantHandle] Action onSuccess, bool treatWarningAsError = false)
         {
-            if (result.IsSuccess)
-            {
-                if (!result.IsWarning || (result.IsWarning && !treatWarningAsError))
-                    onSuccess();
-                else
-                    return Result.Fail(result.Message);
-            }
+            if (IsConsideredSuccess(result, treatWarningAsError))
+                onSuccess();
+            else if (result.IsWarning)  // Warning as error
+                return result.ToFailResult();
 
             return result;
         }
@@ -41,10 +60,12 @@ namespace Here.Results.Extensions
         [PublicAPI]
         public static Result OnSuccess(this Result result, [NotNull, InstantHandle] Func<Result> onSuccess, bool treatWarningAsError = false)
         {
-            if (result.IsFailure || (treatWarningAsError && result.IsWarning))
-                return Result.Fail(result.Message);
+            if (IsConsideredSuccess(result, treatWarningAsError))
+                return onSuccess();
+            else if (result.IsWarning)  // Warning as error
+                return result.ToFailResult();
 
-            return onSuccess();
+            return result;
         }
 
         /// <summary>
@@ -58,7 +79,7 @@ namespace Here.Results.Extensions
         [PublicAPI]
         public static Result<T> OnSuccess<T>(this Result result, [NotNull, InstantHandle] Func<T> onSuccess, bool treatWarningAsError = false)
         {
-            if (result.IsFailure || (treatWarningAsError && result.IsWarning))
+            if (IsConsideredFailure(result, treatWarningAsError))
                 return Result.Fail<T>(result.Message);
 
             return new Result<T>(onSuccess(), result._logic);
@@ -75,7 +96,7 @@ namespace Here.Results.Extensions
         [PublicAPI]
         public static Result<T> OnSuccess<T>(this Result result, [NotNull, InstantHandle] Func<Result<T>> onSuccess, bool treatWarningAsError = false)
         {
-            if (result.IsFailure || (treatWarningAsError && result.IsWarning))
+            if (IsConsideredFailure(result, treatWarningAsError))
                 return Result.Fail<T>(result.Message);
 
             return onSuccess();
@@ -98,7 +119,7 @@ namespace Here.Results.Extensions
             [NotNull] TError errorObject,
             bool treatWarningAsError = false)
         {
-            if (result.IsFailure || (treatWarningAsError && result.IsWarning))
+            if (IsConsideredFailure(result, treatWarningAsError))
                 return Result.CustomFail(result.Message, errorObject);
 
             return onSuccess();
@@ -121,7 +142,7 @@ namespace Here.Results.Extensions
             [NotNull, InstantHandle] Func<TError> errorFactory,
             bool treatWarningAsError = false)
         {
-            if (result.IsFailure || (treatWarningAsError && result.IsWarning))
+            if (IsConsideredFailure(result, treatWarningAsError))
                 return Result.CustomFail(result.Message, errorFactory());
 
             return onSuccess();
@@ -145,7 +166,7 @@ namespace Here.Results.Extensions
             [NotNull] TError errorObject,
             bool treatWarningAsError = false)
         {
-            if (result.IsFailure || (treatWarningAsError && result.IsWarning))
+            if (IsConsideredFailure(result, treatWarningAsError))
                 return Result.Fail<T, TError>(result.Message, errorObject);
 
             return onSuccess();
@@ -169,7 +190,7 @@ namespace Here.Results.Extensions
             [NotNull, InstantHandle] Func<TError> errorFactory, 
             bool treatWarningAsError = false)
         {
-            if (result.IsFailure || (treatWarningAsError && result.IsWarning))
+            if (IsConsideredFailure(result, treatWarningAsError))
                 return Result.Fail<T, TError>(result.Message, errorFactory());
 
             return onSuccess();
@@ -180,7 +201,7 @@ namespace Here.Results.Extensions
         #region Result<T>
 
         // TODO
-        
+
         #endregion
 
         #region CustomResult<TError>
