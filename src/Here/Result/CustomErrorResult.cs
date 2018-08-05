@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using JetBrains.Annotations;
 using Here.Maybes;
 
@@ -65,6 +66,54 @@ namespace Here.Results
         {
             return Maybe<bool>.Some(_logic.IsSuccess);
         }
+
+        #region Internal helpers
+
+        /// <summary>
+        /// Convert this <see cref="CustomResult{TError}"/> to a failure <see cref="Result"/>.
+        /// This <see cref="CustomResult{TError}"/> should be a warning or a failure.
+        /// </summary>
+        /// <returns>A failed <see cref="Result"/>.</returns>
+        internal Result ToFailResult()
+        {
+            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(_logic), "Cannot convert a success CustomResult<TError> to a Result failure.");
+            return Result.Fail(_logic.Message, _logic.Exception);
+        }
+
+        /// <summary>
+        /// Convert this <see cref="CustomResult{TError}"/> to a failure <see cref="Result{T}"/>.
+        /// This <see cref="CustomResult{TError}"/> should be a warning or a failure.
+        /// </summary>
+        /// <returns>A failed <see cref="Result{T}"/>.</returns>
+        internal Result<T> ToFailValueResult<T>()
+        {
+            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(_logic), "Cannot convert a success CustomResult<TError> to a Result<T> failure.");
+            return Result.Fail<T>(_logic.Message, _logic.Exception);
+        }
+
+        /// <summary>
+        /// Convert this <see cref="CustomResult{TError}"/> to a failure <see cref="CustomResult{TError}"/>.
+        /// This <see cref="CustomResult{TError}"/> should be a warning or a failure.
+        /// </summary>
+        /// <returns>A failed <see cref="CustomResult{TError}"/>.</returns>
+        internal CustomResult<TError> ToFailCustomResult()
+        {
+            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(_logic), "Cannot convert a success CustomResult<TError> to a CustomResult<TError> failure.");
+            return Result.CustomFail(_logic.Message, _logic.Error, _logic.Exception);
+        }
+
+        /// <summary>
+        /// Convert this <see cref="CustomResult{TError}"/> to a failure <see cref="Result{T, TError}"/>.
+        /// This <see cref="CustomResult{TError}"/> should be a warning or a failure.
+        /// </summary>
+        /// <returns>A failed <see cref="Result{T, TError}"/>.</returns>
+        internal Result<T, TError> ToFailCustomValueResult<T>()
+        {
+            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(_logic), "Cannot convert a success CustomResult<TError> to a Result<T, TError> failure.");
+            return Result.Fail<T, TError>(_logic.Message, _logic.Error, _logic.Exception);
+        }
+
+        #endregion
 
         /// <inheritdoc />
         public override string ToString()
@@ -160,6 +209,54 @@ namespace Here.Results
                 return Value;
             return Maybe<T>.None;
         }
+
+        #region Internal helpers
+
+        /// <summary>
+        /// Convert this <see cref="Result{T, TError}"/> to a failure <see cref="Result"/>.
+        /// This <see cref="Result{T, TError}"/> should be a warning or a failure.
+        /// </summary>
+        /// <returns>A failed <see cref="Result"/>.</returns>
+        internal Result ToFailResult()
+        {
+            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(_logic), "Cannot convert a success Result<T, TError> to a Result failure.");
+            return Result.Fail(_logic.Message, _logic.Exception);
+        }
+
+        /// <summary>
+        /// Convert this <see cref="Result{T, TError}"/> to a failure <see cref="Result{TOut}"/>.
+        /// This <see cref="Result{T, TError}"/> should be a warning or a failure.
+        /// </summary>
+        /// <returns>A failed <see cref="Result{TOut}"/>.</returns>
+        internal Result<TOut> ToFailValueResult<TOut>()
+        {
+            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(_logic), "Cannot convert a success Result<T, TError> to a Result<T> failure.");
+            return Result.Fail<TOut>(_logic.Message, _logic.Exception);
+        }
+
+        /// <summary>
+        /// Convert this <see cref="Result{T, TError}"/> to a failure <see cref="CustomResult{TError}"/>.
+        /// This <see cref="Result{T, TError}"/> should be a warning or a failure.
+        /// </summary>
+        /// <returns>A failed <see cref="CustomResult{TError}"/>.</returns>
+        internal CustomResult<TError> ToFailCustomResult()
+        {
+            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(_logic), "Cannot convert a success Result<T, TError> to a CustomResult<TError> failure.");
+            return Result.CustomFail(_logic.Message, _logic.Error, _logic.Exception);
+        }
+
+        /// <summary>
+        /// Convert this <see cref="Result{T, TError}"/> to a failure <see cref="Result{TOut, TError}"/>.
+        /// This <see cref="Result{T, TError}"/> should be a warning or a failure.
+        /// </summary>
+        /// <returns>A failed <see cref="Result{TOut, TError}"/>.</returns>
+        internal Result<TOut, TError> ToFailCustomValueResult<TOut>()
+        {
+            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(_logic), "Cannot convert a success Result<T, TError> to a Result<T, TError> failure.");
+            return Result.Fail<TOut, TError>(_logic.Message, _logic.Error, _logic.Exception);
+        }
+
+        #endregion
 
         /// <inheritdoc />
         public override string ToString()

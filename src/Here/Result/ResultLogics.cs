@@ -86,6 +86,16 @@ namespace Here.Results
             Exception = exception;
         }
 
+        /// <summary>
+        /// Check if the given <see cref="ResultLogic{TError}"/> can be converted to a failure result.
+        /// </summary>
+        /// <param name="logic"><see cref="ResultLogic{TError}"/> to check.</param>
+        /// <returns>True if the <see cref="ResultLogic{TError}"/> is convertable, otherwise false.</returns>
+        public static bool IsConvertableToFailure(ResultLogic<TError> logic)
+        {
+            return !logic.IsSuccess || logic.IsWarning;
+        }
+
         /// <inheritdoc />
         public override string ToString()
         {
