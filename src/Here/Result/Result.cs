@@ -73,7 +73,7 @@ namespace Here.Results
         /// Convert this <see cref="Result"/> to a failure <see cref="Result"/>.
         /// This <see cref="Result"/> should be a warning or a failure.
         /// </summary>
-        /// <returns>A fail <see cref="Result"/>.</returns>
+        /// <returns>A failed <see cref="Result"/>.</returns>
         internal Result ToFailResult()
         {
             Debug.Assert(_logic.IsSuccess && _logic.IsWarning, "Cannot convert a success Result to a failure.");
@@ -335,6 +335,28 @@ namespace Here.Results
             if (_logic.IsSuccess)
                 return Value;
             return Maybe<T>.None;
+        }
+
+        /// <summary>
+        /// Convert this <see cref="Result{T}"/> to a failure <see cref="Result"/>.
+        /// This <see cref="Result{T}"/> should be a warning or a failure.
+        /// </summary>
+        /// <returns>A failed <see cref="Result"/>.</returns>
+        internal Result ToFailResult()
+        {
+            Debug.Assert(_logic.IsSuccess && _logic.IsWarning, "Cannot convert a success Result<T> to a Result failure.");
+            return Result.Fail(_logic.Message, _logic.Exception);
+        }
+
+        /// <summary>
+        /// Convert this <see cref="Result{T}"/> to a failure <see cref="Result{T}"/>.
+        /// This <see cref="Result{T}"/> should be a warning or a failure.
+        /// </summary>
+        /// <returns>A failed <see cref="Result{T}"/>.</returns>
+        internal Result<T> ToFailValueResult()
+        {
+            Debug.Assert(_logic.IsSuccess && _logic.IsWarning, "Cannot convert a success Result<T> to a Result<T> failure.");
+            return Result.Fail<T>(_logic.Message, _logic.Exception);
         }
 
         /// <inheritdoc />
