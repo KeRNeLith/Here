@@ -112,7 +112,7 @@ namespace Here.Results
         internal CustomResult<TError> ToFailCustomResult([NotNull] TError errorObject)
         {
             Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(_logic), "Cannot convert a success CustomResult<TError> to a CustomResult<TError> failure.");
-            return Result.CustomFail(_logic.Message, _logic.Error, _logic.Exception);
+            return Result.CustomFail(_logic.Message, errorObject, _logic.Exception);
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace Here.Results
         internal Result<T, TError> ToFailCustomValueResult<T>([NotNull] TError errorObject)
         {
             Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(_logic), "Cannot convert a success CustomResult<TError> to a Result<T, TError> failure.");
-            return Result.Fail<T, TError>(_logic.Message, _logic.Error, _logic.Exception);
+            return Result.Fail<T, TError>(_logic.Message, errorObject, _logic.Exception);
         }
 
         #endregion

@@ -4,9 +4,9 @@ using JetBrains.Annotations;
 namespace Here.Results.Extensions
 {
     /// <summary>
-    /// Extensions related to <see cref="Result"/>, <see cref="Result{T}"/>, <see cref="CustomResult{TError}"/> and <see cref="Result{T, TError}"/>.
+    /// Extensions related to <see cref="Result"/>, <see cref="Result{T}"/>, <see cref="CustomResult{TError}"/> and <see cref="Result{T, TError}"/> (On success).
     /// </summary>
-    public static class ResultExtensions
+    public static partial class ResultExtensions
     {
         /// <summary>
         /// Check if the given result should be considered as a failure or not.
