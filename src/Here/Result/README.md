@@ -149,6 +149,34 @@ var result = MyFunctionRaiseException();   // Result.Fail()
 // So you can keep focus on your code rather than exception that it can trigger.
 ```
 
+### OnSuccess / OnFailure / OnAny
+
+Results have extensions that allow branching code fluently. These extensions handle case the result is success, failure or run regardless of the result state.
+These calls can be chained to easily produce complex treatments but keeping them readable and scalable.
+
+See following examples for a quick overview. Note that each result type offers similar extensions.
+
+```csharp
+// In this example we call a method on a database that returns a Maybe<string>
+Database.GetUser("Jack")
+        .ToResult()
+		.OnAny(() => Console.WriteLine("Hello"))
+        .OnSuccess(name => Console.WriteLine(name))
+        .OnFailure(() => Console.WriteLine("Anonymous"))
+		.OnAny(() => Console.WriteLine(", how are you?"));
+		
+// Output "Hello Jack, how are you?" if the Database contains a user named Jack
+// Output "Hello Anonymous, how are you?" if the Database does not contain a user named Jack
+
+// Obviously you can chain call and have nested calls
+Database.GetUser("Jack")
+        .ToResult()
+		.OnSuccess(name => Database.GetAppointmentsFor(name)
+                                   .OnSuccess(appointments => Console.WriteLine($"Appointments for {name}: {appointments.ToString()}))
+								   .OnFailure(() => Console.WriteLine($"Not any appointment for {name}.")))
+		.OnFailure(() => Console.WriteLine("No user named Jack."))
+```
+
 ### Bridge to Maybe
 
 It is possible to convert a `Result`, `Result<T>`, `CustomResult<TError>` or `Result<T, TError>` to a `Maybe<T>`.

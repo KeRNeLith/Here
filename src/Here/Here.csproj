@@ -22,17 +22,14 @@ Supported platforms:
 	<Company>Alexandre Rabérin</Company>
 	<IsPackable>true</IsPackable>
 	<PackageId>Here</PackageId>
-	<PackageReleaseNotes>➟ Release 0.3.0
+	<PackageReleaseNotes>➟ Release 0.4.0
 - General:
-    - Add missing JetBrains annotations.
-
-- For Maybes:
-    - Add explicit and implicit converters to Result/Result&lt;T&gt;/CustomResult&lt;T, TError&gt;/Result&lt;T, TError&gt;.
+    - Update to latest JetBrains annotations package.
 
 - For Results:
-    - Result can now always embed an Exception (for Warning and Failure).
-    - Add scopes to safely return a Result of any type.
-    - Add explicit and implicit converters to Maybe&lt;T&gt;.</PackageReleaseNotes>
+    - Add extensions OnSuccess.
+    - Add extensions OnFailure.
+    - Add extensions OnAny.</PackageReleaseNotes>
 	<PackageTags>Here Functional C# Maybe Monad Result</PackageTags>
 	<PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
 	<PackageProjectUrl>https://github.com/KeRNeLith/Here</PackageProjectUrl>
