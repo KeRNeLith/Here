@@ -285,7 +285,7 @@ namespace Here.Tests.Results
         #region OnSuccess Result => Result<T>
 
         [Test]
-        public void ResultOnSuccessToResultValue()
+        public void ResultOnSuccessToValueResult()
         {
             int counter = 0;
             // Ok result
@@ -323,7 +323,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void ResultOkOnSuccessToResultValue()
+        public void ResultOkOnSuccessToValueResult()
         {
             int counter = 0;
             string produceWarningMessage = "OnSuccess produce a warning.";
@@ -399,7 +399,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void ResultWarnOnSuccessToResultValue()
+        public void ResultWarnOnSuccessToValueResult()
         {
             int counter = 0;
             string warningMessage = "My warning";
@@ -476,7 +476,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void ResultFailOnSuccessToResultValue()
+        public void ResultFailOnSuccessToValueResult()
         {
             int counter = 0;
             string failureMessage = "My failure";
@@ -1097,7 +1097,7 @@ namespace Here.Tests.Results
         #region OnSuccess Result => Result<T, TError>
 
         [Test]
-        public void ResultOkOnSuccessToResultValueError()
+        public void ResultOkOnSuccessToCustomValueResult()
         {
             int counterSuccess = 0;
             int counterFailureFactory = 0;
@@ -1275,7 +1275,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void ResultWarnOnSuccessToResultValueError()
+        public void ResultWarnOnSuccessToCustomValueResult()
         {
             int counterSuccess = 0;
             int counterFailureFactory = 0;
@@ -1454,7 +1454,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void ResultFailOnSuccessToResultValueError()
+        public void ResultFailOnSuccessToCustomValueResult()
         {
             int counterSuccess = 0;
             int counterFailureFactory = 0;
