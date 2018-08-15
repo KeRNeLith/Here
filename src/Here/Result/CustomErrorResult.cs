@@ -17,25 +17,25 @@ namespace Here.Results
         internal static readonly CustomResult<TError> ResultOk = new CustomResult<TError>(new ResultLogic<TError>());
 
         /// <inheritdoc />
-        public bool IsSuccess => _logic.IsSuccess;
+        public bool IsSuccess => Logic.IsSuccess;
 
         /// <inheritdoc />
-        public bool IsWarning => _logic.IsWarning;
+        public bool IsWarning => Logic.IsWarning;
 
         /// <inheritdoc />
-        public bool IsFailure => _logic.IsFailure;
+        public bool IsFailure => Logic.IsFailure;
 
         /// <inheritdoc />
-        public string Message => _logic.Message;
+        public string Message => Logic.Message;
 
         /// <inheritdoc />
-        public Exception Exception => _logic.Exception;
+        public Exception Exception => Logic.Exception;
 
         /// <inheritdoc />
-        public TError Error => _logic.Error;
+        public TError Error => Logic.Error;
 
         [NotNull]
-        internal readonly ResultLogic<TError> _logic;
+        internal readonly ResultLogic<TError> Logic;
 
         /// <summary>
         /// <see cref="CustomResult{TError}"/> constructor.
@@ -43,7 +43,7 @@ namespace Here.Results
         /// <param name="logic">Result logic.</param>
         internal CustomResult([NotNull] ResultLogic<TError> logic)
         {
-            _logic = logic;
+            Logic = logic;
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Here.Results
         /// <param name="exception">Result embeded exception.</param>
         internal CustomResult(bool isWarning, [NotNull] string message, [CanBeNull] TError error, [CanBeNull] Exception exception)
         {
-            _logic = new ResultLogic<TError>(isWarning, message, error, exception);
+            Logic = new ResultLogic<TError>(isWarning, message, error, exception);
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Here.Results
         /// <returns>The corresponding <see cref="Maybe{Boolean}"/>.</returns>
         public Maybe<bool> ToMaybe()
         {
-            return Maybe<bool>.Some(_logic.IsSuccess);
+            return Maybe<bool>.Some(Logic.IsSuccess);
         }
 
         #region Internal helpers
@@ -74,10 +74,12 @@ namespace Here.Results
         /// This <see cref="CustomResult{TError}"/> should be a warning or a failure.
         /// </summary>
         /// <returns>A failed <see cref="Result"/>.</returns>
+        [Pure]
         internal Result ToFailResult()
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(_logic), "Cannot convert a success CustomResult<TError> to a Result failure.");
-            return Result.Fail(_logic.Message, _logic.Exception);
+            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a Result failure.");
+            // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
+            return Result.Fail(Logic.Message, Logic.Exception);
         }
 
         /// <summary>
@@ -85,21 +87,12 @@ namespace Here.Results
         /// This <see cref="CustomResult{TError}"/> should be a warning or a failure.
         /// </summary>
         /// <returns>A failed <see cref="Result{T}"/>.</returns>
+        [Pure]
         internal Result<T> ToFailValueResult<T>()
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(_logic), "Cannot convert a success CustomResult<TError> to a Result<T> failure.");
-            return Result.Fail<T>(_logic.Message, _logic.Exception);
-        }
-
-        /// <summary>
-        /// Convert this <see cref="CustomResult{TError}"/> to a failure <see cref="CustomResult{TError}"/>.
-        /// This <see cref="CustomResult{TError}"/> should be a failure.
-        /// </summary>
-        /// <returns>A failed <see cref="CustomResult{TError}"/>.</returns>
-        internal CustomResult<TError> ToFailCustomResult()
-        {
-            Debug.Assert(_logic.IsFailure, "Cannot convert a success CustomResult<TError> to a CustomResult<TError> failure.");
-            return Result.CustomFail(_logic.Message, _logic.Error, _logic.Exception);
+            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a Result<T> failure.");
+            // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
+            return Result.Fail<T>(Logic.Message, Logic.Exception);
         }
 
         /// <summary>
@@ -109,10 +102,12 @@ namespace Here.Results
         /// 
         /// <param name="errorObject">Custom error object to use.</param>
         /// <returns>A failed <see cref="CustomResult{TError}"/>.</returns>
+        [Pure]
         internal CustomResult<TError> ToFailCustomResult([NotNull] TError errorObject)
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(_logic), "Cannot convert a success CustomResult<TError> to a CustomResult<TError> failure.");
-            return Result.CustomFail(_logic.Message, errorObject, _logic.Exception);
+            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a CustomResult<TError> failure.");
+            // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
+            return Result.CustomFail(Logic.Message, errorObject, Logic.Exception);
         }
 
         /// <summary>
@@ -120,10 +115,13 @@ namespace Here.Results
         /// This <see cref="CustomResult{TError}"/> should be a warning or a failure.
         /// </summary>
         /// <returns>A failed <see cref="Result{T, TError}"/>.</returns>
+        [Pure]
         internal Result<T, TError> ToFailCustomValueResult<T>()
         {
-            Debug.Assert(_logic.IsFailure, "Cannot convert a success CustomResult<TError> to a Result<T, TError> failure.");
-            return Result.Fail<T, TError>(_logic.Message, _logic.Error, _logic.Exception);
+            Debug.Assert(Logic.IsFailure, "Cannot convert a success CustomResult<TError> to a Result<T, TError> failure.");
+            // ReSharper disable AssignNullToNotNullAttribute, Justification The message and error is always not null or empty when here.
+            return Result.Fail<T, TError>(Logic.Message, Logic.Error, Logic.Exception);
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         /// <summary>
@@ -132,10 +130,12 @@ namespace Here.Results
         /// </summary>
         /// <param name="errorObject">Custom error object to use.</param>
         /// <returns>A failed <see cref="Result{T, TError}"/>.</returns>
+        [Pure]
         internal Result<T, TError> ToFailCustomValueResult<T>([NotNull] TError errorObject)
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(_logic), "Cannot convert a success CustomResult<TError> to a Result<T, TError> failure.");
-            return Result.Fail<T, TError>(_logic.Message, errorObject, _logic.Exception);
+            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a Result<T, TError> failure.");
+            // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
+            return Result.Fail<T, TError>(Logic.Message, errorObject, Logic.Exception);
         }
 
         #endregion
@@ -143,7 +143,7 @@ namespace Here.Results
         /// <inheritdoc />
         public override string ToString()
         {
-            return _logic.ToString();
+            return Logic.ToString();
         }
     }
 
@@ -156,22 +156,22 @@ namespace Here.Results
     public partial struct Result<T, TError> : IResult<T>, IResultError<TError>
     {
         /// <inheritdoc />
-        public bool IsSuccess => _logic.IsSuccess;
+        public bool IsSuccess => Logic.IsSuccess;
 
         /// <inheritdoc />
-        public bool IsWarning => _logic.IsWarning;
+        public bool IsWarning => Logic.IsWarning;
 
         /// <inheritdoc />
-        public bool IsFailure => _logic.IsFailure;
+        public bool IsFailure => Logic.IsFailure;
 
         /// <inheritdoc />
-        public string Message => _logic.Message;
+        public string Message => Logic.Message;
 
         /// <inheritdoc />
-        public Exception Exception => _logic.Exception;
+        public Exception Exception => Logic.Exception;
 
         /// <inheritdoc />
-        public TError Error => _logic.Error;
+        public TError Error => Logic.Error;
 
         private readonly T _value;
 
@@ -188,7 +188,7 @@ namespace Here.Results
         }
 
         [NotNull]
-        internal readonly ResultLogic<TError> _logic;
+        internal readonly ResultLogic<TError> Logic;
 
         /// <summary>
         /// <see cref="Result{T, TError}"/> "ok" constructor.
@@ -196,7 +196,7 @@ namespace Here.Results
         /// <param name="value">Result value.</param>
         internal Result([CanBeNull] T value)
         {
-            _logic = new ResultLogic<TError>();
+            Logic = new ResultLogic<TError>();
             _value = value;
         }
 
@@ -208,7 +208,7 @@ namespace Here.Results
         /// <param name="exception">Result embeded exception.</param>
         internal Result([CanBeNull] T value, [NotNull] string message, [CanBeNull] Exception exception)
         {
-            _logic = new ResultLogic<TError>(true, message, default(TError), exception);
+            Logic = new ResultLogic<TError>(true, message, default(TError), exception);
             _value = value;
         }
 
@@ -220,7 +220,7 @@ namespace Here.Results
         /// <param name="exception">Result embeded exception.</param>
         internal Result([NotNull] string message, [NotNull] TError error, [CanBeNull] Exception exception)
         {
-            _logic = new ResultLogic<TError>(false, message, error, exception);
+            Logic = new ResultLogic<TError>(false, message, error, exception);
             _value = default(T);
         }
 
@@ -231,7 +231,7 @@ namespace Here.Results
         /// <param name="logic">Result logic.</param>
         internal Result([CanBeNull] T value, [NotNull] ResultLogic<TError> logic)
         {
-            _logic = logic;
+            Logic = logic;
             _value = value;
         }
 
@@ -241,7 +241,7 @@ namespace Here.Results
         /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>
         public Maybe<T> ToMaybe()
         {
-            if (_logic.IsSuccess)
+            if (Logic.IsSuccess)
                 return Value;
             return Maybe<T>.None;
         }
@@ -253,10 +253,12 @@ namespace Here.Results
         /// This <see cref="Result{T, TError}"/> should be a warning or a failure.
         /// </summary>
         /// <returns>A failed <see cref="Result"/>.</returns>
+        [Pure]
         internal Result ToFailResult()
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(_logic), "Cannot convert a success Result<T, TError> to a Result failure.");
-            return Result.Fail(_logic.Message, _logic.Exception);
+            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success Result<T, TError> to a Result failure.");
+            // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
+            return Result.Fail(Logic.Message, Logic.Exception);
         }
 
         /// <summary>
@@ -264,22 +266,14 @@ namespace Here.Results
         /// This <see cref="Result{T, TError}"/> should be a warning or a failure.
         /// </summary>
         /// <returns>A failed <see cref="Result{TOut}"/>.</returns>
+        [Pure]
         internal Result<TOut> ToFailValueResult<TOut>()
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(_logic), "Cannot convert a success Result<TIn, TError> to a Result<TOut> failure.");
-            return Result.Fail<TOut>(_logic.Message, _logic.Exception);
+            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success Result<TIn, TError> to a Result<TOut> failure.");
+            // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
+            return Result.Fail<TOut>(Logic.Message, Logic.Exception);
         }
 
-        /// <summary>
-        /// Convert this <see cref="Result{T, TError}"/> to a failure <see cref="CustomResult{TError}"/>.
-        /// This <see cref="Result{T, TError}"/> should be a failure.
-        /// </summary>
-        /// <returns>A failed <see cref="CustomResult{TError}"/>.</returns>
-        internal CustomResult<TError> ToFailCustomResult()
-        {
-            Debug.Assert(_logic.IsFailure, "Cannot convert a non failure Result<T, TError> to a CustomResult<TError> failure.");
-            return Result.CustomFail(_logic.Message, _logic.Error, _logic.Exception);
-        }
 
         /// <summary>
         /// Convert this <see cref="Result{T, TError}"/> to a failure <see cref="CustomResult{TError}"/>.
@@ -287,10 +281,12 @@ namespace Here.Results
         /// </summary>
         /// <param name="errorObject">Custom error object to use.</param>
         /// <returns>A failed <see cref="CustomResult{TError}"/>.</returns>
+        [Pure]
         internal CustomResult<TError> ToFailCustomResult([NotNull] TError errorObject)
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(_logic), "Cannot convert a success Result<T, TError> to a CustomResult<TError> failure.");
-            return Result.CustomFail(_logic.Message, errorObject, _logic.Exception);
+            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success Result<T, TError> to a CustomResult<TError> failure.");
+            // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
+            return Result.CustomFail(Logic.Message, errorObject, Logic.Exception);
         }
 
         /// <summary>
@@ -298,10 +294,13 @@ namespace Here.Results
         /// This <see cref="Result{T, TError}"/> should be a failure.
         /// </summary>
         /// <returns>A failed <see cref="Result{TOut, TError}"/>.</returns>
+        [Pure]
         internal Result<TOut, TError> ToFailCustomValueResult<TOut>()
         {
-            Debug.Assert(_logic.IsFailure, "Cannot convert a success Result<TIn, TError> to a Result<TOut, TError> failure.");
-            return Result.Fail<TOut, TError>(_logic.Message, _logic.Error, _logic.Exception);
+            Debug.Assert(Logic.IsFailure, "Cannot convert a success Result<TIn, TError> to a Result<TOut, TError> failure.");
+            // ReSharper disable AssignNullToNotNullAttribute, Justification The message and error is always not null or empty when here.
+            return Result.Fail<TOut, TError>(Logic.Message, Logic.Error, Logic.Exception);
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         /// <summary>
@@ -310,10 +309,12 @@ namespace Here.Results
         /// </summary>
         /// <param name="errorObject">Custom error object to use.</param>
         /// <returns>A failed <see cref="Result{TOut, TError}"/>.</returns>
+        [Pure]
         internal Result<TOut, TError> ToFailCustomValueResult<TOut>([NotNull] TError errorObject)
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(_logic), "Cannot convert a success Result<TIn, TError> to a Result<TOut, TError> failure.");
-            return Result.Fail<TOut, TError>(_logic.Message, errorObject, _logic.Exception);
+            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success Result<TIn, TError> to a Result<TOut, TError> failure.");
+            // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
+            return Result.Fail<TOut, TError>(Logic.Message, errorObject, Logic.Exception);
         }
 
         #endregion
@@ -321,7 +322,7 @@ namespace Here.Results
         /// <inheritdoc />
         public override string ToString()
         {
-            return _logic.ToString();
+            return Logic.ToString();
         }
     }
 }

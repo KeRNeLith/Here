@@ -175,7 +175,7 @@ namespace Here.Tests.Results
             string produceFailureMessage = "OnSuccess produce a failure.";
 
             // Failure result
-            var failure = Result.CustomFail<CustomErrorTest>(failureMessage, customErrorObject);
+            var failure = Result.CustomFail(failureMessage, customErrorObject);
 
             // Treat warning as error => false
             // Produce an OK
@@ -1152,7 +1152,7 @@ namespace Here.Tests.Results
             var customErrorObjectFactory = new CustomErrorTest { ErrorCode = -3 };
 
             // Failure result
-            var failure = Result.CustomFail<CustomErrorTest>(failureMessage, initialCustomErrorObject);
+            var failure = Result.CustomFail(failureMessage, initialCustomErrorObject);
 
             // Treat warning as error => false
             // Produce an OK
@@ -1331,8 +1331,7 @@ namespace Here.Tests.Results
             string produceWarningMessage = "OnSuccess produce a warning.";
             string produceFailureMessage = "OnSuccess produce a failure.";
             var customErrorObject = new CustomErrorTest { ErrorCode = -1 };
-            var produceCustomErrorObject = new CustomErrorTest { ErrorCode = -2 };
-            var customErrorObjectFactory = new CustomErrorTest { ErrorCode = -3 };
+            var customErrorObjectFactory = new CustomErrorTest { ErrorCode = -2 };
 
             // Ok result
             var ok = Result.CustomOk<CustomErrorTest>();
@@ -1395,17 +1394,17 @@ namespace Here.Tests.Results
                 () =>
                 {
                     ++counterSuccess;
-                    return Result.Fail<int, CustomErrorTest>(produceFailureMessage, produceCustomErrorObject);
+                    return Result.Fail<int, CustomErrorTest>(produceFailureMessage, customErrorObject);
                 },
                 customErrorObjectFactory);
             Assert.AreEqual(5, counterSuccess);
-            CheckResultFail(result, produceFailureMessage, produceCustomErrorObject);
+            CheckResultFail(result, produceFailureMessage, customErrorObject);
 
             result = ok.OnSuccess(
                 () =>
                 {
                     ++counterSuccess;
-                    return Result.Fail<int, CustomErrorTest>(produceFailureMessage, produceCustomErrorObject);
+                    return Result.Fail<int, CustomErrorTest>(produceFailureMessage, customErrorObject);
                 },
                 () =>
                 {
@@ -1414,7 +1413,7 @@ namespace Here.Tests.Results
                 });
             Assert.AreEqual(6, counterSuccess);
             Assert.AreEqual(0, counterFailureFactory);
-            CheckResultFail(result, produceFailureMessage, produceCustomErrorObject);
+            CheckResultFail(result, produceFailureMessage, customErrorObject);
 
             // Treat warning as error => true
             // Produce an OK
@@ -1478,18 +1477,18 @@ namespace Here.Tests.Results
                 () =>
                 {
                     ++counterSuccess;
-                    return Result.Fail<int, CustomErrorTest>(produceFailureMessage, produceCustomErrorObject);
+                    return Result.Fail<int, CustomErrorTest>(produceFailureMessage, customErrorObject);
                 },
                 customErrorObjectFactory,
                 true);
             Assert.AreEqual(11, counterSuccess);
-            CheckResultFail(result, produceFailureMessage, produceCustomErrorObject);
+            CheckResultFail(result, produceFailureMessage, customErrorObject);
 
             result = ok.OnSuccess(
                 () =>
                 {
                     ++counterSuccess;
-                    return Result.Fail<int, CustomErrorTest>(produceFailureMessage, produceCustomErrorObject);
+                    return Result.Fail<int, CustomErrorTest>(produceFailureMessage, customErrorObject);
                 },
                 () =>
                 {
@@ -1499,7 +1498,7 @@ namespace Here.Tests.Results
                 true);
             Assert.AreEqual(12, counterSuccess);
             Assert.AreEqual(0, counterFailureFactory);
-            CheckResultFail(result, produceFailureMessage, produceCustomErrorObject);
+            CheckResultFail(result, produceFailureMessage, customErrorObject);
         }
 
         [Test]
@@ -1510,8 +1509,7 @@ namespace Here.Tests.Results
             string warningMessage = "My warning";
             string produceWarningMessage = "OnSuccess produce a warning.";
             string produceFailureMessage = "OnSuccess produce a failure.";
-            var customErrorObject = new CustomErrorTest { ErrorCode = -1 };
-            var produceCustomErrorObject = new CustomErrorTest { ErrorCode = -2 };
+            var customErrorObject = new CustomErrorTest { ErrorCode = -2 };
             var customErrorObjectFactory = new CustomErrorTest { ErrorCode = -3 };
 
             // Warning result
@@ -1575,17 +1573,17 @@ namespace Here.Tests.Results
                 () =>
                 {
                     ++counterSuccess;
-                    return Result.Fail<int, CustomErrorTest>(produceFailureMessage, produceCustomErrorObject);
+                    return Result.Fail<int, CustomErrorTest>(produceFailureMessage, customErrorObject);
                 },
                 customErrorObjectFactory);
             Assert.AreEqual(5, counterSuccess);
-            CheckResultFail(result, produceFailureMessage, produceCustomErrorObject);
+            CheckResultFail(result, produceFailureMessage, customErrorObject);
 
             result = warning.OnSuccess(
                 () =>
                 {
                     ++counterSuccess;
-                    return Result.Fail<int, CustomErrorTest>(produceFailureMessage, produceCustomErrorObject);
+                    return Result.Fail<int, CustomErrorTest>(produceFailureMessage, customErrorObject);
                 },
                 () =>
                 {
@@ -1594,7 +1592,7 @@ namespace Here.Tests.Results
                 });
             Assert.AreEqual(6, counterSuccess);
             Assert.AreEqual(0, counterFailureFactory);
-            CheckResultFail(result, produceFailureMessage, produceCustomErrorObject);
+            CheckResultFail(result, produceFailureMessage, customErrorObject);
 
             // Treat warning as error => true
             // Produce an OK
@@ -1658,7 +1656,7 @@ namespace Here.Tests.Results
                 () =>
                 {
                     ++counterSuccess;
-                    return Result.Fail<int, CustomErrorTest>(produceFailureMessage, produceCustomErrorObject);
+                    return Result.Fail<int, CustomErrorTest>(produceFailureMessage, customErrorObject);
                 },
                 customErrorObjectFactory,
                 true);
@@ -1669,7 +1667,7 @@ namespace Here.Tests.Results
                 () =>
                 {
                     ++counterSuccess;
-                    return Result.Fail<int, CustomErrorTest>(produceFailureMessage, produceCustomErrorObject);
+                    return Result.Fail<int, CustomErrorTest>(produceFailureMessage, customErrorObject);
                 },
                 () =>
                 {

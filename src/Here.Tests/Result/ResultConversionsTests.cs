@@ -23,8 +23,8 @@ namespace Here.Tests.Results
         public void ResultToMaybe()
         {
             // Explicit conversions
-            Result resultOK = Result.Ok();
-            Maybe<bool> maybeBool = resultOK.ToMaybe();
+            Result resultOk = Result.Ok();
+            Maybe<bool> maybeBool = resultOk.ToMaybe();
             CheckMaybeValue(maybeBool, true);
 
             Result resultWarn = Result.Warn("Warning");
@@ -36,7 +36,7 @@ namespace Here.Tests.Results
             CheckMaybeValue(maybeBool, false);
 
             // Implicit conversions
-            maybeBool = resultOK;
+            maybeBool = resultOk;
             CheckMaybeValue(maybeBool, true);
 
             maybeBool = resultWarn;
@@ -50,8 +50,8 @@ namespace Here.Tests.Results
         public void ValueResultToMaybe()
         {
             // Explicit conversions
-            Result<int> resultOK = Result.Ok(42);
-            Maybe<int> maybeInt = resultOK.ToMaybe();
+            Result<int> resultOk = Result.Ok(42);
+            Maybe<int> maybeInt = resultOk.ToMaybe();
             CheckMaybeValue(maybeInt, 42);
 
             Result<int> resultWarn = Result.Warn(12, "Warning");
@@ -63,7 +63,7 @@ namespace Here.Tests.Results
             CheckEmptyMaybe(maybeInt);
 
             // Implicit conversions
-            maybeInt = resultOK;
+            maybeInt = resultOk;
             CheckMaybeValue(maybeInt, 42);
 
             maybeInt = resultWarn;
@@ -77,8 +77,8 @@ namespace Here.Tests.Results
         public void CustomResultToMaybe()
         {
             // Explicit conversions
-            CustomResult<CustomErrorTest> resultOK = Result.CustomOk<CustomErrorTest>();
-            Maybe<bool> maybeBool = resultOK.ToMaybe();
+            CustomResult<CustomErrorTest> resultOk = Result.CustomOk<CustomErrorTest>();
+            Maybe<bool> maybeBool = resultOk.ToMaybe();
             CheckMaybeValue(maybeBool, true);
 
             CustomResult<CustomErrorTest> resultWarn = Result.CustomWarn<CustomErrorTest>("Warning");
@@ -90,7 +90,7 @@ namespace Here.Tests.Results
             CheckMaybeValue(maybeBool, false);
 
             // Implicit conversions
-            maybeBool = resultOK;
+            maybeBool = resultOk;
             CheckMaybeValue(maybeBool, true);
 
             maybeBool = resultWarn;
@@ -104,8 +104,8 @@ namespace Here.Tests.Results
         public void CustomValueResultToMaybe()
         {
             // Explicit conversions
-            Result<int, CustomErrorTest> resultOK = Result.Ok<int, CustomErrorTest>(42);
-            Maybe<int> maybeInt = resultOK.ToMaybe();
+            Result<int, CustomErrorTest> resultOk = Result.Ok<int, CustomErrorTest>(42);
+            Maybe<int> maybeInt = resultOk.ToMaybe();
             CheckMaybeValue(maybeInt, 42);
 
             Result<int, CustomErrorTest> resultWarn = Result.Warn<int, CustomErrorTest>(12, "Warning");
@@ -117,7 +117,7 @@ namespace Here.Tests.Results
             CheckEmptyMaybe(maybeInt);
 
             // Implicit conversions
-            maybeInt = resultOK;
+            maybeInt = resultOk;
             CheckMaybeValue(maybeInt, 42);
 
             maybeInt = resultWarn;

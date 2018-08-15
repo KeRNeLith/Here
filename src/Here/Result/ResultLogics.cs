@@ -91,7 +91,7 @@ namespace Here.Results
         /// </summary>
         /// <param name="logic"><see cref="ResultLogic{TError}"/> to check.</param>
         /// <returns>True if the <see cref="ResultLogic{TError}"/> is convertable, otherwise false.</returns>
-        public static bool IsConvertableToFailure(ResultLogic<TError> logic)
+        internal static bool IsConvertableToFailure(ResultLogic<TError> logic)
         {
             return !logic.IsSuccess || logic.IsWarning;
         }

@@ -17,6 +17,11 @@ namespace Here.Maybes
         }
 
         /// <summary>
+        /// Failed result message.
+        /// </summary>
+        internal static readonly string FailedToResultMessage = "Maybe<{0}> has no value";
+
+        /// <summary>
         /// No value.
         /// </summary>
         [NotNull]

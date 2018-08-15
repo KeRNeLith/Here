@@ -28,7 +28,7 @@ namespace Here.Results
         [PublicAPI, Pure]
         public static implicit operator Result(Result<T> result)
         {
-            return new Result(result._logic);
+            return new Result(result.Logic);
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Here.Results
         [PublicAPI, Pure]
         public static implicit operator Result(CustomResult<TError> result)
         {
-            return new Result(ResultLogic.ToResultLogic(result._logic));
+            return new Result(ResultLogic.ToResultLogic(result.Logic));
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Here.Results
         [PublicAPI, Pure]
         public static implicit operator Result(Result<T, TError> result)
         {
-            return new Result(ResultLogic.ToResultLogic(result._logic));
+            return new Result(ResultLogic.ToResultLogic(result.Logic));
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace Here.Results
         [PublicAPI, Pure]
         public static implicit operator CustomResult<TError>(Result<T, TError> result)
         {
-            return new CustomResult<TError>(result._logic);
+            return new CustomResult<TError>(result.Logic);
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace Here.Results
         {
             return new Result<T>(
                 result.IsSuccess ? result.Value : default(T),
-                ResultLogic.ToResultLogic(result._logic));
+                ResultLogic.ToResultLogic(result.Logic));
         }
 
         /// <summary>

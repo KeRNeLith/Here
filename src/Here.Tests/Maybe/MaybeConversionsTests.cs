@@ -31,14 +31,14 @@ namespace Here.Tests.Maybes
             // Explicit conversion
             var emptyMaybeInt = Maybe<int>.None;
             result = emptyMaybeInt.ToResult();
-            CheckResultFail(result, string.Format(Maybe<int>.FailedToResultMessage, typeof(int)));
+            CheckResultFail(result, string.Format(Maybe.FailedToResultMessage, typeof(int)));
 
             result = emptyMaybeInt.ToResult("Empty emptyMaybeInt");
             CheckResultFail(result, "Empty emptyMaybeInt");
 
             // Implicit conversion
             result = emptyMaybeInt;
-            CheckResultFail(result, string.Format(Maybe<int>.FailedToResultMessage, typeof(int)));
+            CheckResultFail(result, string.Format(Maybe.FailedToResultMessage, typeof(int)));
         }
 
         [Test]
@@ -61,14 +61,14 @@ namespace Here.Tests.Maybes
             // Explicit conversion
             var emptyMaybeInt = Maybe<int>.None;
             result = emptyMaybeInt.ToValueResult();
-            CheckResultFail(result, string.Format(Maybe<int>.FailedToResultMessage, typeof(int)));
+            CheckResultFail(result, string.Format(Maybe.FailedToResultMessage, typeof(int)));
 
             result = emptyMaybeInt.ToValueResult("Empty emptyMaybeInt");
             CheckResultFail(result, "Empty emptyMaybeInt");
 
             // Implicit conversion
             result = emptyMaybeInt;
-            CheckResultFail(result, string.Format(Maybe<int>.FailedToResultMessage, typeof(int)));
+            CheckResultFail(result, string.Format(Maybe.FailedToResultMessage, typeof(int)));
         }
 
         [Test]
@@ -92,13 +92,13 @@ namespace Here.Tests.Maybes
             // Empty Maybe
             var emptyMaybeInt = Maybe<int>.None;
             result = emptyMaybeInt.ToCustomResult(customErrorObject);
-            CheckResultFail(result, string.Format(Maybe<int>.FailedToResultMessage, typeof(int)), customErrorObject);
+            CheckResultFail(result, string.Format(Maybe.FailedToResultMessage, typeof(int)), customErrorObject);
 
             result = emptyMaybeInt.ToCustomResult(customErrorObject, "Empty emptyMaybeInt");
             CheckResultFail(result, "Empty emptyMaybeInt", customErrorObject);
 
             result = emptyMaybeInt.ToCustomResult(() => customErrorObject);
-            CheckResultFail(result, string.Format(Maybe<int>.FailedToResultMessage, typeof(int)), customErrorObject);
+            CheckResultFail(result, string.Format(Maybe.FailedToResultMessage, typeof(int)), customErrorObject);
 
             result = emptyMaybeInt.ToCustomResult(() => customErrorObject, "Empty emptyMaybeInt");
             CheckResultFail(result, "Empty emptyMaybeInt", customErrorObject);
@@ -125,13 +125,13 @@ namespace Here.Tests.Maybes
             // Empty Maybe
             var emptyMaybeInt = Maybe<int>.None;
             result = emptyMaybeInt.ToCustomValueResult(customErrorObject);
-            CheckResultFail(result, string.Format(Maybe<int>.FailedToResultMessage, typeof(int)), customErrorObject);
+            CheckResultFail(result, string.Format(Maybe.FailedToResultMessage, typeof(int)), customErrorObject);
 
             result = emptyMaybeInt.ToCustomValueResult(customErrorObject, "Empty emptyMaybeInt");
             CheckResultFail(result, "Empty emptyMaybeInt", customErrorObject);
 
             result = emptyMaybeInt.ToCustomValueResult(() => customErrorObject);
-            CheckResultFail(result, string.Format(Maybe<int>.FailedToResultMessage, typeof(int)), customErrorObject);
+            CheckResultFail(result, string.Format(Maybe.FailedToResultMessage, typeof(int)), customErrorObject);
 
             result = emptyMaybeInt.ToCustomValueResult(() => customErrorObject, "Empty emptyMaybeInt");
             CheckResultFail(result, "Empty emptyMaybeInt", customErrorObject);

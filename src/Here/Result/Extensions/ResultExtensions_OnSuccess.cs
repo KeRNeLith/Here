@@ -82,7 +82,7 @@ namespace Here.Results.Extensions
             if (IsConsideredFailure(result, treatWarningAsError))
                 return result.ToFailValueResult<T>();
 
-            return new Result<T>(onSuccess(), result._logic);
+            return new Result<T>(onSuccess(), result.Logic);
         }
 
         /// <summary>
@@ -238,18 +238,17 @@ namespace Here.Results.Extensions
             if (IsConsideredFailure(result, treatWarningAsError))
                 return result.ToFailValueResult<TOut>();
 
-            return new Result<TOut>(converter(result.Value), result._logic);
+            return new Result<TOut>(converter(result.Value), result.Logic);
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="Result{TIn}.IsSuccess"/>.
+        /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="Result{T}.IsSuccess"/>.
         /// </summary>
-        /// <typeparam name="TIn">Input result value type.</typeparam>
-        /// <typeparam name="TOut">Output result value type.</typeparam>
-        /// <param name="result"><see cref="Result{TIn}"/> to check.</param>
-        /// <param name="onSuccess">Function to run if the <see cref="Result{TIn}"/> is <see cref="Result{TIn}.IsSuccess"/>.</param>
+        /// <typeparam name="T">Result value type.</typeparam>
+        /// <param name="result"><see cref="Result{T}"/> to check.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="Result{T}"/> is <see cref="Result{T}.IsSuccess"/>.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="Result{TOut}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
+        /// <returns>A <see cref="Result"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
         public static Result OnSuccess<T>(this Result<T> result,
             [NotNull, InstantHandle] Func<T, Result> onSuccess,
@@ -362,7 +361,8 @@ namespace Here.Results.Extensions
         /// Call the <paramref name="errorFactory"/> function if needed to create a custom error object in cases 
         /// the <see cref="Result{TIn}"/> is a failure or a warning treated as error.
         /// </summary>
-        /// <typeparam name="T">Result value type.</typeparam>
+        /// <typeparam name="TIn">Result input value type.</typeparam>
+        /// <typeparam name="TOut">Result output value type.</typeparam>
         /// <typeparam name="TError">Output result custom error type.</typeparam>
         /// <param name="result"><see cref="Result{TIn}"/> to check.</param>
         /// <param name="onSuccess">Function to run if the <see cref="Result{TIn}"/> is <see cref="Result{TIn}.IsSuccess"/>.</param>
@@ -455,7 +455,7 @@ namespace Here.Results.Extensions
                     : result.ToFailCustomValueResult<T>();
             }
 
-            return new Result<T, TError>(onSuccess(), result._logic);
+            return new Result<T, TError>(onSuccess(), result.Logic);
         }
 
         /// <summary>
@@ -482,7 +482,7 @@ namespace Here.Results.Extensions
                     : result.ToFailCustomValueResult<T>();
             }
 
-            return new Result<T, TError>(onSuccess(), result._logic);
+            return new Result<T, TError>(onSuccess(), result.Logic);
         }
 
         /// <summary>
@@ -554,7 +554,6 @@ namespace Here.Results.Extensions
         /// <summary>
         /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="CustomResult{TError}.IsSuccess"/>.
         /// </summary>
-        /// <typeparam name="T">Result input value type.</typeparam>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
         /// <param name="onSuccess">Function to run if the <see cref="CustomResult{TError}"/> is <see cref="CustomResult{TError}.IsSuccess"/>.</param>
@@ -706,7 +705,7 @@ namespace Here.Results.Extensions
                 return result.ToFailCustomValueResult<TOut>();
             }
 
-            return new Result<TOut, TError>(converter(result.Value), result._logic);
+            return new Result<TOut, TError>(converter(result.Value), result.Logic);
         }
 
         /// <summary>
@@ -733,7 +732,7 @@ namespace Here.Results.Extensions
                 return result.ToFailCustomValueResult<TOut>();
             }
 
-            return new Result<TOut, TError>(converter(result.Value), result._logic);
+            return new Result<TOut, TError>(converter(result.Value), result.Logic);
         }
 
         /// <summary>

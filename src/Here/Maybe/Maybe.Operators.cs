@@ -88,8 +88,6 @@ namespace Here.Maybes
 
         #region Gateway to Result
 
-        internal static readonly string FailedToResultMessage = "Maybe<{0}> has no value";
-
         /// <summary>
         /// Convert this <see cref="Maybe{T}"/> to a <see cref="Result.IsSuccess"/> if it has a value, or a <see cref="Result.IsFailure"/> if not.
         /// </summary>
@@ -100,7 +98,7 @@ namespace Here.Maybes
         {
             if (HasValue)
                 return Result.Ok();
-            return Result.Fail(failureMessage ?? string.Format(FailedToResultMessage, typeof(T)));
+            return Result.Fail(failureMessage ?? string.Format(Maybe.FailedToResultMessage, typeof(T)));
         }
 
         /// <summary>
@@ -113,7 +111,7 @@ namespace Here.Maybes
         {
             if (HasValue)
                 return Result.Ok(Value);
-            return Result.Fail<T>(failureMessage ?? string.Format(FailedToResultMessage, typeof(T)));
+            return Result.Fail<T>(failureMessage ?? string.Format(Maybe.FailedToResultMessage, typeof(T)));
         }
 
         /// <summary>
@@ -127,7 +125,7 @@ namespace Here.Maybes
         {
             if (HasValue)
                 return Result.CustomOk<TError>();
-            return Result.CustomFail(failureMessage ?? string.Format(FailedToResultMessage, typeof(T)), errorFactory());
+            return Result.CustomFail(failureMessage ?? string.Format(Maybe.FailedToResultMessage, typeof(T)), errorFactory());
         }
 
         /// <summary>
@@ -141,7 +139,7 @@ namespace Here.Maybes
         {
             if (HasValue)
                 return Result.CustomOk<TError>();
-            return Result.CustomFail(failureMessage ?? string.Format(FailedToResultMessage, typeof(T)), errorObject);
+            return Result.CustomFail(failureMessage ?? string.Format(Maybe.FailedToResultMessage, typeof(T)), errorObject);
         }
 
         /// <summary>
@@ -155,7 +153,7 @@ namespace Here.Maybes
         {
             if (HasValue)
                 return Result.Ok<T, TError>(Value);
-            return Result.Fail<T, TError>(failureMessage ?? string.Format(FailedToResultMessage, typeof(T)), errorFactory());
+            return Result.Fail<T, TError>(failureMessage ?? string.Format(Maybe.FailedToResultMessage, typeof(T)), errorFactory());
         }
 
         /// <summary>
@@ -169,7 +167,7 @@ namespace Here.Maybes
         {
             if (HasValue)
                 return Result.Ok<T, TError>(Value);
-            return Result.Fail<T, TError>(failureMessage ?? string.Format(FailedToResultMessage, typeof(T)), errorObject);
+            return Result.Fail<T, TError>(failureMessage ?? string.Format(Maybe.FailedToResultMessage, typeof(T)), errorObject);
         }
 
         #endregion
