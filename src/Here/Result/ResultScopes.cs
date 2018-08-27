@@ -9,22 +9,6 @@ namespace Here.Results
     [PublicAPI]
     public static class ResultScope
     {
-        #region Error messages
-
-        internal const string ResultScopeErrorMessage = "An exception occurred while running a Result scope\n" +
-                                                        "Error is: {0}";
-
-        internal const string ValueResultScopeErrorMessage = "An exception occurred while running a Result<T> scope\n" +
-                                                             "Error is: {0}";
-
-        internal const string CustomResultScopeErrorMessage = "An exception occurred while running a CustomResult<TError> scope\n" +
-                                                              "Error is: {0}";
-
-        internal const string ValueCustomResultScopeErrorMessage = "An exception occurred while running a Result<T, TError> scope\n" +
-                                                                   "Error is: {0}";
-
-        #endregion
-
         /// <summary>
         /// Run the given <paramref name="action"/> in a safe scope that always return a <see cref="Result"/>.
         /// </summary>
@@ -40,7 +24,7 @@ namespace Here.Results
             catch (Exception ex)
             {
                 return Result.Fail(
-                    string.Format(ResultScopeErrorMessage, ex.Message), 
+                    string.Format(ResultConstants.ResultScopeErrorMessage, ex.Message), 
                     ex);
             }
         }
@@ -60,7 +44,7 @@ namespace Here.Results
             catch (Exception ex)
             {
                 return Result.Fail<T>(
-                    string.Format(ValueResultScopeErrorMessage, ex.Message),
+                    string.Format(ResultConstants.ValueResultScopeErrorMessage, ex.Message),
                     ex);
             }
         }
@@ -81,7 +65,7 @@ namespace Here.Results
             catch (Exception ex)
             {
                 return Result.CustomFail(
-                    string.Format(CustomResultScopeErrorMessage, ex.Message),
+                    string.Format(ResultConstants.CustomResultScopeErrorMessage, ex.Message),
                     errorObject,
                     ex);
             }
@@ -103,7 +87,7 @@ namespace Here.Results
             catch (Exception ex)
             {
                 return Result.CustomFail(
-                    string.Format(CustomResultScopeErrorMessage, ex.Message),
+                    string.Format(ResultConstants.CustomResultScopeErrorMessage, ex.Message),
                     errorFactory(),
                     ex);
             }
@@ -125,7 +109,7 @@ namespace Here.Results
             catch (Exception ex)
             {
                 return Result.Fail<T, TError>(
-                    string.Format(ValueCustomResultScopeErrorMessage, ex.Message),
+                    string.Format(ResultConstants.ValueCustomResultScopeErrorMessage, ex.Message),
                     errorObject,
                     ex);
             }
@@ -147,7 +131,7 @@ namespace Here.Results
             catch (Exception ex)
             {
                 return Result.Fail<T, TError>(
-                    string.Format(ValueCustomResultScopeErrorMessage, ex.Message),
+                    string.Format(ResultConstants.ValueCustomResultScopeErrorMessage, ex.Message),
                     errorFactory(),
                     ex);
             }
