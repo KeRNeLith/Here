@@ -31,34 +31,6 @@ namespace Here.Maybes
         /// <returns>True if <see cref="Maybe{T}"/> <see cref="HasNoValue"/>.</returns>
         [PublicAPI, Pure]
         public static bool operator !(Maybe<T> maybe) => maybe.HasNoValue;
-
-        /// <summary>
-        /// Perform the bitwise OR of given operands.
-        /// </summary>
-        /// <param name="leftOperand">First <see cref="Maybe{T}"/> operand.</param>
-        /// <param name="rightOperand">Second <see cref="Maybe{T}"/> operand.</param>
-        /// <returns>The first operand that <see cref="HasValue"/>, otherwise <see cref="None"/>.</returns>
-        [PublicAPI, Pure]
-        public static Maybe<T> operator |(Maybe<T> leftOperand, Maybe<T> rightOperand)
-        {
-            if (leftOperand.HasValue)
-                return leftOperand;
-            return rightOperand;
-        }
-
-        /// <summary>
-        /// Perform the bitwise AND of given operands.
-        /// </summary>
-        /// <param name="leftOperand">First <see cref="Maybe{T}"/> operand.</param>
-        /// <param name="rightOperand">Second <see cref="Maybe{T}"/> operand.</param>
-        /// <returns>The last operand that <see cref="HasValue"/>, otherwise <see cref="None"/>.</returns>
-        [PublicAPI, Pure]
-        public static Maybe<T> operator &(Maybe<T> leftOperand, Maybe<T> rightOperand)
-        {
-            if (leftOperand.HasValue)
-                return rightOperand;
-            return None;
-        }
         
         /// <summary>
         /// Convert this <see cref="Maybe{T}"/> if it has a value to a <see cref="Maybe{TOut}"/>.

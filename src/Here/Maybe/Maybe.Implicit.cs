@@ -39,6 +39,17 @@ namespace Here.Maybes
         }
 
         /// <summary>
+        /// Implicit convertion from <see cref="Maybe{T}"/> to a boolean.
+        /// </summary>
+        /// <param name="result"><see cref="Maybe{T}"/> to convert.</param>
+        /// <returns>A corresponding boolean.</returns>
+        [PublicAPI, Pure]
+        public static implicit operator bool(Maybe<T> maybe)
+        {
+            return maybe.HasValue;
+        }
+
+        /// <summary>
         /// Implicit convertion from <see cref="Maybe{T}"/> to a <see cref="Result"/>.
         /// </summary>
         /// <param name="maybe">A <see cref="Maybe{T}"/> to convert.</param>
