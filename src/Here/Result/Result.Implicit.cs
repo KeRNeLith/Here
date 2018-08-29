@@ -16,6 +16,17 @@ namespace Here.Results
         {
             return result.ToMaybe();
         }
+
+        /// <summary>
+        /// Implicit convertion from <see cref="Result"/> to a boolean.
+        /// </summary>
+        /// <param name="result"><see cref="Result"/> to convert.</param>
+        /// <returns>A corresponding boolean.</returns>
+        [PublicAPI, Pure]
+        public static implicit operator bool(Result result)
+        {
+            return result.IsSuccess;
+        }
     }
 
     public partial struct Result<T>
