@@ -46,6 +46,30 @@ namespace Here.Results
 
     public partial struct Result<T>
     {
+        /// <summary>
+        /// Check the <see cref="Result{T}"/> state, it matches true if it <see cref="IsSuccess"/>.
+        /// </summary>
+        /// <param name="result"><see cref="Result{T}"/> to check.</param>
+        /// <returns>True if <see cref="IsSuccess"/>.</returns>
+        [PublicAPI, Pure]
+        public static bool operator true(Result<T> result) => result.IsSuccess;
+
+        /// <summary>
+        /// Check the <see cref="Result{T}"/> state, it matches false if it <see cref="IsFailure"/>.
+        /// </summary>
+        /// <param name="result"><see cref="Result{T}"/> to check.</param>
+        /// <returns>True if <see cref="IsFailure"/>.</returns>
+        [PublicAPI, Pure]
+        public static bool operator false(Result<T> result) => result.IsFailure;
+
+        /// <summary>
+        /// Check if the <see cref="Result{T}"/> state <see cref="IsFailure"/>.
+        /// </summary>
+        /// <param name="result"><see cref="Result{T}"/> to check.</param>
+        /// <returns>True if <see cref="IsFailure"/>.</returns>
+        [PublicAPI, Pure]
+        public static bool operator !(Result<T> result) => result.IsFailure;
+
         #region Gateway to Maybe
 
         /// <summary>
@@ -64,6 +88,30 @@ namespace Here.Results
 
     public partial struct CustomResult<TError>
     {
+        /// <summary>
+        /// Check the <see cref="CustomResult{TError}"/> state, it matches true if it <see cref="IsSuccess"/>.
+        /// </summary>
+        /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
+        /// <returns>True if <see cref="IsSuccess"/>.</returns>
+        [PublicAPI, Pure]
+        public static bool operator true(CustomResult<TError> result) => result.IsSuccess;
+
+        /// <summary>
+        /// Check the <see cref="Result{T}"/> state, it matches false if it <see cref="IsFailure"/>.
+        /// </summary>
+        /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
+        /// <returns>True if <see cref="IsFailure"/>.</returns>
+        [PublicAPI, Pure]
+        public static bool operator false(CustomResult<TError> result) => result.IsFailure;
+
+        /// <summary>
+        /// Check if the <see cref="CustomResult{TError}"/> state <see cref="IsFailure"/>.
+        /// </summary>
+        /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
+        /// <returns>True if <see cref="IsFailure"/>.</returns>
+        [PublicAPI, Pure]
+        public static bool operator !(CustomResult<TError> result) => result.IsFailure;
+
         #region Gateway to Maybe
 
         /// <summary>
@@ -80,6 +128,30 @@ namespace Here.Results
 
     public partial struct Result<T, TError>
     {
+        /// <summary>
+        /// Check the <see cref="Result{T, TError}"/> state, it matches true if it <see cref="IsSuccess"/>.
+        /// </summary>
+        /// <param name="result"><see cref="Result{T, TError}"/> to check.</param>
+        /// <returns>True if <see cref="IsSuccess"/>.</returns>
+        [PublicAPI, Pure]
+        public static bool operator true(Result<T, TError> result) => result.IsSuccess;
+
+        /// <summary>
+        /// Check the <see cref="Result{T, TError}"/> state, it matches false if it <see cref="IsFailure"/>.
+        /// </summary>
+        /// <param name="result"><see cref="Result{T, TError}"/> to check.</param>
+        /// <returns>True if <see cref="IsFailure"/>.</returns>
+        [PublicAPI, Pure]
+        public static bool operator false(Result<T, TError> result) => result.IsFailure;
+
+        /// <summary>
+        /// Check if the <see cref="Result{T, TError}"/> state <see cref="IsFailure"/>.
+        /// </summary>
+        /// <param name="result"><see cref="Result{T, TError}"/> to check.</param>
+        /// <returns>True if <see cref="IsFailure"/>.</returns>
+        [PublicAPI, Pure]
+        public static bool operator !(Result<T, TError> result) => result.IsFailure;
+
         #region Gateway to Maybe
 
         /// <summary>
