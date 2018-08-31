@@ -32,15 +32,15 @@ namespace Here.Maybes.Extensions
         public delegate bool TryParse<in TInput, TValue>([CanBeNull] TInput input, NumberStyles style, IFormatProvider culture, out TValue value);
 
         /// <summary>
-		/// Create a Get methods that try to get a value from input with given try get function 
+        /// Create a Get methods that try to get a value from input with given try get function 
         /// and create a <see cref="Maybe{TValue}"/> with the result. TryGet methods are like int.TryParse, etc.
-		/// </summary>
-		/// <typeparam name="TInput"><see cref="Type"/> of the input/key.</typeparam>
+        /// </summary>
+        /// <typeparam name="TInput"><see cref="Type"/> of the input/key.</typeparam>
         /// <typeparam name="TValue"><see cref="Type"/> of the value to try get.</typeparam>
-		/// <param name="tryGetFunc">Try get method.</param>
-		/// <returns>The result of the try get as <see cref="Maybe{TValue}"/></returns>
+        /// <param name="tryGetFunc">Try get method.</param>
+        /// <returns>The result of the try get as <see cref="Maybe{TValue}"/></returns>
         [NotNull, Pure]
-		public static Func<TInput, Maybe<TValue>> CreateGet<TInput, TValue>([NotNull, InstantHandle] TryGet<TInput, TValue> tryGetFunc)
+        public static Func<TInput, Maybe<TValue>> CreateGet<TInput, TValue>([NotNull, InstantHandle] TryGet<TInput, TValue> tryGetFunc)
         {
             return input => tryGetFunc(input, out TValue result)
                 ? result
@@ -50,13 +50,13 @@ namespace Here.Maybes.Extensions
         private static readonly CultureInfo DefaultParseCultureInfo = new CultureInfo("en-US");
 
         /// <summary>
-		/// Create a Get methods that try to get a value from input with given try get function 
+        /// Create a Get methods that try to get a value from input with given try get function 
         /// and create a <see cref="Maybe{TValue}"/> with the result. TryGet methods are like int.TryParse, etc.
-		/// </summary>
-		/// <typeparam name="TInput"><see cref="Type"/> of the input/key.</typeparam>
+        /// </summary>
+        /// <typeparam name="TInput"><see cref="Type"/> of the input/key.</typeparam>
         /// <typeparam name="TValue"><see cref="Type"/> of the value to try get.</typeparam>
-		/// <param name="tryParseFunc">Try get method.</param>
-		/// <returns>The result of the try get as <see cref="Maybe{TValue}"/></returns>
+        /// <param name="tryParseFunc">Try get method.</param>
+        /// <returns>The result of the try get as <see cref="Maybe{TValue}"/></returns>
         [NotNull, Pure]
         public static Func<TInput, Maybe<TValue>> CreateDefaultParse<TInput, TValue>([NotNull, InstantHandle] TryParse<TInput, TValue> tryParseFunc)
         {
@@ -64,15 +64,15 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-		/// Create a Get methods that try to get a value from input with given try get function 
+        /// Create a Get methods that try to get a value from input with given try get function 
         /// and create a <see cref="Maybe{TValue}"/> with the result. TryGet methods are like int.TryParse, etc.
-		/// </summary>
-		/// <typeparam name="TInput"><see cref="Type"/> of the input/key.</typeparam>
+        /// </summary>
+        /// <typeparam name="TInput"><see cref="Type"/> of the input/key.</typeparam>
         /// <typeparam name="TValue"><see cref="Type"/> of the value to try get.</typeparam>
-		/// <param name="tryGetFunc">Try get method.</param>
+        /// <param name="tryGetFunc">Try get method.</param>
         /// <param name="style">Style number to use.</param>
         /// <param name="culture">Format provider (culture) to use.</param>
-		/// <returns>The result of the try get as <see cref="Maybe{TValue}"/></returns>
+        /// <returns>The result of the try get as <see cref="Maybe{TValue}"/></returns>
         [NotNull, Pure]
         public static Func<TInput, Maybe<TValue>> CreateParse<TInput, TValue>([NotNull, InstantHandle] TryParse<TInput, TValue> tryGetFunc, NumberStyles style, IFormatProvider culture)
         {

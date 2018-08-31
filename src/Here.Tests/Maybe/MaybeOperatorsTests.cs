@@ -60,121 +60,49 @@ namespace Here.Tests.Maybes
         }
 
         [Test]
-        public void MaybeBitwiseOrOperator()
-        {
-            // Empty maybes
-            var first = Maybe<int>.None;
-            var second = Maybe<int>.None;
-
-            var bitwiseOrResult = first | second;   // Should be None (Both none)
-            Assert.AreEqual(Maybe<int>.None, bitwiseOrResult);
-            CheckEmptyMaybe(bitwiseOrResult);
-
-            bitwiseOrResult = second | first;       // Should be None (Both none)
-            Assert.AreEqual(Maybe<int>.None, bitwiseOrResult);
-            CheckEmptyMaybe(bitwiseOrResult);
-
-            // One empty maybe and one with value
-            first = Maybe<int>.None;
-            second = Maybe<int>.Some(42);
-
-            bitwiseOrResult = first | second;       // Second should always be selected (Has value)
-            Assert.AreEqual(second, bitwiseOrResult);
-            CheckMaybeValue(bitwiseOrResult, 42);
-
-            bitwiseOrResult = second | first;       // Second should always be selected (Has value)
-            Assert.AreEqual(second, bitwiseOrResult);
-            CheckMaybeValue(bitwiseOrResult, 42);
-
-            // Both maybes have values
-            first = Maybe<int>.Some(12);
-            second = Maybe<int>.Some(42);
-
-            bitwiseOrResult = first | second;       // The first operand should always be selected (Both has value)
-            Assert.AreEqual(first, bitwiseOrResult);
-            CheckMaybeValue(bitwiseOrResult, 12);
-
-            bitwiseOrResult = second | first;       // The first operand should always be selected (Both has value)
-            Assert.AreEqual(second, bitwiseOrResult);
-            CheckMaybeValue(bitwiseOrResult, 42);
-        }
-
-        [Test]
         public void MaybeLogicalOrOperator()
         {
             // Empty maybes
             var first = Maybe<int>.None;
             var second = Maybe<int>.None;
 
-            var logicalOrResult = first || second;  // Should be None (Both none)
-            Assert.AreEqual(Maybe<int>.None, logicalOrResult);
-            CheckEmptyMaybe(logicalOrResult);
+            if (first || second)
+                Assert.Fail("|| performed on 2 None maybes should be false.");
 
-            logicalOrResult = second || first;      // Should be None (Both none)
-            Assert.AreEqual(Maybe<int>.None, logicalOrResult);
-            CheckEmptyMaybe(logicalOrResult);
+            if (second || first)
+                Assert.Fail("|| performed on 2 None maybes should be false.");
 
             // One empty maybe and one with value
             first = Maybe<int>.None;
             second = Maybe<int>.Some(42);
 
-            logicalOrResult = first || second;       // Second should always be selected (Has value)
-            CheckMaybeValue(logicalOrResult, 42);
+            if (first || second)
+            {
+            }
+            else
+                Assert.Fail("|| performed on a None and not None maybes should be true.");
 
-            logicalOrResult = second || first;       // Second should always be selected (Has value)
-            CheckMaybeValue(logicalOrResult, 42);
-
-            // Both maybes have values
-            first = Maybe<int>.Some(12);
-            second = Maybe<int>.Some(42);
-
-            logicalOrResult = first || second;       // The first operand should always be selected (Both has value)
-            Assert.AreEqual(first, logicalOrResult);
-            CheckMaybeValue(logicalOrResult, 12);
-
-            logicalOrResult = second || first;       // The first operand should always be selected (Both has value)
-            Assert.AreEqual(second, logicalOrResult);
-            CheckMaybeValue(logicalOrResult, 42);
-        }
-
-        [Test]
-        public void MaybeBitwiseAndOperator()
-        {
-            // Empty maybes
-            var first = Maybe<int>.None;
-            var second = Maybe<int>.None;
-
-            var bitwiseAndResult = first & second;   // Should be None (Both none)
-            Assert.AreEqual(Maybe<int>.None, bitwiseAndResult);
-            CheckEmptyMaybe(bitwiseAndResult);
-
-            bitwiseAndResult = second & first;      // Should be None (Both none)
-            Assert.AreEqual(Maybe<int>.None, bitwiseAndResult);
-            CheckEmptyMaybe(bitwiseAndResult);
-
-            // One empty maybe and one with value
-            first = Maybe<int>.None;
-            second = Maybe<int>.Some(42);
-
-            bitwiseAndResult = first & second;       // First should always be selected (Second hasn't a value so it's none)
-            Assert.AreEqual(first, bitwiseAndResult);
-            CheckEmptyMaybe(bitwiseAndResult);
-
-            bitwiseAndResult = second & first;       // First should always be selected (Second hasn't a value so it's none)
-            Assert.AreEqual(first, bitwiseAndResult);
-            CheckEmptyMaybe(bitwiseAndResult);
+            if (second || first)
+            {
+            }
+            else
+                Assert.Fail("|| performed on a None and not None maybes should be true.");
 
             // Both maybes have values
             first = Maybe<int>.Some(12);
             second = Maybe<int>.Some(42);
 
-            bitwiseAndResult = first & second;       // The second operand should always be selected
-            Assert.AreEqual(second, bitwiseAndResult);
-            CheckMaybeValue(bitwiseAndResult, 42);
+            if (first || second)
+            {
+            }
+            else
+                Assert.Fail("|| performed on 2 not None maybes should be true.");
 
-            bitwiseAndResult = second & first;       // The second operand should always be selected
-            Assert.AreEqual(first, bitwiseAndResult);
-            CheckMaybeValue(bitwiseAndResult, 12);
+            if (second || first)
+            {
+            }
+            else
+                Assert.Fail("|| performed on 2 not None maybes should be true.");
         }
 
         [Test]
@@ -184,37 +112,37 @@ namespace Here.Tests.Maybes
             var first = Maybe<int>.None;
             var second = Maybe<int>.None;
 
-            var logicalAndResult = first && second;   // Should be None (Both none)
-            Assert.AreEqual(first, logicalAndResult);
-            CheckEmptyMaybe(logicalAndResult);
+            if (first && second)
+                Assert.Fail("&& performed on 2 None maybes should be false.");
 
-            logicalAndResult = second && first;      // Should be None (Both none)
-            Assert.AreEqual(second, logicalAndResult);
-            CheckEmptyMaybe(logicalAndResult);
+            if (second && first)
+                Assert.Fail("&& performed on 2 None maybes should be false.");
 
             // One empty maybe and one with value
             first = Maybe<int>.None;
             second = Maybe<int>.Some(42);
 
-            logicalAndResult = first && second;       // First should always be selected (Second hasn't a value so it's none)
-            Assert.AreEqual(first, logicalAndResult);
-            CheckEmptyMaybe(logicalAndResult);
+            if (first && second)
+                Assert.Fail("&& performed on a None and a not None maybes should be false.");
 
-            logicalAndResult = second && first;       // First should always be selected (Second hasn't a value so it's none)
-            Assert.AreEqual(first, logicalAndResult);
-            CheckEmptyMaybe(logicalAndResult);
+            if (second && first)
+                Assert.Fail("&& performed on a None and a not None maybes should be false.");
 
             // Both maybes have values
             first = Maybe<int>.Some(12);
             second = Maybe<int>.Some(42);
 
-            logicalAndResult = first && second;       // The second operand should always be selected
-            Assert.AreEqual(second, logicalAndResult);
-            CheckMaybeValue(logicalAndResult, 42);
+            if (first && second)
+            {
+            }
+            else
+                Assert.Fail("&& performed on 2 not None maybes should be true.");
 
-            logicalAndResult = second && first;       // The second operand should always be selected
-            Assert.AreEqual(first, logicalAndResult);
-            CheckMaybeValue(logicalAndResult, 12);
+            if (second && first)
+            {
+            }
+            else
+                Assert.Fail("&& performed on 2 not None maybes should be true.");
         }
     }
 }
