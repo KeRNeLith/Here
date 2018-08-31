@@ -114,6 +114,7 @@ namespace Here.Tests.Maybes
         [Test]
         public void StringToMaybe()
         {
+            // Null or empty
             Maybe<string> maybeString;
             
             maybeString = string.Empty.NoneIfEmpty();
@@ -126,8 +127,69 @@ namespace Here.Tests.Maybes
             // ReSharper disable once ExpressionIsAlwaysNull
             maybeString = testNull.NoneIfEmpty();
             CheckEmptyMaybe(maybeString);
-            
+
+            maybeString = "  ".NoneIfEmpty();
+            CheckMaybeValue(maybeString, "  ");
+
             maybeString = "test".NoneIfEmpty();
+            CheckMaybeValue(maybeString, "test");
+
+            // Null or white space
+            maybeString = string.Empty.NoneIfEmptyOrSpace();
+            CheckEmptyMaybe(maybeString);
+
+            maybeString = "".NoneIfEmptyOrSpace();
+            CheckEmptyMaybe(maybeString);
+
+            // ReSharper disable once ExpressionIsAlwaysNull
+            maybeString = testNull.NoneIfEmptyOrSpace();
+            CheckEmptyMaybe(maybeString);
+
+            maybeString = "  ".NoneIfEmptyOrSpace();
+            CheckEmptyMaybe(maybeString);
+
+            maybeString = "test".NoneIfEmptyOrSpace();
+            CheckMaybeValue(maybeString, "test");
+        }
+
+        [Test]
+        public void MaybeStringToMaybe()
+        {
+            // Null or empty
+            Maybe<string> inputMaybeString;
+            Maybe<string> maybeString;
+
+            inputMaybeString = Maybe<string>.Some(string.Empty);
+            maybeString = inputMaybeString.NoneIfEmpty();
+            CheckEmptyMaybe(maybeString);
+
+            inputMaybeString = Maybe<string>.Some("");
+            maybeString = inputMaybeString.NoneIfEmpty();
+            CheckEmptyMaybe(maybeString);
+
+            inputMaybeString = Maybe<string>.Some("  ");
+            maybeString = inputMaybeString.NoneIfEmpty();
+            CheckMaybeValue(maybeString, "  ");
+
+            inputMaybeString = Maybe<string>.Some("test");
+            maybeString = inputMaybeString.NoneIfEmpty();
+            CheckMaybeValue(maybeString, "test");
+
+            // Null or white space
+            inputMaybeString = Maybe<string>.Some(string.Empty);
+            maybeString = inputMaybeString.NoneIfEmptyOrSpace();
+            CheckEmptyMaybe(maybeString);
+
+            inputMaybeString = Maybe<string>.Some("");
+            maybeString = inputMaybeString.NoneIfEmptyOrSpace();
+            CheckEmptyMaybe(maybeString);
+
+            inputMaybeString = Maybe<string>.Some("  ");
+            maybeString = inputMaybeString.NoneIfEmptyOrSpace();
+            CheckEmptyMaybe(maybeString);
+
+            inputMaybeString = Maybe<string>.Some("test");
+            maybeString = inputMaybeString.NoneIfEmptyOrSpace();
             CheckMaybeValue(maybeString, "test");
         }
 

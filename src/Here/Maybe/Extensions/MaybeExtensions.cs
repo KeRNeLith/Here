@@ -51,7 +51,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert the string to a <see cref="Maybe{String}"/>.
+        /// Convert the string to a <see cref="Maybe{String}"/> after applying <see cref="string.IsNullOrEmpty(string)"/>.
         /// </summary>
         /// <param name="str">String to convert.</param>
         /// <returns>The corresponding <see cref="Maybe{String}"/>.</returns>
@@ -61,6 +61,45 @@ namespace Here.Maybes.Extensions
             return string.IsNullOrEmpty(str)
                 ? Maybe<string>.None
                 : Maybe<string>.Some(str);
+        }
+
+        /// <summary>
+        /// Convert the string to a <see cref="Maybe{String}"/> after applying <see cref="string.IsNullOrWhiteSpace(string)"/>.
+        /// </summary>
+        /// <param name="str">String to convert.</param>
+        /// <returns>The corresponding <see cref="Maybe{String}"/>.</returns>
+        [PublicAPI, Pure]
+        public static Maybe<string> NoneIfEmptyOrSpace([CanBeNull] this string str)
+        {
+            return string.IsNullOrWhiteSpace(str)
+                ? Maybe<string>.None
+                : Maybe<string>.Some(str);
+        }
+
+        /// <summary>
+        /// Convert the <see cref="Maybe{String}"/> to another <see cref="Maybe{String}"/> after applying <see cref="string.IsNullOrEmpty(string)"/>.
+        /// </summary>
+        /// <param name="str"><see cref="Maybe{String}"/> on which applying the treatment.</param>
+        /// <returns>The corresponding <see cref="Maybe{String}"/>.</returns>
+        [PublicAPI, Pure]
+        public static Maybe<string> NoneIfEmpty([CanBeNull] this Maybe<string> maybe)
+        {
+            return maybe.IfElse(
+                str => string.IsNullOrEmpty(str) ? Maybe<string>.None : Maybe<string>.Some(str), 
+                () => Maybe<string>.None);
+        }
+
+        /// <summary>
+        /// Convert the <see cref="Maybe{String}"/> to another <see cref="Maybe{String}"/> after applying <see cref="string.IsNullOrWhiteSpace(string)"/>.
+        /// </summary>
+        /// <param name="str"><see cref="Maybe{String}"/> on which applying the treatment.</param>
+        /// <returns>The corresponding <see cref="Maybe{String}"/>.</returns>
+        [PublicAPI, Pure]
+        public static Maybe<string> NoneIfEmptyOrSpace([CanBeNull] this Maybe<string> maybe)
+        {
+            return maybe.IfElse(
+                str => string.IsNullOrWhiteSpace(str) ? Maybe<string>.None : Maybe<string>.Some(str),
+                () => Maybe<string>.None);
         }
     }
 }
