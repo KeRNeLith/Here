@@ -159,6 +159,10 @@ namespace Here.Tests.Maybes
             Maybe<string> inputMaybeString;
             Maybe<string> maybeString;
 
+            inputMaybeString = Maybe.None;
+            maybeString = inputMaybeString.NoneIfEmpty();
+            CheckEmptyMaybe(maybeString);
+
             inputMaybeString = Maybe<string>.Some(string.Empty);
             maybeString = inputMaybeString.NoneIfEmpty();
             CheckEmptyMaybe(maybeString);
@@ -176,6 +180,10 @@ namespace Here.Tests.Maybes
             CheckMaybeValue(maybeString, "test");
 
             // Null or white space
+            inputMaybeString = Maybe.None;
+            maybeString = inputMaybeString.NoneIfEmptyOrSpace();
+            CheckEmptyMaybe(maybeString);
+
             inputMaybeString = Maybe<string>.Some(string.Empty);
             maybeString = inputMaybeString.NoneIfEmptyOrSpace();
             CheckEmptyMaybe(maybeString);
