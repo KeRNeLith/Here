@@ -24,7 +24,7 @@ namespace Here.Tests.Results
 
             var thrownException = new Exception("My exception");
             result = ResultScope.SafeResult(() => throw thrownException);
-            CheckResultFail(result, string.Format(ResultScope.ResultScopeErrorMessage, "My exception"), thrownException);
+            CheckResultFail(result, string.Format(ResultConstants.ResultScopeErrorMessage, "My exception"), thrownException);
         }
 
         [Test]
@@ -41,7 +41,7 @@ namespace Here.Tests.Results
 
             var thrownException = new Exception("My exception");
             result = ResultScope.SafeValueResult<int>(() => throw thrownException);
-            CheckResultFail(result, string.Format(ResultScope.ValueResultScopeErrorMessage, "My exception"), thrownException);
+            CheckResultFail(result, string.Format(ResultConstants.ValueResultScopeErrorMessage, "My exception"), thrownException);
         }
 
         [Test]
@@ -69,10 +69,10 @@ namespace Here.Tests.Results
 
             var thrownException = new Exception("My exception");
             result = ResultScope.SafeCustomResult(() => throw thrownException, () => defaultError);
-            CheckResultFail(result, string.Format(ResultScope.CustomResultScopeErrorMessage, "My exception"), defaultError, thrownException);
+            CheckResultFail(result, string.Format(ResultConstants.CustomResultScopeErrorMessage, "My exception"), defaultError, thrownException);
 
             result = ResultScope.SafeCustomResult(() => throw thrownException, defaultError);
-            CheckResultFail(result, string.Format(ResultScope.CustomResultScopeErrorMessage, "My exception"), defaultError, thrownException);
+            CheckResultFail(result, string.Format(ResultConstants.CustomResultScopeErrorMessage, "My exception"), defaultError, thrownException);
         }
 
         [Test]
@@ -100,10 +100,10 @@ namespace Here.Tests.Results
 
             var thrownException = new Exception("My exception");
             result = ResultScope.SafeValueCustomResult<int, CustomErrorTest>(() => throw thrownException, () => defaultError);
-            CheckResultFail(result, string.Format(ResultScope.ValueCustomResultScopeErrorMessage, "My exception"), defaultError, thrownException);
+            CheckResultFail(result, string.Format(ResultConstants.ValueCustomResultScopeErrorMessage, "My exception"), defaultError, thrownException);
 
             result = ResultScope.SafeValueCustomResult<int, CustomErrorTest>(() => throw thrownException, defaultError);
-            CheckResultFail(result, string.Format(ResultScope.ValueCustomResultScopeErrorMessage, "My exception"), defaultError, thrownException);
+            CheckResultFail(result, string.Format(ResultConstants.ValueCustomResultScopeErrorMessage, "My exception"), defaultError, thrownException);
         }
     }
 }
