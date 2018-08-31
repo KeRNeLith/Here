@@ -9,11 +9,11 @@ namespace Here.Maybes.Extensions
     public static class MaybeExtensions
     {
         /// <summary>
-		/// Convert the value to the corresponding <see cref="Maybe{T}"/>.
-		/// </summary>
+        /// Convert the value to the corresponding <see cref="Maybe{T}"/>.
+        /// </summary>
         /// <typeparam name="T">Type of the value to wrap.</typeparam>
-		/// <param name="value">Value to convert.</param>
-		/// <returns>Corresponding <see cref="Maybe{T}"/>.</returns>
+        /// <param name="value">Value to convert.</param>
+        /// <returns>Corresponding <see cref="Maybe{T}"/>.</returns>
         [PublicAPI, Pure]
         public static Maybe<T> ToMaybe<T>([CanBeNull] this T value)
         {
@@ -23,11 +23,11 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-		/// Convert <see cref="Nullable"/> to the corresponding <see cref="Maybe{T}"/>.
-		/// </summary>
+        /// Convert <see cref="Nullable"/> to the corresponding <see cref="Maybe{T}"/>.
+        /// </summary>
         /// <typeparam name="T">Type of the value to wrap.</typeparam>
-		/// <param name="nullable"><see cref="Nullable{T}"/> to convert.</param>
-		/// <returns>Corresponding <see cref="Maybe{T}"/>.</returns>
+        /// <param name="nullable"><see cref="Nullable{T}"/> to convert.</param>
+        /// <returns>Corresponding <see cref="Maybe{T}"/>.</returns>
         [PublicAPI, Pure]
         public static Maybe<T> ToMaybe<T>([CanBeNull] this T? nullable)
             where T : struct
@@ -36,11 +36,11 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-		/// Convert <see cref="Maybe{T}"/> to the corresponding <see cref="Nullable{T}"/>.
-		/// </summary>
+        /// Convert <see cref="Maybe{T}"/> to the corresponding <see cref="Nullable{T}"/>.
+        /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
-		/// <param name="maybe"><see cref="Maybe{T}"/> to convert.</param>
-		/// <returns>Corresponding <see cref="Nullable{T}"/>.</returns>
+        /// <param name="maybe"><see cref="Maybe{T}"/> to convert.</param>
+        /// <returns>Corresponding <see cref="Nullable{T}"/>.</returns>
         [PublicAPI, Pure]
         public static T? ToNullable<T>(this Maybe<T> maybe)
             where T : struct

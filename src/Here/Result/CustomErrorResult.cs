@@ -89,7 +89,6 @@ namespace Here.Results
         /// Convert this <see cref="CustomResult{TError}"/> to a failure <see cref="CustomResult{TError}"/>.
         /// This <see cref="CustomResult{TError}"/> should be a warning or a failure.
         /// </summary>
-        /// 
         /// <param name="errorObject">Custom error object to use.</param>
         /// <returns>A failed <see cref="CustomResult{TError}"/>.</returns>
         [Pure]
