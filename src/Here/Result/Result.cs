@@ -95,6 +95,7 @@ namespace Here.Results
             if (IsFailure)
                 return ToFailCustomResult(errorObject);
             if (IsWarning)
+                // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
                 return CustomWarn<TError>(Logic.Message, Logic.Exception);
             return CustomOk<TError>();
         }
@@ -111,6 +112,7 @@ namespace Here.Results
             if (IsFailure)
                 return ToFailCustomResult(errorFactory());
             if (IsWarning)
+                // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
                 return CustomWarn<TError>(Logic.Message, Logic.Exception);
             return CustomOk<TError>();
         }
@@ -129,6 +131,7 @@ namespace Here.Results
             if (IsFailure)
                 return ToFailCustomValueResult<T, TError>(errorObject);
             if (IsWarning)
+                // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
                 return Warn<T, TError>(value, Logic.Message, Logic.Exception);
             return Ok<T, TError>(value);
         }
@@ -147,6 +150,7 @@ namespace Here.Results
             if (IsFailure)
                 return ToFailCustomValueResult<T, TError>(errorFactory());
             if (IsWarning)
+                // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
                 return Warn<T, TError>(value, Logic.Message, Logic.Exception);
             return Ok<T, TError>(value);
         }
@@ -165,6 +169,7 @@ namespace Here.Results
             if (IsFailure)
                 return ToFailCustomValueResult<T, TError>(errorObject);
             if (IsWarning)
+                // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
                 return Warn<T, TError>(valueFactory(), Logic.Message, Logic.Exception);
             return Ok<T, TError>(valueFactory());
         }
@@ -183,6 +188,7 @@ namespace Here.Results
             if (IsFailure)
                 return ToFailCustomValueResult<T, TError>(errorFactory());
             if (IsWarning)
+                // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
                 return Warn<T, TError>(valueFactory(), Logic.Message, Logic.Exception);
             return Ok<T, TError>(valueFactory());
         }
@@ -527,6 +533,7 @@ namespace Here.Results
             if (IsFailure)
                 return ToFailCustomResult(errorObject);
             if (IsWarning)
+                // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
                 return Result.CustomWarn<TError>(Logic.Message, Logic.Exception);
             return Result.CustomOk<TError>();
         }
@@ -543,6 +550,7 @@ namespace Here.Results
             if (IsFailure)
                 return ToFailCustomResult(errorFactory());
             if (IsWarning)
+                // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
                 return Result.CustomWarn<TError>(Logic.Message, Logic.Exception);
             return Result.CustomOk<TError>();
         }
@@ -561,6 +569,7 @@ namespace Here.Results
             if (IsFailure)
                 return ToFailCustomValueResult<TOut, TError>(errorObject);
             if (IsWarning)
+                // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
                 return Result.Warn<TOut, TError>(converter(Value), Logic.Message, Logic.Exception);
             return Result.Ok<TOut, TError>(converter(Value));
         }
@@ -579,6 +588,7 @@ namespace Here.Results
             if (IsFailure)
                 return ToFailCustomValueResult<TOut, TError>(errorFactory());
             if (IsWarning)
+                // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
                 return Result.Warn<TOut, TError>(converter(Value), Logic.Message, Logic.Exception);
             return Result.Ok<TOut, TError>(converter(Value));
         }
