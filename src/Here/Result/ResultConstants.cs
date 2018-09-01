@@ -5,10 +5,6 @@
     /// </summary>
     internal static class ResultConstants
     {
-        public const string ResultBitwiseOrOperatorErrorMessage = "None of results is success, so the | operator is failure.";
-
-        public const string ResultBitwiseAndOperatorErrorMessage = "At least one of results is failure, so the & operator is failure.";
-
         public const string ResultScopeErrorMessage = "An exception occurred while running a Result scope\n" 
                                                     + "Error is: {0}";
 

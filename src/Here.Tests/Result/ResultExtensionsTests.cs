@@ -283,7 +283,7 @@ namespace Here.Tests.Results
             CheckResultFail(result, errorMessage, customErrorObjectFactory);
 
             // Failure result
-            var failure = Result.CustomFail<CustomErrorTest>("My failure", customErrorObject);
+            var failure = Result.CustomFail("My failure", customErrorObject);
 
             result = failure.Ensure(
                 () =>

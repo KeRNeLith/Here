@@ -79,7 +79,7 @@ namespace Here.Maybes.Extensions
         /// <summary>
         /// Convert the <see cref="Maybe{String}"/> to another <see cref="Maybe{String}"/> after applying <see cref="string.IsNullOrEmpty(string)"/>.
         /// </summary>
-        /// <param name="str"><see cref="Maybe{String}"/> on which applying the treatment.</param>
+        /// <param name="maybe"><see cref="Maybe{String}"/> on which applying the treatment.</param>
         /// <returns>The corresponding <see cref="Maybe{String}"/>.</returns>
         [PublicAPI, Pure]
         public static Maybe<string> NoneIfEmpty(this Maybe<string> maybe)
@@ -92,7 +92,7 @@ namespace Here.Maybes.Extensions
         /// <summary>
         /// Convert the <see cref="Maybe{String}"/> to another <see cref="Maybe{String}"/> after applying <see cref="string.IsNullOrWhiteSpace(string)"/>.
         /// </summary>
-        /// <param name="str"><see cref="Maybe{String}"/> on which applying the treatment.</param>
+        /// <param name="maybe"><see cref="Maybe{String}"/> on which applying the treatment.</param>
         /// <returns>The corresponding <see cref="Maybe{String}"/>.</returns>
         [PublicAPI, Pure]
         public static Maybe<string> NoneIfEmptyOrSpace(this Maybe<string> maybe)

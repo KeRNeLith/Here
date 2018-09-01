@@ -1,5 +1,5 @@
-﻿using Here.Results;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
+using Here.Results;
 
 namespace Here.Maybes
 {
@@ -41,7 +41,7 @@ namespace Here.Maybes
         /// <summary>
         /// Implicit convertion from <see cref="Maybe{T}"/> to a boolean.
         /// </summary>
-        /// <param name="result"><see cref="Maybe{T}"/> to convert.</param>
+        /// <param name="maybe"><see cref="Maybe{T}"/> to convert.</param>
         /// <returns>A corresponding boolean.</returns>
         [PublicAPI, Pure]
         public static implicit operator bool(Maybe<T> maybe)

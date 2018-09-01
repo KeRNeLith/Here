@@ -249,7 +249,6 @@ namespace Here.Tests.Results
         [Test]
         public void CastValueResultTInToValueResultTOut()
         {
-            var customErrorObjectFactory = new CustomErrorTest { ErrorCode = -8 };
             int counterValueFactory = 0;
 
             // Result ok
@@ -439,7 +438,6 @@ namespace Here.Tests.Results
         public void CastCustomResultToValueResult()
         {
             var customErrorObject = new CustomErrorTest { ErrorCode = -5 };
-            var customErrorObjectFactory = new CustomErrorTest { ErrorCode = -8 };
             int counterValueFactory = 0;
 
             // Result ok

@@ -99,6 +99,7 @@ namespace Here.Results
             if (IsFailure)
                 return ToFailCustomValueResult<T>();
             if (IsWarning)
+                // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
                 return Result.Warn<T, TError>(value, Logic.Message, Logic.Exception);
             return Result.Ok<T, TError>(value);
         }
@@ -108,7 +109,6 @@ namespace Here.Results
         /// </summary>
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <param name="valueFactory">Factory method that create a value.</param>
-        /// <param name="errorObject">Custom error object.</param>
         /// <returns>A corresponding <see cref="Result{T, TError}"/>.</returns>
         [Pure]
         public Result<T, TError> CustomCast<T>([NotNull, InstantHandle] Func<T> valueFactory)
@@ -116,6 +116,7 @@ namespace Here.Results
             if (IsFailure)
                 return ToFailCustomValueResult<T>();
             if (IsWarning)
+                // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
                 return Result.Warn<T, TError>(valueFactory(), Logic.Message, Logic.Exception);
             return Result.Ok<T, TError>(valueFactory());
         }
@@ -304,6 +305,7 @@ namespace Here.Results
             if (IsFailure)
                 return ToFailCustomValueResult<TOut>();
             if (IsWarning)
+                // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
                 return Result.Warn<TOut, TError>(converter(Value), Logic.Message, Logic.Exception);
             return Result.Ok<TOut, TError>(converter(Value));
         }

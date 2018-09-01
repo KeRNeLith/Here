@@ -1070,6 +1070,20 @@ namespace Here.Tests.Results
             }
             else
                 Assert.Fail("|| performed on a Ok custom value result and a Fail custom result should be true.");
+
+
+            // Result<T, TError> & Result<T2, TError>
+            if (customValueResultFloat || customValueResultInt)
+            {
+            }
+            else
+                Assert.Fail("|| performed on 2 Ok custom value results should be true.");
+
+            if (customValueResultInt || customValueResultFloat)
+            {
+            }
+            else
+                Assert.Fail("|| performed on 2 Ok custom value results should be true.");
         }
 
         [Test]
@@ -1165,6 +1179,20 @@ namespace Here.Tests.Results
 
             if (customValueResultInt && customResultCustomErrorTest)
                 Assert.Fail("&& performed on a Ok custom value result and a Fail custom result should be true.");
+
+
+            // Result<T, TError> & Result<T2, TError>
+            if (customValueResultFloat && customValueResultInt)
+            {
+            }
+            else
+                Assert.Fail("&& performed on 2 Ok custom value results should be true.");
+
+            if (customValueResultInt && customValueResultFloat)
+            {
+            }
+            else
+                Assert.Fail("&& performed on 2 Ok custom value results should be true.");
         }
 
         #endregion
