@@ -51,6 +51,7 @@ namespace Here.Maybes.Extensions
             return Maybe<TValue>.None;
         }
 
+#if !NET20 && !NET35 && !NET40
         /// <summary>
         /// Try to get the value for the given key in the dictionary.
         /// </summary>
@@ -81,5 +82,6 @@ namespace Here.Maybes.Extensions
                 return Maybe<TValue>.Some(expectedValue);
             return Maybe<TValue>.None;
         }
+#endif
     }
 }
