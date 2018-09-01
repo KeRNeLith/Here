@@ -499,6 +499,92 @@ namespace Here.Results
             _value = value;
         }
 
+        #region Cast
+
+        /// <summary>
+        /// Convert this <see cref="Result{T}"/> to a <see cref="Result{TOut}"/>
+        /// </summary>
+        /// <typeparam name="TOut">Type of the output result value.</typeparam>
+        /// <param name="converter">Function that convert this result value from input type to output type.</param>
+        /// <returns>A corresponding <see cref="Result{TOut}"/>.</returns>
+        [Pure]
+        public Result<TOut> Cast<TOut>([NotNull, InstantHandle] Func<T, TOut> converter)
+        {
+            if (IsFailure)
+                return ToFailValueResult<TOut>();
+            return new Result<TOut>(converter(Value), Logic);
+        }
+
+        /// <summary>
+        /// Convert this <see cref="Result{T}"/> to a <see cref="CustomResult{TError}"/>
+        /// </summary>
+        /// <typeparam name="TError">Type of the output result error type.</typeparam>
+        /// <param name="errorObject">Custom error object.</param>
+        /// <returns>A corresponding <see cref="CustomResult{TError}"/>.</returns>
+        [Pure]
+        public CustomResult<TError> CustomCast<TError>([NotNull] TError errorObject)
+        {
+            if (IsFailure)
+                return ToFailCustomResult(errorObject);
+            if (IsWarning)
+                return Result.CustomWarn<TError>(Logic.Message, Logic.Exception);
+            return Result.CustomOk<TError>();
+        }
+
+        /// <summary>
+        /// Convert this <see cref="Result{T}"/> to a <see cref="CustomResult{TError}"/>
+        /// </summary>
+        /// <typeparam name="TError">Type of the output result error type.</typeparam>
+        /// <param name="errorFactory">Factory method that create a custom error object.</param>
+        /// <returns>A corresponding <see cref="CustomResult{TError}"/>.</returns>
+        [Pure]
+        public CustomResult<TError> CustomCast<TError>([NotNull, InstantHandle] Func<TError> errorFactory)
+        {
+            if (IsFailure)
+                return ToFailCustomResult(errorFactory());
+            if (IsWarning)
+                return Result.CustomWarn<TError>(Logic.Message, Logic.Exception);
+            return Result.CustomOk<TError>();
+        }
+
+        /// <summary>
+        /// Convert this <see cref="Result{T}"/> to a <see cref="Result{TOut, TError}"/>
+        /// </summary>
+        /// <typeparam name="TOut">Type of the output result value.</typeparam>
+        /// <typeparam name="TError">Type of the output result error type.</typeparam>
+        /// <param name="converter">Function that convert this result value from input type to output type.</param>
+        /// <param name="errorObject">Custom error object.</param>
+        /// <returns>A corresponding <see cref="Result{TOut, TError}"/>.</returns>
+        [Pure]
+        public Result<TOut, TError> Cast<TOut, TError>([NotNull, InstantHandle] Func<T, TOut> converter, [NotNull] TError errorObject)
+        {
+            if (IsFailure)
+                return ToFailCustomValueResult<TOut, TError>(errorObject);
+            if (IsWarning)
+                return Result.Warn<TOut, TError>(converter(Value), Logic.Message, Logic.Exception);
+            return Result.Ok<TOut, TError>(converter(Value));
+        }
+
+        /// <summary>
+        /// Convert this <see cref="Result{T}"/> to a <see cref="Result{TOut, TError}"/>
+        /// </summary>
+        /// <typeparam name="TOut">Type of the output result value.</typeparam>
+        /// <typeparam name="TError">Type of the output result error type.</typeparam>
+        /// <param name="converter">Function that convert this result value from input type to output type.</param>
+        /// <param name="errorFactory">Factory method that create a custom error object.</param>
+        /// <returns>A corresponding <see cref="Result{TOut, TError}"/>.</returns>
+        [Pure]
+        public Result<TOut, TError> Cast<TOut, TError>([NotNull, InstantHandle] Func<T, TOut> converter, [NotNull, InstantHandle] Func<TError> errorFactory)
+        {
+            if (IsFailure)
+                return ToFailCustomValueResult<TOut, TError>(errorFactory());
+            if (IsWarning)
+                return Result.Warn<TOut, TError>(converter(Value), Logic.Message, Logic.Exception);
+            return Result.Ok<TOut, TError>(converter(Value));
+        }
+
+        #endregion
+
         #region Internal helpers
 
         /// <summary>

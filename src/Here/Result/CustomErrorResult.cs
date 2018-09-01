@@ -57,6 +57,71 @@ namespace Here.Results
             Logic = new ResultLogic<TError>(isWarning, message, error, exception);
         }
 
+        #region Cast
+
+        /// <summary>
+        /// Convert this <see cref="CustomResult{TError}"/> to a <see cref="Result{T}"/>
+        /// </summary>
+        /// <typeparam name="T">Type of the output result value.</typeparam>
+        /// <param name="value">Value.</param>
+        /// <returns>A corresponding <see cref="CustomResult{TError}"/>.</returns>
+        [Pure]
+        public Result<T> Cast<T>([CanBeNull] T value)
+        {
+            if (IsFailure)
+                return ToFailValueResult<T>();
+            return new Result<T>(value, ResultLogic.ToResultLogic(Logic));
+        }
+
+        /// <summary>
+        /// Convert this <see cref="CustomResult{TError}"/> to a <see cref="Result{T}"/>
+        /// </summary>
+        /// <typeparam name="T">Type of the output result value.</typeparam>
+        /// <param name="valueFactory">Factory method that create a value.</param>
+        /// <returns>A corresponding <see cref="CustomResult{TError}"/>.</returns>
+        [Pure]
+        public Result<T> Cast<T>([NotNull, InstantHandle] Func<T> valueFactory)
+        {
+            if (IsFailure)
+                return ToFailValueResult<T>();
+            return new Result<T>(valueFactory(), ResultLogic.ToResultLogic(Logic));
+        }
+
+        /// <summary>
+        /// Convert this <see cref="CustomResult{TError}"/> to a <see cref="Result{T, TError}"/>
+        /// </summary>
+        /// <typeparam name="T">Type of the output result value.</typeparam>
+        /// <param name="value">Value.</param>
+        /// <returns>A corresponding <see cref="Result{T, TError}"/>.</returns>
+        [Pure]
+        public Result<T, TError> CustomCast<T>([CanBeNull] T value)
+        {
+            if (IsFailure)
+                return ToFailCustomValueResult<T>();
+            if (IsWarning)
+                return Result.Warn<T, TError>(value, Logic.Message, Logic.Exception);
+            return Result.Ok<T, TError>(value);
+        }
+
+        /// <summary>
+        /// Convert this <see cref="CustomResult{TError}"/> to a <see cref="Result{T, TError}"/>
+        /// </summary>
+        /// <typeparam name="T">Type of the output result value.</typeparam>
+        /// <param name="valueFactory">Factory method that create a value.</param>
+        /// <param name="errorObject">Custom error object.</param>
+        /// <returns>A corresponding <see cref="Result{T, TError}"/>.</returns>
+        [Pure]
+        public Result<T, TError> CustomCast<T>([NotNull, InstantHandle] Func<T> valueFactory)
+        {
+            if (IsFailure)
+                return ToFailCustomValueResult<T>();
+            if (IsWarning)
+                return Result.Warn<T, TError>(valueFactory(), Logic.Message, Logic.Exception);
+            return Result.Ok<T, TError>(valueFactory());
+        }
+
+        #endregion
+
         #region Internal helpers
 
         /// <summary>
@@ -223,6 +288,27 @@ namespace Here.Results
             Logic = logic;
             _value = value;
         }
+
+        #region Cast
+
+        /// <summary>
+        /// Convert this <see cref="Result{T, TError}"/> to a <see cref="Result{TOut, TError}"/>
+        /// </summary>
+        /// <typeparam name="TOut">Type of the output result value.</typeparam>
+        /// <typeparam name="TError">Type of the output result error type.</typeparam>
+        /// <param name="converter">Function that convert this result value from input type to output type.</param>
+        /// <returns>A corresponding <see cref="Result{TOut, TError}"/>.</returns>
+        [Pure]
+        public Result<TOut, TError> Cast<TOut>([NotNull, InstantHandle] Func<T, TOut> converter)
+        {
+            if (IsFailure)
+                return ToFailCustomValueResult<TOut>();
+            if (IsWarning)
+                return Result.Warn<TOut, TError>(converter(Value), Logic.Message, Logic.Exception);
+            return Result.Ok<TOut, TError>(converter(Value));
+        }
+
+        #endregion
 
         #region Internal helpers
 
