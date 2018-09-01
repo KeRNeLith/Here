@@ -53,6 +53,142 @@ namespace Here.Results
             Logic = new ResultLogic(isWarning, message, exception);
         }
 
+        #region Cast
+
+        /// <summary>
+        /// Convert this <see cref="Result"/> to a <see cref="Result{T}"/>
+        /// </summary>
+        /// <typeparam name="T">Type of the output result value.</typeparam>
+        /// <param name="value">Value.</param>
+        /// <returns>A corresponding <see cref="Result{T}"/>.</returns>
+        [Pure]
+        public Result<T> Cast<T>([CanBeNull] T value)
+        {
+            if (IsFailure)
+                return ToFailValueResult<T>();
+            return new Result<T>(value, Logic);
+        }
+
+        /// <summary>
+        /// Convert this <see cref="Result"/> to a <see cref="Result{T}"/>
+        /// </summary>
+        /// <typeparam name="T">Type of the output result value.</typeparam>
+        /// <param name="valueFactory">Factory method that create a value.</param>
+        /// <returns>A corresponding <see cref="Result{T}"/>.</returns>
+        [Pure]
+        public Result<T> Cast<T>([NotNull, InstantHandle] Func<T> valueFactory)
+        {
+            if (IsFailure)
+                return ToFailValueResult<T>();
+            return new Result<T>(valueFactory(), Logic);
+        }
+
+        /// <summary>
+        /// Convert this <see cref="Result"/> to a <see cref="CustomResult{TError}"/>
+        /// </summary>
+        /// <typeparam name="TError">Type of the output result error type.</typeparam>
+        /// <param name="errorObject">Custom error object.</param>
+        /// <returns>A corresponding <see cref="CustomResult{TError}"/>.</returns>
+        [Pure]
+        public CustomResult<TError> CustomCast<TError>([NotNull] TError errorObject)
+        {
+            if (IsFailure)
+                return ToFailCustomResult(errorObject);
+            if (IsWarning)
+                return CustomWarn<TError>(Logic.Message, Logic.Exception);
+            return CustomOk<TError>();
+        }
+
+        /// <summary>
+        /// Convert this <see cref="Result"/> to a <see cref="CustomResult{TError}"/>
+        /// </summary>
+        /// <typeparam name="TError">Type of the output result error type.</typeparam>
+        /// <param name="errorFactory">Factory method that create a custom error object.</param>
+        /// <returns>A corresponding <see cref="CustomResult{TError}"/>.</returns>
+        [Pure]
+        public CustomResult<TError> CustomCast<TError>([NotNull, InstantHandle] Func<TError> errorFactory)
+        {
+            if (IsFailure)
+                return ToFailCustomResult(errorFactory());
+            if (IsWarning)
+                return CustomWarn<TError>(Logic.Message, Logic.Exception);
+            return CustomOk<TError>();
+        }
+
+        /// <summary>
+        /// Convert this <see cref="Result"/> to a <see cref="Result{T, TError}"/>
+        /// </summary>
+        /// <typeparam name="T">Type of the output result value.</typeparam>
+        /// <typeparam name="TError">Type of the output result error type.</typeparam>
+        /// <param name="value">Value.</param>
+        /// <param name="errorObject">Custom error object.</param>
+        /// <returns>A corresponding <see cref="Result{T, TError}"/>.</returns>
+        [Pure]
+        public Result<T, TError> Cast<T, TError>([CanBeNull] T value, [NotNull] TError errorObject)
+        {
+            if (IsFailure)
+                return ToFailCustomValueResult<T, TError>(errorObject);
+            if (IsWarning)
+                return Warn<T, TError>(value, Logic.Message, Logic.Exception);
+            return Ok<T, TError>(value);
+        }
+
+        /// <summary>
+        /// Convert this <see cref="Result"/> to a <see cref="Result{T, TError}"/>
+        /// </summary>
+        /// <typeparam name="T">Type of the output result value.</typeparam>
+        /// <typeparam name="TError">Type of the output result error type.</typeparam>
+        /// <param name="value">Value.</param>
+        /// <param name="errorFactory">Factory method that create a custom error object.</param>
+        /// <returns>A corresponding <see cref="Result{T, TError}"/>.</returns>
+        [Pure]
+        public Result<T, TError> Cast<T, TError>([CanBeNull] T value, [NotNull, InstantHandle] Func<TError> errorFactory)
+        {
+            if (IsFailure)
+                return ToFailCustomValueResult<T, TError>(errorFactory());
+            if (IsWarning)
+                return Warn<T, TError>(value, Logic.Message, Logic.Exception);
+            return Ok<T, TError>(value);
+        }
+
+        /// <summary>
+        /// Convert this <see cref="Result"/> to a <see cref="Result{T, TError}"/>
+        /// </summary>
+        /// <typeparam name="T">Type of the output result value.</typeparam>
+        /// <typeparam name="TError">Type of the output result error type.</typeparam>
+        /// <param name="valueFactory">Factory method that create a value.</param>
+        /// <param name="errorObject">Custom error object.</param>
+        /// <returns>A corresponding <see cref="Result{T, TError}"/>.</returns>
+        [Pure]
+        public Result<T, TError> Cast<T, TError>([NotNull, InstantHandle] Func<T> valueFactory, [NotNull] TError errorObject)
+        {
+            if (IsFailure)
+                return ToFailCustomValueResult<T, TError>(errorObject);
+            if (IsWarning)
+                return Warn<T, TError>(valueFactory(), Logic.Message, Logic.Exception);
+            return Ok<T, TError>(valueFactory());
+        }
+
+        /// <summary>
+        /// Convert this <see cref="Result"/> to a <see cref="Result{T, TError}"/>
+        /// </summary>
+        /// <typeparam name="T">Type of the output result value.</typeparam>
+        /// <typeparam name="TError">Type of the output result error type.</typeparam>
+        /// <param name="valueFactory">Factory method that create a value.</param>
+        /// <param name="errorFactory">Factory method that create a custom error object.</param>
+        /// <returns>A corresponding <see cref="Result{T, TError}"/>.</returns>
+        [Pure]
+        public Result<T, TError> Cast<T, TError>([NotNull, InstantHandle] Func<T> valueFactory, [NotNull, InstantHandle] Func<TError> errorFactory)
+        {
+            if (IsFailure)
+                return ToFailCustomValueResult<T, TError>(errorFactory());
+            if (IsWarning)
+                return Warn<T, TError>(valueFactory(), Logic.Message, Logic.Exception);
+            return Ok<T, TError>(valueFactory());
+        }
+
+        #endregion
+
         /// <inheritdoc />
         public override string ToString()
         {

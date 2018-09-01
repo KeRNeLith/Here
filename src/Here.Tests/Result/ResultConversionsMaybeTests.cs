@@ -6,10 +6,10 @@ using Here.Results;
 namespace Here.Tests.Results
 {
     /// <summary>
-    /// Tests for <see cref="Result"/>, <see cref="Result{T}"/>, <see cref="CustomResult{TError}"/> and <see cref="Result{T, TError}"/> conversions.
+    /// Tests for <see cref="Result"/>, <see cref="Result{T}"/>, <see cref="CustomResult{TError}"/> and <see cref="Result{T, TError}"/> conversions to <see cref="Maybe{T}"/>.
     /// </summary>
     [TestFixture]
-    internal class ResultConversionsTests : MaybeTestsBase
+    internal class ResultConversionsMaybeTests : MaybeTestsBase
     {
         #region Test class
 
