@@ -50,7 +50,7 @@ namespace Here.Tests.Results
             // Result fail
             var failure = Result.Fail("My failure");
 
-            valueResult = failure.Cast(12, customErrorObjectFactory);
+            valueResult = failure.Cast(12);
             CheckResultFail(valueResult, "My failure");
 
             valueResult = failure.Cast(
@@ -58,8 +58,7 @@ namespace Here.Tests.Results
                 {
                     ++counterValueFactory;
                     return 45;
-                }, 
-                customErrorObjectFactory);
+                });
             Assert.AreEqual(2, counterValueFactory);
             CheckResultFail(valueResult, "My failure");
         }
