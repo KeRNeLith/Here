@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net35;net40;net45;net451;net452;net46;net461;netcoreapp1.0;netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks>net30;net35;net40;net45;net451;net452;net46;net461;netcoreapp1.0;netcoreapp2.0</TargetFrameworks>
 	<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	<Title>Here</Title>
@@ -19,14 +19,28 @@
 	<RepositoryType>GitHub</RepositoryType>
 	<RepositoryUrl>https://github.com/KeRNeLith/Here</RepositoryUrl>
   </PropertyGroup>
+
+  <!-- Common dependencies -->
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
-    <PackageReference Include="NUnit" Version="3.10.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
   </ItemGroup>
+  
+  <ItemGroup Condition="'$(TargetFramework)' != 'net30'">
+    <PackageReference Include="NUnit" Version="3.10.1" />
+  </ItemGroup>
+  
+  <!-- In later releases NUnit target net30 was removed, so it use the net20 build.
+       The problem is that build contains an implementation of Func delegate which 
+	   is incompatible with System.Core. -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'net30'">
+    <PackageReference Include="NUnit" Version="3.2.1" />
+  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Here\Here.csproj" />
   </ItemGroup>
+
   <ItemGroup>
     <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
   </ItemGroup>
