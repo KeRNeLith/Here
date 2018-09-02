@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net30;net35;net40;net45;net452;netstandard1.1;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net20;net30;net35;net40;net45;net452;netstandard1.1;netstandard2.0</TargetFrameworks>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	<Title>Here</Title>
@@ -14,9 +14,9 @@
 This means concept of Maybe (Monad) and Result.
 
 Supported platforms:
-- .NET Framework 3.0+
 - .NET Standard 1.1+
-- .NET Core</Description>
+- .NET Core 1.0+
+- .NET Framework 2.0+</Description>
 	<Owners>Alexandre Rabérin</Owners>
 	<Authors>Alexandre Rabérin</Authors>
 	<Company>Alexandre Rabérin</Company>
@@ -57,7 +57,7 @@ Supported platforms:
     <PackageReference Include="JetBrains.Annotations" Version="2018.2.1" />
   </ItemGroup>
   
-  <ItemGroup Condition="'$(TargetFramework)' == 'net30'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'net20' Or '$(TargetFramework)' == 'net30'">
     <PackageReference Include="System.Core" Version="3.5.21022.801" />
   </ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net30;net35;net40;net45;net451;net452;net46;net461;netcoreapp1.0;netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks>net20;net30;net35;net40;net45;net451;net452;net46;net461;netcoreapp1.0;netcoreapp2.0</TargetFrameworks>
 	<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	<Title>Here</Title>
@@ -26,14 +26,14 @@
     <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
   </ItemGroup>
   
-  <ItemGroup Condition="'$(TargetFramework)' != 'net30'">
+  <ItemGroup Condition="'$(TargetFramework)' != 'net20' And '$(TargetFramework)' != 'net30'">
     <PackageReference Include="NUnit" Version="3.10.1" />
   </ItemGroup>
   
   <!-- In later releases NUnit target net30 was removed, so it use the net20 build.
        The problem is that build contains an implementation of Func delegate which 
 	   is incompatible with System.Core. -->
-  <ItemGroup Condition="'$(TargetFramework)' == 'net30'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'net20' Or '$(TargetFramework)' == 'net30'">
     <PackageReference Include="NUnit" Version="3.2.1" />
   </ItemGroup>
 

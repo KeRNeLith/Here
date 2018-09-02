@@ -23,8 +23,9 @@ For more details on `Result` usage see the following [tips](src/Here/Result/READ
 
 ## Target
 
-- .NET Standard 1.1
-- .NET Framework 4.5.2
+- .NET Standard 1.1+
+- .NET Core 1.0+
+- .NET Framework 2.0+
 
 ---
 
