@@ -134,6 +134,7 @@ namespace Here.Tests.Maybes
             maybeString = "test".NoneIfEmpty();
             CheckMaybeValue(maybeString, "test");
 
+#if (!NET20 && !NET30 && !NET35)
             // Null or white space
             maybeString = string.Empty.NoneIfEmptyOrSpace();
             CheckEmptyMaybe(maybeString);
@@ -150,6 +151,7 @@ namespace Here.Tests.Maybes
 
             maybeString = "test".NoneIfEmptyOrSpace();
             CheckMaybeValue(maybeString, "test");
+#endif
         }
 
         [Test]
@@ -179,6 +181,7 @@ namespace Here.Tests.Maybes
             maybeString = inputMaybeString.NoneIfEmpty();
             CheckMaybeValue(maybeString, "test");
 
+#if (!NET20 && !NET30 && !NET35)
             // Null or white space
             inputMaybeString = Maybe.None;
             maybeString = inputMaybeString.NoneIfEmptyOrSpace();
@@ -199,6 +202,7 @@ namespace Here.Tests.Maybes
             inputMaybeString = Maybe<string>.Some("test");
             maybeString = inputMaybeString.NoneIfEmptyOrSpace();
             CheckMaybeValue(maybeString, "test");
+#endif
         }
 
         [Test]

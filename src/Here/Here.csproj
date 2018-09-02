@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net40;net45;net452;netstandard1.1;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net35;net40;net45;net452;netstandard1.1;netstandard2.0</TargetFrameworks>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 	<Title>Here</Title>
@@ -14,7 +14,7 @@
 This means concept of Maybe (Monad) and Result.
 
 Supported platforms:
-- .NET Framework 4.0+
+- .NET Framework 3.5+
 - .NET Standard 1.1+
 - .NET Core</Description>
 	<Owners>Alexandre Rabérin</Owners>

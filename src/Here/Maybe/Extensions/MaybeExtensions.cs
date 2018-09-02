@@ -63,6 +63,7 @@ namespace Here.Maybes.Extensions
                 : Maybe<string>.Some(str);
         }
 
+#if (!NET20 && !NET30 && !NET35)
         /// <summary>
         /// Convert the string to a <see cref="Maybe{String}"/> after applying <see cref="string.IsNullOrWhiteSpace(string)"/>.
         /// </summary>
@@ -75,6 +76,7 @@ namespace Here.Maybes.Extensions
                 ? Maybe<string>.None
                 : Maybe<string>.Some(str);
         }
+#endif
 
         /// <summary>
         /// Convert the <see cref="Maybe{String}"/> to another <see cref="Maybe{String}"/> after applying <see cref="string.IsNullOrEmpty(string)"/>.
@@ -89,6 +91,7 @@ namespace Here.Maybes.Extensions
                 () => Maybe<string>.None);
         }
 
+#if (!NET20 && !NET30 && !NET35)
         /// <summary>
         /// Convert the <see cref="Maybe{String}"/> to another <see cref="Maybe{String}"/> after applying <see cref="string.IsNullOrWhiteSpace(string)"/>.
         /// </summary>
@@ -101,5 +104,6 @@ namespace Here.Maybes.Extensions
                 str => string.IsNullOrWhiteSpace(str) ? Maybe<string>.None : Maybe<string>.Some(str),
                 () => Maybe<string>.None);
         }
+#endif
     }
 }
