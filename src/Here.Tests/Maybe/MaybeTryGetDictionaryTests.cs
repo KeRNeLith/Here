@@ -31,7 +31,7 @@ namespace Here.Tests.Maybes
             maybeString = dictionaryStringString.TryGetValue(null);
             CheckEmptyMaybe(maybeString);
 
-#if NET45 && NET451 && NET452 && NET46 && NET461 && NET462 && NETSTANDARD1_1 && NETCOREAPP1_0 && NETCOREAPP2_0
+#if (!NET20 && !NET30 && !NET35 && !NET40)
             // Readonly Dictionary
             IReadOnlyDictionary<string, string> readonlyDictionaryStringString = new Dictionary<string, string>
             {
@@ -74,7 +74,7 @@ namespace Here.Tests.Maybes
             maybeString = dictionaryStringObject.TryGetValue<string, string>(null);
             CheckEmptyMaybe(maybeString);
 
-#if NET45 && NET451 && NET452 && NET46 && NET461 && NET462 && NETSTANDARD1_1 && NETCOREAPP1_0 && NETCOREAPP2_0
+#if (!NET20 && !NET30 && !NET35 && !NET40)
             // Readonly Dictionary
             IReadOnlyDictionary<string, object> readonlyDictionaryStringObject = new Dictionary<string, object>
             {
