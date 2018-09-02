@@ -108,6 +108,18 @@ The necessity to have a message for warnings and errors is motivated by the need
 
 Then you have `IResult<T>` and `IResultError<TError>` that respectively provide a `Value` and a custom `Error`.
 
+Note that each one support simple conditional test like boolean when you do not want look at extra data, see following example:
+
+```csharp
+Result<int> result = Result.Ok(42);
+if (result.IsSuccess)
+    Console.WriteLine(result.Value);
+
+// Equivalent to
+if (result)
+    Console.WriteLine(result.Value);
+```
+
 ### Safe Scopes
 
 If you want to run code that should return a Result safely, you can use Result scopes to do this.
@@ -176,6 +188,39 @@ Database.GetUser("Jack")
 								   .OnFailure(() => Console.WriteLine($"Not any appointment for {name}.")))
 		.OnFailure(() => Console.WriteLine("No user named Jack."))
 ```
+
+### Ensure
+
+With `Result` (and all results structures) you can run treatments, get the result of it, and then ensure that it meets other requirements.
+
+Look at the following example (obviously the example is very dummy):
+
+```csharp
+public void Result CheckCountOver(int N)
+{
+    Result<int> myCount = TreatmentThatCountSomething();
+
+    // Let assume we only consider the final result success if the count is over N
+    // So the result will be converted to a failure if the predicate is not matched.
+    return myCount.Ensure(count => count > N, $"Count must be over {N}.");
+}
+
+```
+
+### Cast
+
+Results support "downcast" implicitly. For example a `Result<int, ErrorType>` can be implicitly converted to a `Result<int>`. But the opposite is not possible.
+To do this you can use `Cast` methods that each result type provide. For example if you want to create a `Result<double>` from a simple `Result` you can do like following:
+
+```csharp
+Result res = Result.Ok();
+
+Result<double> resDouble = res.Cast<double>(12.5f);
+// Or
+Result<double> resDouble = res.Cast<double>(() => GetADouble() * 2.5);
+```
+
+Result with more data inside provide less Cast methods because as said before the implicit conversion is used when you specify the target type.
 
 ### Bridge to Maybe
 

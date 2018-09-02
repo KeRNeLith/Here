@@ -22,14 +22,20 @@ Supported platforms:
 	<Company>Alexandre Rabérin</Company>
 	<IsPackable>true</IsPackable>
 	<PackageId>Here</PackageId>
-	<PackageReleaseNotes>➟ Release 0.4.0
+	<PackageReleaseNotes>➟ Release 0.5.0
 - General:
-    - Update to latest JetBrains annotations package.
+    - Extend library compatibility until .NET Framework 2.0.
+
+- For Maybes:
+    - Add implicit conversion to boolean to handle test like a simple boolean.
+    - Remove true/false operators (replaced by the implicit conversion to boolean).
+    - Add extension on string: NoneIfNullOrSpace.
+    - Add extensions on Maybe&lt;string&gt;: NoneIfEmpty and NoneIfNullOrSpace.
 
 - For Results:
-    - Add extensions OnSuccess.
-    - Add extensions OnFailure.
-    - Add extensions OnAny.</PackageReleaseNotes>
+    - Add implicit conversion to boolean to handle test like a simple boolean.
+    - Add "Ensure" extensions that allow to check a predicate on each Result type.
+    - Add cast methods on each Result type to create a Result of another type or with a different value type.</PackageReleaseNotes>
 	<PackageTags>Here Functional C# Maybe Monad Result</PackageTags>
 	<PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
 	<PackageProjectUrl>https://github.com/KeRNeLith/Here</PackageProjectUrl>
