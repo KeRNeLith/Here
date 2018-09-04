@@ -96,7 +96,19 @@ namespace Here.Maybes
 
         public static bool operator!=(Maybe<T> maybe1, Maybe<T> maybe2)
         {
-            return !maybe1.Equals(maybe2);
+            return !(maybe1 == maybe2);
+        }
+
+        public static bool operator ==(Maybe<T> maybe, T value)
+        {
+            if (maybe.HasNoValue)
+                return false;
+            return maybe.Value.Equals(value);
+        }
+
+        public static bool operator !=(Maybe<T> maybe, T value)
+        {
+            return !(maybe == value);
         }
 
         #endregion

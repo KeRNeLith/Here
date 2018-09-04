@@ -85,6 +85,8 @@ Here is an example with the `If` (has value), but there is also the `IfElse` tha
 
 ### Unwrapping value
 
+#### Extensions
+
 After having wrapped a value you can also safely unwrap it. For this you have multiple methods using the `Or` operator.
 You will be able unwrap with a default value or a factory method like:
 
@@ -110,6 +112,27 @@ You can also consider the case when the maybe is 'None' as an error and use the 
 Maybe<int> emptyMaybeInt = Maybe.None;
 
 int unwrappedValue = emptyMaybeInt.OrThrows(new InvalidOperationException()); // Throws
+```
+
+#### Comparisons
+
+It is also possible to perform equality comparison directly on the wrapped value through the `Maybe` like showed below:
+
+```csharp
+Maybe<int> maybeInt = Maybe<int>.Some(12);
+if (maybeInt == 12)
+{
+    // Do something...
+}
+
+// Or with reference types
+// This code will never throw a null reference exception as maybe ensure not null value
+var testClass = new TestClass();
+Maybe<TestClass> maybeClass = Maybe<TestClass>.Some(new TestClass());
+if (maybeClass == testClass)
+{
+    // Do something...
+}
 ```
 
 ### Cast value
