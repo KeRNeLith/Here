@@ -9,6 +9,37 @@ namespace Here.Tests
     {
         #region Test classes
 
+        protected class PersonNotEquatable
+        {
+            private readonly string _name;
+
+            public PersonNotEquatable(string name)
+            {
+                _name = name;
+            }
+        }
+
+        protected class Person
+        {
+            private readonly string _name;
+
+            public Person(string name)
+            {
+                _name = name;
+            }
+
+            public override bool Equals(object obj)
+            {
+                return obj is Person otherPerson
+                    && _name.Equals(otherPerson._name, StringComparison.Ordinal);
+            }
+
+            public override int GetHashCode()
+            {
+                return _name.GetHashCode();
+            }
+        }
+
         protected class TestClass : IEquatable<TestClass>
         {
             public int TestInt { get; set; }
