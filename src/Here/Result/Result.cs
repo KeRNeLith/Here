@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using JetBrains.Annotations;
 
@@ -255,6 +256,27 @@ namespace Here.Results
             Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success Result to a Result<T, TError> failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Fail<T, TError>(Logic.Message, errorObject, Logic.Exception);
+        }
+
+        #endregion
+
+        #region Equality
+
+        public bool Equals(Result other)
+        {
+            return Logic.Equals(other.Logic);
+        }
+
+        public override bool Equals(object other)
+        {
+            if (other == null)
+                return false;
+            return other is Result result && Equals(result);
+        }
+
+        public override int GetHashCode()
+        {
+            return Logic.GetHashCode();
         }
 
         #endregion
@@ -647,6 +669,50 @@ namespace Here.Results
             Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success Result<T> to a Result<T, TError> failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.Fail<TOut, TError>(Logic.Message, errorObject, Logic.Exception);
+        }
+
+        #endregion
+
+        #region Equality
+
+        public bool Equals(Result<T> other)
+        {
+            return Logic.Equals(other.Logic)
+                && EqualityComparer<T>.Default.Equals(_value, other._value);
+        }
+
+        public override bool Equals(object other)
+        {
+            if (other == null)
+                return false;
+            return other is Result<T> result && Equals(result);
+        }
+
+        public override int GetHashCode()
+        {
+            return (EqualityComparer<T>.Default.GetHashCode(_value) * 397) ^ Logic.GetHashCode();
+        }
+
+        public static bool operator ==(Result<T> result, T value)
+        {
+            if (result.IsSuccess)
+                return EqualityComparer<T>.Default.Equals(result.Value, value);
+            return false;
+        }
+
+        public static bool operator !=(Result<T> result, T value)
+        {
+            return !(result == value);
+        }
+
+        public static bool operator ==(T value, Result<T> result)
+        {
+            return result == value;
+        }
+
+        public static bool operator !=(T value, Result<T> result)
+        {
+            return !(result == value);
         }
 
         #endregion
