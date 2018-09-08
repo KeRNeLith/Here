@@ -9,7 +9,7 @@ namespace Here.Results
     /// <see cref="CustomResult{TError}"/> is an object that represents the result/state of a treatment with a custom error object.
     /// </summary>
     [PublicAPI]
-    public partial struct CustomResult<TError> : IResultError<TError>
+    public partial struct CustomResult<TError> : IResultError<TError>, IEquatable<CustomResult<TError>>
     {
         /// <summary>
         /// A success <see cref="CustomResult{TError}"/>.
@@ -210,6 +210,16 @@ namespace Here.Results
             return other is CustomResult<TError> result && Equals(result);
         }
 
+        public static bool operator ==(CustomResult<TError> result1, CustomResult<TError> result2)
+        {
+            return result1.Equals(result2);
+        }
+
+        public static bool operator !=(CustomResult<TError> result1, CustomResult<TError> result2)
+        {
+            return !(result1 == result2);
+        }
+
         public override int GetHashCode()
         {
             return Logic.GetHashCode();
@@ -230,7 +240,7 @@ namespace Here.Results
     /// or a custom error if failed.
     /// </summary>
     [PublicAPI]
-    public partial struct Result<T, TError> : IResult<T>, IResultError<TError>
+    public partial struct Result<T, TError> : IResult<T>, IResultError<TError>, IEquatable<Result<T, TError>>
     {
         /// <inheritdoc />
         public bool IsSuccess => Logic.IsSuccess;
@@ -420,6 +430,16 @@ namespace Here.Results
             if (other == null)
                 return false;
             return other is Result<T, TError> result && Equals(result);
+        }
+
+        public static bool operator ==(Result<T, TError> result1, Result<T, TError> result2)
+        {
+            return result1.Equals(result2);
+        }
+
+        public static bool operator !=(Result<T, TError> result1, Result<T, TError> result2)
+        {
+            return !(result1 == result2);
         }
 
         public override int GetHashCode()

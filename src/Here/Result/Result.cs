@@ -9,7 +9,7 @@ namespace Here.Results
     /// <see cref="Result"/> is an object that represents the result/state of a treatment.
     /// </summary>
     [PublicAPI]
-    public partial struct Result : IResult
+    public partial struct Result : IResult, IEquatable<Result>
     {
         /// <summary>
         /// A success <see cref="Result"/>.
@@ -274,6 +274,16 @@ namespace Here.Results
             return other is Result result && Equals(result);
         }
 
+        public static bool operator ==(Result result1, Result result2)
+        {
+            return result1.Equals(result2);
+        }
+
+        public static bool operator !=(Result result1, Result result2)
+        {
+            return !(result1 == result2);
+        }
+
         public override int GetHashCode()
         {
             return Logic.GetHashCode();
@@ -459,7 +469,7 @@ namespace Here.Results
     /// This <see cref="Result{T}"/> embed a <see cref="Value"/> resulting of the treatment.
     /// </summary>
     [PublicAPI]
-    public partial struct Result<T> : IResult<T>
+    public partial struct Result<T> : IResult<T>, IEquatable<Result<T>>
     {
         /// <inheritdoc />
         public bool IsSuccess => Logic.IsSuccess;
@@ -686,6 +696,16 @@ namespace Here.Results
             if (other == null)
                 return false;
             return other is Result<T> result && Equals(result);
+        }
+
+        public static bool operator ==(Result<T> result1, Result<T> result2)
+        {
+            return result1.Equals(result2);
+        }
+
+        public static bool operator !=(Result<T> result1, Result<T> result2)
+        {
+            return !(result1 == result2);
         }
 
         public override int GetHashCode()

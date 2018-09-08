@@ -10,6 +10,8 @@ namespace Here.Tests.Results
     [TestFixture]
     internal class ResultTests : ResultTestsBase
     {
+        #region Construction
+
         [Test]
         public void ResultConstruction()
         {
@@ -126,6 +128,10 @@ namespace Here.Tests.Results
             // ReSharper restore AssignNullToNotNullAttribute
         }
 
+        #endregion
+
+        #region Equality
+
         [Test]
         public void ResultEquality()
         {
@@ -150,54 +156,101 @@ namespace Here.Tests.Results
 
             // Checks Ok
             Assert.AreEqual(resultOk1, resultOk1);
+
             Assert.AreEqual(resultOk1, resultOk2);
             Assert.AreEqual(resultOk2, resultOk1);
+            Assert.IsTrue(resultOk1 == resultOk2);
+            Assert.IsFalse(resultOk1 != resultOk2);
 
             // Checks Warn
             Assert.AreEqual(resultWarn1, resultWarn1);
+
             Assert.AreEqual(resultWarn1, resultWarn2);
             Assert.AreEqual(resultWarn2, resultWarn1);
+            Assert.IsTrue(resultWarn1 == resultWarn2);
+            Assert.IsFalse(resultWarn1 != resultWarn2);
+
             Assert.AreNotEqual(resultWarn1, resultWarn3);
             Assert.AreNotEqual(resultWarn3, resultWarn1);
+            Assert.IsFalse(resultWarn1 == resultWarn3);
+            Assert.IsTrue(resultWarn1 != resultWarn3);
+
             Assert.AreEqual(resultWarn3, resultWarn4);
             Assert.AreEqual(resultWarn4, resultWarn3);
+            Assert.IsTrue(resultWarn3 == resultWarn4);
+            Assert.IsFalse(resultWarn3 != resultWarn4);
+
             Assert.AreNotEqual(resultWarn3, resultWarn5);
             Assert.AreNotEqual(resultWarn5, resultWarn3);
+            Assert.IsFalse(resultWarn3 == resultWarn5);
+            Assert.IsTrue(resultWarn3 != resultWarn5);
+
             Assert.AreNotEqual(resultWarn1, resultWarn6);
             Assert.AreNotEqual(resultWarn6, resultWarn1);
+            Assert.IsFalse(resultWarn1 == resultWarn6);
+            Assert.IsTrue(resultWarn1 != resultWarn6);
 
             // Checks Fail
             Assert.AreEqual(resultFail1, resultFail1);
+
             Assert.AreEqual(resultFail1, resultFail2);
             Assert.AreEqual(resultFail2, resultFail1);
+            Assert.IsTrue(resultFail1 == resultFail2);
+            Assert.IsFalse(resultFail1 != resultFail2);
+
             Assert.AreNotEqual(resultFail1, resultFail3);
             Assert.AreNotEqual(resultFail3, resultFail1);
+            Assert.IsFalse(resultFail1 == resultFail3);
+            Assert.IsTrue(resultFail1 != resultFail3);
+
             Assert.AreEqual(resultFail3, resultFail4);
             Assert.AreEqual(resultFail4, resultFail3);
+            Assert.IsTrue(resultFail3 == resultFail4);
+            Assert.IsFalse(resultFail3 != resultFail4);
+
             Assert.AreNotEqual(resultFail3, resultFail5);
             Assert.AreNotEqual(resultFail5, resultFail3);
+            Assert.IsFalse(resultFail3 == resultFail5);
+            Assert.IsTrue(resultFail3 != resultFail5);
+
             Assert.AreNotEqual(resultFail1, resultFail6);
             Assert.AreNotEqual(resultFail6, resultFail1);
+            Assert.IsFalse(resultFail1 == resultFail6);
+            Assert.IsTrue(resultFail1 != resultFail6);
 
             // Checks Ok & Warn
             Assert.AreNotEqual(resultOk1, resultWarn1);
             Assert.AreNotEqual(resultWarn1, resultOk1);
+            Assert.IsFalse(resultOk1 == resultWarn1);
+            Assert.IsTrue(resultOk1 != resultWarn1);
 
             // Checks Ok & Fail
             Assert.AreNotEqual(resultOk1, resultFail1);
             Assert.AreNotEqual(resultFail1, resultOk1);
+            Assert.IsFalse(resultOk1 == resultFail1);
+            Assert.IsTrue(resultOk1 != resultFail1);
 
             // Checks Warn & Fail
             Assert.AreNotEqual(resultWarn1, resultFail1);
             Assert.AreNotEqual(resultFail1, resultWarn1);
-
+            Assert.IsFalse(resultWarn1 == resultFail1);
+            Assert.IsTrue(resultWarn1 != resultFail1);
+            
             // Mixed
             Assert.AreNotEqual(resultOk1, null);
             Assert.AreNotEqual(null, resultOk1);
+            Assert.IsFalse(resultOk1 == null);
+            Assert.IsTrue(resultOk1 != null);
+
             Assert.AreNotEqual(resultWarn1, null);
             Assert.AreNotEqual(null, resultWarn1);
+            Assert.IsFalse(resultWarn1 == null);
+            Assert.IsTrue(resultWarn1 != null);
+
             Assert.AreNotEqual(resultFail1, null);
             Assert.AreNotEqual(null, resultFail1);
+            Assert.IsFalse(resultFail1 == null);
+            Assert.IsTrue(resultFail1 != null);
 
             var valueResult = Result.Ok(10);
             Assert.AreNotEqual(resultOk1, valueResult);
@@ -258,86 +311,177 @@ namespace Here.Tests.Results
 
             // Checks Ok
             Assert.AreEqual(resultOk1, resultOk1);
+
             Assert.AreEqual(resultOk1, resultOk2);
             Assert.AreEqual(resultOk2, resultOk1);
+            Assert.IsTrue(resultOk1 == resultOk2);
+            Assert.IsFalse(resultOk1 != resultOk2);
+
             Assert.AreNotEqual(resultOk1, resultOk3);
             Assert.AreNotEqual(resultOk3, resultOk1);
+            Assert.IsFalse(resultOk1 == resultOk3);
+            Assert.IsTrue(resultOk1 != resultOk3);
+
 
             Assert.AreEqual(resultOk4, resultOk4);
+
             Assert.AreEqual(resultOk4, resultOk5);
             Assert.AreEqual(resultOk5, resultOk4);
+            Assert.IsTrue(resultOk4 == resultOk5);
+            Assert.IsFalse(resultOk4 != resultOk5);
+
             Assert.AreNotEqual(resultOk4, resultOk6);
             Assert.AreNotEqual(resultOk6, resultOk4);
 
             // Checks Warn
             Assert.AreEqual(resultWarn1, resultWarn1);
+
             Assert.AreEqual(resultWarn1, resultWarn2);
             Assert.AreEqual(resultWarn2, resultWarn1);
+            Assert.IsTrue(resultWarn1 == resultWarn2);
+            Assert.IsFalse(resultWarn1 != resultWarn2);
+
             Assert.AreNotEqual(resultWarn1, resultWarn3);
             Assert.AreNotEqual(resultWarn3, resultWarn1);
+            Assert.IsFalse(resultWarn1 == resultWarn3);
+            Assert.IsTrue(resultWarn1 != resultWarn3);
+
             Assert.AreEqual(resultWarn3, resultWarn4);
             Assert.AreEqual(resultWarn4, resultWarn3);
+            Assert.IsTrue(resultWarn3 == resultWarn4);
+            Assert.IsFalse(resultWarn3 != resultWarn4);
+
             Assert.AreNotEqual(resultWarn3, resultWarn5);
             Assert.AreNotEqual(resultWarn5, resultWarn3);
+            Assert.IsFalse(resultWarn3 == resultWarn5);
+            Assert.IsTrue(resultWarn3 != resultWarn5);
+
             Assert.AreNotEqual(resultWarn1, resultWarn6);
             Assert.AreNotEqual(resultWarn6, resultWarn1);
+            Assert.IsFalse(resultWarn1 == resultWarn6);
+            Assert.IsTrue(resultWarn1 != resultWarn6);
+
             Assert.AreNotEqual(resultWarn1, resultWarn7);
             Assert.AreNotEqual(resultWarn7, resultWarn1);
+            Assert.IsFalse(resultWarn1 == resultWarn7);
+            Assert.IsTrue(resultWarn1 != resultWarn7);
+
             Assert.AreEqual(resultWarn1, resultWarn8);
             Assert.AreEqual(resultWarn8, resultWarn1);
+            Assert.IsTrue(resultWarn1 == resultWarn8);
+            Assert.IsFalse(resultWarn1 != resultWarn8);
+
 
             Assert.AreEqual(resultWarn9, resultWarn9);
+
             Assert.AreEqual(resultWarn9, resultWarn10);
             Assert.AreEqual(resultWarn10, resultWarn9);
+            Assert.IsTrue(resultWarn9 == resultWarn10);
+            Assert.IsFalse(resultWarn9 != resultWarn10);
+
             Assert.AreNotEqual(resultWarn9, resultWarn11);
             Assert.AreNotEqual(resultWarn11, resultWarn9);
+            Assert.IsFalse(resultWarn9 == resultWarn11);
+            Assert.IsTrue(resultWarn9 != resultWarn11);
+
             Assert.AreEqual(resultWarn11, resultWarn12);
             Assert.AreEqual(resultWarn12, resultWarn11);
+            Assert.IsTrue(resultWarn11 == resultWarn12);
+            Assert.IsFalse(resultWarn11 != resultWarn12);
+
             Assert.AreNotEqual(resultWarn11, resultWarn13);
             Assert.AreNotEqual(resultWarn13, resultWarn11);
+            Assert.IsFalse(resultWarn11 == resultWarn13);
+            Assert.IsTrue(resultWarn11 != resultWarn13);
+
             Assert.AreNotEqual(resultWarn9, resultWarn14);
             Assert.AreNotEqual(resultWarn14, resultWarn9);
+            Assert.IsFalse(resultWarn9 == resultWarn14);
+            Assert.IsTrue(resultWarn9 != resultWarn14);
+
             Assert.AreNotEqual(resultWarn9, resultWarn15);
             Assert.AreNotEqual(resultWarn15, resultWarn9);
+            Assert.IsFalse(resultWarn9 == resultWarn15);
+            Assert.IsTrue(resultWarn9 != resultWarn15);
+
             Assert.AreNotEqual(resultWarn9, resultWarn16);
             Assert.AreNotEqual(resultWarn16, resultWarn9);
+            Assert.IsFalse(resultWarn9 == resultWarn16);
+            Assert.IsTrue(resultWarn9 != resultWarn16);
 
             // Checks Fail
             Assert.AreEqual(resultFail1, resultFail1);
+
             Assert.AreEqual(resultFail1, resultFail2);
             Assert.AreEqual(resultFail2, resultFail1);
+            Assert.IsTrue(resultFail1 == resultFail2);
+            Assert.IsFalse(resultFail1 != resultFail2);
+
             Assert.AreNotEqual(resultFail1, resultFail3);
             Assert.AreNotEqual(resultFail3, resultFail1);
+            Assert.IsFalse(resultFail1 == resultFail3);
+            Assert.IsTrue(resultFail1 != resultFail3);
+
             Assert.AreEqual(resultFail3, resultFail4);
             Assert.AreEqual(resultFail4, resultFail3);
+            Assert.IsTrue(resultFail3 == resultFail4);
+            Assert.IsFalse(resultFail3 != resultFail4);
+
             Assert.AreNotEqual(resultFail3, resultFail5);
             Assert.AreNotEqual(resultFail5, resultFail3);
+            Assert.IsFalse(resultFail3 == resultFail5);
+            Assert.IsTrue(resultFail3 != resultFail5);
+
             Assert.AreNotEqual(resultFail1, resultFail6);
             Assert.AreNotEqual(resultFail6, resultFail1);
+            Assert.IsFalse(resultFail1 == resultFail6);
+            Assert.IsTrue(resultFail1 != resultFail6);
+
 
             Assert.AreEqual(resultFail7, resultFail7);
+
             Assert.AreEqual(resultFail7, resultFail8);
             Assert.AreEqual(resultFail8, resultFail7);
+            Assert.IsTrue(resultFail7 == resultFail8);
+            Assert.IsFalse(resultFail7 != resultFail8);
+
             Assert.AreNotEqual(resultFail7, resultFail9);
             Assert.AreNotEqual(resultFail9, resultFail7);
+            Assert.IsFalse(resultFail7 == resultFail9);
+            Assert.IsTrue(resultFail7 != resultFail9);
+
             Assert.AreEqual(resultFail9, resultFail10);
             Assert.AreEqual(resultFail10, resultFail9);
+            Assert.IsTrue(resultFail9 == resultFail10);
+            Assert.IsFalse(resultFail9 != resultFail10);
+
             Assert.AreNotEqual(resultFail9, resultFail11);
             Assert.AreNotEqual(resultFail11, resultFail9);
+            Assert.IsFalse(resultFail9 == resultFail11);
+            Assert.IsTrue(resultFail9 != resultFail11);
+
             Assert.AreNotEqual(resultFail7, resultFail12);
             Assert.AreNotEqual(resultFail12, resultFail7);
+            Assert.IsFalse(resultFail7 == resultFail12);
+            Assert.IsTrue(resultFail7 != resultFail12);
 
             // Checks Ok & Warn
             Assert.AreNotEqual(resultOk1, resultWarn1);
             Assert.AreNotEqual(resultWarn1, resultOk1);
+            Assert.IsFalse(resultOk1 == resultWarn1);
+            Assert.IsTrue(resultOk1 != resultWarn1);
 
             // Checks Ok & Fail
             Assert.AreNotEqual(resultOk1, resultFail1);
             Assert.AreNotEqual(resultFail1, resultOk1);
+            Assert.IsFalse(resultOk1 == resultFail1);
+            Assert.IsTrue(resultOk1 != resultFail1);
 
             // Checks Warn & Fail
             Assert.AreNotEqual(resultWarn1, resultFail1);
             Assert.AreNotEqual(resultFail1, resultWarn1);
+            Assert.IsFalse(resultWarn1 == resultFail1);
+            Assert.IsTrue(resultWarn1 != resultFail1);
 
             // Mixed
             Assert.AreNotEqual(resultOk1, null);
@@ -388,48 +532,90 @@ namespace Here.Tests.Results
 
             // Checks Ok
             Assert.AreEqual(resultOk1, resultOk1);
+
             Assert.AreEqual(resultOk1, resultOk2);
             Assert.AreEqual(resultOk2, resultOk1);
+            Assert.IsTrue(resultOk1 == resultOk2);
+            Assert.IsFalse(resultOk1 != resultOk2);
 
             // Checks Warn
             Assert.AreEqual(resultWarn1, resultWarn1);
+
             Assert.AreEqual(resultWarn1, resultWarn2);
             Assert.AreEqual(resultWarn2, resultWarn1);
+            Assert.IsTrue(resultWarn1 == resultWarn2);
+            Assert.IsFalse(resultWarn1 != resultWarn2);
+
             Assert.AreNotEqual(resultWarn1, resultWarn3);
             Assert.AreNotEqual(resultWarn3, resultWarn1);
+            Assert.IsFalse(resultWarn1 == resultWarn3);
+            Assert.IsTrue(resultWarn1 != resultWarn3);
+
             Assert.AreEqual(resultWarn3, resultWarn4);
             Assert.AreEqual(resultWarn4, resultWarn3);
+            Assert.IsTrue(resultWarn3 == resultWarn4);
+            Assert.IsFalse(resultWarn3 != resultWarn4);
+
             Assert.AreNotEqual(resultWarn3, resultWarn5);
             Assert.AreNotEqual(resultWarn5, resultWarn3);
+            Assert.IsFalse(resultWarn3 == resultWarn5);
+            Assert.IsTrue(resultWarn3 != resultWarn5);
+
             Assert.AreNotEqual(resultWarn1, resultWarn6);
             Assert.AreNotEqual(resultWarn6, resultWarn1);
+            Assert.IsFalse(resultWarn1 == resultWarn6);
+            Assert.IsTrue(resultWarn1 != resultWarn6);
 
             // Checks Fail
             Assert.AreEqual(resultFail1, resultFail1);
+
             Assert.AreEqual(resultFail1, resultFail2);
             Assert.AreEqual(resultFail2, resultFail1);
+            Assert.IsTrue(resultFail1 == resultFail2);
+            Assert.IsFalse(resultFail1 != resultFail2);
+
             Assert.AreNotEqual(resultFail1, resultFail3);
             Assert.AreNotEqual(resultFail3, resultFail1);
+            Assert.IsFalse(resultFail1 == resultFail3);
+            Assert.IsTrue(resultFail1 != resultFail3);
+
             Assert.AreEqual(resultFail3, resultFail4);
             Assert.AreEqual(resultFail4, resultFail3);
+            Assert.IsTrue(resultFail3 == resultFail4);
+            Assert.IsFalse(resultFail3 != resultFail4);
+
             Assert.AreNotEqual(resultFail3, resultFail5);
             Assert.AreNotEqual(resultFail5, resultFail3);
+            Assert.IsFalse(resultFail3 == resultFail5);
+            Assert.IsTrue(resultFail3 != resultFail5);
+
             Assert.AreNotEqual(resultFail1, resultFail6);
             Assert.AreNotEqual(resultFail6, resultFail1);
+            Assert.IsFalse(resultFail1 == resultFail6);
+            Assert.IsTrue(resultFail1 != resultFail6);
+
             Assert.AreNotEqual(resultFail1, resultFail7);
             Assert.AreNotEqual(resultFail7, resultFail1);
+            Assert.IsFalse(resultFail1 == resultFail7);
+            Assert.IsTrue(resultFail1 != resultFail7);
 
             // Checks Ok & Warn
             Assert.AreNotEqual(resultOk1, resultWarn1);
             Assert.AreNotEqual(resultWarn1, resultOk1);
+            Assert.IsFalse(resultOk1 == resultWarn1);
+            Assert.IsTrue(resultOk1 != resultWarn1);
 
             // Checks Ok & Fail
             Assert.AreNotEqual(resultOk1, resultFail1);
             Assert.AreNotEqual(resultFail1, resultOk1);
+            Assert.IsFalse(resultOk1 == resultFail1);
+            Assert.IsTrue(resultOk1 != resultFail1);
 
             // Checks Warn & Fail
             Assert.AreNotEqual(resultWarn1, resultFail1);
             Assert.AreNotEqual(resultFail1, resultWarn1);
+            Assert.IsFalse(resultWarn1 == resultFail1);
+            Assert.IsTrue(resultWarn1 != resultFail1);
 
             // Mixed
             Assert.AreNotEqual(resultOk1, null);
@@ -503,90 +689,187 @@ namespace Here.Tests.Results
 
             // Checks Ok
             Assert.AreEqual(resultOk1, resultOk1);
+
             Assert.AreEqual(resultOk1, resultOk2);
             Assert.AreEqual(resultOk2, resultOk1);
+            Assert.IsTrue(resultOk1 == resultOk2);
+            Assert.IsFalse(resultOk1 != resultOk2);
+
             Assert.AreNotEqual(resultOk1, resultOk3);
             Assert.AreNotEqual(resultOk3, resultOk1);
+            Assert.IsFalse(resultOk1 == resultOk3);
+            Assert.IsTrue(resultOk1 != resultOk3);
+
 
             Assert.AreEqual(resultOk4, resultOk4);
+
             Assert.AreEqual(resultOk4, resultOk5);
             Assert.AreEqual(resultOk5, resultOk4);
+            Assert.IsTrue(resultOk4 == resultOk5);
+            Assert.IsFalse(resultOk4 != resultOk5);
+
             Assert.AreNotEqual(resultOk4, resultOk6);
             Assert.AreNotEqual(resultOk6, resultOk4);
 
             // Checks Warn
             Assert.AreEqual(resultWarn1, resultWarn1);
+
             Assert.AreEqual(resultWarn1, resultWarn2);
             Assert.AreEqual(resultWarn2, resultWarn1);
+            Assert.IsTrue(resultWarn1 == resultWarn2);
+            Assert.IsFalse(resultWarn1 != resultWarn2);
+
             Assert.AreNotEqual(resultWarn1, resultWarn3);
             Assert.AreNotEqual(resultWarn3, resultWarn1);
+            Assert.IsFalse(resultWarn1 == resultWarn3);
+            Assert.IsTrue(resultWarn1 != resultWarn3);
+
             Assert.AreEqual(resultWarn3, resultWarn4);
             Assert.AreEqual(resultWarn4, resultWarn3);
+            Assert.IsTrue(resultWarn3 == resultWarn4);
+            Assert.IsFalse(resultWarn3 != resultWarn4);
+
             Assert.AreNotEqual(resultWarn3, resultWarn5);
             Assert.AreNotEqual(resultWarn5, resultWarn3);
+            Assert.IsFalse(resultWarn3 == resultWarn5);
+            Assert.IsTrue(resultWarn3 != resultWarn5);
+
             Assert.AreNotEqual(resultWarn1, resultWarn6);
             Assert.AreNotEqual(resultWarn6, resultWarn1);
+            Assert.IsFalse(resultWarn1 == resultWarn6);
+            Assert.IsTrue(resultWarn1 != resultWarn6);
+
             Assert.AreNotEqual(resultWarn1, resultWarn7);
             Assert.AreNotEqual(resultWarn7, resultWarn1);
+            Assert.IsFalse(resultWarn1 == resultWarn7);
+            Assert.IsTrue(resultWarn1 != resultWarn7);
+
             Assert.AreEqual(resultWarn1, resultWarn8);
             Assert.AreEqual(resultWarn8, resultWarn1);
+            Assert.IsTrue(resultWarn1 == resultWarn8);
+            Assert.IsFalse(resultWarn1 != resultWarn8);
+
 
             Assert.AreEqual(resultWarn9, resultWarn9);
+
             Assert.AreEqual(resultWarn9, resultWarn10);
             Assert.AreEqual(resultWarn10, resultWarn9);
+            Assert.IsTrue(resultWarn9 == resultWarn10);
+            Assert.IsFalse(resultWarn9 != resultWarn10);
+
             Assert.AreNotEqual(resultWarn9, resultWarn11);
             Assert.AreNotEqual(resultWarn11, resultWarn9);
+            Assert.IsFalse(resultWarn9 == resultWarn11);
+            Assert.IsTrue(resultWarn9 != resultWarn11);
+
             Assert.AreEqual(resultWarn11, resultWarn12);
             Assert.AreEqual(resultWarn12, resultWarn11);
+            Assert.IsTrue(resultWarn11 == resultWarn12);
+            Assert.IsFalse(resultWarn11 != resultWarn12);
+
             Assert.AreNotEqual(resultWarn11, resultWarn13);
             Assert.AreNotEqual(resultWarn13, resultWarn11);
+            Assert.IsFalse(resultWarn11 == resultWarn13);
+            Assert.IsTrue(resultWarn11 != resultWarn13);
+
             Assert.AreNotEqual(resultWarn9, resultWarn14);
             Assert.AreNotEqual(resultWarn14, resultWarn9);
+            Assert.IsFalse(resultWarn9 == resultWarn14);
+            Assert.IsTrue(resultWarn9 != resultWarn14);
+
             Assert.AreNotEqual(resultWarn9, resultWarn15);
             Assert.AreNotEqual(resultWarn15, resultWarn9);
+            Assert.IsFalse(resultWarn9 == resultWarn15);
+            Assert.IsTrue(resultWarn9 != resultWarn15);
+
             Assert.AreNotEqual(resultWarn9, resultWarn16);
             Assert.AreNotEqual(resultWarn16, resultWarn9);
+            Assert.IsFalse(resultWarn9 == resultWarn16);
+            Assert.IsTrue(resultWarn9 != resultWarn16);
 
             // Checks Fail
             Assert.AreEqual(resultFail1, resultFail1);
+
             Assert.AreEqual(resultFail1, resultFail2);
             Assert.AreEqual(resultFail2, resultFail1);
+            Assert.IsTrue(resultFail1 == resultFail2);
+            Assert.IsFalse(resultFail1 != resultFail2);
+
             Assert.AreNotEqual(resultFail1, resultFail3);
             Assert.AreNotEqual(resultFail3, resultFail1);
+            Assert.IsFalse(resultFail1 == resultFail3);
+            Assert.IsTrue(resultFail1 != resultFail3);
+
             Assert.AreEqual(resultFail3, resultFail4);
             Assert.AreEqual(resultFail4, resultFail3);
+            Assert.IsTrue(resultFail3 == resultFail4);
+            Assert.IsFalse(resultFail3 != resultFail4);
+
             Assert.AreNotEqual(resultFail3, resultFail5);
             Assert.AreNotEqual(resultFail5, resultFail3);
+            Assert.IsFalse(resultFail3 == resultFail5);
+            Assert.IsTrue(resultFail3 != resultFail5);
+
             Assert.AreNotEqual(resultFail1, resultFail6);
             Assert.AreNotEqual(resultFail6, resultFail1);
+            Assert.IsFalse(resultFail1 == resultFail6);
+            Assert.IsTrue(resultFail1 != resultFail6);
+
             Assert.AreNotEqual(resultFail1, resultFail7);
             Assert.AreNotEqual(resultFail7, resultFail1);
+            Assert.IsFalse(resultFail1 == resultFail7);
+            Assert.IsTrue(resultFail1 != resultFail7);
+
 
             Assert.AreEqual(resultFail8, resultFail8);
+
             Assert.AreEqual(resultFail8, resultFail9);
             Assert.AreEqual(resultFail9, resultFail8);
+            Assert.IsTrue(resultFail8 == resultFail9);
+            Assert.IsFalse(resultFail8 != resultFail9);
+
             Assert.AreNotEqual(resultFail8, resultFail10);
             Assert.AreNotEqual(resultFail10, resultFail8);
+            Assert.IsFalse(resultFail8 == resultFail10);
+            Assert.IsTrue(resultFail8 != resultFail10);
+
             Assert.AreEqual(resultFail10, resultFail11);
             Assert.AreEqual(resultFail11, resultFail10);
+            Assert.IsTrue(resultFail10 == resultFail11);
+            Assert.IsFalse(resultFail10 != resultFail11);
+
             Assert.AreNotEqual(resultFail10, resultFail12);
             Assert.AreNotEqual(resultFail12, resultFail10);
+            Assert.IsFalse(resultFail10 == resultFail12);
+            Assert.IsTrue(resultFail10 != resultFail12);
+
             Assert.AreNotEqual(resultFail8, resultFail13);
             Assert.AreNotEqual(resultFail13, resultFail8);
+            Assert.IsFalse(resultFail8 == resultFail13);
+            Assert.IsTrue(resultFail8 != resultFail13);
+
             Assert.AreNotEqual(resultFail8, resultFail14);
             Assert.AreNotEqual(resultFail14, resultFail8);
+            Assert.IsFalse(resultFail8 == resultFail14);
+            Assert.IsTrue(resultFail8 != resultFail14);
 
             // Checks Ok & Warn
             Assert.AreNotEqual(resultOk1, resultWarn1);
             Assert.AreNotEqual(resultWarn1, resultOk1);
+            Assert.IsFalse(resultOk1 == resultWarn1);
+            Assert.IsTrue(resultOk1 != resultWarn1);
 
             // Checks Ok & Fail
             Assert.AreNotEqual(resultOk1, resultFail1);
             Assert.AreNotEqual(resultFail1, resultOk1);
+            Assert.IsFalse(resultOk1 == resultFail1);
+            Assert.IsTrue(resultOk1 != resultFail1);
 
             // Checks Warn & Fail
             Assert.AreNotEqual(resultWarn1, resultFail1);
             Assert.AreNotEqual(resultFail1, resultWarn1);
+            Assert.IsFalse(resultWarn1 == resultFail1);
+            Assert.IsTrue(resultWarn1 != resultFail1);
 
             // Mixed
             Assert.AreNotEqual(resultOk1, null);
@@ -604,6 +887,10 @@ namespace Here.Tests.Results
             Assert.AreNotEqual(resultOk1, testObject);
             Assert.AreNotEqual(testObject, resultOk1);
         }
+
+        #endregion
+
+        #region Hash code
 
         [Test]
         public void ResultHashCode()
@@ -781,6 +1068,10 @@ namespace Here.Tests.Results
             Assert.IsFalse(fail1.GetHashCode() == fail3.GetHashCode());
         }
 
+        #endregion
+
+        #region Value equality
+
         [Test]
         public void ValueResultEqualityValue()
         {
@@ -838,6 +1129,8 @@ namespace Here.Tests.Results
             Assert.IsTrue(fail != 6);
             Assert.IsTrue(8 != fail);
         }
+
+        #endregion
 
         [Test]
         public void ResultToString()
