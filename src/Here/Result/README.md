@@ -108,15 +108,9 @@ The necessity to have a message for warnings and errors is motivated by the need
 
 Then you have `IResult<T>` and `IResultError<TError>` that respectively provide a `Value` and a custom `Error`.
 
-Note that each one support simple conditional test like boolean when you do not want look at extra data, see following example:
-
 ```csharp
 Result<int> result = Result.Ok(42);
 if (result.IsSuccess)
-    Console.WriteLine(result.Value);
-
-// Equivalent to
-if (result)
     Console.WriteLine(result.Value);
 ```
 
@@ -172,21 +166,21 @@ See following examples for a quick overview. Note that each result type offers s
 // In this example we call a method on a database that returns a Maybe<string>
 Database.GetUser("Jack")
         .ToResult()
-		.OnAny(() => Console.WriteLine("Hello"))
+        .OnAny(() => Console.WriteLine("Hello"))
         .OnSuccess(name => Console.WriteLine(name))
         .OnFailure(() => Console.WriteLine("Anonymous"))
-		.OnAny(() => Console.WriteLine(", how are you?"));
-		
+        .OnAny(() => Console.WriteLine(", how are you?"));
+
 // Output "Hello Jack, how are you?" if the Database contains a user named Jack
 // Output "Hello Anonymous, how are you?" if the Database does not contain a user named Jack
 
 // Obviously you can chain call and have nested calls
 Database.GetUser("Jack")
         .ToResult()
-		.OnSuccess(name => Database.GetAppointmentsFor(name)
+        .OnSuccess(name => Database.GetAppointmentsFor(name)
                                    .OnSuccess(appointments => Console.WriteLine($"Appointments for {name}: {appointments.ToString()}))
-								   .OnFailure(() => Console.WriteLine($"Not any appointment for {name}.")))
-		.OnFailure(() => Console.WriteLine("No user named Jack."))
+                                   .OnFailure(() => Console.WriteLine($"Not any appointment for {name}.")))
+        .OnFailure(() => Console.WriteLine("No user named Jack."))
 ```
 
 ### Ensure
