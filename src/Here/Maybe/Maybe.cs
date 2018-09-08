@@ -73,15 +73,15 @@ namespace Here.Maybes
 
         public bool Equals(Maybe<T> other)
         {
-            return EqualityComparer<T>.Default.Equals(_value, other._value) 
+            return EqualityComparer<T>.Default.Equals(_value, other._value)
                 && HasValue.Equals(other.HasValue);
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object other)
         {
-            if (obj is null)
+            if (other == null)
                 return false;
-            return obj is Maybe<T> maybe && Equals(maybe);
+            return other is Maybe<T> maybe && Equals(maybe);
         }
 
         public override int GetHashCode()
@@ -107,6 +107,16 @@ namespace Here.Maybes
         }
 
         public static bool operator !=(Maybe<T> maybe, T value)
+        {
+            return !(maybe == value);
+        }
+
+        public static bool operator ==(T value, Maybe<T> maybe)
+        {
+            return maybe == value;
+        }
+
+        public static bool operator !=(T value, Maybe<T> maybe)
         {
             return !(maybe == value);
         }

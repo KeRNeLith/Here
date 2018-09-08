@@ -215,10 +215,12 @@ namespace Here.Tests.Maybes
             Assert.IsTrue(12 == maybeInt);
             Assert.IsFalse(maybeInt == 42);
             Assert.IsTrue(maybeInt != 42);
+            Assert.IsFalse(12 != maybeInt);
 
             Assert.IsFalse(emptyMaybeInt == 12);
             Assert.IsFalse(12 == emptyMaybeInt);
             Assert.IsTrue(emptyMaybeInt != 12);
+            Assert.IsTrue(15 != emptyMaybeInt);
 
             // Maybe reference type
             var person1 = new Person("Test");
@@ -230,18 +232,22 @@ namespace Here.Tests.Maybes
             Assert.IsTrue(maybePerson1 == person1);
             Assert.IsTrue(person1 == maybePerson1);
             Assert.IsFalse(maybePerson1 != person1);
+            Assert.IsFalse(person1 != maybePerson1);
 
             Assert.IsTrue(maybePerson2 == person1);
             Assert.IsTrue(person1 == maybePerson2);
             Assert.IsFalse(maybePerson2 != person1);
+            Assert.IsFalse(new Person("Test") != maybePerson2);
 
             Assert.IsFalse(maybePerson3 == person1);
             Assert.IsFalse(person1 == maybePerson3);
             Assert.IsTrue(maybePerson3 != person1);
-            
+            Assert.IsTrue(person1 != maybePerson3);
+
             Assert.IsFalse(emptyMaybePerson == person1);
             Assert.IsFalse(person1 == emptyMaybePerson);
             Assert.IsTrue(emptyMaybePerson != person1);
+            Assert.IsTrue(person1 != emptyMaybePerson);
 
             var person2 = new PersonNotEquatable("Test");
             var maybePerson4 = Maybe<PersonNotEquatable>.Some(person2);
@@ -251,23 +257,29 @@ namespace Here.Tests.Maybes
             Assert.IsTrue(maybePerson4 == person2);
             Assert.IsTrue(person2 == maybePerson4);
             Assert.IsFalse(maybePerson4 != person2);
+            Assert.IsFalse(person2 != maybePerson4);
 
             Assert.IsFalse(maybePerson5 == person2);
             Assert.IsFalse(person2 == maybePerson5);
             Assert.IsTrue(maybePerson5 != person2);
+            Assert.IsTrue(person2 != maybePerson5);
 
             Assert.IsFalse(emptyMaybePerson2 == person2);
             Assert.IsFalse(person2 == emptyMaybePerson2);
             Assert.IsTrue(emptyMaybePerson2 != person2);
+            Assert.IsTrue(person2 != emptyMaybePerson2);
 
             // With flatten
             var embedMaybeInt = Maybe<Maybe<int>>.Some(Maybe<int>.Some(12));
             Assert.IsTrue(embedMaybeInt == 12);
             Assert.IsFalse(embedMaybeInt == 42);
 
+            // On value type null is not a valid value consider implicitly casted to None
+            Assert.IsFalse(maybeInt == null);
+            Assert.IsTrue(Maybe<int>.None == null);
+
             // Equals with a null value => These cases are not possible as they 
             // suppose the maybe value is null which should never be the case!
-            Assert.IsFalse(maybeInt == null);
             Assert.IsFalse(maybePerson1 == null);
         }
 
