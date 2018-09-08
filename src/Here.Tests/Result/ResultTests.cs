@@ -235,8 +235,9 @@ namespace Here.Tests.Results
             Assert.AreNotEqual(resultFail1, resultWarn1);
             Assert.IsFalse(resultWarn1 == resultFail1);
             Assert.IsTrue(resultWarn1 != resultFail1);
-            
+
             // Mixed
+            Assert.IsFalse(resultOk1.Equals(null));
             Assert.AreNotEqual(resultOk1, null);
             Assert.AreNotEqual(null, resultOk1);
             Assert.IsFalse(resultOk1 == null);
@@ -484,6 +485,7 @@ namespace Here.Tests.Results
             Assert.IsTrue(resultWarn1 != resultFail1);
 
             // Mixed
+            Assert.IsFalse(resultOk1.Equals(null));
             Assert.AreNotEqual(resultOk1, null);
             Assert.AreNotEqual(null, resultOk1);
             Assert.AreNotEqual(resultWarn1, null);
@@ -491,7 +493,7 @@ namespace Here.Tests.Results
             Assert.AreNotEqual(resultFail1, null);
             Assert.AreNotEqual(null, resultFail1);
 
-            var valueResult = Result.Ok<int>(12);
+            var valueResult = Result.Ok(12);
             Assert.AreNotEqual(resultOk1, valueResult);
             Assert.AreNotEqual(valueResult, resultOk1);
 
@@ -618,6 +620,7 @@ namespace Here.Tests.Results
             Assert.IsTrue(resultWarn1 != resultFail1);
 
             // Mixed
+            Assert.IsFalse(resultOk1.Equals(null));
             Assert.AreNotEqual(resultOk1, null);
             Assert.AreNotEqual(null, resultOk1);
             Assert.AreNotEqual(resultWarn1, null);
@@ -872,6 +875,7 @@ namespace Here.Tests.Results
             Assert.IsTrue(resultWarn1 != resultFail1);
 
             // Mixed
+            Assert.IsFalse(resultOk1.Equals(null));
             Assert.AreNotEqual(resultOk1, null);
             Assert.AreNotEqual(null, resultOk1);
             Assert.AreNotEqual(resultWarn1, null);
@@ -879,7 +883,7 @@ namespace Here.Tests.Results
             Assert.AreNotEqual(resultFail1, null);
             Assert.AreNotEqual(null, resultFail1);
 
-            var valueResult = Result.Ok<int>(12);
+            var valueResult = Result.Ok(12);
             Assert.AreNotEqual(resultOk1, valueResult);
             Assert.AreNotEqual(valueResult, resultOk1);
 

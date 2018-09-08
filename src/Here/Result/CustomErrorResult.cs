@@ -134,7 +134,7 @@ namespace Here.Results
         [Pure]
         internal Result ToFailResult()
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a Result failure.");
+            Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a Result failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.Fail(Logic.Message, Logic.Exception);
         }
@@ -147,7 +147,7 @@ namespace Here.Results
         [Pure]
         internal Result<T> ToFailValueResult<T>()
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a Result<T> failure.");
+            Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a Result<T> failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.Fail<T>(Logic.Message, Logic.Exception);
         }
@@ -161,7 +161,7 @@ namespace Here.Results
         [Pure]
         internal CustomResult<TError> ToFailCustomResult([NotNull] TError errorObject)
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a CustomResult<TError> failure.");
+            Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a CustomResult<TError> failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.CustomFail(Logic.Message, errorObject, Logic.Exception);
         }
@@ -189,7 +189,7 @@ namespace Here.Results
         [Pure]
         internal Result<T, TError> ToFailCustomValueResult<T>([NotNull] TError errorObject)
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a Result<T, TError> failure.");
+            Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a Result<T, TError> failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.Fail<T, TError>(Logic.Message, errorObject, Logic.Exception);
         }
@@ -354,7 +354,7 @@ namespace Here.Results
         [Pure]
         internal Result ToFailResult()
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success Result<T, TError> to a Result failure.");
+            Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success Result<T, TError> to a Result failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.Fail(Logic.Message, Logic.Exception);
         }
@@ -367,7 +367,7 @@ namespace Here.Results
         [Pure]
         internal Result<TOut> ToFailValueResult<TOut>()
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success Result<TIn, TError> to a Result<TOut> failure.");
+            Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success Result<TIn, TError> to a Result<TOut> failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.Fail<TOut>(Logic.Message, Logic.Exception);
         }
@@ -382,7 +382,7 @@ namespace Here.Results
         [Pure]
         internal CustomResult<TError> ToFailCustomResult([NotNull] TError errorObject)
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success Result<T, TError> to a CustomResult<TError> failure.");
+            Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success Result<T, TError> to a CustomResult<TError> failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.CustomFail(Logic.Message, errorObject, Logic.Exception);
         }
@@ -410,7 +410,7 @@ namespace Here.Results
         [Pure]
         internal Result<TOut, TError> ToFailCustomValueResult<TOut>([NotNull] TError errorObject)
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success Result<TIn, TError> to a Result<TOut, TError> failure.");
+            Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success Result<TIn, TError> to a Result<TOut, TError> failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.Fail<TOut, TError>(Logic.Message, errorObject, Logic.Exception);
         }

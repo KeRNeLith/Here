@@ -1,5 +1,4 @@
-﻿using JetBrains.Annotations;
-using Here.Maybes;
+﻿using Here.Maybes;
 
 namespace Here.Results
 {

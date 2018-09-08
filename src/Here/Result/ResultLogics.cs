@@ -87,16 +87,6 @@ namespace Here.Results
             Exception = exception;
         }
 
-        /// <summary>
-        /// Check if the given <see cref="ResultLogic{TError}"/> can be converted to a failure result.
-        /// </summary>
-        /// <param name="logic"><see cref="ResultLogic{TError}"/> to check.</param>
-        /// <returns>True if the <see cref="ResultLogic{TError}"/> is convertable, otherwise false.</returns>
-        internal static bool IsConvertableToFailure(ResultLogic<TError> logic)
-        {
-            return !logic.IsSuccess || logic.IsWarning;
-        }
-
         #region Equality / IEquatable
 
         public bool Equals(ResultLogic<TError> other)
@@ -176,6 +166,16 @@ namespace Here.Results
         }
 
         #region Converter
+
+        /// <summary>
+        /// Check if the given <see cref="ResultLogic{TError}"/> can be converted to a failure result.
+        /// </summary>
+        /// <param name="logic"><see cref="ResultLogic{TError}"/> to check.</param>
+        /// <returns>True if the <see cref="ResultLogic{TError}"/> is convertable, otherwise false.</returns>
+        internal static bool IsConvertableToFailure<TError>(ResultLogic<TError> logic)
+        {
+            return !logic.IsSuccess || logic.IsWarning;
+        }
 
         /// <summary>
         /// Convert a <see cref="ResultLogic{TError}"/> into a <see cref="ResultLogic"/>.
