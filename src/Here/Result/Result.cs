@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using JetBrains.Annotations;
 
@@ -8,7 +9,7 @@ namespace Here.Results
     /// <see cref="Result"/> is an object that represents the result/state of a treatment.
     /// </summary>
     [PublicAPI]
-    public partial struct Result : IResult
+    public partial struct Result : IResult, IEquatable<Result>
     {
         /// <summary>
         /// A success <see cref="Result"/>.
@@ -259,6 +260,37 @@ namespace Here.Results
 
         #endregion
 
+        #region Equality
+
+        public bool Equals(Result other)
+        {
+            return Logic.Equals(other.Logic);
+        }
+
+        public override bool Equals(object other)
+        {
+            if (other == null)
+                return false;
+            return other is Result result && Equals(result);
+        }
+
+        public static bool operator ==(Result result1, Result result2)
+        {
+            return result1.Equals(result2);
+        }
+
+        public static bool operator !=(Result result1, Result result2)
+        {
+            return !(result1 == result2);
+        }
+
+        public override int GetHashCode()
+        {
+            return Logic.GetHashCode();
+        }
+
+        #endregion
+
         #region Factory methods
 
         // Here to be easy to call
@@ -437,7 +469,7 @@ namespace Here.Results
     /// This <see cref="Result{T}"/> embed a <see cref="Value"/> resulting of the treatment.
     /// </summary>
     [PublicAPI]
-    public partial struct Result<T> : IResult<T>
+    public partial struct Result<T> : IResult<T>, IEquatable<Result<T>>
     {
         /// <inheritdoc />
         public bool IsSuccess => Logic.IsSuccess;
@@ -647,6 +679,60 @@ namespace Here.Results
             Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success Result<T> to a Result<T, TError> failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.Fail<TOut, TError>(Logic.Message, errorObject, Logic.Exception);
+        }
+
+        #endregion
+
+        #region Equality
+
+        public bool Equals(Result<T> other)
+        {
+            return Logic.Equals(other.Logic)
+                && EqualityComparer<T>.Default.Equals(_value, other._value);
+        }
+
+        public override bool Equals(object other)
+        {
+            if (other == null)
+                return false;
+            return other is Result<T> result && Equals(result);
+        }
+
+        public static bool operator ==(Result<T> result1, Result<T> result2)
+        {
+            return result1.Equals(result2);
+        }
+
+        public static bool operator !=(Result<T> result1, Result<T> result2)
+        {
+            return !(result1 == result2);
+        }
+
+        public override int GetHashCode()
+        {
+            return (EqualityComparer<T>.Default.GetHashCode(_value) * 397) ^ Logic.GetHashCode();
+        }
+
+        public static bool operator ==(Result<T> result, T value)
+        {
+            if (result.IsSuccess)
+                return EqualityComparer<T>.Default.Equals(result.Value, value);
+            return false;
+        }
+
+        public static bool operator !=(Result<T> result, T value)
+        {
+            return !(result == value);
+        }
+
+        public static bool operator ==(T value, Result<T> result)
+        {
+            return result == value;
+        }
+
+        public static bool operator !=(T value, Result<T> result)
+        {
+            return !(result == value);
         }
 
         #endregion

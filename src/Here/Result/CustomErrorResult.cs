@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using JetBrains.Annotations;
 
@@ -8,7 +9,7 @@ namespace Here.Results
     /// <see cref="CustomResult{TError}"/> is an object that represents the result/state of a treatment with a custom error object.
     /// </summary>
     [PublicAPI]
-    public partial struct CustomResult<TError> : IResultError<TError>
+    public partial struct CustomResult<TError> : IResultError<TError>, IEquatable<CustomResult<TError>>
     {
         /// <summary>
         /// A success <see cref="CustomResult{TError}"/>.
@@ -133,7 +134,7 @@ namespace Here.Results
         [Pure]
         internal Result ToFailResult()
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a Result failure.");
+            Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a Result failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.Fail(Logic.Message, Logic.Exception);
         }
@@ -146,7 +147,7 @@ namespace Here.Results
         [Pure]
         internal Result<T> ToFailValueResult<T>()
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a Result<T> failure.");
+            Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a Result<T> failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.Fail<T>(Logic.Message, Logic.Exception);
         }
@@ -160,7 +161,7 @@ namespace Here.Results
         [Pure]
         internal CustomResult<TError> ToFailCustomResult([NotNull] TError errorObject)
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a CustomResult<TError> failure.");
+            Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a CustomResult<TError> failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.CustomFail(Logic.Message, errorObject, Logic.Exception);
         }
@@ -188,9 +189,40 @@ namespace Here.Results
         [Pure]
         internal Result<T, TError> ToFailCustomValueResult<T>([NotNull] TError errorObject)
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a Result<T, TError> failure.");
+            Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a Result<T, TError> failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.Fail<T, TError>(Logic.Message, errorObject, Logic.Exception);
+        }
+
+        #endregion
+
+        #region Equality
+
+        public bool Equals(CustomResult<TError> other)
+        {
+            return Logic.Equals(other.Logic);
+        }
+
+        public override bool Equals(object other)
+        {
+            if (other == null)
+                return false;
+            return other is CustomResult<TError> result && Equals(result);
+        }
+
+        public static bool operator ==(CustomResult<TError> result1, CustomResult<TError> result2)
+        {
+            return result1.Equals(result2);
+        }
+
+        public static bool operator !=(CustomResult<TError> result1, CustomResult<TError> result2)
+        {
+            return !(result1 == result2);
+        }
+
+        public override int GetHashCode()
+        {
+            return Logic.GetHashCode();
         }
 
         #endregion
@@ -208,7 +240,7 @@ namespace Here.Results
     /// or a custom error if failed.
     /// </summary>
     [PublicAPI]
-    public partial struct Result<T, TError> : IResult<T>, IResultError<TError>
+    public partial struct Result<T, TError> : IResult<T>, IResultError<TError>, IEquatable<Result<T, TError>>
     {
         /// <inheritdoc />
         public bool IsSuccess => Logic.IsSuccess;
@@ -322,7 +354,7 @@ namespace Here.Results
         [Pure]
         internal Result ToFailResult()
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success Result<T, TError> to a Result failure.");
+            Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success Result<T, TError> to a Result failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.Fail(Logic.Message, Logic.Exception);
         }
@@ -335,7 +367,7 @@ namespace Here.Results
         [Pure]
         internal Result<TOut> ToFailValueResult<TOut>()
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success Result<TIn, TError> to a Result<TOut> failure.");
+            Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success Result<TIn, TError> to a Result<TOut> failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.Fail<TOut>(Logic.Message, Logic.Exception);
         }
@@ -350,7 +382,7 @@ namespace Here.Results
         [Pure]
         internal CustomResult<TError> ToFailCustomResult([NotNull] TError errorObject)
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success Result<T, TError> to a CustomResult<TError> failure.");
+            Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success Result<T, TError> to a CustomResult<TError> failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.CustomFail(Logic.Message, errorObject, Logic.Exception);
         }
@@ -378,9 +410,63 @@ namespace Here.Results
         [Pure]
         internal Result<TOut, TError> ToFailCustomValueResult<TOut>([NotNull] TError errorObject)
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success Result<TIn, TError> to a Result<TOut, TError> failure.");
+            Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success Result<TIn, TError> to a Result<TOut, TError> failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.Fail<TOut, TError>(Logic.Message, errorObject, Logic.Exception);
+        }
+
+        #endregion
+
+        #region Equality
+
+        public bool Equals(Result<T, TError> other)
+        {
+            return Logic.Equals(other.Logic)
+                && EqualityComparer<T>.Default.Equals(_value, other._value);
+        }
+
+        public override bool Equals(object other)
+        {
+            if (other == null)
+                return false;
+            return other is Result<T, TError> result && Equals(result);
+        }
+
+        public static bool operator ==(Result<T, TError> result1, Result<T, TError> result2)
+        {
+            return result1.Equals(result2);
+        }
+
+        public static bool operator !=(Result<T, TError> result1, Result<T, TError> result2)
+        {
+            return !(result1 == result2);
+        }
+
+        public override int GetHashCode()
+        {
+            return (EqualityComparer<T>.Default.GetHashCode(_value) * 397) ^ Logic.GetHashCode();
+        }
+
+        public static bool operator ==(Result<T, TError> result, T value)
+        {
+            if (result.IsSuccess)
+                return EqualityComparer<T>.Default.Equals(result.Value, value);
+            return false;
+        }
+
+        public static bool operator !=(Result<T, TError> result, T value)
+        {
+            return !(result == value);
+        }
+
+        public static bool operator ==(T value, Result<T, TError> result)
+        {
+            return result == value;
+        }
+
+        public static bool operator !=(T value, Result<T, TError> result)
+        {
+            return !(result == value);
         }
 
         #endregion

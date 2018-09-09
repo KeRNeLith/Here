@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 
 namespace Here.Results
@@ -6,7 +7,7 @@ namespace Here.Results
     /// <summary>
     /// The Result interaction logic.
     /// </summary>
-    internal class ResultLogic<TError>
+    internal class ResultLogic<TError> : IEquatable<ResultLogic<TError>>
     {
         /// <summary>
         /// Indicate if it is a success.
@@ -86,15 +87,49 @@ namespace Here.Results
             Exception = exception;
         }
 
-        /// <summary>
-        /// Check if the given <see cref="ResultLogic{TError}"/> can be converted to a failure result.
-        /// </summary>
-        /// <param name="logic"><see cref="ResultLogic{TError}"/> to check.</param>
-        /// <returns>True if the <see cref="ResultLogic{TError}"/> is convertable, otherwise false.</returns>
-        internal static bool IsConvertableToFailure(ResultLogic<TError> logic)
+        #region Equality / IEquatable
+
+        public bool Equals(ResultLogic<TError> other)
         {
-            return !logic.IsSuccess || logic.IsWarning;
+            if (other == null)
+                return false;
+            return IsSuccess == other.IsSuccess // Do not check IsFailure as it's always the opposite of IsSuccess
+                && IsWarning == other.IsWarning
+                && string.Equals(Message, other.Message, StringComparison.Ordinal)
+                && EqualityComparer<TError>.Default.Equals(_error, other._error)
+                && Equals(Exception, other.Exception);
         }
+
+        public override bool Equals(object other)
+        {
+            if (other == null)
+                return false;
+            return other is ResultLogic<TError> logic && Equals(logic);
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = EqualityComparer<TError>.Default.GetHashCode(_error);
+            hashCode = (hashCode * 397) ^ IsWarning.GetHashCode();
+            hashCode = (hashCode * 397) ^ IsFailure.GetHashCode();
+            hashCode = (hashCode * 397) ^ (Message != null ? Message.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ (Exception != null ? Exception.GetHashCode() : 0);
+            return hashCode;
+        }
+
+        public static bool operator ==(ResultLogic<TError> result1, ResultLogic<TError> result2)
+        {
+            if (ReferenceEquals(result1, result2))
+                return true;
+            return Equals(result1, result2);
+        }
+
+        public static bool operator !=(ResultLogic<TError> result1, ResultLogic<TError> result2)
+        {
+            return !(result1 == result2);
+        }
+
+        #endregion
 
         /// <inheritdoc />
         public override string ToString()
@@ -110,7 +145,7 @@ namespace Here.Results
     /// <summary>
     /// The Result interaction logic specialized to only provide a message (for warning and error).
     /// </summary>
-    internal sealed class ResultLogic : ResultLogic<string>
+    internal sealed class ResultLogic : ResultLogic<string>, IEquatable<ResultLogic>
     {
         /// <summary>
         /// <see cref="ResultLogic"/> "ok" constructor.
@@ -133,6 +168,16 @@ namespace Here.Results
         #region Converter
 
         /// <summary>
+        /// Check if the given <see cref="ResultLogic{TError}"/> can be converted to a failure result.
+        /// </summary>
+        /// <param name="logic"><see cref="ResultLogic{TError}"/> to check.</param>
+        /// <returns>True if the <see cref="ResultLogic{TError}"/> is convertable, otherwise false.</returns>
+        internal static bool IsConvertableToFailure<TError>(ResultLogic<TError> logic)
+        {
+            return !logic.IsSuccess || logic.IsWarning;
+        }
+
+        /// <summary>
         /// Convert a <see cref="ResultLogic{TError}"/> into a <see cref="ResultLogic"/>.
         /// </summary>
         /// <typeparam name="TError">Type of the custom error object.</typeparam>
@@ -146,6 +191,48 @@ namespace Here.Results
             
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return new ResultLogic(logic.IsWarning, logic.Message, logic.Exception);
+        }
+
+        #endregion
+
+        #region Equality / IEquatable
+
+        public bool Equals(ResultLogic other)
+        {
+            if (other == null)
+                return false;
+            return IsSuccess == other.IsSuccess // Do not check IsFailure as it's always the opposite of IsSuccess
+                && IsWarning == other.IsWarning
+                && string.Equals(Message, other.Message, StringComparison.Ordinal)  // Do not check the error field as it is not used
+                && Equals(Exception, other.Exception);
+        }
+
+        public override bool Equals(object other)
+        {
+            if (other == null)
+                return false;
+            return other is ResultLogic logic && Equals(logic);
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = IsWarning.GetHashCode();
+            hashCode = (hashCode * 397) ^ IsFailure.GetHashCode();
+            hashCode = (hashCode * 397) ^ (Message != null ? Message.GetHashCode() : 0);
+            hashCode = (hashCode * 397) ^ (Exception != null ? Exception.GetHashCode() : 0);
+            return hashCode;
+        }
+
+        public static bool operator ==(ResultLogic result1, ResultLogic result2)
+        {
+            if (ReferenceEquals(result1, result2))
+                return true;
+            return Equals(result1, result2);
+        }
+
+        public static bool operator !=(ResultLogic result1, ResultLogic result2)
+        {
+            return !(result1 == result2);
         }
 
         #endregion

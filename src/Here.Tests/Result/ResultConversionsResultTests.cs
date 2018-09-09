@@ -14,7 +14,6 @@ namespace Here.Tests.Results
         [Test]
         public void CastResultToValueResult()
         {
-            var customErrorObjectFactory = new CustomErrorTest { ErrorCode = -8 };
             int counterValueFactory = 0;
 
             // Result ok
