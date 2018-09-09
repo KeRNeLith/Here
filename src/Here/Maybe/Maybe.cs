@@ -77,11 +77,11 @@ namespace Here.Maybes
                 && HasValue.Equals(other.HasValue);
         }
 
-        public override bool Equals(object other)
+        public override bool Equals(object obj)
         {
-            if (other == null)
+            if (obj == null)
                 return false;
-            return other is Maybe<T> maybe && Equals(maybe);
+            return obj is Maybe<T> maybe && Equals(maybe);
         }
 
         public override int GetHashCode()

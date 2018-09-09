@@ -203,11 +203,11 @@ namespace Here.Results
             return Logic.Equals(other.Logic);
         }
 
-        public override bool Equals(object other)
+        public override bool Equals(object obj)
         {
-            if (other == null)
+            if (obj == null)
                 return false;
-            return other is CustomResult<TError> result && Equals(result);
+            return obj is CustomResult<TError> result && Equals(result);
         }
 
         public static bool operator ==(CustomResult<TError> result1, CustomResult<TError> result2)
@@ -425,11 +425,11 @@ namespace Here.Results
                 && EqualityComparer<T>.Default.Equals(_value, other._value);
         }
 
-        public override bool Equals(object other)
+        public override bool Equals(object obj)
         {
-            if (other == null)
+            if (obj == null)
                 return false;
-            return other is Result<T, TError> result && Equals(result);
+            return obj is Result<T, TError> result && Equals(result);
         }
 
         public static bool operator ==(Result<T, TError> result1, Result<T, TError> result2)
