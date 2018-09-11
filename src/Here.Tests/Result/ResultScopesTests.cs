@@ -11,6 +11,31 @@ namespace Here.Tests.Results
     internal class ResultScopesTests : ResultTestsBase
     {
         [Test]
+        public void ResultActionSafeScope()
+        {
+            int counter = 0;
+
+            Result result = ResultScope.SafeResult(() => ++counter);
+            Assert.AreEqual(1, counter);
+            CheckResultOk(result);
+
+            var thrownException = new Exception("My exception");
+            int testVar = 12;
+            result = ResultScope.SafeResult(
+                () => 
+                {
+                    ++counter;
+                    if (testVar > 0)
+                    {
+                        throw thrownException;
+                    }
+                    ++counter;
+                });
+            Assert.AreEqual(2, counter);
+            CheckResultFail(result, string.Format(ResultConstants.ResultScopeErrorMessage, "My exception"), thrownException);
+        }
+
+        [Test]
         public void ResultSafeScope()
         {
             Result result = ResultScope.SafeResult(Result.Ok);
