@@ -21,14 +21,6 @@ namespace Here.Maybes.Extensions
             return maybe.HasValue;
         }
 
-        [Pure]
-        private static bool MatchPredicate<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Predicate<T> predicate)
-        {
-            if (maybe.HasValue)
-                return predicate(maybe.Value);
-            return false;
-        }
-
         /// <summary>
         /// Check if this <see cref="Maybe{T}"/> has value and match the given <paramref name="predicate"/>.
         /// </summary>
@@ -39,7 +31,7 @@ namespace Here.Maybes.Extensions
         [PublicAPI, Pure]
         public static bool Any<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Predicate<T> predicate)
         {
-            return maybe.MatchPredicate(predicate);
+            return maybe.Exists(predicate);
         }
 
         /// <summary>
@@ -52,7 +44,7 @@ namespace Here.Maybes.Extensions
         [PublicAPI, Pure]
         public static bool All<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Predicate<T> predicate)
         {
-            return maybe.MatchPredicate(predicate);
+            return maybe.Exists(predicate);
         }
 
         /// <summary>
@@ -96,7 +88,7 @@ namespace Here.Maybes.Extensions
         [PublicAPI, Pure]
         public static Maybe<T> Where<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Predicate<T> predicate)
         {
-            if (MatchPredicate(maybe, predicate))
+            if (maybe.Exists(predicate))
                 return maybe;
             return Maybe<T>.None;
         }

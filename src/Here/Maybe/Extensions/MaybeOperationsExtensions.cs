@@ -330,5 +330,20 @@ namespace Here.Maybes.Extensions
                 return converter(maybe.Value);
             return Maybe<TTo>.None;
         }
+
+        /// <summary>
+        /// Checks if this <see cref="Maybe{T}"/> match the <paramref name="predicate"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="predicate">Condition to match.</param>
+        /// <returns>True if this <see cref="Maybe{T}"/> matches the <paramref name="predicate"/>, otherwise false.</returns>
+        [PublicAPI, Pure]
+        public static bool Exists<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Predicate<T> predicate)
+        {
+            if (maybe.HasValue)
+                return predicate(maybe.Value);
+            return false;
+        }
     }
 }

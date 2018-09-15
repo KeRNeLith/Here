@@ -459,5 +459,18 @@ namespace Here.Tests.Maybes
             maybeClass = emptyMaybeClassLeaf.Cast<TestClass>();
             CheckEmptyMaybe(maybeClass);
         }
+
+        [Test]
+        public void MaybeExists()
+        {
+            // Maybe with value
+            var maybeInt = Maybe<int>.Some(12);
+            Assert.IsTrue(maybeInt.Exists(intValue => intValue == 12));
+            Assert.IsFalse(maybeInt.Exists(intValue => intValue == 13));
+
+            // Empty maybe
+            Maybe<int> emptyMaybeInt = Maybe.None;
+            Assert.IsFalse(emptyMaybeInt.Exists(intValue => intValue == 12));
+        }
     }
 }
