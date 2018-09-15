@@ -76,5 +76,47 @@ namespace Here.Maybes.Extensions
 
             return match ? matchedItem : Maybe<T>.None;
         }
+
+        /// <summary>
+        /// Convert this <see cref="Maybe{T}"/> to an <see cref="IEnumerable{T}"/> with zero or one element.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <param name="maybe">The <see cref="Maybe{T}"/> to convert.</param>
+        /// <returns>An <see cref="IEnumerable{T}"/> generated from this <see cref="Maybe{T}"/>.</returns>
+        [PublicAPI, Pure]
+        public static IEnumerable<T> ToEnumerable<T>(this Maybe<T> maybe)
+        {
+            if (maybe.HasValue)
+                yield return maybe.Value;
+        }
+
+        /// <summary>
+        /// Convert this <see cref="Maybe{T}"/> to an <see cref="IEnumerator{T}"/> with zero or one element.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <param name="maybe">The <see cref="Maybe{T}"/> to convert.</param>
+        /// <returns>An <see cref="IEnumerator{T}"/> generated from this <see cref="Maybe{T}"/>.</returns>
+        [PublicAPI, Pure]
+        public static IEnumerator<T> ToEnumerator<T>(this Maybe<T> maybe)
+        {
+            if (maybe.HasValue)
+                yield return maybe.Value;
+        }
+
+        /// <summary>
+        /// Extract values from this <see cref="IEnumerable{Maybe{T}}"/> to convert it to an <see cref="IEnumerable{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in <see cref="Maybe{T}"/>.</typeparam>
+        /// <param name="enumerable">An enumerable of <see cref="Maybe{T}"/>.</param>
+        /// <returns>An <see cref="IEnumerable{T}"/> generated from this <see cref="Maybe{T}"/>.</returns>
+        [PublicAPI, Pure]
+        public static IEnumerable<T> ExtractValues<T>(this IEnumerable<Maybe<T>> enumerable)
+        {
+            foreach (var maybe in enumerable)
+            {
+                if (maybe.HasValue)
+                    yield return maybe.Value;
+            }
+        }
     }
 }
