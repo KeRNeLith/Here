@@ -9,6 +9,7 @@ namespace Here.Results
     /// <see cref="CustomResult{TError}"/> is an object that represents the result/state of a treatment with a custom error object.
     /// </summary>
     [PublicAPI]
+    [DebuggerDisplay("{" + nameof(IsSuccess) + " ? \"IsSuccess\" + (" + nameof(IsWarning) + " ? \" with warning\" : System.String.Empty) : \"IsFailure\"}")]
     public partial struct CustomResult<TError> : IResultError<TError>, IEquatable<CustomResult<TError>>
     {
         /// <summary>
@@ -240,6 +241,7 @@ namespace Here.Results
     /// or a custom error if failed.
     /// </summary>
     [PublicAPI]
+    [DebuggerDisplay("{" + nameof(IsSuccess) + " ? \"IsSuccess\" + (" + nameof(IsWarning) + " ? \" with warning\" : System.String.Empty) + \", Value = \" + " + nameof(Value) + " : \"IsFailure\"}")]
     public partial struct Result<T, TError> : IResult<T>, IResultError<TError>, IEquatable<Result<T, TError>>
     {
         /// <inheritdoc />

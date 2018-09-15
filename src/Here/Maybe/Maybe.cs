@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using JetBrains.Annotations;
 
 namespace Here.Maybes
@@ -9,6 +10,7 @@ namespace Here.Maybes
     /// </summary>
     /// <typeparam name="T">Type of the value embedded in the <see cref="Maybe{T}"/>.</typeparam>
     [PublicAPI]
+    [DebuggerDisplay("{" + nameof(HasValue) + " ? \"Value = \" + " + nameof(Value) + " : \"No value\"}")]
     public partial struct Maybe<T> : IEquatable<Maybe<T>>
     {
         /// <summary>
