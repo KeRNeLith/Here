@@ -27,7 +27,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Check if this <see cref="Maybe{T}"/> has value and return true if enumerable has at least one element taht match <paramref name="predicate"/>.
+        /// Check if this <see cref="Maybe{T}"/> has value and return true if enumerable has at least one element that match the <paramref name="predicate"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
@@ -50,7 +50,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Check if this <see cref="Maybe{T}"/> has value and return true if enumerable has at least one element taht match <paramref name="predicate"/>.
+        /// Check if this <see cref="Maybe{T}"/> has value and return true if enumerable has at least one element that match the <paramref name="predicate"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <typeparam name="TItem">Enumerable item type.</typeparam>
@@ -67,6 +67,48 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
+        /// Check if this <see cref="Maybe{T}"/> has value and return true if all enumerable items match the <paramref name="predicate"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
+        /// <param name="predicate">Predicate to check.</param>
+        /// <returns>True if this <see cref="Maybe{T}"/> enumerable items all match the <paramref name="predicate"/>.</returns>
+        [PublicAPI, Pure]
+        public static bool AllItems<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Predicate<object> predicate)
+            where T : IEnumerable
+        {
+            if (maybe.HasValue)
+            {
+                foreach (var item in maybe.Value)
+                {
+                    if (!predicate(item))
+                        return false;
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Check if this <see cref="Maybe{T}"/> has value and return true if all enumerable items match the <paramref name="predicate"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <typeparam name="TItem">Enumerable item type.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
+        /// <param name="predicate">Predicate to check.</param>
+        /// <returns>True if this <see cref="Maybe{T}"/> enumerable items all match the <paramref name="predicate"/>.</returns>
+        [PublicAPI, Pure]
+        public static bool AllItems<T, TItem>(this Maybe<T> maybe, [NotNull, InstantHandle] Predicate<TItem> predicate)
+            where T : IEnumerable<TItem>
+        {
+            if (maybe.HasValue)
+                return maybe.Value.All(item => predicate(item));
+            return false;
+        }
+
+        /// <summary>
         /// Call the <paramref name="predicate"/> function on each item if this <see cref="Maybe{T}"/> has a value and return matched items.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
@@ -74,7 +116,7 @@ namespace Here.Maybes.Extensions
         /// <param name="predicate">Condition to match.</param>
         /// <returns>A <see cref="Maybe{T}"/> with matched items.</returns>
         [PublicAPI, Pure]
-        public static Maybe<IEnumerable> WhereItem<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Predicate<object> predicate)
+        public static Maybe<IEnumerable> WhereItems<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Predicate<object> predicate)
             where T : IEnumerable
         {
             if (maybe.HasValue)
@@ -103,7 +145,7 @@ namespace Here.Maybes.Extensions
         /// <param name="predicate">Condition to match.</param>
         /// <returns>A <see cref="Maybe{T}"/> with matched items.</returns>
         [PublicAPI, Pure]
-        public static Maybe<IEnumerable<TItem>> WhereItem<T, TItem>(this Maybe<T> maybe, [NotNull, InstantHandle] Predicate<TItem> predicate)
+        public static Maybe<IEnumerable<TItem>> WhereItems<T, TItem>(this Maybe<T> maybe, [NotNull, InstantHandle] Predicate<TItem> predicate)
             where T : IEnumerable<TItem>
         {
             if (maybe.HasValue)
@@ -125,7 +167,7 @@ namespace Here.Maybes.Extensions
         /// <param name="onItem">Treatment to do on each item.</param>
         /// <returns>This <see cref="Maybe{T}"/>.</returns>
         [PublicAPI]
-        public static Maybe<T> ForEachItem<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Action<object> onItem)
+        public static Maybe<T> ForEachItems<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Action<object> onItem)
             where T : IEnumerable
         {
             if (maybe.HasValue)
@@ -146,7 +188,7 @@ namespace Here.Maybes.Extensions
         /// <param name="onItem">Treatment to do on each item.</param>
         /// <returns>This <see cref="Maybe{T}"/>.</returns>
         [PublicAPI]
-        public static Maybe<T> ForEachItem<T, TItem>(this Maybe<T> maybe, [NotNull, InstantHandle] Action<TItem> onItem)
+        public static Maybe<T> ForEachItems<T, TItem>(this Maybe<T> maybe, [NotNull, InstantHandle] Action<TItem> onItem)
             where T : IEnumerable<TItem>
         {
             if (maybe.HasValue)

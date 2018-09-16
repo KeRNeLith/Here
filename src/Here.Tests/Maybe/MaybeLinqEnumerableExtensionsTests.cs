@@ -88,7 +88,7 @@ namespace Here.Tests.Maybes
         }
 
         [Test]
-        public void MaybeWhereItem()
+        public void MaybeAllItems()
         {
             IEnumerable<int> emptyEnumerable = new List<int>();
             IEnumerable<int> enumerableInts = new List<int> { 1, 2, 3, 4, 5 };
@@ -103,48 +103,104 @@ namespace Here.Tests.Maybes
             // Not empty maybe
             // Enumerable<int>
             var maybeEnumerableInts = Maybe<IEnumerable<int>>.Some(emptyEnumerable);
-            CheckEmptyMaybe(maybeEnumerableInts.WhereItem(value => true));
-            CheckEmptyMaybe(maybeEnumerableInts.WhereItem((int value) => true));
+            Assert.IsTrue(maybeEnumerableInts.AllItems(value => true));
+            Assert.IsTrue(maybeEnumerableInts.AllItems(value => value is int));
+            Assert.IsTrue(maybeEnumerableInts.AllItems((int value) => true));
+            Assert.IsTrue(maybeEnumerableInts.AllItems((int value) => value > 0));
 
             maybeEnumerableInts = Maybe<IEnumerable<int>>.Some(enumerableInts);
-            CheckMaybeCollectionValue(maybeEnumerableInts.WhereItem(value => (int)value >= 3), new[] { 3, 4, 5 });
-            CheckMaybeCollectionValue(maybeEnumerableInts.WhereItem((int value) => value >= 4), new[] { 4, 5 });
-            CheckEmptyMaybe(maybeEnumerableInts.WhereItem(value => (int)value >= 6));
-            CheckEmptyMaybe(maybeEnumerableInts.WhereItem((int value) => value >= 7));
+            Assert.IsTrue(maybeEnumerableInts.AllItems(value => value is int i && i > 0));
+            Assert.IsFalse(maybeEnumerableInts.AllItems(value => value is int i && i == 6));
+            Assert.IsTrue(maybeEnumerableInts.AllItems((int value) => value > 0));
+            Assert.IsFalse(maybeEnumerableInts.AllItems((int value) => value == 6));
 
             // List<int>
             var maybeListInts = Maybe<IList<int>>.Some(listInts);
-            CheckMaybeCollectionValue(maybeListInts.WhereItem(value => (int)value >= 3), new[] { 3, 4, 5, 6 });
-            CheckMaybeCollectionValue(maybeListInts.WhereItem((int value) => value >= 4), new[] { 4, 5, 6 });
-            CheckEmptyMaybe(maybeListInts.WhereItem(value => (int)value > 6));
-            CheckEmptyMaybe(maybeListInts.WhereItem((int value) => value >= 7));
+            Assert.IsTrue(maybeListInts.AllItems(value => value is int i && i > 1));
+            Assert.IsFalse(maybeListInts.AllItems(value => value is int i && i == 7));
+            Assert.IsTrue(maybeListInts.AllItems((int value) => value > 1));
+            Assert.IsFalse(maybeListInts.AllItems((int value) => value == 7));
+
+            // Dictionary<string, int>
+            var maybeStringsInts = Maybe<IDictionary<string, int>>.Some(dictionaryStringsInts);
+            Assert.IsTrue(maybeStringsInts.AllItems(value => value is KeyValuePair<string, int>));
+            Assert.IsFalse(maybeStringsInts.AllItems(value => value is KeyValuePair<string, int> pair && pair.Value == 7));
+            Assert.IsTrue(maybeStringsInts.AllItems((KeyValuePair<string, int> pair) => pair.Value > 2));
+            Assert.IsFalse(maybeStringsInts.AllItems((KeyValuePair<string, int> pair) => pair.Value == 7));
+
+            // Enumerable
+            var maybeEnumerable = Maybe<IEnumerable>.Some(Items);
+            Assert.IsTrue(maybeEnumerable.AllItems(value => value is object));
+            Assert.IsFalse(maybeEnumerable.AllItems(value => value is float));
+
+            maybeEnumerable = Maybe<IEnumerable>.Some(listInts);
+            Assert.IsTrue(maybeEnumerable.AllItems(value => value is int));
+            Assert.IsFalse(maybeEnumerable.AllItems(value => value is int i && i > 25));
+
+            // Empty maybe
+            var emptyMaybe = Maybe<IList<int>>.None;
+            Assert.IsFalse(emptyMaybe.AllItems(value => true));
+            Assert.IsFalse(emptyMaybe.AllItems((int value) => true));
+        }
+
+        [Test]
+        public void MaybeWhereItems()
+        {
+            IEnumerable<int> emptyEnumerable = new List<int>();
+            IEnumerable<int> enumerableInts = new List<int> { 1, 2, 3, 4, 5 };
+            IList<int> listInts = new List<int> { 2, 3, 4, 5, 6 };
+            IDictionary<string, int> dictionaryStringsInts = new Dictionary<string, int>
+            {
+                ["3"] = 3,
+                ["4"] = 4,
+                ["5"] = 5
+            };
+
+            // Not empty maybe
+            // Enumerable<int>
+            var maybeEnumerableInts = Maybe<IEnumerable<int>>.Some(emptyEnumerable);
+            CheckEmptyMaybe(maybeEnumerableInts.WhereItems(value => true));
+            CheckEmptyMaybe(maybeEnumerableInts.WhereItems((int value) => true));
+
+            maybeEnumerableInts = Maybe<IEnumerable<int>>.Some(enumerableInts);
+            CheckMaybeCollectionValue(maybeEnumerableInts.WhereItems(value => (int)value >= 3), new[] { 3, 4, 5 });
+            CheckMaybeCollectionValue(maybeEnumerableInts.WhereItems((int value) => value >= 4), new[] { 4, 5 });
+            CheckEmptyMaybe(maybeEnumerableInts.WhereItems(value => (int)value >= 6));
+            CheckEmptyMaybe(maybeEnumerableInts.WhereItems((int value) => value >= 7));
+
+            // List<int>
+            var maybeListInts = Maybe<IList<int>>.Some(listInts);
+            CheckMaybeCollectionValue(maybeListInts.WhereItems(value => (int)value >= 3), new[] { 3, 4, 5, 6 });
+            CheckMaybeCollectionValue(maybeListInts.WhereItems((int value) => value >= 4), new[] { 4, 5, 6 });
+            CheckEmptyMaybe(maybeListInts.WhereItems(value => (int)value > 6));
+            CheckEmptyMaybe(maybeListInts.WhereItems((int value) => value >= 7));
 
             // Dictionary<string, int>
             var maybeStringsInts = Maybe<IDictionary<string, int>>.Some(dictionaryStringsInts);
             CheckMaybeDictionaryValue(
-                maybeStringsInts.WhereItem(pair => ((KeyValuePair<string, int>)pair).Value > 3), 
+                maybeStringsInts.WhereItems(pair => ((KeyValuePair<string, int>)pair).Value > 3), 
                 new Dictionary<string, int> { ["4"] = 4, ["5"] = 5 });
             CheckMaybeDictionaryValue(
-                maybeStringsInts.WhereItem((KeyValuePair<string, int> pair) => pair.Value >= 4),
+                maybeStringsInts.WhereItems((KeyValuePair<string, int> pair) => pair.Value >= 4),
                 new Dictionary<string, int> { ["4"] = 4, ["5"] = 5 });
-            CheckEmptyMaybe(maybeStringsInts.WhereItem(pair => false));
-            CheckEmptyMaybe(maybeStringsInts.WhereItem((KeyValuePair<string, int> pair) => pair.Value >= 7));
+            CheckEmptyMaybe(maybeStringsInts.WhereItems(pair => false));
+            CheckEmptyMaybe(maybeStringsInts.WhereItems((KeyValuePair<string, int> pair) => pair.Value >= 7));
 
             // Enumerable
             var maybeEnumerable = Maybe<IEnumerable>.Some(Items);
-            CheckMaybeCollectionValue(maybeEnumerable.WhereItem(item => item is string), new object[] { "Test" });
+            CheckMaybeCollectionValue(maybeEnumerable.WhereItems(item => item is string), new object[] { "Test" });
 
             maybeEnumerable = Maybe<IEnumerable>.Some(listInts);
-            CheckMaybeCollectionValue(maybeEnumerable.WhereItem(item => item is int i && i > 4), new[] { 5, 6 });
+            CheckMaybeCollectionValue(maybeEnumerable.WhereItems(item => item is int i && i > 4), new[] { 5, 6 });
 
             // Empty maybe
             var emptyMaybe = Maybe<IList<int>>.None;
-            CheckEmptyMaybe(emptyMaybe.WhereItem(item => true));
-            CheckEmptyMaybe(emptyMaybe.WhereItem((int value) => value > 1));
+            CheckEmptyMaybe(emptyMaybe.WhereItems(item => true));
+            CheckEmptyMaybe(emptyMaybe.WhereItems((int value) => value > 1));
         }
 
         [Test]
-        public void MaybeForEachItem()
+        public void MaybeForEachItems()
         {
             IEnumerable<int> emptyEnumerable = new List<int>();
             IEnumerable<int> enumerableInts = new List<int> { 1, 2, 3, 4, 5 };
@@ -160,54 +216,54 @@ namespace Here.Tests.Maybes
             // Enumerable<int>
             int counter = 0;
             var maybeEnumerableInts = Maybe<IEnumerable<int>>.Some(emptyEnumerable);
-            maybeEnumerableInts.ForEachItem(value => ++counter);
+            maybeEnumerableInts.ForEachItems(value => ++counter);
             Assert.AreEqual(0, counter);
 
             counter = 0;
             maybeEnumerableInts = Maybe<IEnumerable<int>>.Some(enumerableInts);
-            maybeEnumerableInts.ForEachItem(value => ++counter);
+            maybeEnumerableInts.ForEachItems(value => ++counter);
             Assert.AreEqual(5, counter);
 
-            maybeEnumerableInts.ForEachItem((int value) => ++counter);
+            maybeEnumerableInts.ForEachItems((int value) => ++counter);
             Assert.AreEqual(10, counter);
 
             // List<int>
             counter = 0;
             var maybeListInts = Maybe<IList<int>>.Some(listInts);
-            maybeListInts.ForEachItem(value => ++counter);
+            maybeListInts.ForEachItems(value => ++counter);
             Assert.AreEqual(5, counter);
 
-            maybeListInts.ForEachItem((int value) => ++counter);
+            maybeListInts.ForEachItems((int value) => ++counter);
             Assert.AreEqual(10, counter);
 
             // Dictionary<string, int>
             counter = 0;
             var maybeStringsInts = Maybe<IDictionary<string, int>>.Some(dictionaryStringsInts);
-            maybeStringsInts.ForEachItem(value => ++counter);
+            maybeStringsInts.ForEachItems(value => ++counter);
             Assert.AreEqual(3, counter);
 
-            maybeStringsInts.ForEachItem((KeyValuePair<string, int> value) => ++counter);
+            maybeStringsInts.ForEachItems((KeyValuePair<string, int> value) => ++counter);
             Assert.AreEqual(6, counter);
 
             // Enumerable
             counter = 0;
             var maybeEnumerable = Maybe<IEnumerable>.Some(Items);
-            maybeEnumerable.ForEachItem(value => ++counter);
+            maybeEnumerable.ForEachItems(value => ++counter);
             Assert.AreEqual(3, counter);
 
             counter = 0;
             maybeEnumerable = Maybe<IEnumerable>.Some(listInts);
-            maybeEnumerable.ForEachItem(value => ++counter);
+            maybeEnumerable.ForEachItems(value => ++counter);
             Assert.AreEqual(5, counter);
 
             // Empty maybe
             counter = 0;
             var emptyMaybe = Maybe<IList<int>>.None;
 
-            emptyMaybe.ForEachItem(item => ++counter);
+            emptyMaybe.ForEachItems(item => ++counter);
             Assert.AreEqual(0, counter);
 
-            emptyMaybe.ForEachItem((int item) => ++counter);
+            emptyMaybe.ForEachItems((int item) => ++counter);
             Assert.AreEqual(0, counter);
         }
     }
