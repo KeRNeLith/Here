@@ -158,13 +158,6 @@ namespace Here.Maybes.Extensions
                     if (index < list.Count)
                         return list[index];
                 }
-#if (!NET20 && !NET30 && !NET35 && !NET40)
-                else if (enumerable is IReadOnlyList<T> readOnlyList)
-                {
-                    if (index < readOnlyList.Count)
-                        return readOnlyList[index];
-                }
-#endif
                 else
                 {
                     using (var enumerator = enumerable.GetEnumerator())
