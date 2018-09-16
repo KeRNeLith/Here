@@ -141,6 +141,49 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
+        /// Get a the element at the given index in the given <see cref="IEnumerable{T}"/> and return a corresponding <see cref="Maybe{T}"/>.
+        /// Note that if the index is out of range it will return a <see cref="Maybe{T}.None"/>.
+        /// </summary>
+        /// <typeparam name="T">Template type of this <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <param name="enumerable">Enumerable collection.</param>
+        /// <param name="index">Index in collection where getting the element.</param>
+        /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns> 
+        [PublicAPI, Pure]
+        public static Maybe<T> ElementAtOrNone<T>([NotNull] this IEnumerable<T> enumerable, int index)
+        {
+            if (index >= 0)
+            {
+                if (enumerable is IList<T> list)
+                {
+                    if (index < list.Count)
+                        return list[index];
+                }
+#if (!NET20 && !NET30 && !NET35 && !NET40)
+                else if (enumerable is IReadOnlyList<T> readOnlyList)
+                {
+                    if (index < readOnlyList.Count)
+                        return readOnlyList[index];
+                }
+#endif
+                else
+                {
+                    using (var enumerator = enumerable.GetEnumerator())
+                    {
+                        while (enumerator.MoveNext())
+                        {
+                            if (index == 0)
+                                return enumerator.Current;
+
+                            index--;
+                        }
+                    }
+                }
+            }
+
+            return Maybe<T>.None;
+        }
+
+        /// <summary>
         /// Convert this <see cref="Maybe{T}"/> to an <see cref="IEnumerable{T}"/> with zero or one element.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using NUnit.Framework;
 using Here.Maybes;
@@ -13,6 +14,21 @@ namespace Here.Tests.Maybes
     [TestFixture]
     internal class MaybeEnumerableExtensionsTests : MaybeTestsBase
     {
+        #region Test property
+
+        private IEnumerable<int> Items
+        {
+            get
+            {
+                yield return 1;
+                yield return 12;
+                yield return 13;
+                yield return 8;
+            }
+        }
+
+        #endregion
+
         [Test]
         public void EnumerableFirstOrNone()
         {
@@ -235,6 +251,58 @@ namespace Here.Tests.Maybes
             CheckEmptyMaybe(maybeClass);
             maybeClass = enumerableTestClass3.LastOrNone(value => ReferenceEquals(testObj1, value));
             CheckEmptyMaybe(maybeClass);
+        }
+
+        [Test]
+        public void EnumerableElementAtOrNone()
+        {
+            // Value type
+            IList<int> listInts = new List<int> { 1, 2, 3 };
+            CheckEmptyMaybe(listInts.ElementAtOrNone(-1));
+            CheckMaybeValue(listInts.ElementAtOrNone(0), 1);
+            CheckMaybeValue(listInts.ElementAtOrNone(2), 3);
+            CheckEmptyMaybe(listInts.ElementAtOrNone(3));
+
+            IEnumerable<int> enumerableInts = new ReadOnlyCollection<int>(listInts);
+            CheckEmptyMaybe(enumerableInts.ElementAtOrNone(-1));
+            CheckMaybeValue(enumerableInts.ElementAtOrNone(0), 1);
+            CheckMaybeValue(enumerableInts.ElementAtOrNone(2), 3);
+            CheckEmptyMaybe(enumerableInts.ElementAtOrNone(3));
+
+            IEnumerable<int> enumerableInts2 = new List<int>();
+            CheckEmptyMaybe(enumerableInts2.ElementAtOrNone(-1));
+            CheckEmptyMaybe(enumerableInts2.ElementAtOrNone(0));
+
+            CheckEmptyMaybe(Items.ElementAtOrNone(-1));
+            CheckMaybeValue(Items.ElementAtOrNone(0), 1);
+            CheckMaybeValue(Items.ElementAtOrNone(1), 12);
+            CheckMaybeValue(Items.ElementAtOrNone(3), 8);
+            CheckEmptyMaybe(Items.ElementAtOrNone(5));
+
+            // Reference type
+            var testObject1 = new TestClass();
+            var testObject2 = new TestClass { TestInt = 12 };
+            IList<TestClass> listTestClasses = new List<TestClass> { testObject1, testObject2 };
+            CheckEmptyMaybe(listTestClasses.ElementAtOrNone(-1));
+            CheckMaybeValue(listTestClasses.ElementAtOrNone(0), testObject1);
+            CheckMaybeValue(listTestClasses.ElementAtOrNone(1), testObject2);
+            CheckEmptyMaybe(listTestClasses.ElementAtOrNone(2));
+
+            IEnumerable<TestClass> enumerableTestClasses = new ReadOnlyCollection<TestClass>(listTestClasses);
+            CheckEmptyMaybe(enumerableTestClasses.ElementAtOrNone(-1));
+            CheckMaybeValue(enumerableTestClasses.ElementAtOrNone(0), testObject1);
+            CheckMaybeValue(enumerableTestClasses.ElementAtOrNone(1), testObject2);
+            CheckEmptyMaybe(enumerableTestClasses.ElementAtOrNone(2));
+
+            IEnumerable<TestClass> enumerableTestClasses2 = new List<TestClass>();
+            CheckEmptyMaybe(enumerableTestClasses2.ElementAtOrNone(-1));
+            CheckEmptyMaybe(enumerableTestClasses2.ElementAtOrNone(0));
+
+            IEnumerable<TestClass> enumerableTestClasses3 = new List<TestClass> { testObject1, null, testObject2 };
+            CheckEmptyMaybe(enumerableTestClasses3.ElementAtOrNone(-1));
+            CheckMaybeValue(enumerableTestClasses3.ElementAtOrNone(0), testObject1);
+            // Even if element [1] exists, it's value is null so it will result in an empty maybe
+            CheckEmptyMaybe(enumerableTestClasses3.ElementAtOrNone(1));
         }
 
         [Test]
