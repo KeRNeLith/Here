@@ -144,6 +144,79 @@ namespace Here.Tests.Maybes
         }
 
         [Test]
+        public void MaybeContainsItem()
+        {
+            var testObject1 = new TestClass { TestInt = 12 };
+            var testObject2 = new TestClass { TestInt = 13 };
+            var testObject3 = new TestClass { TestInt = 14 };
+            IEnumerable<TestClass> emptyEnumerable = new List<TestClass>();
+            IEnumerable<TestClass> enumerableTestClasses = new List<TestClass> { testObject1, testObject2 };
+            IList<TestClass> listTestClasses = new List<TestClass> { testObject1, testObject3 };
+            IDictionary<string, int> dictionaryStringsInts = new Dictionary<string, int>
+            {
+                ["3"] = 3,
+                ["4"] = 4,
+                ["5"] = 5
+            };
+
+            // Not empty maybe
+            // Enumerable<int>
+            var maybeEnumerableTestClasses = Maybe<IEnumerable<TestClass>>.Some(emptyEnumerable);
+            Assert.IsFalse(maybeEnumerableTestClasses.ContainsItem((TestClass)null));
+            Assert.IsFalse(maybeEnumerableTestClasses.ContainsItem(null, EqualityComparer<TestClass>.Default));
+            Assert.IsFalse(maybeEnumerableTestClasses.ContainsItem(testObject1));
+            Assert.IsFalse(maybeEnumerableTestClasses.ContainsItem(testObject1, EqualityComparer<TestClass>.Default));
+
+            maybeEnumerableTestClasses = Maybe<IEnumerable<TestClass>>.Some(enumerableTestClasses);
+            Assert.IsFalse(maybeEnumerableTestClasses.ContainsItem((TestClass)null));
+            Assert.IsFalse(maybeEnumerableTestClasses.ContainsItem(null, EqualityComparer<TestClass>.Default));
+            Assert.IsTrue(maybeEnumerableTestClasses.ContainsItem(testObject2));
+            Assert.IsTrue(maybeEnumerableTestClasses.ContainsItem(testObject2, EqualityComparer<TestClass>.Default));
+            Assert.IsFalse(maybeEnumerableTestClasses.ContainsItem(testObject3));
+            Assert.IsFalse(maybeEnumerableTestClasses.ContainsItem(testObject3, EqualityComparer<TestClass>.Default));
+
+            // List<int>
+            var maybeListInts = Maybe<IList<TestClass>>.Some(listTestClasses);
+            Assert.IsFalse(maybeListInts.ContainsItem((TestClass)null));
+            Assert.IsFalse(maybeListInts.ContainsItem(null, EqualityComparer<TestClass>.Default));
+            Assert.IsTrue(maybeListInts.ContainsItem(testObject1));
+            Assert.IsTrue(maybeListInts.ContainsItem(testObject1, EqualityComparer<TestClass>.Default));
+            Assert.IsFalse(maybeListInts.ContainsItem(testObject2));
+            Assert.IsFalse(maybeListInts.ContainsItem(testObject2, EqualityComparer<TestClass>.Default));
+
+            // Dictionary<string, int>
+            var maybeStringsInts = Maybe<IDictionary<string, int>>.Some(dictionaryStringsInts);
+            Assert.IsTrue(maybeStringsInts.ContainsItem(new KeyValuePair<string, int>("3", 3)));
+            Assert.IsTrue(maybeStringsInts.ContainsItem(new KeyValuePair<string, int>("3", 3), EqualityComparer<KeyValuePair<string, int>>.Default));
+            Assert.IsFalse(maybeStringsInts.ContainsItem(new KeyValuePair<string, int>("1", 3)));
+            Assert.IsFalse(maybeStringsInts.ContainsItem(new KeyValuePair<string, int>("1", 3), EqualityComparer<KeyValuePair<string, int>>.Default));
+
+            // Enumerable
+            var maybeEnumerable = Maybe<IEnumerable>.Some(Items);
+            Assert.IsFalse(maybeEnumerable.ContainsItem(null));
+            Assert.IsFalse(maybeEnumerable.ContainsItem(null, EqualityComparer<object>.Default));
+            Assert.IsTrue(maybeEnumerable.ContainsItem((object)"Test"));
+            Assert.IsTrue(maybeEnumerable.ContainsItem(1, EqualityComparer<object>.Default));
+            Assert.IsFalse(maybeEnumerable.ContainsItem((object)testObject2));
+            Assert.IsFalse(maybeEnumerable.ContainsItem(testObject2, EqualityComparer<object>.Default));
+
+            maybeEnumerable = Maybe<IEnumerable>.Some(listTestClasses);
+            Assert.IsFalse(maybeEnumerable.ContainsItem(null));
+            Assert.IsFalse(maybeEnumerable.ContainsItem(null, EqualityComparer<object>.Default));
+            Assert.IsTrue(maybeEnumerable.ContainsItem((object)testObject1));
+            Assert.IsTrue(maybeEnumerable.ContainsItem(testObject1, EqualityComparer<object>.Default));
+            Assert.IsFalse(maybeEnumerable.ContainsItem((object)testObject2));
+            Assert.IsFalse(maybeEnumerable.ContainsItem(testObject2, EqualityComparer<object>.Default));
+
+            // Empty maybe
+            var emptyMaybe = Maybe<IList<TestClass>>.None;
+            Assert.IsFalse(emptyMaybe.ContainsItem((TestClass)null));
+            Assert.IsFalse(emptyMaybe.ContainsItem(null, EqualityComparer<TestClass>.Default));
+            Assert.IsFalse(emptyMaybe.ContainsItem(testObject1));
+            Assert.IsFalse(emptyMaybe.ContainsItem(testObject2, EqualityComparer<TestClass>.Default));
+        }
+
+        [Test]
         public void MaybeWhereItems()
         {
             IEnumerable<int> emptyEnumerable = new List<int>();

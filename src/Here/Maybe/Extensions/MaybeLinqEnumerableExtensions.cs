@@ -109,6 +109,86 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
+        /// Check if this <see cref="Maybe{T}"/> has value and return true if enumerable contains the given <paramref name="value"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
+        /// <param name="value">Value to check equality with <see cref="Maybe{T}"/> value.</param>
+        /// <returns>True if this <see cref="Maybe{T}"/> contains <paramref name="value"/>.</returns>
+        [PublicAPI, Pure]
+        public static bool ContainsItem<T>(this Maybe<T> maybe, [CanBeNull] object value)
+            where T : IEnumerable
+        {
+            if (maybe.HasValue)
+            {
+                foreach (var item in maybe.Value)
+                {
+                    if (EqualityComparer<object>.Default.Equals(item, value))
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Check if this <see cref="Maybe{T}"/> has value and return true if enumerable contains the given <paramref name="value"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
+        /// <param name="value">Value to check equality with <see cref="Maybe{T}"/> value.</param>
+        /// <param name="comparer">Equality comparer to use.</param>
+        /// <returns>True if this <see cref="Maybe{T}"/> contains <paramref name="value"/>.</returns>
+        [PublicAPI, Pure]
+        public static bool ContainsItem<T>(this Maybe<T> maybe, [CanBeNull] object value, [NotNull] IEqualityComparer<object> comparer)
+            where T : IEnumerable
+        {
+            if (maybe.HasValue)
+            {
+                foreach (var item in maybe.Value)
+                {
+                    if (comparer.Equals(item, value))
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Check if this <see cref="Maybe{T}"/> has value and return true if enumerable contains the given <paramref name="value"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
+        /// <param name="value">Value to check equality with <see cref="Maybe{T}"/> value.</param>
+        /// <returns>True if this <see cref="Maybe{T}"/> contains <paramref name="value"/>.</returns>
+        [PublicAPI, Pure]
+        public static bool ContainsItem<T, TItem>(this Maybe<T> maybe, [CanBeNull] TItem value)
+            where T : IEnumerable<TItem>
+        {
+            if (maybe.HasValue)
+                return maybe.Value.Contains(value);
+            return false;
+        }
+
+        /// <summary>
+        /// Check if this <see cref="Maybe{T}"/> has value and return true if enumerable contains the given <paramref name="value"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
+        /// <param name="value">Value to check equality with <see cref="Maybe{T}"/> value.</param>
+        /// <param name="comparer">Equality comparer to use.</param>
+        /// <returns>True if this <see cref="Maybe{T}"/> contains <paramref name="value"/>.</returns>
+        [PublicAPI, Pure]
+        public static bool ContainsItem<T, TItem>(this Maybe<T> maybe, [CanBeNull] TItem value, [NotNull] IEqualityComparer<TItem> comparer)
+            where T : IEnumerable<TItem>
+        {
+            if (maybe.HasValue)
+                return maybe.Value.Contains(value, comparer);
+            return false;
+        }
+
+        /// <summary>
         /// Call the <paramref name="predicate"/> function on each item if this <see cref="Maybe{T}"/> has a value and return matched items.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>

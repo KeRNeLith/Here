@@ -56,10 +56,12 @@ namespace Here.Tests.Maybes
             var maybeClass = Maybe<TestClass>.Some(testObject);
             Assert.IsTrue(maybeClass.Contains(testObject));
             Assert.IsTrue(maybeClass.Contains(new TestClass { TestInt = 42 }));
+            Assert.IsFalse(maybeClass.Contains(null));  // Maybe cannot contains null value
 
             // Empty maybe
             Maybe<TestClass> emptyMaybeClass = Maybe.None;
             Assert.IsFalse(emptyMaybeClass.Contains(testObject));
+            Assert.IsFalse(emptyMaybeClass.Contains(null));  // Maybe cannot contains null value
         }
 
         [Test]
