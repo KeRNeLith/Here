@@ -26,47 +26,6 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onItem"/> function on each item if this <see cref="Maybe{T}"/> has a value.
-        /// </summary>
-        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
-        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
-        /// <param name="onItem">Treatment to do on each item.</param>
-        /// <returns>This <see cref="Maybe{T}"/>.</returns>
-        [PublicAPI]
-        public static Maybe<T> ForEachIf<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Action<object> onItem)
-            where T : IEnumerable
-        {
-            if (maybe.HasValue)
-            {
-                foreach (var item in maybe.Value)
-                    onItem(item);
-            }
-
-            return maybe;
-        }
-
-        /// <summary>
-        /// Call the <paramref name="onItem"/> function on each item if this <see cref="Maybe{T}"/> has a value.
-        /// </summary>
-        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
-        /// <typeparam name="TItem">Enumerable item type.</typeparam>
-        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
-        /// <param name="onItem">Treatment to do on each item.</param>
-        /// <returns>This <see cref="Maybe{T}"/>.</returns>
-        [PublicAPI]
-        public static Maybe<T> ForEachIf<T, TItem>(this Maybe<T> maybe, [NotNull, InstantHandle] Action<TItem> onItem)
-            where T : IEnumerable<TItem>
-        {
-            if (maybe.HasValue)
-            {
-                foreach (var item in maybe.Value)
-                    onItem(item);
-            }
-
-            return maybe;
-        }
-
-        /// <summary>
         /// Call the <paramref name="else"/> function if this <see cref="Maybe{T}"/> has no value.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
@@ -94,53 +53,6 @@ namespace Here.Maybes.Extensions
         {
             if (maybe.HasValue)
                 then(maybe.Value);
-            else
-                @else();
-
-            return maybe;
-        }
-
-        /// <summary>
-        /// Call the <paramref name="onItem"/> function on each item if this <see cref="Maybe{T}"/> has a value, otherwise call <paramref name="else"/>.
-        /// </summary>
-        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
-        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
-        /// <param name="onItem">Treatment to do on each item.</param>
-        /// <param name="else">Treatment to do if this <see cref="Maybe{T}"/> has no value.</param>
-        /// <returns>This <see cref="Maybe{T}"/>.</returns>
-        [PublicAPI]
-        public static Maybe<T> ForEachIfElse<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Action<object> onItem, [NotNull] Action @else)
-            where T : IEnumerable
-        {
-            if (maybe.HasValue)
-            {
-                foreach (var item in maybe.Value)
-                    onItem(item);
-            }
-            else
-                @else();
-
-            return maybe;
-        }
-
-        /// <summary>
-        /// Call the <paramref name="onItem"/> function on each item if this <see cref="Maybe{T}"/> has a value, otherwise call <paramref name="else"/>.
-        /// </summary>
-        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
-        /// <typeparam name="TItem">Enumerable item type.</typeparam>
-        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
-        /// <param name="onItem">Treatment to do on each item.</param>
-        /// <param name="else">Treatment to do if this <see cref="Maybe{T}"/> has no value.</param>
-        /// <returns>This <see cref="Maybe{T}"/>.</returns>
-        [PublicAPI]
-        public static Maybe<T> ForEachIfElse<T, TItem>(this Maybe<T> maybe, [NotNull, InstantHandle] Action<TItem> onItem, [NotNull] Action @else)
-            where T : IEnumerable<TItem>
-        {
-            if (maybe.HasValue)
-            {
-                foreach (var item in maybe.Value)
-                    onItem(item);
-            }
             else
                 @else();
 
