@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using Here.Maybes;
@@ -77,6 +78,96 @@ namespace Here.Tests.Maybes
             CheckEmptyMaybe(maybeClass);
             maybeClass = enumerableTestClass3.FirstOrNone(value => ReferenceEquals(testObj1, value));
             CheckEmptyMaybe(maybeClass);
+        }
+
+        [Test]
+        public void EnumerableSingleOrNone()
+        {
+            // Test for value type
+            // Several values
+            IEnumerable<int> enumerableInts = new List<int> { 1, 2, 2, 3 };
+            Assert.Throws<InvalidOperationException>(() => { var _ = enumerableInts.SingleOrNone(); });
+            CheckEmptyMaybe(enumerableInts.SingleOrNone(false));
+
+            Assert.Throws<InvalidOperationException>(() => { var _ = enumerableInts.SingleOrNone(value => value == 2); });
+            CheckEmptyMaybe(enumerableInts.SingleOrNone(value => value == 2, false));
+
+            CheckMaybeValue(enumerableInts.SingleOrNone(value => value == 3), 3);
+            CheckMaybeValue(enumerableInts.SingleOrNone(value => value == 3, false), 3);
+
+            CheckEmptyMaybe(enumerableInts.SingleOrNone(value => value == 4));
+            CheckEmptyMaybe(enumerableInts.SingleOrNone(value => value == 4, false));
+
+            // One value
+            IEnumerable<int> enumerableInts2 = new List<int> { 12 };
+            CheckMaybeValue(enumerableInts2.SingleOrNone(), 12);
+            CheckMaybeValue(enumerableInts2.SingleOrNone(false), 12);
+
+            CheckMaybeValue(enumerableInts2.SingleOrNone(value => value == 12), 12);
+            CheckMaybeValue(enumerableInts2.SingleOrNone(value => value == 12, false), 12);
+
+            CheckEmptyMaybe(enumerableInts2.SingleOrNone(value => value == 4));
+            CheckEmptyMaybe(enumerableInts2.SingleOrNone(value => value == 4, false));
+
+            // No value
+            IEnumerable<int> enumerableInts3 = new List<int>();
+            CheckEmptyMaybe(enumerableInts3.SingleOrNone());
+            CheckEmptyMaybe(enumerableInts3.SingleOrNone(false));
+
+            CheckEmptyMaybe(enumerableInts3.SingleOrNone(value => value == 4));
+            CheckEmptyMaybe(enumerableInts3.SingleOrNone(value => value == 4, false));
+
+            // Test for reference type
+            // Several values
+            var testObj1 = new TestClass();
+            var testObj2 = new TestClass();
+            IEnumerable<TestClass> enumerableTestClass = new List<TestClass> { testObj1, testObj1, testObj2 };
+
+            Assert.Throws<InvalidOperationException>(() => { var _ = enumerableTestClass.SingleOrNone(); });
+            CheckEmptyMaybe(enumerableTestClass.SingleOrNone(false));
+
+            Assert.Throws<InvalidOperationException>(() => { var _ = enumerableTestClass.SingleOrNone(value => ReferenceEquals(testObj1, value)); });
+            CheckEmptyMaybe(enumerableTestClass.SingleOrNone(value => ReferenceEquals(testObj1, value), false));
+
+            CheckMaybeValue(enumerableTestClass.SingleOrNone(value => ReferenceEquals(testObj2, value)), testObj2);
+            CheckMaybeValue(enumerableTestClass.SingleOrNone(value => ReferenceEquals(testObj2, value), false), testObj2);
+
+            var testObj3 = new TestClass();
+            CheckEmptyMaybe(enumerableTestClass.SingleOrNone(value => ReferenceEquals(testObj3, value)));
+            CheckEmptyMaybe(enumerableTestClass.SingleOrNone(value => ReferenceEquals(testObj3, value), false));
+
+            // One value
+            IEnumerable<TestClass> enumerableTestClass2 = new List<TestClass> { testObj1 };
+
+            CheckMaybeValue(enumerableTestClass2.SingleOrNone(), testObj1);
+            CheckMaybeValue(enumerableTestClass2.SingleOrNone(false), testObj1);
+
+            CheckMaybeValue(enumerableTestClass2.SingleOrNone(value => ReferenceEquals(testObj1, value)), testObj1);
+            CheckMaybeValue(enumerableTestClass2.SingleOrNone(value => ReferenceEquals(testObj1, value), false), testObj1);
+
+            CheckEmptyMaybe(enumerableTestClass2.SingleOrNone(value => ReferenceEquals(testObj2, value)));
+            CheckEmptyMaybe(enumerableTestClass2.SingleOrNone(value => ReferenceEquals(testObj2, value), false));
+
+            // Null values
+            IEnumerable<TestClass> enumerableTestClass3 = new List<TestClass> { null, null };
+
+            Assert.Throws<InvalidOperationException>(() => { var _ = enumerableTestClass3.SingleOrNone(); });
+            CheckEmptyMaybe(enumerableTestClass3.SingleOrNone(false));
+
+            CheckEmptyMaybe(enumerableTestClass3.SingleOrNone(value => ReferenceEquals(testObj1, value)));
+            CheckEmptyMaybe(enumerableTestClass3.SingleOrNone(value => ReferenceEquals(testObj1, value), false));
+
+            Assert.Throws<InvalidOperationException>(() => { var _ = enumerableTestClass3.SingleOrNone(value => value is null); });
+            CheckEmptyMaybe(enumerableTestClass3.SingleOrNone(value => value is null, false));
+
+            // No value
+            IEnumerable<TestClass> enumerableTestClass4 = new List<TestClass>();
+
+            CheckEmptyMaybe(enumerableTestClass4.SingleOrNone());
+            CheckEmptyMaybe(enumerableTestClass4.SingleOrNone(false));
+
+            CheckEmptyMaybe(enumerableTestClass4.SingleOrNone(value => ReferenceEquals(testObj1, value)));
+            CheckEmptyMaybe(enumerableTestClass4.SingleOrNone(value => ReferenceEquals(testObj1, value), false));
         }
 
         [Test]
