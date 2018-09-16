@@ -159,6 +159,7 @@ namespace Here.Maybes.Extensions
         /// Check if this <see cref="Maybe{T}"/> has value and return true if enumerable contains the given <paramref name="value"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <typeparam name="TItem">Enumerable item type.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
         /// <param name="value">Value to check equality with <see cref="Maybe{T}"/> value.</param>
         /// <returns>True if this <see cref="Maybe{T}"/> contains <paramref name="value"/>.</returns>
@@ -175,6 +176,7 @@ namespace Here.Maybes.Extensions
         /// Check if this <see cref="Maybe{T}"/> has value and return true if enumerable contains the given <paramref name="value"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <typeparam name="TItem">Enumerable item type.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
         /// <param name="value">Value to check equality with <see cref="Maybe{T}"/> value.</param>
         /// <param name="comparer">Equality comparer to use.</param>
@@ -186,6 +188,55 @@ namespace Here.Maybes.Extensions
             if (maybe.HasValue)
                 return maybe.Value.Contains(value, comparer);
             return false;
+        }
+
+        /// <summary>
+        /// Select via the <paramref name="selector"/> method something from this <see cref="Maybe{T}"/> wrapped enumerable if it has value and return selected items.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <typeparam name="TItemOut">Enumerable item output type.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="selector">Method called to select the value from this <see cref="Maybe{T}"/> enumerable items.</param>
+        /// <returns>A <see cref="Maybe{T}"/> with selected items.</returns>
+        [PublicAPI, Pure]
+        public static Maybe<IEnumerable<TItemOut>> SelectItems<T, TItemOut>(this Maybe<T> maybe, [NotNull, InstantHandle] Func<object, TItemOut> selector)
+            where T : IEnumerable
+        {
+            if (maybe.HasValue)
+            {
+                var result = new List<TItemOut>();
+                foreach (var item in maybe.Value)
+                    result.Add(selector(item));
+
+                // At least one match
+                if (result.Count > 0)
+                    return result;
+            }
+
+            return Maybe<IEnumerable<TItemOut>>.None;
+        }
+
+        /// <summary>
+        /// Select via the <paramref name="selector"/> method something from this <see cref="Maybe{T}"/> wrapped enumerable if it has value and return selected items.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <typeparam name="TItemIn">Enumerable item input type.</typeparam>
+        /// <typeparam name="TItemOut">Enumerable item output type.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="selector">Method called to select the value from this <see cref="Maybe{T}"/> enumerable items.</param>
+        /// <returns>A <see cref="Maybe{T}"/> with selected items.</returns>
+        [PublicAPI, Pure]
+        public static Maybe<IEnumerable<TItemOut>> SelectItems<T, TItemIn, TItemOut>(this Maybe<T> maybe, [NotNull, InstantHandle] Func<TItemIn, TItemOut> selector)
+            where T : IEnumerable<TItemIn>
+        {
+            if (maybe.HasValue)
+            {
+                var selectedItems = maybe.Value.Select(selector).ToArray();
+                if (selectedItems.Length > 0)
+                    return selectedItems;
+            }
+
+            return Maybe<IEnumerable<TItemOut>>.None;
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
 using Here.Maybes;
@@ -214,6 +215,98 @@ namespace Here.Tests.Maybes
             Assert.IsFalse(emptyMaybe.ContainsItem(null, EqualityComparer<TestClass>.Default));
             Assert.IsFalse(emptyMaybe.ContainsItem(testObject1));
             Assert.IsFalse(emptyMaybe.ContainsItem(testObject2, EqualityComparer<TestClass>.Default));
+        }
+
+        [Test]
+        public void MaybeSelectItems()
+        {
+            Func<object, float> selectFromObject = value =>
+            {
+                if (value is int i)
+                    return i + 0.1f;
+                return 0.2f;
+            };
+
+            Func<int, float> selectFromInt = (int value) =>
+            {
+                return value + 0.5f;
+            };
+
+            IEnumerable<int> emptyEnumerable = new List<int>();
+            IEnumerable<int> enumerableInts = new List<int> { 3, 4, 5 };
+            IList<int> listInts = new List<int> { 4, 5, 6 };
+            IDictionary<string, int> dictionaryStringsInts = new Dictionary<string, int>
+            {
+                ["3"] = 3,
+                ["4"] = 4,
+                ["5"] = 5
+            };
+
+            // Not empty maybe
+            // Enumerable<int>
+            var maybeEnumerableInts = Maybe<IEnumerable<int>>.Some(emptyEnumerable);
+            CheckEmptyMaybe(maybeEnumerableInts.SelectItems(selectFromObject));
+            CheckEmptyMaybe(maybeEnumerableInts.SelectItems(selectFromInt));
+
+            maybeEnumerableInts = Maybe<IEnumerable<int>>.Some(enumerableInts);
+            CheckMaybeCollectionValue(maybeEnumerableInts.SelectItems(
+                selectFromObject), 
+                new[] { 3.1f, 4.1f, 5.1f });
+            CheckMaybeCollectionValue(maybeEnumerableInts.SelectItems(
+                selectFromInt),
+                new[] { 3.5f, 4.5f, 5.5f });
+
+            // List<int>
+            var maybeListInts = Maybe<IList<int>>.Some(listInts);
+            CheckMaybeCollectionValue(maybeListInts.SelectItems(
+                selectFromObject),
+                new[] { 4.1f, 5.1f, 6.1f });
+            CheckMaybeCollectionValue(maybeListInts.SelectItems(
+                selectFromInt),
+                new[] { 4.5f, 5.5f, 6.5f });
+
+            // Dictionary<string, int>
+            var maybeStringsInts = Maybe<IDictionary<string, int>>.Some(dictionaryStringsInts);
+            CheckMaybeCollectionValue(maybeStringsInts.SelectItems(
+                 value =>
+                 {
+                     if (value is KeyValuePair<string, int> pair)
+                         return pair.Value + 0.2f;
+                     return 0.4f;
+                 }),
+                 new[] { 3.2f, 4.2f, 5.2f });
+            CheckMaybeCollectionValue(maybeStringsInts.SelectItems(
+                (KeyValuePair<string, int> pair) =>
+                {
+                    return pair.Value + 0.3f;
+                }),
+                new[] { 3.3f, 4.3f, 5.3f });
+
+            // Enumerable
+            var maybeEnumerable = Maybe<IEnumerable>.Some(Items);
+            CheckMaybeCollectionValue(maybeEnumerable.SelectItems(
+                 value =>
+                 {
+                     if (value is int i)
+                         return i +1;
+                     return 42;
+                 }),
+                 new[] { 2, 42, 42 });
+
+            maybeEnumerable = Maybe<IEnumerable>.Some(listInts);
+            CheckMaybeCollectionValue(maybeEnumerable.SelectItems(
+                  value =>
+                  {
+                      if (value is int i)
+                          return i + 1;
+                      return 42;
+                  }),
+                  new[] { 5, 6, 7 });
+
+            // Empty maybe
+            var emptyMaybe = Maybe<IList<int>>.None;
+            CheckEmptyMaybe(emptyMaybe.SelectItems(selectFromObject));
+            CheckEmptyMaybe(emptyMaybe.SelectItems(selectFromInt));
         }
 
         [Test]
