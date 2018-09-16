@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using Here.Maybes;
+using Here.Maybes.Extensions;
 
 namespace Here.Tests.Maybes
 {
@@ -92,6 +93,8 @@ namespace Here.Tests.Maybes
 
             Maybe<int> maybeInt = embedMaybeInt;
             CheckMaybeValue(maybeInt, 42);
+            maybeInt = embedMaybeInt.Flatten();
+            CheckMaybeValue(maybeInt, 42);
 
             // No value
             var emptyEmbedMaybeInt = Maybe<Maybe<int>>.Some(Maybe.None);
@@ -99,6 +102,8 @@ namespace Here.Tests.Maybes
             Assert.IsFalse(emptyEmbedMaybeInt.Value.HasValue);
 
             Maybe<int> emptyMaybeInt = emptyEmbedMaybeInt;
+            CheckEmptyMaybe(emptyMaybeInt);
+            emptyMaybeInt = emptyEmbedMaybeInt.Flatten();
             CheckEmptyMaybe(emptyMaybeInt);
 
             // Flatten Maybe reference type
@@ -111,6 +116,8 @@ namespace Here.Tests.Maybes
 
             Maybe<TestClass> maybeClass = embedMaybeClass;
             CheckMaybeSameValue(maybeClass, testValue);
+            maybeClass = embedMaybeClass.Flatten();
+            CheckMaybeSameValue(maybeClass, testValue);
 
             // No value
             var emptyEmbedMaybeClass = Maybe<Maybe<TestClass>>.Some(Maybe.None);
@@ -118,6 +125,8 @@ namespace Here.Tests.Maybes
             Assert.IsFalse(emptyEmbedMaybeClass.Value.HasValue);
 
             Maybe<TestClass> emptyMaybeClass = emptyEmbedMaybeClass;
+            CheckEmptyMaybe(emptyMaybeClass);
+            emptyMaybeClass = emptyEmbedMaybeClass.Flatten();
             CheckEmptyMaybe(emptyMaybeClass);
         }
 
