@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 using NUnit.Framework;
 using Here.Maybes;
@@ -33,6 +35,22 @@ namespace Here.Tests.Maybes
             Assert.IsTrue(maybe.HasValue);
             Assert.IsFalse(maybe.HasNoValue);
             Assert.AreSame(value, maybe.Value);
+        }
+
+        protected static void CheckMaybeCollectionValue<T>(Maybe<T> maybe, [NotNull] IEnumerable value)
+            where T : IEnumerable
+        {
+            Assert.IsTrue(maybe.HasValue);
+            Assert.IsFalse(maybe.HasNoValue);
+            CollectionAssert.AreEqual(value, maybe.Value);
+        }
+
+        protected static void CheckMaybeDictionaryValue<T, TKey, TValue>(Maybe<T> maybe, [NotNull] IDictionary<TKey, TValue> value)
+            where T : IEnumerable
+        {
+            Assert.IsTrue(maybe.HasValue);
+            Assert.IsFalse(maybe.HasNoValue);
+            CollectionAssert.AreEquivalent(value, maybe.Value);
         }
 
         protected static void CheckEmptyMaybe<T>(Maybe<T> maybe)
