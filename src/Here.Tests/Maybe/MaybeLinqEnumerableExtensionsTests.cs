@@ -432,5 +432,87 @@ namespace Here.Tests.Maybes
             emptyMaybe.ForEachItems((int item) => ++counter);
             Assert.AreEqual(0, counter);
         }
+
+#if (NET20) || (NET30)
+        // System.Core and NUnit both define this delegate that is conflicting
+        // Defining it here allows to use it without conflict.
+        public delegate TResult Func<in T1, in T2, out TResult>(T1 arg1, T2 arg2);
+#endif
+
+        [Test]
+        public void MaybeAggregateItems()
+        {
+            Func<int, int, int> accumulatorFromInt = (int accumulator, int current) => 
+            {
+                return accumulator + 2 * current;
+            };
+
+            Func<int, object, int> accumulatorFromObject = (accumulator, current) =>
+            {
+                int add = 0;
+                if (current is int)
+                    add = 2;
+                else if (current is string)
+                    add = 5;
+
+                return accumulator + add;
+            };
+
+            IEnumerable<int> emptyEnumerable = new List<int>();
+            IEnumerable<int> enumerableInts = new List<int> { 1, 2, 3 };
+            IList<int> listInts = new List<int> { 2, 3, 4 };
+            IDictionary<string, int> dictionaryStringsInts = new Dictionary<string, int>
+            {
+                ["3"] = 3,
+                ["4"] = 4,
+                ["5"] = 5
+            };
+
+            // Not empty maybe
+            // Enumerable<int>
+            var maybeEnumerableInts = Maybe<IEnumerable<int>>.Some(emptyEnumerable);
+            Assert.AreEqual(1, maybeEnumerableInts.AggregateItems(1, (acc, cur) => accumulatorFromObject(acc, cur)));
+            Assert.AreEqual(1, maybeEnumerableInts.AggregateItems(1, (int acc, int cur) => accumulatorFromInt(acc, cur)));
+
+            maybeEnumerableInts = Maybe<IEnumerable<int>>.Some(enumerableInts);
+            Assert.AreEqual(7, maybeEnumerableInts.AggregateItems(1, (acc, cur) => accumulatorFromObject(acc, cur)));
+            Assert.AreEqual(13, maybeEnumerableInts.AggregateItems(1, (int acc, int cur) => accumulatorFromInt(acc, cur)));
+
+            // List<int>
+            var maybeListInts = Maybe<IList<int>>.Some(listInts);
+            Assert.AreEqual(7, maybeListInts.AggregateItems(1, (acc, cur) => accumulatorFromObject(acc, cur)));
+            Assert.AreEqual(19, maybeListInts.AggregateItems(1, (int acc, int cur) => accumulatorFromInt(acc, cur)));
+
+            // Dictionary<string, int>
+            var maybeStringsInts = Maybe<IDictionary<string, int>>.Some(dictionaryStringsInts);
+            Assert.AreEqual(
+                8,
+                maybeStringsInts.AggregateItems(
+                    1,
+                    (acc, cur) =>
+                    {
+                        return acc * 2;
+                    }));
+            Assert.AreEqual(
+                25,
+                maybeStringsInts.AggregateItems(
+                    1, 
+                    (int acc, KeyValuePair<string, int> cur) =>
+                    {
+                        return acc + 2 * cur.Value;
+                    }));
+
+            // Enumerable
+            var maybeEnumerable = Maybe<IEnumerable>.Some(Items);
+            Assert.AreEqual(8, maybeEnumerable.AggregateItems(1, (acc, cur) => accumulatorFromObject(acc, cur)));
+
+            maybeEnumerable = Maybe<IEnumerable>.Some(listInts);
+            Assert.AreEqual(7, maybeEnumerable.AggregateItems(1, (acc, cur) => accumulatorFromObject(acc, cur)));
+
+            // Empty maybe
+            var emptyMaybe = Maybe<IList<int>>.None;
+            Assert.AreEqual(1, emptyMaybe.AggregateItems(1, (acc, cur) => accumulatorFromObject(acc, cur)));
+            Assert.AreEqual(1, emptyMaybe.AggregateItems(1, (int acc, int cur) => accumulatorFromInt(acc, cur)));
+        }
     }
 }

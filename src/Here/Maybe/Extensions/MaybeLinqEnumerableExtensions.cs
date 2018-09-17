@@ -330,5 +330,57 @@ namespace Here.Maybes.Extensions
 
             return maybe;
         }
+
+        /// <summary>
+        /// Compute the aggregator function on this <see cref="Maybe{T}"/> enumerable value.
+        /// Use the <paramref name="initialValue"/> as the initial aggregator value.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <typeparam name="TAggregate">Type of the value aggregator value.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="initialValue">The initial aggregator value.</param>
+        /// <param name="aggregator">THe aggregator function called on this <see cref="Maybe{T}"/> enumerable items.</param>
+        /// <returns>This <see cref="Maybe{T}"/> value aggregated with 
+        /// <paramref name="initialValue"/>, otherwise <paramref name="initialValue"/>.</returns>
+        [PublicAPI, NotNull, Pure]
+        public static TAggregate AggregateItems<T, TAggregate>(this Maybe<T> maybe,
+            [NotNull] TAggregate initialValue,
+            [NotNull, InstantHandle] Func<TAggregate, object, TAggregate> aggregator)
+            where T : IEnumerable
+        {
+            if (maybe.HasValue)
+            {
+                TAggregate aggregate = initialValue;
+                foreach (var item in maybe.Value)
+                    aggregate = aggregator(aggregate, item);
+
+                return aggregate;
+            }
+
+            return initialValue;
+        }
+
+        /// <summary>
+        /// Compute the aggregator function on this <see cref="Maybe{T}"/> enumerable value.
+        /// Use the <paramref name="initialValue"/> as the initial aggregator value.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <typeparam name="TItem">Enumerable item type.</typeparam>
+        /// <typeparam name="TAggregate">Type of the value aggregator value.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="initialValue">The initial aggregator value.</param>
+        /// <param name="aggregator">THe aggregator function called on this <see cref="Maybe{T}"/> enumerable items.</param>
+        /// <returns>This <see cref="Maybe{T}"/> value aggregated with 
+        /// <paramref name="initialValue"/>, otherwise <paramref name="initialValue"/>.</returns>
+        [PublicAPI, NotNull, Pure]
+        public static TAggregate AggregateItems<T, TItem, TAggregate>(this Maybe<T> maybe,
+            [NotNull] TAggregate initialValue,
+            [NotNull, InstantHandle] Func<TAggregate, TItem, TAggregate> aggregator)
+            where T : IEnumerable<TItem>
+        {
+            if (maybe.HasValue)
+                return maybe.Value.Aggregate(initialValue, aggregator);
+            return initialValue;
+        }
     }
 }
