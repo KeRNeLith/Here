@@ -199,6 +199,19 @@ namespace Here.Results
 
         #region Equality
 
+        /// <summary>
+        /// Checks that this <see cref="CustomResult{TError}"/> is equals tp the given one and that they are successful.
+        /// </summary>
+        /// <param name="other"><see cref="CustomResult{TError}"/> to compare.</param>
+        /// <returns>True if both <see cref="CustomResult{TError}"/> are equals and successful.</returns>
+        [Pure]
+        public bool SuccessEquals(CustomResult<TError> other)
+        {
+            if (IsSuccess && other.IsSuccess)
+                return Equals(other);
+            return false;
+        }
+
         public bool Equals(CustomResult<TError> other)
         {
             return Logic.Equals(other.Logic);
@@ -420,6 +433,19 @@ namespace Here.Results
         #endregion
 
         #region Equality
+
+        /// <summary>
+        /// Checks that this <see cref="Result{T, TError}"/> is equals tp the given one and that they are successful.
+        /// </summary>
+        /// <param name="other"><see cref="Result{T, TError}"/> to compare.</param>
+        /// <returns>True if both <see cref="Result{T, TError}"/> are equals and successful.</returns>
+        [Pure]
+        public bool SuccessEquals(Result<T, TError> other)
+        {
+            if (IsSuccess && other.IsSuccess)
+                return Equals(other);
+            return false;
+        }
 
         public bool Equals(Result<T, TError> other)
         {

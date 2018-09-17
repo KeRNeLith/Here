@@ -263,6 +263,19 @@ namespace Here.Results
 
         #region Equality
 
+        /// <summary>
+        /// Checks that this <see cref="Result"/> is equals tp the given one and that they are successful.
+        /// </summary>
+        /// <param name="other"><see cref="Result"/> to compare.</param>
+        /// <returns>True if both <see cref="Result"/> are equals and successful.</returns>
+        [Pure]
+        public bool SuccessEquals(Result other)
+        {
+            if (IsSuccess && other.IsSuccess)
+                return Equals(other);
+            return false;
+        }
+
         public bool Equals(Result other)
         {
             return Logic.Equals(other.Logic);
@@ -686,6 +699,19 @@ namespace Here.Results
         #endregion
 
         #region Equality
+
+        /// <summary>
+        /// Checks that this <see cref="Result{T}"/> is equals tp the given one and that they are successful.
+        /// </summary>
+        /// <param name="other"><see cref="Result{T}"/> to compare.</param>
+        /// <returns>True if both <see cref="Result{T}"/> are equals and successful.</returns>
+        [Pure]
+        public bool SuccessEquals(Result<T> other)
+        {
+            if (IsSuccess && other.IsSuccess)
+                return Equals(other);
+            return false;
+        }
 
         public bool Equals(Result<T> other)
         {
