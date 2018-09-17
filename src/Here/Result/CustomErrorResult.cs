@@ -15,6 +15,7 @@ namespace Here.Results
         /// <summary>
         /// A success <see cref="CustomResult{TError}"/>.
         /// </summary>
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal static readonly CustomResult<TError> ResultOk = new CustomResult<TError>(new ResultLogic<TError>());
 
         /// <inheritdoc />
@@ -36,6 +37,7 @@ namespace Here.Results
         public TError Error => Logic.Error;
 
         [NotNull]
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal readonly ResultLogic<TError> Logic;
 
         /// <summary>
@@ -290,6 +292,7 @@ namespace Here.Results
         }
 
         [NotNull]
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal readonly ResultLogic<TError> Logic;
 
         /// <summary>

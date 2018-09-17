@@ -15,6 +15,7 @@ namespace Here.Results
         /// <summary>
         /// A success <see cref="Result"/>.
         /// </summary>
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private static readonly Result ResultOk = new Result(new ResultLogic());
 
         /// <inheritdoc />
@@ -33,6 +34,7 @@ namespace Here.Results
         public Exception Exception => Logic.Exception;
 
         [NotNull]
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal readonly ResultLogic Logic;
 
         /// <summary>
@@ -516,6 +518,7 @@ namespace Here.Results
         }
 
         [NotNull]
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal readonly ResultLogic Logic;
 
         /// <summary>
