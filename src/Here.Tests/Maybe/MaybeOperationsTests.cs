@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using NUnit.Framework;
 using Here.Maybes;
 using Here.Maybes.Extensions;
@@ -11,6 +13,20 @@ namespace Here.Tests.Maybes
     [TestFixture]
     internal class MaybeOperationsTests : MaybeTestsBase
     {
+        #region Test property
+
+        private IEnumerable Items
+        {
+            get
+            {
+                yield return 1;
+                yield return new TestClass();
+                yield return "Test";
+            }
+        }
+
+        #endregion
+
         [Test]
         public void MaybeIf()
         {
@@ -22,6 +38,79 @@ namespace Here.Tests.Maybes
             var emptyMaybeInt = Maybe<int>.None;
             emptyMaybeInt.If(value => ++counter);
             Assert.AreEqual(1, counter);
+        }
+
+        [Test]
+        public void MaybeForEachIf()
+        {
+            IEnumerable<int> enumerableInts = new List<int> { 1, 2, 3, 4, 5 };
+            IList<int> listInts = new List<int> { 2, 3, 4, 5, 6 };
+            IDictionary<string, int> dictionaryStringsInts = new Dictionary<string, int>
+            {
+                ["3"] = 3,
+                ["4"] = 4,
+                ["5"] = 5
+            };
+
+            // Not empty maybe
+            // Enumerable<int>
+            int counterIf = 0;
+            int counterElse = 0;
+            var maybeEnumerableInts = Maybe<IEnumerable<int>>.Some(enumerableInts);
+            maybeEnumerableInts.ForEachIfElse(value => ++counterIf, () => ++counterElse);
+            Assert.AreEqual(5, counterIf);
+            Assert.AreEqual(0, counterElse);
+
+            maybeEnumerableInts.ForEachIfElse((int value) => ++counterIf, () => ++counterElse);
+            Assert.AreEqual(10, counterIf);
+            Assert.AreEqual(0, counterElse);
+
+            // List<int>
+            counterIf = 0;
+            var maybeListInts = Maybe<IList<int>>.Some(listInts);
+            maybeListInts.ForEachIfElse(value => ++counterIf, () => ++counterElse);
+            Assert.AreEqual(5, counterIf);
+            Assert.AreEqual(0, counterElse);
+
+            maybeListInts.ForEachIfElse((int value) => ++counterIf, () => ++counterElse);
+            Assert.AreEqual(10, counterIf);
+            Assert.AreEqual(0, counterElse);
+
+            // Dictionary<string, int>
+            counterIf = 0;
+            var maybeStringsInts = Maybe<IDictionary<string, int>>.Some(dictionaryStringsInts);
+            maybeStringsInts.ForEachIfElse(value => ++counterIf, () => ++counterElse);
+            Assert.AreEqual(3, counterIf);
+            Assert.AreEqual(0, counterElse);
+
+            maybeStringsInts.ForEachIfElse((KeyValuePair<string, int> value) => ++counterIf, () => ++counterElse);
+            Assert.AreEqual(6, counterIf);
+            Assert.AreEqual(0, counterElse);
+
+            // Enumerable
+            counterIf = 0;
+            var maybeEnumerable = Maybe<IEnumerable>.Some(Items);
+            maybeEnumerable.ForEachIfElse(value => ++counterIf, () => ++counterElse);
+            Assert.AreEqual(3, counterIf);
+            Assert.AreEqual(0, counterElse);
+
+            counterIf = 0;
+            maybeEnumerable = Maybe<IEnumerable>.Some(listInts);
+            maybeEnumerable.ForEachIfElse(value => ++counterIf, () => ++counterElse);
+            Assert.AreEqual(5, counterIf);
+            Assert.AreEqual(0, counterElse);
+
+            // Empty maybe
+            counterIf = 0;
+            var emptyMaybe = Maybe<IList<int>>.None;
+
+            emptyMaybe.ForEachIfElse(item => ++counterIf, () => ++counterElse);
+            Assert.AreEqual(0, counterIf);
+            Assert.AreEqual(1, counterElse);
+
+            emptyMaybe.ForEachIfElse((int item) => ++counterIf, () => ++counterElse);
+            Assert.AreEqual(0, counterIf);
+            Assert.AreEqual(2, counterElse);
         }
 
         [Test]
@@ -61,6 +150,68 @@ namespace Here.Tests.Maybes
                 () => ++counterElse);
             Assert.AreEqual(1, counterIf);
             Assert.AreEqual(1, counterElse);
+        }
+
+        [Test]
+        public void MaybeForEachIfElse()
+        {
+            IEnumerable<int> enumerableInts = new List<int> { 1, 2, 3, 4, 5 };
+            IList<int> listInts = new List<int> { 2, 3, 4, 5, 6 };
+            IDictionary<string, int> dictionaryStringsInts = new Dictionary<string, int>
+            {
+                ["3"] = 3,
+                ["4"] = 4,
+                ["5"] = 5
+            };
+
+            // Not empty maybe
+            // Enumerable<int>
+            int counterIf = 0;
+            var maybeEnumerableInts = Maybe<IEnumerable<int>>.Some(enumerableInts);
+            maybeEnumerableInts.ForEachIf(value => ++counterIf);
+            Assert.AreEqual(5, counterIf);
+
+            maybeEnumerableInts.ForEachIf((int value) => ++counterIf);
+            Assert.AreEqual(10, counterIf);
+
+            // List<int>
+            counterIf = 0;
+            var maybeListInts = Maybe<IList<int>>.Some(listInts);
+            maybeListInts.ForEachIf(value => ++counterIf);
+            Assert.AreEqual(5, counterIf);
+
+            maybeListInts.ForEachIf((int value) => ++counterIf);
+            Assert.AreEqual(10, counterIf);
+
+            // Dictionary<string, int>
+            counterIf = 0;
+            var maybeStringsInts = Maybe<IDictionary<string, int>>.Some(dictionaryStringsInts);
+            maybeStringsInts.ForEachIf(value => ++counterIf);
+            Assert.AreEqual(3, counterIf);
+
+            maybeStringsInts.ForEachIf((KeyValuePair<string, int> value) => ++counterIf);
+            Assert.AreEqual(6, counterIf);
+
+            // Enumerable
+            counterIf = 0;
+            var maybeEnumerable = Maybe<IEnumerable>.Some(Items);
+            maybeEnumerable.ForEachIf(value => ++counterIf);
+            Assert.AreEqual(3, counterIf);
+
+            counterIf = 0;
+            maybeEnumerable = Maybe<IEnumerable>.Some(listInts);
+            maybeEnumerable.ForEachIf(value => ++counterIf);
+            Assert.AreEqual(5, counterIf);
+
+            // Empty maybe
+            counterIf = 0;
+            var emptyMaybe = Maybe<IList<int>>.None;
+
+            emptyMaybe.ForEachIf(item => ++counterIf);
+            Assert.AreEqual(0, counterIf);
+
+            emptyMaybe.ForEachIf((int item) => ++counterIf);
+            Assert.AreEqual(0, counterIf);
         }
 
         [Test]
@@ -236,6 +387,40 @@ namespace Here.Tests.Maybes
         }
 
         [Test]
+        public void MaybeUnwrap()
+        {
+            // Maybe with value
+            var maybeInt = Maybe<int>.Some(12);
+            Assert.AreEqual(12, maybeInt.Unwrap());
+            Assert.AreEqual(12, maybeInt.Unwrap(25));
+            Assert.AreEqual(25.5f, maybeInt.Unwrap(value => 25.5f));
+            Assert.AreEqual(25.5f, maybeInt.Unwrap(value => 25.5f, 15.1f));
+
+            // Empty maybe
+            Maybe<int> emptyMaybeInt = Maybe.None;
+            Assert.AreEqual(0, emptyMaybeInt.Unwrap());
+            Assert.AreEqual(25, emptyMaybeInt.Unwrap(25));
+            Assert.AreEqual(0, emptyMaybeInt.Unwrap(value => 25.5f));
+            Assert.AreEqual(15.1f, emptyMaybeInt.Unwrap(value => 25.5f, 15.1f));
+
+            // Maybe class with value
+            var testObject = new TestClass();
+            var defaultTestObject = new TestClass { TestInt = 12 };
+            var maybeClass = Maybe<TestClass>.Some(testObject);
+            Assert.AreSame(testObject, maybeClass.Unwrap());
+            Assert.AreSame(testObject, maybeClass.Unwrap(defaultTestObject));
+            Assert.AreEqual(25.5f, maybeClass.Unwrap(value => 25.5f));
+            Assert.AreEqual(25.5f, maybeClass.Unwrap(value => 25.5f, 15.1f));
+
+            // Empty maybe class
+            Maybe<TestClass> emptyMaybeClass = Maybe.None;
+            Assert.AreSame(null, emptyMaybeClass.Unwrap());
+            Assert.AreSame(defaultTestObject, emptyMaybeClass.Unwrap(defaultTestObject));
+            Assert.AreEqual(0.0f, emptyMaybeClass.Unwrap(value => 25.5f));
+            Assert.AreEqual(15.1f, emptyMaybeClass.Unwrap(value => 25.5f, 15.1f));
+        }
+
+        [Test]
         public void MaybeCast()
         {
             // Value type
@@ -273,6 +458,19 @@ namespace Here.Tests.Maybes
 
             maybeClass = emptyMaybeClassLeaf.Cast<TestClass>();
             CheckEmptyMaybe(maybeClass);
+        }
+
+        [Test]
+        public void MaybeExists()
+        {
+            // Maybe with value
+            var maybeInt = Maybe<int>.Some(12);
+            Assert.IsTrue(maybeInt.Exists(intValue => intValue == 12));
+            Assert.IsFalse(maybeInt.Exists(intValue => intValue == 13));
+
+            // Empty maybe
+            Maybe<int> emptyMaybeInt = Maybe.None;
+            Assert.IsFalse(emptyMaybeInt.Exists(intValue => intValue == 12));
         }
     }
 }

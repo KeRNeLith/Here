@@ -11,7 +11,7 @@ namespace Here.Maybes
     /// <typeparam name="T">Type of the value embedded in the <see cref="Maybe{T}"/>.</typeparam>
     [PublicAPI]
     [DebuggerDisplay("{" + nameof(HasValue) + " ? \"Value = \" + " + nameof(Value) + " : \"No value\"}")]
-    public partial struct Maybe<T> : IEquatable<Maybe<T>>
+    public partial struct Maybe<T> : IEquatable<Maybe<T>>, IComparable, IComparable<Maybe<T>>
     {
         /// <summary>
         /// Nothing value.
@@ -121,6 +121,43 @@ namespace Here.Maybes
         public static bool operator !=(T value, Maybe<T> maybe)
         {
             return !(maybe == value);
+        }
+
+        #endregion
+
+        #region IComparable / IComparable<T>
+
+        /// <summary>
+        /// Compare this <see cref="Maybe{T}"/> with the given object.
+        /// Order keeps <see cref="Maybe{T}.None"/> first and <see cref="Maybe{T}"/> with value after.
+        /// Then it uses the <see cref="Value"/> or the comparison.
+        /// </summary>
+        /// <param name="other"><see cref="Maybe{T}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public int CompareTo(object obj)
+        {
+            if (obj is null)
+                return CompareTo(None);
+            if (obj is Maybe<T> other)
+                return CompareTo(other);
+
+            throw new ArgumentException($"Cannot compare an object of type {obj?.GetType()} with a {GetType()}");
+        }
+
+        /// <summary>
+        /// Compare this <see cref="Maybe{T}"/> with the given one.
+        /// Order keeps <see cref="Maybe{T}.None"/> first and <see cref="Maybe{T}"/> with value after.
+        /// Then it uses the <see cref="Value"/> or the comparison.
+        /// </summary>
+        /// <param name="other"><see cref="Maybe{T}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public int CompareTo(Maybe<T> other)
+        {
+            if (HasValue && !other.HasValue)
+                return 1;
+            if (!HasValue && other.HasValue)
+                return -1;
+            return Comparer<T>.Default.Compare(_value, other._value);
         }
 
         #endregion

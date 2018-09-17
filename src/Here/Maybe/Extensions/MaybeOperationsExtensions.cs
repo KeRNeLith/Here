@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using JetBrains.Annotations;
 
 namespace Here.Maybes.Extensions
@@ -20,6 +22,47 @@ namespace Here.Maybes.Extensions
         {
             if (maybe.HasValue)
                 then(maybe.Value);
+            return maybe;
+        }
+
+        /// <summary>
+        /// Call the <paramref name="onItem"/> function on each item if this <see cref="Maybe{T}"/> has a value.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="onItem">Treatment to do on each item.</param>
+        /// <returns>This <see cref="Maybe{T}"/>.</returns>
+        [PublicAPI]
+        public static Maybe<T> ForEachIf<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Action<object> onItem)
+            where T : IEnumerable
+        {
+            if (maybe.HasValue)
+            {
+                foreach (var item in maybe.Value)
+                    onItem(item);
+            }
+
+            return maybe;
+        }
+
+        /// <summary>
+        /// Call the <paramref name="onItem"/> function on each item if this <see cref="Maybe{T}"/> has a value.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <typeparam name="TItem">Enumerable item type.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="onItem">Treatment to do on each item.</param>
+        /// <returns>This <see cref="Maybe{T}"/>.</returns>
+        [PublicAPI]
+        public static Maybe<T> ForEachIf<T, TItem>(this Maybe<T> maybe, [NotNull, InstantHandle] Action<TItem> onItem)
+            where T : IEnumerable<TItem>
+        {
+            if (maybe.HasValue)
+            {
+                foreach (var item in maybe.Value)
+                    onItem(item);
+            }
+
             return maybe;
         }
 
@@ -51,6 +94,53 @@ namespace Here.Maybes.Extensions
         {
             if (maybe.HasValue)
                 then(maybe.Value);
+            else
+                @else();
+
+            return maybe;
+        }
+
+        /// <summary>
+        /// Call the <paramref name="onItem"/> function on each item if this <see cref="Maybe{T}"/> has a value, otherwise call <paramref name="else"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="onItem">Treatment to do on each item.</param>
+        /// <param name="else">Treatment to do if this <see cref="Maybe{T}"/> has no value.</param>
+        /// <returns>This <see cref="Maybe{T}"/>.</returns>
+        [PublicAPI]
+        public static Maybe<T> ForEachIfElse<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Action<object> onItem, [NotNull] Action @else)
+            where T : IEnumerable
+        {
+            if (maybe.HasValue)
+            {
+                foreach (var item in maybe.Value)
+                    onItem(item);
+            }
+            else
+                @else();
+
+            return maybe;
+        }
+
+        /// <summary>
+        /// Call the <paramref name="onItem"/> function on each item if this <see cref="Maybe{T}"/> has a value, otherwise call <paramref name="else"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <typeparam name="TItem">Enumerable item type.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="onItem">Treatment to do on each item.</param>
+        /// <param name="else">Treatment to do if this <see cref="Maybe{T}"/> has no value.</param>
+        /// <returns>This <see cref="Maybe{T}"/>.</returns>
+        [PublicAPI]
+        public static Maybe<T> ForEachIfElse<T, TItem>(this Maybe<T> maybe, [NotNull, InstantHandle] Action<TItem> onItem, [NotNull] Action @else)
+            where T : IEnumerable<TItem>
+        {
+            if (maybe.HasValue)
+            {
+                foreach (var item in maybe.Value)
+                    onItem(item);
+            }
             else
                 @else();
 
@@ -115,8 +205,8 @@ namespace Here.Maybes.Extensions
         /// <param name="maybe"><see cref="Maybe{T}"/> to check.</param>
         /// <param name="orValue">Value to use as fallback if this <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>This <see cref="Maybe{T}"/> value, or <paramref name="orValue"/>.</returns>
-        [PublicAPI, NotNull, Pure]
-        public static T Or<T>(this Maybe<T> maybe, [NotNull] T orValue)
+        [PublicAPI, CanBeNull, Pure]
+        public static T Or<T>(this Maybe<T> maybe, [CanBeNull] T orValue)
         {
             if (maybe.HasValue)
                 return maybe.Value;
@@ -198,6 +288,34 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
+        /// Unwrap this <see cref="Maybe{T}"/> value if it has one, otherwise returns the default value.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> to unwrap value.</param>
+        /// <returns>The unwrapped value from this <see cref="Maybe{T}"/> if it has value, otherwise the default value.</returns>
+        [PublicAPI, CanBeNull, Pure]
+        public static T Unwrap<T>(this Maybe<T> maybe, [CanBeNull] T defaultValue = default(T))
+        {
+            return maybe.Or(defaultValue);
+        }
+
+        /// <summary>
+        /// Unwrap this <see cref="Maybe{T}"/> value if it has one, otherwise returns a value from <paramref name="converter"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <typeparam name="TOut">Output value type.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> to unwrap value.</param>
+        /// <param name="converter">Function called to convert this <see cref="Maybe{T}"/> value.</param>
+        /// <returns>The unwrapped value from this <see cref="Maybe{T}"/> if it has value, otherwise the default value.</returns>
+        [PublicAPI, CanBeNull, Pure]
+        public static TOut Unwrap<T, TOut>(this Maybe<T> maybe, [NotNull, InstantHandle] Func<T, TOut> converter, [CanBeNull] TOut defaultValue = default(TOut))
+        {
+            if (maybe.HasValue)
+                return converter(maybe.Value);
+            return defaultValue;
+        }
+
+        /// <summary>
         /// Convert this <see cref="Maybe{TFrom}"/> if it has a value to a <see cref="Maybe{TTo}"/>.
         /// </summary>
         /// <typeparam name="TFrom">Type of the value embedded in this <see cref="Maybe{TFrom}"/>.</typeparam>
@@ -211,6 +329,21 @@ namespace Here.Maybes.Extensions
             if (maybe.HasValue)
                 return converter(maybe.Value);
             return Maybe<TTo>.None;
+        }
+
+        /// <summary>
+        /// Checks if this <see cref="Maybe{T}"/> match the <paramref name="predicate"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="predicate">Condition to match.</param>
+        /// <returns>True if this <see cref="Maybe{T}"/> matches the <paramref name="predicate"/>, otherwise false.</returns>
+        [PublicAPI, Pure]
+        public static bool Exists<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Predicate<T> predicate)
+        {
+            if (maybe.HasValue)
+                return predicate(maybe.Value);
+            return false;
         }
     }
 }
