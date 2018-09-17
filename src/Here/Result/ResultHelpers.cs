@@ -11,7 +11,8 @@ namespace Here.Results
         /// <summary>
         /// Checks that both <see cref="Result"/> are equals and that they are successful.
         /// </summary>
-        /// <param name="other"><see cref="Result"/> to compare.</param>
+        /// <param name="result1">First <see cref="Result"/> to compare.</param>
+        /// <param name="result2">Second <see cref="Result"/> to compare.</param>
         /// <returns>True if both <see cref="Result"/> are equals and successful.</returns>
         [PublicAPI, Pure]
         public static bool SuccessEquals(Result result1, Result result2)
@@ -22,7 +23,8 @@ namespace Here.Results
         /// <summary>
         /// Checks that both <see cref="Result{T}"/> are equals and that they are successful.
         /// </summary>
-        /// <param name="other"><see cref="Result{T}"/> to compare.</param>
+        /// <param name="result1">First <see cref="Result{T}"/> to compare.</param>
+        /// <param name="result2">Second <see cref="Result{T}"/> to compare.</param>
         /// <returns>True if both <see cref="Result{T}"/> are equals and successful.</returns>
         [PublicAPI, Pure]
         public static bool SuccessEquals<T>(Result<T> result1, Result<T> result2)
@@ -33,7 +35,8 @@ namespace Here.Results
         /// <summary>
         /// Checks that both <see cref="CustomResult{TError}"/> are equals and that they are successful.
         /// </summary>
-        /// <param name="other"><see cref="CustomResult{TError}"/> to compare.</param>
+        /// <param name="result1">First <see cref="CustomResult{TError}"/> to compare.</param>
+        /// <param name="result2">Second <see cref="CustomResult{TError}"/> to compare.</param>
         /// <returns>True if both <see cref="CustomResult{TError}"/> are equals and successful.</returns>
         [PublicAPI, Pure]
         public static bool SuccessEquals<TError>(CustomResult<TError> result1, CustomResult<TError> result2)
@@ -44,7 +47,8 @@ namespace Here.Results
         /// <summary>
         /// Checks that both <see cref="Result{T, TError}"/> are equals and that they are successful.
         /// </summary>
-        /// <param name="other"><see cref="Result{T, TError}"/> to compare.</param>
+        /// <param name="result1">First <see cref="Result{T, TError}"/> to compare.</param>
+        /// <param name="result2">Second <see cref="Result{T, TError}"/> to compare.</param>
         /// <returns>True if both <see cref="Result{T, TError}"/> are equals and successful.</returns>
         [PublicAPI, Pure]
         public static bool SuccessEquals<T, TError>(Result<T, TError> result1, Result<T, TError> result2)

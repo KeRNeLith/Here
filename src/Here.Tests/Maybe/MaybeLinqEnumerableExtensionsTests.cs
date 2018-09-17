@@ -131,7 +131,7 @@ namespace Here.Tests.Maybes
 
             // Enumerable
             var maybeEnumerable = Maybe<IEnumerable>.Some(Items);
-            Assert.IsTrue(maybeEnumerable.AllItems(value => value is object));
+            Assert.IsTrue(maybeEnumerable.AllItems(value => value != null));
             Assert.IsFalse(maybeEnumerable.AllItems(value => value is float));
 
             maybeEnumerable = Maybe<IEnumerable>.Some(listInts);
@@ -227,10 +227,7 @@ namespace Here.Tests.Maybes
                 return 0.2f;
             };
 
-            Func<int, float> selectFromInt = (int value) =>
-            {
-                return value + 0.5f;
-            };
+            Func<int, float> selectFromInt = value => value + 0.5f;
 
             IEnumerable<int> emptyEnumerable = new List<int>();
             IEnumerable<int> enumerableInts = new List<int> { 3, 4, 5 };
@@ -442,10 +439,7 @@ namespace Here.Tests.Maybes
         [Test]
         public void MaybeAggregateItems()
         {
-            Func<int, int, int> accumulatorFromInt = (int accumulator, int current) => 
-            {
-                return accumulator + 2 * current;
-            };
+            Func<int, int, int> accumulatorFromInt = (accumulator, current) => accumulator + 2 * current;
 
             Func<int, object, int> accumulatorFromObject = (accumulator, current) =>
             {
@@ -485,22 +479,8 @@ namespace Here.Tests.Maybes
 
             // Dictionary<string, int>
             var maybeStringsInts = Maybe<IDictionary<string, int>>.Some(dictionaryStringsInts);
-            Assert.AreEqual(
-                8,
-                maybeStringsInts.AggregateItems(
-                    1,
-                    (acc, cur) =>
-                    {
-                        return acc * 2;
-                    }));
-            Assert.AreEqual(
-                25,
-                maybeStringsInts.AggregateItems(
-                    1, 
-                    (int acc, KeyValuePair<string, int> cur) =>
-                    {
-                        return acc + 2 * cur.Value;
-                    }));
+            Assert.AreEqual(8, maybeStringsInts.AggregateItems(1, (acc, cur) => acc * 2));
+            Assert.AreEqual(25, maybeStringsInts.AggregateItems(1, (int acc, KeyValuePair<string, int> cur) => acc + 2 * cur.Value));
 
             // Enumerable
             var maybeEnumerable = Maybe<IEnumerable>.Some(Items);

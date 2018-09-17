@@ -160,8 +160,8 @@ namespace Here.Tests.Maybes
             // ReSharper disable SuspiciousTypeConversion.Global
             Assert.IsFalse(maybeInt.Equals(maybePerson1));
             Assert.IsFalse(maybePerson1.Equals(maybeInt));
-            // ReSharper restore SuspiciousTypeConversion.Global
             Assert.IsFalse(maybePerson1.Equals(12));
+            // ReSharper restore SuspiciousTypeConversion.Global
 
             // With flatten
             var embedMaybeInt = Maybe<Maybe<int>>.Some(Maybe<int>.Some(12));
@@ -289,11 +289,11 @@ namespace Here.Tests.Maybes
 
             var maybeFloat = Maybe<float>.Some(12.1f);
             var emptyMaybeFloat = Maybe<float>.None;
-            Assert.Throws<ArgumentException>(() => maybeInt1.CompareTo(maybeFloat));
-            Assert.Throws<ArgumentException>(() => maybeFloat.CompareTo(maybeInt1));
+            Assert.Throws<ArgumentException>(() => { var _ = maybeInt1.CompareTo(maybeFloat); });
+            Assert.Throws<ArgumentException>(() => { var _ = maybeFloat.CompareTo(maybeInt1); });
 
-            Assert.Throws<ArgumentException>(() => maybeInt1.CompareTo(emptyMaybeFloat));
-            Assert.Throws<ArgumentException>(() => emptyMaybeFloat.CompareTo(maybeInt1));
+            Assert.Throws<ArgumentException>(() => { var _ = maybeInt1.CompareTo(emptyMaybeFloat); });
+            Assert.Throws<ArgumentException>(() => { var _ = emptyMaybeFloat.CompareTo(maybeInt1); });
         }
 
         [Test]

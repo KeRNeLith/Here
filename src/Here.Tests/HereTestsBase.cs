@@ -11,11 +11,11 @@ namespace Here.Tests
 
         protected class PersonNotEquatable
         {
-            private readonly string _name;
+            public string Name { get; }
 
             public PersonNotEquatable(string name)
             {
-                _name = name;
+                Name = name;
             }
         }
 

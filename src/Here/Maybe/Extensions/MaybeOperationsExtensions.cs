@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using JetBrains.Annotations;
 
 namespace Here.Maybes.Extensions
@@ -204,6 +202,7 @@ namespace Here.Maybes.Extensions
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> to unwrap value.</param>
+        /// <param name="defaultValue">Default value to use.</param>
         /// <returns>The unwrapped value from this <see cref="Maybe{T}"/> if it has value, otherwise the default value.</returns>
         [PublicAPI, CanBeNull, Pure]
         public static T Unwrap<T>(this Maybe<T> maybe, [CanBeNull] T defaultValue = default(T))
@@ -218,6 +217,7 @@ namespace Here.Maybes.Extensions
         /// <typeparam name="TOut">Output value type.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> to unwrap value.</param>
         /// <param name="converter">Function called to convert this <see cref="Maybe{T}"/> value.</param>
+        /// <param name="defaultValue">Default value to use.</param>
         /// <returns>The unwrapped value from this <see cref="Maybe{T}"/> if it has value, otherwise the default value.</returns>
         [PublicAPI, CanBeNull, Pure]
         public static TOut Unwrap<T, TOut>(this Maybe<T> maybe, [NotNull, InstantHandle] Func<T, TOut> converter, [CanBeNull] TOut defaultValue = default(TOut))

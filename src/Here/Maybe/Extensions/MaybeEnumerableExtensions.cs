@@ -203,7 +203,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Extract values from this <see cref="IEnumerable{Maybe{T}}"/> to convert it to an <see cref="IEnumerable{T}"/>.
+        /// Extract values from this <see cref="IEnumerable{Maybe}"/> to convert it to an <see cref="IEnumerable{T}"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="enumerable">An enumerable of <see cref="Maybe{T}"/>.</param>

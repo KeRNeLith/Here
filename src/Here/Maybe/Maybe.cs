@@ -129,10 +129,8 @@ namespace Here.Maybes
 
         /// <summary>
         /// Compare this <see cref="Maybe{T}"/> with the given object.
-        /// Order keeps <see cref="Maybe{T}.None"/> first and <see cref="Maybe{T}"/> with value after.
-        /// Then it uses the <see cref="Value"/> or the comparison.
         /// </summary>
-        /// <param name="other"><see cref="Maybe{T}"/> to compare.</param>
+        /// <param name="obj">Object to compare.</param>
         /// <returns>The comparison result.</returns>
         public int CompareTo(object obj)
         {
@@ -141,7 +139,7 @@ namespace Here.Maybes
             if (obj is Maybe<T> other)
                 return CompareTo(other);
 
-            throw new ArgumentException($"Cannot compare an object of type {obj?.GetType()} with a {GetType()}");
+            throw new ArgumentException($"Cannot compare an object of type {obj.GetType()} with a {GetType()}");
         }
 
         /// <summary>
