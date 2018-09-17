@@ -91,7 +91,7 @@ namespace Here.Results
 
         public bool Equals(ResultLogic<TError> other)
         {
-            if (other == null)
+            if (other is null)
                 return false;
             return IsSuccess == other.IsSuccess // Do not check IsFailure as it's always the opposite of IsSuccess
                 && IsWarning == other.IsWarning
@@ -102,7 +102,7 @@ namespace Here.Results
 
         public override bool Equals(object obj)
         {
-            if (obj == null)
+            if (obj is null)
                 return false;
             return obj is ResultLogic<TError> logic && Equals(logic);
         }
@@ -199,7 +199,7 @@ namespace Here.Results
 
         public bool Equals(ResultLogic other)
         {
-            if (other == null)
+            if (other is null)
                 return false;
             return IsSuccess == other.IsSuccess // Do not check IsFailure as it's always the opposite of IsSuccess
                 && IsWarning == other.IsWarning
@@ -209,7 +209,7 @@ namespace Here.Results
 
         public override bool Equals(object other)
         {
-            if (other == null)
+            if (other is null)
                 return false;
             return other is ResultLogic logic && Equals(logic);
         }

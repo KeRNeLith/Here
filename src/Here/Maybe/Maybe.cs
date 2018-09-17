@@ -81,7 +81,7 @@ namespace Here.Maybes
 
         public override bool Equals(object obj)
         {
-            if (obj == null)
+            if (obj is null)
                 return false;
             return obj is Maybe<T> maybe && Equals(maybe);
         }

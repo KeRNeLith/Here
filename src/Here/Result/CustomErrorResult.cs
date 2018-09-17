@@ -219,7 +219,7 @@ namespace Here.Results
 
         public override bool Equals(object obj)
         {
-            if (obj == null)
+            if (obj is null)
                 return false;
             return obj is CustomResult<TError> result && Equals(result);
         }
@@ -455,7 +455,7 @@ namespace Here.Results
 
         public override bool Equals(object obj)
         {
-            if (obj == null)
+            if (obj is null)
                 return false;
             return obj is Result<T, TError> result && Equals(result);
         }
