@@ -115,7 +115,7 @@ namespace Here.Maybes.Extensions
         /// <param name="maybe"><see cref="Maybe{T}"/> to check.</param>
         /// <param name="orValue">Value to use as fallback if this <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>This <see cref="Maybe{T}"/> value, or <paramref name="orValue"/>.</returns>
-        [PublicAPI, CanBeNull, Pure]
+        [PublicAPI, Pure, CanBeNull]
         public static T Or<T>(this Maybe<T> maybe, [CanBeNull] T orValue)
         {
             if (maybe.HasValue)
@@ -130,7 +130,7 @@ namespace Here.Maybes.Extensions
         /// <param name="maybe"><see cref="Maybe{T}"/> to check.</param>
         /// <param name="orFunc">Function called if the <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>This <see cref="Maybe{T}"/> value, or the result of <paramref name="orFunc"/>.</returns>
-        [PublicAPI, CanBeNull, Pure]
+        [PublicAPI, Pure, CanBeNull]
         public static T Or<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Func<T> orFunc)
         {
             if (maybe.HasValue)
@@ -144,7 +144,7 @@ namespace Here.Maybes.Extensions
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> to check.</param>
         /// <returns>This <see cref="Maybe{T}"/> value, or the default to <typeparamref name="T"/>.</returns>
-        [PublicAPI, CanBeNull, Pure]
+        [PublicAPI, Pure, CanBeNull]
         public static T OrDefault<T>(this Maybe<T> maybe)
         {
             if (maybe.HasValue)
@@ -204,7 +204,7 @@ namespace Here.Maybes.Extensions
         /// <param name="maybe"><see cref="Maybe{T}"/> to unwrap value.</param>
         /// <param name="defaultValue">Default value to use.</param>
         /// <returns>The unwrapped value from this <see cref="Maybe{T}"/> if it has value, otherwise the default value.</returns>
-        [PublicAPI, CanBeNull, Pure]
+        [PublicAPI, Pure, CanBeNull]
         public static T Unwrap<T>(this Maybe<T> maybe, [CanBeNull] T defaultValue = default(T))
         {
             return maybe.Or(defaultValue);
@@ -219,7 +219,7 @@ namespace Here.Maybes.Extensions
         /// <param name="converter">Function called to convert this <see cref="Maybe{T}"/> value.</param>
         /// <param name="defaultValue">Default value to use.</param>
         /// <returns>The unwrapped value from this <see cref="Maybe{T}"/> if it has value, otherwise the default value.</returns>
-        [PublicAPI, CanBeNull, Pure]
+        [PublicAPI, Pure, CanBeNull]
         public static TOut Unwrap<T, TOut>(this Maybe<T> maybe, [NotNull, InstantHandle] Func<T, TOut> converter, [CanBeNull] TOut defaultValue = default(TOut))
         {
             if (maybe.HasValue)

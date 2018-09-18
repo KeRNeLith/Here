@@ -19,21 +19,27 @@ namespace Here.Results
         internal static readonly CustomResult<TError> ResultOk = new CustomResult<TError>(new ResultLogic<TError>());
 
         /// <inheritdoc />
+        [PublicAPI]
         public bool IsSuccess => Logic.IsSuccess;
 
         /// <inheritdoc />
+        [PublicAPI]
         public bool IsWarning => Logic.IsWarning;
 
         /// <inheritdoc />
+        [PublicAPI]
         public bool IsFailure => Logic.IsFailure;
 
         /// <inheritdoc />
+        [PublicAPI]
         public string Message => Logic.Message;
 
         /// <inheritdoc />
+        [PublicAPI]
         public Exception Exception => Logic.Exception;
 
         /// <inheritdoc />
+        [PublicAPI]
         public TError Error => Logic.Error;
 
         [NotNull]
@@ -69,7 +75,7 @@ namespace Here.Results
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <param name="value">Value.</param>
         /// <returns>A corresponding <see cref="CustomResult{TError}"/>.</returns>
-        [Pure]
+        [PublicAPI, Pure]
         public Result<T> Cast<T>([CanBeNull] T value)
         {
             if (IsFailure)
@@ -83,7 +89,7 @@ namespace Here.Results
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <param name="valueFactory">Factory method that create a value.</param>
         /// <returns>A corresponding <see cref="CustomResult{TError}"/>.</returns>
-        [Pure]
+        [PublicAPI, Pure]
         public Result<T> Cast<T>([NotNull, InstantHandle] Func<T> valueFactory)
         {
             if (IsFailure)
@@ -97,7 +103,7 @@ namespace Here.Results
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <param name="value">Value.</param>
         /// <returns>A corresponding <see cref="Result{T, TError}"/>.</returns>
-        [Pure]
+        [PublicAPI, Pure]
         public Result<T, TError> CustomCast<T>([CanBeNull] T value)
         {
             if (IsFailure)
@@ -114,7 +120,7 @@ namespace Here.Results
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <param name="valueFactory">Factory method that create a value.</param>
         /// <returns>A corresponding <see cref="Result{T, TError}"/>.</returns>
-        [Pure]
+        [PublicAPI, Pure]
         public Result<T, TError> CustomCast<T>([NotNull, InstantHandle] Func<T> valueFactory)
         {
             if (IsFailure)
@@ -206,7 +212,7 @@ namespace Here.Results
         /// </summary>
         /// <param name="other"><see cref="CustomResult{TError}"/> to compare.</param>
         /// <returns>True if both <see cref="CustomResult{TError}"/> are equals and successful.</returns>
-        [Pure]
+        [PublicAPI, Pure]
         public bool SuccessEquals(CustomResult<TError> other)
         {
             if (IsSuccess && other.IsSuccess)
@@ -260,26 +266,33 @@ namespace Here.Results
     public partial struct Result<T, TError> : IResult<T>, IResultError<TError>, IEquatable<Result<T, TError>>
     {
         /// <inheritdoc />
+        [PublicAPI]
         public bool IsSuccess => Logic.IsSuccess;
 
         /// <inheritdoc />
+        [PublicAPI]
         public bool IsWarning => Logic.IsWarning;
 
         /// <inheritdoc />
+        [PublicAPI]
         public bool IsFailure => Logic.IsFailure;
 
         /// <inheritdoc />
+        [PublicAPI]
         public string Message => Logic.Message;
 
         /// <inheritdoc />
+        [PublicAPI]
         public Exception Exception => Logic.Exception;
 
         /// <inheritdoc />
+        [PublicAPI]
         public TError Error => Logic.Error;
 
         private readonly T _value;
 
         /// <inheritdoc />
+        [PublicAPI]
         public T Value
         {
             get
@@ -349,7 +362,7 @@ namespace Here.Results
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
         /// <param name="converter">Function that convert this result value from input type to output type.</param>
         /// <returns>A corresponding <see cref="Result{TOut, TError}"/>.</returns>
-        [Pure]
+        [PublicAPI, Pure]
         public Result<TOut, TError> Cast<TOut>([NotNull, InstantHandle] Func<T, TOut> converter)
         {
             if (IsFailure)
@@ -442,7 +455,7 @@ namespace Here.Results
         /// </summary>
         /// <param name="other"><see cref="Result{T, TError}"/> to compare.</param>
         /// <returns>True if both <see cref="Result{T, TError}"/> are equals and successful.</returns>
-        [Pure]
+        [PublicAPI, Pure]
         public bool SuccessEquals(Result<T, TError> other)
         {
             if (IsSuccess && other.IsSuccess)

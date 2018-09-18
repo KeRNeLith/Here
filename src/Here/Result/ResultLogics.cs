@@ -184,7 +184,7 @@ namespace Here.Results
         /// <param name="logic"><see cref="ResultLogic{TError}"/> to convert.</param>
         /// <returns>A corresponding <see cref="ResultLogic"/>.</returns>
         [Pure]
-        public static ResultLogic ToResultLogic<TError>(ResultLogic<TError> logic)
+        internal static ResultLogic ToResultLogic<TError>(ResultLogic<TError> logic)
         {
             if (logic.IsSuccess && !logic.IsWarning)
                 return new ResultLogic();

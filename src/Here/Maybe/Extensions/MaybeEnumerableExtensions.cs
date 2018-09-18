@@ -183,7 +183,7 @@ namespace Here.Maybes.Extensions
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="maybe">The <see cref="Maybe{T}"/> to convert.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> generated from this <see cref="Maybe{T}"/>.</returns>
-        [PublicAPI, Pure]
+        [PublicAPI, Pure, NotNull]
         public static IEnumerable<T> ToEnumerable<T>(this Maybe<T> maybe)
         {
             if (maybe.HasValue)
@@ -196,7 +196,7 @@ namespace Here.Maybes.Extensions
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="maybe">The <see cref="Maybe{T}"/> to convert.</param>
         /// <returns>An <see cref="IEnumerator{T}"/> generated from this <see cref="Maybe{T}"/>.</returns>
-        [PublicAPI, Pure]
+        [PublicAPI, Pure, NotNull]
         public static IEnumerator<T> ToEnumerator<T>(this Maybe<T> maybe)
         {
             if (maybe.HasValue)
@@ -209,7 +209,7 @@ namespace Here.Maybes.Extensions
         /// <typeparam name="T">Type of the value embedded in <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="enumerable">An enumerable of <see cref="Maybe{T}"/>.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> generated from  this enumerable of <see cref="Maybe{T}"/>.</returns>
-        [PublicAPI, Pure]
+        [PublicAPI, Pure, NotNull]
         public static IEnumerable<T> ExtractValues<T>([NotNull] this IEnumerable<Maybe<T>> enumerable)
         {
             foreach (var maybe in enumerable)
@@ -220,7 +220,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Extract values from this <see cref="IEnumerable{Maybe{T}}"/> to convert it to an array.
+        /// Extract values from this <see cref="IEnumerable{Maybe}"/> to convert it to an array.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="enumerable">An enumerable of <see cref="Maybe{T}"/>.</param>
@@ -232,7 +232,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Extract values from this <see cref="IEnumerable{Maybe{T}}"/> to convert it to an <see cref="List{T}"/>.
+        /// Extract values from this <see cref="IEnumerable{Maybe}"/> to convert it to an <see cref="List{T}"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="enumerable">An enumerable of <see cref="Maybe{T}"/>.</param>
@@ -244,14 +244,15 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Extract values from this <see cref="IEnumerable{Maybe{T}}"/> to convert it to an <see cref="Dictionary{TKey, T}"/>.
+        /// Extract values from this <see cref="IEnumerable{Maybe}"/> to convert it to an <see cref="Dictionary{TKey, T}"/>.
         /// </summary>
-        /// <typeparam name="T">Type of the value embedded in <see cref="Maybe{T}"/>.</typeparam>
         /// <typeparam name="TKey">Type of the output dictionary key.</typeparam>
+        /// <typeparam name="TValue">Type of the value embedded in <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="enumerable">An enumerable of <see cref="Maybe{T}"/>.</param>
+        /// <param name="keySelector">Method called to create dictionary keys.</param>
         /// <returns>A <see cref="Dictionary{TKey, T}"/> generated from this enumerable of <see cref="Maybe{T}"/>.</returns>
         [PublicAPI, Pure, NotNull]
-        public static Dictionary<TKey, T> ToDictionary<T, TKey>([NotNull] this IEnumerable<Maybe<T>> enumerable, [NotNull, InstantHandle] Func<T, TKey> keySelector)
+        public static Dictionary<TKey, TValue> ToDictionary<TValue, TKey>([NotNull] this IEnumerable<Maybe<TValue>> enumerable, [NotNull, InstantHandle] Func<TValue, TKey> keySelector)
         {
             return enumerable.ExtractValues().ToDictionary(keySelector);
         }

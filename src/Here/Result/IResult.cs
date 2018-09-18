@@ -12,28 +12,31 @@ namespace Here.Results
         /// <summary>
         /// Indicate if this Result is a success.
         /// </summary>
+        [PublicAPI]
         bool IsSuccess { get; }
 
         /// <summary>
         /// Indicate if this Result succeed with warning.
         /// </summary>
+        [PublicAPI]
         bool IsWarning { get; }
 
         /// <summary>
         /// Indicate if this Result is a failure.
         /// </summary>
+        [PublicAPI]
         bool IsFailure { get; }
 
         /// <summary>
         /// Result message.
         /// </summary>
-        [CanBeNull]
+        [PublicAPI, CanBeNull]
         string Message { get; }
 
         /// <summary>
         /// Result exception.
         /// </summary>
-        [CanBeNull]
+        [PublicAPI, CanBeNull]
         Exception Exception { get; }
     }
 
@@ -46,7 +49,7 @@ namespace Here.Results
         /// <summary>
         /// Error attached to a Result.
         /// </summary>
-        [CanBeNull]
+        [PublicAPI, CanBeNull]
         TError Error { get; }
     }
 
@@ -60,7 +63,7 @@ namespace Here.Results
         /// <summary>
         /// This Result value.
         /// </summary>
-        [CanBeNull]
+        [PublicAPI, CanBeNull]
         T Value { get; }
     }
 }

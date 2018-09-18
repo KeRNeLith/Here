@@ -16,16 +16,19 @@ namespace Here.Maybes
         /// <summary>
         /// Nothing value.
         /// </summary>
+        [PublicAPI]
         public static readonly Maybe<T> None;
 
         /// <summary>
         /// Flag that indicate if this <see cref="Maybe{T}"/> has a value.
         /// </summary>
+        [PublicAPI]
         public bool HasValue { get; }
 
         /// <summary>
         /// Flag that indicate if this <see cref="Maybe{T}"/> has no value.
         /// </summary>
+        [PublicAPI]
         public bool HasNoValue => !HasValue;
 
         /// <summary>
@@ -38,7 +41,7 @@ namespace Here.Maybes
         /// Get the value stored in the <see cref="Maybe{T}"/> if present otherwise throws.
         /// </summary>
         /// <exception cref="InvalidOperationException"> if no value is present.</exception>
-        [NotNull]
+        [PublicAPI, NotNull]
         public T Value
         {
             get
@@ -63,6 +66,7 @@ namespace Here.Maybes
         /// Construct a <see cref="Maybe{T}"/> with a value.
         /// </summary>
         /// <param name="value"><see cref="Maybe{T}"/> value.</param>
+        [PublicAPI]
         public static Maybe<T> Some([NotNull] T value)
         {
             if (value == null)
