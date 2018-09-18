@@ -268,18 +268,27 @@ namespace Here.Tests.Maybes
             var emptyMaybeInt2 = Maybe<int>.None;
 
             Assert.AreEqual(0, maybeInt1.CompareTo(maybeInt1));
+            Assert.AreEqual(0, maybeInt1.CompareTo((object)maybeInt1));
 
             Assert.AreEqual(0, maybeInt1.CompareTo(maybeInt2));
+            Assert.AreEqual(0, maybeInt1.CompareTo((object)maybeInt2));
             Assert.AreEqual(0, maybeInt2.CompareTo(maybeInt1));
+            Assert.AreEqual(0, maybeInt2.CompareTo((object)maybeInt1));
 
             Assert.AreEqual(-1, maybeInt1.CompareTo(maybeInt3));
+            Assert.AreEqual(-1, maybeInt1.CompareTo((object)maybeInt3));
             Assert.AreEqual(1, maybeInt3.CompareTo(maybeInt1));
+            Assert.AreEqual(1, maybeInt3.CompareTo((object)maybeInt1));
 
             Assert.AreEqual(1, maybeInt1.CompareTo(emptyMaybeInt1));
+            Assert.AreEqual(1, maybeInt1.CompareTo((object)emptyMaybeInt1));
             Assert.AreEqual(-1, emptyMaybeInt1.CompareTo(maybeInt1));
+            Assert.AreEqual(-1, emptyMaybeInt1.CompareTo((object)maybeInt1));
 
             Assert.AreEqual(0, emptyMaybeInt1.CompareTo(emptyMaybeInt2));
+            Assert.AreEqual(0, emptyMaybeInt1.CompareTo((object)emptyMaybeInt2));
             Assert.AreEqual(0, emptyMaybeInt2.CompareTo(emptyMaybeInt1));
+            Assert.AreEqual(0, emptyMaybeInt2.CompareTo((object)emptyMaybeInt1));
 
             // Mixed
             Assert.AreEqual(1, maybeInt1.CompareTo(null));      // Null initialize a Maybe.None
