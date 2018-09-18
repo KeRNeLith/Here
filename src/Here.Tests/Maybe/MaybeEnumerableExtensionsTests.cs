@@ -357,5 +357,64 @@ namespace Here.Tests.Maybes
 
             CollectionAssert.AreEqual(new[] { 12, 0, 1, 10 }, list.ExtractValues());
         }
+
+        [Test]
+        public void EnumerableMaybeToArray()
+        {
+            IEnumerable<Maybe<int>> enumerableMaybeInts = new List<Maybe<int>> { 1, 5, Maybe.None, 15 };
+            List<Maybe<int>> listMaybeInts = new List<Maybe<int>> { Maybe.None, 7, 4, Maybe.None, 1 };
+            Maybe<int>[] arrayMaybeInts = new[] { Maybe<int>.Some(12), 4, Maybe.None, 7 };
+
+            CollectionAssert.AreEqual(new[] { 1, 5, 15 }, enumerableMaybeInts.ToArray());
+            CollectionAssert.AreEqual(new[] { 7, 4, 1 }, listMaybeInts.ToArray<int>());     // Template parameter force the use of the extension
+            CollectionAssert.AreEqual(new[] { 12, 4, 7 }, arrayMaybeInts.ToArray());
+
+#if (!NET20) && (!NET30) && (!NET35) && (!NET40)
+            IReadOnlyCollection<Maybe<int>> readonlyCollectionMaybeInts = new ReadOnlyCollection<Maybe<int>>(listMaybeInts);
+            CollectionAssert.AreEqual(new[] { 7, 4, 1 }, readonlyCollectionMaybeInts.ToArray());
+#endif
+        }
+
+        [Test]
+        public void EnumerableMaybeToList()
+        {
+            IEnumerable<Maybe<int>> enumerableMaybeInts = new List<Maybe<int>> { 1, 5, Maybe.None, 15 };
+            List<Maybe<int>> listMaybeInts = new List<Maybe<int>> { Maybe.None, 7, 4, Maybe.None, 1 };
+            Maybe<int>[] arrayMaybeInts = new[] { Maybe<int>.Some(12), 4, Maybe.None, 7 };
+
+            CollectionAssert.AreEqual(new[] { 1, 5, 15 }, enumerableMaybeInts.ToList());
+            CollectionAssert.AreEqual(new[] { 7, 4, 1 }, listMaybeInts.ToList());
+            CollectionAssert.AreEqual(new[] { 12, 4, 7 }, arrayMaybeInts.ToList());
+
+#if (!NET20) && (!NET30) && (!NET35) && (!NET40)
+            IReadOnlyCollection<Maybe<int>> readonlyCollectionMaybeInts = new ReadOnlyCollection<Maybe<int>>(listMaybeInts);
+            CollectionAssert.AreEqual(new[] { 7, 4, 1 }, readonlyCollectionMaybeInts.ToList());
+#endif
+        }
+
+        [Test]
+        public void EnumerableMaybeToDictionary()
+        {
+            IEnumerable<Maybe<int>> enumerableMaybeInts = new List<Maybe<int>> { 1, 5, Maybe.None, 15 };
+            List<Maybe<int>> listMaybeInts = new List<Maybe<int>> { Maybe.None, 7, 4, Maybe.None, 1 };
+            Maybe<int>[] arrayMaybeInts = new[] { Maybe<int>.Some(12), 4, Maybe.None, 7 };
+
+            CollectionAssert.AreEquivalent(
+                new Dictionary<string, int> { ["1"] = 1, ["5"] = 5, ["15"] = 15 }, 
+                enumerableMaybeInts.ToDictionary<int, string>(value => value.ToString()));  // Need explicit arguments
+            CollectionAssert.AreEquivalent(
+                new Dictionary<string, int> { ["7"] = 7, ["4"] = 4, ["1"] = 1 }, 
+                listMaybeInts.ToDictionary<int, string>(value => value.ToString()));        // Need explicit arguments
+            CollectionAssert.AreEquivalent(
+                new Dictionary<string, int> { ["12"] = 12, ["4"] = 4, ["7"] = 7 }, 
+                arrayMaybeInts.ToDictionary<int, string>(value => value.ToString()));       // Need explicit arguments
+
+#if (!NET20) && (!NET30) && (!NET35) && (!NET40)
+            IReadOnlyCollection<Maybe<int>> readonlyCollectionMaybeInts = new ReadOnlyCollection<Maybe<int>>(listMaybeInts);
+            CollectionAssert.AreEquivalent(
+                new Dictionary<string, int> { ["7"] = 7, ["4"] = 4, ["1"] = 1 }, 
+                readonlyCollectionMaybeInts.ToDictionary<int, string>(value => value.ToString()));  // Need explicit arguments
+#endif
+        }
     }
 }
