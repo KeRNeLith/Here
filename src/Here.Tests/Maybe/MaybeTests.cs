@@ -293,6 +293,54 @@ namespace Here.Tests.Maybes
         }
 
         [Test]
+        public void MaybeCompare()
+        {
+            // Maybe value type
+            var maybeInt1 = Maybe<int>.Some(12);
+            var maybeInt2 = Maybe<int>.Some(12);
+            var maybeInt3 = Maybe<int>.Some(42);
+            var emptyMaybeInt1 = Maybe<int>.None;
+            var emptyMaybeInt2 = Maybe<int>.None;
+
+            Assert.AreEqual(0, maybeInt1.CompareTo(maybeInt1));
+            Assert.AreEqual(0, maybeInt1.CompareTo((object)maybeInt1));
+
+            Assert.AreEqual(0, maybeInt1.CompareTo(maybeInt2));
+            Assert.AreEqual(0, maybeInt1.CompareTo((object)maybeInt2));
+            Assert.AreEqual(0, maybeInt2.CompareTo(maybeInt1));
+            Assert.AreEqual(0, maybeInt2.CompareTo((object)maybeInt1));
+
+            Assert.AreEqual(-1, maybeInt1.CompareTo(maybeInt3));
+            Assert.AreEqual(-1, maybeInt1.CompareTo((object)maybeInt3));
+            Assert.AreEqual(1, maybeInt3.CompareTo(maybeInt1));
+            Assert.AreEqual(1, maybeInt3.CompareTo((object)maybeInt1));
+
+            Assert.AreEqual(1, maybeInt1.CompareTo(emptyMaybeInt1));
+            Assert.AreEqual(1, maybeInt1.CompareTo((object)emptyMaybeInt1));
+            Assert.AreEqual(-1, emptyMaybeInt1.CompareTo(maybeInt1));
+            Assert.AreEqual(-1, emptyMaybeInt1.CompareTo((object)maybeInt1));
+
+            Assert.AreEqual(0, emptyMaybeInt1.CompareTo(emptyMaybeInt2));
+            Assert.AreEqual(0, emptyMaybeInt1.CompareTo((object)emptyMaybeInt2));
+            Assert.AreEqual(0, emptyMaybeInt2.CompareTo(emptyMaybeInt1));
+            Assert.AreEqual(0, emptyMaybeInt2.CompareTo((object)emptyMaybeInt1));
+
+            // Mixed
+            Assert.AreEqual(1, maybeInt1.CompareTo(null));      // Null initialize a Maybe.None
+            Assert.AreEqual(0, emptyMaybeInt1.CompareTo(null)); // Null initialize a Maybe.None
+            Assert.AreEqual(1, maybeInt1.CompareTo((object)null));
+            Assert.AreEqual(0, emptyMaybeInt1.CompareTo((object)null));
+
+            var maybeFloat = Maybe<float>.Some(12.1f);
+            var emptyMaybeFloat = Maybe<float>.None;
+            Assert.Throws<ArgumentException>(() => maybeInt1.CompareTo(maybeFloat));
+            Assert.Throws<ArgumentException>(() => maybeFloat.CompareTo(maybeInt1));
+
+            Assert.Throws<ArgumentException>(() => maybeInt1.CompareTo(emptyMaybeFloat));
+            Assert.Throws<ArgumentException>(() => emptyMaybeFloat.CompareTo(maybeInt1));
+        }
+
+        [Test]
         public void MaybeHashCode()
         {
             // Equals values

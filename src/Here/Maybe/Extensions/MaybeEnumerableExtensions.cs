@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 
 namespace Here.Maybes.Extensions
@@ -207,15 +208,52 @@ namespace Here.Maybes.Extensions
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="enumerable">An enumerable of <see cref="Maybe{T}"/>.</param>
-        /// <returns>An <see cref="IEnumerable{T}"/> generated from this <see cref="Maybe{T}"/>.</returns>
+        /// <returns>An <see cref="IEnumerable{T}"/> generated from  this enumerable of <see cref="Maybe{T}"/>.</returns>
         [PublicAPI, Pure]
-        public static IEnumerable<T> ExtractValues<T>(this IEnumerable<Maybe<T>> enumerable)
+        public static IEnumerable<T> ExtractValues<T>([NotNull] this IEnumerable<Maybe<T>> enumerable)
         {
             foreach (var maybe in enumerable)
             {
                 if (maybe.HasValue)
                     yield return maybe.Value;
             }
+        }
+
+        /// <summary>
+        /// Extract values from this <see cref="IEnumerable{Maybe{T}}"/> to convert it to an array.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in <see cref="Maybe{T}"/>.</typeparam>
+        /// <param name="enumerable">An enumerable of <see cref="Maybe{T}"/>.</param>
+        /// <returns>An array generated from this enumerable of <see cref="Maybe{T}"/>.</returns>
+        [PublicAPI, Pure, NotNull]
+        public static T[] ToArray<T>([NotNull] this IEnumerable<Maybe<T>> enumerable)
+        {
+            return enumerable.ExtractValues().ToArray();
+        }
+
+        /// <summary>
+        /// Extract values from this <see cref="IEnumerable{Maybe{T}}"/> to convert it to an <see cref="List{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in <see cref="Maybe{T}"/>.</typeparam>
+        /// <param name="enumerable">An enumerable of <see cref="Maybe{T}"/>.</param>
+        /// <returns>A <see cref="List{T}"/> generated from this enumerable of <see cref="Maybe{T}"/>.</returns>
+        [PublicAPI, Pure, NotNull]
+        public static List<T> ToList<T>([NotNull] this IEnumerable<Maybe<T>> enumerable)
+        {
+            return enumerable.ExtractValues().ToList();
+        }
+
+        /// <summary>
+        /// Extract values from this <see cref="IEnumerable{Maybe{T}}"/> to convert it to an <see cref="Dictionary{TKey, T}"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in <see cref="Maybe{T}"/>.</typeparam>
+        /// <typeparam name="TKey">Type of the output dictionary key.</typeparam>
+        /// <param name="enumerable">An enumerable of <see cref="Maybe{T}"/>.</param>
+        /// <returns>A <see cref="Dictionary{TKey, T}"/> generated from this enumerable of <see cref="Maybe{T}"/>.</returns>
+        [PublicAPI, Pure, NotNull]
+        public static Dictionary<TKey, T> ToDictionary<T, TKey>([NotNull] this IEnumerable<Maybe<T>> enumerable, [NotNull, InstantHandle] Func<T, TKey> keySelector)
+        {
+            return enumerable.ExtractValues().ToDictionary(keySelector);
         }
     }
 }
