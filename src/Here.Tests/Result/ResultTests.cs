@@ -1518,6 +1518,18 @@ namespace Here.Tests.Results
             Assert.AreEqual(0, resultFail3.CompareTo(resultFail1));
             Assert.AreEqual(0, resultFail3.CompareTo((object)resultFail1));
 
+            // Comparable reference type
+            var person1 = new PersonComparable("Jo");
+            var person2 = new PersonComparable("John");
+            var resultOk4 = Result.Ok(person1);
+            var resultOk5 = Result.Ok(person1);
+            var resultOk6 = Result.Ok(person2);
+            Assert.AreEqual(0, resultOk4.CompareTo(resultOk5));
+            Assert.AreEqual(0, resultOk5.CompareTo(resultOk4));
+
+            Assert.AreEqual(-1, resultOk4.CompareTo(resultOk6));
+            Assert.AreEqual(1, resultOk6.CompareTo(resultOk4));
+
             // Mixed
             Assert.AreEqual(1, resultOk1.CompareTo(null));      // Null is always the minimal value
             Assert.AreEqual(1, resultWarn1.CompareTo(null));    // Null is always the minimal value
@@ -1704,6 +1716,18 @@ namespace Here.Tests.Results
             Assert.AreEqual(0, resultFail1.CompareTo((object)resultFail3));
             Assert.AreEqual(0, resultFail3.CompareTo(resultFail1));
             Assert.AreEqual(0, resultFail3.CompareTo((object)resultFail1));
+
+            // Comparable reference type
+            var person1 = new PersonComparable("Jo");
+            var person2 = new PersonComparable("John");
+            var resultOk4 = Result.Ok<PersonComparable, CustomErrorTest>(person1);
+            var resultOk5 = Result.Ok<PersonComparable, CustomErrorTest>(person1);
+            var resultOk6 = Result.Ok<PersonComparable, CustomErrorTest>(person2);
+            Assert.AreEqual(0, resultOk4.CompareTo(resultOk5));
+            Assert.AreEqual(0, resultOk5.CompareTo(resultOk4));
+
+            Assert.AreEqual(-1, resultOk4.CompareTo(resultOk6));
+            Assert.AreEqual(1, resultOk6.CompareTo(resultOk4));
 
             // Mixed
             Assert.AreEqual(1, resultOk1.CompareTo(null));      // Null is always the minimal value
