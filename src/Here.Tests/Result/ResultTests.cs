@@ -1541,9 +1541,9 @@ namespace Here.Tests.Results
             Assert.Throws<ArgumentException>(() => { var _ = resultOk1.CompareTo(testObject); });
             
             Assert.AreEqual(0, resultOk1.CompareTo(customValueResult)); // Use implicit conversion to Result<T>
-            Assert.Throws<ArgumentException>(() => { customValueResult.CompareTo(resultOk1); }); // Use CompareTo(object) as no conversion from Result<T> to Result<T, TError> exists
-            Assert.Throws<ArgumentException>(() => { resultOk1.CompareTo(valueResult); });
-            Assert.Throws<ArgumentException>(() => { valueResult.CompareTo(resultOk1); });
+            Assert.Throws<ArgumentException>(() => { var _ = customValueResult.CompareTo(resultOk1); }); // Use CompareTo(object) as no conversion from Result<T> to Result<T, TError> exists
+            Assert.Throws<ArgumentException>(() => { var _ = resultOk1.CompareTo(valueResult); });
+            Assert.Throws<ArgumentException>(() => { var _ = valueResult.CompareTo(resultOk1); });
         }
 
         [Test]
@@ -1735,10 +1735,9 @@ namespace Here.Tests.Results
             Assert.AreEqual(1, resultFail1.CompareTo(null));    // Null is always the minimal value
 
             var testObject = new TestClass();
-            var customValueResult = Result.Ok<float, CustomErrorTest>(12.1f);
             var valueResult = Result.Ok(12);
             Assert.Throws<ArgumentException>(() => { var _ = resultOk1.CompareTo(testObject); });
-            Assert.Throws<ArgumentException>(() => { resultOk1.CompareTo(valueResult); });  // Use CompareTo(object) as no conversion from Result<T> to Result<T, TError> exists
+            Assert.Throws<ArgumentException>(() => { var _ = resultOk1.CompareTo(valueResult); });  // Use CompareTo(object) as no conversion from Result<T> to Result<T, TError> exists
             Assert.AreEqual(0, valueResult.CompareTo(resultOk1));  // Use implicit conversion to Result<T>
         }
 

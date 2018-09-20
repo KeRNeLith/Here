@@ -160,6 +160,50 @@ namespace Here.Results
             return 0;
         }
 
+        /// <summary>
+        /// Determines if this <see cref="ResultLogic{TError}"/> is less than the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="ResultLogic{TError}"/> to compare.</param>
+        /// <param name="right">The second <see cref="ResultLogic{TError}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator <(ResultLogic<TError> left, ResultLogic<TError> right)
+        {
+            return left.CompareTo(right) < 0;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="ResultLogic{TError}"/> is less than or equal to the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="ResultLogic{TError}"/> to compare.</param>
+        /// <param name="right">The second <see cref="ResultLogic{TError}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator <=(ResultLogic<TError> left, ResultLogic<TError> right)
+        {
+            return left.CompareTo(right) <= 0;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="ResultLogic{TError}"/> is greater than the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="ResultLogic{TError}"/> to compare.</param>
+        /// <param name="right">The second <see cref="ResultLogic{TError}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator >(ResultLogic<TError> left, ResultLogic<TError> right)
+        {
+            return left.CompareTo(right) > 0;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="ResultLogic{TError}"/> is greater than or equal to the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="ResultLogic{TError}"/> to compare.</param>
+        /// <param name="right">The second <see cref="ResultLogic{TError}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator >=(ResultLogic<TError> left, ResultLogic<TError> right)
+        {
+            return left.CompareTo(right) >= 0;
+        }
+
         #endregion
 
         /// <inheritdoc />
@@ -238,11 +282,11 @@ namespace Here.Results
                 && Equals(Exception, other.Exception);
         }
 
-        public override bool Equals(object other)
+        public override bool Equals(object obj)
         {
-            if (other is null)
+            if (obj is null)
                 return false;
-            return other is ResultLogic logic && Equals(logic);
+            return obj is ResultLogic logic && Equals(logic);
         }
 
         public override int GetHashCode()
@@ -272,13 +316,57 @@ namespace Here.Results
 
         /// <summary>
         /// Compare this <see cref="ResultLogic"/> with the given one.
-        /// Order keeps <see cref="IsFailure"/> first, then <see cref="IsWarning"/> and finally <see cref="IsSuccess"/>.
+        /// Order keeps <see cref="ResultLogic.IsFailure"/> first, then <see cref="ResultLogic.IsWarning"/> and finally <see cref="ResultLogic.IsSuccess"/>.
         /// </summary>
         /// <param name="other"><see cref="ResultLogic"/> to compare.</param>
         /// <returns>The comparison result.</returns>
         public int CompareTo(ResultLogic other)
         {
             return base.CompareTo(other);
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="ResultLogic"/> is less than the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="ResultLogic"/> to compare.</param>
+        /// <param name="right">The second <see cref="ResultLogic"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator <(ResultLogic left, ResultLogic right)
+        {
+            return left.CompareTo(right) < 0;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="ResultLogic"/> is less than or equal to the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="ResultLogic"/> to compare.</param>
+        /// <param name="right">The second <see cref="ResultLogic"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator <=(ResultLogic left, ResultLogic right)
+        {
+            return left.CompareTo(right) <= 0;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="ResultLogic"/> is greater than the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="ResultLogic"/> to compare.</param>
+        /// <param name="right">The second <see cref="ResultLogic"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator >(ResultLogic left, ResultLogic right)
+        {
+            return left.CompareTo(right) > 0;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="ResultLogic"/> is greater than or equal to the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="ResultLogic"/> to compare.</param>
+        /// <param name="right">The second <see cref="ResultLogic"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator >=(ResultLogic left, ResultLogic right)
+        {
+            return left.CompareTo(right) >= 0;
         }
 
         #endregion

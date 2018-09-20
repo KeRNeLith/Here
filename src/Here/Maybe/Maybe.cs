@@ -162,6 +162,50 @@ namespace Here.Maybes
             return Comparer<T>.Default.Compare(_value, other._value);
         }
 
+        /// <summary>
+        /// Determines if this <see cref="Maybe{T}"/> is less than the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="Maybe{T}"/> to compare.</param>
+        /// <param name="right">The second <see cref="Maybe{T}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator <(Maybe<T> left, Maybe<T> right)
+        {
+            return left.CompareTo(right) < 0;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="Maybe{T}"/> is less than or equal to the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="Maybe{T}"/> to compare.</param>
+        /// <param name="right">The second <see cref="Maybe{T}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator <=(Maybe<T> left, Maybe<T> right)
+        {
+            return left.CompareTo(right) <= 0;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="Maybe{T}"/> is greater than the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="Maybe{T}"/> to compare.</param>
+        /// <param name="right">The second <see cref="Maybe{T}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator >(Maybe<T> left, Maybe<T> right)
+        {
+            return left.CompareTo(right) > 0;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="Maybe{T}"/> is greater than or equal to the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="Maybe{T}"/> to compare.</param>
+        /// <param name="right">The second <see cref="Maybe{T}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator >=(Maybe<T> left, Maybe<T> right)
+        {
+            return left.CompareTo(right) >= 0;
+        }
+
         #endregion
 
         /// <inheritdoc />

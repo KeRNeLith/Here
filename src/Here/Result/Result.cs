@@ -340,6 +340,50 @@ namespace Here.Results
             return Logic.CompareTo(other.Logic);
         }
 
+        /// <summary>
+        /// Determines if this <see cref="Result"/> is less than the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="Result"/> to compare.</param>
+        /// <param name="right">The second <see cref="Result"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator <(Result left, Result right)
+        {
+            return left.CompareTo(right) < 0;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="Result"/> is less than or equal to the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="Result"/> to compare.</param>
+        /// <param name="right">The second <see cref="Result"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator <=(Result left, Result right)
+        {
+            return left.CompareTo(right) <= 0;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="Result"/> is greater than the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="Result"/> to compare.</param>
+        /// <param name="right">The second <see cref="Result"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator >(Result left, Result right)
+        {
+            return left.CompareTo(right) > 0;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="Result"/> is greater than or equal to the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="Result"/> to compare.</param>
+        /// <param name="right">The second <see cref="Result"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator >=(Result left, Result right)
+        {
+            return left.CompareTo(right) >= 0;
+        }
+
         #endregion
 
         #region Factory methods
@@ -844,6 +888,50 @@ namespace Here.Results
             }
 
             return logicCompare;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="Result{T}"/> is less than the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="Result{T}"/> to compare.</param>
+        /// <param name="right">The second <see cref="Result{T}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator <(Result<T> left, Result<T> right)
+        {
+            return left.CompareTo(right) < 0;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="Result{T}"/> is less than or equal to the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="Result{T}"/> to compare.</param>
+        /// <param name="right">The second <see cref="Result{T}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator <=(Result<T> left, Result<T> right)
+        {
+            return left.CompareTo(right) <= 0;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="Result{T}"/> is greater than the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="Result{T}"/> to compare.</param>
+        /// <param name="right">The second <see cref="Result{T}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator >(Result<T> left, Result<T> right)
+        {
+            return left.CompareTo(right) > 0;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="Result{T}"/> is greater than or equal to the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="Result{T}"/> to compare.</param>
+        /// <param name="right">The second <see cref="Result{T}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator >=(Result<T> left, Result<T> right)
+        {
+            return left.CompareTo(right) >= 0;
         }
 
         #endregion
