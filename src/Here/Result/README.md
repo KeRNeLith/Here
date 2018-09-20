@@ -114,6 +114,53 @@ if (result.IsSuccess)
     Console.WriteLine(result.Value);
 ```
 
+Results structures also implement the IEquatable interface to perform comparison between result. Note that this one check if both result are equal.
+To complete this there are also SucessEquals helper to check that both results are equal and are success!
+
+### Equality / Comparison
+
+#### Equality
+
+```csharp
+// Equality
+Result resultOk1 = Result.Ok();
+Result resultOk2 = Result.Ok();
+Result resultFail1 = Result.Fail("Error message");
+Result resultFail2 = Result.Fail("Error message");
+
+resultOk1.Equals(resultOk2);     // True
+resultOk1.Equals(resultFail1);   // False
+resultFail1.Equals(resultFail2); // **True!**
+
+// Success Equality
+Result<int> resultOk1 = Result.Ok(42);
+Result<int> resultOk2 = Result.Ok(42);
+Result<int> resultFail1 = Result.Fail<int>("Error message");
+Result<int> resultFail2 = Result.Fail<int>("Error message");
+
+resultOk1.SuccessEquals(resultOk2);     // True
+resultOk1.SuccessEquals(resultFail1);   // False
+resultFail1.SuccessEquals(resultFail2); // **False!**
+```
+
+Note that == and != operators are also implemented.
+
+#### Value comparison
+
+Results structure that wrap a value supports == operator to directly check the wrapped value. 
+This check is state safe, it means it will only check the value if available, and then return the result of the comparison.
+
+See the following example:
+
+```csharp
+Result<int> resultOk = Result.Ok(42);
+Result<int> resultFail = Result.Fail<int>("Error message");
+
+resultOk == 42    // True
+resultOk == 12    // False
+resultFail == 42  // False
+```
+
 ### Safe Scopes
 
 If you want to run code that should return a Result safely, you can use Result scopes to do this.
