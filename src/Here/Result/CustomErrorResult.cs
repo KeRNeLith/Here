@@ -277,6 +277,50 @@ namespace Here.Results
             return Logic.CompareTo(other.Logic);
         }
 
+        /// <summary>
+        /// Determines if this <see cref="CustomResult{TError}"/> is less than the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="CustomResult{TError}"/> to compare.</param>
+        /// <param name="right">The second <see cref="CustomResult{TError}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator <(CustomResult<TError> left, CustomResult<TError> right)
+        {
+            return left.CompareTo(right) < 0;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="CustomResult{TError}"/> is less than or equal to the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="CustomResult{TError}"/> to compare.</param>
+        /// <param name="right">The second <see cref="CustomResult{TError}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator <=(CustomResult<TError> left, CustomResult<TError> right)
+        {
+            return left.CompareTo(right) <= 0;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="CustomResult{TError}"/> is greater than the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="CustomResult{TError}"/> to compare.</param>
+        /// <param name="right">The second <see cref="CustomResult{TError}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator >(CustomResult<TError> left, CustomResult<TError> right)
+        {
+            return left.CompareTo(right) > 0;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="CustomResult{TError}"/> is greater than or equal to the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="CustomResult{TError}"/> to compare.</param>
+        /// <param name="right">The second <see cref="CustomResult{TError}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator >=(CustomResult<TError> left, CustomResult<TError> right)
+        {
+            return left.CompareTo(right) >= 0;
+        }
+
         #endregion
 
         /// <inheritdoc />
@@ -580,6 +624,50 @@ namespace Here.Results
             }
 
             return logicCompare;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="Result{T, TError}"/> is less than the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="Result{T, TError}"/> to compare.</param>
+        /// <param name="right">The second <see cref="Result{T, TError}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator <(Result<T, TError> left, Result<T, TError> right)
+        {
+            return left.CompareTo(right) < 0;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="Result{T, TError}"/> is less than or equal to the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="Result{T, TError}"/> to compare.</param>
+        /// <param name="right">The second <see cref="Result{T, TError}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator <=(Result<T, TError> left, Result<T, TError> right)
+        {
+            return left.CompareTo(right) <= 0;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="Result{T, TError}"/> is greater than the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="Result{T, TError}"/> to compare.</param>
+        /// <param name="right">The second <see cref="Result{T, TError}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator >(Result<T, TError> left, Result<T, TError> right)
+        {
+            return left.CompareTo(right) > 0;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="Result{T, TError}"/> is greater than or equal to the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="Result{T, TError}"/> to compare.</param>
+        /// <param name="right">The second <see cref="Result{T, TError}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator >=(Result<T, TError> left, Result<T, TError> right)
+        {
+            return left.CompareTo(right) >= 0;
         }
 
         #endregion
