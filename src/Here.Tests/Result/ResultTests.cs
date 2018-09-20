@@ -1352,6 +1352,374 @@ namespace Here.Tests.Results
 
         #endregion
 
+        #region Comparison
+
+        [Test]
+        public void ResultCompare()
+        {
+            // Results
+            var resultOk1 = Result.Ok();
+            var resultOk2 = Result.Ok();
+            var resultWarn1 = Result.Warn("My Warning");
+            var resultWarn2 = Result.Warn("My Warning");
+            var resultWarn3 = Result.Warn("My Warning 2");
+            var resultFail1 = Result.Fail("My Failure");
+            var resultFail2 = Result.Fail("My Failure");
+            var resultFail3 = Result.Fail("My Failure 2");
+
+            Assert.AreEqual(0, resultOk1.CompareTo(resultOk1));
+            Assert.AreEqual(0, resultOk1.CompareTo((object)resultOk1));
+
+            Assert.AreEqual(0, resultOk1.CompareTo(resultOk2));
+            Assert.AreEqual(0, resultOk1.CompareTo((object)resultOk2));
+            Assert.AreEqual(0, resultOk2.CompareTo(resultOk1));
+            Assert.AreEqual(0, resultOk2.CompareTo((object)resultOk1));
+
+            Assert.AreEqual(1, resultOk1.CompareTo(resultWarn1));
+            Assert.AreEqual(1, resultOk1.CompareTo((object)resultWarn1));
+            Assert.AreEqual(-1, resultWarn1.CompareTo(resultOk1));
+            Assert.AreEqual(-1, resultWarn1.CompareTo((object)resultOk1));
+
+            Assert.AreEqual(1, resultOk1.CompareTo(resultFail1));
+            Assert.AreEqual(1, resultOk1.CompareTo((object)resultFail1));
+            Assert.AreEqual(-1, resultFail1.CompareTo(resultOk1));
+            Assert.AreEqual(-1, resultFail1.CompareTo((object)resultOk1));
+
+
+            Assert.AreEqual(0, resultWarn1.CompareTo(resultWarn1));
+            Assert.AreEqual(0, resultWarn1.CompareTo((object)resultWarn1));
+
+            Assert.AreEqual(0, resultWarn1.CompareTo(resultWarn2));
+            Assert.AreEqual(0, resultWarn1.CompareTo((object)resultWarn2));
+            Assert.AreEqual(0, resultWarn2.CompareTo(resultWarn1));
+            Assert.AreEqual(0, resultWarn2.CompareTo((object)resultWarn1));
+
+            Assert.AreEqual(0, resultWarn1.CompareTo(resultWarn3));
+            Assert.AreEqual(0, resultWarn1.CompareTo((object)resultWarn3));
+            Assert.AreEqual(0, resultWarn3.CompareTo(resultWarn1));
+            Assert.AreEqual(0, resultWarn3.CompareTo((object)resultWarn1));
+
+            Assert.AreEqual(1, resultWarn1.CompareTo(resultFail1));
+            Assert.AreEqual(1, resultWarn1.CompareTo((object)resultFail1));
+            Assert.AreEqual(-1, resultFail1.CompareTo(resultWarn1));
+            Assert.AreEqual(-1, resultFail1.CompareTo((object)resultWarn1));
+
+
+            Assert.AreEqual(0, resultFail1.CompareTo(resultFail1));
+            Assert.AreEqual(0, resultFail1.CompareTo((object)resultFail1));
+
+            Assert.AreEqual(0, resultFail1.CompareTo(resultFail2));
+            Assert.AreEqual(0, resultFail1.CompareTo((object)resultFail2));
+            Assert.AreEqual(0, resultFail2.CompareTo(resultFail1));
+            Assert.AreEqual(0, resultFail2.CompareTo((object)resultFail1));
+
+            Assert.AreEqual(0, resultFail1.CompareTo(resultFail3));
+            Assert.AreEqual(0, resultFail1.CompareTo((object)resultFail3));
+            Assert.AreEqual(0, resultFail3.CompareTo(resultFail1));
+            Assert.AreEqual(0, resultFail3.CompareTo((object)resultFail1));
+
+            // Mixed
+            Assert.AreEqual(1, resultOk1.CompareTo(null));      // Null is always the minimal value
+            Assert.AreEqual(1, resultWarn1.CompareTo(null));    // Null is always the minimal value
+            Assert.AreEqual(1, resultFail1.CompareTo(null));    // Null is always the minimal value
+
+            var testObject = new TestClass();
+            var valueResult = Result.Ok(42);
+            Assert.Throws<ArgumentException>(() => { var _ = resultOk1.CompareTo(testObject); });
+            Assert.AreEqual(0, resultOk1.CompareTo(valueResult));   // Use implicit conversion to Result
+            Assert.Throws<ArgumentException>(() => { var _ = valueResult.CompareTo(resultOk1); });   // Use CompareTo(object) as no conversion from Result to Result<T> exists
+        }
+
+        [Test]
+        public void ValueResultCompare()
+        {
+            // Results
+            var resultOk1 = Result.Ok(12);
+            var resultOk2 = Result.Ok(12);
+            var resultOk3 = Result.Ok(42);
+            var resultWarn1 = Result.Warn(14, "My Warning");
+            var resultWarn2 = Result.Warn(14, "My Warning");
+            var resultWarn3 = Result.Warn(14, "My Warning 2");
+            var resultWarn4 = Result.Warn(15, "My Warning");
+            var resultWarn5 = Result.Warn(15, "My Warning 3");
+            var resultWarn6 = Result.Warn(12, "My Warning");
+            var resultFail1 = Result.Fail<int>("My Failure");
+            var resultFail2 = Result.Fail<int>("My Failure");
+            var resultFail3 = Result.Fail<int>("My Failure 2");
+
+            Assert.AreEqual(0, resultOk1.CompareTo(resultOk1));
+            Assert.AreEqual(0, resultOk1.CompareTo((object)resultOk1));
+
+            Assert.AreEqual(0, resultOk1.CompareTo(resultOk2));
+            Assert.AreEqual(0, resultOk1.CompareTo((object)resultOk2));
+            Assert.AreEqual(0, resultOk2.CompareTo(resultOk1));
+            Assert.AreEqual(0, resultOk2.CompareTo((object)resultOk1));
+
+            Assert.AreEqual(-1, resultOk1.CompareTo(resultOk3));
+            Assert.AreEqual(-1, resultOk1.CompareTo((object)resultOk3));
+            Assert.AreEqual(1, resultOk3.CompareTo(resultOk1));
+            Assert.AreEqual(1, resultOk3.CompareTo((object)resultOk1));
+
+            Assert.AreEqual(1, resultOk1.CompareTo(resultWarn1));
+            Assert.AreEqual(1, resultOk1.CompareTo((object)resultWarn1));
+            Assert.AreEqual(-1, resultWarn1.CompareTo(resultOk1));
+            Assert.AreEqual(-1, resultWarn1.CompareTo((object)resultOk1));
+
+            Assert.AreEqual(1, resultOk1.CompareTo(resultFail1));
+            Assert.AreEqual(1, resultOk1.CompareTo((object)resultFail1));
+            Assert.AreEqual(-1, resultFail1.CompareTo(resultOk1));
+            Assert.AreEqual(-1, resultFail1.CompareTo((object)resultOk1));
+
+
+            Assert.AreEqual(0, resultWarn1.CompareTo(resultWarn1));
+            Assert.AreEqual(0, resultWarn1.CompareTo((object)resultWarn1));
+
+            Assert.AreEqual(0, resultWarn1.CompareTo(resultWarn2));
+            Assert.AreEqual(0, resultWarn1.CompareTo((object)resultWarn2));
+            Assert.AreEqual(0, resultWarn2.CompareTo(resultWarn1));
+            Assert.AreEqual(0, resultWarn2.CompareTo((object)resultWarn1));
+
+            Assert.AreEqual(0, resultWarn1.CompareTo(resultWarn3));
+            Assert.AreEqual(0, resultWarn1.CompareTo((object)resultWarn3));
+            Assert.AreEqual(0, resultWarn3.CompareTo(resultWarn1));
+            Assert.AreEqual(0, resultWarn3.CompareTo((object)resultWarn1));
+
+            Assert.AreEqual(-1, resultWarn1.CompareTo(resultWarn4));
+            Assert.AreEqual(-1, resultWarn1.CompareTo((object)resultWarn4));
+            Assert.AreEqual(1, resultWarn4.CompareTo(resultWarn1));
+            Assert.AreEqual(1, resultWarn4.CompareTo((object)resultWarn1));
+
+            Assert.AreEqual(-1, resultWarn1.CompareTo(resultWarn5));
+            Assert.AreEqual(-1, resultWarn1.CompareTo((object)resultWarn5));
+            Assert.AreEqual(1, resultWarn5.CompareTo(resultWarn1));
+            Assert.AreEqual(1, resultWarn5.CompareTo((object)resultWarn1));
+
+            Assert.AreEqual(1, resultWarn1.CompareTo(resultWarn6));
+            Assert.AreEqual(1, resultWarn1.CompareTo((object)resultWarn6));
+            Assert.AreEqual(-1, resultWarn6.CompareTo(resultWarn1));
+            Assert.AreEqual(-1, resultWarn6.CompareTo((object)resultWarn1));
+
+            Assert.AreEqual(1, resultWarn1.CompareTo(resultFail1));
+            Assert.AreEqual(1, resultWarn1.CompareTo((object)resultFail1));
+            Assert.AreEqual(-1, resultFail1.CompareTo(resultWarn1));
+            Assert.AreEqual(-1, resultFail1.CompareTo((object)resultWarn1));
+
+
+            Assert.AreEqual(0, resultFail1.CompareTo(resultFail1));
+            Assert.AreEqual(0, resultFail1.CompareTo((object)resultFail1));
+
+            Assert.AreEqual(0, resultFail1.CompareTo(resultFail2));
+            Assert.AreEqual(0, resultFail1.CompareTo((object)resultFail2));
+            Assert.AreEqual(0, resultFail2.CompareTo(resultFail1));
+            Assert.AreEqual(0, resultFail2.CompareTo((object)resultFail1));
+
+            Assert.AreEqual(0, resultFail1.CompareTo(resultFail3));
+            Assert.AreEqual(0, resultFail1.CompareTo((object)resultFail3));
+            Assert.AreEqual(0, resultFail3.CompareTo(resultFail1));
+            Assert.AreEqual(0, resultFail3.CompareTo((object)resultFail1));
+
+            // Mixed
+            Assert.AreEqual(1, resultOk1.CompareTo(null));      // Null is always the minimal value
+            Assert.AreEqual(1, resultWarn1.CompareTo(null));    // Null is always the minimal value
+            Assert.AreEqual(1, resultFail1.CompareTo(null));    // Null is always the minimal value
+
+            var testObject = new TestClass();
+            var customValueResult = Result.Ok<int, CustomErrorTest>(12);
+            var valueResult = Result.Ok(42.2f);
+            Assert.Throws<ArgumentException>(() => { var _ = resultOk1.CompareTo(testObject); });
+            
+            Assert.AreEqual(0, resultOk1.CompareTo(customValueResult)); // Use implicit conversion to Result<T>
+            Assert.Throws<ArgumentException>(() => { customValueResult.CompareTo(resultOk1); }); // Use CompareTo(object) as no conversion from Result<T> to Result<T, TError> exists
+            Assert.Throws<ArgumentException>(() => { resultOk1.CompareTo(valueResult); });
+            Assert.Throws<ArgumentException>(() => { valueResult.CompareTo(resultOk1); });
+        }
+
+        [Test]
+        public void CustomResultCompare()
+        {
+            var customErrorObject = new CustomErrorTest { ErrorCode = -1 };
+
+            // Results
+            var resultOk1 = Result.CustomOk<CustomErrorTest>();
+            var resultOk2 = Result.CustomOk<CustomErrorTest>();
+            var resultWarn1 = Result.CustomWarn<CustomErrorTest>("My Warning");
+            var resultWarn2 = Result.CustomWarn<CustomErrorTest>("My Warning");
+            var resultWarn3 = Result.CustomWarn<CustomErrorTest>("My Warning 2");
+            var resultFail1 = Result.CustomFail("My Failure", customErrorObject);
+            var resultFail2 = Result.CustomFail("My Failure", customErrorObject);
+            var resultFail3 = Result.CustomFail("My Failure 2", customErrorObject);
+
+            Assert.AreEqual(0, resultOk1.CompareTo(resultOk1));
+            Assert.AreEqual(0, resultOk1.CompareTo((object)resultOk1));
+
+            Assert.AreEqual(0, resultOk1.CompareTo(resultOk2));
+            Assert.AreEqual(0, resultOk1.CompareTo((object)resultOk2));
+            Assert.AreEqual(0, resultOk2.CompareTo(resultOk1));
+            Assert.AreEqual(0, resultOk2.CompareTo((object)resultOk1));
+
+            Assert.AreEqual(1, resultOk1.CompareTo(resultWarn1));
+            Assert.AreEqual(1, resultOk1.CompareTo((object)resultWarn1));
+            Assert.AreEqual(-1, resultWarn1.CompareTo(resultOk1));
+            Assert.AreEqual(-1, resultWarn1.CompareTo((object)resultOk1));
+
+            Assert.AreEqual(1, resultOk1.CompareTo(resultFail1));
+            Assert.AreEqual(1, resultOk1.CompareTo((object)resultFail1));
+            Assert.AreEqual(-1, resultFail1.CompareTo(resultOk1));
+            Assert.AreEqual(-1, resultFail1.CompareTo((object)resultOk1));
+
+
+            Assert.AreEqual(0, resultWarn1.CompareTo(resultWarn1));
+            Assert.AreEqual(0, resultWarn1.CompareTo((object)resultWarn1));
+
+            Assert.AreEqual(0, resultWarn1.CompareTo(resultWarn2));
+            Assert.AreEqual(0, resultWarn1.CompareTo((object)resultWarn2));
+            Assert.AreEqual(0, resultWarn2.CompareTo(resultWarn1));
+            Assert.AreEqual(0, resultWarn2.CompareTo((object)resultWarn1));
+
+            Assert.AreEqual(0, resultWarn1.CompareTo(resultWarn3));
+            Assert.AreEqual(0, resultWarn1.CompareTo((object)resultWarn3));
+            Assert.AreEqual(0, resultWarn3.CompareTo(resultWarn1));
+            Assert.AreEqual(0, resultWarn3.CompareTo((object)resultWarn1));
+
+            Assert.AreEqual(1, resultWarn1.CompareTo(resultFail1));
+            Assert.AreEqual(1, resultWarn1.CompareTo((object)resultFail1));
+            Assert.AreEqual(-1, resultFail1.CompareTo(resultWarn1));
+            Assert.AreEqual(-1, resultFail1.CompareTo((object)resultWarn1));
+
+
+            Assert.AreEqual(0, resultFail1.CompareTo(resultFail1));
+            Assert.AreEqual(0, resultFail1.CompareTo((object)resultFail1));
+
+            Assert.AreEqual(0, resultFail1.CompareTo(resultFail2));
+            Assert.AreEqual(0, resultFail1.CompareTo((object)resultFail2));
+            Assert.AreEqual(0, resultFail2.CompareTo(resultFail1));
+            Assert.AreEqual(0, resultFail2.CompareTo((object)resultFail1));
+
+            Assert.AreEqual(0, resultFail1.CompareTo(resultFail3));
+            Assert.AreEqual(0, resultFail1.CompareTo((object)resultFail3));
+            Assert.AreEqual(0, resultFail3.CompareTo(resultFail1));
+            Assert.AreEqual(0, resultFail3.CompareTo((object)resultFail1));
+
+            // Mixed
+            Assert.AreEqual(1, resultOk1.CompareTo(null));      // Null is always the minimal value
+            Assert.AreEqual(1, resultWarn1.CompareTo(null));    // Null is always the minimal value
+            Assert.AreEqual(1, resultFail1.CompareTo(null));    // Null is always the minimal value
+
+            var testObject = new TestClass();
+            var valueResult = Result.Ok(42);
+            var customValueResult = Result.Ok<int, CustomErrorTest>(12);
+
+            Assert.Throws<ArgumentException>(() => { var _ = resultOk1.CompareTo(testObject); });
+            Assert.Throws<ArgumentException>(() => { var _ = resultOk1.CompareTo(valueResult); });  // Use CompareTo(object) as no conversion from Result<T> to CustomResult<TError> exists
+            Assert.AreEqual(0, resultOk1.CompareTo(customValueResult));                                   // Use implicit conversion to Result
+            Assert.Throws<ArgumentException>(() => { var _ = valueResult.CompareTo(resultOk1); });  // Use CompareTo(object) as no conversion from Result<T> to CustomResult<TError> exists
+        }
+
+        [Test]
+        public void CustomValueResultCompare()
+        {
+            var customErrorObject = new CustomErrorTest { ErrorCode = -10 };
+
+            // Results
+            var resultOk1 = Result.Ok<int, CustomErrorTest>(12);
+            var resultOk2 = Result.Ok<int, CustomErrorTest>(12);
+            var resultOk3 = Result.Ok<int, CustomErrorTest>(42);
+            var resultWarn1 = Result.Warn<int, CustomErrorTest>(14, "My Warning");
+            var resultWarn2 = Result.Warn<int, CustomErrorTest>(14, "My Warning");
+            var resultWarn3 = Result.Warn<int, CustomErrorTest>(14, "My Warning 2");
+            var resultWarn4 = Result.Warn<int, CustomErrorTest>(15, "My Warning");
+            var resultWarn5 = Result.Warn<int, CustomErrorTest>(15, "My Warning 3");
+            var resultWarn6 = Result.Warn<int, CustomErrorTest>(12, "My Warning");
+            var resultFail1 = Result.Fail<int, CustomErrorTest>("My Failure", customErrorObject);
+            var resultFail2 = Result.Fail<int, CustomErrorTest>("My Failure", customErrorObject);
+            var resultFail3 = Result.Fail<int, CustomErrorTest>("My Failure 2", customErrorObject);
+
+            Assert.AreEqual(0, resultOk1.CompareTo(resultOk1));
+            Assert.AreEqual(0, resultOk1.CompareTo((object)resultOk1));
+
+            Assert.AreEqual(0, resultOk1.CompareTo(resultOk2));
+            Assert.AreEqual(0, resultOk1.CompareTo((object)resultOk2));
+            Assert.AreEqual(0, resultOk2.CompareTo(resultOk1));
+            Assert.AreEqual(0, resultOk2.CompareTo((object)resultOk1));
+
+            Assert.AreEqual(-1, resultOk1.CompareTo(resultOk3));
+            Assert.AreEqual(-1, resultOk1.CompareTo((object)resultOk3));
+            Assert.AreEqual(1, resultOk3.CompareTo(resultOk1));
+            Assert.AreEqual(1, resultOk3.CompareTo((object)resultOk1));
+
+            Assert.AreEqual(1, resultOk1.CompareTo(resultWarn1));
+            Assert.AreEqual(1, resultOk1.CompareTo((object)resultWarn1));
+            Assert.AreEqual(-1, resultWarn1.CompareTo(resultOk1));
+            Assert.AreEqual(-1, resultWarn1.CompareTo((object)resultOk1));
+
+            Assert.AreEqual(1, resultOk1.CompareTo(resultFail1));
+            Assert.AreEqual(1, resultOk1.CompareTo((object)resultFail1));
+            Assert.AreEqual(-1, resultFail1.CompareTo(resultOk1));
+            Assert.AreEqual(-1, resultFail1.CompareTo((object)resultOk1));
+
+
+            Assert.AreEqual(0, resultWarn1.CompareTo(resultWarn1));
+            Assert.AreEqual(0, resultWarn1.CompareTo((object)resultWarn1));
+
+            Assert.AreEqual(0, resultWarn1.CompareTo(resultWarn2));
+            Assert.AreEqual(0, resultWarn1.CompareTo((object)resultWarn2));
+            Assert.AreEqual(0, resultWarn2.CompareTo(resultWarn1));
+            Assert.AreEqual(0, resultWarn2.CompareTo((object)resultWarn1));
+
+            Assert.AreEqual(0, resultWarn1.CompareTo(resultWarn3));
+            Assert.AreEqual(0, resultWarn1.CompareTo((object)resultWarn3));
+            Assert.AreEqual(0, resultWarn3.CompareTo(resultWarn1));
+            Assert.AreEqual(0, resultWarn3.CompareTo((object)resultWarn1));
+
+            Assert.AreEqual(-1, resultWarn1.CompareTo(resultWarn4));
+            Assert.AreEqual(-1, resultWarn1.CompareTo((object)resultWarn4));
+            Assert.AreEqual(1, resultWarn4.CompareTo(resultWarn1));
+            Assert.AreEqual(1, resultWarn4.CompareTo((object)resultWarn1));
+
+            Assert.AreEqual(-1, resultWarn1.CompareTo(resultWarn5));
+            Assert.AreEqual(-1, resultWarn1.CompareTo((object)resultWarn5));
+            Assert.AreEqual(1, resultWarn5.CompareTo(resultWarn1));
+            Assert.AreEqual(1, resultWarn5.CompareTo((object)resultWarn1));
+
+            Assert.AreEqual(1, resultWarn1.CompareTo(resultWarn6));
+            Assert.AreEqual(1, resultWarn1.CompareTo((object)resultWarn6));
+            Assert.AreEqual(-1, resultWarn6.CompareTo(resultWarn1));
+            Assert.AreEqual(-1, resultWarn6.CompareTo((object)resultWarn1));
+
+            Assert.AreEqual(1, resultWarn1.CompareTo(resultFail1));
+            Assert.AreEqual(1, resultWarn1.CompareTo((object)resultFail1));
+            Assert.AreEqual(-1, resultFail1.CompareTo(resultWarn1));
+            Assert.AreEqual(-1, resultFail1.CompareTo((object)resultWarn1));
+
+
+            Assert.AreEqual(0, resultFail1.CompareTo(resultFail1));
+            Assert.AreEqual(0, resultFail1.CompareTo((object)resultFail1));
+
+            Assert.AreEqual(0, resultFail1.CompareTo(resultFail2));
+            Assert.AreEqual(0, resultFail1.CompareTo((object)resultFail2));
+            Assert.AreEqual(0, resultFail2.CompareTo(resultFail1));
+            Assert.AreEqual(0, resultFail2.CompareTo((object)resultFail1));
+
+            Assert.AreEqual(0, resultFail1.CompareTo(resultFail3));
+            Assert.AreEqual(0, resultFail1.CompareTo((object)resultFail3));
+            Assert.AreEqual(0, resultFail3.CompareTo(resultFail1));
+            Assert.AreEqual(0, resultFail3.CompareTo((object)resultFail1));
+
+            // Mixed
+            Assert.AreEqual(1, resultOk1.CompareTo(null));      // Null is always the minimal value
+            Assert.AreEqual(1, resultWarn1.CompareTo(null));    // Null is always the minimal value
+            Assert.AreEqual(1, resultFail1.CompareTo(null));    // Null is always the minimal value
+
+            var testObject = new TestClass();
+            var customValueResult = Result.Ok<float, CustomErrorTest>(12.1f);
+            var valueResult = Result.Ok(12);
+            Assert.Throws<ArgumentException>(() => { var _ = resultOk1.CompareTo(testObject); });
+            Assert.Throws<ArgumentException>(() => { resultOk1.CompareTo(valueResult); });  // Use CompareTo(object) as no conversion from Result<T> to Result<T, TError> exists
+            Assert.AreEqual(0, valueResult.CompareTo(resultOk1));  // Use implicit conversion to Result<T>
+        }
+
+        #endregion
+
         [Test]
         public void ResultToString()
         {

@@ -9,7 +9,7 @@ namespace Here.Results
     /// <see cref="Result"/> is an object that represents the result/state of a treatment.
     /// </summary>
     [PublicAPI]
-    public partial struct Result : IResult, IEquatable<Result>
+    public partial struct Result : IResult, IEquatable<Result>, IComparable, IComparable<Result>
     {
         /// <summary>
         /// A success <see cref="Result"/>.
@@ -304,6 +304,36 @@ namespace Here.Results
 
         #endregion
 
+        #region IComparable / IComparable<T>
+
+        /// <summary>
+        /// Compare this <see cref="Result"/> with the given object.
+        /// </summary>
+        /// <param name="obj">Object to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public int CompareTo(object obj)
+        {
+            if (obj is null)
+                return 1;
+            if (obj is Result other)
+                return CompareTo(other);
+
+            throw new ArgumentException($"Cannot compare an object of type {obj.GetType()} with a {typeof(Result)}");
+        }
+
+        /// <summary>
+        /// Compare this <see cref="Result"/> with the given one.
+        /// Order keeps <see cref="IsFailure"/> first, then <see cref="IsWarning"/> and finally <see cref="IsSuccess"/>.
+        /// </summary>
+        /// <param name="other"><see cref="Result"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public int CompareTo(Result other)
+        {
+            return Logic.CompareTo(other.Logic);
+        }
+
+        #endregion
+
         #region Factory methods
 
         // Here to be easy to call
@@ -482,7 +512,7 @@ namespace Here.Results
     /// This <see cref="Result{T}"/> embed a <see cref="Value"/> resulting of the treatment.
     /// </summary>
     [PublicAPI]
-    public partial struct Result<T> : IResult<T>, IEquatable<Result<T>>
+    public partial struct Result<T> : IResult<T>, IEquatable<Result<T>>, IComparable, IComparable<Result<T>>
     {
         /// <inheritdoc />
         public bool IsSuccess => Logic.IsSuccess;
@@ -759,6 +789,45 @@ namespace Here.Results
         public static bool operator !=(T value, Result<T> result)
         {
             return !(result == value);
+        }
+
+        #endregion
+
+        #region IComparable / IComparable<T>
+
+        /// <summary>
+        /// Compare this <see cref="Result{T}"/> with the given object.
+        /// </summary>
+        /// <param name="obj">Object to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public int CompareTo(object obj)
+        {
+            if (obj is null)
+                return 1;
+            if (obj is Result<T> other)
+                return CompareTo(other);
+
+            throw new ArgumentException($"Cannot compare an object of type {obj.GetType()} with a {typeof(Result<T>)}");
+        }
+
+        /// <summary>
+        /// Compare this <see cref="Result{T}"/> with the given one.
+        /// Order keeps <see cref="IsFailure"/> first, then <see cref="IsWarning"/> and finally <see cref="IsSuccess"/>.
+        /// </summary>
+        /// <param name="other"><see cref="Result{T}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public int CompareTo(Result<T> other)
+        {
+            int logicCompare = Logic.CompareTo(other.Logic);
+            if (logicCompare == 0)
+            {
+                if (_value is IComparable comparable)
+                    return comparable.CompareTo(other._value);
+                else if (_value is IComparable<T> comparableT)
+                    return comparableT.CompareTo(other._value);
+            }
+
+            return logicCompare;
         }
 
         #endregion

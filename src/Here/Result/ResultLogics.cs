@@ -7,7 +7,7 @@ namespace Here.Results
     /// <summary>
     /// The Result interaction logic.
     /// </summary>
-    internal class ResultLogic<TError> : IEquatable<ResultLogic<TError>>
+    internal class ResultLogic<TError> : IEquatable<ResultLogic<TError>>, IComparable<ResultLogic<TError>>
     {
         /// <summary>
         /// Indicate if it is a success.
@@ -131,6 +131,37 @@ namespace Here.Results
 
         #endregion
 
+        #region IComparable<T>
+
+        /// <summary>
+        /// Compare this <see cref="ResultLogic{TError}"/> with the given one.
+        /// Order keeps <see cref="IsFailure"/> first, then <see cref="IsWarning"/> and finally <see cref="IsSuccess"/>.
+        /// </summary>
+        /// <param name="other"><see cref="ResultLogic{TError}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public int CompareTo(ResultLogic<TError> other)
+        {
+            if (IsSuccess && !other.IsSuccess)
+                return 1;
+
+            if (!IsSuccess && other.IsSuccess)
+                return -1;
+
+            // Both success
+            if (IsSuccess && other.IsSuccess)
+            {
+                if (IsWarning && !other.IsWarning)
+                    return -1;
+                if (!IsWarning && other.IsWarning)
+                    return 1;
+            }
+
+            // Both success with or without warning or both failure
+            return 0;
+        }
+
+        #endregion
+
         /// <inheritdoc />
         public override string ToString()
         {
@@ -145,7 +176,7 @@ namespace Here.Results
     /// <summary>
     /// The Result interaction logic specialized to only provide a message (for warning and error).
     /// </summary>
-    internal sealed class ResultLogic : ResultLogic<string>, IEquatable<ResultLogic>
+    internal sealed class ResultLogic : ResultLogic<string>, IEquatable<ResultLogic>, IComparable<ResultLogic>
     {
         /// <summary>
         /// <see cref="ResultLogic"/> "ok" constructor.
@@ -233,6 +264,21 @@ namespace Here.Results
         public static bool operator !=(ResultLogic result1, ResultLogic result2)
         {
             return !(result1 == result2);
+        }
+
+        #endregion
+
+        #region IComparable<T>
+
+        /// <summary>
+        /// Compare this <see cref="ResultLogic"/> with the given one.
+        /// Order keeps <see cref="IsFailure"/> first, then <see cref="IsWarning"/> and finally <see cref="IsSuccess"/>.
+        /// </summary>
+        /// <param name="other"><see cref="ResultLogic"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public int CompareTo(ResultLogic other)
+        {
+            return base.CompareTo(other);
         }
 
         #endregion
