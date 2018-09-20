@@ -185,5 +185,119 @@ namespace Here.Tests.Results
             Assert.IsTrue(logicOk1 != null);
             Assert.IsTrue(null != logicOk1);
         }
+
+        [Test]
+        public void ResultLogicCompare()
+        {
+            // Results
+            var logicOk1 = new ResultLogic();
+            var logicOk2 = new ResultLogic();
+            var logicWarn1 = new ResultLogic(true, "My warning", null);
+            var logicWarn2 = new ResultLogic(true, "My warning", null);
+            var logicWarn3 = new ResultLogic(true, "My warning 2", null);
+            var logicFail1 = new ResultLogic(false, "My failure", null);
+            var logicFail2 = new ResultLogic(false, "My failure", null);
+            var logicFail3 = new ResultLogic(false, "My failure 2", null);
+            
+            Assert.IsFalse(logicOk1 < logicOk2);
+            Assert.IsTrue(logicOk1 <= logicOk2);
+            Assert.IsFalse(logicOk1 > logicOk2);
+            Assert.IsTrue(logicOk1 >= logicOk2);
+
+            Assert.IsFalse(logicOk1 < logicWarn1);
+            Assert.IsFalse(logicOk1 <= logicWarn1);
+            Assert.IsTrue(logicOk1 > logicWarn1);
+            Assert.IsTrue(logicOk1 >= logicWarn1);
+            
+            Assert.IsFalse(logicOk1 < logicFail1);
+            Assert.IsFalse(logicOk1 <= logicFail1);
+            Assert.IsTrue(logicOk1 > logicFail1);
+            Assert.IsTrue(logicOk1 >= logicFail1);
+
+
+            Assert.IsFalse(logicWarn1 < logicWarn2);
+            Assert.IsTrue(logicWarn1 <= logicWarn2);
+            Assert.IsFalse(logicWarn1 > logicWarn2);
+            Assert.IsTrue(logicWarn1 >= logicWarn2);
+
+            Assert.IsFalse(logicWarn1 < logicWarn3);
+            Assert.IsTrue(logicWarn1 <= logicWarn3);
+            Assert.IsFalse(logicWarn1 > logicWarn3);
+            Assert.IsTrue(logicWarn1 >= logicWarn3);
+            
+            Assert.IsFalse(logicWarn1 < logicFail1);
+            Assert.IsFalse(logicWarn1 <= logicFail1);
+            Assert.IsTrue(logicWarn1 > logicFail1);
+            Assert.IsTrue(logicWarn1 >= logicFail1);
+
+
+            Assert.IsFalse(logicFail1 < logicFail2);
+            Assert.IsTrue(logicFail1 <= logicFail2);
+            Assert.IsFalse(logicFail1 > logicFail2);
+            Assert.IsTrue(logicFail1 >= logicFail2);
+
+            Assert.IsFalse(logicFail1 < logicFail3);
+            Assert.IsTrue(logicFail1 <= logicFail3);
+            Assert.IsFalse(logicFail1 > logicFail3);
+            Assert.IsTrue(logicFail1 >= logicFail3);
+        }
+
+        [Test]
+        public void ResultLogicErrorCompare()
+        {
+            var customErrorObject = new CustomErrorTest { ErrorCode = -1 };
+
+            // Results
+            var logicOk1 = new ResultLogic<CustomErrorTest>();
+            var logicOk2 = new ResultLogic<CustomErrorTest>();
+            var logicWarn1 = new ResultLogic<CustomErrorTest>(true, "My warning", null, null);
+            var logicWarn2 = new ResultLogic<CustomErrorTest>(true, "My warning", null, null);
+            var logicWarn3 = new ResultLogic<CustomErrorTest>(true, "My warning 2", null, null);
+            var logicFail1 = new ResultLogic<CustomErrorTest>(false, "My failure", customErrorObject, null);
+            var logicFail2 = new ResultLogic<CustomErrorTest>(false, "My failure", customErrorObject, null);
+            var logicFail3 = new ResultLogic<CustomErrorTest>(false, "My failure 2", customErrorObject, null);
+
+            Assert.IsFalse(logicOk1 < logicOk2);
+            Assert.IsTrue(logicOk1 <= logicOk2);
+            Assert.IsFalse(logicOk1 > logicOk2);
+            Assert.IsTrue(logicOk1 >= logicOk2);
+            
+            Assert.IsFalse(logicOk1 < logicWarn1);
+            Assert.IsFalse(logicOk1 <= logicWarn1);
+            Assert.IsTrue(logicOk1 > logicWarn1);
+            Assert.IsTrue(logicOk1 >= logicWarn1);
+            
+            Assert.IsFalse(logicOk1 < logicFail1);
+            Assert.IsFalse(logicOk1 <= logicFail1);
+            Assert.IsTrue(logicOk1 > logicFail1);
+            Assert.IsTrue(logicOk1 >= logicFail1);
+
+
+            Assert.IsFalse(logicWarn1 < logicWarn2);
+            Assert.IsTrue(logicWarn1 <= logicWarn2);
+            Assert.IsFalse(logicWarn1 > logicWarn2);
+            Assert.IsTrue(logicWarn1 >= logicWarn2);
+            
+            Assert.IsFalse(logicWarn1 < logicWarn3);
+            Assert.IsTrue(logicWarn1 <= logicWarn3);
+            Assert.IsFalse(logicWarn1 > logicWarn3);
+            Assert.IsTrue(logicWarn1 >= logicWarn3);
+            
+            Assert.IsFalse(logicWarn1 < logicFail1);
+            Assert.IsFalse(logicWarn1 <= logicFail1);
+            Assert.IsTrue(logicWarn1 > logicFail1);
+            Assert.IsTrue(logicWarn1 >= logicFail1);
+            
+
+            Assert.IsFalse(logicFail1 < logicFail2);
+            Assert.IsTrue(logicFail1 <= logicFail2);
+            Assert.IsFalse(logicFail1 > logicFail2);
+            Assert.IsTrue(logicFail1 >= logicFail2);
+            
+            Assert.IsFalse(logicFail1 < logicFail3);
+            Assert.IsTrue(logicFail1 <= logicFail3);
+            Assert.IsFalse(logicFail1 > logicFail3);
+            Assert.IsTrue(logicFail1 >= logicFail3);
+        }
     }
 }

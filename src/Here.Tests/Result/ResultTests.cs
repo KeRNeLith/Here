@@ -1374,17 +1374,28 @@ namespace Here.Tests.Results
             Assert.AreEqual(0, resultOk1.CompareTo((object)resultOk2));
             Assert.AreEqual(0, resultOk2.CompareTo(resultOk1));
             Assert.AreEqual(0, resultOk2.CompareTo((object)resultOk1));
+            Assert.IsFalse(resultOk1 < resultOk2);
+            Assert.IsTrue(resultOk1 <= resultOk2);
+            Assert.IsFalse(resultOk1 > resultOk2);
+            Assert.IsTrue(resultOk1 >= resultOk2);
 
             Assert.AreEqual(1, resultOk1.CompareTo(resultWarn1));
             Assert.AreEqual(1, resultOk1.CompareTo((object)resultWarn1));
             Assert.AreEqual(-1, resultWarn1.CompareTo(resultOk1));
             Assert.AreEqual(-1, resultWarn1.CompareTo((object)resultOk1));
+            Assert.IsFalse(resultOk1 < resultWarn1);
+            Assert.IsFalse(resultOk1 <= resultWarn1);
+            Assert.IsTrue(resultOk1 > resultWarn1);
+            Assert.IsTrue(resultOk1 >= resultWarn1);
 
             Assert.AreEqual(1, resultOk1.CompareTo(resultFail1));
             Assert.AreEqual(1, resultOk1.CompareTo((object)resultFail1));
             Assert.AreEqual(-1, resultFail1.CompareTo(resultOk1));
             Assert.AreEqual(-1, resultFail1.CompareTo((object)resultOk1));
-
+            Assert.IsFalse(resultOk1 < resultFail1);
+            Assert.IsFalse(resultOk1 <= resultFail1);
+            Assert.IsTrue(resultOk1 > resultFail1);
+            Assert.IsTrue(resultOk1 >= resultFail1);
 
             Assert.AreEqual(0, resultWarn1.CompareTo(resultWarn1));
             Assert.AreEqual(0, resultWarn1.CompareTo((object)resultWarn1));
@@ -1393,16 +1404,28 @@ namespace Here.Tests.Results
             Assert.AreEqual(0, resultWarn1.CompareTo((object)resultWarn2));
             Assert.AreEqual(0, resultWarn2.CompareTo(resultWarn1));
             Assert.AreEqual(0, resultWarn2.CompareTo((object)resultWarn1));
+            Assert.IsFalse(resultWarn1 < resultWarn2);
+            Assert.IsTrue(resultWarn1 <= resultWarn2);
+            Assert.IsFalse(resultWarn1 > resultWarn2);
+            Assert.IsTrue(resultWarn1 >= resultWarn2);
 
             Assert.AreEqual(0, resultWarn1.CompareTo(resultWarn3));
             Assert.AreEqual(0, resultWarn1.CompareTo((object)resultWarn3));
             Assert.AreEqual(0, resultWarn3.CompareTo(resultWarn1));
             Assert.AreEqual(0, resultWarn3.CompareTo((object)resultWarn1));
+            Assert.IsFalse(resultWarn1 < resultWarn3);
+            Assert.IsTrue(resultWarn1 <= resultWarn3);
+            Assert.IsFalse(resultWarn1 > resultWarn3);
+            Assert.IsTrue(resultWarn1 >= resultWarn3);
 
             Assert.AreEqual(1, resultWarn1.CompareTo(resultFail1));
             Assert.AreEqual(1, resultWarn1.CompareTo((object)resultFail1));
             Assert.AreEqual(-1, resultFail1.CompareTo(resultWarn1));
             Assert.AreEqual(-1, resultFail1.CompareTo((object)resultWarn1));
+            Assert.IsFalse(resultWarn1 < resultFail1);
+            Assert.IsFalse(resultWarn1 <= resultFail1);
+            Assert.IsTrue(resultWarn1 > resultFail1);
+            Assert.IsTrue(resultWarn1 >= resultFail1);
 
 
             Assert.AreEqual(0, resultFail1.CompareTo(resultFail1));
@@ -1412,11 +1435,19 @@ namespace Here.Tests.Results
             Assert.AreEqual(0, resultFail1.CompareTo((object)resultFail2));
             Assert.AreEqual(0, resultFail2.CompareTo(resultFail1));
             Assert.AreEqual(0, resultFail2.CompareTo((object)resultFail1));
+            Assert.IsFalse(resultFail1 < resultFail2);
+            Assert.IsTrue(resultFail1 <= resultFail2);
+            Assert.IsFalse(resultFail1 > resultFail2);
+            Assert.IsTrue(resultFail1 >= resultFail2);
 
             Assert.AreEqual(0, resultFail1.CompareTo(resultFail3));
             Assert.AreEqual(0, resultFail1.CompareTo((object)resultFail3));
             Assert.AreEqual(0, resultFail3.CompareTo(resultFail1));
             Assert.AreEqual(0, resultFail3.CompareTo((object)resultFail1));
+            Assert.IsFalse(resultFail1 < resultFail3);
+            Assert.IsTrue(resultFail1 <= resultFail3);
+            Assert.IsFalse(resultFail1 > resultFail3);
+            Assert.IsTrue(resultFail1 >= resultFail3);
 
             // Mixed
             Assert.AreEqual(1, resultOk1.CompareTo(null));      // Null is always the minimal value
@@ -1454,21 +1485,37 @@ namespace Here.Tests.Results
             Assert.AreEqual(0, resultOk1.CompareTo((object)resultOk2));
             Assert.AreEqual(0, resultOk2.CompareTo(resultOk1));
             Assert.AreEqual(0, resultOk2.CompareTo((object)resultOk1));
+            Assert.IsFalse(resultOk1 < resultOk2);
+            Assert.IsTrue(resultOk1 <= resultOk2);
+            Assert.IsFalse(resultOk1 > resultOk2);
+            Assert.IsTrue(resultOk1 >= resultOk2);
 
             Assert.AreEqual(-1, resultOk1.CompareTo(resultOk3));
             Assert.AreEqual(-1, resultOk1.CompareTo((object)resultOk3));
             Assert.AreEqual(1, resultOk3.CompareTo(resultOk1));
             Assert.AreEqual(1, resultOk3.CompareTo((object)resultOk1));
+            Assert.IsTrue(resultOk1 < resultOk3);
+            Assert.IsTrue(resultOk1 <= resultOk3);
+            Assert.IsFalse(resultOk1 > resultOk3);
+            Assert.IsFalse(resultOk1 >= resultOk3);
 
             Assert.AreEqual(1, resultOk1.CompareTo(resultWarn1));
             Assert.AreEqual(1, resultOk1.CompareTo((object)resultWarn1));
             Assert.AreEqual(-1, resultWarn1.CompareTo(resultOk1));
             Assert.AreEqual(-1, resultWarn1.CompareTo((object)resultOk1));
+            Assert.IsFalse(resultOk1 < resultWarn1);
+            Assert.IsFalse(resultOk1 <= resultWarn1);
+            Assert.IsTrue(resultOk1 > resultWarn1);
+            Assert.IsTrue(resultOk1 >= resultWarn1);
 
             Assert.AreEqual(1, resultOk1.CompareTo(resultFail1));
             Assert.AreEqual(1, resultOk1.CompareTo((object)resultFail1));
             Assert.AreEqual(-1, resultFail1.CompareTo(resultOk1));
             Assert.AreEqual(-1, resultFail1.CompareTo((object)resultOk1));
+            Assert.IsFalse(resultOk1 < resultFail1);
+            Assert.IsFalse(resultOk1 <= resultFail1);
+            Assert.IsTrue(resultOk1 > resultFail1);
+            Assert.IsTrue(resultOk1 >= resultFail1);
 
 
             Assert.AreEqual(0, resultWarn1.CompareTo(resultWarn1));
@@ -1478,31 +1525,55 @@ namespace Here.Tests.Results
             Assert.AreEqual(0, resultWarn1.CompareTo((object)resultWarn2));
             Assert.AreEqual(0, resultWarn2.CompareTo(resultWarn1));
             Assert.AreEqual(0, resultWarn2.CompareTo((object)resultWarn1));
+            Assert.IsFalse(resultWarn1 < resultWarn2);
+            Assert.IsTrue(resultWarn1 <= resultWarn2);
+            Assert.IsFalse(resultWarn1 > resultWarn2);
+            Assert.IsTrue(resultWarn1 >= resultWarn2);
 
             Assert.AreEqual(0, resultWarn1.CompareTo(resultWarn3));
             Assert.AreEqual(0, resultWarn1.CompareTo((object)resultWarn3));
             Assert.AreEqual(0, resultWarn3.CompareTo(resultWarn1));
             Assert.AreEqual(0, resultWarn3.CompareTo((object)resultWarn1));
+            Assert.IsFalse(resultWarn1 < resultWarn3);
+            Assert.IsTrue(resultWarn1 <= resultWarn3);
+            Assert.IsFalse(resultWarn1 > resultWarn3);
+            Assert.IsTrue(resultWarn1 >= resultWarn3);
 
             Assert.AreEqual(-1, resultWarn1.CompareTo(resultWarn4));
             Assert.AreEqual(-1, resultWarn1.CompareTo((object)resultWarn4));
             Assert.AreEqual(1, resultWarn4.CompareTo(resultWarn1));
             Assert.AreEqual(1, resultWarn4.CompareTo((object)resultWarn1));
+            Assert.IsTrue(resultWarn1 < resultWarn4);
+            Assert.IsTrue(resultWarn1 <= resultWarn4);
+            Assert.IsFalse(resultWarn1 > resultWarn4);
+            Assert.IsFalse(resultWarn1 >= resultWarn4);
 
             Assert.AreEqual(-1, resultWarn1.CompareTo(resultWarn5));
             Assert.AreEqual(-1, resultWarn1.CompareTo((object)resultWarn5));
             Assert.AreEqual(1, resultWarn5.CompareTo(resultWarn1));
             Assert.AreEqual(1, resultWarn5.CompareTo((object)resultWarn1));
+            Assert.IsTrue(resultWarn1 < resultWarn5);
+            Assert.IsTrue(resultWarn1 <= resultWarn5);
+            Assert.IsFalse(resultWarn1 > resultWarn5);
+            Assert.IsFalse(resultWarn1 >= resultWarn5);
 
             Assert.AreEqual(1, resultWarn1.CompareTo(resultWarn6));
             Assert.AreEqual(1, resultWarn1.CompareTo((object)resultWarn6));
             Assert.AreEqual(-1, resultWarn6.CompareTo(resultWarn1));
             Assert.AreEqual(-1, resultWarn6.CompareTo((object)resultWarn1));
+            Assert.IsFalse(resultWarn1 < resultWarn6);
+            Assert.IsFalse(resultWarn1 <= resultWarn6);
+            Assert.IsTrue(resultWarn1 > resultWarn6);
+            Assert.IsTrue(resultWarn1 >= resultWarn6);
 
             Assert.AreEqual(1, resultWarn1.CompareTo(resultFail1));
             Assert.AreEqual(1, resultWarn1.CompareTo((object)resultFail1));
             Assert.AreEqual(-1, resultFail1.CompareTo(resultWarn1));
             Assert.AreEqual(-1, resultFail1.CompareTo((object)resultWarn1));
+            Assert.IsFalse(resultWarn1 < resultFail1);
+            Assert.IsFalse(resultWarn1 <= resultFail1);
+            Assert.IsTrue(resultWarn1 > resultFail1);
+            Assert.IsTrue(resultWarn1 >= resultFail1);
 
 
             Assert.AreEqual(0, resultFail1.CompareTo(resultFail1));
@@ -1512,11 +1583,19 @@ namespace Here.Tests.Results
             Assert.AreEqual(0, resultFail1.CompareTo((object)resultFail2));
             Assert.AreEqual(0, resultFail2.CompareTo(resultFail1));
             Assert.AreEqual(0, resultFail2.CompareTo((object)resultFail1));
+            Assert.IsFalse(resultFail1 < resultFail2);
+            Assert.IsTrue(resultFail1 <= resultFail2);
+            Assert.IsFalse(resultFail1 > resultFail2);
+            Assert.IsTrue(resultFail1 >= resultFail2);
 
             Assert.AreEqual(0, resultFail1.CompareTo(resultFail3));
             Assert.AreEqual(0, resultFail1.CompareTo((object)resultFail3));
             Assert.AreEqual(0, resultFail3.CompareTo(resultFail1));
             Assert.AreEqual(0, resultFail3.CompareTo((object)resultFail1));
+            Assert.IsFalse(resultFail1 < resultFail3);
+            Assert.IsTrue(resultFail1 <= resultFail3);
+            Assert.IsFalse(resultFail1 > resultFail3);
+            Assert.IsTrue(resultFail1 >= resultFail3);
 
             // Comparable reference type
             var person1 = new PersonComparable("Jo");
@@ -1568,16 +1647,28 @@ namespace Here.Tests.Results
             Assert.AreEqual(0, resultOk1.CompareTo((object)resultOk2));
             Assert.AreEqual(0, resultOk2.CompareTo(resultOk1));
             Assert.AreEqual(0, resultOk2.CompareTo((object)resultOk1));
+            Assert.IsFalse(resultOk1 < resultOk2);
+            Assert.IsTrue(resultOk1 <= resultOk2);
+            Assert.IsFalse(resultOk1 > resultOk2);
+            Assert.IsTrue(resultOk1 >= resultOk2);
 
             Assert.AreEqual(1, resultOk1.CompareTo(resultWarn1));
             Assert.AreEqual(1, resultOk1.CompareTo((object)resultWarn1));
             Assert.AreEqual(-1, resultWarn1.CompareTo(resultOk1));
             Assert.AreEqual(-1, resultWarn1.CompareTo((object)resultOk1));
+            Assert.IsFalse(resultOk1 < resultWarn1);
+            Assert.IsFalse(resultOk1 <= resultWarn1);
+            Assert.IsTrue(resultOk1 > resultWarn1);
+            Assert.IsTrue(resultOk1 >= resultWarn1);
 
             Assert.AreEqual(1, resultOk1.CompareTo(resultFail1));
             Assert.AreEqual(1, resultOk1.CompareTo((object)resultFail1));
             Assert.AreEqual(-1, resultFail1.CompareTo(resultOk1));
             Assert.AreEqual(-1, resultFail1.CompareTo((object)resultOk1));
+            Assert.IsFalse(resultOk1 < resultFail1);
+            Assert.IsFalse(resultOk1 <= resultFail1);
+            Assert.IsTrue(resultOk1 > resultFail1);
+            Assert.IsTrue(resultOk1 >= resultFail1);
 
 
             Assert.AreEqual(0, resultWarn1.CompareTo(resultWarn1));
@@ -1587,16 +1678,28 @@ namespace Here.Tests.Results
             Assert.AreEqual(0, resultWarn1.CompareTo((object)resultWarn2));
             Assert.AreEqual(0, resultWarn2.CompareTo(resultWarn1));
             Assert.AreEqual(0, resultWarn2.CompareTo((object)resultWarn1));
+            Assert.IsFalse(resultWarn1 < resultWarn2);
+            Assert.IsTrue(resultWarn1 <= resultWarn2);
+            Assert.IsFalse(resultWarn1 > resultWarn2);
+            Assert.IsTrue(resultWarn1 >= resultWarn2);
 
             Assert.AreEqual(0, resultWarn1.CompareTo(resultWarn3));
             Assert.AreEqual(0, resultWarn1.CompareTo((object)resultWarn3));
             Assert.AreEqual(0, resultWarn3.CompareTo(resultWarn1));
             Assert.AreEqual(0, resultWarn3.CompareTo((object)resultWarn1));
+            Assert.IsFalse(resultWarn1 < resultWarn3);
+            Assert.IsTrue(resultWarn1 <= resultWarn3);
+            Assert.IsFalse(resultWarn1 > resultWarn3);
+            Assert.IsTrue(resultWarn1 >= resultWarn3);
 
             Assert.AreEqual(1, resultWarn1.CompareTo(resultFail1));
             Assert.AreEqual(1, resultWarn1.CompareTo((object)resultFail1));
             Assert.AreEqual(-1, resultFail1.CompareTo(resultWarn1));
             Assert.AreEqual(-1, resultFail1.CompareTo((object)resultWarn1));
+            Assert.IsFalse(resultWarn1 < resultFail1);
+            Assert.IsFalse(resultWarn1 <= resultFail1);
+            Assert.IsTrue(resultWarn1 > resultFail1);
+            Assert.IsTrue(resultWarn1 >= resultFail1);
 
 
             Assert.AreEqual(0, resultFail1.CompareTo(resultFail1));
@@ -1606,11 +1709,19 @@ namespace Here.Tests.Results
             Assert.AreEqual(0, resultFail1.CompareTo((object)resultFail2));
             Assert.AreEqual(0, resultFail2.CompareTo(resultFail1));
             Assert.AreEqual(0, resultFail2.CompareTo((object)resultFail1));
+            Assert.IsFalse(resultFail1 < resultFail2);
+            Assert.IsTrue(resultFail1 <= resultFail2);
+            Assert.IsFalse(resultFail1 > resultFail2);
+            Assert.IsTrue(resultFail1 >= resultFail2);
 
             Assert.AreEqual(0, resultFail1.CompareTo(resultFail3));
             Assert.AreEqual(0, resultFail1.CompareTo((object)resultFail3));
             Assert.AreEqual(0, resultFail3.CompareTo(resultFail1));
             Assert.AreEqual(0, resultFail3.CompareTo((object)resultFail1));
+            Assert.IsFalse(resultFail1 < resultFail3);
+            Assert.IsTrue(resultFail1 <= resultFail3);
+            Assert.IsFalse(resultFail1 > resultFail3);
+            Assert.IsTrue(resultFail1 >= resultFail3);
 
             // Mixed
             Assert.AreEqual(1, resultOk1.CompareTo(null));      // Null is always the minimal value
@@ -1653,21 +1764,37 @@ namespace Here.Tests.Results
             Assert.AreEqual(0, resultOk1.CompareTo((object)resultOk2));
             Assert.AreEqual(0, resultOk2.CompareTo(resultOk1));
             Assert.AreEqual(0, resultOk2.CompareTo((object)resultOk1));
+            Assert.IsFalse(resultOk1 < resultOk2);
+            Assert.IsTrue(resultOk1 <= resultOk2);
+            Assert.IsFalse(resultOk1 > resultOk2);
+            Assert.IsTrue(resultOk1 >= resultOk2);
 
             Assert.AreEqual(-1, resultOk1.CompareTo(resultOk3));
             Assert.AreEqual(-1, resultOk1.CompareTo((object)resultOk3));
             Assert.AreEqual(1, resultOk3.CompareTo(resultOk1));
             Assert.AreEqual(1, resultOk3.CompareTo((object)resultOk1));
+            Assert.IsTrue(resultOk1 < resultOk3);
+            Assert.IsTrue(resultOk1 <= resultOk3);
+            Assert.IsFalse(resultOk1 > resultOk3);
+            Assert.IsFalse(resultOk1 >= resultOk3);
 
             Assert.AreEqual(1, resultOk1.CompareTo(resultWarn1));
             Assert.AreEqual(1, resultOk1.CompareTo((object)resultWarn1));
             Assert.AreEqual(-1, resultWarn1.CompareTo(resultOk1));
             Assert.AreEqual(-1, resultWarn1.CompareTo((object)resultOk1));
+            Assert.IsFalse(resultOk1 < resultWarn1);
+            Assert.IsFalse(resultOk1 <= resultWarn1);
+            Assert.IsTrue(resultOk1 > resultWarn1);
+            Assert.IsTrue(resultOk1 >= resultWarn1);
 
             Assert.AreEqual(1, resultOk1.CompareTo(resultFail1));
             Assert.AreEqual(1, resultOk1.CompareTo((object)resultFail1));
             Assert.AreEqual(-1, resultFail1.CompareTo(resultOk1));
             Assert.AreEqual(-1, resultFail1.CompareTo((object)resultOk1));
+            Assert.IsFalse(resultOk1 < resultFail1);
+            Assert.IsFalse(resultOk1 <= resultFail1);
+            Assert.IsTrue(resultOk1 > resultFail1);
+            Assert.IsTrue(resultOk1 >= resultFail1);
 
 
             Assert.AreEqual(0, resultWarn1.CompareTo(resultWarn1));
@@ -1677,31 +1804,55 @@ namespace Here.Tests.Results
             Assert.AreEqual(0, resultWarn1.CompareTo((object)resultWarn2));
             Assert.AreEqual(0, resultWarn2.CompareTo(resultWarn1));
             Assert.AreEqual(0, resultWarn2.CompareTo((object)resultWarn1));
+            Assert.IsFalse(resultWarn1 < resultWarn2);
+            Assert.IsTrue(resultWarn1 <= resultWarn2);
+            Assert.IsFalse(resultWarn1 > resultWarn2);
+            Assert.IsTrue(resultWarn1 >= resultWarn2);
 
             Assert.AreEqual(0, resultWarn1.CompareTo(resultWarn3));
             Assert.AreEqual(0, resultWarn1.CompareTo((object)resultWarn3));
             Assert.AreEqual(0, resultWarn3.CompareTo(resultWarn1));
             Assert.AreEqual(0, resultWarn3.CompareTo((object)resultWarn1));
+            Assert.IsFalse(resultWarn1 < resultWarn3);
+            Assert.IsTrue(resultWarn1 <= resultWarn3);
+            Assert.IsFalse(resultWarn1 > resultWarn3);
+            Assert.IsTrue(resultWarn1 >= resultWarn3);
 
             Assert.AreEqual(-1, resultWarn1.CompareTo(resultWarn4));
             Assert.AreEqual(-1, resultWarn1.CompareTo((object)resultWarn4));
             Assert.AreEqual(1, resultWarn4.CompareTo(resultWarn1));
             Assert.AreEqual(1, resultWarn4.CompareTo((object)resultWarn1));
+            Assert.IsTrue(resultWarn1 < resultWarn4);
+            Assert.IsTrue(resultWarn1 <= resultWarn4);
+            Assert.IsFalse(resultWarn1 > resultWarn4);
+            Assert.IsFalse(resultWarn1 >= resultWarn4);
 
             Assert.AreEqual(-1, resultWarn1.CompareTo(resultWarn5));
             Assert.AreEqual(-1, resultWarn1.CompareTo((object)resultWarn5));
             Assert.AreEqual(1, resultWarn5.CompareTo(resultWarn1));
             Assert.AreEqual(1, resultWarn5.CompareTo((object)resultWarn1));
+            Assert.IsTrue(resultWarn1 < resultWarn5);
+            Assert.IsTrue(resultWarn1 <= resultWarn5);
+            Assert.IsFalse(resultWarn1 > resultWarn5);
+            Assert.IsFalse(resultWarn1 >= resultWarn5);
 
             Assert.AreEqual(1, resultWarn1.CompareTo(resultWarn6));
             Assert.AreEqual(1, resultWarn1.CompareTo((object)resultWarn6));
             Assert.AreEqual(-1, resultWarn6.CompareTo(resultWarn1));
             Assert.AreEqual(-1, resultWarn6.CompareTo((object)resultWarn1));
+            Assert.IsFalse(resultWarn1 < resultWarn6);
+            Assert.IsFalse(resultWarn1 <= resultWarn6);
+            Assert.IsTrue(resultWarn1 > resultWarn6);
+            Assert.IsTrue(resultWarn1 >= resultWarn6);
 
             Assert.AreEqual(1, resultWarn1.CompareTo(resultFail1));
             Assert.AreEqual(1, resultWarn1.CompareTo((object)resultFail1));
             Assert.AreEqual(-1, resultFail1.CompareTo(resultWarn1));
             Assert.AreEqual(-1, resultFail1.CompareTo((object)resultWarn1));
+            Assert.IsFalse(resultWarn1 < resultFail1);
+            Assert.IsFalse(resultWarn1 <= resultFail1);
+            Assert.IsTrue(resultWarn1 > resultFail1);
+            Assert.IsTrue(resultWarn1 >= resultFail1);
 
 
             Assert.AreEqual(0, resultFail1.CompareTo(resultFail1));
@@ -1711,11 +1862,19 @@ namespace Here.Tests.Results
             Assert.AreEqual(0, resultFail1.CompareTo((object)resultFail2));
             Assert.AreEqual(0, resultFail2.CompareTo(resultFail1));
             Assert.AreEqual(0, resultFail2.CompareTo((object)resultFail1));
+            Assert.IsFalse(resultFail1 < resultFail2);
+            Assert.IsTrue(resultFail1 <= resultFail2);
+            Assert.IsFalse(resultFail1 > resultFail2);
+            Assert.IsTrue(resultFail1 >= resultFail2);
 
             Assert.AreEqual(0, resultFail1.CompareTo(resultFail3));
             Assert.AreEqual(0, resultFail1.CompareTo((object)resultFail3));
             Assert.AreEqual(0, resultFail3.CompareTo(resultFail1));
             Assert.AreEqual(0, resultFail3.CompareTo((object)resultFail1));
+            Assert.IsFalse(resultFail1 < resultFail3);
+            Assert.IsTrue(resultFail1 <= resultFail3);
+            Assert.IsFalse(resultFail1 > resultFail3);
+            Assert.IsTrue(resultFail1 >= resultFail3);
 
             // Comparable reference type
             var person1 = new PersonComparable("Jo");
