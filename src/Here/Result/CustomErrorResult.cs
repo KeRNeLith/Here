@@ -10,7 +10,7 @@ namespace Here.Results
     /// </summary>
     [PublicAPI]
     [DebuggerDisplay("{" + nameof(IsSuccess) + " ? \"IsSuccess\" + (" + nameof(IsWarning) + " ? \" with warning\" : System.String.Empty) : \"IsFailure\"}")]
-    public partial struct CustomResult<TError> : IResultError<TError>, IEquatable<CustomResult<TError>>
+    public partial struct CustomResult<TError> : IResultError<TError>, IEquatable<CustomResult<TError>>, IComparable, IComparable<CustomResult<TError>>
     {
         /// <summary>
         /// A success <see cref="CustomResult{TError}"/>.
@@ -249,6 +249,36 @@ namespace Here.Results
 
         #endregion
 
+        #region IComparable / IComparable<T>
+
+        /// <summary>
+        /// Compare this <see cref="CustomResult{TError}"/> with the given object.
+        /// </summary>
+        /// <param name="obj">Object to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public int CompareTo(object obj)
+        {
+            if (obj is null)
+                return 1;
+            if (obj is CustomResult<TError> other)
+                return CompareTo(other);
+
+            throw new ArgumentException($"Cannot compare an object of type {obj.GetType()} with a {typeof(CustomResult<TError>)}");
+        }
+
+        /// <summary>
+        /// Compare this <see cref="CustomResult{TError}"/> with the given one.
+        /// Order keeps <see cref="IsFailure"/> first, then <see cref="IsWarning"/> and finally <see cref="IsSuccess"/>.
+        /// </summary>
+        /// <param name="other"><see cref="CustomResult{TError}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public int CompareTo(CustomResult<TError> other)
+        {
+            return Logic.CompareTo(other.Logic);
+        }
+
+        #endregion
+
         /// <inheritdoc />
         public override string ToString()
         {
@@ -263,7 +293,7 @@ namespace Here.Results
     /// </summary>
     [PublicAPI]
     [DebuggerDisplay("{" + nameof(IsSuccess) + " ? \"IsSuccess\" + (" + nameof(IsWarning) + " ? \" with warning\" : System.String.Empty) + \", Value = \" + " + nameof(Value) + " : \"IsFailure\"}")]
-    public partial struct Result<T, TError> : IResult<T>, IResultError<TError>, IEquatable<Result<T, TError>>
+    public partial struct Result<T, TError> : IResult<T>, IResultError<TError>, IEquatable<Result<T, TError>>, IComparable, IComparable<Result<T, TError>>
     {
         /// <inheritdoc />
         [PublicAPI]
@@ -511,6 +541,45 @@ namespace Here.Results
         public static bool operator !=(T value, Result<T, TError> result)
         {
             return !(result == value);
+        }
+
+        #endregion
+
+        #region IComparable / IComparable<T>
+
+        /// <summary>
+        /// Compare this <see cref="Result{T, TError}"/> with the given object.
+        /// </summary>
+        /// <param name="obj">Object to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public int CompareTo(object obj)
+        {
+            if (obj is null)
+                return 1;
+            if (obj is Result<T, TError> other)
+                return CompareTo(other);
+
+            throw new ArgumentException($"Cannot compare an object of type {obj.GetType()} with a {typeof(Result<T, TError>)}");
+        }
+
+        /// <summary>
+        /// Compare this <see cref="Result{T, TError}"/> with the given one.
+        /// Order keeps <see cref="IsFailure"/> first, then <see cref="IsWarning"/> and finally <see cref="IsSuccess"/>.
+        /// </summary>
+        /// <param name="other"><see cref="Result{T, TError}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public int CompareTo(Result<T, TError> other)
+        {
+            int logicCompare = Logic.CompareTo(other.Logic);
+            if (logicCompare == 0)
+            {
+                if (_value is IComparable comparable)
+                    return comparable.CompareTo(other._value);
+                else if (_value is IComparable<T> comparableT)
+                    return comparableT.CompareTo(other._value);
+            }
+
+            return logicCompare;
         }
 
         #endregion
