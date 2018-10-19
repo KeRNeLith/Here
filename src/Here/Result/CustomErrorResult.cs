@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using JetBrains.Annotations;
 
@@ -8,32 +9,41 @@ namespace Here.Results
     /// <see cref="CustomResult{TError}"/> is an object that represents the result/state of a treatment with a custom error object.
     /// </summary>
     [PublicAPI]
-    public partial struct CustomResult<TError> : IResultError<TError>
+    [DebuggerDisplay("{" + nameof(IsSuccess) + " ? \"IsSuccess\" + (" + nameof(IsWarning) + " ? \" with warning\" : System.String.Empty) : \"IsFailure\"}")]
+    public partial struct CustomResult<TError> : IResultError<TError>, IEquatable<CustomResult<TError>>, IComparable, IComparable<CustomResult<TError>>
     {
         /// <summary>
         /// A success <see cref="CustomResult{TError}"/>.
         /// </summary>
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal static readonly CustomResult<TError> ResultOk = new CustomResult<TError>(new ResultLogic<TError>());
 
         /// <inheritdoc />
+        [PublicAPI]
         public bool IsSuccess => Logic.IsSuccess;
 
         /// <inheritdoc />
+        [PublicAPI]
         public bool IsWarning => Logic.IsWarning;
 
         /// <inheritdoc />
+        [PublicAPI]
         public bool IsFailure => Logic.IsFailure;
 
         /// <inheritdoc />
+        [PublicAPI]
         public string Message => Logic.Message;
 
         /// <inheritdoc />
+        [PublicAPI]
         public Exception Exception => Logic.Exception;
 
         /// <inheritdoc />
+        [PublicAPI]
         public TError Error => Logic.Error;
 
         [NotNull]
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal readonly ResultLogic<TError> Logic;
 
         /// <summary>
@@ -65,7 +75,7 @@ namespace Here.Results
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <param name="value">Value.</param>
         /// <returns>A corresponding <see cref="CustomResult{TError}"/>.</returns>
-        [Pure]
+        [PublicAPI, Pure]
         public Result<T> Cast<T>([CanBeNull] T value)
         {
             if (IsFailure)
@@ -79,7 +89,7 @@ namespace Here.Results
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <param name="valueFactory">Factory method that create a value.</param>
         /// <returns>A corresponding <see cref="CustomResult{TError}"/>.</returns>
-        [Pure]
+        [PublicAPI, Pure]
         public Result<T> Cast<T>([NotNull, InstantHandle] Func<T> valueFactory)
         {
             if (IsFailure)
@@ -93,7 +103,7 @@ namespace Here.Results
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <param name="value">Value.</param>
         /// <returns>A corresponding <see cref="Result{T, TError}"/>.</returns>
-        [Pure]
+        [PublicAPI, Pure]
         public Result<T, TError> CustomCast<T>([CanBeNull] T value)
         {
             if (IsFailure)
@@ -110,7 +120,7 @@ namespace Here.Results
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <param name="valueFactory">Factory method that create a value.</param>
         /// <returns>A corresponding <see cref="Result{T, TError}"/>.</returns>
-        [Pure]
+        [PublicAPI, Pure]
         public Result<T, TError> CustomCast<T>([NotNull, InstantHandle] Func<T> valueFactory)
         {
             if (IsFailure)
@@ -133,7 +143,7 @@ namespace Here.Results
         [Pure]
         internal Result ToFailResult()
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a Result failure.");
+            Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a Result failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.Fail(Logic.Message, Logic.Exception);
         }
@@ -146,7 +156,7 @@ namespace Here.Results
         [Pure]
         internal Result<T> ToFailValueResult<T>()
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a Result<T> failure.");
+            Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a Result<T> failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.Fail<T>(Logic.Message, Logic.Exception);
         }
@@ -160,7 +170,7 @@ namespace Here.Results
         [Pure]
         internal CustomResult<TError> ToFailCustomResult([NotNull] TError errorObject)
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a CustomResult<TError> failure.");
+            Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a CustomResult<TError> failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.CustomFail(Logic.Message, errorObject, Logic.Exception);
         }
@@ -188,9 +198,127 @@ namespace Here.Results
         [Pure]
         internal Result<T, TError> ToFailCustomValueResult<T>([NotNull] TError errorObject)
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a Result<T, TError> failure.");
+            Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success CustomResult<TError> to a Result<T, TError> failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.Fail<T, TError>(Logic.Message, errorObject, Logic.Exception);
+        }
+
+        #endregion
+
+        #region Equality
+
+        /// <summary>
+        /// Checks that this <see cref="CustomResult{TError}"/> is equals tp the given one and that they are successful.
+        /// </summary>
+        /// <param name="other"><see cref="CustomResult{TError}"/> to compare.</param>
+        /// <returns>True if both <see cref="CustomResult{TError}"/> are equals and successful.</returns>
+        [PublicAPI, Pure]
+        public bool SuccessEquals(CustomResult<TError> other)
+        {
+            if (IsSuccess && other.IsSuccess)
+                return Equals(other);
+            return false;
+        }
+
+        public bool Equals(CustomResult<TError> other)
+        {
+            return Logic.Equals(other.Logic);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is null)
+                return false;
+            return obj is CustomResult<TError> result && Equals(result);
+        }
+
+        public static bool operator ==(CustomResult<TError> result1, CustomResult<TError> result2)
+        {
+            return result1.Equals(result2);
+        }
+
+        public static bool operator !=(CustomResult<TError> result1, CustomResult<TError> result2)
+        {
+            return !(result1 == result2);
+        }
+
+        public override int GetHashCode()
+        {
+            return Logic.GetHashCode();
+        }
+
+        #endregion
+
+        #region IComparable / IComparable<T>
+
+        /// <summary>
+        /// Compare this <see cref="CustomResult{TError}"/> with the given object.
+        /// </summary>
+        /// <param name="obj">Object to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public int CompareTo(object obj)
+        {
+            if (obj is null)
+                return 1;
+            if (obj is CustomResult<TError> other)
+                return CompareTo(other);
+
+            throw new ArgumentException($"Cannot compare an object of type {obj.GetType()} with a {typeof(CustomResult<TError>)}");
+        }
+
+        /// <summary>
+        /// Compare this <see cref="CustomResult{TError}"/> with the given one.
+        /// Order keeps <see cref="IsFailure"/> first, then <see cref="IsWarning"/> and finally <see cref="IsSuccess"/>.
+        /// </summary>
+        /// <param name="other"><see cref="CustomResult{TError}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public int CompareTo(CustomResult<TError> other)
+        {
+            return Logic.CompareTo(other.Logic);
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="CustomResult{TError}"/> is less than the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="CustomResult{TError}"/> to compare.</param>
+        /// <param name="right">The second <see cref="CustomResult{TError}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator <(CustomResult<TError> left, CustomResult<TError> right)
+        {
+            return left.CompareTo(right) < 0;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="CustomResult{TError}"/> is less than or equal to the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="CustomResult{TError}"/> to compare.</param>
+        /// <param name="right">The second <see cref="CustomResult{TError}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator <=(CustomResult<TError> left, CustomResult<TError> right)
+        {
+            return left.CompareTo(right) <= 0;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="CustomResult{TError}"/> is greater than the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="CustomResult{TError}"/> to compare.</param>
+        /// <param name="right">The second <see cref="CustomResult{TError}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator >(CustomResult<TError> left, CustomResult<TError> right)
+        {
+            return left.CompareTo(right) > 0;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="CustomResult{TError}"/> is greater than or equal to the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="CustomResult{TError}"/> to compare.</param>
+        /// <param name="right">The second <see cref="CustomResult{TError}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator >=(CustomResult<TError> left, CustomResult<TError> right)
+        {
+            return left.CompareTo(right) >= 0;
         }
 
         #endregion
@@ -208,29 +336,37 @@ namespace Here.Results
     /// or a custom error if failed.
     /// </summary>
     [PublicAPI]
-    public partial struct Result<T, TError> : IResult<T>, IResultError<TError>
+    [DebuggerDisplay("{" + nameof(IsSuccess) + " ? \"IsSuccess\" + (" + nameof(IsWarning) + " ? \" with warning\" : System.String.Empty) + \", Value = \" + " + nameof(Value) + " : \"IsFailure\"}")]
+    public partial struct Result<T, TError> : IResult<T>, IResultError<TError>, IEquatable<Result<T, TError>>, IComparable, IComparable<Result<T, TError>>
     {
         /// <inheritdoc />
+        [PublicAPI]
         public bool IsSuccess => Logic.IsSuccess;
 
         /// <inheritdoc />
+        [PublicAPI]
         public bool IsWarning => Logic.IsWarning;
 
         /// <inheritdoc />
+        [PublicAPI]
         public bool IsFailure => Logic.IsFailure;
 
         /// <inheritdoc />
+        [PublicAPI]
         public string Message => Logic.Message;
 
         /// <inheritdoc />
+        [PublicAPI]
         public Exception Exception => Logic.Exception;
 
         /// <inheritdoc />
+        [PublicAPI]
         public TError Error => Logic.Error;
 
         private readonly T _value;
 
         /// <inheritdoc />
+        [PublicAPI]
         public T Value
         {
             get
@@ -243,6 +379,7 @@ namespace Here.Results
         }
 
         [NotNull]
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal readonly ResultLogic<TError> Logic;
 
         /// <summary>
@@ -299,7 +436,7 @@ namespace Here.Results
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
         /// <param name="converter">Function that convert this result value from input type to output type.</param>
         /// <returns>A corresponding <see cref="Result{TOut, TError}"/>.</returns>
-        [Pure]
+        [PublicAPI, Pure]
         public Result<TOut, TError> Cast<TOut>([NotNull, InstantHandle] Func<T, TOut> converter)
         {
             if (IsFailure)
@@ -322,7 +459,7 @@ namespace Here.Results
         [Pure]
         internal Result ToFailResult()
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success Result<T, TError> to a Result failure.");
+            Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success Result<T, TError> to a Result failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.Fail(Logic.Message, Logic.Exception);
         }
@@ -335,7 +472,7 @@ namespace Here.Results
         [Pure]
         internal Result<TOut> ToFailValueResult<TOut>()
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success Result<TIn, TError> to a Result<TOut> failure.");
+            Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success Result<TIn, TError> to a Result<TOut> failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.Fail<TOut>(Logic.Message, Logic.Exception);
         }
@@ -350,7 +487,7 @@ namespace Here.Results
         [Pure]
         internal CustomResult<TError> ToFailCustomResult([NotNull] TError errorObject)
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success Result<T, TError> to a CustomResult<TError> failure.");
+            Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success Result<T, TError> to a CustomResult<TError> failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.CustomFail(Logic.Message, errorObject, Logic.Exception);
         }
@@ -378,9 +515,159 @@ namespace Here.Results
         [Pure]
         internal Result<TOut, TError> ToFailCustomValueResult<TOut>([NotNull] TError errorObject)
         {
-            Debug.Assert(ResultLogic<TError>.IsConvertableToFailure(Logic), "Cannot convert a success Result<TIn, TError> to a Result<TOut, TError> failure.");
+            Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success Result<TIn, TError> to a Result<TOut, TError> failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.Fail<TOut, TError>(Logic.Message, errorObject, Logic.Exception);
+        }
+
+        #endregion
+
+        #region Equality
+
+        /// <summary>
+        /// Checks that this <see cref="Result{T, TError}"/> is equals tp the given one and that they are successful.
+        /// </summary>
+        /// <param name="other"><see cref="Result{T, TError}"/> to compare.</param>
+        /// <returns>True if both <see cref="Result{T, TError}"/> are equals and successful.</returns>
+        [PublicAPI, Pure]
+        public bool SuccessEquals(Result<T, TError> other)
+        {
+            if (IsSuccess && other.IsSuccess)
+                return Equals(other);
+            return false;
+        }
+
+        public bool Equals(Result<T, TError> other)
+        {
+            return Logic.Equals(other.Logic)
+                && EqualityComparer<T>.Default.Equals(_value, other._value);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is null)
+                return false;
+            return obj is Result<T, TError> result && Equals(result);
+        }
+
+        public static bool operator ==(Result<T, TError> result1, Result<T, TError> result2)
+        {
+            return result1.Equals(result2);
+        }
+
+        public static bool operator !=(Result<T, TError> result1, Result<T, TError> result2)
+        {
+            return !(result1 == result2);
+        }
+
+        public override int GetHashCode()
+        {
+            return (EqualityComparer<T>.Default.GetHashCode(_value) * 397) ^ Logic.GetHashCode();
+        }
+
+        public static bool operator ==(Result<T, TError> result, T value)
+        {
+            if (result.IsSuccess)
+                return EqualityComparer<T>.Default.Equals(result.Value, value);
+            return false;
+        }
+
+        public static bool operator !=(Result<T, TError> result, T value)
+        {
+            return !(result == value);
+        }
+
+        public static bool operator ==(T value, Result<T, TError> result)
+        {
+            return result == value;
+        }
+
+        public static bool operator !=(T value, Result<T, TError> result)
+        {
+            return !(result == value);
+        }
+
+        #endregion
+
+        #region IComparable / IComparable<T>
+
+        /// <summary>
+        /// Compare this <see cref="Result{T, TError}"/> with the given object.
+        /// </summary>
+        /// <param name="obj">Object to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public int CompareTo(object obj)
+        {
+            if (obj is null)
+                return 1;
+            if (obj is Result<T, TError> other)
+                return CompareTo(other);
+
+            throw new ArgumentException($"Cannot compare an object of type {obj.GetType()} with a {typeof(Result<T, TError>)}");
+        }
+
+        /// <summary>
+        /// Compare this <see cref="Result{T, TError}"/> with the given one.
+        /// Order keeps <see cref="IsFailure"/> first, then <see cref="IsWarning"/> and finally <see cref="IsSuccess"/>.
+        /// </summary>
+        /// <param name="other"><see cref="Result{T, TError}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public int CompareTo(Result<T, TError> other)
+        {
+            int logicCompare = Logic.CompareTo(other.Logic);
+            if (logicCompare == 0)
+            {
+                if (_value is IComparable comparable)
+                    return comparable.CompareTo(other._value);
+                else if (_value is IComparable<T> comparableT)
+                    return comparableT.CompareTo(other._value);
+            }
+
+            return logicCompare;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="Result{T, TError}"/> is less than the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="Result{T, TError}"/> to compare.</param>
+        /// <param name="right">The second <see cref="Result{T, TError}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator <(Result<T, TError> left, Result<T, TError> right)
+        {
+            return left.CompareTo(right) < 0;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="Result{T, TError}"/> is less than or equal to the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="Result{T, TError}"/> to compare.</param>
+        /// <param name="right">The second <see cref="Result{T, TError}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator <=(Result<T, TError> left, Result<T, TError> right)
+        {
+            return left.CompareTo(right) <= 0;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="Result{T, TError}"/> is greater than the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="Result{T, TError}"/> to compare.</param>
+        /// <param name="right">The second <see cref="Result{T, TError}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator >(Result<T, TError> left, Result<T, TError> right)
+        {
+            return left.CompareTo(right) > 0;
+        }
+
+        /// <summary>
+        /// Determines if this <see cref="Result{T, TError}"/> is greater than or equal to the other one.
+        /// </summary>
+        /// <param name="left">The first <see cref="Result{T, TError}"/> to compare.</param>
+        /// <param name="right">The second <see cref="Result{T, TError}"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        public static bool operator >=(Result<T, TError> left, Result<T, TError> right)
+        {
+            return left.CompareTo(right) >= 0;
         }
 
         #endregion

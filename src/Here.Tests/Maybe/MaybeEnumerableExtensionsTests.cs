@@ -145,8 +145,8 @@ namespace Here.Tests.Maybes
             Assert.Throws<InvalidOperationException>(() => { var _ = enumerableTestClass.SingleOrNone(value => ReferenceEquals(testObj1, value)); });
             CheckEmptyMaybe(enumerableTestClass.SingleOrNone(value => ReferenceEquals(testObj1, value), false));
 
-            CheckMaybeValue(enumerableTestClass.SingleOrNone(value => ReferenceEquals(testObj2, value)), testObj2);
-            CheckMaybeValue(enumerableTestClass.SingleOrNone(value => ReferenceEquals(testObj2, value), false), testObj2);
+            CheckMaybeSameValue(enumerableTestClass.SingleOrNone(value => ReferenceEquals(testObj2, value)), testObj2);
+            CheckMaybeSameValue(enumerableTestClass.SingleOrNone(value => ReferenceEquals(testObj2, value), false), testObj2);
 
             var testObj3 = new TestClass();
             CheckEmptyMaybe(enumerableTestClass.SingleOrNone(value => ReferenceEquals(testObj3, value)));
@@ -155,11 +155,11 @@ namespace Here.Tests.Maybes
             // One value
             IEnumerable<TestClass> enumerableTestClass2 = new List<TestClass> { testObj1 };
 
-            CheckMaybeValue(enumerableTestClass2.SingleOrNone(), testObj1);
-            CheckMaybeValue(enumerableTestClass2.SingleOrNone(false), testObj1);
+            CheckMaybeSameValue(enumerableTestClass2.SingleOrNone(), testObj1);
+            CheckMaybeSameValue(enumerableTestClass2.SingleOrNone(false), testObj1);
 
-            CheckMaybeValue(enumerableTestClass2.SingleOrNone(value => ReferenceEquals(testObj1, value)), testObj1);
-            CheckMaybeValue(enumerableTestClass2.SingleOrNone(value => ReferenceEquals(testObj1, value), false), testObj1);
+            CheckMaybeSameValue(enumerableTestClass2.SingleOrNone(value => ReferenceEquals(testObj1, value)), testObj1);
+            CheckMaybeSameValue(enumerableTestClass2.SingleOrNone(value => ReferenceEquals(testObj1, value), false), testObj1);
 
             CheckEmptyMaybe(enumerableTestClass2.SingleOrNone(value => ReferenceEquals(testObj2, value)));
             CheckEmptyMaybe(enumerableTestClass2.SingleOrNone(value => ReferenceEquals(testObj2, value), false));
@@ -284,14 +284,14 @@ namespace Here.Tests.Maybes
             var testObject2 = new TestClass { TestInt = 12 };
             IList<TestClass> listTestClasses = new List<TestClass> { testObject1, testObject2 };
             CheckEmptyMaybe(listTestClasses.ElementAtOrNone(-1));
-            CheckMaybeValue(listTestClasses.ElementAtOrNone(0), testObject1);
-            CheckMaybeValue(listTestClasses.ElementAtOrNone(1), testObject2);
+            CheckMaybeSameValue(listTestClasses.ElementAtOrNone(0), testObject1);
+            CheckMaybeSameValue(listTestClasses.ElementAtOrNone(1), testObject2);
             CheckEmptyMaybe(listTestClasses.ElementAtOrNone(2));
 
             IEnumerable<TestClass> enumerableTestClasses = new ReadOnlyCollection<TestClass>(listTestClasses);
             CheckEmptyMaybe(enumerableTestClasses.ElementAtOrNone(-1));
-            CheckMaybeValue(enumerableTestClasses.ElementAtOrNone(0), testObject1);
-            CheckMaybeValue(enumerableTestClasses.ElementAtOrNone(1), testObject2);
+            CheckMaybeSameValue(enumerableTestClasses.ElementAtOrNone(0), testObject1);
+            CheckMaybeSameValue(enumerableTestClasses.ElementAtOrNone(1), testObject2);
             CheckEmptyMaybe(enumerableTestClasses.ElementAtOrNone(2));
 
             IEnumerable<TestClass> enumerableTestClasses2 = new List<TestClass>();
@@ -300,7 +300,7 @@ namespace Here.Tests.Maybes
 
             IEnumerable<TestClass> enumerableTestClasses3 = new List<TestClass> { testObject1, null, testObject2 };
             CheckEmptyMaybe(enumerableTestClasses3.ElementAtOrNone(-1));
-            CheckMaybeValue(enumerableTestClasses3.ElementAtOrNone(0), testObject1);
+            CheckMaybeSameValue(enumerableTestClasses3.ElementAtOrNone(0), testObject1);
             // Even if element [1] exists, it's value is null so it will result in an empty maybe
             CheckEmptyMaybe(enumerableTestClasses3.ElementAtOrNone(1));
         }

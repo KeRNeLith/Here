@@ -108,16 +108,57 @@ The necessity to have a message for warnings and errors is motivated by the need
 
 Then you have `IResult<T>` and `IResultError<TError>` that respectively provide a `Value` and a custom `Error`.
 
-Note that each one support simple conditional test like boolean when you do not want look at extra data, see following example:
-
 ```csharp
 Result<int> result = Result.Ok(42);
 if (result.IsSuccess)
     Console.WriteLine(result.Value);
+```
 
-// Equivalent to
-if (result)
-    Console.WriteLine(result.Value);
+Results structures also implement the IEquatable interface to perform comparison between result. Note that this one check if both result are equal.
+To complete this there are also SucessEquals helper to check that both results are equal and are success!
+
+### Equality / Comparison
+
+#### Equality
+
+```csharp
+// Equality
+Result resultOk1 = Result.Ok();
+Result resultOk2 = Result.Ok();
+Result resultFail1 = Result.Fail("Error message");
+Result resultFail2 = Result.Fail("Error message");
+
+resultOk1.Equals(resultOk2);     // True
+resultOk1.Equals(resultFail1);   // False
+resultFail1.Equals(resultFail2); // **True!**
+
+// Success Equality
+Result<int> resultOk1 = Result.Ok(42);
+Result<int> resultOk2 = Result.Ok(42);
+Result<int> resultFail1 = Result.Fail<int>("Error message");
+Result<int> resultFail2 = Result.Fail<int>("Error message");
+
+resultOk1.SuccessEquals(resultOk2);     // True
+resultOk1.SuccessEquals(resultFail1);   // False
+resultFail1.SuccessEquals(resultFail2); // **False!**
+```
+
+Note that == and != operators are also implemented.
+
+#### Value comparison
+
+Results structure that wrap a value supports == operator to directly check the wrapped value. 
+This check is state safe, it means it will only check the value if available, and then return the result of the comparison.
+
+See the following example:
+
+```csharp
+Result<int> resultOk = Result.Ok(42);
+Result<int> resultFail = Result.Fail<int>("Error message");
+
+resultOk == 42    // True
+resultOk == 12    // False
+resultFail == 42  // False
 ```
 
 ### Safe Scopes
@@ -172,21 +213,21 @@ See following examples for a quick overview. Note that each result type offers s
 // In this example we call a method on a database that returns a Maybe<string>
 Database.GetUser("Jack")
         .ToResult()
-		.OnAny(() => Console.WriteLine("Hello"))
+        .OnAny(() => Console.WriteLine("Hello"))
         .OnSuccess(name => Console.WriteLine(name))
         .OnFailure(() => Console.WriteLine("Anonymous"))
-		.OnAny(() => Console.WriteLine(", how are you?"));
-		
+        .OnAny(() => Console.WriteLine(", how are you?"));
+
 // Output "Hello Jack, how are you?" if the Database contains a user named Jack
 // Output "Hello Anonymous, how are you?" if the Database does not contain a user named Jack
 
 // Obviously you can chain call and have nested calls
 Database.GetUser("Jack")
         .ToResult()
-		.OnSuccess(name => Database.GetAppointmentsFor(name)
+        .OnSuccess(name => Database.GetAppointmentsFor(name)
                                    .OnSuccess(appointments => Console.WriteLine($"Appointments for {name}: {appointments.ToString()}))
-								   .OnFailure(() => Console.WriteLine($"Not any appointment for {name}.")))
-		.OnFailure(() => Console.WriteLine("No user named Jack."))
+                                   .OnFailure(() => Console.WriteLine($"Not any appointment for {name}.")))
+        .OnFailure(() => Console.WriteLine("No user named Jack."))
 ```
 
 ### Ensure

@@ -29,9 +29,9 @@ namespace Here.Maybes
         }
 
         /// <summary>
-        /// Implicit convertion from <see cref="Maybe{Maybe{T}}"/> to a <see cref="Maybe{T}"/>.
+        /// Implicit convertion from <see cref="Maybe{Maybe}"/> to a <see cref="Maybe{T}"/>.
         /// </summary>
-        /// <param name="embeddedMaybe">A <see cref="Maybe{Maybe{T}}"/>.</param>
+        /// <param name="embeddedMaybe">A <see cref="Maybe{Maybe}"/>.</param>
         /// <returns>A <see cref="Maybe{T}"/>.</returns>
         [PublicAPI, Pure]
         public static implicit operator Maybe<T>(Maybe<Maybe<T>> embeddedMaybe)

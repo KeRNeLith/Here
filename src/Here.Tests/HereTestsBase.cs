@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Here.Tests
 {
@@ -8,6 +9,52 @@ namespace Here.Tests
     internal class HereTestsBase
     {
         #region Test classes
+
+        protected class PersonNotEquatable
+        {
+            public string Name { get; }
+
+            public PersonNotEquatable(string name)
+            {
+                Name = name;
+            }
+        }
+
+        protected class PersonComparable : IComparable<PersonComparable>
+        {
+            public string _name;
+
+            public PersonComparable(string name)
+            {
+                _name = name;
+            }
+
+            public int CompareTo(PersonComparable other)
+            {
+                return Comparer<string>.Default.Compare(_name, other._name);
+            }
+        }
+
+        protected class Person
+        {
+            private readonly string _name;
+
+            public Person(string name)
+            {
+                _name = name;
+            }
+
+            public override bool Equals(object obj)
+            {
+                return obj is Person otherPerson
+                    && _name.Equals(otherPerson._name, StringComparison.Ordinal);
+            }
+
+            public override int GetHashCode()
+            {
+                return _name.GetHashCode();
+            }
+        }
 
         protected class TestClass : IEquatable<TestClass>
         {

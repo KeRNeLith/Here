@@ -22,20 +22,25 @@ Supported platforms:
 	<Company>Alexandre Rabérin</Company>
 	<IsPackable>true</IsPackable>
 	<PackageId>Here</PackageId>
-	<PackageReleaseNotes>➟ Release 0.5.0
-- General:
-    - Extend library compatibility until .NET Framework 2.0.
-
+	<PackageReleaseNotes>➟ Release 0.6.0
 - For Maybes:
-    - Add implicit conversion to boolean to handle test like a simple boolean.
-    - Remove true/false operators (replaced by the implicit conversion to boolean).
-    - Add extension on string: NoneIfNullOrSpace.
-    - Add extensions on Maybe&lt;string&gt;: NoneIfEmpty and NoneIfNullOrSpace.
+    - Add == and != operators to compare a value directly with the wrapped one.
+    - Add extensions to unwrap the Maybe value.
+    - Add Exists extension which is equivalent to Any with a predicate.
+    - Add extension to extract values from an enumerable of Maybe.
+    - Add extensions to convert a Maybe to Enumerable/Enumerator.
+    - Add extensions SingleOrNone and ElementAt on IEnumerable&lt;T&gt;.
+    - Add an explicit Flatten extension.
+    - Add extensions to perform treatments on Maybe that wrap an IEnumerable (for each, any, where, etc).
+    - Make Maybe&lt;T&gt; IComparable and IComparable&lt;Maybe&lt;T&gt;&gt;.
 
 - For Results:
-    - Add implicit conversion to boolean to handle test like a simple boolean.
-    - Add "Ensure" extensions that allow to check a predicate on each Result type.
-    - Add cast methods on each Result type to create a Result of another type or with a different value type.</PackageReleaseNotes>
+    - Add == and != operators to compare a value directly with the wrapped one.
+    - Implement equals, == and != operators to compare results with a result of same type.
+    - WARNING: Remove implicit conversions to boolean that produce unwanted behaviors when trying to compare results.
+    - Add a Result scope to run a simple action.
+    - Add a SuccessEquals method for each result type and associated static helpers.
+    - Make result structures IComparable and IComparable&lt;TResult&gt;.</PackageReleaseNotes>
 	<PackageTags>Here Functional C# Maybe Monad Result</PackageTags>
 	<PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
 	<PackageProjectUrl>https://github.com/KeRNeLith/Here</PackageProjectUrl>

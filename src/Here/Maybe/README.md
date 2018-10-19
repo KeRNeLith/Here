@@ -97,6 +97,7 @@ Maybe<int> maybeInt = 42.ToMaybe();
 int unwrappedValue = maybeInt.Or(12);        // 42
 int unwrappedValue2 = maybeInt.Or(() => 12); // 42
 int unwrappedValue3 = maybeInt.OrDefault();  // 42
+int unwrappedValue3 = maybeInt.Unwrap();     // 42
 
 // With no wrapped value
 Maybe<int> emptyMaybeInt = Maybe.None;
@@ -152,6 +153,8 @@ Maybe<SubTestClass> maybeSubTestClass = maybeTestClass.Cast<SubTestClass>();
 
 ### Enumerable extensions
 
+#### Basic methods
+
 Methods like `FirstOrDefault()` and `LastOrDefault` have their Maybe equivalent that are `FirstOrNone` and `LastOrNone` which respectively return a Maybe with the first or last enumerable element and None if there is not any.
 
 ```csharp
@@ -163,6 +166,27 @@ Maybe<int> maybeInt3 = listInts.FirstOrNone(intValue => intValue == 4); // None 
 
 // This is the same for LastOrNone
 ```
+
+#### Wrapped enumerables
+
+There are also extensions that allow to perform treatments directly on a wrapped enumerable (or other derived collection).
+
+For example you can use ForEach or Where like this, all these methods are suffixed by "Item" or "Items":
+
+```csharp
+var listInts = new List<int> { 1, 2, 3 };
+
+Maybe<IList<int>> maybeListInts = listInts;
+maybeListInts.ForEachItems((int item) => Console.WriteLine(item));
+
+IEnumerable<int> enumerableInts = maybeListInts.WhereItems((int item) => item >= 2);	// 2 3
+```
+
+#### Enumerable to unwrapped values
+
+If you have an enumerable of `Maybe<T>` then you may want to only keep data that really have a value.
+
+For this you can simply extract values via the TODO
 
 ### Linq extensions
 

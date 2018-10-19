@@ -15,6 +15,27 @@ namespace Here.Results
         /// <param name="action">Function to call.</param>
         /// <returns>A <see cref="Result"/>.</returns>
         [PublicAPI]
+        public static Result SafeResult([NotNull, InstantHandle] Action action)
+        {
+            try
+            {
+                action();
+                return Result.Ok();
+            }
+            catch (Exception ex)
+            {
+                return Result.Fail(
+                    string.Format(ResultConstants.ResultScopeErrorMessage, ex.Message),
+                    ex);
+            }
+        }
+
+        /// <summary>
+        /// Run the given <paramref name="action"/> in a safe scope that always return a <see cref="Result"/>.
+        /// </summary>
+        /// <param name="action">Function to call.</param>
+        /// <returns>A <see cref="Result"/>.</returns>
+        [PublicAPI]
         public static Result SafeResult([NotNull, InstantHandle] Func<Result> action)
         {
             try

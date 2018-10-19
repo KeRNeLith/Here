@@ -51,9 +51,9 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Flatten the given <see cref="Maybe{Maybe{T}}"/> to a <see cref="Maybe{T}"/>.
+        /// Flatten the given <see cref="Maybe{Maybe}"/> to a <see cref="Maybe{T}"/>.
         /// </summary>
-        /// <param name="embeddedMaybe">A <see cref="Maybe{Maybe{T}}"/>.</param>
+        /// <param name="embeddedMaybe">A <see cref="Maybe{Maybe}"/>.</param>
         /// <returns>A <see cref="Maybe{T}"/>.</returns>
         [PublicAPI, Pure]
         public static Maybe<T> Flatten<T>(this Maybe<Maybe<T>> embeddedMaybe)

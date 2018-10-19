@@ -47,6 +47,7 @@ namespace Here.Maybes.Extensions
                 : Maybe<TValue>.None;
         }
 
+        [NotNull]
         private static readonly CultureInfo DefaultParseCultureInfo = new CultureInfo("en-US");
 
         /// <summary>

@@ -9,7 +9,7 @@
 	<AssemblyVersion>1.0.0</AssemblyVersion>
 	<FileVersion>1.0.0</FileVersion>
 	<Copyright>Copyright © 2018</Copyright>
-	<Description>Tests for Maybe features.</Description>
+	<Description>Tests for Here library.</Description>
 	<Authors>Alexandre Rabérin</Authors>
 	<Owners>Alexandre Rabérin</Owners>
 	<Company>Alexandre Rabérin</Company>
