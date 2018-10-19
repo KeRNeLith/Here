@@ -8,6 +8,84 @@ namespace Here.Results.Extensions
     /// </summary>
     public static partial class ResultExtensions
     {
+        #region IResult<T>
+
+        /// <summary>
+        /// Unwrap this <see cref="IResult{T}"/> value if it <see cref="IResult.IsSuccess"/>, 
+        /// otherwise returns the <paramref name="defaultValue"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="IResult{T}"/>.</typeparam>
+        /// <param name="result"><see cref="IResult{T}"/> to unwrap value.</param>
+        /// <param name="defaultValue">Default value to use.</param>
+        /// <returns>The unwrapped value from this <see cref="IResult{T}"/> if it has value, otherwise the default value.</returns>
+        [PublicAPI, Pure, CanBeNull]
+        public static T Unwrap<T>(this IResult<T> result, [CanBeNull] T defaultValue = default(T))
+        {
+            if (result.IsSuccess)
+                return result.Value;
+            return defaultValue;
+        }
+
+        /// <summary>
+        /// Unwrap this <see cref="IResult{T}"/> value if it <see cref="IResult.IsSuccess"/>, 
+        /// otherwise returns the result from <paramref name="orFunc"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="IResult{T}"/>.</typeparam>
+        /// <param name="result"><see cref="IResult{T}"/> to unwrap value.</param>
+        /// <param name="orFunc">Default value factory method.</param>
+        /// <returns>The unwrapped value from this <see cref="IResult{T}"/> if it has value, otherwise the default value.</returns>
+        [PublicAPI, Pure, CanBeNull]
+        public static T Unwrap<T>(this IResult<T> result, [NotNull, InstantHandle] Func<T> orFunc)
+        {
+            if (result.IsSuccess)
+                return result.Value;
+            return orFunc();
+        }
+
+        /// <summary>
+        /// Unwrap this <see cref="IResult{T}"/> value if it <see cref="IResult.IsSuccess"/>, 
+        /// use the <paramref name="converter"/> to convert the value, 
+        /// otherwise returns the <paramref name="defaultValue"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="IResult{T}"/>.</typeparam>
+        /// <typeparam name="TOut">Output value type.</typeparam>
+        /// <param name="result"><see cref="IResult{T}"/> to unwrap value.</param>
+        /// <param name="converter">Function called to convert this <see cref="IResult{T}"/> value.</param>
+        /// <param name="defaultValue">Default value to use.</param>
+        /// <returns>The unwrapped value from this <see cref="IResult{T}"/> if it has value, otherwise the default value.</returns>
+        [PublicAPI, Pure, CanBeNull]
+        public static TOut Unwrap<T, TOut>(this IResult<T> result,
+            [NotNull, InstantHandle] Func<T, TOut> converter,
+            [CanBeNull] TOut defaultValue = default(TOut))
+        {
+            if (result.IsSuccess)
+                return converter(result.Value);
+            return defaultValue;
+        }
+
+        /// <summary>
+        /// Unwrap this <see cref="IResult{T}"/> value if it <see cref="IResult.IsSuccess"/>, 
+        /// use the <paramref name="converter"/> to convert the value, 
+        /// otherwise returns the result from <paramref name="orFunc"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="IResult{T}"/>.</typeparam>
+        /// <typeparam name="TOut">Output value type.</typeparam>
+        /// <param name="result"><see cref="IResult{T}"/> to unwrap value.</param>
+        /// <param name="converter">Function called to convert this <see cref="IResult{T}"/> value.</param>
+        /// <param name="orFunc">Default value factory method.</param>
+        /// <returns>The unwrapped value from this <see cref="IResult{T}"/> if it has value, otherwise the default value.</returns>
+        [PublicAPI, Pure, CanBeNull]
+        public static TOut Unwrap<T, TOut>(this IResult<T> result,
+            [NotNull, InstantHandle] Func<T, TOut> converter,
+            [NotNull] Func<TOut> orFunc)
+        {
+            if (result.IsSuccess)
+                return converter(result.Value);
+            return orFunc();
+        }
+
+        #endregion
+
         #region Result
 
         /// <summary>
