@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Here.Tests
 {
@@ -11,11 +12,26 @@ namespace Here.Tests
 
         protected class PersonNotEquatable
         {
-            private readonly string _name;
+            public string Name { get; }
 
             public PersonNotEquatable(string name)
             {
+                Name = name;
+            }
+        }
+
+        protected class PersonComparable : IComparable<PersonComparable>
+        {
+            public string _name;
+
+            public PersonComparable(string name)
+            {
                 _name = name;
+            }
+
+            public int CompareTo(PersonComparable other)
+            {
+                return Comparer<string>.Default.Compare(_name, other._name);
             }
         }
 

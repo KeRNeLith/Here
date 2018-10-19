@@ -17,7 +17,7 @@ namespace Here.Results.Extensions
         /// <param name="predicate">Predicate to match.</param>
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
         /// <returns>A corresponding <see cref="Result"/>.</returns>
-        [PublicAPI]
+        [PublicAPI, Pure]
         public static Result Ensure(this Result result, [NotNull, InstantHandle] Func<bool> predicate, [NotNull] string errorMessage)
         {
             if (result.IsFailure)
@@ -41,6 +41,7 @@ namespace Here.Results.Extensions
         /// <param name="predicate">Predicate to match.</param>
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
         /// <returns>A corresponding <see cref="Result{T}"/>.</returns>
+        [PublicAPI, Pure]
         public static Result<T> Ensure<T>(this Result<T> result, [NotNull, InstantHandle] Predicate<T> predicate, [NotNull] string errorMessage)
         {
             if (result.IsFailure)
@@ -65,6 +66,7 @@ namespace Here.Results.Extensions
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
         /// <param name="errorObject">Custom error object.</param>
         /// <returns>A corresponding <see cref="CustomResult{TError}"/>.</returns>
+        [PublicAPI, Pure]
         public static CustomResult<TError> Ensure<TError>(this CustomResult<TError> result, 
             [NotNull, InstantHandle] Func<bool> predicate, 
             [NotNull] string errorMessage, 
@@ -88,6 +90,7 @@ namespace Here.Results.Extensions
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <returns>A corresponding <see cref="CustomResult{TError}"/>.</returns>
+        [PublicAPI, Pure]
         public static CustomResult<TError> Ensure<TError>(this CustomResult<TError> result,
             [NotNull, InstantHandle] Func<bool> predicate,
             [NotNull] string errorMessage,
@@ -116,6 +119,7 @@ namespace Here.Results.Extensions
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
         /// <param name="errorObject">Custom error object.</param>
         /// <returns>A corresponding <see cref="Result{T, TError}"/>.</returns>
+        [PublicAPI, Pure]
         public static Result<T, TError> Ensure<T, TError>(this Result<T, TError> result,
             [NotNull, InstantHandle] Predicate<T> predicate,
             [NotNull] string errorMessage,
@@ -140,6 +144,7 @@ namespace Here.Results.Extensions
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <returns>A corresponding <see cref="Result{T, TError}"/>.</returns>
+        [PublicAPI, Pure]
         public static Result<T, TError> Ensure<T, TError>(this Result<T, TError> result,
             [NotNull, InstantHandle] Predicate<T> predicate,
             [NotNull] string errorMessage,

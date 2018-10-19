@@ -51,6 +51,17 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
+        /// Flatten the given <see cref="Maybe{Maybe}"/> to a <see cref="Maybe{T}"/>.
+        /// </summary>
+        /// <param name="embeddedMaybe">A <see cref="Maybe{Maybe}"/>.</param>
+        /// <returns>A <see cref="Maybe{T}"/>.</returns>
+        [PublicAPI, Pure]
+        public static Maybe<T> Flatten<T>(this Maybe<Maybe<T>> embeddedMaybe)
+        {
+            return embeddedMaybe.HasValue ? embeddedMaybe.Value : Maybe<T>.None;
+        }
+
+        /// <summary>
         /// Convert the string to a <see cref="Maybe{String}"/> after applying <see cref="string.IsNullOrEmpty(string)"/>.
         /// </summary>
         /// <param name="str">String to convert.</param>

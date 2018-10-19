@@ -37,6 +37,7 @@ namespace Here.Results
         #endregion
     }
 
+    // ReSharper disable once UnusedTypeParameter
     public partial struct CustomResult<TError>
     {
         #region Gateway to Maybe
@@ -53,6 +54,7 @@ namespace Here.Results
         #endregion
     }
 
+    // ReSharper disable once UnusedTypeParameter
     public partial struct Result<T, TError>
     {
         #region Gateway to Maybe

@@ -24,7 +24,7 @@ namespace Here.Maybes
         /// <summary>
         /// No value.
         /// </summary>
-        [NotNull]
+        [PublicAPI, NotNull]
         public static NoneClass None { get; } = new NoneClass();
     }
 }
