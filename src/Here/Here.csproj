@@ -1,28 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net20;net30;net35;net40;net45;net452;netstandard1.1;netstandard2.0</TargetFrameworks>
-	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-	<Title>Here</Title>
-	<Version>1.0.0</Version>
-	<AssemblyVersion>1.0.0</AssemblyVersion>
-	<FileVersion>1.0.0</FileVersion>
-	<Copyright>Copyright © 2018</Copyright>
-	<Description>.NET library that provide mainly functional features for C#.
+	  
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    
+    <Title>Here</Title>
+    <RootNamespace>Here</RootNamespace>
+    <AssemblyName>Here</AssemblyName>
+
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0</FileVersion>
+    <!-- Include PDB files in NuGet for Source Link because symbolsource.org does not support portable PDBs -->
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+
+    <Copyright>Copyright © 2018</Copyright>
+    <Description>.NET library that provide mainly functional features for C#.
 
 This means concept of Maybe (Monad) and Result.
 
 Supported platforms:
 - .NET Standard 1.1+
 - .NET Core 1.0+
-- .NET Framework 2.0+</Description>
-	<Owners>Alexandre Rabérin</Owners>
-	<Authors>Alexandre Rabérin</Authors>
-	<Company>Alexandre Rabérin</Company>
-	<IsPackable>true</IsPackable>
-	<PackageId>Here</PackageId>
-	<PackageReleaseNotes>➟ Release 0.6.0
+- .NET Framework 2.0+
+
+Supports Source Link</Description>
+    <Owners>Alexandre Rabérin</Owners>
+    <Authors>Alexandre Rabérin</Authors>
+    <Company>Alexandre Rabérin</Company>
+
+    <IsPackable>true</IsPackable>
+    <PackageId>Here</PackageId>
+    <PackageReleaseNotes>➟ Release 0.6.0
 - For Maybes:
     - Add == and != operators to compare a value directly with the wrapped one.
     - Add extensions to unwrap the Maybe value.
@@ -41,11 +52,13 @@ Supported platforms:
     - Add a Result scope to run a simple action.
     - Add a SuccessEquals method for each result type and associated static helpers.
     - Make result structures IComparable and IComparable&lt;TResult&gt;.</PackageReleaseNotes>
-	<PackageTags>Here Functional C# Maybe Monad Result</PackageTags>
-	<PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
-	<PackageProjectUrl>https://github.com/KeRNeLith/Here</PackageProjectUrl>
-	<RepositoryType>GitHub</RepositoryType>
-	<RepositoryUrl>https://github.com/KeRNeLith/Here</RepositoryUrl>
+    <PackageTags>Here Functional C# Maybe Monad Result</PackageTags>
+
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/KeRNeLith/Here</PackageProjectUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <RepositoryUrl>https://github.com/KeRNeLith/Here</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -65,7 +78,12 @@ Supported platforms:
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2018.2.1" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-63127-02" PrivateAssets="All" />
   </ItemGroup>
   
   <ItemGroup Condition="'$(TargetFramework)' == 'net20' Or '$(TargetFramework)' == 'net30'">
