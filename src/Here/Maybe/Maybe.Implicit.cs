@@ -29,7 +29,7 @@ namespace Here.Maybes
         }
 
         /// <summary>
-        /// Implicit convertion from <see cref="Maybe{Maybe}"/> to a <see cref="Maybe{T}"/>.
+        /// Implicit conversion from <see cref="Maybe{Maybe}"/> to a <see cref="Maybe{T}"/>.
         /// </summary>
         /// <param name="embeddedMaybe">A <see cref="Maybe{Maybe}"/>.</param>
         /// <returns>A <see cref="Maybe{T}"/>.</returns>
@@ -40,7 +40,7 @@ namespace Here.Maybes
         }
 
         /// <summary>
-        /// Implicit convertion from <see cref="Maybe{T}"/> to a boolean.
+        /// Implicit conversion from <see cref="Maybe{T}"/> to a boolean.
         /// </summary>
         /// <param name="maybe"><see cref="Maybe{T}"/> to convert.</param>
         /// <returns>A corresponding boolean.</returns>
@@ -51,7 +51,7 @@ namespace Here.Maybes
         }
 
         /// <summary>
-        /// Implicit convertion from <see cref="Maybe{T}"/> to a <see cref="Result"/>.
+        /// Implicit conversion from <see cref="Maybe{T}"/> to a <see cref="Result"/>.
         /// </summary>
         /// <param name="maybe">A <see cref="Maybe{T}"/> to convert.</param>
         /// <returns>The corresponding <see cref="Result"/>.</returns>
@@ -62,7 +62,7 @@ namespace Here.Maybes
         }
 
         /// <summary>
-        /// Implicit convertion from <see cref="Maybe{T}"/> to a <see cref="Result{T}"/>.
+        /// Implicit conversion from <see cref="Maybe{T}"/> to a <see cref="Result{T}"/>.
         /// </summary>
         /// <param name="maybe">A <see cref="Maybe{T}"/> to convert.</param>
         /// <returns>The corresponding <see cref="Result{T}"/>.</returns>

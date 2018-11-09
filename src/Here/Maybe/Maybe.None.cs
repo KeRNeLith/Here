@@ -1,28 +1,28 @@
-﻿using JetBrains.Annotations;
+﻿using Here.Results;
+using JetBrains.Annotations;
 
 namespace Here.Maybes
 {
     /// <summary>
-    /// Empty maybe implementation.
-    /// Used for implicit construction.
+    /// Empty Maybe construction helper. Used by implicit construction.
     /// </summary>
     [PublicAPI]
     public static class Maybe
     {
         /// <summary>
-        /// Represents nothing.
+        /// Represents empty Maybe (nothing).
         /// </summary>
         public class NoneClass
         {
         }
 
         /// <summary>
-        /// Failed result message.
+        /// Failed conversion to <see cref="Result"/> message.
         /// </summary>
         internal static readonly string FailedToResultMessage = "Maybe<{0}> has no value";
 
         /// <summary>
-        /// No value.
+        /// Represents a non typed empty Maybe.
         /// </summary>
         [PublicAPI, NotNull]
         public static NoneClass None { get; } = new NoneClass();
