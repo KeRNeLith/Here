@@ -211,12 +211,12 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Unwraps this <see cref="Maybe{T}"/> value if it has one and convert it with the <paramref name="converter"/>, otherwise use the <paramref name="defaultValue"/>.
+        /// Unwraps this <see cref="Maybe{T}"/> value if it has one, otherwise returns the result from <paramref name="orFunc"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> to unwrap value.</param>
         /// <param name="orFunc">Default value factory method.</param>
-        /// <returns>The unwrapped value from this <see cref="Maybe{T}"/> if it has value, otherwise the default value.</returns>
+        /// <returns>The unwrapped value from this <see cref="Maybe{T}"/> if it has value, otherwise the result from <paramref name="orFunc"/>.</returns>
         [PublicAPI, Pure, CanBeNull]
         public static T Unwrap<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Func<T> orFunc)
         {
@@ -224,8 +224,8 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Unwrap this <see cref="Maybe{T}"/> value if it has one, 
-        /// use the <paramref name="converter"/> to convert the value,
+        /// Unwraps this <see cref="Maybe{T}"/> value if it has one, 
+        /// uses the <paramref name="converter"/> to convert the value,
         /// otherwise returns the <paramref name="defaultValue"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
@@ -233,7 +233,7 @@ namespace Here.Maybes.Extensions
         /// <param name="maybe"><see cref="Maybe{T}"/> to unwrap value.</param>
         /// <param name="converter">Function called to convert this <see cref="Maybe{T}"/> value.</param>
         /// <param name="defaultValue">Default value to use.</param>
-        /// <returns>The converted unwrapped value from this <see cref="Maybe{T}"/> if it has a value, otherwise the default one.</returns>
+        /// <returns>The converted unwrapped value from this <see cref="Maybe{T}"/>, otherwise the default one.</returns>
         [PublicAPI, Pure, CanBeNull]
         public static TOut Unwrap<T, TOut>(this Maybe<T> maybe, 
             [NotNull, InstantHandle] Func<T, TOut> converter, 
@@ -245,8 +245,8 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Unwrap this <see cref="Maybe{T}"/> value if it has one, 
-        /// use the <paramref name="converter"/> to convert the value,
+        /// Unwraps this <see cref="Maybe{T}"/> value if it has one, 
+        /// uses the <paramref name="converter"/> to convert the value,
         /// otherwise returns the result from <paramref name="orFunc"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
@@ -254,7 +254,7 @@ namespace Here.Maybes.Extensions
         /// <param name="maybe"><see cref="Maybe{T}"/> to unwrap value.</param>
         /// <param name="converter">Function called to convert this <see cref="Maybe{T}"/> value.</param>
         /// <param name="orFunc">Default value factory method.</param>
-        /// <returns>The converted unwrapped value from this <see cref="Maybe{T}"/> if it has value, otherwise the default value.</returns>
+        /// <returns>The converted unwrapped value from this <see cref="Maybe{T}"/>, otherwise the result from <paramref name="orFunc"/>.</returns>
         [PublicAPI, Pure, CanBeNull]
         public static TOut Unwrap<T, TOut>(this Maybe<T> maybe, 
             [NotNull, InstantHandle] Func<T, TOut> converter, 
