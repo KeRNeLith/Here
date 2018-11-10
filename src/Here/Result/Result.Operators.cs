@@ -8,9 +8,9 @@ namespace Here.Results
         #region Gateway to Maybe
 
         /// <summary>
-        /// Convert this <see cref="Result"/> to a <see cref="Maybe{Boolean}"/>.
+        /// Converts this <see cref="Result"/> to a <see cref="Maybe{Boolean}"/>.
         /// </summary>
-        /// <returns>The corresponding <see cref="Maybe{Boolean}"/>.</returns>
+        /// <returns>A <see cref="Maybe{Boolean}"/>.</returns>
         public Maybe<bool> ToMaybe()
         {
             return Maybe<bool>.Some(Logic.IsSuccess);
@@ -24,9 +24,9 @@ namespace Here.Results
         #region Gateway to Maybe
 
         /// <summary>
-        /// Convert this <see cref="Result{T}"/> to a <see cref="Maybe{T}"/>.
+        /// Converts this <see cref="Result{T}"/> to a <see cref="Maybe{T}"/>.
         /// </summary>
-        /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>
+        /// <returns>A <see cref="Maybe{T}"/>.</returns>
         public Maybe<T> ToMaybe()
         {
             if (Logic.IsSuccess)
@@ -43,9 +43,9 @@ namespace Here.Results
         #region Gateway to Maybe
 
         /// <summary>
-        /// Convert this <see cref="CustomResult{TError}"/> to a <see cref="Maybe{Boolean}"/>.
+        /// Converts this <see cref="CustomResult{TError}"/> to a <see cref="Maybe{Boolean}"/>.
         /// </summary>
-        /// <returns>The corresponding <see cref="Maybe{Boolean}"/>.</returns>
+        /// <returns>A <see cref="Maybe{Boolean}"/>.</returns>
         public Maybe<bool> ToMaybe()
         {
             return Maybe<bool>.Some(Logic.IsSuccess);
@@ -60,9 +60,9 @@ namespace Here.Results
         #region Gateway to Maybe
 
         /// <summary>
-        /// Convert this <see cref="Result{T, TError}"/> to a <see cref="Maybe{T}"/>.
+        /// Converts this <see cref="Result{T, TError}"/> to a <see cref="Maybe{T}"/>.
         /// </summary>
-        /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>
+        /// <returns>A <see cref="Maybe{T}"/>.</returns>
         public Maybe<T> ToMaybe()
         {
             if (Logic.IsSuccess)

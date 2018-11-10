@@ -10,7 +10,7 @@ namespace Here.Results
     public static class ResultScope
     {
         /// <summary>
-        /// Run the given <paramref name="action"/> in a safe scope that always return a <see cref="Result"/>.
+        /// Runs the given <paramref name="action"/> in a safe scope that always returns a <see cref="Result"/>.
         /// </summary>
         /// <param name="action">Function to call.</param>
         /// <returns>A <see cref="Result"/>.</returns>
@@ -31,7 +31,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Run the given <paramref name="action"/> in a safe scope that always return a <see cref="Result"/>.
+        /// Runs the given <paramref name="action"/> in a safe scope that always returns a <see cref="Result"/>.
         /// </summary>
         /// <param name="action">Function to call.</param>
         /// <returns>A <see cref="Result"/>.</returns>
@@ -51,7 +51,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Run the given <paramref name="action"/> in a safe scope that always return a <see cref="Result{T}"/>.
+        /// Runs the given <paramref name="action"/> in a safe scope that always returns a <see cref="Result{T}"/>.
         /// </summary>
         /// <param name="action">Function to call.</param>
         /// <returns>A <see cref="Result{T}"/>.</returns>
@@ -71,7 +71,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Run the given <paramref name="action"/> in a safe scope that always return a <see cref="Result"/>.
+        /// Runs the given <paramref name="action"/> in a safe scope that always returns a <see cref="CustomResult{TError}"/>.
         /// </summary>
         /// <param name="action">Function to call.</param>
         /// <param name="errorObject">Error object to return in case an exception is thrown.</param>
@@ -93,7 +93,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Run the given <paramref name="action"/> in a safe scope that always return a <see cref="Result"/>.
+        /// Runs the given <paramref name="action"/> in a safe scope that always returns a <see cref="CustomResult{TError}"/>.
         /// </summary>
         /// <param name="action">Function to call.</param>
         /// <param name="errorFactory">Function to create a custom error object in case an exception is thrown.</param>
@@ -115,7 +115,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Run the given <paramref name="action"/> in a safe scope that always return a <see cref="Result"/>.
+        /// Runs the given <paramref name="action"/> in a safe scope that always returns a <see cref="Result{T, TError}"/>.
         /// </summary>
         /// <param name="action">Function to call.</param>
         /// <param name="errorObject">Error object to return in case an exception is thrown.</param>
@@ -137,7 +137,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Run the given <paramref name="action"/> in a safe scope that always return a <see cref="Result"/>.
+        /// Runs the given <paramref name="action"/> in a safe scope that always returns a <see cref="Result{T, TError}"/>.
         /// </summary>
         /// <param name="action">Function to call.</param>
         /// <param name="errorFactory">Function to create a custom error object in case an exception is thrown.</param>

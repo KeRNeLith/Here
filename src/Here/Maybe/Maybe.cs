@@ -35,6 +35,7 @@ namespace Here.Maybes
         /// Maybe value.
         /// </summary>
         [NotNull]
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly T _value;
 
         /// <summary>
@@ -183,7 +184,7 @@ namespace Here.Maybes
 
         /// <inheritdoc />
         /// <summary>
-        /// Compare this <see cref="Maybe{T}"/> with the given one.
+        /// Compares this <see cref="Maybe{T}"/> with the given one.
         /// Order keeps <see cref="Maybe{T}.None"/> first and <see cref="Maybe{T}"/> with value after.
         /// Then it uses the <see cref="Value"/> for the comparison.
         /// </summary>
