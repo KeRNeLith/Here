@@ -242,15 +242,19 @@ namespace Here.Tests.Maybes
             var maybeInt = Maybe<int>.Some(12);
             Assert.AreEqual(12, maybeInt.Unwrap());
             Assert.AreEqual(12, maybeInt.Unwrap(25));
+            Assert.AreEqual(12, maybeInt.Unwrap(() => 26));
             Assert.AreEqual(25.5f, maybeInt.Unwrap(value => 25.5f));
             Assert.AreEqual(25.5f, maybeInt.Unwrap(value => 25.5f, 15.1f));
+            Assert.AreEqual(25.5f, maybeInt.Unwrap(value => 25.5f, () => 15.2f));
 
             // Empty maybe
             Maybe<int> emptyMaybeInt = Maybe.None;
             Assert.AreEqual(0, emptyMaybeInt.Unwrap());
             Assert.AreEqual(25, emptyMaybeInt.Unwrap(25));
+            Assert.AreEqual(26, emptyMaybeInt.Unwrap(() => 26));
             Assert.AreEqual(0, emptyMaybeInt.Unwrap(value => 25.5f));
             Assert.AreEqual(15.1f, emptyMaybeInt.Unwrap(value => 25.5f, 15.1f));
+            Assert.AreEqual(15.2f, emptyMaybeInt.Unwrap(value => 25.5f, () => 15.2f));
 
             // Maybe class with value
             var testObject = new TestClass();
@@ -258,15 +262,19 @@ namespace Here.Tests.Maybes
             var maybeClass = Maybe<TestClass>.Some(testObject);
             Assert.AreSame(testObject, maybeClass.Unwrap());
             Assert.AreSame(testObject, maybeClass.Unwrap(defaultTestObject));
+            Assert.AreSame(testObject, maybeClass.Unwrap(() => defaultTestObject));
             Assert.AreEqual(25.5f, maybeClass.Unwrap(value => 25.5f));
             Assert.AreEqual(25.5f, maybeClass.Unwrap(value => 25.5f, 15.1f));
+            Assert.AreEqual(25.5f, maybeClass.Unwrap(value => 25.5f, () => 15.2f));
 
             // Empty maybe class
             Maybe<TestClass> emptyMaybeClass = Maybe.None;
             Assert.AreSame(null, emptyMaybeClass.Unwrap());
             Assert.AreSame(defaultTestObject, emptyMaybeClass.Unwrap(defaultTestObject));
+            Assert.AreSame(defaultTestObject, emptyMaybeClass.Unwrap(() => defaultTestObject));
             Assert.AreEqual(0.0f, emptyMaybeClass.Unwrap(value => 25.5f));
             Assert.AreEqual(15.1f, emptyMaybeClass.Unwrap(value => 25.5f, 15.1f));
+            Assert.AreEqual(15.2f, emptyMaybeClass.Unwrap(value => 25.5f, () => 15.2f));
         }
 
         [Test]
