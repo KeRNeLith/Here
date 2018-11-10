@@ -11,11 +11,11 @@ namespace Here.Maybes.Extensions
     public static class MaybeEnumerableExtensions
     {
         /// <summary>
-        /// Get a <see cref="Maybe{T}"/> of the first element of this <see cref="IEnumerable{T}"/>.
+        /// Gets a <see cref="Maybe{T}"/> of the first element of this <see cref="IEnumerable{T}"/>.
         /// </summary>
-        /// <typeparam name="T">Template type of this <see cref="IEnumerable{T}"/>.</typeparam>
-        /// <param name="enumerable">Enumerable collection.</param>
-        /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>
+        /// <typeparam name="T"><see cref="IEnumerable{T}"/> element type.</typeparam>
+        /// <param name="enumerable">Enumerable..</param>
+        /// <returns><see cref="Maybe{T}"/> wrapping the first element.</returns>
         [PublicAPI, Pure]
         public static Maybe<T> FirstOrNone<T>([NotNull] this IEnumerable<T> enumerable)
         {
@@ -23,12 +23,12 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Get a <see cref="Maybe{T}"/> of the first element of this <see cref="IEnumerable{T}"/> that matches <see cref="Predicate{T}"/>.
+        /// Gets a <see cref="Maybe{T}"/> of the first element of this <see cref="IEnumerable{T}"/> that matches the <paramref name="predicate"/>.
         /// </summary>
-        /// <typeparam name="T">Template type of this <see cref="IEnumerable{T}"/>.</typeparam>
-        /// <param name="enumerable">Enumerable collection.</param>
-        /// <param name="predicate"><see cref="Predicate{T}"/> to check on items.</param>
-        /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>
+        /// <typeparam name="T"><see cref="IEnumerable{T}"/> element type.</typeparam>
+        /// <param name="enumerable">Enumerable.</param>
+        /// <param name="predicate">Predicate to check on items.</param>
+        /// <returns><see cref="Maybe{T}"/> wrapping the first matching element.</returns>
         [PublicAPI, Pure]
         public static Maybe<T> FirstOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull, InstantHandle] Predicate<T> predicate) 
         {
@@ -42,13 +42,13 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Get a <see cref="Maybe{T}"/> of the single element of this <see cref="IEnumerable{T}"/>.
+        /// Gets a <see cref="Maybe{T}"/> of the single element of this <see cref="IEnumerable{T}"/>.
         /// </summary>
-        /// <typeparam name="T">Template type of this <see cref="IEnumerable{T}"/>.</typeparam>
-        /// <param name="enumerable">Enumerable collection.</param>
-        /// <param name="throwInvalidException">Indicate if the method should throw an <see cref="InvalidOperationException"/> 
-        /// if the enumerable has more than one value, or if it just return a <see cref="Maybe{T}.None"/>.</param>
-        /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>
+        /// <typeparam name="T"><see cref="IEnumerable{T}"/> element type.</typeparam>
+        /// <param name="enumerable">Enumerable.</param>
+        /// <param name="throwInvalidException">Indicates if the method should throw an <see cref="InvalidOperationException"/> 
+        /// if the enumerable has more than one value. Otherwise it will just return an empty <see cref="Maybe{T}"/>.</param>
+        /// <returns><see cref="Maybe{T}"/> wrapping the single element.</returns>
         [PublicAPI, Pure]
         public static Maybe<T> SingleOrNone<T>([NotNull] this IEnumerable<T> enumerable, bool throwInvalidException = true)
         {
@@ -68,14 +68,14 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Get a <see cref="Maybe{T}"/> of the single element of this <see cref="IEnumerable{T}"/> that matches <see cref="Predicate{T}"/>.
+        /// Gets a <see cref="Maybe{T}"/> of the single element of this <see cref="IEnumerable{T}"/> that matches the <paramref name="predicate"/>.
         /// </summary>
-        /// <typeparam name="T">Template type of this <see cref="IEnumerable{T}"/>.</typeparam>
-        /// <param name="enumerable">Enumerable collection.</param>
-        /// <param name="predicate"><see cref="Predicate{T}"/> to check on items.</param>
-        /// <param name="throwInvalidException">Indicate if the method should throw an <see cref="InvalidOperationException"/> 
-        /// if the enumerable has more than one value that match the <paramref name="predicate"/>, or if it just return a <see cref="Maybe{T}.None"/>.</param>
-        /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>
+        /// <typeparam name="T"><see cref="IEnumerable{T}"/> element type.</typeparam>
+        /// <param name="enumerable">Enumerable.</param>
+        /// <param name="predicate">Predicate to check on items.</param>
+        /// <param name="throwInvalidException">Indicates if the method should throw an <see cref="InvalidOperationException"/> 
+        /// if the enumerable has more than one value that matches the predicate. Otherwise it will just return an empty <see cref="Maybe{T}"/>.</param>
+        /// <returns><see cref="Maybe{T}"/> wrapping the matching single element.</returns>
         [PublicAPI, Pure]
         public static Maybe<T> SingleOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull, InstantHandle] Predicate<T> predicate, bool throwInvalidException = true)
         {
@@ -105,11 +105,11 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Get a <see cref="Maybe{T}"/> of the last element of this <see cref="IEnumerable{T}"/>.
+        /// Gets a <see cref="Maybe{T}"/> of the last element of this <see cref="IEnumerable{T}"/>.
         /// </summary>
-        /// <typeparam name="T">Template type of this <see cref="IEnumerable{T}"/>.</typeparam>
-        /// <param name="enumerable">Enumerable collection.</param>
-        /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>
+        /// <typeparam name="T"><see cref="IEnumerable{T}"/> element type.</typeparam>
+        /// <param name="enumerable">Enumerable.</param>
+        /// <returns><see cref="Maybe{T}"/> wrapping the last element.</returns>
         [PublicAPI, Pure]
         public static Maybe<T> LastOrNone<T>([NotNull] this IEnumerable<T> enumerable)
         {
@@ -117,12 +117,12 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Get a <see cref="Maybe{T}"/> of the last element of this <see cref="IEnumerable{T}"/> that matches <see cref="Predicate{T}"/>.
+        /// Get a <see cref="Maybe{T}"/> of the last element of this <see cref="IEnumerable{T}"/> that matches the <paramref name="predicate"/>.
         /// </summary>
-        /// <typeparam name="T">Template type of this <see cref="IEnumerable{T}"/>.</typeparam>
-        /// <param name="enumerable">Enumerable collection.</param>
-        /// <param name="predicate"><see cref="Predicate{T}"/> to check on items.</param>
-        /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns>
+        /// <typeparam name="T"><see cref="IEnumerable{T}"/> element type.</typeparam>
+        /// <param name="enumerable">Enumerable.</param>
+        /// <param name="predicate">Predicate to check on items.</param>
+        /// <returns><see cref="Maybe{T}"/> wrapping the matching last element.</returns>
         [PublicAPI, Pure]
         public static Maybe<T> LastOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull, InstantHandle] Predicate<T> predicate)
         {
@@ -142,13 +142,13 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Get a the element at the given index in the given <see cref="IEnumerable{T}"/> and return a corresponding <see cref="Maybe{T}"/>.
-        /// Note that if the index is out of range it will return a <see cref="Maybe{T}.None"/>.
+        /// Gets the element at the given index in the given <see cref="IEnumerable{T}"/> and returns <see cref="Maybe{T}"/> that wrap it.
+        /// Note that if the index is out of range it will return an empty <see cref="Maybe{T}"/>.
         /// </summary>
-        /// <typeparam name="T">Template type of this <see cref="IEnumerable{T}"/>.</typeparam>
-        /// <param name="enumerable">Enumerable collection.</param>
-        /// <param name="index">Index in collection where getting the element.</param>
-        /// <returns>The corresponding <see cref="Maybe{T}"/>.</returns> 
+        /// <typeparam name="T"><see cref="IEnumerable{T}"/> element type.</typeparam>
+        /// <param name="enumerable">Enumerable.</param>
+        /// <param name="index">Index of the element to get in the collection.</param>
+        /// <returns><see cref="Maybe{T}"/> wrapping the element.</returns> 
         [PublicAPI, Pure]
         public static Maybe<T> ElementAtOrNone<T>([NotNull] this IEnumerable<T> enumerable, int index)
         {
@@ -178,10 +178,10 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{T}"/> to an <see cref="IEnumerable{T}"/> with zero or one element.
+        /// Converts this <see cref="Maybe{T}"/> to an <see cref="IEnumerable{T}"/> with one or no element.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
-        /// <param name="maybe">The <see cref="Maybe{T}"/> to convert.</param>
+        /// <param name="maybe">This <see cref="Maybe{T}"/> to convert.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> generated from this <see cref="Maybe{T}"/>.</returns>
         [PublicAPI, Pure, NotNull]
         public static IEnumerable<T> ToEnumerable<T>(this Maybe<T> maybe)
@@ -191,10 +191,10 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{T}"/> to an <see cref="IEnumerator{T}"/> with zero or one element.
+        /// Converts this <see cref="Maybe{T}"/> to an <see cref="IEnumerator{T}"/> with one or no element.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
-        /// <param name="maybe">The <see cref="Maybe{T}"/> to convert.</param>
+        /// <param name="maybe">This <see cref="Maybe{T}"/> to convert.</param>
         /// <returns>An <see cref="IEnumerator{T}"/> generated from this <see cref="Maybe{T}"/>.</returns>
         [PublicAPI, Pure, NotNull]
         public static IEnumerator<T> ToEnumerator<T>(this Maybe<T> maybe)
@@ -204,11 +204,11 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Extract values from this <see cref="IEnumerable{Maybe}"/> to convert it to an <see cref="IEnumerable{T}"/>.
+        /// Extracts values from this <see cref="IEnumerable{Maybe}"/> to convert it to an <see cref="IEnumerable{T}"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in <see cref="Maybe{T}"/>.</typeparam>
-        /// <param name="enumerable">An enumerable of <see cref="Maybe{T}"/>.</param>
-        /// <returns>An <see cref="IEnumerable{T}"/> generated from  this enumerable of <see cref="Maybe{T}"/>.</returns>
+        /// <param name="enumerable">Enumerable of <see cref="Maybe{T}"/>.</param>
+        /// <returns>An <see cref="IEnumerable{T}"/> generated from this enumerable of <see cref="Maybe{T}"/>.</returns>
         [PublicAPI, Pure, NotNull]
         public static IEnumerable<T> ExtractValues<T>([NotNull] this IEnumerable<Maybe<T>> enumerable)
         {
@@ -220,10 +220,10 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Extract values from this <see cref="IEnumerable{Maybe}"/> to convert it to an array.
+        /// Extracts values from this <see cref="IEnumerable{Maybe}"/> to convert it to an array.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in <see cref="Maybe{T}"/>.</typeparam>
-        /// <param name="enumerable">An enumerable of <see cref="Maybe{T}"/>.</param>
+        /// <param name="enumerable">Enumerable of <see cref="Maybe{T}"/>.</param>
         /// <returns>An array generated from this enumerable of <see cref="Maybe{T}"/>.</returns>
         [PublicAPI, Pure, NotNull]
         public static T[] ToArray<T>([NotNull] this IEnumerable<Maybe<T>> enumerable)
@@ -232,10 +232,10 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Extract values from this <see cref="IEnumerable{Maybe}"/> to convert it to an <see cref="List{T}"/>.
+        /// Extracts values from this <see cref="IEnumerable{Maybe}"/> to convert it to a <see cref="List{T}"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in <see cref="Maybe{T}"/>.</typeparam>
-        /// <param name="enumerable">An enumerable of <see cref="Maybe{T}"/>.</param>
+        /// <param name="enumerable">Enumerable of <see cref="Maybe{T}"/>.</param>
         /// <returns>A <see cref="List{T}"/> generated from this enumerable of <see cref="Maybe{T}"/>.</returns>
         [PublicAPI, Pure, NotNull]
         public static List<T> ToList<T>([NotNull] this IEnumerable<Maybe<T>> enumerable)
@@ -244,13 +244,13 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Extract values from this <see cref="IEnumerable{Maybe}"/> to convert it to an <see cref="Dictionary{TKey, T}"/>.
+        /// Extracts values from this <see cref="IEnumerable{Maybe}"/> to convert it to a <see cref="Dictionary{TKey, TValue}"/>.
         /// </summary>
         /// <typeparam name="TKey">Type of the output dictionary key.</typeparam>
-        /// <typeparam name="TValue">Type of the value embedded in <see cref="Maybe{T}"/>.</typeparam>
-        /// <param name="enumerable">An enumerable of <see cref="Maybe{T}"/>.</param>
+        /// <typeparam name="TValue">Type of the value embedded in <see cref="Maybe{TValue}"/>.</typeparam>
+        /// <param name="enumerable">Enumerable of <see cref="Maybe{TValue}"/>.</param>
         /// <param name="keySelector">Method called to create dictionary keys.</param>
-        /// <returns>A <see cref="Dictionary{TKey, T}"/> generated from this enumerable of <see cref="Maybe{T}"/>.</returns>
+        /// <returns>A <see cref="Dictionary{TKey, TValue}"/> generated from this enumerable of <see cref="Maybe{TValue}"/>.</returns>
         [PublicAPI, Pure, NotNull]
         public static Dictionary<TKey, TValue> ToDictionary<TValue, TKey>([NotNull] this IEnumerable<Maybe<TValue>> enumerable, [NotNull, InstantHandle] Func<TValue, TKey> keySelector)
         {

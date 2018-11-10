@@ -1,7 +1,7 @@
 # Maybe
 
 The `Maybe<T>`, also called Option or Monad is a structure that encapsulates the concept of having a value or not. 
-It safely handle this mechanic without you have to worry about having a null value somewhere. It does this for you.
+It safely handles this mechanic without you have to worry about having a null value somewhere. It does this for you.
 What you just have to do to use it is to put a using like this for basic implementation:
 
 ```csharp
@@ -16,7 +16,7 @@ using Here.Maybes.Extensions;
 
 ## Why Maybe?
 
-Because it offers a safe handling of null values. It also a nice alternative to `Nullable` that only works with value type while `Maybe` handle every types.
+Because it offers a safe handling of null values. It is also a nice alternative to `Nullable` that only works with value type while `Maybe` handle every types.
 
 ---
 
@@ -28,13 +28,14 @@ See examples below:
 ```csharp
 Maybe<string> maybeStr = Maybe<string>.Some("My string");
 Maybe<string> maybeStr2 = "My string2".ToMaybe();
+Maybe<string> maybeStr3 = "My string2";     // Implicit conversion
 
 // Empty maybe
 Maybe<string> emptyMaybeStr = Maybe<string>.None;
-Maybe<string> emptyMaybeStr2 = Maybe.None; // Implicit creation
+Maybe<string> emptyMaybeStr2 = Maybe.None;  // Implicit creation
 ```
 
-It's also possible to use implicit conversion that will fit for calls to API code that your not the owner or simply code you don't want to update.
+It is also possible to use implicit conversion that will fit for calls to API code that your not the owner or simply code you don't want to update.
 
 ```csharp
 int GetAnInteger()
@@ -48,7 +49,7 @@ Maybe<int> maybeInt = GetAnInteger();
 
 ## Working with Maybe
 
-When you use a Maybe you can access to its value if it has one via the `Value` property. You can check before that it has one via the `HasValue` and `HasNoValue` properties, or directly by checking the Maybe variable as it supports the true and false operators.
+When you use a Maybe you can access to its value if it has one via the `Value` property. You can check before that it has one via the `HasValue` and/or `HasNoValue` properties, or directly by checking the Maybe variable as it supports the true and false operators.
 But you can also simply use extensions that will really help you to keep a clean and functional code.
 
 ```csharp
@@ -69,7 +70,7 @@ string emptyString = null;
 
 emptyString.ToMaybe().If(str =>
 {
-    // Here 'str' is guaranted to be not null. In this case this statement will never be called.
+    // Here 'str' is guaranteed to be not null. In this case this statement will never be called.
     Console.WriteLine(str);
 });
 
@@ -81,13 +82,13 @@ emptyString.ToMaybe().If(str =>
 });
 ```
 
-Here is an example with the `If` (has value), but there is also the `IfElse` that allows you to handle the case the Maybe has no value.
+Here is an example with the `If` (has value), but there is also the `IfElse` that allows you to handle the case the Maybe has no value, and many others.
 
 ### Unwrapping value
 
 #### Extensions
 
-After having wrapped a value you can also safely unwrap it. For this you have multiple methods using the `Or` operator.
+After having wrapped a value you can also safely unwrap it. For this you have multiple methods, for example by using the `Or` operator.
 You will be able unwrap with a default value or a factory method like:
 
 ```csharp
@@ -117,7 +118,7 @@ int unwrappedValue = emptyMaybeInt.OrThrows(new InvalidOperationException()); //
 
 #### Comparisons
 
-It is also possible to perform equality comparison directly on the wrapped value through the `Maybe` like showed below:
+It is also possible to perform equality comparison directly on the wrapped value through the `Maybe` like shown below:
 
 ```csharp
 Maybe<int> maybeInt = Maybe<int>.Some(12);
@@ -141,6 +142,7 @@ if (maybeClass == testClass)
 You can cast the value wrapped by the Maybe in a safe way by using a converter method or an 'as' cast like following:
 
 ```csharp
+// For basic types
 Maybe<int> maybeInt = 42.ToMaybe();
 Maybe<float> maybeFloat = maybeInt.Cast(intValue => (float)intValue);
 
@@ -186,7 +188,19 @@ IEnumerable<int> enumerableInts = maybeListInts.WhereItems((int item) => item >=
 
 If you have an enumerable of `Maybe<T>` then you may want to only keep data that really have a value.
 
-For this you can simply extract values via the TODO
+For this you can simply extract values via the `ExtractValues` extension. Note that you can also generate a List, Dictionary in the same way.
+
+```csharp
+IEnumerable<Maybe<float>> GetData()
+{
+    // Do something and yield results
+}
+
+IEnumerable<float> relevantValues = GetData().ExtractValues();
+float[] relevantArray = GetData().ToArray();
+List<float> relevantList = GetData().ToList();
+Dictionary<string, float> relevantDictionary = GetData().ToDictionary((float val) => val.ToString());
+```
 
 ### Linq extensions
 
@@ -222,11 +236,11 @@ var dictionary = new Dictionary<int, string>
     [12] = "string 12"
 };
 
-Maybe<string> maybeString = dictionary.TryGetValue(11);	// string 11
-Maybe<string> maybeString2 = dictionary.TryGetValue(14);	// None maybe
+Maybe<string> maybeString = dictionary.TryGetValue(11);   // string 11
+Maybe<string> maybeString2 = dictionary.TryGetValue(14);  // None maybe
 
 // Parsing
-Maybe<int> maybeInt = "12".parseInt(); // 12
+Maybe<int> maybeInt = "12".parseInt();   // 12
 Maybe<int> maybeInt2 = "1.5".parseInt(); // None Maybe
 Maybe<float> maybeFloat = "1.5".parseFloat(); // 1.5
 ```
@@ -238,7 +252,7 @@ Lookup and parsing are features that can be completed easily if you have a metho
 public delegate bool TryGet<in TInput, TValue>([CanBeNull] TInput input, out TValue value);
 
 // For TryParse
-public delegate bool TryParse<in TInput, TValue>([CanBeNull] TInput input, NumberStyles style, IFormatProvider culture, out TValue value);
+public delegate bool TryParse<TValue>([CanBeNull] string input, NumberStyles style, IFormatProvider culture, out TValue value);
 ````
 
 The library provide a default implementation for them:
@@ -253,7 +267,7 @@ public static Func<TInput, Maybe<TValue>> CreateGet<TInput, TValue>([NotNull] Tr
 }
 
 // TryParse
-public static Func<TInput, Maybe<TValue>> CreateParse<TInput, TValue>([NotNull] TryParse<TInput, TValue> tryParseFunc, NumberStyles style, IFormatProvider culture)
+public static Func<string, Maybe<TValue>> CreateParse<TValue>([NotNull] TryParse<TValue> tryParseFunc, NumberStyles style, IFormatProvider culture)
 {
     return input => tryParseFunc(input, NumberStyles.Any, culture, out TValue result)
         ? result.ToMaybe()

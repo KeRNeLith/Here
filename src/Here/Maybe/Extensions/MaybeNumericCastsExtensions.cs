@@ -4,7 +4,7 @@ using JetBrains.Annotations;
 namespace Here.Maybes.Extensions
 {
     /// <summary>
-    /// Extensions related to <see cref="Maybe{T}"/> to cast numeric types.
+    /// Extensions related to <see cref="Maybe{T}"/> for numeric types casts.
     /// </summary>
     public static class MaybeNumericCastsExtensions
     {
@@ -27,7 +27,7 @@ namespace Here.Maybes.Extensions
         #region Byte to XXX
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Byte}"/> to a <see cref="Maybe{Boolean}"/>.
+        /// Converts this <see cref="Maybe{Byte}"/> to a <see cref="Maybe{Boolean}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Byte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -38,7 +38,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Byte}"/> to a <see cref="Maybe{SByte}"/>.
+        /// Converts this <see cref="Maybe{Byte}"/> to a <see cref="Maybe{SByte}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Byte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -49,7 +49,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Byte}"/> to a <see cref="Maybe{Int16}"/>.
+        /// Converts this <see cref="Maybe{Byte}"/> to a <see cref="Maybe{Int16}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Byte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -60,7 +60,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Byte}"/> to a <see cref="Maybe{UInt16}"/>.
+        /// Converts this <see cref="Maybe{Byte}"/> to a <see cref="Maybe{UInt16}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Byte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -71,7 +71,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Byte}"/> to a <see cref="Maybe{Int32}"/>.
+        /// Converts this <see cref="Maybe{Byte}"/> to a <see cref="Maybe{Int32}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Byte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -82,7 +82,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Byte}"/> to a <see cref="Maybe{UInt32}"/>.
+        /// Converts this <see cref="Maybe{Byte}"/> to a <see cref="Maybe{UInt32}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Byte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -93,7 +93,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Byte}"/> to a <see cref="Maybe{Int64}"/>.
+        /// Converts this <see cref="Maybe{Byte}"/> to a <see cref="Maybe{Int64}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Byte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -104,7 +104,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Byte}"/> to a <see cref="Maybe{UInt64}"/>.
+        /// Converts this <see cref="Maybe{Byte}"/> to a <see cref="Maybe{UInt64}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Byte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -115,7 +115,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Byte}"/> to a <see cref="Maybe{Decimal}"/>.
+        /// Converts this <see cref="Maybe{Byte}"/> to a <see cref="Maybe{Decimal}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Byte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -126,7 +126,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Byte}"/> to a <see cref="Maybe{Single}"/>.
+        /// Converts this <see cref="Maybe{Byte}"/> to a <see cref="Maybe{Single}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Byte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -137,7 +137,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Byte}"/> to a <see cref="Maybe{Double}"/>.
+        /// Converts this <see cref="Maybe{Byte}"/> to a <see cref="Maybe{Double}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Byte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -152,7 +152,7 @@ namespace Here.Maybes.Extensions
         #region SByte to XXX
 
         /// <summary>
-        /// Convert this <see cref="Maybe{SByte}"/> to a <see cref="Maybe{Boolean}"/>.
+        /// Converts this <see cref="Maybe{SByte}"/> to a <see cref="Maybe{Boolean}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{SByte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -163,7 +163,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{SByte}"/> to a <see cref="Maybe{Byte}"/>.
+        /// Converts this <see cref="Maybe{SByte}"/> to a <see cref="Maybe{Byte}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{SByte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -174,7 +174,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{SByte}"/> to a <see cref="Maybe{Int16}"/>.
+        /// Converts this <see cref="Maybe{SByte}"/> to a <see cref="Maybe{Int16}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{SByte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -185,7 +185,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{SByte}"/> to a <see cref="Maybe{UInt16}"/>.
+        /// Converts this <see cref="Maybe{SByte}"/> to a <see cref="Maybe{UInt16}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{SByte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -196,7 +196,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{SByte}"/> to a <see cref="Maybe{Int32}"/>.
+        /// Converts this <see cref="Maybe{SByte}"/> to a <see cref="Maybe{Int32}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{SByte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -207,7 +207,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{SByte}"/> to a <see cref="Maybe{UInt32}"/>.
+        /// Converts this <see cref="Maybe{SByte}"/> to a <see cref="Maybe{UInt32}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{SByte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -218,7 +218,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{SByte}"/> to a <see cref="Maybe{Int64}"/>.
+        /// Converts this <see cref="Maybe{SByte}"/> to a <see cref="Maybe{Int64}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{SByte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -229,7 +229,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{SByte}"/> to a <see cref="Maybe{UInt64}"/>.
+        /// Converts this <see cref="Maybe{SByte}"/> to a <see cref="Maybe{UInt64}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{SByte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -240,7 +240,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{SByte}"/> to a <see cref="Maybe{Decimal}"/>.
+        /// Converts this <see cref="Maybe{SByte}"/> to a <see cref="Maybe{Decimal}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{SByte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -251,7 +251,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{SByte}"/> to a <see cref="Maybe{Single}"/>.
+        /// Converts this <see cref="Maybe{SByte}"/> to a <see cref="Maybe{Single}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{SByte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -262,7 +262,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{SByte}"/> to a <see cref="Maybe{Double}"/>.
+        /// Converts this <see cref="Maybe{SByte}"/> to a <see cref="Maybe{Double}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{SByte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -277,7 +277,7 @@ namespace Here.Maybes.Extensions
         #region Short to XXX
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int16}"/> to a <see cref="Maybe{Boolean}"/>.
+        /// Converts this <see cref="Maybe{Int16}"/> to a <see cref="Maybe{Boolean}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -288,7 +288,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int16}"/> to a <see cref="Maybe{Byte}"/>.
+        /// Converts this <see cref="Maybe{Int16}"/> to a <see cref="Maybe{Byte}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -299,7 +299,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int16}"/> to a <see cref="Maybe{SByte}"/>.
+        /// Converts this <see cref="Maybe{Int16}"/> to a <see cref="Maybe{SByte}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -310,7 +310,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int16}"/> to a <see cref="Maybe{UInt16}"/>.
+        /// Converts this <see cref="Maybe{Int16}"/> to a <see cref="Maybe{UInt16}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -321,7 +321,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int16}"/> to a <see cref="Maybe{Int32}"/>.
+        /// Converts this <see cref="Maybe{Int16}"/> to a <see cref="Maybe{Int32}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -332,7 +332,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int16}"/> to a <see cref="Maybe{UInt32}"/>.
+        /// Converts this <see cref="Maybe{Int16}"/> to a <see cref="Maybe{UInt32}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -343,7 +343,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int16}"/> to a <see cref="Maybe{Int64}"/>.
+        /// Converts this <see cref="Maybe{Int16}"/> to a <see cref="Maybe{Int64}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -354,7 +354,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int16}"/> to a <see cref="Maybe{UInt64}"/>.
+        /// Converts this <see cref="Maybe{Int16}"/> to a <see cref="Maybe{UInt64}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -365,7 +365,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int16}"/> to a <see cref="Maybe{Decimal}"/>.
+        /// Converts this <see cref="Maybe{Int16}"/> to a <see cref="Maybe{Decimal}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -376,7 +376,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int16}"/> to a <see cref="Maybe{Single}"/>.
+        /// Converts this <see cref="Maybe{Int16}"/> to a <see cref="Maybe{Single}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -387,7 +387,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int16}"/> to a <see cref="Maybe{Double}"/>.
+        /// Converts this <see cref="Maybe{Int16}"/> to a <see cref="Maybe{Double}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -402,7 +402,7 @@ namespace Here.Maybes.Extensions
         #region UShort to XXX
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt16}"/> to a <see cref="Maybe{Boolean}"/>.
+        /// Converts this <see cref="Maybe{UInt16}"/> to a <see cref="Maybe{Boolean}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -413,7 +413,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt16}"/> to a <see cref="Maybe{Byte}"/>.
+        /// Converts this <see cref="Maybe{UInt16}"/> to a <see cref="Maybe{Byte}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -424,7 +424,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt16}"/> to a <see cref="Maybe{SByte}"/>.
+        /// Converts this <see cref="Maybe{UInt16}"/> to a <see cref="Maybe{SByte}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -435,7 +435,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt16}"/> to a <see cref="Maybe{Int16}"/>.
+        /// Converts this <see cref="Maybe{UInt16}"/> to a <see cref="Maybe{Int16}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -446,7 +446,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt16}"/> to a <see cref="Maybe{Int32}"/>.
+        /// Converts this <see cref="Maybe{UInt16}"/> to a <see cref="Maybe{Int32}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -457,7 +457,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt16}"/> to a <see cref="Maybe{UInt32}"/>.
+        /// Converts this <see cref="Maybe{UInt16}"/> to a <see cref="Maybe{UInt32}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -468,7 +468,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt16}"/> to a <see cref="Maybe{Int64}"/>.
+        /// Converts this <see cref="Maybe{UInt16}"/> to a <see cref="Maybe{Int64}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -479,7 +479,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt16}"/> to a <see cref="Maybe{UInt64}"/>.
+        /// Converts this <see cref="Maybe{UInt16}"/> to a <see cref="Maybe{UInt64}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -490,7 +490,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt16}"/> to a <see cref="Maybe{Decimal}"/>.
+        /// Converts this <see cref="Maybe{UInt16}"/> to a <see cref="Maybe{Decimal}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -501,7 +501,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt16}"/> to a <see cref="Maybe{Single}"/>.
+        /// Converts this <see cref="Maybe{UInt16}"/> to a <see cref="Maybe{Single}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -512,7 +512,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt16}"/> to a <see cref="Maybe{Double}"/>.
+        /// Converts this <see cref="Maybe{UInt16}"/> to a <see cref="Maybe{Double}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -527,7 +527,7 @@ namespace Here.Maybes.Extensions
         #region Int to XXX
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int32}"/> to a <see cref="Maybe{Boolean}"/>.
+        /// Converts this <see cref="Maybe{Int32}"/> to a <see cref="Maybe{Boolean}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -538,7 +538,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int32}"/> to a <see cref="Maybe{Byte}"/>.
+        /// Converts this <see cref="Maybe{Int32}"/> to a <see cref="Maybe{Byte}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -549,7 +549,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int32}"/> to a <see cref="Maybe{SByte}"/>.
+        /// Converts this <see cref="Maybe{Int32}"/> to a <see cref="Maybe{SByte}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -560,7 +560,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int32}"/> to a <see cref="Maybe{Int16}"/>.
+        /// Converts this <see cref="Maybe{Int32}"/> to a <see cref="Maybe{Int16}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -571,7 +571,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int32}"/> to a <see cref="Maybe{UInt16}"/>.
+        /// Converts this <see cref="Maybe{Int32}"/> to a <see cref="Maybe{UInt16}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -582,7 +582,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int32}"/> to a <see cref="Maybe{UInt32}"/>.
+        /// Converts this <see cref="Maybe{Int32}"/> to a <see cref="Maybe{UInt32}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -593,7 +593,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int32}"/> to a <see cref="Maybe{Int64}"/>.
+        /// Converts this <see cref="Maybe{Int32}"/> to a <see cref="Maybe{Int64}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -604,7 +604,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int32}"/> to a <see cref="Maybe{UInt64}"/>.
+        /// Converts this <see cref="Maybe{Int32}"/> to a <see cref="Maybe{UInt64}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -615,7 +615,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int32}"/> to a <see cref="Maybe{Decimal}"/>.
+        /// Converts this <see cref="Maybe{Int32}"/> to a <see cref="Maybe{Decimal}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -626,7 +626,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int32}"/> to a <see cref="Maybe{Single}"/>.
+        /// Converts this <see cref="Maybe{Int32}"/> to a <see cref="Maybe{Single}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -637,7 +637,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int32}"/> to a <see cref="Maybe{Double}"/>.
+        /// Converts this <see cref="Maybe{Int32}"/> to a <see cref="Maybe{Double}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -652,7 +652,7 @@ namespace Here.Maybes.Extensions
         #region UInt to XXX
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt32}"/> to a <see cref="Maybe{Boolean}"/>.
+        /// Converts this <see cref="Maybe{UInt32}"/> to a <see cref="Maybe{Boolean}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -663,7 +663,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt32}"/> to a <see cref="Maybe{Byte}"/>.
+        /// Converts this <see cref="Maybe{UInt32}"/> to a <see cref="Maybe{Byte}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -674,7 +674,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt32}"/> to a <see cref="Maybe{SByte}"/>.
+        /// Converts this <see cref="Maybe{UInt32}"/> to a <see cref="Maybe{SByte}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -685,7 +685,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt32}"/> to a <see cref="Maybe{Int16}"/>.
+        /// Converts this <see cref="Maybe{UInt32}"/> to a <see cref="Maybe{Int16}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -696,7 +696,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt32}"/> to a <see cref="Maybe{UInt16}"/>.
+        /// Converts this <see cref="Maybe{UInt32}"/> to a <see cref="Maybe{UInt16}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -707,7 +707,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt32}"/> to a <see cref="Maybe{Int32}"/>.
+        /// Converts this <see cref="Maybe{UInt32}"/> to a <see cref="Maybe{Int32}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -718,7 +718,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt32}"/> to a <see cref="Maybe{Int64}"/>.
+        /// Converts this <see cref="Maybe{UInt32}"/> to a <see cref="Maybe{Int64}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -729,7 +729,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt32}"/> to a <see cref="Maybe{UInt64}"/>.
+        /// Converts this <see cref="Maybe{UInt32}"/> to a <see cref="Maybe{UInt64}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -740,7 +740,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt32}"/> to a <see cref="Maybe{Decimal}"/>.
+        /// Converts this <see cref="Maybe{UInt32}"/> to a <see cref="Maybe{Decimal}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -751,7 +751,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt32}"/> to a <see cref="Maybe{Single}"/>.
+        /// Converts this <see cref="Maybe{UInt32}"/> to a <see cref="Maybe{Single}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -762,7 +762,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt32}"/> to a <see cref="Maybe{Double}"/>.
+        /// Converts this <see cref="Maybe{UInt32}"/> to a <see cref="Maybe{Double}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -777,7 +777,7 @@ namespace Here.Maybes.Extensions
         #region Long to XXX
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int64}"/> to a <see cref="Maybe{Boolean}"/>.
+        /// Converts this <see cref="Maybe{Int64}"/> to a <see cref="Maybe{Boolean}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -788,7 +788,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int64}"/> to a <see cref="Maybe{Byte}"/>.
+        /// Converts this <see cref="Maybe{Int64}"/> to a <see cref="Maybe{Byte}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -799,7 +799,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int64}"/> to a <see cref="Maybe{SByte}"/>.
+        /// Converts this <see cref="Maybe{Int64}"/> to a <see cref="Maybe{SByte}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -810,7 +810,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int64}"/> to a <see cref="Maybe{Int16}"/>.
+        /// Converts this <see cref="Maybe{Int64}"/> to a <see cref="Maybe{Int16}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -821,7 +821,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int64}"/> to a <see cref="Maybe{UInt16}"/>.
+        /// Converts this <see cref="Maybe{Int64}"/> to a <see cref="Maybe{UInt16}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -832,7 +832,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int64}"/> to a <see cref="Maybe{Int32}"/>.
+        /// Converts this <see cref="Maybe{Int64}"/> to a <see cref="Maybe{Int32}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -843,7 +843,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int64}"/> to a <see cref="Maybe{UInt32}"/>.
+        /// Converts this <see cref="Maybe{Int64}"/> to a <see cref="Maybe{UInt32}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -854,7 +854,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int64}"/> to a <see cref="Maybe{UInt64}"/>.
+        /// Converts this <see cref="Maybe{Int64}"/> to a <see cref="Maybe{UInt64}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -865,7 +865,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int64}"/> to a <see cref="Maybe{Decimal}"/>.
+        /// Converts this <see cref="Maybe{Int64}"/> to a <see cref="Maybe{Decimal}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -876,7 +876,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int64}"/> to a <see cref="Maybe{Single}"/>.
+        /// Converts this <see cref="Maybe{Int64}"/> to a <see cref="Maybe{Single}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -887,7 +887,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Int64}"/> to a <see cref="Maybe{Double}"/>.
+        /// Converts this <see cref="Maybe{Int64}"/> to a <see cref="Maybe{Double}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Int64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -902,7 +902,7 @@ namespace Here.Maybes.Extensions
         #region ULong to XXX
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt64}"/> to a <see cref="Maybe{Boolean}"/>.
+        /// Converts this <see cref="Maybe{UInt64}"/> to a <see cref="Maybe{Boolean}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -913,7 +913,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt64}"/> to a <see cref="Maybe{Byte}"/>.
+        /// Converts this <see cref="Maybe{UInt64}"/> to a <see cref="Maybe{Byte}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -924,7 +924,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt64}"/> to a <see cref="Maybe{SByte}"/>.
+        /// Converts this <see cref="Maybe{UInt64}"/> to a <see cref="Maybe{SByte}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -935,7 +935,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt64}"/> to a <see cref="Maybe{Int16}"/>.
+        /// Converts this <see cref="Maybe{UInt64}"/> to a <see cref="Maybe{Int16}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -946,7 +946,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt64}"/> to a <see cref="Maybe{UInt16}"/>.
+        /// Converts this <see cref="Maybe{UInt64}"/> to a <see cref="Maybe{UInt16}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -957,7 +957,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt64}"/> to a <see cref="Maybe{Int32}"/>.
+        /// Converts this <see cref="Maybe{UInt64}"/> to a <see cref="Maybe{Int32}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -968,7 +968,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt64}"/> to a <see cref="Maybe{UInt32}"/>.
+        /// Converts this <see cref="Maybe{UInt64}"/> to a <see cref="Maybe{UInt32}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -979,7 +979,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt64}"/> to a <see cref="Maybe{Int64}"/>.
+        /// Converts this <see cref="Maybe{UInt64}"/> to a <see cref="Maybe{Int64}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -990,7 +990,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt64}"/> to a <see cref="Maybe{Decimal}"/>.
+        /// Converts this <see cref="Maybe{UInt64}"/> to a <see cref="Maybe{Decimal}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1001,7 +1001,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt64}"/> to a <see cref="Maybe{Single}"/>.
+        /// Converts this <see cref="Maybe{UInt64}"/> to a <see cref="Maybe{Single}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1012,7 +1012,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{UInt64}"/> to a <see cref="Maybe{Double}"/>.
+        /// Converts this <see cref="Maybe{UInt64}"/> to a <see cref="Maybe{Double}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{UInt64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1027,7 +1027,7 @@ namespace Here.Maybes.Extensions
         #region Decimal to XXX
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Decimal}"/> to a <see cref="Maybe{Boolean}"/>.
+        /// Converts this <see cref="Maybe{Decimal}"/> to a <see cref="Maybe{Boolean}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Decimal}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1038,7 +1038,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Decimal}"/> to a <see cref="Maybe{Byte}"/>.
+        /// Converts this <see cref="Maybe{Decimal}"/> to a <see cref="Maybe{Byte}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Decimal}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1049,7 +1049,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Decimal}"/> to a <see cref="Maybe{SByte}"/>.
+        /// Converts this <see cref="Maybe{Decimal}"/> to a <see cref="Maybe{SByte}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Decimal}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1060,7 +1060,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Decimal}"/> to a <see cref="Maybe{Int16}"/>.
+        /// Converts this <see cref="Maybe{Decimal}"/> to a <see cref="Maybe{Int16}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Decimal}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1071,7 +1071,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Decimal}"/> to a <see cref="Maybe{UInt16}"/>.
+        /// Converts this <see cref="Maybe{Decimal}"/> to a <see cref="Maybe{UInt16}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Decimal}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1082,7 +1082,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Decimal}"/> to a <see cref="Maybe{Int32}"/>.
+        /// Converts this <see cref="Maybe{Decimal}"/> to a <see cref="Maybe{Int32}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Decimal}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1093,7 +1093,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Decimal}"/> to a <see cref="Maybe{UInt32}"/>.
+        /// Converts this <see cref="Maybe{Decimal}"/> to a <see cref="Maybe{UInt32}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Decimal}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1104,7 +1104,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Decimal}"/> to a <see cref="Maybe{Int64}"/>.
+        /// Converts this <see cref="Maybe{Decimal}"/> to a <see cref="Maybe{Int64}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Decimal}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1115,7 +1115,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Decimal}"/> to a <see cref="Maybe{UInt64}"/>.
+        /// Converts this <see cref="Maybe{Decimal}"/> to a <see cref="Maybe{UInt64}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Decimal}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1126,7 +1126,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Decimal}"/> to a <see cref="Maybe{Single}"/>.
+        /// Converts this <see cref="Maybe{Decimal}"/> to a <see cref="Maybe{Single}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Decimal}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1137,7 +1137,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Decimal}"/> to a <see cref="Maybe{Double}"/>.
+        /// Converts this <see cref="Maybe{Decimal}"/> to a <see cref="Maybe{Double}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Decimal}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1152,7 +1152,7 @@ namespace Here.Maybes.Extensions
         #region Float to XXX
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Single}"/> to a <see cref="Maybe{Boolean}"/>.
+        /// Converts this <see cref="Maybe{Single}"/> to a <see cref="Maybe{Boolean}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Single}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1163,7 +1163,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Single}"/> to a <see cref="Maybe{Byte}"/>.
+        /// Converts this <see cref="Maybe{Single}"/> to a <see cref="Maybe{Byte}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Single}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1174,7 +1174,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Single}"/> to a <see cref="Maybe{SByte}"/>.
+        /// Converts this <see cref="Maybe{Single}"/> to a <see cref="Maybe{SByte}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Single}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1185,7 +1185,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Single}"/> to a <see cref="Maybe{Int16}"/>.
+        /// Converts this <see cref="Maybe{Single}"/> to a <see cref="Maybe{Int16}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Single}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1196,7 +1196,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Single}"/> to a <see cref="Maybe{UInt16}"/>.
+        /// Converts this <see cref="Maybe{Single}"/> to a <see cref="Maybe{UInt16}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Single}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1207,7 +1207,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Single}"/> to a <see cref="Maybe{Int32}"/>.
+        /// Converts this <see cref="Maybe{Single}"/> to a <see cref="Maybe{Int32}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Single}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1218,7 +1218,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Single}"/> to a <see cref="Maybe{UInt32}"/>.
+        /// Converts this <see cref="Maybe{Single}"/> to a <see cref="Maybe{UInt32}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Single}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1229,7 +1229,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Single}"/> to a <see cref="Maybe{Int64}"/>.
+        /// Converts this <see cref="Maybe{Single}"/> to a <see cref="Maybe{Int64}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Single}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1240,7 +1240,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Single}"/> to a <see cref="Maybe{UInt64}"/>.
+        /// Converts this <see cref="Maybe{Single}"/> to a <see cref="Maybe{UInt64}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Single}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1251,7 +1251,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Single}"/> to a <see cref="Maybe{Decimal}"/>.
+        /// Converts this <see cref="Maybe{Single}"/> to a <see cref="Maybe{Decimal}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Single}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1262,7 +1262,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Single}"/> to a <see cref="Maybe{Double}"/>.
+        /// Converts this <see cref="Maybe{Single}"/> to a <see cref="Maybe{Double}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Single}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1277,7 +1277,7 @@ namespace Here.Maybes.Extensions
         #region Double to XXX
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Double}"/> to a <see cref="Maybe{Boolean}"/>.
+        /// Converts this <see cref="Maybe{Double}"/> to a <see cref="Maybe{Boolean}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Double}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1288,7 +1288,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Double}"/> to a <see cref="Maybe{Byte}"/>.
+        /// Converts this <see cref="Maybe{Double}"/> to a <see cref="Maybe{Byte}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Double}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1299,7 +1299,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Double}"/> to a <see cref="Maybe{SByte}"/>.
+        /// Converts this <see cref="Maybe{Double}"/> to a <see cref="Maybe{SByte}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Double}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1310,7 +1310,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Double}"/> to a <see cref="Maybe{Int16}"/>.
+        /// Converts this <see cref="Maybe{Double}"/> to a <see cref="Maybe{Int16}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Double}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1321,7 +1321,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Double}"/> to a <see cref="Maybe{UInt16}"/>.
+        /// Converts this <see cref="Maybe{Double}"/> to a <see cref="Maybe{UInt16}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Double}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1332,7 +1332,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Double}"/> to a <see cref="Maybe{Int32}"/>.
+        /// Converts this <see cref="Maybe{Double}"/> to a <see cref="Maybe{Int32}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Double}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1343,7 +1343,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Double}"/> to a <see cref="Maybe{UInt32}"/>.
+        /// Converts this <see cref="Maybe{Double}"/> to a <see cref="Maybe{UInt32}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Double}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1354,7 +1354,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Double}"/> to a <see cref="Maybe{Int64}"/>.
+        /// Converts this <see cref="Maybe{Double}"/> to a <see cref="Maybe{Int64}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Double}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1365,7 +1365,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Double}"/> to a <see cref="Maybe{UInt64}"/>.
+        /// Converts this <see cref="Maybe{Double}"/> to a <see cref="Maybe{UInt64}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Double}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1376,7 +1376,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Double}"/> to a <see cref="Maybe{Decimal}"/>.
+        /// Converts this <see cref="Maybe{Double}"/> to a <see cref="Maybe{Decimal}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Double}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
@@ -1387,7 +1387,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{Double}"/> to a <see cref="Maybe{Single}"/>.
+        /// Converts this <see cref="Maybe{Double}"/> to a <see cref="Maybe{Single}"/>.
         /// </summary>
         /// <param name="maybe">The <see cref="Maybe{Double}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>

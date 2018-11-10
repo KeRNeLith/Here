@@ -9,10 +9,10 @@ namespace Here.Maybes.Extensions
     public static class MaybeOperationsExtensions
     {
         /// <summary>
-        /// Call the <paramref name="then"/> function if this <see cref="Maybe{T}"/> has a value.
+        /// Calls the <paramref name="then"/> function if this <see cref="Maybe{T}"/> has a value.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
-        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
         /// <param name="then">Treatment to do.</param>
         /// <returns>This <see cref="Maybe{T}"/>.</returns>
         [PublicAPI]
@@ -24,10 +24,10 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="else"/> function if this <see cref="Maybe{T}"/> has no value.
+        /// Calls the <paramref name="else"/> function if this <see cref="Maybe{T}"/> has no value.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
-        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
         /// <param name="else">Treatment to do.</param>
         /// <returns>This <see cref="Maybe{T}"/>.</returns>
         [PublicAPI]
@@ -39,10 +39,10 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="then"/> function if this <see cref="Maybe{T}"/> has a value, otherwise call <paramref name="else"/>.
+        /// Calls the <paramref name="then"/> function if this <see cref="Maybe{T}"/> has a value, otherwise calls <paramref name="else"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
-        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
         /// <param name="then">Treatment to do with this <see cref="Maybe{T}"/> value.</param>
         /// <param name="else">Treatment to do if this <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>This <see cref="Maybe{T}"/>.</returns>
@@ -58,14 +58,14 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="then"/> function if this <see cref="Maybe{T}"/> has a value.
+        /// Calls the <paramref name="then"/> function if this <see cref="Maybe{T}"/> has a value.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <typeparam name="TResult">Type of the returned value.</typeparam>
-        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
         /// <param name="then">Treatment to do with this <see cref="Maybe{T}"/> value.</param>
         /// <param name="else">Treatment to do if this <see cref="Maybe{T}"/> has no value.</param>
-        /// <returns>Result of the treatment.</returns>
+        /// <returns>Result of the executed callback.</returns>
         [PublicAPI, CanBeNull]
         public static TResult IfElse<T, TResult>(this Maybe<T> maybe, [NotNull, InstantHandle] Func<T, TResult> then, [NotNull, InstantHandle] Func<TResult> @else)
         {
@@ -75,14 +75,14 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="then"/> function if this <see cref="Maybe{T}"/> has a value, otherwise return the <paramref name="orValue"/>.
+        /// Calls the <paramref name="then"/> function if this <see cref="Maybe{T}"/> has a value, otherwise returns the <paramref name="orValue"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <typeparam name="TResult">Type of the returned value.</typeparam>
-        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
         /// <param name="then">Treatment to do with this <see cref="Maybe{T}"/> value.</param>
         /// <param name="orValue">Value to return if this <see cref="Maybe{T}"/> has no value.</param>
-        /// <returns>Result of the treatment.</returns>
+        /// <returns>Result of the executed treatment, otherwise the <paramref name="orValue"/>.</returns>
         [PublicAPI, CanBeNull]
         public static TResult IfOr<T, TResult>(this Maybe<T> maybe, [NotNull, InstantHandle] Func<T, TResult> then, [NotNull] TResult orValue)
         {
@@ -92,14 +92,14 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="else"/> function if this <see cref="Maybe{T}"/> has no value, otherwise return the <paramref name="orValue"/>.
+        /// Calls the <paramref name="else"/> function if this <see cref="Maybe{T}"/> has no value, otherwise returns the <paramref name="orValue"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <typeparam name="TResult">Type of the returned value.</typeparam>
-        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
         /// <param name="else">Treatment to compute result value.</param>
         /// <param name="orValue">Value to return if this <see cref="Maybe{T}"/> has a value.</param>
-        /// <returns>Result of the treatment.</returns>
+        /// <returns>Result of the executed treatment, otherwise the <paramref name="orValue"/>.</returns>
         [PublicAPI, CanBeNull]
         public static TResult ElseOr<T, TResult>(this Maybe<T> maybe, [NotNull, InstantHandle] Func<TResult> @else, [NotNull] TResult orValue)
         {
@@ -109,12 +109,12 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Returns this <see cref="Maybe{T}"/> value if it has value, otherwise returns <paramref name="orValue"/>.
+        /// Returns this <see cref="Maybe{T}"/> value if it has value, otherwise returns the <paramref name="orValue"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> to check.</param>
-        /// <param name="orValue">Value to use as fallback if this <see cref="Maybe{T}"/> has no value.</param>
-        /// <returns>This <see cref="Maybe{T}"/> value, or <paramref name="orValue"/>.</returns>
+        /// <param name="orValue">Value to use if this <see cref="Maybe{T}"/> has no value.</param>
+        /// <returns>This <see cref="Maybe{T}"/> value, otherwise the <paramref name="orValue"/>.</returns>
         [PublicAPI, Pure, CanBeNull]
         public static T Or<T>(this Maybe<T> maybe, [CanBeNull] T orValue)
         {
@@ -124,12 +124,12 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Returns this <see cref="Maybe{T}"/> value if it has one, otherwise returns a value from <paramref name="orFunc"/>.
+        /// Returns this <see cref="Maybe{T}"/> value if it has one, otherwise returns the result of <paramref name="orFunc"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> to check.</param>
-        /// <param name="orFunc">Function called if the <see cref="Maybe{T}"/> has no value.</param>
-        /// <returns>This <see cref="Maybe{T}"/> value, or the result of <paramref name="orFunc"/>.</returns>
+        /// <param name="orFunc">Function called if this <see cref="Maybe{T}"/> has no value.</param>
+        /// <returns>This <see cref="Maybe{T}"/> value, otherwise the result of <paramref name="orFunc"/>.</returns>
         [PublicAPI, Pure, CanBeNull]
         public static T Or<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Func<T> orFunc)
         {
@@ -143,7 +143,7 @@ namespace Here.Maybes.Extensions
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> to check.</param>
-        /// <returns>This <see cref="Maybe{T}"/> value, or the default to <typeparamref name="T"/>.</returns>
+        /// <returns>This <see cref="Maybe{T}"/> value, otherwise the default of <typeparamref name="T"/> type.</returns>
         [PublicAPI, Pure, CanBeNull]
         public static T OrDefault<T>(this Maybe<T> maybe)
         {
@@ -183,12 +183,12 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Returns this <see cref="Maybe{T}"/> if it has a value, otherwise returns a <see cref="Maybe{T}"/> from <paramref name="orFunc"/>.
+        /// Returns this <see cref="Maybe{T}"/> if it has a value, otherwise returns a <see cref="Maybe{T}"/> returned by <paramref name="orFunc"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> to check.</param>
-        /// <param name="orFunc">Function called if the <see cref="Maybe{T}"/> has no value.</param>
-        /// <returns>This <see cref="Maybe{T}"/>, or the result of <paramref name="orFunc"/>.</returns>
+        /// <param name="orFunc">Function called if this <see cref="Maybe{T}"/> has no value.</param>
+        /// <returns>This <see cref="Maybe{T}"/>, otherwise the result of <paramref name="orFunc"/>.</returns>
         [PublicAPI, Pure]
         public static Maybe<T> Or<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Func<Maybe<T>> orFunc)
         {
@@ -198,12 +198,12 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Unwrap this <see cref="Maybe{T}"/> value if it has one, otherwise returns the default value.
+        /// Unwraps this <see cref="Maybe{T}"/> value if it has one, otherwise returns the <paramref name="defaultValue"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> to unwrap value.</param>
         /// <param name="defaultValue">Default value to use.</param>
-        /// <returns>The unwrapped value from this <see cref="Maybe{T}"/> if it has value, otherwise the default value.</returns>
+        /// <returns>The unwrapped value, otherwise the default one.</returns>
         [PublicAPI, Pure, CanBeNull]
         public static T Unwrap<T>(this Maybe<T> maybe, [CanBeNull] T defaultValue = default(T))
         {
@@ -211,14 +211,14 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Unwrap this <see cref="Maybe{T}"/> value if it has one, otherwise returns a value from <paramref name="converter"/>.
+        /// Unwraps this <see cref="Maybe{T}"/> value if it has one and convert it with the <paramref name="converter"/>, otherwise use the <paramref name="defaultValue"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <typeparam name="TOut">Output value type.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> to unwrap value.</param>
         /// <param name="converter">Function called to convert this <see cref="Maybe{T}"/> value.</param>
         /// <param name="defaultValue">Default value to use.</param>
-        /// <returns>The unwrapped value from this <see cref="Maybe{T}"/> if it has value, otherwise the default value.</returns>
+        /// <returns>The unwrapped value, otherwise the default one.</returns>
         [PublicAPI, Pure, CanBeNull]
         public static TOut Unwrap<T, TOut>(this Maybe<T> maybe, [NotNull, InstantHandle] Func<T, TOut> converter, [CanBeNull] TOut defaultValue = default(TOut))
         {
@@ -228,13 +228,13 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{TFrom}"/> if it has a value to a <see cref="Maybe{TTo}"/>.
+        /// Converts this <see cref="Maybe{TFrom}"/> to a <see cref="Maybe{TTo}"/>.
         /// </summary>
         /// <typeparam name="TFrom">Type of the value embedded in this <see cref="Maybe{TFrom}"/>.</typeparam>
         /// <typeparam name="TTo">Type of the value embedded in the converted <see cref="Maybe{TTo}"/>.</typeparam>
         /// <param name="maybe"><see cref="Maybe{TFrom}"/> to convert.</param>
-        /// <param name="converter">Function called to convert this <see cref="Maybe{TFrom}"/>.</param>
-        /// <returns>The conversion of this <see cref="Maybe{TFrom}"/> to <see cref="Maybe{TTo}"/>.</returns>
+        /// <param name="converter">Function called to convert this <see cref="Maybe{TFrom}"/> value.</param>
+        /// <returns>Converted <see cref="Maybe{TTo}"/>.</returns>
         [PublicAPI, Pure]
         public static Maybe<TTo> Cast<TFrom, TTo>(this Maybe<TFrom> maybe, [NotNull, InstantHandle] Func<TFrom, TTo> converter)
         {
@@ -244,10 +244,10 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Checks if this <see cref="Maybe{T}"/> match the <paramref name="predicate"/>.
+        /// Checks if this <see cref="Maybe{T}"/> matches the <paramref name="predicate"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
-        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
         /// <param name="predicate">Condition to match.</param>
         /// <returns>True if this <see cref="Maybe{T}"/> matches the <paramref name="predicate"/>, otherwise false.</returns>
         [PublicAPI, Pure]
