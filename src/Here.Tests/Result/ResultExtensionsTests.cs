@@ -11,6 +11,63 @@ namespace Here.Tests.Results
     internal class ResultExtensionsTests : ResultTestsBase
     {
         [Test]
+        public void ValueResultUnwrapping()
+        {
+            // Results
+            var valueResultOk = Result.Ok(12);
+            var valueResultWarn = Result.Warn(42, "My warning");
+            var valueResultFail = Result.Fail<int>("My failure");
+
+            var customValueResultOk = Result.Ok<int, CustomErrorTest>(12);
+            var customValueResultWarn = Result.Warn<int, CustomErrorTest>(42, "My warning");
+            var customValueResultFail = Result.Fail<int, CustomErrorTest>("My failure", new CustomErrorTest());
+
+            // Unwraps
+            Assert.AreEqual(12, valueResultOk.Unwrap());
+            Assert.AreEqual(12, valueResultOk.Unwrap(123));
+            Assert.AreEqual(12, valueResultOk.Unwrap(() => 456));
+            Assert.AreEqual(12.5f, valueResultOk.Unwrap(val => val + 0.5f));
+            Assert.AreEqual(12.5f, valueResultOk.Unwrap(val => val + 0.5f, 789f));
+            Assert.AreEqual(12.5f, valueResultOk.Unwrap(val => val + 0.5f, () => 101112f));
+
+            Assert.AreEqual(42, valueResultWarn.Unwrap());
+            Assert.AreEqual(42, valueResultWarn.Unwrap(123));
+            Assert.AreEqual(42, valueResultWarn.Unwrap(() => 456));
+            Assert.AreEqual(42.5f, valueResultWarn.Unwrap(val => val + 0.5f));
+            Assert.AreEqual(42.5f, valueResultWarn.Unwrap(val => val + 0.5f, 789f));
+            Assert.AreEqual(42.5f, valueResultWarn.Unwrap(val => val + 0.5f, () => 101112f));
+
+            Assert.AreEqual(0, valueResultFail.Unwrap());
+            Assert.AreEqual(123, valueResultFail.Unwrap(123));
+            Assert.AreEqual(456, valueResultFail.Unwrap(() => 456));
+            Assert.AreEqual(0f, valueResultFail.Unwrap(val => val + 0.5f));
+            Assert.AreEqual(789f, valueResultFail.Unwrap(val => val + 0.5f, 789f));
+            Assert.AreEqual(101112f, valueResultFail.Unwrap(val => val + 0.5f, () => 101112f));
+
+
+            Assert.AreEqual(12, customValueResultOk.Unwrap());
+            Assert.AreEqual(12, customValueResultOk.Unwrap(123));
+            Assert.AreEqual(12, customValueResultOk.Unwrap(() => 456));
+            Assert.AreEqual(12.5f, customValueResultOk.Unwrap(val => val + 0.5f));
+            Assert.AreEqual(12.5f, customValueResultOk.Unwrap(val => val + 0.5f, 789f));
+            Assert.AreEqual(12.5f, customValueResultOk.Unwrap(val => val + 0.5f, () => 101112f));
+
+            Assert.AreEqual(42, customValueResultWarn.Unwrap());
+            Assert.AreEqual(42, customValueResultWarn.Unwrap(123));
+            Assert.AreEqual(42, customValueResultWarn.Unwrap(() => 456));
+            Assert.AreEqual(42.5f, customValueResultWarn.Unwrap(val => val + 0.5f));
+            Assert.AreEqual(42.5f, customValueResultWarn.Unwrap(val => val + 0.5f, 789f));
+            Assert.AreEqual(42.5f, customValueResultWarn.Unwrap(val => val + 0.5f, () => 101112f));
+
+            Assert.AreEqual(0, customValueResultFail.Unwrap());
+            Assert.AreEqual(123, customValueResultFail.Unwrap(123));
+            Assert.AreEqual(456, customValueResultFail.Unwrap(() => 456));
+            Assert.AreEqual(0f, customValueResultFail.Unwrap(val => val + 0.5f));
+            Assert.AreEqual(789f, customValueResultFail.Unwrap(val => val + 0.5f, 789f));
+            Assert.AreEqual(101112f, customValueResultFail.Unwrap(val => val + 0.5f, () => 101112f));
+        }
+
+        [Test]
         public void ResultEnsure()
         {
             string errorMessage = "My error message";
