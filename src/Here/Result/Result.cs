@@ -237,7 +237,7 @@ namespace Here.Results
         {
             Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result to a Result failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
-            return Result.Fail(Logic.Message + additionalMessage, exception);
+            return Fail(Logic.Message + additionalMessage, exception);
         }
 
         /// <summary>

@@ -318,9 +318,73 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Flattens this <see cref="Result{Result}"/> to a <see cref="Result{T, TError}"/>.
+        /// Flattens this <see cref="Result{Result, TError}"/> to a <see cref="Result"/>.
         /// </summary>
-        /// <param name="embeddedResult">A <see cref="Result{Result}"/>.</param>
+        /// <param name="embeddedResult">A <see cref="Result{Result, TError}"/>.</param>
+        /// <returns>Flattened <see cref="Result"/>.</returns>
+        [PublicAPI, Pure]
+        public static Result Flatten<TError>(this Result<Result, TError> embeddedResult)
+        {
+            Result<Result> tmpResult = embeddedResult;
+            return tmpResult.Flatten();
+        }
+
+        /// <summary>
+        /// Flattens this <see cref="Result{Result, TError}"/> to a <see cref="Result{T}"/>.
+        /// </summary>
+        /// <param name="embeddedResult">A <see cref="Result{Result, TError}"/>.</param>
+        /// <returns>Flattened <see cref="Result{T}"/>.</returns>
+        [PublicAPI, Pure]
+        public static Result<T> Flatten<T, TError>(this Result<Result<T>, TError> embeddedResult)
+        {
+            Result<Result<T>> tmpResult = embeddedResult;
+            return tmpResult.Flatten();
+        }
+
+        /// <summary>
+        /// Flattens this <see cref="Result{Result, TError}"/> to a <see cref="CustomResult{TError}"/>.
+        /// </summary>
+        /// <param name="embeddedResult">A <see cref="Result{Result, TError}"/>.</param>
+        /// <returns>Flattened <see cref="CustomResult{TError}"/>.</returns>
+        [PublicAPI, Pure]
+        public static CustomResult<TError> Flatten<TError>(this Result<CustomResult<TError>, TError> embeddedResult)
+        {
+            if (embeddedResult.IsFailure)
+            {
+                return embeddedResult.ToFailCustomResult();
+            }
+
+            if (embeddedResult.IsWarning)
+            {
+                Exception chosenException = embeddedResult.Value.Exception ?? embeddedResult.Exception; // Keep deepest exception
+
+                if (embeddedResult.Value.IsFailure)
+                {
+                    return embeddedResult.Value.ToFailCustomResult(
+                        $"{Environment.NewLine}Resulting in: {embeddedResult.Message}",
+                        chosenException);
+                }
+
+                if (embeddedResult.Value.IsWarning)
+                {
+                    return embeddedResult.Value.ToWarnCustomValueResult(
+                        $"{embeddedResult.Value.Message}{Environment.NewLine}Resulting in: {embeddedResult.Message}",
+                        chosenException);
+                }
+
+                return embeddedResult.Value.ToWarnCustomValueResult(
+                    // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
+                    embeddedResult.Message,
+                    chosenException);
+            }
+
+            return embeddedResult.Value;
+        }
+
+        /// <summary>
+        /// Flattens this <see cref="Result{Result, TError}"/> to a <see cref="Result{T, TError}"/>.
+        /// </summary>
+        /// <param name="embeddedResult">A <see cref="Result{Result, TError}"/>.</param>
         /// <returns>Flattened <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI, Pure]
         public static Result<T, TError> Flatten<T, TError>(this Result<Result<T, TError>, TError> embeddedResult)
