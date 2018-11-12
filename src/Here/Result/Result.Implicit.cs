@@ -127,5 +127,16 @@ namespace Here.Results
         {
             return result.ToMaybe();
         }
+
+        /// <summary>
+        /// Implicit conversion from <see cref="Result{Result}"/> to a <see cref="Result{T, TError}"/>.
+        /// </summary>
+        /// <param name="embeddedResult">A <see cref="Result{Result}"/>.</param>
+        /// <returns>A <see cref="Result{T, TError}"/>.</returns>
+        [PublicAPI, Pure]
+        public static implicit operator Result<T, TError>(Result<Result<T, TError>, TError> embeddedResult)
+        {
+            return embeddedResult.Flatten();
+        }
     }
 }

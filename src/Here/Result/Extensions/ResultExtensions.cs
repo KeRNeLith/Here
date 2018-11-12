@@ -132,9 +132,9 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Flattens this <see cref="Result{Result{T}}"/> to a <see cref="Result{T}"/>.
+        /// Flattens this <see cref="Result{Result}"/> to a <see cref="Result{T}"/>.
         /// </summary>
-        /// <param name="embeddedResult">A <see cref="Result{Result{T}}"/>.</param>
+        /// <param name="embeddedResult">A <see cref="Result{Result}"/>.</param>
         /// <returns>Flattened <see cref="Result{T}"/>.</returns>
         [PublicAPI, Pure]
         public static Result<T> Flatten<T>(this Result<Result<T>> embeddedResult)
@@ -143,11 +143,10 @@ namespace Here.Results.Extensions
             {
                 return embeddedResult.ToFailValueResult<T>();
             }
-            else if (embeddedResult.IsWarning)
+
+            if (embeddedResult.IsWarning)
             {
-                Exception chosenException = embeddedResult.Value.Exception is null 
-                    ? embeddedResult.Exception 
-                    : embeddedResult.Value.Exception;
+                Exception chosenException = embeddedResult.Value.Exception ?? embeddedResult.Exception; // Keep deepest exception
 
                 if (embeddedResult.Value.IsFailure)
                 {
@@ -155,7 +154,8 @@ namespace Here.Results.Extensions
                         $"{Environment.NewLine}Resulting in: {embeddedResult.Message}",
                         chosenException);
                 }
-                else if (embeddedResult.Value.IsWarning)
+
+                if (embeddedResult.Value.IsWarning)
                 {
                     return embeddedResult.Value.ToWarnValueResult(
                         $"{embeddedResult.Value.Message}{Environment.NewLine}Resulting in: {embeddedResult.Message}",
@@ -163,6 +163,7 @@ namespace Here.Results.Extensions
                 }
 
                 return embeddedResult.Value.ToWarnValueResult(
+                    // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
                     embeddedResult.Message,
                     chosenException);
             }
@@ -274,6 +275,46 @@ namespace Here.Results.Extensions
                 return Result.Fail<T, TError>(errorMessage, errorFactory());
 
             return result;
+        }
+
+        /// <summary>
+        /// Flattens this <see cref="Result{Result}"/> to a <see cref="Result{T, TError}"/>.
+        /// </summary>
+        /// <param name="embeddedResult">A <see cref="Result{Result}"/>.</param>
+        /// <returns>Flattened <see cref="Result{T, TError}"/>.</returns>
+        [PublicAPI, Pure]
+        public static Result<T, TError> Flatten<T, TError>(this Result<Result<T, TError>, TError> embeddedResult)
+        {
+            if (embeddedResult.IsFailure)
+            {
+                return embeddedResult.ToFailCustomValueResult<T>();
+            }
+
+            if (embeddedResult.IsWarning)
+            {
+                Exception chosenException = embeddedResult.Value.Exception ?? embeddedResult.Exception; // Keep deepest exception
+
+                if (embeddedResult.Value.IsFailure)
+                {
+                    return embeddedResult.Value.ToFailCustomValueResult<T>(
+                        $"{Environment.NewLine}Resulting in: {embeddedResult.Message}",
+                        chosenException);
+                }
+
+                if (embeddedResult.Value.IsWarning)
+                {
+                    return embeddedResult.Value.ToWarnCustomValueResult(
+                        $"{embeddedResult.Value.Message}{Environment.NewLine}Resulting in: {embeddedResult.Message}",
+                        chosenException);
+                }
+
+                return embeddedResult.Value.ToWarnCustomValueResult(
+                    // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
+                    embeddedResult.Message,
+                    chosenException);
+            }
+
+            return embeddedResult.Value;
         }
 
         #endregion

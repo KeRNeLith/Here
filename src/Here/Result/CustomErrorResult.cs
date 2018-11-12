@@ -520,6 +520,36 @@ namespace Here.Results
             return Result.Fail<TOut, TError>(Logic.Message, errorObject, Logic.Exception);
         }
 
+        /// <summary>
+        /// Converts this <see cref="Result{T, TError}"/> to a failure <see cref="Result{TOut, TError}"/>.
+        /// This <see cref="Result{T, TError}"/> should be a failure.
+        /// </summary>
+        /// <param name="additionalMessage">Message to add as suffix of this <see cref="Result{TOut, TError}"/> message.</param>
+        /// <param name="exception">Exception to set in the failure <see cref="Result{TOut, TError}"/>.</param>
+        /// <returns>A failed <see cref="Result{TOut, TError}"/>.</returns>
+        [Pure]
+        internal Result<TOut, TError> ToFailCustomValueResult<TOut>([NotNull] string additionalMessage, [CanBeNull] Exception exception = null)
+        {
+            Debug.Assert(Logic.IsFailure, "Cannot convert a success Result<TIn, TError> to a Result<TOut, TError> failure.");
+            // ReSharper disable once AssignNullToNotNullAttribute, Justification The error is always not null when here.
+            return Result.Fail<TOut, TError>(Logic.Message + additionalMessage, Logic.Error, exception);
+        }
+
+        /// <summary>
+        /// Converts this <see cref="Result{T, TError}"/> to a warning <see cref="Result{T, TError}"/>.
+        /// This <see cref="Result{T, TError}"/> should be a Ok or warning.
+        /// </summary>
+        /// <param name="message">Message to set in the warning <see cref="Result{T, TError}"/>.</param>
+        /// <param name="exception">Exception to set in the warning <see cref="Result{T, TError}"/>.</param>
+        /// <returns>A warning <see cref="Result{T, TError}"/>.</returns>
+        [Pure]
+        internal Result<T, TError> ToWarnCustomValueResult([NotNull] string message, [CanBeNull] Exception exception = null)
+        {
+            Debug.Assert(ResultLogic.IsConvertibleToWarning(Logic), "Cannot convert a warning Result<T, TError> to a Result<T, TError> warning.");
+            // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
+            return Result.Warn<T, TError>(Value, message, exception);
+        }
+
         #endregion
 
         #region Equality

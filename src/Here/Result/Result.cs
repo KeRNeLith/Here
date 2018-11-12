@@ -763,6 +763,7 @@ namespace Here.Results
         /// This <see cref="Result{T}"/> should be a warning or a failure.
         /// </summary>
         /// <param name="additionalMessage">Message to add as suffix of this <see cref="Result{T}"/> message.</param>
+        /// <param name="exception">Exception to set in the failure <see cref="Result{T}"/>.</param>
         /// <returns>A failed <see cref="Result{TOut}"/>.</returns>
         [Pure]
         internal Result<TOut> ToFailValueResult<TOut>([NotNull] string additionalMessage, [CanBeNull] Exception exception = null)
@@ -803,6 +804,7 @@ namespace Here.Results
         /// This <see cref="Result{T}"/> should be a Ok or warning.
         /// </summary>
         /// <param name="message">Message to set in the warning <see cref="Result{T}"/>.</param>
+        /// <param name="exception">Exception to set in the warning <see cref="Result{T}"/>.</param>
         /// <returns>A warning <see cref="Result{T}"/>.</returns>
         [Pure]
         internal Result<T> ToWarnValueResult([NotNull] string message, [CanBeNull] Exception exception = null)
