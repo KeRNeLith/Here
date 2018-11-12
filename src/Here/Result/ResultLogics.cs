@@ -253,6 +253,16 @@ namespace Here.Results
         }
 
         /// <summary>
+        /// Checks if the given <see cref="ResultLogic{TError}"/> can be converted to a warning result.
+        /// </summary>
+        /// <param name="logic"><see cref="ResultLogic{TError}"/> to check.</param>
+        /// <returns>True if the <see cref="ResultLogic{TError}"/> is convertible, otherwise false.</returns>
+        internal static bool IsConvertibleToWarning<TError>(ResultLogic<TError> logic)
+        {
+            return !logic.IsFailure;
+        }
+
+        /// <summary>
         /// Convert a <see cref="ResultLogic{TError}"/> into a <see cref="ResultLogic"/>.
         /// </summary>
         /// <typeparam name="TError">Type of the custom error object.</typeparam>

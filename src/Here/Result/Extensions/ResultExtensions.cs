@@ -131,6 +131,45 @@ namespace Here.Results.Extensions
             return result;
         }
 
+        /// <summary>
+        /// Flattens this <see cref="Result{Result{T}}"/> to a <see cref="Result{T}"/>.
+        /// </summary>
+        /// <param name="embeddedResult">A <see cref="Result{Result{T}}"/>.</param>
+        /// <returns>Flattened <see cref="Result{T}"/>.</returns>
+        [PublicAPI, Pure]
+        public static Result<T> Flatten<T>(this Result<Result<T>> embeddedResult)
+        {
+            if (embeddedResult.IsFailure)
+            {
+                return embeddedResult.ToFailValueResult<T>();
+            }
+            else if (embeddedResult.IsWarning)
+            {
+                Exception chosenException = embeddedResult.Value.Exception is null 
+                    ? embeddedResult.Exception 
+                    : embeddedResult.Value.Exception;
+
+                if (embeddedResult.Value.IsFailure)
+                {
+                    return embeddedResult.Value.ToFailValueResult<T>(
+                        $"{Environment.NewLine}Resulting in: {embeddedResult.Message}",
+                        chosenException);
+                }
+                else if (embeddedResult.Value.IsWarning)
+                {
+                    return embeddedResult.Value.ToWarnValueResult(
+                        $"{embeddedResult.Value.Message}{Environment.NewLine}Resulting in: {embeddedResult.Message}",
+                        chosenException);
+                }
+
+                return embeddedResult.Value.ToWarnValueResult(
+                    embeddedResult.Message,
+                    chosenException);
+            }
+
+            return embeddedResult.Value;
+        }
+
         #endregion
 
         #region CustomResult<TError>

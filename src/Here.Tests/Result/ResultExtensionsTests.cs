@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using Here.Results;
 using Here.Results.Extensions;
 
@@ -10,6 +11,8 @@ namespace Here.Tests.Results
     [TestFixture]
     internal class ResultExtensionsTests : ResultTestsBase
     {
+        #region Unwrapping
+
         [Test]
         public void ValueResultUnwrapping()
         {
@@ -66,6 +69,10 @@ namespace Here.Tests.Results
             Assert.AreEqual(789f, customValueResultFail.Unwrap(val => val + 0.5f, 789f));
             Assert.AreEqual(101112f, customValueResultFail.Unwrap(val => val + 0.5f, () => 101112f));
         }
+
+        #endregion
+
+        #region Ensure
 
         [Test]
         public void ResultEnsure()
@@ -576,5 +583,115 @@ namespace Here.Tests.Results
             Assert.AreEqual(2, counterErrorFactory);
             CheckResultFail(result, "My failure", customErrorObject);
         }
+
+        #endregion
+
+        #region Flatten
+
+        [Test]
+        public void ValueResultFlatten()
+        {
+            string warningMessage = "My warning message";
+            string warningDeepMessage = "My deep warning message";
+            string errorMessage = "My error message";
+            string errorDeepMessage = "My deep error message";
+
+            Exception exception = new Exception("Exception");
+            Exception deepException = new Exception("Deep exception");
+
+            // Ok embed XXX
+            Result<Result<int>> successEmbedSuccess = Result.Ok(Result.Ok(2));
+            CheckResultOk(successEmbedSuccess.Flatten(), 2);
+
+            Result<int> result = successEmbedSuccess;
+            CheckResultOk(successEmbedSuccess.Flatten(), 2);
+
+
+            Result<Result<int>> successEmbedWarn = Result.Ok(Result.Warn(12, warningDeepMessage));
+            CheckResultWarn(successEmbedWarn.Flatten(), 12, warningDeepMessage);
+            result = successEmbedWarn;
+            CheckResultWarn(successEmbedWarn.Flatten(), 12, warningDeepMessage);
+
+            successEmbedWarn = Result.Ok(Result.Warn(12, warningDeepMessage, deepException));
+            CheckResultWarn(successEmbedWarn.Flatten(), 12, warningDeepMessage, deepException);
+            result = successEmbedWarn;
+            CheckResultWarn(successEmbedWarn.Flatten(), 12, warningDeepMessage, deepException);
+
+
+            Result<Result<int>> successEmbedFail = Result.Ok(Result.Fail<int>(errorDeepMessage));
+            CheckResultFail(successEmbedFail.Flatten(), errorDeepMessage);
+            result = successEmbedFail;
+            CheckResultFail(successEmbedFail.Flatten(), errorDeepMessage);
+
+            successEmbedFail = Result.Ok(Result.Fail<int>(errorDeepMessage, deepException));
+            CheckResultFail(successEmbedFail.Flatten(), errorDeepMessage, deepException);
+            result = successEmbedFail;
+            CheckResultFail(successEmbedFail.Flatten(), errorDeepMessage, deepException);
+
+            // Warn embed XXX
+            Result<Result<int>> warnEmbedSuccess = Result.Warn(Result.Ok(22), warningMessage);
+            CheckResultWarn(warnEmbedSuccess.Flatten(), 22, warningMessage);
+            result = warnEmbedSuccess;
+            CheckResultWarn(warnEmbedSuccess.Flatten(), 22, warningMessage);
+
+            warnEmbedSuccess = Result.Warn(Result.Ok(22), warningMessage, exception);
+            CheckResultWarn(warnEmbedSuccess.Flatten(), 22, warningMessage, exception);
+            result = warnEmbedSuccess;
+            CheckResultWarn(warnEmbedSuccess.Flatten(), 22, warningMessage, exception);
+
+
+            Result<Result<int>> warnEmbedWarn = Result.Warn(Result.Warn(32, warningDeepMessage), warningMessage);
+            CheckResultWarn(warnEmbedWarn.Flatten(), 32, $"{warningDeepMessage}{Environment.NewLine}Resulting in: {warningMessage}");
+            result = warnEmbedWarn;
+            CheckResultWarn(warnEmbedWarn.Flatten(), 32, $"{warningDeepMessage}{Environment.NewLine}Resulting in: {warningMessage}");
+
+            warnEmbedWarn = Result.Warn(Result.Warn(32, warningDeepMessage), warningMessage, exception);
+            CheckResultWarn(warnEmbedWarn.Flatten(), 32, $"{warningDeepMessage}{Environment.NewLine}Resulting in: {warningMessage}", exception);
+            result = warnEmbedWarn;
+            CheckResultWarn(warnEmbedWarn.Flatten(), 32, $"{warningDeepMessage}{Environment.NewLine}Resulting in: {warningMessage}", exception);
+
+            warnEmbedWarn = Result.Warn(Result.Warn(32, warningDeepMessage, deepException), warningMessage);
+            CheckResultWarn(warnEmbedWarn.Flatten(), 32, $"{warningDeepMessage}{Environment.NewLine}Resulting in: {warningMessage}", deepException);
+            result = warnEmbedWarn;
+            CheckResultWarn(warnEmbedWarn.Flatten(), 32, $"{warningDeepMessage}{Environment.NewLine}Resulting in: {warningMessage}", deepException);
+
+            warnEmbedWarn = Result.Warn(Result.Warn(32, warningDeepMessage, deepException), warningMessage, exception);
+            CheckResultWarn(warnEmbedWarn.Flatten(), 32, $"{warningDeepMessage}{Environment.NewLine}Resulting in: {warningMessage}", deepException);    // Keeps only the deepest exception
+            result = warnEmbedWarn;
+            CheckResultWarn(warnEmbedWarn.Flatten(), 32, $"{warningDeepMessage}{Environment.NewLine}Resulting in: {warningMessage}", deepException);    // Keeps only the deepest exception
+
+
+            Result<Result<int>> warnEmbedFail = Result.Warn(Result.Fail<int>(errorDeepMessage), warningMessage);
+            CheckResultFail(warnEmbedFail.Flatten(), $"{errorDeepMessage}{Environment.NewLine}Resulting in: {warningMessage}");
+            result = warnEmbedFail;
+            CheckResultFail(warnEmbedFail.Flatten(), $"{errorDeepMessage}{Environment.NewLine}Resulting in: {warningMessage}");
+
+            warnEmbedFail = Result.Warn(Result.Fail<int>(errorDeepMessage), warningMessage, exception);
+            CheckResultFail(warnEmbedFail.Flatten(), $"{errorDeepMessage}{Environment.NewLine}Resulting in: {warningMessage}", exception);
+            result = warnEmbedFail;
+            CheckResultFail(warnEmbedFail.Flatten(), $"{errorDeepMessage}{Environment.NewLine}Resulting in: {warningMessage}", exception);
+
+            warnEmbedFail = Result.Warn(Result.Fail<int>(errorDeepMessage, deepException), warningMessage);
+            CheckResultFail(warnEmbedFail.Flatten(), $"{errorDeepMessage}{Environment.NewLine}Resulting in: {warningMessage}", deepException);
+            result = warnEmbedFail;
+            CheckResultFail(warnEmbedFail.Flatten(), $"{errorDeepMessage}{Environment.NewLine}Resulting in: {warningMessage}", deepException);
+
+            warnEmbedFail = Result.Warn(Result.Fail<int>(errorDeepMessage, deepException), warningMessage, exception);
+            CheckResultFail(warnEmbedFail.Flatten(), $"{errorDeepMessage}{Environment.NewLine}Resulting in: {warningMessage}", deepException);          // Keeps only the deepest exception
+            result = warnEmbedFail;
+            CheckResultFail(warnEmbedFail.Flatten(), $"{errorDeepMessage}{Environment.NewLine}Resulting in: {warningMessage}", deepException);          // Keeps only the deepest exception
+
+            // Fail
+            Result<Result<int>> fail = Result.Fail<Result<int>>(errorMessage);
+            CheckResultFail(fail.Flatten(), errorMessage);
+            result = fail;
+            CheckResultFail(fail.Flatten(), errorMessage);
+            fail = Result.Fail<Result<int>>(errorMessage, exception);
+            CheckResultFail(fail.Flatten(), errorMessage, exception);
+            result = fail;
+            CheckResultFail(fail.Flatten(), errorMessage, exception);
+        }
+
+        #endregion
     }
 }

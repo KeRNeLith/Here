@@ -23,6 +23,19 @@ namespace Here.Tests.Results
         }
 
         [Test]
+        public void ResultLogicIsConvertibleToWarning()
+        {
+            var logicOk = new ResultLogic();
+            Assert.IsTrue(ResultLogic.IsConvertibleToWarning(logicOk));
+
+            var logicWarn = new ResultLogic(true, "My warning", null);
+            Assert.IsTrue(ResultLogic.IsConvertibleToWarning(logicWarn));
+
+            var logicFail = new ResultLogic(false, "My failure", null);
+            Assert.IsFalse(ResultLogic.IsConvertibleToWarning(logicFail));
+        }
+
+        [Test]
         public void ResultLogicErrorIsConvertableToFailure()
         {
             var logicOk = new ResultLogic<CustomErrorTest>();
@@ -33,6 +46,19 @@ namespace Here.Tests.Results
 
             var logicFail = new ResultLogic<CustomErrorTest>(false, "My failure", new CustomErrorTest(), null);
             Assert.IsTrue(ResultLogic.IsConvertableToFailure(logicFail));
+        }
+
+        [Test]
+        public void ResultLogicErrorIsConvertibleToWarning()
+        {
+            var logicOk = new ResultLogic<CustomErrorTest>();
+            Assert.IsTrue(ResultLogic.IsConvertibleToWarning(logicOk));
+
+            var logicWarn = new ResultLogic<CustomErrorTest>(true, "My warning", null, null);
+            Assert.IsTrue(ResultLogic.IsConvertibleToWarning(logicWarn));
+
+            var logicFail = new ResultLogic<CustomErrorTest>(false, "My failure", new CustomErrorTest(), null);
+            Assert.IsFalse(ResultLogic.IsConvertibleToWarning(logicFail));
         }
 
         [Test]

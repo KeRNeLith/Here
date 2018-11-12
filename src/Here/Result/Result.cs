@@ -759,6 +759,20 @@ namespace Here.Results
         }
 
         /// <summary>
+        /// Converts this <see cref="Result{T}"/> to a failure <see cref="Result{TOut}"/>.
+        /// This <see cref="Result{T}"/> should be a warning or a failure.
+        /// </summary>
+        /// <param name="additionalMessage">Message to add as suffix of this <see cref="Result{T}"/> message.</param>
+        /// <returns>A failed <see cref="Result{TOut}"/>.</returns>
+        [Pure]
+        internal Result<TOut> ToFailValueResult<TOut>([NotNull] string additionalMessage, [CanBeNull] Exception exception = null)
+        {
+            Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success Result<T> to a Result<T> failure.");
+            // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
+            return Result.Fail<TOut>(Logic.Message + additionalMessage, exception);
+        }
+
+        /// <summary>
         /// Convert this <see cref="Result{T}"/> to a failure <see cref="CustomResult{TError}"/>.
         /// This <see cref="Result{T}"/> should be a warning or a failure.
         /// </summary>
@@ -782,6 +796,20 @@ namespace Here.Results
             Debug.Assert(ResultLogic.IsConvertableToFailure(Logic), "Cannot convert a success Result<T> to a Result<T, TError> failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.Fail<TOut, TError>(Logic.Message, errorObject, Logic.Exception);
+        }
+
+        /// <summary>
+        /// Converts this <see cref="Result{T}"/> to a warning <see cref="Result{T}"/>.
+        /// This <see cref="Result{T}"/> should be a Ok or warning.
+        /// </summary>
+        /// <param name="message">Message to set in the warning <see cref="Result{T}"/>.</param>
+        /// <returns>A warning <see cref="Result{T}"/>.</returns>
+        [Pure]
+        internal Result<T> ToWarnValueResult([NotNull] string message, [CanBeNull] Exception exception = null)
+        {
+            Debug.Assert(ResultLogic.IsConvertibleToWarning(Logic), "Cannot convert a warning Result<T> to a Result<T> warning.");
+            // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
+            return Result.Warn(Value, message, exception);
         }
 
         #endregion
