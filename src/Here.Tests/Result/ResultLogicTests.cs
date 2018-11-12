@@ -10,16 +10,16 @@ namespace Here.Tests.Results
     internal class ResultLogicTests : ResultTestsBase
     {
         [Test]
-        public void ResultLogicIsConvertableToFailure()
+        public void ResultLogicIsConvertibleToFailure()
         {
             var logicOk = new ResultLogic();
-            Assert.IsFalse(ResultLogic.IsConvertableToFailure(logicOk));
+            Assert.IsFalse(ResultLogic.IsConvertibleToFailure(logicOk));
 
             var logicWarn = new ResultLogic(true, "My warning", null);
-            Assert.IsTrue(ResultLogic.IsConvertableToFailure(logicWarn));
+            Assert.IsTrue(ResultLogic.IsConvertibleToFailure(logicWarn));
 
             var logicFail = new ResultLogic(false, "My failure", null);
-            Assert.IsTrue(ResultLogic.IsConvertableToFailure(logicFail));
+            Assert.IsTrue(ResultLogic.IsConvertibleToFailure(logicFail));
         }
 
         [Test]
@@ -36,16 +36,16 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void ResultLogicErrorIsConvertableToFailure()
+        public void ResultLogicErrorIsConvertibleToFailure()
         {
             var logicOk = new ResultLogic<CustomErrorTest>();
-            Assert.IsFalse(ResultLogic.IsConvertableToFailure(logicOk));
+            Assert.IsFalse(ResultLogic.IsConvertibleToFailure(logicOk));
 
             var logicWarn = new ResultLogic<CustomErrorTest>(true, "My warning", null, null);
-            Assert.IsTrue(ResultLogic.IsConvertableToFailure(logicWarn));
+            Assert.IsTrue(ResultLogic.IsConvertibleToFailure(logicWarn));
 
             var logicFail = new ResultLogic<CustomErrorTest>(false, "My failure", new CustomErrorTest(), null);
-            Assert.IsTrue(ResultLogic.IsConvertableToFailure(logicFail));
+            Assert.IsTrue(ResultLogic.IsConvertibleToFailure(logicFail));
         }
 
         [Test]
