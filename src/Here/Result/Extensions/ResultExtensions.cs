@@ -132,6 +132,46 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
+        /// Flattens this <see cref="Result{Result}"/> to a <see cref="Result"/>.
+        /// </summary>
+        /// <param name="embeddedResult">A <see cref="Result{Result}"/>.</param>
+        /// <returns>Flattened <see cref="Result"/>.</returns>
+        [PublicAPI, Pure]
+        public static Result Flatten(this Result<Result> embeddedResult)
+        {
+            if (embeddedResult.IsFailure)
+            {
+                return embeddedResult.ToFailResult();
+            }
+
+            if (embeddedResult.IsWarning)
+            {
+                Exception chosenException = embeddedResult.Value.Exception ?? embeddedResult.Exception; // Keep deepest exception
+
+                if (embeddedResult.Value.IsFailure)
+                {
+                    return embeddedResult.Value.ToFailResult(
+                        $"{Environment.NewLine}Resulting in: {embeddedResult.Message}",
+                        chosenException);
+                }
+
+                if (embeddedResult.Value.IsWarning)
+                {
+                    return embeddedResult.Value.ToWarnResult(
+                        $"{embeddedResult.Value.Message}{Environment.NewLine}Resulting in: {embeddedResult.Message}",
+                        chosenException);
+                }
+
+                return embeddedResult.Value.ToWarnResult(
+                    // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
+                    embeddedResult.Message,
+                    chosenException);
+            }
+
+            return embeddedResult.Value;
+        }
+
+        /// <summary>
         /// Flattens this <see cref="Result{Result}"/> to a <see cref="Result{T}"/>.
         /// </summary>
         /// <param name="embeddedResult">A <see cref="Result{Result}"/>.</param>

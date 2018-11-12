@@ -226,6 +226,21 @@ namespace Here.Results
         }
 
         /// <summary>
+        /// Converts this <see cref="Result"/> to a failure <see cref="Result"/>.
+        /// This <see cref="Result"/> should be a warning or a failure.
+        /// </summary>
+        /// <param name="additionalMessage">Message to add as suffix of this <see cref="Result"/> message.</param>
+        /// <param name="exception">Exception to set in the failure <see cref="Result"/>.</param>
+        /// <returns>A failed <see cref="Result"/>.</returns>
+        [Pure]
+        internal Result ToFailResult([NotNull] string additionalMessage, [CanBeNull] Exception exception = null)
+        {
+            Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result to a Result failure.");
+            // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
+            return Result.Fail(Logic.Message + additionalMessage, exception);
+        }
+
+        /// <summary>
         /// Convert this <see cref="Result"/> to a failure <see cref="Result{T}"/>.
         /// This <see cref="Result"/> should be a warning or a failure.
         /// </summary>
@@ -264,6 +279,21 @@ namespace Here.Results
             Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result to a Result<T, TError> failure.");
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Fail<T, TError>(Logic.Message, errorObject, Logic.Exception);
+        }
+
+        /// <summary>
+        /// Converts this <see cref="Result"/> to a warning <see cref="Result"/>.
+        /// This <see cref="Result"/> should be a Ok or warning.
+        /// </summary>
+        /// <param name="message">Message to set in the warning <see cref="Result"/>.</param>
+        /// <param name="exception">Exception to set in the warning <see cref="Result"/>.</param>
+        /// <returns>A warning <see cref="Result"/>.</returns>
+        [Pure]
+        internal Result ToWarnResult([NotNull] string message, [CanBeNull] Exception exception = null)
+        {
+            Debug.Assert(ResultLogic.IsConvertibleToWarning(Logic), "Cannot convert a warning Result<T> to a Result<T> warning.");
+            // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
+            return Warn(message, exception);
         }
 
         #endregion
@@ -744,7 +774,7 @@ namespace Here.Results
             // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Result.Fail(Logic.Message, Logic.Exception);
         }
-
+        
         /// <summary>
         /// Convert this <see cref="Result{T}"/> to a failure <see cref="Result{TOut}"/>.
         /// This <see cref="Result{T}"/> should be a warning or a failure.
