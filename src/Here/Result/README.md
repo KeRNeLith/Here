@@ -1,7 +1,7 @@
 # Result
 
 The `Result` is a structure that encapsulates treatments results. 
-It provides an enhanced return state for methods that improves the code semantic and allow to react based on this state.
+It provides an enhanced return state for methods that improves the code semantic and allows to react based on this state.
 This can be useful when trying to implement a clear and simple error handling.
 What you just have to do to use it is to put a using like this for basic implementation:
 
