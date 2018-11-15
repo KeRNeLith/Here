@@ -33,8 +33,13 @@ Supports Source Link
 
 ## Dependencies
 
-- JetBrains.Annotations
-- NUnit (for unit testing)
+**No package dependencies.**
+
+### Notes
+
+- It uses NUnit3 for unit testing (not published).
+
+- The library code is published annotated with JetBrains annotations that are embedded in the library. But they will **not conflict** with any of your referenced packages or project defined attributes as they are **internal** to Here.
 
 ---
 
