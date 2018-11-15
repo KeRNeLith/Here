@@ -153,6 +153,72 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
+        /// Calls the <paramref name="then"/> function if this <see cref="Maybe{T}"/> has a value, otherwise throws the given exception.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="then">Treatment to do with this <see cref="Maybe{T}"/> value.</param>
+        /// <param name="exception">The exception to throw if this <see cref="Maybe{T}"/> has no value.</param>
+        [PublicAPI, CanBeNull]
+        public static void IfOrThrows<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Action<T> then, [NotNull] Exception exception)
+        {
+            if (maybe.HasNoValue)
+                throw exception;
+
+            then(maybe.Value);
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="then"/> function if this <see cref="Maybe{T}"/> has a value, otherwise throws the given exception.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="then">Treatment to do with this <see cref="Maybe{T}"/> value.</param>
+        /// <param name="exceptionFunc">The factory exception method used to throw if this <see cref="Maybe{T}"/> has no value.</param>
+        [PublicAPI, CanBeNull]
+        public static void IfOrThrows<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Action<T> then, [NotNull, InstantHandle] Func<Exception> exceptionFunc)
+        {
+            if (maybe.HasNoValue)
+                throw exceptionFunc();
+
+            then(maybe.Value);
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="then"/> function if this <see cref="Maybe{T}"/> has a value, otherwise throws the given exception.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <typeparam name="TResult">Type of the returned value.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="then">Treatment to do with this <see cref="Maybe{T}"/> value.</param>
+        /// <param name="exception">The exception to throw if this <see cref="Maybe{T}"/> has no value.</param>
+        /// <returns>Result of the treatment.</returns>
+        [PublicAPI, CanBeNull]
+        public static TResult IfOrThrows<T, TResult>(this Maybe<T> maybe, [NotNull, InstantHandle] Func<T, TResult> then, [NotNull] Exception exception)
+        {
+            if (maybe.HasValue)
+                return then(maybe.Value);
+            throw exception;
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="then"/> function if this <see cref="Maybe{T}"/> has a value, otherwise throws the exception from factory method.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
+        /// <typeparam name="TResult">Type of the returned value.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="then">Treatment to do with this <see cref="Maybe{T}"/> value.</param>
+        /// <param name="exceptionFunc">The factory exception method used to throw if this <see cref="Maybe{T}"/> has no value.</param>
+        /// <returns>Result of the treatment.</returns>
+        [PublicAPI, CanBeNull]
+        public static TResult IfOrThrows<T, TResult>(this Maybe<T> maybe, [NotNull, InstantHandle] Func<T, TResult> then, [NotNull, InstantHandle] Func<Exception> exceptionFunc)
+        {
+            if (maybe.HasValue)
+                return then(maybe.Value);
+            throw exceptionFunc();
+        }
+
+        /// <summary>
         /// Returns this <see cref="Maybe{T}"/> value if it has one, otherwise throws the given exception.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>

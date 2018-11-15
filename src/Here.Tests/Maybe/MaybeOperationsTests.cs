@@ -221,6 +221,40 @@ namespace Here.Tests.Maybes
         }
 
         [Test]
+        public void MaybeIfOrThrows()
+        {
+            // Maybe with value
+            var maybeInt = Maybe<int>.Some(12);
+            Assert.DoesNotThrow(() =>
+            {
+                float result = maybeInt.IfOrThrows(value => 12.5f, new InvalidOperationException());
+                Assert.AreEqual(12.5f, result);
+            });
+            Assert.DoesNotThrow(() =>
+            {
+                float result = maybeInt.IfOrThrows(value => 12.6f, () => new InvalidOperationException());
+                Assert.AreEqual(12.6f, result);
+            });
+            Assert.DoesNotThrow(() => maybeInt.IfOrThrows(value => { }, new InvalidOperationException()));
+            Assert.DoesNotThrow(() => maybeInt.IfOrThrows(value => { }, () => new InvalidOperationException()));
+
+            // Empty maybe
+            Maybe<int> emptyMaybeInt = Maybe.None;
+            Assert.Throws<InvalidOperationException>(() =>
+            {
+                float result = emptyMaybeInt.IfOrThrows(value => 12.5f, new InvalidOperationException());
+                Assert.AreEqual(12.5f, result);
+            });
+            Assert.Throws<InvalidOperationException>(() =>
+            {
+                float result = emptyMaybeInt.IfOrThrows(value => 12.6f, () => new InvalidOperationException());
+                Assert.AreEqual(12.6f, result);
+            });
+            Assert.Throws<InvalidOperationException>(() => emptyMaybeInt.IfOrThrows(value => { }, new InvalidOperationException()));
+            Assert.Throws<InvalidOperationException>(() => emptyMaybeInt.IfOrThrows(value => { }, () => new InvalidOperationException()));
+        }
+
+        [Test]
         public void MaybeOrThrows()
         {
             // Maybe with value
