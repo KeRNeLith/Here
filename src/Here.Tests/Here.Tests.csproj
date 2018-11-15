@@ -2,22 +2,28 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net20;net30;net35;net40;net45;net451;net452;net46;net461;netcoreapp1.0;netcoreapp2.0</TargetFrameworks>
-	<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-	<Title>Here</Title>
-	<Version>1.0.0</Version>
-	<AssemblyVersion>1.0.0</AssemblyVersion>
-	<FileVersion>1.0.0</FileVersion>
-	<Copyright>Copyright © 2018</Copyright>
-	<Description>Tests for Here library.</Description>
-	<Authors>Alexandre Rabérin</Authors>
-	<Owners>Alexandre Rabérin</Owners>
-	<Company>Alexandre Rabérin</Company>
-	<IsPackable>false</IsPackable>
-	<PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
-	<PackageProjectUrl>https://github.com/KeRNeLith/Here</PackageProjectUrl>
-	<RepositoryType>GitHub</RepositoryType>
-	<RepositoryUrl>https://github.com/KeRNeLith/Here</RepositoryUrl>
+    
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    
+    <Title>Here</Title>
+    
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0</FileVersion>
+    
+    <Copyright>Copyright © 2018</Copyright>
+    <Description>Tests for Here library.</Description>
+    
+    <Authors>Alexandre Rabérin</Authors>
+    <Owners>Alexandre Rabérin</Owners>
+    <Company>Alexandre Rabérin</Company>
+    
+    <IsPackable>false</IsPackable>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/KeRNeLith/Here</PackageProjectUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <RepositoryUrl>https://github.com/KeRNeLith/Here</RepositoryUrl>
   </PropertyGroup>
 
   <!-- Common dependencies -->
@@ -32,7 +38,7 @@
   
   <!-- In later releases NUnit target net30 was removed, so it use the net20 build.
        The problem is that build contains an implementation of Func delegate which 
-	   is incompatible with System.Core. -->
+       is incompatible with System.Core. -->
   <ItemGroup Condition="'$(TargetFramework)' == 'net20' Or '$(TargetFramework)' == 'net30'">
     <PackageReference Include="NUnit" Version="3.2.1" />
   </ItemGroup>
