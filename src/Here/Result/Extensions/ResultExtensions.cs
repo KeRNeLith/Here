@@ -8,6 +8,21 @@ namespace Here.Results.Extensions
     /// </summary>
     public static partial class ResultExtensions
     {
+        #region IResult
+
+        /// <summary>
+        /// Indicates if this <see cref="IResult"/> is a success without warning.
+        /// </summary>
+        /// <param name="result"><see cref="IResult"/> to check.</param>
+        /// <returns>True if the result is a success without warning, otherwise false.</returns>
+        [PublicAPI, Pure]
+        public static bool IsOnlySuccess(this IResult result)
+        {
+            return result.IsSuccess && !result.IsWarning;
+        }
+
+        #endregion
+
         #region IResult<T>
 
         /// <summary>
