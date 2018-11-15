@@ -36,7 +36,19 @@ Supports Source Link</Description>
     <PackageId>Here</PackageId>
     <PackageReleaseNotes>➟ Release 0.7.0
 - General:
-    - Clean the library documentation.</PackageReleaseNotes>
+    - Clean the library documentation.
+    - Documentation of the library is now packaged.
+    - Add support of Source Link.
+    - Remove dependency to Jetbrains.Annotations, embed the code of some attributes internally.
+    - The library is ReSharper compliant (use internal annotations recognized by ReSharper).
+    - Remove target .NET Framework 4.5.2.
+
+- Maybe:
+    - Add extensions to unwrap the value embedded by Maybe.
+
+- Results:
+    - Add extensions to unwrap the value embedded by results structures.
+    - Add extensions to Flatten results structures (explicit, implicit).</PackageReleaseNotes>
     <PackageTags>Here Functional C# Maybe Monad Result</PackageTags>
 
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
