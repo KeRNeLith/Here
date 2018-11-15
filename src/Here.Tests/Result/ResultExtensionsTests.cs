@@ -11,6 +11,19 @@ namespace Here.Tests.Results
     [TestFixture]
     internal class ResultExtensionsTests : ResultTestsBase
     {
+        [Test]
+        public void IsOnlySuccessResult()
+        {
+            var ok = Result.Ok();
+            Assert.IsTrue(ok.IsOnlySuccess());
+
+            var warning = Result.Warn("My warning");
+            Assert.IsFalse(warning.IsOnlySuccess());
+
+            var failure = Result.Fail("My failure");
+            Assert.IsFalse(failure.IsOnlySuccess());
+        }
+        
         #region Unwrapping
 
         [Test]
