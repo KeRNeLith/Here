@@ -246,10 +246,20 @@ namespace Here.Results
         /// Check if the given <see cref="ResultLogic{TError}"/> can be converted to a failure result.
         /// </summary>
         /// <param name="logic"><see cref="ResultLogic{TError}"/> to check.</param>
-        /// <returns>True if the <see cref="ResultLogic{TError}"/> is convertable, otherwise false.</returns>
-        internal static bool IsConvertableToFailure<TError>(ResultLogic<TError> logic)
+        /// <returns>True if the <see cref="ResultLogic{TError}"/> is convertible, otherwise false.</returns>
+        internal static bool IsConvertibleToFailure<TError>(ResultLogic<TError> logic)
         {
             return !logic.IsSuccess || logic.IsWarning;
+        }
+
+        /// <summary>
+        /// Checks if the given <see cref="ResultLogic{TError}"/> can be converted to a warning result.
+        /// </summary>
+        /// <param name="logic"><see cref="ResultLogic{TError}"/> to check.</param>
+        /// <returns>True if the <see cref="ResultLogic{TError}"/> is convertible, otherwise false.</returns>
+        internal static bool IsConvertibleToWarning<TError>(ResultLogic<TError> logic)
+        {
+            return !logic.IsFailure;
         }
 
         /// <summary>

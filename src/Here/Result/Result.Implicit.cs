@@ -1,5 +1,6 @@
 ﻿using JetBrains.Annotations;
 using Here.Maybes;
+using Here.Results.Extensions;
 
 namespace Here.Results
 {
@@ -40,6 +41,17 @@ namespace Here.Results
         public static implicit operator Maybe<T>(Result<T> result)
         {
             return result.ToMaybe();
+        }
+
+        /// <summary>
+        /// Implicit conversion from <see cref="Result{Result}"/> to a <see cref="Result{T}"/>.
+        /// </summary>
+        /// <param name="embeddedResult">A <see cref="Result{Result}"/>.</param>
+        /// <returns>A <see cref="Result{T}"/>.</returns>
+        [PublicAPI, Pure]
+        public static implicit operator Result<T>(Result<Result<T>> embeddedResult)
+        {
+            return embeddedResult.Flatten();
         }
     }
 
@@ -114,6 +126,17 @@ namespace Here.Results
         public static implicit operator Maybe<T>(Result<T, TError> result)
         {
             return result.ToMaybe();
+        }
+
+        /// <summary>
+        /// Implicit conversion from <see cref="Result{Result}"/> to a <see cref="Result{T, TError}"/>.
+        /// </summary>
+        /// <param name="embeddedResult">A <see cref="Result{Result}"/>.</param>
+        /// <returns>A <see cref="Result{T, TError}"/>.</returns>
+        [PublicAPI, Pure]
+        public static implicit operator Result<T, TError>(Result<Result<T, TError>, TError> embeddedResult)
+        {
+            return embeddedResult.Flatten();
         }
     }
 }
