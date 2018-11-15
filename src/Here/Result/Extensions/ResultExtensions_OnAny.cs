@@ -11,7 +11,7 @@ namespace Here.Results.Extensions
         #region Result
 
         /// <summary>
-        /// Call the <paramref name="onAny"/> action all the time.
+        /// Calls the <paramref name="onAny"/> action all the time.
         /// </summary>
         /// <param name="result"><see cref="Result"/>.</param>
         /// <param name="onAny">Action to run.</param>
@@ -24,7 +24,7 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onAny"/> action all the time.
+        /// Calls the <paramref name="onAny"/> action all the time.
         /// </summary>
         /// <param name="result"><see cref="Result"/>.</param>
         /// <param name="onAny">Action to run.</param>
@@ -37,7 +37,7 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onAny"/> function all the time.
+        /// Calls the <paramref name="onAny"/> function all the time.
         /// </summary>
         /// <typeparam name="TOut">Type of the output value.</typeparam>
         /// <param name="result"><see cref="Result"/>.</param>
@@ -54,7 +54,7 @@ namespace Here.Results.Extensions
         #region Result<T>
 
         /// <summary>
-        /// Call the <paramref name="onAny"/> action all the time.
+        /// Calls the <paramref name="onAny"/> action all the time.
         /// </summary>
         /// <typeparam name="T">Type of the result value.</typeparam>
         /// <param name="result"><see cref="Result{T}"/>.</param>
@@ -68,7 +68,7 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onAny"/> action all the time.
+        /// Calls the <paramref name="onAny"/> action all the time.
         /// </summary>
         /// <typeparam name="T">Type of the result value.</typeparam>
         /// <param name="result"><see cref="Result{T}"/>.</param>
@@ -82,7 +82,7 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onAny"/> function all the time.
+        /// Calls the <paramref name="onAny"/> function all the time.
         /// </summary>
         /// <typeparam name="TIn">Type of the input result value.</typeparam>
         /// <typeparam name="TOut">Type of the output value.</typeparam>
@@ -100,7 +100,7 @@ namespace Here.Results.Extensions
         #region CustomResult<TError>
 
         /// <summary>
-        /// Call the <paramref name="onAny"/> action all the time.
+        /// Calls the <paramref name="onAny"/> action all the time.
         /// </summary>
         /// <typeparam name="TError">Type of the result error.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/>.</param>
@@ -114,7 +114,7 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onAny"/> action all the time.
+        /// Calls the <paramref name="onAny"/> action all the time.
         /// </summary>
         /// <typeparam name="TError">Type of the result error.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/>.</param>
@@ -128,7 +128,7 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onAny"/> function all the time.
+        /// Calls the <paramref name="onAny"/> function all the time.
         /// </summary>
         /// <typeparam name="TError">Type of the result error.</typeparam>
         /// <typeparam name="TOut">Type of the output value.</typeparam>
@@ -146,7 +146,7 @@ namespace Here.Results.Extensions
         #region Result<T, TError>
 
         /// <summary>
-        /// Call the <paramref name="onAny"/> action all the time.
+        /// Calls the <paramref name="onAny"/> action all the time.
         /// </summary>
         /// <typeparam name="T">Type of the result value.</typeparam>
         /// <typeparam name="TError">Type of the result error.</typeparam>
@@ -161,7 +161,7 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onAny"/> action all the time.
+        /// Calls the <paramref name="onAny"/> action all the time.
         /// </summary>
         /// <typeparam name="T">Type of the result value.</typeparam>
         /// <typeparam name="TError">Type of the result error.</typeparam>
@@ -176,7 +176,7 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onAny"/> function all the time.
+        /// Calls the <paramref name="onAny"/> function all the time.
         /// </summary>
         /// <typeparam name="TIn">Type of the input result value.</typeparam>
         /// <typeparam name="TOut">Type of the output value.</typeparam>

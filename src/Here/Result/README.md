@@ -1,7 +1,7 @@
 # Result
 
 The `Result` is a structure that encapsulates treatments results. 
-It provide an enhanced return state for methods that improve the code semantic and allow to react based on this state.
+It provides an enhanced return state for methods that improves the code semantic and allows to react based on this state.
 This can be useful when trying to implement a clear and simple error handling.
 What you just have to do to use it is to put a using like this for basic implementation:
 
@@ -27,13 +27,14 @@ Because it offers a better handling of methods returns. It can be a nice alterna
 
 Result offers 3 different possibilities which are `Ok`, `Warn` and `Fail`. 
 The `Ok` and `Warn` can be used as a result of an operation that succeed either without error or with a warning that is not critical.
-Whereas the `Fail` correspond to an operation failed. So when you asked to create a `Result` you have to determine which of these option match your case.
+Whereas the `Fail` correspond to an operation failed. So when you asked to create a `Result` you have to determine which of these options match your case.
+All results can store an exception that may have been caught.
 
-There are 4 types of `Result`:
-- A simple `Result`: string message for error and no value
-- `Result<T>`: string message for error and has a value
-- `CustomResult<TError>`: TError error object and no value
-- `Result<T, TError>`: TError error object and has a value
+There are 4 types of result:
+- A simple `Result`: string message for error and no value.
+- `Result<T>`: string message for error and can has a value.
+- `CustomResult<TError>`: TError error object and no value.
+- `Result<T, TError>`: TError error object and can has a value.
 
 With these possibilities you should be able to handle all cases.
 Note that every time you use a warning or an error you will be asked to set a mandatory message because it gives feedback on what went wrong during a treatment.
@@ -66,7 +67,7 @@ customResultValue = Result.Fail<int, Exception>("Your ERROR message.", new Inval
 ### Implicit conversion
 
 When you have a result with additional data it is always possible to implicitly convert it to a result with less data.
-For example if you have a `Result<T>` (with result value), you can convert it to a simple `Result`. 
+For example if you have a `Result<T>` (with a value), you can convert it to a simple `Result`. 
 Note that implicit conversions work regardless of the kind of result (`Ok`, `Warn` or `Fail`).
 
 See below for allowed implicit conversions:
@@ -99,10 +100,10 @@ Result<int> resultValue = customResultValue;
 
 ## Working with a Result
 
-A result at least implements the `IResult` interface which corresponds to 3 flags (`IsSuccess`, `IsWarning` or `IsFailure`) and a message.
+A result at least implements the `IResult` interface which corresponds to 3 flags (`IsSuccess`, `IsWarning` or `IsFailure`), a message, and an optional exception.
 
 If you create an `Ok` or a `Warn` result, both will end in a success result. The difference is that the `Ok` doesn't require a message while warning yes.
-So the only to have a failed result is obviously to use the `Fail` construction, and in this case, it also requires a message.
+So the only way to have a failed result is obviously to use the `Fail` construction, and in this case, it also requires a message.
 
 The necessity to have a message for warnings and errors is motivated by the need to force the developer of a treatment to explain error cases.
 
@@ -114,8 +115,8 @@ if (result.IsSuccess)
     Console.WriteLine(result.Value);
 ```
 
-Results structures also implement the IEquatable interface to perform comparison between result. Note that this one check if both result are equal.
-To complete this there are also SucessEquals helper to check that both results are equal and are success!
+Results structures also implement the IEquatable interface to perform comparisons between result. Note that this one checks if both results are equal.
+To complete this, there are also SuccessEquals helpers to check that both results are equal and also are success!
 
 ### Equality / Comparison
 
@@ -147,7 +148,7 @@ Note that == and != operators are also implemented.
 
 #### Value comparison
 
-Results structure that wrap a value supports == operator to directly check the wrapped value. 
+Results structures that wrap a value support == operator to directly check the wrapped value. 
 This check is state safe, it means it will only check the value if available, and then return the result of the comparison.
 
 See the following example:
@@ -198,13 +199,13 @@ public Result MyFunctionRaiseException()
 // The call will give
 var result = MyFunctionRaiseException();   // Result.Fail()
 
-// The scope catch exception and produce a Result that embed the thrown exception.
+// The scope catches the exception and produces a Result that embed the thrown exception.
 // So you can keep focus on your code rather than exception that it can trigger.
 ```
 
 ### OnSuccess / OnFailure / OnAny
 
-Results have extensions that allow branching code fluently. These extensions handle case the result is success, failure or run regardless of the result state.
+Results have extensions that allow branching code fluently. These extensions handle cases the result is success, failure or run regardless of the result state.
 These calls can be chained to easily produce complex treatments but keeping them readable and scalable.
 
 See following examples for a quick overview. Note that each result type offers similar extensions.
@@ -221,7 +222,7 @@ Database.GetUser("Jack")
 // Output "Hello Jack, how are you?" if the Database contains a user named Jack
 // Output "Hello Anonymous, how are you?" if the Database does not contain a user named Jack
 
-// Obviously you can chain call and have nested calls
+// Obviously you can chain calls and have nested calls
 Database.GetUser("Jack")
         .ToResult()
         .OnSuccess(name => Database.GetAppointmentsFor(name)
@@ -232,16 +233,16 @@ Database.GetUser("Jack")
 
 ### Ensure
 
-With `Result` (and all results structures) you can run treatments, get the result of it, and then ensure that it meets other requirements.
+With `Result` (and all results structures) you can run treatments, get the result value of it, and then ensure that it meets other requirements.
 
-Look at the following example (obviously the example is very dummy):
+Look at the following example (obviously this is a dummy example):
 
 ```csharp
 public void Result CheckCountOver(int N)
 {
     Result<int> myCount = TreatmentThatCountSomething();
 
-    // Let assume we only consider the final result success if the count is over N
+    // Lets assume we only consider the final result success if the count is over N
     // So the result will be converted to a failure if the predicate is not matched.
     return myCount.Ensure(count => count > N, $"Count must be over {N}.");
 }
@@ -251,7 +252,7 @@ public void Result CheckCountOver(int N)
 ### Cast
 
 Results support "downcast" implicitly. For example a `Result<int, ErrorType>` can be implicitly converted to a `Result<int>`. But the opposite is not possible.
-To do this you can use `Cast` methods that each result type provide. For example if you want to create a `Result<double>` from a simple `Result` you can do like following:
+To do this you can use `Cast` methods that each result types provide. For example if you want to create a `Result<double>` from a simple `Result` you can do like following:
 
 ```csharp
 Result res = Result.Ok();
@@ -261,7 +262,7 @@ Result<double> resDouble = res.Cast<double>(12.5f);
 Result<double> resDouble = res.Cast<double>(() => GetADouble() * 2.5);
 ```
 
-Result with more data inside provide less Cast methods because as said before the implicit conversion is used when you specify the target type.
+Results with more data inside provide less Cast methods because as said before the implicit conversion is used when you specify the target type.
 
 ### Bridge to Maybe
 

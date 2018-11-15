@@ -9,22 +9,22 @@ namespace Here.Results.Extensions
     public static partial class ResultExtensions
     {
         /// <summary>
-        /// Check if the given result should be considered as a failure or not.
+        /// Checks if the given result should be considered as a failure or not.
         /// </summary>
         /// <param name="result">Result to check.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>True if the result is considered as a failure.</returns>
+        /// <returns>True if the result is considered as a failure, otherwise false.</returns>
         private static bool IsConsideredFailure(IResult result, bool treatWarningAsError)
         {
             return result.IsFailure || (treatWarningAsError && result.IsWarning);
         }
 
         /// <summary>
-        /// Check if the given result should be considered as a success or not.
+        /// Checks if the given result should be considered as a success or not.
         /// </summary>
         /// <param name="result">Result to check.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>True if the result is considered as a success.</returns>
+        /// <returns>True if the result is considered as a success, otherwise false.</returns>
         private static bool IsConsideredSuccess(IResult result, bool treatWarningAsError)
         {
             return !IsConsideredFailure(result, treatWarningAsError);
@@ -33,12 +33,12 @@ namespace Here.Results.Extensions
         #region Result
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> action when the <paramref name="result"/> is <see cref="Result.IsSuccess"/>.
+        /// Calls the <paramref name="onSuccess"/> action when the <paramref name="result"/> is a success.
         /// </summary>
         /// <param name="result"><see cref="Result"/> to check.</param>
-        /// <param name="onSuccess">Action to run if the <see cref="Result"/> is <see cref="Result.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Action to run if the <see cref="Result"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="Result"/> corresponding to this one.</returns>
+        /// <returns>A <see cref="Result"/>.</returns>
         [PublicAPI]
         public static Result OnSuccess(this Result result, [NotNull, InstantHandle] Action onSuccess, bool treatWarningAsError = false)
         {
@@ -51,12 +51,12 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="Result.IsSuccess"/>.
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success.
         /// </summary>
         /// <param name="result"><see cref="Result"/> to check.</param>
-        /// <param name="onSuccess">Function to run if the <see cref="Result"/> is <see cref="Result.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="Result"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="Result"/> computed with <paramref name="onSuccess"/>, or a failure corresponding to this one.</returns>
+        /// <returns>A <see cref="Result"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
         public static Result OnSuccess(this Result result, [NotNull, InstantHandle] Func<Result> onSuccess, bool treatWarningAsError = false)
         {
@@ -69,13 +69,13 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="Result.IsSuccess"/>.
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success.
         /// </summary>
         /// <typeparam name="T">Result value type.</typeparam>
         /// <param name="result"><see cref="Result"/> to check.</param>
-        /// <param name="onSuccess">Function to run if the <see cref="Result"/> is <see cref="Result.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="Result"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="Result{T}"/> corresponding to this one.</returns>
+        /// <returns>A <see cref="Result{T}"/>.</returns>
         [PublicAPI]
         public static Result<T> OnSuccess<T>(this Result result, [NotNull, InstantHandle] Func<T> onSuccess, bool treatWarningAsError = false)
         {
@@ -86,11 +86,11 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="Result.IsSuccess"/>.
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success.
         /// </summary>
         /// <typeparam name="T">Result value type.</typeparam>
         /// <param name="result"><see cref="Result"/> to check.</param>
-        /// <param name="onSuccess">Function to run if the <see cref="Result"/> is <see cref="Result.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="Result"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
@@ -103,13 +103,13 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="Result.IsSuccess"/>.
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success.
         /// Use the <paramref name="errorObject"/> if needed to create a <see cref="CustomResult{TError}"/> in cases 
         /// the <see cref="Result"/> is a failure or a warning treated as error.
         /// </summary>
         /// <typeparam name="TError">Output result custom error type.</typeparam>
         /// <param name="result"><see cref="Result"/> to check.</param>
-        /// <param name="onSuccess">Function to run if the <see cref="Result"/> is <see cref="Result.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="Result"/> is a success.</param>
         /// <param name="errorObject">Custom error object to use if this <see cref="Result.IsFailure"/>.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="CustomResult{TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
@@ -126,13 +126,13 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="Result.IsSuccess"/>.
-        /// Call the <paramref name="errorFactory"/> function if needed to create a custom error object in cases 
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success.
+        /// Calls the <paramref name="errorFactory"/> function if needed to create a custom error object in cases 
         /// the <see cref="Result"/> is a failure or a warning treated as error.
         /// </summary>
         /// <typeparam name="TError">Output result custom error type.</typeparam>
         /// <param name="result"><see cref="Result"/> to check.</param>
-        /// <param name="onSuccess">Function to run if the <see cref="Result"/> is <see cref="Result.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="Result"/> is a success.</param>
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="CustomResult{TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
@@ -149,14 +149,14 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="Result.IsSuccess"/>.
-        /// Use the <paramref name="errorObject"/> if needed to create a Failure <see cref="Result{T, TError}"/> in cases 
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success.
+        /// Calls the <paramref name="errorObject"/> if needed to create a Failure <see cref="Result{T, TError}"/> in cases 
         /// the <see cref="Result"/> is a failure or a warning treated as error.
         /// </summary>
         /// <typeparam name="T">Input result value type.</typeparam>
         /// <typeparam name="TError">Output result custom error type.</typeparam>
         /// <param name="result"><see cref="Result"/> to check.</param>
-        /// <param name="onSuccess">Function to run if the <see cref="Result"/> is <see cref="Result.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="Result"/> is a success.</param>
         /// <param name="errorObject">Custom error object to use if this <see cref="Result.IsFailure"/>.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T, TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
@@ -173,14 +173,14 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="Result.IsSuccess"/>.
-        /// Call the <paramref name="errorFactory"/> function if needed to create a custom error object in cases 
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success.
+        /// Calls the <paramref name="errorFactory"/> function if needed to create a custom error object in cases 
         /// the <see cref="Result"/> is a failure or a warning treated as error.
         /// </summary>
         /// <typeparam name="T">Input result value type.</typeparam>
         /// <typeparam name="TError">Output result custom error type.</typeparam>
         /// <param name="result"><see cref="Result"/> to check.</param>
-        /// <param name="onSuccess">Function to run if the <see cref="Result"/> is <see cref="Result.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="Result"/> is a success.</param>
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T, TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
@@ -201,13 +201,13 @@ namespace Here.Results.Extensions
         #region Result<T>
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> action when the <paramref name="result"/> is <see cref="Result{T}.IsSuccess"/>.
+        /// Calls the <paramref name="onSuccess"/> action when the <paramref name="result"/> is a success.
         /// </summary>
         /// <typeparam name="T">Result value type.</typeparam>
         /// <param name="result"><see cref="Result{T}"/> to check.</param>
-        /// <param name="onSuccess">Action to run if the <see cref="Result{T}"/> is <see cref="Result{T}.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Action to run if the <see cref="Result{T}"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="Result{T}"/> corresponding to this one.</returns>
+        /// <returns>A <see cref="Result{T}"/>.</returns>
         [PublicAPI]
         public static Result<T> OnSuccess<T>(this Result<T> result,
             [NotNull, InstantHandle] Action<T> onSuccess,
@@ -222,14 +222,14 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="converter"/> function when the <paramref name="result"/> is <see cref="Result{TIn}.IsSuccess"/>.
+        /// Calls the <paramref name="converter"/> function when the <paramref name="result"/> is a success.
         /// </summary>
         /// <typeparam name="TIn">Input result value type.</typeparam>
         /// <typeparam name="TOut">Output result value type.</typeparam>
         /// <param name="result"><see cref="Result{TIn}"/> to check.</param>
-        /// <param name="converter">Function to run if the <see cref="Result{TIn}"/> is <see cref="Result{TIn}.IsSuccess"/>.</param>
+        /// <param name="converter">Function to run if the <see cref="Result{TIn}"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="Result{TOut}"/> corresponding to this one.</returns>
+        /// <returns>A <see cref="Result{TOut}"/>.</returns>
         [PublicAPI]
         public static Result<TOut> OnSuccess<TIn, TOut>(this Result<TIn> result,
             [NotNull, InstantHandle] Func<TIn, TOut> converter,
@@ -242,11 +242,11 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="Result{T}.IsSuccess"/>.
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success.
         /// </summary>
         /// <typeparam name="T">Result value type.</typeparam>
         /// <param name="result"><see cref="Result{T}"/> to check.</param>
-        /// <param name="onSuccess">Function to run if the <see cref="Result{T}"/> is <see cref="Result{T}.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="Result{T}"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
@@ -264,12 +264,12 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="Result{TIn}.IsSuccess"/>.
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success.
         /// </summary>
         /// <typeparam name="TIn">Input result value type.</typeparam>
         /// <typeparam name="TOut">Output result value type.</typeparam>
         /// <param name="result"><see cref="Result{TIn}"/> to check.</param>
-        /// <param name="onSuccess">Function to run if the <see cref="Result{TIn}"/> is <see cref="Result{TIn}.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="Result{TIn}"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{TOut}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
@@ -284,14 +284,14 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="Result{T}.IsSuccess"/>.
-        /// Use the <paramref name="errorObject"/> if needed to create a <see cref="CustomResult{TError}"/> in cases 
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success.
+        /// Calls the <paramref name="errorObject"/> if needed to create a <see cref="CustomResult{TError}"/> in cases 
         /// the <see cref="Result{T}"/> is a failure or a warning treated as error.
         /// </summary>
         /// <typeparam name="T">Result value type.</typeparam>
         /// <typeparam name="TError">Output result custom error type.</typeparam>
         /// <param name="result"><see cref="Result{T}"/> to check.</param>
-        /// <param name="onSuccess">Function to run if the <see cref="CustomResult{TError}"/> is <see cref="Result{T}.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="CustomResult{TError}"/> is a success.</param>
         /// <param name="errorObject">Custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="CustomResult{TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
@@ -308,14 +308,14 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="Result{T}.IsSuccess"/>.
-        /// Call the <paramref name="errorFactory"/> function if needed to create a custom error object in cases 
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success.
+        /// Calls the <paramref name="errorFactory"/> function if needed to create a custom error object in cases 
         /// the <see cref="Result{T}"/> is a failure or a warning treated as error.
         /// </summary>
         /// <typeparam name="T">Input result value type.</typeparam>
         /// <typeparam name="TError">Output result custom error type.</typeparam>
         /// <param name="result"><see cref="Result{T}"/> to check.</param>
-        /// <param name="onSuccess">Function to run if the <see cref="Result{T}"/> is <see cref="Result{T}.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="Result{T}"/> is a success.</param>
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="CustomResult{TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
@@ -332,15 +332,15 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="Result{TIn}.IsSuccess"/>.
-        /// Use the <paramref name="errorObject"/> if needed to create a <see cref="Result{TOut, TError}"/> in cases 
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success.
+        /// Calls the <paramref name="errorObject"/> if needed to create a <see cref="Result{TOut, TError}"/> in cases 
         /// the <see cref="Result{TIn}"/> is a failure or a warning treated as error.
         /// </summary>
         /// <typeparam name="TIn">Result input value type.</typeparam>
         /// <typeparam name="TOut">Result output value type.</typeparam>
         /// <typeparam name="TError">Output result custom error type.</typeparam>
         /// <param name="result"><see cref="Result{TIn}"/> to check.</param>
-        /// <param name="onSuccess">Function to run if the <see cref="Result{TIn}"/> is <see cref="Result{TIn}.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="Result{TIn}"/> is a success.</param>
         /// <param name="errorObject">Custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{TOut, TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
@@ -357,15 +357,15 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="Result{TIn}.IsSuccess"/>.
-        /// Call the <paramref name="errorFactory"/> function if needed to create a custom error object in cases 
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success.
+        /// Calls the <paramref name="errorFactory"/> function if needed to create a custom error object in cases 
         /// the <see cref="Result{TIn}"/> is a failure or a warning treated as error.
         /// </summary>
         /// <typeparam name="TIn">Result input value type.</typeparam>
         /// <typeparam name="TOut">Result output value type.</typeparam>
         /// <typeparam name="TError">Output result custom error type.</typeparam>
         /// <param name="result"><see cref="Result{TIn}"/> to check.</param>
-        /// <param name="onSuccess">Function to run if the <see cref="Result{TIn}"/> is <see cref="Result{TIn}.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="Result{TIn}"/> is a success.</param>
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{TOut, TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
@@ -386,14 +386,14 @@ namespace Here.Results.Extensions
         #region CustomResult<TError>
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> action when the <paramref name="result"/> is <see cref="CustomResult{TError}.IsSuccess"/>.
+        /// Calls the <paramref name="onSuccess"/> action when the <paramref name="result"/> is a success.
         /// </summary>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
-        /// <param name="onSuccess">Action to run if the <see cref="CustomResult{TError}"/> is <see cref="CustomResult{TError}.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Action to run if the <see cref="CustomResult{TError}"/> is a success.</param>
         /// <param name="errorObject">Custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="CustomResult{TError}"/> corresponding to this one.</returns>
+        /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI]
         public static CustomResult<TError> OnSuccess<TError>(this CustomResult<TError> result,
             [NotNull, InstantHandle] Action onSuccess,
@@ -409,14 +409,14 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> action when the <paramref name="result"/> is <see cref="CustomResult{TError}.IsSuccess"/>.
+        /// Calls the <paramref name="onSuccess"/> action when the <paramref name="result"/> is a success.
         /// </summary>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
-        /// <param name="onSuccess">Action to run if the <see cref="CustomResult{TError}"/> is <see cref="CustomResult{TError}.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Action to run if the <see cref="CustomResult{TError}"/> is a success.</param>
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="CustomResult{TError}"/> corresponding to this one.</returns>
+        /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI]
         public static CustomResult<TError> OnSuccess<TError>(this CustomResult<TError> result,
             [NotNull, InstantHandle] Action onSuccess,
@@ -432,15 +432,15 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> action when the <paramref name="result"/> is <see cref="CustomResult{TError}.IsSuccess"/>.
+        /// Calls the <paramref name="onSuccess"/> action when the <paramref name="result"/> is a success.
         /// </summary>
         /// <typeparam name="T">Result output value type.</typeparam>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
-        /// <param name="onSuccess">Action to run if the <see cref="CustomResult{TError}"/> is <see cref="CustomResult{TError}.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Action to run if the <see cref="CustomResult{TError}"/> is a success.</param>
         /// <param name="errorObject">Custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="Result{T, TError}"/> corresponding to this one.</returns>
+        /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI]
         public static Result<T, TError> OnSuccess<T, TError>(this CustomResult<TError> result,
             [NotNull, InstantHandle] Func<T> onSuccess,
@@ -459,15 +459,15 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> action when the <paramref name="result"/> is <see cref="CustomResult{TError}.IsSuccess"/>.
+        /// Calls the <paramref name="onSuccess"/> action when the <paramref name="result"/> is a success.
         /// </summary>
         /// <typeparam name="T">Result output value type.</typeparam>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
-        /// <param name="onSuccess">Action to run if the <see cref="CustomResult{TError}"/> is <see cref="CustomResult{TError}.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Action to run if the <see cref="CustomResult{TError}"/> is a success.</param>
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="Result{T, TError}"/> corresponding to this one.</returns>
+        /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI]
         public static Result<T, TError> OnSuccess<T, TError>(this CustomResult<TError> result,
             [NotNull, InstantHandle] Func<T> onSuccess,
@@ -486,11 +486,11 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="CustomResult{TError}.IsSuccess"/>.
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success.
         /// </summary>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
-        /// <param name="onSuccess">Function to run if the <see cref="CustomResult{TError}"/> is <see cref="CustomResult{TError}.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="CustomResult{TError}"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
@@ -508,12 +508,12 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="CustomResult{TError}.IsSuccess"/>.
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success.
         /// </summary>
         /// <typeparam name="T">Result output value type.</typeparam>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
-        /// <param name="onSuccess">Function to run if the <see cref="CustomResult{TError}"/> is <see cref="CustomResult{TError}.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="CustomResult{TError}"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
@@ -528,11 +528,11 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="CustomResult{TError}.IsSuccess"/>.
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success.
         /// </summary>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
-        /// <param name="onSuccess">Function to run if the <see cref="CustomResult{TError}"/> is <see cref="CustomResult{TError}.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="CustomResult{TError}"/> is a success.</param>
         /// <param name="errorObject">Custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="CustomResult{TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
@@ -552,11 +552,11 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="CustomResult{TError}.IsSuccess"/>.
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success.
         /// </summary>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
-        /// <param name="onSuccess">Function to run if the <see cref="CustomResult{TError}"/> is <see cref="CustomResult{TError}.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="CustomResult{TError}"/> is a success.</param>
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="CustomResult{TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
@@ -576,12 +576,12 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="CustomResult{TError}.IsSuccess"/>.
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success.
         /// </summary>
         /// <typeparam name="T">Result output value type.</typeparam>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
-        /// <param name="onSuccess">Function to run if the <see cref="CustomResult{TError}"/> is <see cref="CustomResult{TError}.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="CustomResult{TError}"/> is a success.</param>
         /// <param name="errorObject">Custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T, TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
@@ -603,12 +603,12 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="CustomResult{TError}.IsSuccess"/>.
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success.
         /// </summary>
         /// <typeparam name="T">Result output value type.</typeparam>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
-        /// <param name="onSuccess">Function to run if the <see cref="CustomResult{TError}"/> is <see cref="CustomResult{TError}.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="CustomResult{TError}"/> is a success.</param>
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T, TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
@@ -634,15 +634,15 @@ namespace Here.Results.Extensions
         #region Result<T, TError>
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> action when the <paramref name="result"/> is <see cref="Result{T, TError}.IsSuccess"/>.
+        /// Calls the <paramref name="onSuccess"/> action when the <paramref name="result"/> is a success.
         /// </summary>
         /// <typeparam name="T">Result value type.</typeparam>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/> to check.</param>
-        /// <param name="onSuccess">Action to run if the <see cref="Result{T, TError}"/> is <see cref="Result{T, TError}.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Action to run if the <see cref="Result{T, TError}"/> is a success.</param>
         /// <param name="errorObject">Custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="Result{T, TError}"/> corresponding to this one.</returns>
+        /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI]
         public static Result<T, TError> OnSuccess<T, TError>(this Result<T, TError> result,
             [NotNull, InstantHandle] Action<T> onSuccess,
@@ -658,15 +658,15 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> action when the <paramref name="result"/> is <see cref="Result{T, TError}.IsSuccess"/>.
+        /// Calls the <paramref name="onSuccess"/> action when the <paramref name="result"/> is a success.
         /// </summary>
         /// <typeparam name="T">Result value type.</typeparam>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/> to check.</param>
-        /// <param name="onSuccess">Action to run if the <see cref="Result{T, TError}"/> is <see cref="Result{T, TError}.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Action to run if the <see cref="Result{T, TError}"/> is a success.</param>
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="Result{T, TError}"/> corresponding to this one.</returns>
+        /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI]
         public static Result<T, TError> OnSuccess<T, TError>(this Result<T, TError> result,
             [NotNull, InstantHandle] Action<T> onSuccess,
@@ -682,16 +682,16 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="converter"/> function when the <paramref name="result"/> is <see cref="Result{TIn, TError}.IsSuccess"/>.
+        /// Calls the <paramref name="converter"/> function when the <paramref name="result"/> is a success.
         /// </summary>
         /// <typeparam name="TIn">Result input value type.</typeparam>
         /// <typeparam name="TOut">Result output value type.</typeparam>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="Result{TIn, TError}"/> to check.</param>
-        /// <param name="converter">Function to run if the <see cref="Result{TIn, TError}"/> is <see cref="Result{TIn, TError}.IsSuccess"/>.</param>
+        /// <param name="converter">Function to run if the <see cref="Result{TIn, TError}"/> is a success.</param>
         /// <param name="errorObject">Custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="Result{TOut, TError}"/> corresponding to this one.</returns>
+        /// <returns>A <see cref="Result{TOut, TError}"/>.</returns>
         [PublicAPI]
         public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(this Result<TIn, TError> result,
             [NotNull, InstantHandle] Func<TIn, TOut> converter, 
@@ -709,16 +709,16 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="converter"/> function when the <paramref name="result"/> is <see cref="Result{TIn, TError}.IsSuccess"/>.
+        /// Calls the <paramref name="converter"/> function when the <paramref name="result"/> is a success.
         /// </summary>
         /// <typeparam name="TIn">Result input value type.</typeparam>
         /// <typeparam name="TOut">Result output value type.</typeparam>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="Result{TIn, TError}"/> to check.</param>
-        /// <param name="converter">Function to run if the <see cref="Result{TIn, TError}"/> is <see cref="Result{TIn, TError}.IsSuccess"/>.</param>
+        /// <param name="converter">Function to run if the <see cref="Result{TIn, TError}"/> is a success.</param>
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="Result{TOut, TError}"/> corresponding to this one.</returns>
+        /// <returns>A <see cref="Result{TOut, TError}"/>.</returns>
         [PublicAPI]
         public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(this Result<TIn, TError> result,
             [NotNull, InstantHandle] Func<TIn, TOut> converter,
@@ -736,12 +736,12 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="Result{T, TError}.IsSuccess"/>.
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success.
         /// </summary>
         /// <typeparam name="T">Result input value type.</typeparam>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/> to check.</param>
-        /// <param name="onSuccess">Function to run if the <see cref="Result{T, TError}"/> is <see cref="Result{T, TError}.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="Result{T, TError}"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
@@ -759,13 +759,13 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="Result{TIn, TError}.IsSuccess"/>.
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success.
         /// </summary>
         /// <typeparam name="TIn">Result input value type.</typeparam>
         /// <typeparam name="TOut">Result output value type.</typeparam>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="Result{TIn, TError}"/> to check.</param>
-        /// <param name="onSuccess">Function to run if the <see cref="Result{TIn, TError}"/> is <see cref="Result{TIn, TError}.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="Result{TIn, TError}"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{TOut}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
@@ -780,12 +780,12 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="Result{T, TError}.IsSuccess"/>.
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success.
         /// </summary>
         /// <typeparam name="T">Result input value type.</typeparam>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/> to check.</param>
-        /// <param name="onSuccess">Function to run if the <see cref="Result{T, TError}"/> is <see cref="Result{T, TError}.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="Result{T, TError}"/> is a success.</param>
         /// <param name="errorObject">Custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="CustomResult{TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
@@ -805,12 +805,12 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="Result{T, TError}.IsSuccess"/>.
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success.
         /// </summary>
         /// <typeparam name="T">Result input value type.</typeparam>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/> to check.</param>
-        /// <param name="onSuccess">Function to run if the <see cref="Result{T, TError}"/> is <see cref="Result{T, TError}.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="Result{T, TError}"/> is a success.</param>
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="CustomResult{TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
@@ -830,13 +830,13 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="Result{TIn, TError}.IsSuccess"/>.
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success.
         /// </summary>
         /// <typeparam name="TIn">Result input value type.</typeparam>
         /// <typeparam name="TOut">Result output value type.</typeparam>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="Result{TIn, TError}"/> to check.</param>
-        /// <param name="onSuccess">Function to run if the <see cref="Result{TIn, TError}"/> is <see cref="Result{TIn, TError}.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="Result{TIn, TError}"/> is a success.</param>
         /// <param name="errorObject">Custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{TOut, TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
@@ -858,13 +858,13 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onSuccess"/> function when the <paramref name="result"/> is <see cref="Result{TIn, TError}.IsSuccess"/>.
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success.
         /// </summary>
         /// <typeparam name="TIn">Result input value type.</typeparam>
         /// <typeparam name="TOut">Result output value type.</typeparam>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="Result{TIn, TError}"/> to check.</param>
-        /// <param name="onSuccess">Function to run if the <see cref="Result{TIn, TError}"/> is <see cref="Result{TIn, TError}.IsSuccess"/>.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="Result{TIn, TError}"/> is a success.</param>
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{TOut, TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>

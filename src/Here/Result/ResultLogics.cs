@@ -5,22 +5,22 @@ using JetBrains.Annotations;
 namespace Here.Results
 {
     /// <summary>
-    /// The Result interaction logic.
+    /// The result interaction logic.
     /// </summary>
     internal class ResultLogic<TError> : IEquatable<ResultLogic<TError>>, IComparable<ResultLogic<TError>>
     {
         /// <summary>
-        /// Indicate if it is a success.
+        /// Indicates if it is a success or not.
         /// </summary>
         public bool IsSuccess => !IsFailure;
 
         /// <summary>
-        /// Indicate if it is a warning.
+        /// Indicates if it has a warning or not.
         /// </summary>
         public bool IsWarning { get; }
 
         /// <summary>
-        /// Indicate if it is a failure.
+        /// Indicates if it is a failure or not.
         /// </summary>
         public bool IsFailure { get; }
 
@@ -54,7 +54,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// <see cref="ResultLogic{TError}"/> "ok" constructor.
+        /// <see cref="ResultLogic{TError}"/> "Ok" constructor.
         /// </summary>
         public ResultLogic()
         {
@@ -71,7 +71,7 @@ namespace Here.Results
         /// <param name="isWarning">Warning flag.</param>
         /// <param name="message">Message.</param>
         /// <param name="error">Error object.</param>
-        /// <param name="exception">Result embeded exception.</param>
+        /// <param name="exception">Result embedded exception.</param>
         public ResultLogic(bool isWarning, [NotNull] string message, [CanBeNull] TError error, [CanBeNull] Exception exception)
         {
             // Warning & Failure must have a message
@@ -89,6 +89,7 @@ namespace Here.Results
 
         #region Equality / IEquatable
 
+        /// <inheritdoc />
         public bool Equals(ResultLogic<TError> other)
         {
             if (other is null)
@@ -100,6 +101,7 @@ namespace Here.Results
                 && Equals(Exception, other.Exception);
         }
 
+        /// <inheritdoc />
         public override bool Equals(object obj)
         {
             if (obj is null)
@@ -107,6 +109,7 @@ namespace Here.Results
             return obj is ResultLogic<TError> logic && Equals(logic);
         }
 
+        /// <inheritdoc />
         public override int GetHashCode()
         {
             int hashCode = EqualityComparer<TError>.Default.GetHashCode(_error);
@@ -117,6 +120,12 @@ namespace Here.Results
             return hashCode;
         }
 
+        /// <summary>
+        /// Indicates whether both <see cref="ResultLogic{TError}"/> are equal.
+        /// </summary>
+        /// <param name="result1">First <see cref="ResultLogic{TError}"/> to compare.</param>
+        /// <param name="result2">Second <see cref="ResultLogic{TError}"/> to compare.</param>
+        /// <returns>True if both <see cref="ResultLogic{TError}"/> are equal, otherwise false.</returns>
         public static bool operator ==(ResultLogic<TError> result1, ResultLogic<TError> result2)
         {
             if (ReferenceEquals(result1, result2))
@@ -124,6 +133,12 @@ namespace Here.Results
             return Equals(result1, result2);
         }
 
+        /// <summary>
+        /// Indicates whether both <see cref="ResultLogic{TError}"/> are not equal.
+        /// </summary>
+        /// <param name="result1">First <see cref="ResultLogic{TError}"/> to compare.</param>
+        /// <param name="result2">Second <see cref="ResultLogic{TError}"/> to compare.</param>
+        /// <returns>True if both <see cref="ResultLogic{TError}"/> are not equal, otherwise false.</returns>
         public static bool operator !=(ResultLogic<TError> result1, ResultLogic<TError> result2)
         {
             return !(result1 == result2);
@@ -133,12 +148,11 @@ namespace Here.Results
 
         #region IComparable<T>
 
+        /// <inheritdoc />
         /// <summary>
-        /// Compare this <see cref="ResultLogic{TError}"/> with the given one.
-        /// Order keeps <see cref="IsFailure"/> first, then <see cref="IsWarning"/> and finally <see cref="IsSuccess"/>.
+        /// Compares this <see cref="ResultLogic{TError}"/> with the given one.
+        /// Order keeps failures first, then warning and finally successes.
         /// </summary>
-        /// <param name="other"><see cref="ResultLogic{TError}"/> to compare.</param>
-        /// <returns>The comparison result.</returns>
         public int CompareTo(ResultLogic<TError> other)
         {
             if (IsSuccess && !other.IsSuccess)
@@ -161,7 +175,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Determines if this <see cref="ResultLogic{TError}"/> is less than the other one.
+        /// Determines if this <see cref="ResultLogic{TError}"/> is "less" than the other one.
         /// </summary>
         /// <param name="left">The first <see cref="ResultLogic{TError}"/> to compare.</param>
         /// <param name="right">The second <see cref="ResultLogic{TError}"/> to compare.</param>
@@ -172,7 +186,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Determines if this <see cref="ResultLogic{TError}"/> is less than or equal to the other one.
+        /// Determines if this <see cref="ResultLogic{TError}"/> is "less" than or equal to the other one.
         /// </summary>
         /// <param name="left">The first <see cref="ResultLogic{TError}"/> to compare.</param>
         /// <param name="right">The second <see cref="ResultLogic{TError}"/> to compare.</param>
@@ -183,7 +197,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Determines if this <see cref="ResultLogic{TError}"/> is greater than the other one.
+        /// Determines if this <see cref="ResultLogic{TError}"/> is "greater" than the other one.
         /// </summary>
         /// <param name="left">The first <see cref="ResultLogic{TError}"/> to compare.</param>
         /// <param name="right">The second <see cref="ResultLogic{TError}"/> to compare.</param>
@@ -194,7 +208,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Determines if this <see cref="ResultLogic{TError}"/> is greater than or equal to the other one.
+        /// Determines if this <see cref="ResultLogic{TError}"/> is "greater" than or equal to the other one.
         /// </summary>
         /// <param name="left">The first <see cref="ResultLogic{TError}"/> to compare.</param>
         /// <param name="right">The second <see cref="ResultLogic{TError}"/> to compare.</param>
@@ -223,7 +237,7 @@ namespace Here.Results
     internal sealed class ResultLogic : ResultLogic<string>, IEquatable<ResultLogic>, IComparable<ResultLogic>
     {
         /// <summary>
-        /// <see cref="ResultLogic"/> "ok" constructor.
+        /// <see cref="ResultLogic"/> "Ok" constructor.
         /// </summary>
         public ResultLogic()
         {
@@ -234,7 +248,7 @@ namespace Here.Results
         /// </summary>
         /// <param name="isWarning">Warning flag.</param>
         /// <param name="message">Result message.</param>
-        /// <param name="exception">Result embeded exception.</param>
+        /// <param name="exception">Result embedded exception.</param>
         public ResultLogic(bool isWarning, [NotNull] string message, [CanBeNull] Exception exception)
             : base(isWarning, message, isWarning ? null : message, exception)
         {
@@ -243,10 +257,11 @@ namespace Here.Results
         #region Converter
 
         /// <summary>
-        /// Check if the given <see cref="ResultLogic{TError}"/> can be converted to a failure result.
+        /// Checks if the given <see cref="ResultLogic{TError}"/> can be converted to a failure result.
         /// </summary>
         /// <param name="logic"><see cref="ResultLogic{TError}"/> to check.</param>
         /// <returns>True if the <see cref="ResultLogic{TError}"/> is convertible, otherwise false.</returns>
+        [Pure]
         internal static bool IsConvertibleToFailure<TError>(ResultLogic<TError> logic)
         {
             return !logic.IsSuccess || logic.IsWarning;
@@ -263,11 +278,11 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Convert a <see cref="ResultLogic{TError}"/> into a <see cref="ResultLogic"/>.
+        /// Converts a <see cref="ResultLogic{TError}"/> into a <see cref="ResultLogic"/>.
         /// </summary>
         /// <typeparam name="TError">Type of the custom error object.</typeparam>
         /// <param name="logic"><see cref="ResultLogic{TError}"/> to convert.</param>
-        /// <returns>A corresponding <see cref="ResultLogic"/>.</returns>
+        /// <returns>A <see cref="ResultLogic"/>.</returns>
         [Pure]
         internal static ResultLogic ToResultLogic<TError>(ResultLogic<TError> logic)
         {
@@ -282,6 +297,7 @@ namespace Here.Results
 
         #region Equality / IEquatable
 
+        /// <inheritdoc />
         public bool Equals(ResultLogic other)
         {
             if (other is null)
@@ -292,6 +308,7 @@ namespace Here.Results
                 && Equals(Exception, other.Exception);
         }
 
+        /// <inheritdoc />
         public override bool Equals(object obj)
         {
             if (obj is null)
@@ -299,6 +316,7 @@ namespace Here.Results
             return obj is ResultLogic logic && Equals(logic);
         }
 
+        /// <inheritdoc />
         public override int GetHashCode()
         {
             int hashCode = IsWarning.GetHashCode();
@@ -308,6 +326,12 @@ namespace Here.Results
             return hashCode;
         }
 
+        /// <summary>
+        /// Indicates whether both <see cref="ResultLogic"/> are equal.
+        /// </summary>
+        /// <param name="result1">First <see cref="ResultLogic"/> to compare.</param>
+        /// <param name="result2">Second <see cref="ResultLogic"/> to compare.</param>
+        /// <returns>True if both <see cref="ResultLogic"/> are equal, otherwise false.</returns>
         public static bool operator ==(ResultLogic result1, ResultLogic result2)
         {
             if (ReferenceEquals(result1, result2))
@@ -315,6 +339,12 @@ namespace Here.Results
             return Equals(result1, result2);
         }
 
+        /// <summary>
+        /// Indicates whether both <see cref="ResultLogic"/> are not equal.
+        /// </summary>
+        /// <param name="result1">First <see cref="ResultLogic"/> to compare.</param>
+        /// <param name="result2">Second <see cref="ResultLogic"/> to compare.</param>
+        /// <returns>True if both <see cref="ResultLogic"/> are not equal, otherwise false.</returns>
         public static bool operator !=(ResultLogic result1, ResultLogic result2)
         {
             return !(result1 == result2);
@@ -324,19 +354,18 @@ namespace Here.Results
 
         #region IComparable<T>
 
+        /// <inheritdoc />
         /// <summary>
         /// Compare this <see cref="ResultLogic"/> with the given one.
-        /// Order keeps <see cref="ResultLogic.IsFailure"/> first, then <see cref="ResultLogic.IsWarning"/> and finally <see cref="ResultLogic.IsSuccess"/>.
+        /// Order keeps failures first, then warnings and finally successes.
         /// </summary>
-        /// <param name="other"><see cref="ResultLogic"/> to compare.</param>
-        /// <returns>The comparison result.</returns>
         public int CompareTo(ResultLogic other)
         {
             return base.CompareTo(other);
         }
 
         /// <summary>
-        /// Determines if this <see cref="ResultLogic"/> is less than the other one.
+        /// Determines if this <see cref="ResultLogic"/> is "less" than the other one.
         /// </summary>
         /// <param name="left">The first <see cref="ResultLogic"/> to compare.</param>
         /// <param name="right">The second <see cref="ResultLogic"/> to compare.</param>
@@ -347,7 +376,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Determines if this <see cref="ResultLogic"/> is less than or equal to the other one.
+        /// Determines if this <see cref="ResultLogic"/> is "less" than or equal to the other one.
         /// </summary>
         /// <param name="left">The first <see cref="ResultLogic"/> to compare.</param>
         /// <param name="right">The second <see cref="ResultLogic"/> to compare.</param>
@@ -358,7 +387,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Determines if this <see cref="ResultLogic"/> is greater than the other one.
+        /// Determines if this <see cref="ResultLogic"/> is "greater" than the other one.
         /// </summary>
         /// <param name="left">The first <see cref="ResultLogic"/> to compare.</param>
         /// <param name="right">The second <see cref="ResultLogic"/> to compare.</param>
@@ -369,7 +398,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Determines if this <see cref="ResultLogic"/> is greater than or equal to the other one.
+        /// Determines if this <see cref="ResultLogic"/> is "greater" than or equal to the other one.
         /// </summary>
         /// <param name="left">The first <see cref="ResultLogic"/> to compare.</param>
         /// <param name="right">The second <see cref="ResultLogic"/> to compare.</param>

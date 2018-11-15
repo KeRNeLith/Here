@@ -19,23 +19,18 @@ namespace Here.Results
         private static readonly Result ResultOk = new Result(new ResultLogic());
 
         /// <inheritdoc />
-        [PublicAPI]
         public bool IsSuccess => Logic.IsSuccess;
 
         /// <inheritdoc />
-        [PublicAPI]
         public bool IsWarning=> Logic.IsWarning;
 
         /// <inheritdoc />
-        [PublicAPI]
         public bool IsFailure => Logic.IsFailure;
 
         /// <inheritdoc />
-        [PublicAPI]
         public string Message => Logic.Message;
 
         /// <inheritdoc />
-        [PublicAPI]
         public Exception Exception => Logic.Exception;
 
         [NotNull]
@@ -56,7 +51,7 @@ namespace Here.Results
         /// </summary>
         /// <param name="isWarning">Result warning flag.</param>
         /// <param name="message">Result message.</param>
-        /// <param name="exception">Result embeded exception.</param>
+        /// <param name="exception">Result embedded exception.</param>
         private Result(bool isWarning, [NotNull] string message, [CanBeNull] Exception exception)
         {
             Logic = new ResultLogic(isWarning, message, exception);
@@ -65,11 +60,11 @@ namespace Here.Results
         #region Cast
 
         /// <summary>
-        /// Convert this <see cref="Result"/> to a <see cref="Result{T}"/>
+        /// Converts this <see cref="Result"/> to a <see cref="Result{T}"/>
         /// </summary>
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <param name="value">Value.</param>
-        /// <returns>A corresponding <see cref="Result{T}"/>.</returns>
+        /// <returns>A <see cref="Result{T}"/>.</returns>
         [PublicAPI, Pure]
         public Result<T> Cast<T>([CanBeNull] T value)
         {
@@ -79,11 +74,11 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Convert this <see cref="Result"/> to a <see cref="Result{T}"/>
+        /// Converts this <see cref="Result"/> to a <see cref="Result{T}"/>
         /// </summary>
         /// <typeparam name="T">Type of the output result value.</typeparam>
-        /// <param name="valueFactory">Factory method that create a value.</param>
-        /// <returns>A corresponding <see cref="Result{T}"/>.</returns>
+        /// <param name="valueFactory">Factory method that creates a value.</param>
+        /// <returns>A <see cref="Result{T}"/>.</returns>
         [PublicAPI, Pure]
         public Result<T> Cast<T>([NotNull, InstantHandle] Func<T> valueFactory)
         {
@@ -93,11 +88,11 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Convert this <see cref="Result"/> to a <see cref="CustomResult{TError}"/>
+        /// Converts this <see cref="Result"/> to a <see cref="CustomResult{TError}"/>
         /// </summary>
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
         /// <param name="errorObject">Custom error object.</param>
-        /// <returns>A corresponding <see cref="CustomResult{TError}"/>.</returns>
+        /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI, Pure]
         public CustomResult<TError> CustomCast<TError>([NotNull] TError errorObject)
         {
@@ -110,11 +105,11 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Convert this <see cref="Result"/> to a <see cref="CustomResult{TError}"/>
+        /// Converts this <see cref="Result"/> to a <see cref="CustomResult{TError}"/>
         /// </summary>
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
-        /// <param name="errorFactory">Factory method that create a custom error object.</param>
-        /// <returns>A corresponding <see cref="CustomResult{TError}"/>.</returns>
+        /// <param name="errorFactory">Factory method that creates a custom error object.</param>
+        /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI, Pure]
         public CustomResult<TError> CustomCast<TError>([NotNull, InstantHandle] Func<TError> errorFactory)
         {
@@ -127,13 +122,13 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Convert this <see cref="Result"/> to a <see cref="Result{T, TError}"/>
+        /// Converts this <see cref="Result"/> to a <see cref="Result{T, TError}"/>
         /// </summary>
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
         /// <param name="value">Value.</param>
         /// <param name="errorObject">Custom error object.</param>
-        /// <returns>A corresponding <see cref="Result{T, TError}"/>.</returns>
+        /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI, Pure]
         public Result<T, TError> Cast<T, TError>([CanBeNull] T value, [NotNull] TError errorObject)
         {
@@ -146,13 +141,13 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Convert this <see cref="Result"/> to a <see cref="Result{T, TError}"/>
+        /// Converts this <see cref="Result"/> to a <see cref="Result{T, TError}"/>
         /// </summary>
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
         /// <param name="value">Value.</param>
-        /// <param name="errorFactory">Factory method that create a custom error object.</param>
-        /// <returns>A corresponding <see cref="Result{T, TError}"/>.</returns>
+        /// <param name="errorFactory">Factory method that creates a custom error object.</param>
+        /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI, Pure]
         public Result<T, TError> Cast<T, TError>([CanBeNull] T value, [NotNull, InstantHandle] Func<TError> errorFactory)
         {
@@ -165,13 +160,13 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Convert this <see cref="Result"/> to a <see cref="Result{T, TError}"/>
+        /// Converts this <see cref="Result"/> to a <see cref="Result{T, TError}"/>
         /// </summary>
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
-        /// <param name="valueFactory">Factory method that create a value.</param>
+        /// <param name="valueFactory">Factory method that creates a value.</param>
         /// <param name="errorObject">Custom error object.</param>
-        /// <returns>A corresponding <see cref="Result{T, TError}"/>.</returns>
+        /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI, Pure]
         public Result<T, TError> Cast<T, TError>([NotNull, InstantHandle] Func<T> valueFactory, [NotNull] TError errorObject)
         {
@@ -184,13 +179,13 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Convert this <see cref="Result"/> to a <see cref="Result{T, TError}"/>
+        /// Converts this <see cref="Result"/> to a <see cref="Result{T, TError}"/>
         /// </summary>
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
-        /// <param name="valueFactory">Factory method that create a value.</param>
-        /// <param name="errorFactory">Factory method that create a custom error object.</param>
-        /// <returns>A corresponding <see cref="Result{T, TError}"/>.</returns>
+        /// <param name="valueFactory">Factory method that creates a value.</param>
+        /// <param name="errorFactory">Factory method that creates a custom error object.</param>
+        /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI, Pure]
         public Result<T, TError> Cast<T, TError>([NotNull, InstantHandle] Func<T> valueFactory, [NotNull, InstantHandle] Func<TError> errorFactory)
         {
@@ -213,7 +208,7 @@ namespace Here.Results
         #region Internal helpers
 
         /// <summary>
-        /// Convert this <see cref="Result"/> to a failure <see cref="Result"/>.
+        /// Converts this <see cref="Result"/> to a failure <see cref="Result"/>.
         /// This <see cref="Result"/> should be a warning or a failure.
         /// </summary>
         /// <returns>A failed <see cref="Result"/>.</returns>
@@ -241,7 +236,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Convert this <see cref="Result"/> to a failure <see cref="Result{T}"/>.
+        /// Converts this <see cref="Result"/> to a failure <see cref="Result{T}"/>.
         /// This <see cref="Result"/> should be a warning or a failure.
         /// </summary>
         /// <returns>A failed <see cref="Result{T}"/>.</returns>
@@ -254,7 +249,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Convert this <see cref="Result"/> to a failure <see cref="CustomResult{TError}"/>.
+        /// Converts this <see cref="Result"/> to a failure <see cref="CustomResult{TError}"/>.
         /// This <see cref="Result"/> should be a warning or a failure.
         /// </summary>
         /// <param name="errorObject">Error object to use.</param>
@@ -268,7 +263,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Convert this <see cref="Result"/> to a failure <see cref="Result{T, TError}"/>.
+        /// Converts this <see cref="Result"/> to a failure <see cref="Result{T, TError}"/>.
         /// This <see cref="Result"/> should be a warning or a failure.
         /// </summary>
         /// <param name="errorObject">Error object to use.</param>
@@ -301,10 +296,10 @@ namespace Here.Results
         #region Equality
 
         /// <summary>
-        /// Checks that this <see cref="Result"/> is equals tp the given one and that they are successful.
+        /// Checks that this <see cref="Result"/> is equals to the given one and that they are successful.
         /// </summary>
         /// <param name="other"><see cref="Result"/> to compare.</param>
-        /// <returns>True if both <see cref="Result"/> are equals and successful.</returns>
+        /// <returns>True if both <see cref="Result"/> are equal and successful, otherwise false.</returns>
         [PublicAPI, Pure]
         public bool SuccessEquals(Result other)
         {
@@ -313,11 +308,13 @@ namespace Here.Results
             return false;
         }
 
+        /// <inheritdoc />
         public bool Equals(Result other)
         {
             return Logic.Equals(other.Logic);
         }
 
+        /// <inheritdoc />
         public override bool Equals(object obj)
         {
             if (obj is null)
@@ -325,16 +322,29 @@ namespace Here.Results
             return obj is Result result && Equals(result);
         }
 
+        /// <summary>
+        /// Indicates whether both <see cref="Result"/> are equal.
+        /// </summary>
+        /// <param name="result1">First <see cref="Result"/> to compare.</param>
+        /// <param name="result2">Second <see cref="Result"/> to compare.</param>
+        /// <returns>True if both <see cref="Result"/> are equal, otherwise false.</returns>
         public static bool operator ==(Result result1, Result result2)
         {
             return result1.Equals(result2);
         }
 
+        /// <summary>
+        /// Indicates whether both <see cref="Result"/> are not equal.
+        /// </summary>
+        /// <param name="result1">First <see cref="Result"/> to compare.</param>
+        /// <param name="result2">Second <see cref="Result"/> to compare.</param>
+        /// <returns>True if both <see cref="Result"/> are not equal, otherwise false.</returns>
         public static bool operator !=(Result result1, Result result2)
         {
             return !(result1 == result2);
         }
 
+        /// <inheritdoc />
         public override int GetHashCode()
         {
             return Logic.GetHashCode();
@@ -344,11 +354,7 @@ namespace Here.Results
 
         #region IComparable / IComparable<T>
 
-        /// <summary>
-        /// Compare this <see cref="Result"/> with the given object.
-        /// </summary>
-        /// <param name="obj">Object to compare.</param>
-        /// <returns>The comparison result.</returns>
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if (obj is null)
@@ -359,19 +365,18 @@ namespace Here.Results
             throw new ArgumentException($"Cannot compare an object of type {obj.GetType()} with a {typeof(Result)}");
         }
 
+        /// <inheritdoc />
         /// <summary>
-        /// Compare this <see cref="Result"/> with the given one.
-        /// Order keeps <see cref="IsFailure"/> first, then <see cref="IsWarning"/> and finally <see cref="IsSuccess"/>.
+        /// Compares this <see cref="Result"/> with the given one.
+        /// Order keeps failures first, then warnings and finally successes.
         /// </summary>
-        /// <param name="other"><see cref="Result"/> to compare.</param>
-        /// <returns>The comparison result.</returns>
         public int CompareTo(Result other)
         {
             return Logic.CompareTo(other.Logic);
         }
 
         /// <summary>
-        /// Determines if this <see cref="Result"/> is less than the other one.
+        /// Determines if this <see cref="Result"/> is "less" than the other one.
         /// </summary>
         /// <param name="left">The first <see cref="Result"/> to compare.</param>
         /// <param name="right">The second <see cref="Result"/> to compare.</param>
@@ -382,7 +387,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Determines if this <see cref="Result"/> is less than or equal to the other one.
+        /// Determines if this <see cref="Result"/> is "less" than or equal to the other one.
         /// </summary>
         /// <param name="left">The first <see cref="Result"/> to compare.</param>
         /// <param name="right">The second <see cref="Result"/> to compare.</param>
@@ -393,7 +398,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Determines if this <see cref="Result"/> is greater than the other one.
+        /// Determines if this <see cref="Result"/> is "greater" than the other one.
         /// </summary>
         /// <param name="left">The first <see cref="Result"/> to compare.</param>
         /// <param name="right">The second <see cref="Result"/> to compare.</param>
@@ -404,7 +409,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Determines if this <see cref="Result"/> is greater than or equal to the other one.
+        /// Determines if this <see cref="Result"/> is "greater" than or equal to the other one.
         /// </summary>
         /// <param name="left">The first <see cref="Result"/> to compare.</param>
         /// <param name="right">The second <see cref="Result"/> to compare.</param>
@@ -423,7 +428,7 @@ namespace Here.Results
         #region Result without value
 
         /// <summary>
-        /// Get a success <see cref="Result"/>.
+        /// Gets a success <see cref="Result"/>.
         /// </summary>
         /// <returns>A <see cref="Result"/>.</returns>
         [PublicAPI, Pure]
@@ -433,10 +438,10 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Get a success <see cref="Result"/> with warning.
+        /// Gets a success <see cref="Result"/> with warning.
         /// </summary>
         /// <param name="message">Result message.</param>
-        /// <param name="exception">Result embeded exception.</param>
+        /// <param name="exception">Result embedded exception.</param>
         /// <returns>A <see cref="Result"/>.</returns>
         [PublicAPI, Pure]
         [ContractAnnotation("message:null => halt")]
@@ -446,10 +451,10 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Get a failure <see cref="Result"/>.
+        /// Gets a failure <see cref="Result"/>.
         /// </summary> 
         /// <param name="error">Result error message.</param>
-        /// <param name="exception">Result embeded exception.</param>
+        /// <param name="exception">Result embedded exception.</param>
         /// <returns>A <see cref="Result"/>.</returns>
         [PublicAPI, Pure]
         [ContractAnnotation("error:null => halt")]
@@ -463,7 +468,7 @@ namespace Here.Results
         #region Result with Value
 
         /// <summary>
-        /// Get a success <see cref="Result{T}"/>.
+        /// Gets a success <see cref="Result{T}"/>.
         /// </summary>
         /// <param name="value">Result value.</param>
         /// <returns>A <see cref="Result{T}"/>.</returns>
@@ -474,11 +479,11 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Get a success <see cref="Result{T}"/> with warning.
+        /// Gets a success <see cref="Result{T}"/> with warning.
         /// </summary> 
         /// <param name="value">Result value.</param>
         /// <param name="message">Result message.</param>
-        /// <param name="exception">Result embeded exception.</param>
+        /// <param name="exception">Result embedded exception.</param>
         /// <returns>A <see cref="Result{T}"/>.</returns>
         [PublicAPI, Pure]
         [ContractAnnotation("message:null => halt")]
@@ -488,10 +493,10 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Get a failure <see cref="Result{T}"/>.
+        /// Gets a failure <see cref="Result{T}"/>.
         /// </summary>
         /// <param name="error">Result error message.</param>
-        /// <param name="exception">Result embeded exception.</param>
+        /// <param name="exception">Result embedded exception.</param>
         /// <returns>A <see cref="Result{T}"/>.</returns>
         [PublicAPI, Pure]
         [ContractAnnotation("error:null => halt")]
@@ -505,7 +510,7 @@ namespace Here.Results
         #region Result with Custom error
 
         /// <summary>
-        /// Get a success <see cref="CustomResult{TError}"/>.
+        /// Gets a success <see cref="CustomResult{TError}"/>.
         /// </summary>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI, Pure]
@@ -515,10 +520,10 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Get a success <see cref="CustomResult{TError}"/> with warning.
+        /// Gets a success <see cref="CustomResult{TError}"/> with warning.
         /// </summary>
         /// <param name="message">Result message.</param>
-        /// <param name="exception">Result embeded exception.</param>
+        /// <param name="exception">Result embedded exception.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI, Pure]
         [ContractAnnotation("message:null => halt")]
@@ -528,11 +533,11 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Get a failure <see cref="CustomResult{TError}"/>.
+        /// Gets a failure <see cref="CustomResult{TError}"/>.
         /// </summary>
         /// <param name="message">Result message.</param>
         /// <param name="error">Result error object.</param>
-        /// <param name="exception">Result embeded exception.</param>
+        /// <param name="exception">Result embedded exception.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI, Pure]
         [ContractAnnotation("message:null => halt; error:null => halt")]
@@ -546,7 +551,7 @@ namespace Here.Results
         #region Result with Value + Custom error
 
         /// <summary>
-        /// Get a success <see cref="Result{T, TError}"/>.
+        /// Gets a success <see cref="Result{T, TError}"/>.
         /// </summary>
         /// <param name="value">Result value.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
@@ -557,11 +562,11 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Get a success <see cref="Result{T, TError}"/> with warning.
+        /// Gets a success <see cref="Result{T, TError}"/> with warning.
         /// </summary>
         /// <param name="value">Result value.</param>
         /// <param name="message">Result message.</param>
-        /// <param name="exception">Result embeded exception.</param>
+        /// <param name="exception">Result embedded exception.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI, Pure]
         [ContractAnnotation("message:null => halt")]
@@ -571,11 +576,11 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Get a failure <see cref="Result{T, TError}"/>.
+        /// Gets a failure <see cref="Result{T, TError}"/>.
         /// </summary>
         /// <param name="message">Result message.</param>
         /// <param name="error">Result error object.</param>
-        /// <param name="exception">Result embeded exception.</param>
+        /// <param name="exception">Result embedded exception.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI, Pure]
         [ContractAnnotation("message:null => halt; error:null => halt")]
@@ -598,29 +603,25 @@ namespace Here.Results
     public partial struct Result<T> : IResult<T>, IEquatable<Result<T>>, IComparable, IComparable<Result<T>>
     {
         /// <inheritdoc />
-        [PublicAPI]
         public bool IsSuccess => Logic.IsSuccess;
 
         /// <inheritdoc />
-        [PublicAPI]
         public bool IsWarning => Logic.IsWarning;
 
         /// <inheritdoc />
-        [PublicAPI]
         public bool IsFailure => Logic.IsFailure;
 
         /// <inheritdoc />
-        [PublicAPI]
         public string Message => Logic.Message;
 
         /// <inheritdoc />
-        [PublicAPI]
         public Exception Exception => Logic.Exception;
 
+        [CanBeNull]
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly T _value;
 
         /// <inheritdoc />
-        [PublicAPI]
         public T Value
         {
             get
@@ -637,7 +638,7 @@ namespace Here.Results
         internal readonly ResultLogic Logic;
 
         /// <summary>
-        /// <see cref="Result{T}"/> "ok" constructor.
+        /// <see cref="Result{T}"/> "Ok" constructor.
         /// </summary>
         /// <param name="value">Result value.</param>
         internal Result([CanBeNull] T value)
@@ -652,7 +653,7 @@ namespace Here.Results
         /// <param name="isWarning">Result warning flag.</param>
         /// <param name="value">Embedded value.</param>
         /// <param name="message">Result message.</param>
-        /// <param name="exception">Result embeded exception.</param>
+        /// <param name="exception">Result embedded exception.</param>
         internal Result(bool isWarning, [CanBeNull] T value, [NotNull] string message, [CanBeNull] Exception exception)
         {
             Logic = new ResultLogic(isWarning, message, exception);
@@ -673,11 +674,11 @@ namespace Here.Results
         #region Cast
 
         /// <summary>
-        /// Convert this <see cref="Result{T}"/> to a <see cref="Result{TOut}"/>
+        /// Converts this <see cref="Result{T}"/> to a <see cref="Result{TOut}"/>
         /// </summary>
         /// <typeparam name="TOut">Type of the output result value.</typeparam>
-        /// <param name="converter">Function that convert this result value from input type to output type.</param>
-        /// <returns>A corresponding <see cref="Result{TOut}"/>.</returns>
+        /// <param name="converter">Function that converts this result value from input type to output type.</param>
+        /// <returns>A <see cref="Result{TOut}"/>.</returns>
         [PublicAPI, Pure]
         public Result<TOut> Cast<TOut>([NotNull, InstantHandle] Func<T, TOut> converter)
         {
@@ -687,11 +688,11 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Convert this <see cref="Result{T}"/> to a <see cref="CustomResult{TError}"/>
+        /// Converts this <see cref="Result{T}"/> to a <see cref="CustomResult{TError}"/>
         /// </summary>
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
         /// <param name="errorObject">Custom error object.</param>
-        /// <returns>A corresponding <see cref="CustomResult{TError}"/>.</returns>
+        /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI, Pure]
         public CustomResult<TError> CustomCast<TError>([NotNull] TError errorObject)
         {
@@ -704,11 +705,11 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Convert this <see cref="Result{T}"/> to a <see cref="CustomResult{TError}"/>
+        /// Converts this <see cref="Result{T}"/> to a <see cref="CustomResult{TError}"/>
         /// </summary>
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
-        /// <param name="errorFactory">Factory method that create a custom error object.</param>
-        /// <returns>A corresponding <see cref="CustomResult{TError}"/>.</returns>
+        /// <param name="errorFactory">Factory method that creates a custom error object.</param>
+        /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI, Pure]
         public CustomResult<TError> CustomCast<TError>([NotNull, InstantHandle] Func<TError> errorFactory)
         {
@@ -721,13 +722,13 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Convert this <see cref="Result{T}"/> to a <see cref="Result{TOut, TError}"/>
+        /// Converts this <see cref="Result{T}"/> to a <see cref="Result{TOut, TError}"/>
         /// </summary>
         /// <typeparam name="TOut">Type of the output result value.</typeparam>
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
-        /// <param name="converter">Function that convert this result value from input type to output type.</param>
+        /// <param name="converter">Function that converts this result value from input type to output type.</param>
         /// <param name="errorObject">Custom error object.</param>
-        /// <returns>A corresponding <see cref="Result{TOut, TError}"/>.</returns>
+        /// <returns>A <see cref="Result{TOut, TError}"/>.</returns>
         [PublicAPI, Pure]
         public Result<TOut, TError> Cast<TOut, TError>([NotNull, InstantHandle] Func<T, TOut> converter, [NotNull] TError errorObject)
         {
@@ -740,13 +741,13 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Convert this <see cref="Result{T}"/> to a <see cref="Result{TOut, TError}"/>
+        /// Converts this <see cref="Result{T}"/> to a <see cref="Result{TOut, TError}"/>
         /// </summary>
         /// <typeparam name="TOut">Type of the output result value.</typeparam>
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
-        /// <param name="converter">Function that convert this result value from input type to output type.</param>
-        /// <param name="errorFactory">Factory method that create a custom error object.</param>
-        /// <returns>A corresponding <see cref="Result{TOut, TError}"/>.</returns>
+        /// <param name="converter">Function that converts this result value from input type to output type.</param>
+        /// <param name="errorFactory">Factory method that creates a custom error object.</param>
+        /// <returns>A <see cref="Result{TOut, TError}"/>.</returns>
         [PublicAPI, Pure]
         public Result<TOut, TError> Cast<TOut, TError>([NotNull, InstantHandle] Func<T, TOut> converter, [NotNull, InstantHandle] Func<TError> errorFactory)
         {
@@ -763,7 +764,7 @@ namespace Here.Results
         #region Internal helpers
 
         /// <summary>
-        /// Convert this <see cref="Result{T}"/> to a failure <see cref="Result"/>.
+        /// Converts this <see cref="Result{T}"/> to a failure <see cref="Result"/>.
         /// This <see cref="Result{T}"/> should be a warning or a failure.
         /// </summary>
         /// <returns>A failed <see cref="Result"/>.</returns>
@@ -776,7 +777,7 @@ namespace Here.Results
         }
         
         /// <summary>
-        /// Convert this <see cref="Result{T}"/> to a failure <see cref="Result{TOut}"/>.
+        /// Converts this <see cref="Result{T}"/> to a failure <see cref="Result{TOut}"/>.
         /// This <see cref="Result{T}"/> should be a warning or a failure.
         /// </summary>
         /// <returns>A failed <see cref="Result{TOut}"/>.</returns>
@@ -804,7 +805,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Convert this <see cref="Result{T}"/> to a failure <see cref="CustomResult{TError}"/>.
+        /// Converts this <see cref="Result{T}"/> to a failure <see cref="CustomResult{TError}"/>.
         /// This <see cref="Result{T}"/> should be a warning or a failure.
         /// </summary>
         /// <returns>A failed <see cref="CustomResult{TError}"/>.</returns>
@@ -817,7 +818,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Convert this <see cref="Result{T}"/> to a failure <see cref="Result{TOut, TError}"/>.
+        /// Converts this <see cref="Result{T}"/> to a failure <see cref="Result{TOut, TError}"/>.
         /// This <see cref="Result{T}"/> should be a warning or a failure.
         /// </summary>
         /// <returns>A failed <see cref="Result{TOut, TError}"/>.</returns>
@@ -849,10 +850,10 @@ namespace Here.Results
         #region Equality
 
         /// <summary>
-        /// Checks that this <see cref="Result{T}"/> is equals tp the given one and that they are successful.
+        /// Checks that this <see cref="Result{T}"/> is equals to the given one and that they are successful.
         /// </summary>
         /// <param name="other"><see cref="Result{T}"/> to compare.</param>
-        /// <returns>True if both <see cref="Result{T}"/> are equals and successful.</returns>
+        /// <returns>True if both <see cref="Result{T}"/> are equal and successful, otherwise false.</returns>
         [PublicAPI, Pure]
         public bool SuccessEquals(Result<T> other)
         {
@@ -861,12 +862,14 @@ namespace Here.Results
             return false;
         }
 
+        /// <inheritdoc />
         public bool Equals(Result<T> other)
         {
             return Logic.Equals(other.Logic)
                 && EqualityComparer<T>.Default.Equals(_value, other._value);
         }
 
+        /// <inheritdoc />
         public override bool Equals(object obj)
         {
             if (obj is null)
@@ -874,21 +877,40 @@ namespace Here.Results
             return obj is Result<T> result && Equals(result);
         }
 
+        /// <summary>
+        /// Indicates whether both <see cref="Result{T}"/> are equal.
+        /// </summary>
+        /// <param name="result1">First <see cref="Result{T}"/> to compare.</param>
+        /// <param name="result2">Second <see cref="Result{T}"/> to compare.</param>
+        /// <returns>True if both <see cref="Result{T}"/> are equal, otherwise false.</returns>
         public static bool operator ==(Result<T> result1, Result<T> result2)
         {
             return result1.Equals(result2);
         }
 
+        /// <summary>
+        /// Indicates whether both <see cref="Result{T}"/> are not equal.
+        /// </summary>
+        /// <param name="result1">First <see cref="Result{T}"/> to compare.</param>
+        /// <param name="result2">Second <see cref="Result{T}"/> to compare.</param>
+        /// <returns>True if both <see cref="Result{T}"/> are not equal, otherwise false.</returns>
         public static bool operator !=(Result<T> result1, Result<T> result2)
         {
             return !(result1 == result2);
         }
 
+        /// <inheritdoc />
         public override int GetHashCode()
         {
             return (EqualityComparer<T>.Default.GetHashCode(_value) * 397) ^ Logic.GetHashCode();
         }
 
+        /// <summary>
+        /// Indicates whether <see cref="Result{T}"/> value is equals to the given value.
+        /// </summary>
+        /// <param name="result"><see cref="Result{T}"/> that may embed a value to compare.</param>
+        /// <param name="value">Value to compare.</param>
+        /// <returns>True if the <see cref="Result{T}"/> value is equals to the given value, otherwise false.</returns>
         public static bool operator ==(Result<T> result, T value)
         {
             if (result.IsSuccess)
@@ -896,16 +918,34 @@ namespace Here.Results
             return false;
         }
 
+        /// <summary>
+        /// Indicates whether <see cref="Result{T}"/> value is not equals to the given value.
+        /// </summary>
+        /// <param name="result"><see cref="Result{T}"/> that may embed a value to compare.</param>
+        /// <param name="value">Value to compare.</param>
+        /// <returns>True if the <see cref="Result{T}"/> value is not equals to the given value, otherwise false.</returns>
         public static bool operator !=(Result<T> result, T value)
         {
             return !(result == value);
         }
 
+        /// <summary>
+        /// Indicates whether <see cref="Result{T}"/> value is equals to the given value.
+        /// </summary>
+        /// <param name="value">Value to compare.</param>
+        /// <param name="result"><see cref="Result{T}"/> that may embed a value to compare.</param>
+        /// <returns>True if the <see cref="Result{T}"/> value is equals to the given value, otherwise false.</returns>
         public static bool operator ==(T value, Result<T> result)
         {
             return result == value;
         }
 
+        /// <summary>
+        /// Indicates whether <see cref="Result{T}"/> value is not equals to the given value.
+        /// </summary>
+        /// <param name="value">Value to compare.</param>
+        /// <param name="result"><see cref="Result{T}"/> that may embed a value to compare.</param>
+        /// <returns>True if the <see cref="Result{T}"/> value is not equals to the given value, otherwise false.</returns>
         public static bool operator !=(T value, Result<T> result)
         {
             return !(result == value);
@@ -915,11 +955,7 @@ namespace Here.Results
 
         #region IComparable / IComparable<T>
 
-        /// <summary>
-        /// Compare this <see cref="Result{T}"/> with the given object.
-        /// </summary>
-        /// <param name="obj">Object to compare.</param>
-        /// <returns>The comparison result.</returns>
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if (obj is null)
@@ -930,12 +966,11 @@ namespace Here.Results
             throw new ArgumentException($"Cannot compare an object of type {obj.GetType()} with a {typeof(Result<T>)}");
         }
 
+        /// <inheritdoc />
         /// <summary>
-        /// Compare this <see cref="Result{T}"/> with the given one.
-        /// Order keeps <see cref="IsFailure"/> first, then <see cref="IsWarning"/> and finally <see cref="IsSuccess"/>.
+        /// Compares this <see cref="Result{T}"/> with the given one.
+        /// Order keeps failures first, then warnings and finally successes.
         /// </summary>
-        /// <param name="other"><see cref="Result{T}"/> to compare.</param>
-        /// <returns>The comparison result.</returns>
         public int CompareTo(Result<T> other)
         {
             int logicCompare = Logic.CompareTo(other.Logic);
@@ -951,7 +986,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Determines if this <see cref="Result{T}"/> is less than the other one.
+        /// Determines if this <see cref="Result{T}"/> is "less" than the other one.
         /// </summary>
         /// <param name="left">The first <see cref="Result{T}"/> to compare.</param>
         /// <param name="right">The second <see cref="Result{T}"/> to compare.</param>
@@ -962,7 +997,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Determines if this <see cref="Result{T}"/> is less than or equal to the other one.
+        /// Determines if this <see cref="Result{T}"/> is "less" than or equal to the other one.
         /// </summary>
         /// <param name="left">The first <see cref="Result{T}"/> to compare.</param>
         /// <param name="right">The second <see cref="Result{T}"/> to compare.</param>
@@ -973,7 +1008,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Determines if this <see cref="Result{T}"/> is greater than the other one.
+        /// Determines if this <see cref="Result{T}"/> is "greater" than the other one.
         /// </summary>
         /// <param name="left">The first <see cref="Result{T}"/> to compare.</param>
         /// <param name="right">The second <see cref="Result{T}"/> to compare.</param>
@@ -984,7 +1019,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Determines if this <see cref="Result{T}"/> is greater than or equal to the other one.
+        /// Determines if this <see cref="Result{T}"/> is "greater" than or equal to the other one.
         /// </summary>
         /// <param name="left">The first <see cref="Result{T}"/> to compare.</param>
         /// <param name="right">The second <see cref="Result{T}"/> to compare.</param>

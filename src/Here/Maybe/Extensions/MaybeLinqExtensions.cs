@@ -10,11 +10,11 @@ namespace Here.Maybes.Extensions
     public static class MaybeLinqExtensions
     {
         /// <summary>
-        /// Check if this <see cref="Maybe{T}"/> has value.
+        /// Checks if this <see cref="Maybe{T}"/> has value.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
-        /// <returns>True if this <see cref="Maybe{T}"/> has a value.</returns>
+        /// <returns>True if this <see cref="Maybe{T}"/> has a value, otherwise false.</returns>
         [PublicAPI, Pure]
         public static bool Any<T>(this Maybe<T> maybe)
         {
@@ -22,12 +22,12 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Check if this <see cref="Maybe{T}"/> has value and match the given <paramref name="predicate"/>.
+        /// Checks if this <see cref="Maybe{T}"/> has value and matches the given <paramref name="predicate"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
-        /// <param name="predicate">Predicate to check.</param>
-        /// <returns>True if this <see cref="Maybe{T}"/> match <paramref name="predicate"/>.</returns>
+        /// <param name="predicate">Predicate to use.</param>
+        /// <returns>True if this <see cref="Maybe{T}"/> matches the predicate, otherwise false.</returns>
         [PublicAPI, Pure]
         public static bool Any<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Predicate<T> predicate)
         {
@@ -35,12 +35,12 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Check if this <see cref="Maybe{T}"/> has value and match the given <paramref name="predicate"/>.
+        /// Checks if this <see cref="Maybe{T}"/> has a value and if it matches the given <paramref name="predicate"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
         /// <param name="predicate">Predicate to check.</param>
-        /// <returns>True if this <see cref="Maybe{T}"/> match <paramref name="predicate"/>.</returns>
+        /// <returns>True if this <see cref="Maybe{T}"/> value matches the predicate, otherwise false.</returns>
         [PublicAPI, Pure]
         public static bool All<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Predicate<T> predicate)
         {
@@ -48,12 +48,12 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Check if this <see cref="Maybe{T}"/> contains the given <paramref name="value"/>.
+        /// Checks if this <see cref="Maybe{T}"/> contains the given <paramref name="value"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
         /// <param name="value">Value to check equality with <see cref="Maybe{T}"/> value.</param>
-        /// <returns>True if this <see cref="Maybe{T}"/> contains <paramref name="value"/>.</returns>
+        /// <returns>True if this <see cref="Maybe{T}"/> contains the given <paramref name="value"/>, otherwise false.</returns>
         [PublicAPI, Pure]
         public static bool Contains<T>(this Maybe<T> maybe, [CanBeNull] T value)
         {
@@ -63,13 +63,13 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Select via the <paramref name="selector"/> method something from this <see cref="Maybe{TIn}"/> if it has value.
+        /// Selects via the <paramref name="selector"/> method something from this <see cref="Maybe{TIn}"/> if it has a value.
         /// </summary>
         /// <typeparam name="TIn">Type of the value embedded in this <see cref="Maybe{TIn}"/>.</typeparam>
         /// <typeparam name="TOut">Type of the value embedded in the selected value.</typeparam>
-        /// <param name="maybe"><see cref="Maybe{TIn}"/> on which performing treatment.</param>
-        /// <param name="selector">Method called to select the value from this <see cref="Maybe{TIn}"/>.</param>
-        /// <returns>A <see cref="Maybe{TOut}"/> result of the selection.</returns>
+        /// <param name="maybe"><see cref="Maybe{TIn}"/> on which performing the selection.</param>
+        /// <param name="selector">Method called to select the value from this <see cref="Maybe{TIn}"/> value.</param>
+        /// <returns>A <see cref="Maybe{TOut}"/> wrapping selected value.</returns>
         [PublicAPI, Pure]
         public static Maybe<TOut> Select<TIn, TOut>(this Maybe<TIn> maybe, [NotNull, InstantHandle] Func<TIn, TOut> selector)
         {
@@ -79,12 +79,12 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Returns this <see cref="Maybe{T}"/> if it has value and match the <paramref name="predicate"/>.
+        /// Returns this <see cref="Maybe{T}"/> if it has a value and matches the <paramref name="predicate"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
-        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
         /// <param name="predicate">Condition to match.</param>
-        /// <returns>This <see cref="Maybe{T}"/> if it match the <paramref name="predicate"/>.</returns>
+        /// <returns>This <see cref="Maybe{T}"/> if it matches the <paramref name="predicate"/>, otherwise an empty <see cref="Maybe{T}"/>.</returns>
         [PublicAPI, Pure]
         public static Maybe<T> Where<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Predicate<T> predicate)
         {
@@ -94,10 +94,10 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Do the given <paramref name="doAction"/> on this <see cref="Maybe{T}"/> if it has value.
+        /// Applies the given <paramref name="doAction"/> on this <see cref="Maybe{T}"/> value.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
-        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the treatment.</param>
         /// <param name="doAction">Action to perform on this <see cref="Maybe{T}"/> value.</param>
         [PublicAPI]
         public static void ForEach<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Action<T> doAction)
@@ -107,16 +107,16 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Compute the aggregator function on this <see cref="Maybe{T}"/> value.
-        /// Use the <paramref name="initialValue"/> as the initial aggregator value.
+        /// Computes the aggregation on this <see cref="Maybe{T}"/> value.
+        /// Use the <paramref name="initialValue"/> as the initial aggregation value.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
-        /// <typeparam name="TAggregate">Type of the value aggregator value.</typeparam>
-        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
-        /// <param name="initialValue">The initial aggregator value.</param>
-        /// <param name="aggregator">THe aggregator function called on this <see cref="Maybe{T}"/> value.</param>
-        /// <returns>This <see cref="Maybe{T}"/> value aggregated with 
-        /// <paramref name="initialValue"/>, otherwise <paramref name="initialValue"/>.</returns>
+        /// <typeparam name="TAggregate">Type of the aggregated value.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the aggregation.</param>
+        /// <param name="initialValue">The initial aggregation value.</param>
+        /// <param name="aggregator">The aggregator function called on this <see cref="Maybe{T}"/> value.</param>
+        /// <returns>This <see cref="Maybe{T}"/> value aggregated with <paramref name="initialValue"/>, 
+        /// otherwise <paramref name="initialValue"/>.</returns>
         [PublicAPI, NotNull, Pure]
         public static TAggregate Aggregate<T, TAggregate>(this Maybe<T> maybe, 
             [NotNull] TAggregate initialValue, 

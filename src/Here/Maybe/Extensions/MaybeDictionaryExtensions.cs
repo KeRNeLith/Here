@@ -21,11 +21,11 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Try to get the value for the given key in the dictionary.
+        /// Try to get the value for the given key in this dictionary.
         /// </summary>
         /// <typeparam name="TKey"><see cref="Type"/> of this <see cref="IDictionary{TKey, TValue}"/> key.</typeparam>
         /// <typeparam name="TValue"><see cref="Type"/> of this <see cref="IDictionary{TKey, TValue}"/> value.</typeparam>
-        /// <param name="dictionary"><see cref="IDictionary{TKey, TValue}"/> on which performing treatment.</param>
+        /// <param name="dictionary"><see cref="IDictionary{TKey, TValue}"/> on which performing the get.</param>
         /// <param name="key">Searched key.</param>
         /// <returns><see cref="Maybe{TValue}"/> that wrap the result of the get.</returns>
         [PublicAPI, Pure]
@@ -37,9 +37,9 @@ namespace Here.Maybes.Extensions
         /// <summary>
         /// Try to get the value for the given key in the dictionary.
         /// </summary>
-        /// <typeparam name="TKey"><see cref="Type"/> of this <see cref="IDictionary{TKey, Object}"/> key.</typeparam>
-        /// <typeparam name="TValue"><see cref="Type"/> of the expected value.</typeparam>
-        /// <param name="dictionary"><see cref="IDictionary{TKey, Object}"/> on which performing treatment.</param>
+        /// <typeparam name="TKey">Type of this <see cref="IDictionary{TKey, Object}"/> key.</typeparam>
+        /// <typeparam name="TValue">Type of the expected value.</typeparam>
+        /// <param name="dictionary"><see cref="IDictionary{TKey, Object}"/> on which performing the get.</param>
         /// <param name="key">Searched key.</param>
         /// <returns><see cref="Maybe{TValue}"/> that wrap the result of the get.</returns>
         [PublicAPI, Pure]
@@ -55,9 +55,9 @@ namespace Here.Maybes.Extensions
         /// <summary>
         /// Try to get the value for the given key in the dictionary.
         /// </summary>
-        /// <typeparam name="TKey"><see cref="Type"/> of this <see cref="IReadOnlyDictionary{TKey, TValue}"/> key.</typeparam>
-        /// <typeparam name="TValue"><see cref="Type"/> of this <see cref="IReadOnlyDictionary{TKey, TValue}"/> value.</typeparam>
-        /// <param name="dictionary"><see cref="IReadOnlyDictionary{TKey, TValue}"/> on which performing treatment.</param>
+        /// <typeparam name="TKey">Type of this <see cref="IReadOnlyDictionary{TKey, TValue}"/> key.</typeparam>
+        /// <typeparam name="TValue">Type of this <see cref="IReadOnlyDictionary{TKey, TValue}"/> value.</typeparam>
+        /// <param name="dictionary"><see cref="IReadOnlyDictionary{TKey, TValue}"/> on which performing the get.</param>
         /// <param name="key">Searched key.</param>
         /// <returns><see cref="Maybe{TValue}"/> that wrap the result of the get.</returns>
         [PublicAPI, Pure]
@@ -69,9 +69,9 @@ namespace Here.Maybes.Extensions
         /// <summary>
         /// Try to get the value for the given key in the dictionary.
         /// </summary>
-        /// <typeparam name="TKey"><see cref="Type"/> of this <see cref="IReadOnlyDictionary{TKey, Object}"/> key.</typeparam>
-        /// <typeparam name="TValue"><see cref="Type"/> of the expected value.</typeparam>
-        /// <param name="dictionary"><see cref="IReadOnlyDictionary{TKey, Object}"/> on which performing treatment.</param>
+        /// <typeparam name="TKey">Type of this <see cref="IReadOnlyDictionary{TKey, Object}"/> key.</typeparam>
+        /// <typeparam name="TValue">Type of the expected value.</typeparam>
+        /// <param name="dictionary"><see cref="IReadOnlyDictionary{TKey, Object}"/> on which performing the get.</param>
         /// <param name="key">Searched key.</param>
         /// <returns><see cref="Maybe{TValue}"/> that wrap the result of the get.</returns>
         [PublicAPI, Pure]

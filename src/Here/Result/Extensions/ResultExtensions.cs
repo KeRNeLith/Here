@@ -11,13 +11,13 @@ namespace Here.Results.Extensions
         #region IResult<T>
 
         /// <summary>
-        /// Unwrap this <see cref="IResult{T}"/> value if it <see cref="IResult.IsSuccess"/>, 
+        /// Unwraps this <see cref="IResult{T}"/> value if it is a success, 
         /// otherwise returns the <paramref name="defaultValue"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="IResult{T}"/>.</typeparam>
         /// <param name="result"><see cref="IResult{T}"/> to unwrap value.</param>
         /// <param name="defaultValue">Default value to use.</param>
-        /// <returns>The unwrapped value from this <see cref="IResult{T}"/> if it has value, otherwise the default value.</returns>
+        /// <returns>The unwrapped value from this <see cref="IResult{T}"/> if it has a value, otherwise the default value.</returns>
         [PublicAPI, Pure, CanBeNull]
         public static T Unwrap<T>(this IResult<T> result, [CanBeNull] T defaultValue = default(T))
         {
@@ -27,13 +27,13 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Unwrap this <see cref="IResult{T}"/> value if it <see cref="IResult.IsSuccess"/>, 
+        /// Unwraps this <see cref="IResult{T}"/> value if it is a success, 
         /// otherwise returns the result from <paramref name="orFunc"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="IResult{T}"/>.</typeparam>
         /// <param name="result"><see cref="IResult{T}"/> to unwrap value.</param>
         /// <param name="orFunc">Default value factory method.</param>
-        /// <returns>The unwrapped value from this <see cref="IResult{T}"/> if it has value, otherwise the default value.</returns>
+        /// <returns>The unwrapped value from this <see cref="IResult{T}"/> if it has a value, otherwise the default value.</returns>
         [PublicAPI, Pure, CanBeNull]
         public static T Unwrap<T>(this IResult<T> result, [NotNull, InstantHandle] Func<T> orFunc)
         {
@@ -43,8 +43,8 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Unwrap this <see cref="IResult{T}"/> value if it <see cref="IResult.IsSuccess"/>, 
-        /// use the <paramref name="converter"/> to convert the value, 
+        /// Unwraps this <see cref="IResult{T}"/> value if it is a success, 
+        /// uses the <paramref name="converter"/> to convert the value, 
         /// otherwise returns the <paramref name="defaultValue"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="IResult{T}"/>.</typeparam>
@@ -52,7 +52,7 @@ namespace Here.Results.Extensions
         /// <param name="result"><see cref="IResult{T}"/> to unwrap value.</param>
         /// <param name="converter">Function called to convert this <see cref="IResult{T}"/> value.</param>
         /// <param name="defaultValue">Default value to use.</param>
-        /// <returns>The unwrapped value from this <see cref="IResult{T}"/> if it has value, otherwise the default value.</returns>
+        /// <returns>The unwrapped value from this <see cref="IResult{T}"/> if it has a value, otherwise the default value.</returns>
         [PublicAPI, Pure, CanBeNull]
         public static TOut Unwrap<T, TOut>(this IResult<T> result,
             [NotNull, InstantHandle] Func<T, TOut> converter,
@@ -64,8 +64,8 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Unwrap this <see cref="IResult{T}"/> value if it <see cref="IResult.IsSuccess"/>, 
-        /// use the <paramref name="converter"/> to convert the value, 
+        /// Unwraps this <see cref="IResult{T}"/> value if it is a success, 
+        /// uses the <paramref name="converter"/> to convert the value, 
         /// otherwise returns the result from <paramref name="orFunc"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="IResult{T}"/>.</typeparam>
@@ -73,7 +73,7 @@ namespace Here.Results.Extensions
         /// <param name="result"><see cref="IResult{T}"/> to unwrap value.</param>
         /// <param name="converter">Function called to convert this <see cref="IResult{T}"/> value.</param>
         /// <param name="orFunc">Default value factory method.</param>
-        /// <returns>The unwrapped value from this <see cref="IResult{T}"/> if it has value, otherwise the default value.</returns>
+        /// <returns>The unwrapped value from this <see cref="IResult{T}"/> if it has a value, otherwise the default value.</returns>
         [PublicAPI, Pure, CanBeNull]
         public static TOut Unwrap<T, TOut>(this IResult<T> result,
             [NotNull, InstantHandle] Func<T, TOut> converter,
@@ -89,12 +89,12 @@ namespace Here.Results.Extensions
         #region Result
 
         /// <summary>
-        /// Ensure that this <see cref="Result"/> fulfill the given <paramref name="predicate"/>.
+        /// Ensures that this <see cref="Result"/> fulfill the given <paramref name="predicate"/>.
         /// </summary>
         /// <param name="result"><see cref="Result"/>.</param>
         /// <param name="predicate">Predicate to match.</param>
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
-        /// <returns>A corresponding <see cref="Result"/>.</returns>
+        /// <returns>A <see cref="Result"/>.</returns>
         [PublicAPI, Pure]
         public static Result Ensure(this Result result, [NotNull, InstantHandle] Func<bool> predicate, [NotNull] string errorMessage)
         {
@@ -112,13 +112,13 @@ namespace Here.Results.Extensions
         #region Result<T>
 
         /// <summary>
-        /// Ensure that this <see cref="Result{T}"/> fulfill the given <paramref name="predicate"/>.
+        /// Ensures that this <see cref="Result{T}"/> fulfill the given <paramref name="predicate"/>.
         /// </summary>
         /// <typeparam name="T">Type of the result value.</typeparam>
         /// <param name="result"><see cref="Result{T}"/> to check.</param>
         /// <param name="predicate">Predicate to match.</param>
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
-        /// <returns>A corresponding <see cref="Result{T}"/>.</returns>
+        /// <returns>A <see cref="Result{T}"/>.</returns>
         [PublicAPI, Pure]
         public static Result<T> Ensure<T>(this Result<T> result, [NotNull, InstantHandle] Predicate<T> predicate, [NotNull] string errorMessage)
         {
@@ -216,14 +216,14 @@ namespace Here.Results.Extensions
         #region CustomResult<TError>
 
         /// <summary>
-        /// Ensure that this <see cref="CustomResult{TError}"/> fulfill the given <paramref name="predicate"/>.
+        /// Ensures that this <see cref="CustomResult{TError}"/> fulfill the given <paramref name="predicate"/>.
         /// </summary>
         /// <typeparam name="TError">Error type of the result.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/>.</param>
         /// <param name="predicate">Predicate to match.</param>
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
         /// <param name="errorObject">Custom error object.</param>
-        /// <returns>A corresponding <see cref="CustomResult{TError}"/>.</returns>
+        /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI, Pure]
         public static CustomResult<TError> Ensure<TError>(this CustomResult<TError> result, 
             [NotNull, InstantHandle] Func<bool> predicate, 
@@ -240,14 +240,14 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Ensure that this <see cref="CustomResult{TError}"/> fulfill the given <paramref name="predicate"/>.
+        /// Ensures that this <see cref="CustomResult{TError}"/> fulfill the given <paramref name="predicate"/>.
         /// </summary>
         /// <typeparam name="TError">Error type of the result.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/>.</param>
         /// <param name="predicate">Predicate to match.</param>
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
         /// <param name="errorFactory">Function to create a custom error object.</param>
-        /// <returns>A corresponding <see cref="CustomResult{TError}"/>.</returns>
+        /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI, Pure]
         public static CustomResult<TError> Ensure<TError>(this CustomResult<TError> result,
             [NotNull, InstantHandle] Func<bool> predicate,
@@ -268,7 +268,7 @@ namespace Here.Results.Extensions
         #region Result<T, TError>
 
         /// <summary>
-        /// Ensure that this <see cref="Result{T, TError}"/> fulfill the given <paramref name="predicate"/>.
+        /// Ensures that this <see cref="Result{T, TError}"/> fulfill the given <paramref name="predicate"/>.
         /// </summary>
         /// <typeparam name="T">Type of the result value.</typeparam>
         /// <typeparam name="TError">Error type of the result.</typeparam>
@@ -276,7 +276,7 @@ namespace Here.Results.Extensions
         /// <param name="predicate">Predicate to match.</param>
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
         /// <param name="errorObject">Custom error object.</param>
-        /// <returns>A corresponding <see cref="Result{T, TError}"/>.</returns>
+        /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI, Pure]
         public static Result<T, TError> Ensure<T, TError>(this Result<T, TError> result,
             [NotNull, InstantHandle] Predicate<T> predicate,
@@ -293,7 +293,7 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Ensure that this <see cref="Result{T, TError}"/> fulfill the given <paramref name="predicate"/>.
+        /// Ensures that this <see cref="Result{T, TError}"/> fulfill the given <paramref name="predicate"/>.
         /// </summary>
         /// <typeparam name="T">Type of the result value.</typeparam>
         /// <typeparam name="TError">Error type of the result.</typeparam>
@@ -301,7 +301,7 @@ namespace Here.Results.Extensions
         /// <param name="predicate">Predicate to match.</param>
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
         /// <param name="errorFactory">Function to create a custom error object.</param>
-        /// <returns>A corresponding <see cref="Result{T, TError}"/>.</returns>
+        /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI, Pure]
         public static Result<T, TError> Ensure<T, TError>(this Result<T, TError> result,
             [NotNull, InstantHandle] Predicate<T> predicate,

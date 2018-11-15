@@ -13,6 +13,7 @@
     <Version>1.0.0</Version>
     <AssemblyVersion>1.0.0</AssemblyVersion>
     <FileVersion>1.0.0</FileVersion>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <!-- Include PDB files in NuGet for Source Link because symbolsource.org does not support portable PDBs -->
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
 
@@ -33,25 +34,9 @@ Supports Source Link</Description>
 
     <IsPackable>true</IsPackable>
     <PackageId>Here</PackageId>
-    <PackageReleaseNotes>➟ Release 0.6.0
-- For Maybes:
-    - Add == and != operators to compare a value directly with the wrapped one.
-    - Add extensions to unwrap the Maybe value.
-    - Add Exists extension which is equivalent to Any with a predicate.
-    - Add extension to extract values from an enumerable of Maybe.
-    - Add extensions to convert a Maybe to Enumerable/Enumerator.
-    - Add extensions SingleOrNone and ElementAt on IEnumerable&lt;T&gt;.
-    - Add an explicit Flatten extension.
-    - Add extensions to perform treatments on Maybe that wrap an IEnumerable (for each, any, where, etc).
-    - Make Maybe&lt;T&gt; IComparable and IComparable&lt;Maybe&lt;T&gt;&gt;.
-
-- For Results:
-    - Add == and != operators to compare a value directly with the wrapped one.
-    - Implement equals, == and != operators to compare results with a result of same type.
-    - WARNING: Remove implicit conversions to boolean that produce unwanted behaviors when trying to compare results.
-    - Add a Result scope to run a simple action.
-    - Add a SuccessEquals method for each result type and associated static helpers.
-    - Make result structures IComparable and IComparable&lt;TResult&gt;.</PackageReleaseNotes>
+    <PackageReleaseNotes>➟ Release 0.7.0
+- General:
+    - Clean the library documentation.</PackageReleaseNotes>
     <PackageTags>Here Functional C# Maybe Monad Result</PackageTags>
 
     <PublishRepositoryUrl>true</PublishRepositoryUrl>

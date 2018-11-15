@@ -10,19 +10,19 @@ namespace Here.Results
     public interface IResult
     {
         /// <summary>
-        /// Indicate if this Result is a success.
+        /// Indicates if this result is a success or not.
         /// </summary>
         [PublicAPI]
         bool IsSuccess { get; }
 
         /// <summary>
-        /// Indicate if this Result succeed with warning.
+        /// Indicates if this result succeed with warning or not.
         /// </summary>
         [PublicAPI]
         bool IsWarning { get; }
 
         /// <summary>
-        /// Indicate if this Result is a failure.
+        /// Indicates if this result is a failure.
         /// </summary>
         [PublicAPI]
         bool IsFailure { get; }
@@ -47,7 +47,7 @@ namespace Here.Results
     public interface IResultError<out TError> : IResult
     {
         /// <summary>
-        /// Error attached to a Result.
+        /// Error attached to this result.
         /// </summary>
         [PublicAPI, CanBeNull]
         TError Error { get; }
@@ -56,12 +56,12 @@ namespace Here.Results
     /// <summary>
     /// Represents the result of an operation/treatment with a <see cref="Value"/>.
     /// </summary>
-    /// <typeparam name="T">Type of the embeded value.</typeparam>
+    /// <typeparam name="T">Type of the embedded value.</typeparam>
     [PublicAPI]
     public interface IResult<out T> : IResult
     {
         /// <summary>
-        /// This Result value.
+        /// Result value.
         /// </summary>
         [PublicAPI, CanBeNull]
         T Value { get; }

@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 namespace Here.Maybes
 {
     /// <summary>
-    /// <see cref="Maybe{T}"/> is an object that embed something or nothing.
+    /// <see cref="Maybe{T}"/> is an object that may embed something (otherwise it's nothing).
     /// </summary>
     /// <typeparam name="T">Type of the value embedded in the <see cref="Maybe{T}"/>.</typeparam>
     [PublicAPI]
@@ -20,13 +20,13 @@ namespace Here.Maybes
         public static readonly Maybe<T> None;
 
         /// <summary>
-        /// Flag that indicate if this <see cref="Maybe{T}"/> has a value.
+        /// Flag that indicates if this <see cref="Maybe{T}"/> has a value.
         /// </summary>
         [PublicAPI]
         public bool HasValue { get; }
 
         /// <summary>
-        /// Flag that indicate if this <see cref="Maybe{T}"/> has no value.
+        /// Flag that indicates if this <see cref="Maybe{T}"/> has no value.
         /// </summary>
         [PublicAPI]
         public bool HasNoValue => !HasValue;
@@ -35,10 +35,11 @@ namespace Here.Maybes
         /// Maybe value.
         /// </summary>
         [NotNull]
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly T _value;
 
         /// <summary>
-        /// Get the value stored in the <see cref="Maybe{T}"/> if present otherwise throws.
+        /// Gets the value stored in the <see cref="Maybe{T}"/> if present otherwise throws.
         /// </summary>
         /// <exception cref="InvalidOperationException"> if no value is present.</exception>
         [PublicAPI, NotNull]
@@ -55,7 +56,7 @@ namespace Here.Maybes
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="value"><see cref="Maybe{T}"/> value.</param>
+        /// <param name="value">A value.</param>
         private Maybe([NotNull] T value)
         {
             HasValue = true;
@@ -65,7 +66,7 @@ namespace Here.Maybes
         /// <summary>
         /// Construct a <see cref="Maybe{T}"/> with a value.
         /// </summary>
-        /// <param name="value"><see cref="Maybe{T}"/> value.</param>
+        /// <param name="value">A value.</param>
         [PublicAPI]
         public static Maybe<T> Some([NotNull] T value)
         {
@@ -77,12 +78,14 @@ namespace Here.Maybes
 
         #region Equality / IEquatable
 
+        /// <inheritdoc />
         public bool Equals(Maybe<T> other)
         {
             return EqualityComparer<T>.Default.Equals(_value, other._value)
                 && HasValue.Equals(other.HasValue);
         }
 
+        /// <inheritdoc />
         public override bool Equals(object obj)
         {
             if (obj is null)
@@ -90,21 +93,40 @@ namespace Here.Maybes
             return obj is Maybe<T> maybe && Equals(maybe);
         }
 
+        /// <inheritdoc />
         public override int GetHashCode()
         {
             return (EqualityComparer<T>.Default.GetHashCode(_value) * 397) ^ HasValue.GetHashCode();
         }
 
+        /// <summary>
+        /// Indicates whether both <see cref="Maybe{T}"/> are equal.
+        /// </summary>
+        /// <param name="maybe1">First <see cref="Maybe{T}"/> to compare.</param>
+        /// <param name="maybe2">Second <see cref="Maybe{T}"/> to compare.</param>
+        /// <returns>True if both <see cref="Maybe{T}"/> are equal, otherwise false.</returns>
         public static bool operator==(Maybe<T> maybe1, Maybe<T> maybe2)
         {
             return maybe1.Equals(maybe2);
         }
 
+        /// <summary>
+        /// Indicates whether both <see cref="Maybe{T}"/> are not equal.
+        /// </summary>
+        /// <param name="maybe1">First <see cref="Maybe{T}"/> to compare.</param>
+        /// <param name="maybe2">Second <see cref="Maybe{T}"/> to compare.</param>
+        /// <returns>True if <see cref="Maybe{T}"/> are not equal, otherwise false.</returns>
         public static bool operator!=(Maybe<T> maybe1, Maybe<T> maybe2)
         {
             return !(maybe1 == maybe2);
         }
 
+        /// <summary>
+        /// Indicates whether <see cref="Maybe{T}"/> value is equals to the given value.
+        /// </summary>
+        /// <param name="maybe"><see cref="Maybe{T}"/> that may embed a value to compare.</param>
+        /// <param name="value">Value to compare.</param>
+        /// <returns>True if the <see cref="Maybe{T}"/> value is equals to the given value, otherwise false.</returns>
         public static bool operator ==(Maybe<T> maybe, T value)
         {
             if (maybe.HasNoValue)
@@ -112,16 +134,34 @@ namespace Here.Maybes
             return maybe.Value.Equals(value);
         }
 
+        /// <summary>
+        /// Indicates whether <see cref="Maybe{T}"/> value is not equals to the given value.
+        /// </summary>
+        /// <param name="maybe"><see cref="Maybe{T}"/> that may embed a value to compare.</param>
+        /// <param name="value">Value to compare.</param>
+        /// <returns>True if the <see cref="Maybe{T}"/> value is not equals to the given value, otherwise false.</returns>
         public static bool operator !=(Maybe<T> maybe, T value)
         {
             return !(maybe == value);
         }
 
+        /// <summary>
+        /// Indicates whether <see cref="Maybe{T}"/> value is equals to the given value.
+        /// </summary>
+        /// <param name="value">Value to compare.</param>
+        /// <param name="maybe"><see cref="Maybe{T}"/> that may embed a value to compare.</param>
+        /// <returns>True if the <see cref="Maybe{T}"/> value is equals to the given value, otherwise false.</returns>
         public static bool operator ==(T value, Maybe<T> maybe)
         {
             return maybe == value;
         }
 
+        /// <summary>
+        /// Indicates whether <see cref="Maybe{T}"/> value is not equals to the given value.
+        /// </summary>
+        /// <param name="value">Value to compare.</param>
+        /// <param name="maybe"><see cref="Maybe{T}"/> that may embed a value to compare.</param>
+        /// <returns>True if the <see cref="Maybe{T}"/> value is not equals to the given value, otherwise false.</returns>
         public static bool operator !=(T value, Maybe<T> maybe)
         {
             return !(maybe == value);
@@ -131,11 +171,7 @@ namespace Here.Maybes
 
         #region IComparable / IComparable<T>
 
-        /// <summary>
-        /// Compare this <see cref="Maybe{T}"/> with the given object.
-        /// </summary>
-        /// <param name="obj">Object to compare.</param>
-        /// <returns>The comparison result.</returns>
+        /// <inheritdoc />
         public int CompareTo(object obj)
         {
             if (obj is null)
@@ -146,13 +182,12 @@ namespace Here.Maybes
             throw new ArgumentException($"Cannot compare an object of type {obj.GetType()} with a {typeof(Maybe<T>)}");
         }
 
+        /// <inheritdoc />
         /// <summary>
-        /// Compare this <see cref="Maybe{T}"/> with the given one.
+        /// Compares this <see cref="Maybe{T}"/> with the given one.
         /// Order keeps <see cref="Maybe{T}.None"/> first and <see cref="Maybe{T}"/> with value after.
         /// Then it uses the <see cref="Value"/> for the comparison.
         /// </summary>
-        /// <param name="other"><see cref="Maybe{T}"/> to compare.</param>
-        /// <returns>The comparison result.</returns>
         public int CompareTo(Maybe<T> other)
         {
             if (HasValue && !other.HasValue)
@@ -163,7 +198,7 @@ namespace Here.Maybes
         }
 
         /// <summary>
-        /// Determines if this <see cref="Maybe{T}"/> is less than the other one.
+        /// Determines if this <see cref="Maybe{T}"/> is "less" than the other one.
         /// </summary>
         /// <param name="left">The first <see cref="Maybe{T}"/> to compare.</param>
         /// <param name="right">The second <see cref="Maybe{T}"/> to compare.</param>
@@ -174,7 +209,7 @@ namespace Here.Maybes
         }
 
         /// <summary>
-        /// Determines if this <see cref="Maybe{T}"/> is less than or equal to the other one.
+        /// Determines if this <see cref="Maybe{T}"/> is "less" than or equal to the other one.
         /// </summary>
         /// <param name="left">The first <see cref="Maybe{T}"/> to compare.</param>
         /// <param name="right">The second <see cref="Maybe{T}"/> to compare.</param>
@@ -185,7 +220,7 @@ namespace Here.Maybes
         }
 
         /// <summary>
-        /// Determines if this <see cref="Maybe{T}"/> is greater than the other one.
+        /// Determines if this <see cref="Maybe{T}"/> is "greater" than the other one.
         /// </summary>
         /// <param name="left">The first <see cref="Maybe{T}"/> to compare.</param>
         /// <param name="right">The second <see cref="Maybe{T}"/> to compare.</param>
@@ -196,7 +231,7 @@ namespace Here.Maybes
         }
 
         /// <summary>
-        /// Determines if this <see cref="Maybe{T}"/> is greater than or equal to the other one.
+        /// Determines if this <see cref="Maybe{T}"/> is "greater" than or equal to the other one.
         /// </summary>
         /// <param name="left">The first <see cref="Maybe{T}"/> to compare.</param>
         /// <param name="right">The second <see cref="Maybe{T}"/> to compare.</param>

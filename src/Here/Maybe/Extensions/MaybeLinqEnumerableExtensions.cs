@@ -12,11 +12,11 @@ namespace Here.Maybes.Extensions
     public static class MaybeLinqEnumerableExtensions
     {
         /// <summary>
-        /// Check if this <see cref="Maybe{T}"/> has value and return if true enumerable has at least one element.
+        /// Checks if this <see cref="Maybe{T}"/> has a value and returns true if the enumerable has at least one element.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
-        /// <returns>True if this <see cref="Maybe{T}"/> enumerable has at least one value.</returns>
+        /// <returns>True if this <see cref="Maybe{T}"/> enumerable value has at least one value, otherwise false.</returns>
         [PublicAPI, Pure]
         public static bool AnyItem<T>(this Maybe<T> maybe)
             where T : IEnumerable
@@ -27,12 +27,12 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Check if this <see cref="Maybe{T}"/> has value and return true if enumerable has at least one element that match the <paramref name="predicate"/>.
+        /// Checks if this <see cref="Maybe{T}"/> has a value and returns true if the enumerable has at least one element that matches the <paramref name="predicate"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
         /// <param name="predicate">Condition to match.</param>
-        /// <returns>True if this <see cref="Maybe{T}"/> enumerable has at least one value that match.</returns>
+        /// <returns>True if this <see cref="Maybe{T}"/> enumerable has at least one value that matches, otherwise false.</returns>
         [PublicAPI, Pure]
         public static bool AnyItem<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Predicate<object> predicate)
             where T : IEnumerable
@@ -50,13 +50,13 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Check if this <see cref="Maybe{T}"/> has value and return true if enumerable has at least one element that match the <paramref name="predicate"/>.
+        /// Checks if this <see cref="Maybe{T}"/> has a value and returns true if the enumerable has at least one element that matches the <paramref name="predicate"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <typeparam name="TItem">Enumerable item type.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
         /// <param name="predicate">Condition to match.</param>
-        /// <returns>True if this <see cref="Maybe{T}"/> enumerable has at least one value that match.</returns>
+        /// <returns>True if this <see cref="Maybe{T}"/> enumerable has at least one value that match, otherwise false.</returns>
         [PublicAPI, Pure]
         public static bool AnyItem<T, TItem>(this Maybe<T> maybe, [NotNull, InstantHandle] Predicate<TItem> predicate)
             where T : IEnumerable<TItem>
@@ -67,12 +67,12 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Check if this <see cref="Maybe{T}"/> has value and return true if all enumerable items match the <paramref name="predicate"/>.
+        /// Checks if this <see cref="Maybe{T}"/> has a value and returns true if all enumerable items match the <paramref name="predicate"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
         /// <param name="predicate">Predicate to check.</param>
-        /// <returns>True if this <see cref="Maybe{T}"/> enumerable items all match the <paramref name="predicate"/>.</returns>
+        /// <returns>True if this <see cref="Maybe{T}"/> enumerable items all match the <paramref name="predicate"/>, otherwise false.</returns>
         [PublicAPI, Pure]
         public static bool AllItems<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Predicate<object> predicate)
             where T : IEnumerable
@@ -92,13 +92,13 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Check if this <see cref="Maybe{T}"/> has value and return true if all enumerable items match the <paramref name="predicate"/>.
+        /// Checks if this <see cref="Maybe{T}"/> has a value and returns true if all enumerable items match the <paramref name="predicate"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <typeparam name="TItem">Enumerable item type.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
         /// <param name="predicate">Predicate to check.</param>
-        /// <returns>True if this <see cref="Maybe{T}"/> enumerable items all match the <paramref name="predicate"/>.</returns>
+        /// <returns>True if this <see cref="Maybe{T}"/> enumerable items all match the <paramref name="predicate"/>, otherwise false.</returns>
         [PublicAPI, Pure]
         public static bool AllItems<T, TItem>(this Maybe<T> maybe, [NotNull, InstantHandle] Predicate<TItem> predicate)
             where T : IEnumerable<TItem>
@@ -109,12 +109,12 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Check if this <see cref="Maybe{T}"/> has value and return true if enumerable contains the given <paramref name="value"/>.
+        /// Checks if this <see cref="Maybe{T}"/> has a value and return true if enumerable contains the given <paramref name="value"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
-        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the search.</param>
         /// <param name="value">Value to check equality with <see cref="Maybe{T}"/> value.</param>
-        /// <returns>True if this <see cref="Maybe{T}"/> contains <paramref name="value"/>.</returns>
+        /// <returns>True if this <see cref="Maybe{T}"/> contains the <paramref name="value"/>, otherwise false.</returns>
         [PublicAPI, Pure]
         public static bool ContainsItem<T>(this Maybe<T> maybe, [CanBeNull] object value)
             where T : IEnumerable
@@ -132,13 +132,13 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Check if this <see cref="Maybe{T}"/> has value and return true if enumerable contains the given <paramref name="value"/>.
+        /// Checks if this <see cref="Maybe{T}"/> has a value and returns true if enumerable contains the given <paramref name="value"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
-        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the search.</param>
         /// <param name="value">Value to check equality with <see cref="Maybe{T}"/> value.</param>
         /// <param name="comparer">Equality comparer to use.</param>
-        /// <returns>True if this <see cref="Maybe{T}"/> contains <paramref name="value"/>.</returns>
+        /// <returns>True if this <see cref="Maybe{T}"/> contains the <paramref name="value"/>, otherwise false.</returns>
         [PublicAPI, Pure]
         public static bool ContainsItem<T>(this Maybe<T> maybe, [CanBeNull] object value, [NotNull] IEqualityComparer<object> comparer)
             where T : IEnumerable
@@ -156,13 +156,13 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Check if this <see cref="Maybe{T}"/> has value and return true if enumerable contains the given <paramref name="value"/>.
+        /// Checks if this <see cref="Maybe{T}"/> has a value and returns true if enumerable contains the given <paramref name="value"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <typeparam name="TItem">Enumerable item type.</typeparam>
-        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the search.</param>
         /// <param name="value">Value to check equality with <see cref="Maybe{T}"/> value.</param>
-        /// <returns>True if this <see cref="Maybe{T}"/> contains <paramref name="value"/>.</returns>
+        /// <returns>True if this <see cref="Maybe{T}"/> contains the <paramref name="value"/>, otherwise false.</returns>
         [PublicAPI, Pure]
         public static bool ContainsItem<T, TItem>(this Maybe<T> maybe, [CanBeNull] TItem value)
             where T : IEnumerable<TItem>
@@ -173,14 +173,14 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Check if this <see cref="Maybe{T}"/> has value and return true if enumerable contains the given <paramref name="value"/>.
+        /// Checks if this <see cref="Maybe{T}"/> has a value and returns true if enumerable contains the given <paramref name="value"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <typeparam name="TItem">Enumerable item type.</typeparam>
-        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the search.</param>
         /// <param name="value">Value to check equality with <see cref="Maybe{T}"/> value.</param>
         /// <param name="comparer">Equality comparer to use.</param>
-        /// <returns>True if this <see cref="Maybe{T}"/> contains <paramref name="value"/>.</returns>
+        /// <returns>True if this <see cref="Maybe{T}"/> contains the <paramref name="value"/>, otherwise false.</returns>
         [PublicAPI, Pure]
         public static bool ContainsItem<T, TItem>(this Maybe<T> maybe, [CanBeNull] TItem value, [NotNull] IEqualityComparer<TItem> comparer)
             where T : IEnumerable<TItem>
@@ -191,11 +191,11 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Select via the <paramref name="selector"/> method something from this <see cref="Maybe{T}"/> wrapped enumerable if it has value and return selected items.
+        /// Selects via the <paramref name="selector"/> something from this <see cref="Maybe{T}"/> wrapped enumerable if it has value and returns selected items.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <typeparam name="TItemOut">Enumerable item output type.</typeparam>
-        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the selection.</param>
         /// <param name="selector">Method called to select the value from this <see cref="Maybe{T}"/> enumerable items.</param>
         /// <returns>A <see cref="Maybe{T}"/> with selected items.</returns>
         [PublicAPI, Pure]
@@ -217,12 +217,12 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Select via the <paramref name="selector"/> method something from this <see cref="Maybe{T}"/> wrapped enumerable if it has value and return selected items.
+        /// Selects via the <paramref name="selector"/> something from this <see cref="Maybe{T}"/> wrapped enumerable if it has value and returns selected items.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <typeparam name="TItemIn">Enumerable item input type.</typeparam>
         /// <typeparam name="TItemOut">Enumerable item output type.</typeparam>
-        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the selection.</param>
         /// <param name="selector">Method called to select the value from this <see cref="Maybe{T}"/> enumerable items.</param>
         /// <returns>A <see cref="Maybe{T}"/> with selected items.</returns>
         [PublicAPI, Pure]
@@ -240,7 +240,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="predicate"/> function on each item if this <see cref="Maybe{T}"/> has a value and return matched items.
+        /// Calls the <paramref name="predicate"/> on each item if this <see cref="Maybe{T}"/> has a value and returns items that match it.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
@@ -268,7 +268,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="predicate"/> function on each item if this <see cref="Maybe{T}"/> has a value and return matched items.
+        /// Calls the <paramref name="predicate"/> on each item if this <see cref="Maybe{T}"/> has a value and returns items that match it.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <typeparam name="TItem">Enumerable item type.</typeparam>
@@ -291,7 +291,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onItem"/> function on each item if this <see cref="Maybe{T}"/> has a value.
+        /// Calls the <paramref name="onItem"/> function on each item if this <see cref="Maybe{T}"/> has a value.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
@@ -311,7 +311,7 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onItem"/> function on each item if this <see cref="Maybe{T}"/> has a value.
+        /// Calls the <paramref name="onItem"/> function on each item if this <see cref="Maybe{T}"/> has a value.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <typeparam name="TItem">Enumerable item type.</typeparam>
@@ -332,14 +332,14 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Compute the aggregator function on this <see cref="Maybe{T}"/> enumerable value.
-        /// Use the <paramref name="initialValue"/> as the initial aggregator value.
+        /// Computes the aggregation of this <see cref="Maybe{T}"/> enumerable value.
+        /// Use the <paramref name="initialValue"/> as the initial aggregation value.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
-        /// <typeparam name="TAggregate">Type of the value aggregator value.</typeparam>
-        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
-        /// <param name="initialValue">The initial aggregator value.</param>
-        /// <param name="aggregator">THe aggregator function called on this <see cref="Maybe{T}"/> enumerable items.</param>
+        /// <typeparam name="TAggregate">Type of the value aggregation value.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the aggregation.</param>
+        /// <param name="initialValue">The initial aggregation value.</param>
+        /// <param name="aggregator">The aggregator function called on this <see cref="Maybe{T}"/> enumerable items.</param>
         /// <returns>This <see cref="Maybe{T}"/> value aggregated with 
         /// <paramref name="initialValue"/>, otherwise <paramref name="initialValue"/>.</returns>
         [PublicAPI, NotNull, Pure]
@@ -361,15 +361,15 @@ namespace Here.Maybes.Extensions
         }
 
         /// <summary>
-        /// Compute the aggregator function on this <see cref="Maybe{T}"/> enumerable value.
-        /// Use the <paramref name="initialValue"/> as the initial aggregator value.
+        /// Computes the aggregation of this <see cref="Maybe{T}"/> enumerable values.
+        /// Use the <paramref name="initialValue"/> as the initial aggregation value.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Maybe{T}"/>.</typeparam>
         /// <typeparam name="TItem">Enumerable item type.</typeparam>
-        /// <typeparam name="TAggregate">Type of the value aggregator value.</typeparam>
-        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing treatment.</param>
-        /// <param name="initialValue">The initial aggregator value.</param>
-        /// <param name="aggregator">THe aggregator function called on this <see cref="Maybe{T}"/> enumerable items.</param>
+        /// <typeparam name="TAggregate">Type of the value aggregated value.</typeparam>
+        /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the aggregation.</param>
+        /// <param name="initialValue">The initial aggregation value.</param>
+        /// <param name="aggregator">The aggregator function called on this <see cref="Maybe{T}"/> enumerable items.</param>
         /// <returns>This <see cref="Maybe{T}"/> value aggregated with 
         /// <paramref name="initialValue"/>, otherwise <paramref name="initialValue"/>.</returns>
         [PublicAPI, NotNull, Pure]

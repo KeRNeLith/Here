@@ -8,19 +8,19 @@ namespace Here.Maybes
     public partial struct Maybe<T>
     {
         /// <summary>
-        /// Check if the <see cref="Maybe{T}"/> state is empty.
-        /// It means it <see cref="HasNoValue"/>).
+        /// Checks if the <see cref="Maybe{T}"/> state is empty.
+        /// It means that it <see cref="HasNoValue"/>.
         /// </summary>
-        /// <param name="maybe">Maybe to check.</param>
+        /// <param name="maybe"><see cref="Maybe{T}"/> to check.</param>
         /// <returns>True if <see cref="Maybe{T}"/> <see cref="HasNoValue"/>.</returns>
         [PublicAPI, Pure]
         public static bool operator !(Maybe<T> maybe) => maybe.HasNoValue;
 
         /// <summary>
-        /// Convert this <see cref="Maybe{T}"/> if it has a value to a <see cref="Maybe{TOut}"/>.
+        /// Converts this <see cref="Maybe{T}"/> if it has a value to a <see cref="Maybe{TOut}"/>.
         /// </summary>
         /// <typeparam name="TOut">Type of the value embedded in the converted <see cref="Maybe{TOut}"/>.</typeparam>
-        /// <returns>The conversion of this <see cref="Maybe{T}"/> to <see cref="Maybe{TOut}"/>.</returns>
+        /// <returns>Converted <see cref="Maybe{TOut}"/>.</returns>
         [PublicAPI, Pure]
         public Maybe<TOut> Cast<TOut>()
             where TOut : class
@@ -34,7 +34,7 @@ namespace Here.Maybes
         /// Returns this <see cref="Maybe{T}"/> as a <see cref="Maybe{TOut}"/> if it has a value and is of type <typeparamref name="TOut"/>.
         /// </summary>
         /// <typeparam name="TOut">Type of the value embedded in the resulting <see cref="Maybe{TOut}"/>.</typeparam>
-        /// <returns>This casted as <see cref="Maybe{TOut}"/>.</returns>
+        /// <returns>Casted <see cref="Maybe{TOut}"/>.</returns>
         [PublicAPI, Pure]
         public Maybe<TOut> OfType<TOut>()
             where TOut : class
@@ -45,9 +45,9 @@ namespace Here.Maybes
         #region Gateway to Result
 
         /// <summary>
-        /// Convert this <see cref="Maybe{T}"/> to a <see cref="Result.IsSuccess"/> if it has a value, or a <see cref="Result.IsFailure"/> if not.
+        /// Converts this <see cref="Maybe{T}"/> to a success <see cref="Result"/> if it has a value, or a failure if not.
         /// </summary>
-        /// <param name="failureMessage">Failure message in case the <see cref="Maybe{T}"/> has no value.</param>
+        /// <param name="failureMessage">Failure message in case this <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>The corresponding <see cref="Result"/>.</returns>
         [PublicAPI, Pure]
         public Result ToResult([CanBeNull] string failureMessage = null)
@@ -58,7 +58,7 @@ namespace Here.Maybes
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{T}"/> to a <see cref="Result{T}.IsSuccess"/> if it has a value, or a <see cref="Result{T}.IsFailure"/> if not.
+        /// Converts this <see cref="Maybe{T}"/> to a success <see cref="Result"/> if it has a value, or a failure if not.
         /// </summary>
         /// <param name="failureMessage">Failure message in case the <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>The corresponding <see cref="Result{T}"/>.</returns>
@@ -71,9 +71,9 @@ namespace Here.Maybes
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{T}"/> to a <see cref="CustomResult{TError}.IsSuccess"/> if it has a value, or a <see cref="CustomResult{TError}.IsFailure"/> if not.
+        /// Converts this <see cref="Maybe{T}"/> to a success <see cref="CustomResult{TError}"/> if it has a value, or a failure if not.
         /// </summary>
-        /// <param name="errorFactory">Function to create a custom error object in case this <see cref="Maybe{T}"/> ha no value.</param>
+        /// <param name="errorFactory">Function that create the custom error object to use to construct the result in case this <see cref="Maybe{T}"/> has no value.</param>
         /// <param name="failureMessage">Failure message in case the <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>The corresponding <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI, Pure]
@@ -85,9 +85,9 @@ namespace Here.Maybes
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{T}"/> to a <see cref="CustomResult{TError}.IsSuccess"/> if it has a value, or a <see cref="CustomResult{TError}.IsFailure"/> if not.
+        /// Converts this <see cref="Maybe{T}"/> to a success <see cref="CustomResult{TError}"/> if it has a value, or a failure if not.
         /// </summary>
-        /// <param name="errorObject">Error object to create a custom error object in case this <see cref="Maybe{T}"/> ha no value.</param>
+        /// <param name="errorObject">Custom error object to use to construct the result in case this <see cref="Maybe{T}"/> has no value.</param>
         /// <param name="failureMessage">Failure message in case the <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>The corresponding <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI, Pure]
@@ -99,9 +99,9 @@ namespace Here.Maybes
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{T}"/> to a <see cref="Result{T, TError}.IsSuccess"/> if it has a value, or a <see cref="Result{T, TError}.IsFailure"/> if not.
+        /// Converts this <see cref="Maybe{T}"/> to a success <see cref="Result{T, TError}"/> if it has a value, or a failure if not.
         /// </summary>
-        /// <param name="errorFactory">Function to create a custom error object in case this <see cref="Maybe{T}"/> ha no value.</param>
+        /// <param name="errorFactory">Function that create the custom error object to use to construct the result in case this <see cref="Maybe{T}"/> has no value.</param>
         /// <param name="failureMessage">Failure message in case the <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>The corresponding <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI, Pure]
@@ -113,9 +113,9 @@ namespace Here.Maybes
         }
 
         /// <summary>
-        /// Convert this <see cref="Maybe{T}"/> to a <see cref="Result{T, TError}.IsSuccess"/> if it has a value, or a <see cref="Result{T, TError}.IsFailure"/> if not.
+        /// Converts this <see cref="Maybe{T}"/> to a success <see cref="Result{T, TError}"/> if it has a value, or a failure if not.
         /// </summary>
-        /// <param name="errorObject">Error object to create a custom error object in case this <see cref="Maybe{T}"/> ha no value.</param>
+        /// <param name="errorObject">Custom error object to use to construct the result in case this <see cref="Maybe{T}"/> has no value.</param>
         /// <param name="failureMessage">Failure message in case the <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>The corresponding <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI, Pure]

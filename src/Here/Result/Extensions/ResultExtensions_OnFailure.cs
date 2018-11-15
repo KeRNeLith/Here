@@ -11,12 +11,12 @@ namespace Here.Results.Extensions
         #region Result
 
         /// <summary>
-        /// Call the <paramref name="onFailure"/> action when the <paramref name="result"/> is <see cref="Result.IsFailure"/>.
+        /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
         /// </summary>
         /// <param name="result"><see cref="Result"/> to check.</param>
-        /// <param name="onFailure">Action to run if the <see cref="Result"/> is <see cref="Result.IsFailure"/>.</param>
+        /// <param name="onFailure">Action to run if the <see cref="Result"/> is failure.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="Result"/> corresponding to this one.</returns>
+        /// <returns>A <see cref="Result"/>.</returns>
         [PublicAPI]
         public static Result OnFailure(this Result result, [NotNull, InstantHandle] Action onFailure, bool treatWarningAsError = false)
         {
@@ -32,12 +32,12 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onFailure"/> action when the <paramref name="result"/> is <see cref="Result.IsFailure"/>.
+        /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
         /// </summary>
         /// <param name="result"><see cref="Result"/> to check.</param>
-        /// <param name="onFailure">Action to run if the <see cref="Result"/> is <see cref="Result.IsFailure"/>.</param>
+        /// <param name="onFailure">Action to run if the <see cref="Result"/> is failure.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="Result"/> corresponding to this one.</returns>
+        /// <returns>A <see cref="Result"/>.</returns>
         [PublicAPI]
         public static Result OnFailure(this Result result, [NotNull, InstantHandle] Action<Result> onFailure, bool treatWarningAsError = false)
         {
@@ -57,13 +57,13 @@ namespace Here.Results.Extensions
         #region Result<T>
 
         /// <summary>
-        /// Call the <paramref name="onFailure"/> action when the <paramref name="result"/> is <see cref="Result{T}.IsFailure"/>.
+        /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
         /// </summary>
         /// <typeparam name="T">Result value type.</typeparam>
         /// <param name="result"><see cref="Result{T}"/> to check.</param>
-        /// <param name="onFailure">Action to run if the <see cref="Result{T}"/> is <see cref="Result{T}.IsFailure"/>.</param>
+        /// <param name="onFailure">Action to run if the <see cref="Result{T}"/> is failure.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="Result{T}"/> corresponding to this one.</returns>
+        /// <returns>A <see cref="Result{T}"/>.</returns>
         [PublicAPI]
         public static Result<T> OnFailure<T>(this Result<T> result, [NotNull, InstantHandle] Action onFailure, bool treatWarningAsError = false)
         {
@@ -79,13 +79,13 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onFailure"/> action when the <paramref name="result"/> is <see cref="Result{T}.IsFailure"/>.
+        /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
         /// </summary>
         /// <typeparam name="T">Result value type.</typeparam>
         /// <param name="result"><see cref="Result{T}"/> to check.</param>
-        /// <param name="onFailure">Action to run if the <see cref="Result{T}"/> is <see cref="Result{T}.IsFailure"/>.</param>
+        /// <param name="onFailure">Action to run if the <see cref="Result{T}"/> is failure.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="Result{T}"/> corresponding to this one.</returns>
+        /// <returns>A <see cref="Result{T}"/>.</returns>
         [PublicAPI]
         public static Result<T> OnFailure<T>(this Result<T> result, [NotNull, InstantHandle] Action<Result<T>> onFailure, bool treatWarningAsError = false)
         {
@@ -105,14 +105,14 @@ namespace Here.Results.Extensions
         #region CustomResult<TError>
 
         /// <summary>
-        /// Call the <paramref name="onFailure"/> action when the <paramref name="result"/> is <see cref="CustomResult{TError}.IsFailure"/>.
+        /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
         /// </summary>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
-        /// <param name="onFailure">Action to run if the <see cref="CustomResult{TError}"/> is <see cref="CustomResult{TError}.IsFailure"/>.</param>
+        /// <param name="onFailure">Action to run if the <see cref="CustomResult{TError}"/> is failure.</param>
         /// <param name="errorObject">Custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="CustomResult{TError}"/> corresponding to this one.</returns>
+        /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI]
         public static CustomResult<TError> OnFailure<TError>(this CustomResult<TError> result,
             [NotNull, InstantHandle] Action onFailure,
@@ -131,14 +131,14 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onFailure"/> action when the <paramref name="result"/> is <see cref="CustomResult{TError}.IsFailure"/>.
+        /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
         /// </summary>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
-        /// <param name="onFailure">Action to run if the <see cref="CustomResult{TError}"/> is <see cref="CustomResult{TError}.IsFailure"/>.</param>
+        /// <param name="onFailure">Action to run if the <see cref="CustomResult{TError}"/> is failure.</param>
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="CustomResult{TError}"/> corresponding to this one.</returns>
+        /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI]
         public static CustomResult<TError> OnFailure<TError>(this CustomResult<TError> result, 
             [NotNull, InstantHandle] Action onFailure,
@@ -157,14 +157,14 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onFailure"/> action when the <paramref name="result"/> is <see cref="CustomResult{TError}.IsFailure"/>.
+        /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
         /// </summary>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
-        /// <param name="onFailure">Action to run if the <see cref="CustomResult{TError}"/> is <see cref="CustomResult{TError}.IsFailure"/>.</param>
+        /// <param name="onFailure">Action to run if the <see cref="CustomResult{TError}"/> is failure.</param>
         /// <param name="errorObject">Custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="CustomResult{TError}"/> corresponding to this one.</returns>
+        /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI]
         public static CustomResult<TError> OnFailure<TError>(this CustomResult<TError> result,
             [NotNull, InstantHandle] Action<CustomResult<TError>> onFailure,
@@ -183,14 +183,14 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onFailure"/> action when the <paramref name="result"/> is <see cref="CustomResult{TError}.IsFailure"/>.
+        /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
         /// </summary>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
-        /// <param name="onFailure">Action to run if the <see cref="CustomResult{TError}"/> is <see cref="CustomResult{TError}.IsFailure"/>.</param>
+        /// <param name="onFailure">Action to run if the <see cref="CustomResult{TError}"/> is failure.</param>
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="CustomResult{TError}"/> corresponding to this one.</returns>
+        /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI]
         public static CustomResult<TError> OnFailure<TError>(this CustomResult<TError> result, 
             [NotNull, InstantHandle] Action<CustomResult<TError>> onFailure,
@@ -213,15 +213,15 @@ namespace Here.Results.Extensions
         #region Result<T, TError>
 
         /// <summary>
-        /// Call the <paramref name="onFailure"/> action when the <paramref name="result"/> is <see cref="Result{T, TError}.IsFailure"/>.
+        /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
         /// </summary>
         /// <typeparam name="T">Result value type.</typeparam>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/> to check.</param>
-        /// <param name="onFailure">Action to run if the <see cref="Result{T, TError}"/> is <see cref="Result{T, TError}.IsFailure"/>.</param>
+        /// <param name="onFailure">Action to run if the <see cref="Result{T, TError}"/> is failure.</param>
         /// <param name="errorObject">Custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="Result{T, TError}"/> corresponding to this one.</returns>
+        /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI]
         public static Result<T, TError> OnFailure<T, TError>(this Result<T, TError> result, 
             [NotNull, InstantHandle] Action onFailure,
@@ -240,15 +240,15 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onFailure"/> action when the <paramref name="result"/> is <see cref="Result{T, TError}.IsFailure"/>.
+        /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
         /// </summary>
         /// <typeparam name="T">Result value type.</typeparam>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/> to check.</param>
-        /// <param name="onFailure">Action to run if the <see cref="Result{T, TError}"/> is <see cref="Result{T, TError}.IsFailure"/>.</param>
+        /// <param name="onFailure">Action to run if the <see cref="Result{T, TError}"/> is failure.</param>
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="Result{T, TError}"/> corresponding to this one.</returns>
+        /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI]
         public static Result<T, TError> OnFailure<T, TError>(this Result<T, TError> result,
             [NotNull, InstantHandle] Action onFailure,
@@ -267,15 +267,15 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onFailure"/> action when the <paramref name="result"/> is <see cref="Result{T, TError}.IsFailure"/>.
+        /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
         /// </summary>
         /// <typeparam name="T">Result value type.</typeparam>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/> to check.</param>
-        /// <param name="onFailure">Action to run if the <see cref="Result{T, TError}"/> is <see cref="Result{T, TError}.IsFailure"/>.</param>
+        /// <param name="onFailure">Action to run if the <see cref="Result{T, TError}"/> is failure.</param>
         /// <param name="errorObject">Custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="Result{T, TError}"/> corresponding to this one.</returns>
+        /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI]
         public static Result<T, TError> OnFailure<T, TError>(this Result<T, TError> result, 
             [NotNull, InstantHandle] Action<Result<T, TError>> onFailure,
@@ -294,15 +294,15 @@ namespace Here.Results.Extensions
         }
 
         /// <summary>
-        /// Call the <paramref name="onFailure"/> action when the <paramref name="result"/> is <see cref="Result{T, TError}.IsFailure"/>.
+        /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
         /// </summary>
         /// <typeparam name="T">Result value type.</typeparam>
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/> to check.</param>
-        /// <param name="onFailure">Action to run if the <see cref="Result{T, TError}"/> is <see cref="Result{T, TError}.IsFailure"/>.</param>
+        /// <param name="onFailure">Action to run if the <see cref="Result{T, TError}"/> is failure.</param>
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="Result{T, TError}"/> corresponding to this one.</returns>
+        /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI]
         public static Result<T, TError> OnFailure<T, TError>(this Result<T, TError> result,
             [NotNull, InstantHandle] Action<Result<T, TError>> onFailure,
