@@ -427,117 +427,6 @@ namespace JetBrains.Annotations
     }
 
     /// <summary>
-    /// An extension method marked with this attribute is processed by ReSharper code completion
-    /// as a 'Source Template'. When extension method is completed over some expression, it's source code
-    /// is automatically expanded like a template at call site.
-    /// </summary>
-    /// <remarks>
-    /// Template method body can contain valid source code and/or special comments starting with '$'.
-    /// Text inside these comments is added as source code when the template is applied. Template parameters
-    /// can be used either as additional method parameters or as identifiers wrapped in two '$' signs.
-    /// Use the <see cref="MacroAttribute"/> attribute to specify macros for parameters.
-    /// </remarks>
-    /// <example>
-    /// In this example, the 'forEach' method is a source template available over all values
-    /// of enumerable types, producing ordinary C# 'foreach' statement and placing caret inside block:
-    /// <code>
-    /// [SourceTemplate]
-    /// public static void forEach&lt;T&gt;(this IEnumerable&lt;T&gt; xs) {
-    ///   foreach (var x in xs) {
-    ///      //$ $END$
-    ///   }
-    /// }
-    /// </code>
-    /// </example>
-    [AttributeUsage(AttributeTargets.Method)]
-    [Conditional("JETBRAINS_ANNOTATIONS")]
-    internal sealed class SourceTemplateAttribute : Attribute { }
-
-    /// <summary>
-    /// Allows specifying a macro for a parameter of a <see cref="SourceTemplateAttribute">source template</see>.
-    /// </summary>
-    /// <remarks>
-    /// You can apply the attribute on the whole method or on any of its additional parameters. The macro expression
-    /// is defined in the <see cref="MacroAttribute.Expression"/> property. When applied on a method, the target
-    /// template parameter is defined in the <see cref="MacroAttribute.Target"/> property. To apply the macro silently
-    /// for the parameter, set the <see cref="MacroAttribute.Editable"/> property value = -1.
-    /// </remarks>
-    /// <example>
-    /// Applying the attribute on a source template method:
-    /// <code>
-    /// [SourceTemplate, Macro(Target = "item", Expression = "suggestVariableName()")]
-    /// public static void forEach&lt;T&gt;(this IEnumerable&lt;T&gt; collection) {
-    ///   foreach (var item in collection) {
-    ///     //$ $END$
-    ///   }
-    /// }
-    /// </code>
-    /// Applying the attribute on a template method parameter:
-    /// <code>
-    /// [SourceTemplate]
-    /// public static void something(this Entity x, [Macro(Expression = "guid()", Editable = -1)] string newguid) {
-    ///   /*$ var $x$Id = "$newguid$" + x.ToString();
-    ///   x.DoSomething($x$Id); */
-    /// }
-    /// </code>
-    /// </example>
-    [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Method, AllowMultiple = true)]
-    [Conditional("JETBRAINS_ANNOTATIONS")]
-    internal sealed class MacroAttribute : Attribute
-    {
-        /// <summary>
-        /// Allows specifying a macro that will be executed for a <see cref="SourceTemplateAttribute">source template</see>
-        /// parameter when the template is expanded.
-        /// </summary>
-        [CanBeNull] public string Expression { get; set; }
-
-        /// <summary>
-        /// Allows specifying which occurrence of the target parameter becomes editable when the template is deployed.
-        /// </summary>
-        /// <remarks>
-        /// If the target parameter is used several times in the template, only one occurrence becomes editable;
-        /// other occurrences are changed synchronously. To specify the zero-based index of the editable occurrence,
-        /// use values >= 0. To make the parameter non-editable when the template is expanded, use -1.
-        /// </remarks>>
-        public int Editable { get; set; }
-
-        /// <summary>
-        /// Identifies the target parameter of a <see cref="SourceTemplateAttribute">source template</see> if the
-        /// <see cref="MacroAttribute"/> is applied on a template method.
-        /// </summary>
-        [CanBeNull] public string Target { get; set; }
-    }
-
-    /// <summary>
-    /// Indicates how method, constructor invocation or property access
-    /// over collection type affects content of the collection.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Constructor | AttributeTargets.Property)]
-    [Conditional("JETBRAINS_ANNOTATIONS")]
-    internal sealed class CollectionAccessAttribute : Attribute
-    {
-        public CollectionAccessAttribute(CollectionAccessType collectionAccessType)
-        {
-            CollectionAccessType = collectionAccessType;
-        }
-
-        public CollectionAccessType CollectionAccessType { get; private set; }
-    }
-
-    [Flags]
-    internal enum CollectionAccessType
-    {
-        /// <summary>Method does not use or modify content of the collection.</summary>
-        None = 0,
-        /// <summary>Method only reads content of the collection but does not modify it.</summary>
-        Read = 1,
-        /// <summary>Method can change content of the collection but does not add new elements.</summary>
-        ModifyExistingContent = 2,
-        /// <summary>Method can add new elements to the collection.</summary>
-        UpdatedContent = ModifyExistingContent | 4
-    }
-
-    /// <summary>
     /// Indicates that the marked method is assertion method, i.e. it halts control flow if
     /// one of the conditions is satisfied. To set the condition, mark one of the parameters with 
     /// <see cref="AssertionConditionAttribute"/> attribute.
@@ -580,15 +469,6 @@ namespace JetBrains.Annotations
     }
 
     /// <summary>
-    /// Indicates that the marked method unconditionally terminates control flow execution.
-    /// For example, it could unconditionally throw exception.
-    /// </summary>
-    [Obsolete("Use [ContractAnnotation('=> halt')] instead")]
-    [AttributeUsage(AttributeTargets.Method)]
-    [Conditional("JETBRAINS_ANNOTATIONS")]
-    internal sealed class TerminatesProgramAttribute : Attribute { }
-
-    /// <summary>
     /// Indicates that method is pure LINQ method, with postponed enumeration (like Enumerable.Select,
     /// .Where). This annotation allows inference of [InstantHandle] annotation for parameters
     /// of delegate type by analyzing LINQ method chains.
@@ -610,15 +490,4 @@ namespace JetBrains.Annotations
     [AttributeUsage(AttributeTargets.Parameter)]
     [Conditional("JETBRAINS_ANNOTATIONS")]
     internal sealed class RegexPatternAttribute : Attribute { }
-
-    /// <summary>
-    /// Prevents the Member Reordering feature from tossing members of the marked class.
-    /// </summary>
-    /// <remarks>
-    /// The attribute must be mentioned in your member reordering patterns
-    /// </remarks>
-    [AttributeUsage(
-      AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.Struct | AttributeTargets.Enum)]
-    [Conditional("JETBRAINS_ANNOTATIONS")]
-    internal sealed class NoReorderAttribute : Attribute { }
 }
