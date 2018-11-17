@@ -24,8 +24,8 @@ namespace Here.ValueObjects
         /// </summary>
         /// <param name="object1">First <see cref="ValueObject"/> to compare.</param>
         /// <param name="object2">Second <see cref="ValueObject"/> to compare.</param>
-        /// <returns>True if both <see cref="Maybe{T}"/> are equal, otherwise false.</returns>
-        public static bool operator ==(ValueObject object1, ValueObject object2)
+        /// <returns>True if both <see cref="ValueObject"/> are equal, otherwise false.</returns>
+        protected static bool EqualOperator(ValueObject object1, ValueObject object2)
         {
             if (object1 is null)
                 return object2 is null;
@@ -39,10 +39,10 @@ namespace Here.ValueObjects
         /// </summary>
         /// <param name="object1">First <see cref="ValueObject"/> to compare.</param>
         /// <param name="object2">Second <see cref="ValueObject"/> to compare.</param>
-        /// <returns>True if both <see cref="Maybe{T}"/> are not equal, otherwise false.</returns>
-        public static bool operator !=(ValueObject object1, ValueObject object2)
+        /// <returns>True if both <see cref="ValueObject"/> are not equal, otherwise false.</returns>
+        protected static bool NotEqualOperator(ValueObject object1, ValueObject object2)
         {
-            return !(object1 == object2);
+            return !EqualOperator(object1, object2);
         }
 
         /// <inheritdoc />

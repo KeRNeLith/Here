@@ -83,13 +83,13 @@ namespace Here.Tests.ValueObjects
         {
             public enum Value
             {
-                OneCent,
-                TwoCents,
-                FiveCents,
+                [UsedImplicitly] OneCent,
+                [UsedImplicitly] TwoCents,
+                [UsedImplicitly] FiveCents,
                 TenCents,
-                TwentyCents,
+                [UsedImplicitly] TwentyCents,
                 FiftyCents,
-                OneEuro,
+                [UsedImplicitly] OneEuro,
                 TwoEuros
             };
     
@@ -146,38 +146,58 @@ namespace Here.Tests.ValueObjects
             }
         }
 
+        // Class only for test purpose
+        private abstract class TestEqualsValueObject : ValueObject
+        {
+            public static void TestEqualOperator()
+            {
+                var address1 = new Address(1, "Pila", "Montpellier");
+                var address2 = new Address(1, "Pila", "Montpellier");
+
+                Assert.IsTrue(EqualOperator(address1, address1));
+                Assert.IsTrue(EqualOperator(address1, address2));
+                Assert.IsTrue(EqualOperator(address2, address1));
+                Assert.IsTrue(EqualOperator(null, null));
+            }
+
+            public static void TestNotEqualOperator()
+            {
+                var address1 = new Address(1, "Pila", "Montpellier");
+                var address2 = new Address(2, "Pila", "Montpellier");
+
+                Assert.IsTrue(NotEqualOperator(address1, address2));
+                Assert.IsTrue(NotEqualOperator(address2, address1));
+                Assert.IsTrue(NotEqualOperator(address1, null));
+                Assert.IsTrue(NotEqualOperator(null, address1));
+                Assert.IsFalse(NotEqualOperator(null, null));
+            }
+
+            protected override IEnumerable<object> GetEqualityElements()
+            {
+                yield break;
+            }
+        }
+
         #endregion
 
         #region Helpers
 
-        [Pure]
-        private void CheckAreEqual<T, T2>(T object1, T2 object2)
+        private static void CheckAreEqual<T, T2>(T object1, T2 object2)
             where T : ValueObject
             where T2 : ValueObject
         {
             Assert.AreEqual(object1, object2);
             Assert.AreEqual(object2, object1);
             Assert.AreEqual(object1.GetHashCode(), object2.GetHashCode());
-
-            Assert.IsTrue(object1 == object2);
-            Assert.IsTrue(object2 == object1);
-            Assert.IsFalse(object1 != object2);
-            Assert.IsFalse(object2 != object1);
         }
 
-        [Pure]
-        private void CheckAreNotEqual<T, T2>(T object1, T2 object2)
+        private static void CheckAreNotEqual<T, T2>(T object1, T2 object2)
             where T : ValueObject
             where T2 : ValueObject
         {
             Assert.AreNotEqual(object1, object2);
             Assert.AreNotEqual(object2, object1);
             Assert.AreNotEqual(object1.GetHashCode(), object2.GetHashCode());
-
-            Assert.IsFalse(object1 == object2);
-            Assert.IsFalse(object2 == object1);
-            Assert.IsTrue(object1 != object2);
-            Assert.IsTrue(object2 != object1);
         }
 
         #endregion
@@ -188,24 +208,18 @@ namespace Here.Tests.ValueObjects
             var address1 = new Address(1, "Pila", "Montpellier");
             var address2 = new Address(1, "Pila", "Montpellier");
             CheckAreEqual(address1, address1);
+            CheckAreEqual(address1, address2);
+
+            TestEqualsValueObject.TestEqualOperator();
+            TestEqualsValueObject.TestNotEqualOperator();
         }
 
         [Test]
         public void ValueObjectsEdgeCases()
         {
-            var address1 = new Address(1, "Pila", "Montpellier");
-            Address address2 = null;
-            Address address3 = null;
-            
-            Assert.IsFalse(address1 == address2);
-            Assert.IsFalse(address2 == address1);
-            Assert.IsTrue(address1 != address2);
-            Assert.IsTrue(address2 != address1);
-
-            Assert.IsTrue(address2 == address3);
-            Assert.IsTrue(address3 == address2);
-            Assert.IsFalse(address2 != address3);
-            Assert.IsFalse(address3 != address2);
+            var address = new Address(1, "Pila", "Montpellier");
+            Assert.AreNotEqual(address, null);
+            Assert.AreNotEqual(null, address);
         }
 
         [Test]
