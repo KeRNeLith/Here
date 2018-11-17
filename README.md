@@ -19,6 +19,9 @@ For more details on `Maybe<T>` usage see the following [tips](src/Here/Maybe/REA
 - The `Result`. This structure encapsulates treatments results. This provides an improved return state, and also a better error management.
 For more details on `Result` usage see the following [tips](src/Here/Result/README.md).
 
+- The `ValueObject`. This structure encapsulates boilerplate code required to compare objects on their values rather than their references. This allows an easy creation of comparable/interchangeable objects.
+For more details on `ValueObject` usage see the following [tips](src/Here/ValueObject/README.md).
+
 ---
 
 ## Target
