@@ -152,18 +152,32 @@ namespace Here.Tests.ValueObjects
 
         [Pure]
         private void CheckAreEqual<T, T2>(T object1, T2 object2)
+            where T : ValueObject
+            where T2 : ValueObject
         {
             Assert.AreEqual(object1, object2);
             Assert.AreEqual(object2, object1);
             Assert.AreEqual(object1.GetHashCode(), object2.GetHashCode());
+
+            Assert.IsTrue(object1 == object2);
+            Assert.IsTrue(object2 == object1);
+            Assert.IsFalse(object1 != object2);
+            Assert.IsFalse(object2 != object1);
         }
 
         [Pure]
         private void CheckAreNotEqual<T, T2>(T object1, T2 object2)
+            where T : ValueObject
+            where T2 : ValueObject
         {
             Assert.AreNotEqual(object1, object2);
             Assert.AreNotEqual(object2, object1);
             Assert.AreNotEqual(object1.GetHashCode(), object2.GetHashCode());
+
+            Assert.IsFalse(object1 == object2);
+            Assert.IsFalse(object2 == object1);
+            Assert.IsTrue(object1 != object2);
+            Assert.IsTrue(object2 != object1);
         }
 
         #endregion
@@ -174,7 +188,24 @@ namespace Here.Tests.ValueObjects
             var address1 = new Address(1, "Pila", "Montpellier");
             var address2 = new Address(1, "Pila", "Montpellier");
             CheckAreEqual(address1, address1);
-            CheckAreEqual(address1, address2);
+        }
+
+        [Test]
+        public void ValueObjectsEdgeCases()
+        {
+            var address1 = new Address(1, "Pila", "Montpellier");
+            Address address2 = null;
+            Address address3 = null;
+            
+            Assert.IsFalse(address1 == address2);
+            Assert.IsFalse(address2 == address1);
+            Assert.IsTrue(address1 != address2);
+            Assert.IsTrue(address2 != address1);
+
+            Assert.IsTrue(address2 == address3);
+            Assert.IsTrue(address3 == address2);
+            Assert.IsFalse(address2 != address3);
+            Assert.IsFalse(address3 != address2);
         }
 
         [Test]
@@ -183,7 +214,6 @@ namespace Here.Tests.ValueObjects
             var address1 = new Address(1, "Pila", "Montpellier");
             var address2 = new FullAddress(1, "Pila", "Montpellier", "France");
             CheckAreNotEqual(address1, address2);
-            CheckAreNotEqual(address2, address1);
         }
 
         [Test]
@@ -216,7 +246,6 @@ namespace Here.Tests.ValueObjects
             var address = new Address(1, "Pila", "Montpellier");
             var wallet = new Wallet("EUR", 100.25);
             CheckAreNotEqual(address, wallet);
-            CheckAreNotEqual(wallet, address);
         }
     }
 }
