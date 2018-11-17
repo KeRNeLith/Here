@@ -48,7 +48,7 @@ Supports Source Link</Description>
 
 - Results:
     - Add extensions to unwrap the value embedded by results structures.
-    - Add extensions to Flatten results structures (explicit, implicit).</PackageReleaseNotes>
+    - Add extensions to Flatten results structures.</PackageReleaseNotes>
     <PackageTags>Here Functional C# Maybe Monad Result</PackageTags>
 
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
