@@ -33,7 +33,7 @@ namespace Here.Results.Extensions
         /// <param name="result"><see cref="IResult{T}"/> to unwrap value.</param>
         /// <param name="defaultValue">Default value to use.</param>
         /// <returns>The unwrapped value from this <see cref="IResult{T}"/> if it has a value, otherwise the default value.</returns>
-        [PublicAPI, Pure, CanBeNull]
+        [PublicAPI, Pure]
         public static T Unwrap<T>(this IResult<T> result, [CanBeNull] T defaultValue = default(T))
         {
             if (result.IsSuccess)
@@ -49,7 +49,7 @@ namespace Here.Results.Extensions
         /// <param name="result"><see cref="IResult{T}"/> to unwrap value.</param>
         /// <param name="orFunc">Default value factory method.</param>
         /// <returns>The unwrapped value from this <see cref="IResult{T}"/> if it has a value, otherwise the default value.</returns>
-        [PublicAPI, Pure, CanBeNull]
+        [PublicAPI, Pure]
         public static T Unwrap<T>(this IResult<T> result, [NotNull, InstantHandle] Func<T> orFunc)
         {
             if (result.IsSuccess)
@@ -68,7 +68,7 @@ namespace Here.Results.Extensions
         /// <param name="converter">Function called to convert this <see cref="IResult{T}"/> value.</param>
         /// <param name="defaultValue">Default value to use.</param>
         /// <returns>The unwrapped value from this <see cref="IResult{T}"/> if it has a value, otherwise the default value.</returns>
-        [PublicAPI, Pure, CanBeNull]
+        [PublicAPI, Pure]
         public static TOut Unwrap<T, TOut>(this IResult<T> result,
             [NotNull, InstantHandle] Func<T, TOut> converter,
             [CanBeNull] TOut defaultValue = default(TOut))
@@ -89,7 +89,7 @@ namespace Here.Results.Extensions
         /// <param name="converter">Function called to convert this <see cref="IResult{T}"/> value.</param>
         /// <param name="orFunc">Default value factory method.</param>
         /// <returns>The unwrapped value from this <see cref="IResult{T}"/> if it has a value, otherwise the default value.</returns>
-        [PublicAPI, Pure, CanBeNull]
+        [PublicAPI, Pure]
         public static TOut Unwrap<T, TOut>(this IResult<T> result,
             [NotNull, InstantHandle] Func<T, TOut> converter,
             [NotNull] Func<TOut> orFunc)

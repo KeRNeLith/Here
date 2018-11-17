@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 
 namespace Here.Tests
 {
@@ -12,17 +13,18 @@ namespace Here.Tests
 
         protected class PersonNotEquatable
         {
-            public string Name { get; }
+            [UsedImplicitly]
+            private string _name;
 
             public PersonNotEquatable(string name)
             {
-                Name = name;
+                _name = name;
             }
         }
 
         protected class PersonComparable : IComparable<PersonComparable>
         {
-            public string _name;
+            private readonly string _name;
 
             public PersonComparable(string name)
             {

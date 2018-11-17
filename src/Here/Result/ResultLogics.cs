@@ -27,7 +27,6 @@ namespace Here.Results
         /// <summary>
         /// Result message.
         /// </summary>
-        [CanBeNull]
         public string Message { get; }
 
         /// <summary>
@@ -36,12 +35,12 @@ namespace Here.Results
         [CanBeNull]
         public Exception Exception { get; }
 
+        [CanBeNull]
         private readonly TError _error;
 
         /// <summary>
         /// Result error object.
         /// </summary>
-        [CanBeNull]
         public TError Error
         {
             get

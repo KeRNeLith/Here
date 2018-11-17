@@ -34,7 +34,7 @@ namespace Here.Maybes
         /// Returns this <see cref="Maybe{T}"/> as a <see cref="Maybe{TOut}"/> if it has a value and is of type <typeparamref name="TOut"/>.
         /// </summary>
         /// <typeparam name="TOut">Type of the value embedded in the resulting <see cref="Maybe{TOut}"/>.</typeparam>
-        /// <returns>Casted <see cref="Maybe{TOut}"/>.</returns>
+        /// <returns>Cast <see cref="Maybe{TOut}"/>.</returns>
         [PublicAPI, Pure]
         public Maybe<TOut> OfType<TOut>()
             where TOut : class

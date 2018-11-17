@@ -30,7 +30,7 @@ namespace Here.Results
         /// <summary>
         /// Result message.
         /// </summary>
-        [PublicAPI, CanBeNull]
+        [PublicAPI]
         string Message { get; }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Here.Results
         /// <summary>
         /// Error attached to this result.
         /// </summary>
-        [PublicAPI, CanBeNull]
+        [PublicAPI]
         TError Error { get; }
     }
 
@@ -63,7 +63,7 @@ namespace Here.Results
         /// <summary>
         /// Result value.
         /// </summary>
-        [PublicAPI, CanBeNull]
+        [PublicAPI]
         T Value { get; }
     }
 }
