@@ -31,7 +31,7 @@ namespace Here.ValueObjects
                 return object2 is null;
             if (object2 is null)
                 return false;
-            return object1.Equals(object2);
+            return ReferenceEquals(object1, object2) || object1.Equals(object2);
         }
 
         /// <summary>

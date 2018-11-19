@@ -81,8 +81,7 @@ namespace Here.Maybes
         /// <inheritdoc />
         public bool Equals(Maybe<T> other)
         {
-            return EqualityComparer<T>.Default.Equals(_value, other._value)
-                && HasValue.Equals(other.HasValue);
+            return AreEqual(this, other);
         }
 
         /// <inheritdoc />
@@ -91,6 +90,25 @@ namespace Here.Maybes
             if (obj is null)
                 return false;
             return obj is Maybe<T> maybe && Equals(maybe);
+        }
+
+        /// <summary>
+        /// Indicates whether both <see cref="Maybe{T}"/> are equal.
+        /// </summary>
+        /// <param name="maybe1">First <see cref="Maybe{T}"/> to compare.</param>
+        /// <param name="maybe2">Second <see cref="Maybe{T}"/> to compare.</param>
+        /// <param name="equalityComparer">Equality comparer to use to compare values.</param>
+        /// <returns>True if both <see cref="Maybe{T}"/> are equal, otherwise false.</returns>
+        [PublicAPI, Pure]
+        public static bool AreEqual(Maybe<T> maybe1, Maybe<T> maybe2, [CanBeNull] IEqualityComparer<T> equalityComparer = null)
+        {
+            if (maybe1.HasNoValue && maybe2.HasNoValue)
+                return true;
+
+            if (maybe1.HasNoValue || maybe2.HasNoValue)
+                return false;
+
+            return (equalityComparer ?? EqualityComparer<T>.Default).Equals(maybe1._value, maybe2._value);
         }
 
         /// <inheritdoc />
@@ -107,7 +125,7 @@ namespace Here.Maybes
         /// <returns>True if both <see cref="Maybe{T}"/> are equal, otherwise false.</returns>
         public static bool operator==(Maybe<T> maybe1, Maybe<T> maybe2)
         {
-            return maybe1.Equals(maybe2);
+            return AreEqual(maybe1, maybe2);
         }
 
         /// <summary>
@@ -131,7 +149,7 @@ namespace Here.Maybes
         {
             if (maybe.HasNoValue)
                 return false;
-            return maybe.Value.Equals(value);
+            return maybe._value.Equals(value);
         }
 
         /// <summary>
@@ -175,9 +193,9 @@ namespace Here.Maybes
         public int CompareTo(object obj)
         {
             if (obj is null)
-                return CompareTo(None);
+                return Compare(this, None);
             if (obj is Maybe<T> other)
-                return CompareTo(other);
+                return Compare(this, other);
 
             throw new ArgumentException($"Cannot compare an object of type {obj.GetType()} with a {typeof(Maybe<T>)}");
         }
@@ -190,11 +208,26 @@ namespace Here.Maybes
         /// </summary>
         public int CompareTo(Maybe<T> other)
         {
-            if (HasValue && !other.HasValue)
+            return Compare(this, other);
+        }
+
+        /// <summary>
+        /// Compares this <see cref="Maybe{T}"/> with the given one.
+        /// Order keeps <see cref="Maybe{T}.None"/> first and <see cref="Maybe{T}"/> with value after.
+        /// Then it uses the <see cref="Maybe{T}.Value"/> for the comparison.
+        /// </summary>
+        /// <param name="maybe1">First <see cref="Maybe{T}"/> to compare.</param>
+        /// <param name="maybe2">Second <see cref="Maybe{T}"/> to compare.</param>
+        /// <param name="comparer">Equality comparer to use to compare values.</param>
+        /// <returns>An integer that indicates the relative order of compared objects.</returns>
+        [PublicAPI, Pure]
+        public static int Compare(Maybe<T> maybe1, Maybe<T> maybe2, [CanBeNull] IComparer<T> comparer = null)
+        {
+            if (maybe1.HasValue && !maybe2.HasValue)
                 return 1;
-            if (!HasValue && other.HasValue)
+            if (!maybe1.HasValue && maybe2.HasValue)
                 return -1;
-            return Comparer<T>.Default.Compare(_value, other._value);
+            return (comparer ?? Comparer<T>.Default).Compare(maybe1._value, maybe2._value);
         }
 
         /// <summary>
@@ -205,7 +238,7 @@ namespace Here.Maybes
         /// <returns>The comparison result.</returns>
         public static bool operator <(Maybe<T> left, Maybe<T> right)
         {
-            return left.CompareTo(right) < 0;
+            return Compare(left, right) < 0;
         }
 
         /// <summary>
@@ -216,7 +249,7 @@ namespace Here.Maybes
         /// <returns>The comparison result.</returns>
         public static bool operator <=(Maybe<T> left, Maybe<T> right)
         {
-            return left.CompareTo(right) <= 0;
+            return Compare(left, right) <= 0;
         }
 
         /// <summary>
@@ -227,7 +260,7 @@ namespace Here.Maybes
         /// <returns>The comparison result.</returns>
         public static bool operator >(Maybe<T> left, Maybe<T> right)
         {
-            return left.CompareTo(right) > 0;
+            return Compare(left, right) > 0;
         }
 
         /// <summary>
@@ -238,7 +271,7 @@ namespace Here.Maybes
         /// <returns>The comparison result.</returns>
         public static bool operator >=(Maybe<T> left, Maybe<T> right)
         {
-            return left.CompareTo(right) >= 0;
+            return Compare(left, right) >= 0;
         }
 
         #endregion
