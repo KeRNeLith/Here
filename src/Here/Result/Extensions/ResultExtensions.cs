@@ -34,7 +34,7 @@ namespace Here.Results.Extensions
         /// <param name="defaultValue">Default value to use.</param>
         /// <returns>The unwrapped value from this <see cref="IResult{T}"/> if it has a value, otherwise the default value.</returns>
         [PublicAPI, Pure]
-        public static T Unwrap<T>(this IResult<T> result, [CanBeNull] T defaultValue = default(T))
+        public static T Unwrap<T>(this IResult<T> result, [CanBeNull] in T defaultValue = default)
         {
             if (result.IsSuccess)
                 return result.Value;
@@ -50,7 +50,7 @@ namespace Here.Results.Extensions
         /// <param name="orFunc">Default value factory method.</param>
         /// <returns>The unwrapped value from this <see cref="IResult{T}"/> if it has a value, otherwise the default value.</returns>
         [PublicAPI, Pure]
-        public static T Unwrap<T>(this IResult<T> result, [NotNull, InstantHandle] Func<T> orFunc)
+        public static T Unwrap<T>(this IResult<T> result, [NotNull, InstantHandle] in Func<T> orFunc)
         {
             if (result.IsSuccess)
                 return result.Value;
@@ -70,8 +70,8 @@ namespace Here.Results.Extensions
         /// <returns>The unwrapped value from this <see cref="IResult{T}"/> if it has a value, otherwise the default value.</returns>
         [PublicAPI, Pure]
         public static TOut Unwrap<T, TOut>(this IResult<T> result,
-            [NotNull, InstantHandle] Func<T, TOut> converter,
-            [CanBeNull] TOut defaultValue = default(TOut))
+            [NotNull, InstantHandle] in Func<T, TOut> converter,
+            [CanBeNull] in TOut defaultValue = default)
         {
             if (result.IsSuccess)
                 return converter(result.Value);
@@ -91,8 +91,8 @@ namespace Here.Results.Extensions
         /// <returns>The unwrapped value from this <see cref="IResult{T}"/> if it has a value, otherwise the default value.</returns>
         [PublicAPI, Pure]
         public static TOut Unwrap<T, TOut>(this IResult<T> result,
-            [NotNull, InstantHandle] Func<T, TOut> converter,
-            [NotNull] Func<TOut> orFunc)
+            [NotNull, InstantHandle] in Func<T, TOut> converter,
+            [NotNull] in Func<TOut> orFunc)
         {
             if (result.IsSuccess)
                 return converter(result.Value);
@@ -111,7 +111,7 @@ namespace Here.Results.Extensions
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
         /// <returns>A <see cref="Result"/>.</returns>
         [PublicAPI, Pure]
-        public static Result Ensure(this Result result, [NotNull, InstantHandle] Func<bool> predicate, [NotNull] string errorMessage)
+        public static Result Ensure(this Result result, [NotNull, InstantHandle] in Func<bool> predicate, [NotNull] in string errorMessage)
         {
             if (result.IsFailure)
                 return result;
@@ -135,7 +135,7 @@ namespace Here.Results.Extensions
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
         /// <returns>A <see cref="Result{T}"/>.</returns>
         [PublicAPI, Pure]
-        public static Result<T> Ensure<T>(this Result<T> result, [NotNull, InstantHandle] Predicate<T> predicate, [NotNull] string errorMessage)
+        public static Result<T> Ensure<T>(this Result<T> result, [NotNull, InstantHandle] in Predicate<T> predicate, [NotNull] in string errorMessage)
         {
             if (result.IsFailure)
                 return result;
@@ -241,9 +241,9 @@ namespace Here.Results.Extensions
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI, Pure]
         public static CustomResult<TError> Ensure<TError>(this CustomResult<TError> result, 
-            [NotNull, InstantHandle] Func<bool> predicate, 
-            [NotNull] string errorMessage, 
-            [NotNull] TError errorObject)
+            [NotNull, InstantHandle] in Func<bool> predicate, 
+            [NotNull] in string errorMessage, 
+            [NotNull] in TError errorObject)
         {
             if (result.IsFailure)
                 return result;
@@ -265,9 +265,9 @@ namespace Here.Results.Extensions
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI, Pure]
         public static CustomResult<TError> Ensure<TError>(this CustomResult<TError> result,
-            [NotNull, InstantHandle] Func<bool> predicate,
-            [NotNull] string errorMessage,
-            [NotNull, InstantHandle] Func<TError> errorFactory)
+            [NotNull, InstantHandle] in Func<bool> predicate,
+            [NotNull] in string errorMessage,
+            [NotNull, InstantHandle] in Func<TError> errorFactory)
         {
             if (result.IsFailure)
                 return result;
@@ -294,9 +294,9 @@ namespace Here.Results.Extensions
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI, Pure]
         public static Result<T, TError> Ensure<T, TError>(this Result<T, TError> result,
-            [NotNull, InstantHandle] Predicate<T> predicate,
-            [NotNull] string errorMessage,
-            [NotNull] TError errorObject)
+            [NotNull, InstantHandle] in Predicate<T> predicate,
+            [NotNull] in string errorMessage,
+            [NotNull] in TError errorObject)
         {
             if (result.IsFailure)
                 return result;
@@ -319,9 +319,9 @@ namespace Here.Results.Extensions
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI, Pure]
         public static Result<T, TError> Ensure<T, TError>(this Result<T, TError> result,
-            [NotNull, InstantHandle] Predicate<T> predicate,
-            [NotNull] string errorMessage,
-            [NotNull, InstantHandle] Func<TError> errorFactory)
+            [NotNull, InstantHandle] in Predicate<T> predicate,
+            [NotNull] in string errorMessage,
+            [NotNull, InstantHandle] in Func<TError> errorFactory)
         {
             if (result.IsFailure)
                 return result;

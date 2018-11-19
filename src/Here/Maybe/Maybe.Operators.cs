@@ -14,7 +14,7 @@ namespace Here.Maybes
         /// <param name="maybe"><see cref="Maybe{T}"/> to check.</param>
         /// <returns>True if <see cref="Maybe{T}"/> <see cref="HasNoValue"/>.</returns>
         [PublicAPI, Pure]
-        public static bool operator !(Maybe<T> maybe) => maybe.HasNoValue;
+        public static bool operator !(in Maybe<T> maybe) => maybe.HasNoValue;
 
         /// <summary>
         /// Converts this <see cref="Maybe{T}"/> if it has a value to a <see cref="Maybe{TOut}"/>.
@@ -50,7 +50,7 @@ namespace Here.Maybes
         /// <param name="failureMessage">Failure message in case this <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>The corresponding <see cref="Result"/>.</returns>
         [PublicAPI, Pure]
-        public Result ToResult([CanBeNull] string failureMessage = null)
+        public Result ToResult([CanBeNull] in string failureMessage = null)
         {
             if (HasValue)
                 return Result.Ok();
@@ -63,7 +63,7 @@ namespace Here.Maybes
         /// <param name="failureMessage">Failure message in case the <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>The corresponding <see cref="Result{T}"/>.</returns>
         [PublicAPI, Pure]
-        public Result<T> ToValueResult([CanBeNull] string failureMessage = null)
+        public Result<T> ToValueResult([CanBeNull] in string failureMessage = null)
         {
             if (HasValue)
                 return Result.Ok(Value);
@@ -77,7 +77,7 @@ namespace Here.Maybes
         /// <param name="failureMessage">Failure message in case the <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>The corresponding <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI, Pure]
-        public CustomResult<TError> ToCustomResult<TError>([NotNull, InstantHandle] Func<TError> errorFactory, [CanBeNull] string failureMessage = null)
+        public CustomResult<TError> ToCustomResult<TError>([NotNull, InstantHandle] in Func<TError> errorFactory, [CanBeNull] in string failureMessage = null)
         {
             if (HasValue)
                 return Result.CustomOk<TError>();
@@ -91,7 +91,7 @@ namespace Here.Maybes
         /// <param name="failureMessage">Failure message in case the <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>The corresponding <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI, Pure]
-        public CustomResult<TError> ToCustomResult<TError>([NotNull] TError errorObject, [CanBeNull] string failureMessage = null)
+        public CustomResult<TError> ToCustomResult<TError>([NotNull] in TError errorObject, [CanBeNull] in string failureMessage = null)
         {
             if (HasValue)
                 return Result.CustomOk<TError>();
@@ -105,7 +105,7 @@ namespace Here.Maybes
         /// <param name="failureMessage">Failure message in case the <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>The corresponding <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI, Pure]
-        public Result<T, TError> ToCustomValueResult<TError>([NotNull, InstantHandle] Func<TError> errorFactory, [CanBeNull] string failureMessage = null)
+        public Result<T, TError> ToCustomValueResult<TError>([NotNull, InstantHandle] in Func<TError> errorFactory, [CanBeNull] in string failureMessage = null)
         {
             if (HasValue)
                 return Result.Ok<T, TError>(Value);
@@ -119,7 +119,7 @@ namespace Here.Maybes
         /// <param name="failureMessage">Failure message in case the <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>The corresponding <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI, Pure]
-        public Result<T, TError> ToCustomValueResult<TError>([NotNull] TError errorObject, [CanBeNull] string failureMessage = null)
+        public Result<T, TError> ToCustomValueResult<TError>([NotNull] in TError errorObject, [CanBeNull] in string failureMessage = null)
         {
             if (HasValue)
                 return Result.Ok<T, TError>(Value);

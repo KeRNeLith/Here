@@ -12,7 +12,7 @@ namespace Here.Results
         /// <param name="result"><see cref="Result"/> to convert.</param>
         /// <returns>A <see cref="Maybe{Boolean}"/>.</returns>
         [PublicAPI, Pure]
-        public static implicit operator Maybe<bool>(Result result)
+        public static implicit operator Maybe<bool>(in Result result)
         {
             return result.ToMaybe();
         }
@@ -26,7 +26,7 @@ namespace Here.Results
         /// <param name="result"><see cref="Result{T}"/> to convert.</param>
         /// <returns>A <see cref="Result"/>.</returns>
         [PublicAPI, Pure]
-        public static implicit operator Result(Result<T> result)
+        public static implicit operator Result(in Result<T> result)
         {
             return new Result(result.Logic);
         }
@@ -37,7 +37,7 @@ namespace Here.Results
         /// <param name="result"><see cref="Result{T}"/> to convert.</param>
         /// <returns>A <see cref="Maybe{T}"/>.</returns>
         [PublicAPI, Pure]
-        public static implicit operator Maybe<T>(Result<T> result)
+        public static implicit operator Maybe<T>(in Result<T> result)
         {
             return result.ToMaybe();
         }
@@ -51,7 +51,7 @@ namespace Here.Results
         /// <param name="result"><see cref="CustomResult{TError}"/> to convert.</param>
         /// <returns>A <see cref="Result"/>.</returns>
         [PublicAPI, Pure]
-        public static implicit operator Result(CustomResult<TError> result)
+        public static implicit operator Result(in CustomResult<TError> result)
         {
             return new Result(ResultLogic.ToResultLogic(result.Logic));
         }
@@ -62,7 +62,7 @@ namespace Here.Results
         /// <param name="result"><see cref="CustomResult{TError}"/> to convert.</param>
         /// <returns>A <see cref="Maybe{Boolean}"/>.</returns>
         [PublicAPI, Pure]
-        public static implicit operator Maybe<bool>(CustomResult<TError> result)
+        public static implicit operator Maybe<bool>(in CustomResult<TError> result)
         {
             return result.ToMaybe();
         }
@@ -76,7 +76,7 @@ namespace Here.Results
         /// <param name="result"><see cref="Result{T, TError}"/> to convert.</param>
         /// <returns>A <see cref="Result"/>.</returns>
         [PublicAPI, Pure]
-        public static implicit operator Result(Result<T, TError> result)
+        public static implicit operator Result(in Result<T, TError> result)
         {
             return new Result(ResultLogic.ToResultLogic(result.Logic));
         }
@@ -87,7 +87,7 @@ namespace Here.Results
         /// <param name="result"><see cref="Result{T, TError}"/> to convert.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI, Pure]
-        public static implicit operator CustomResult<TError>(Result<T, TError> result)
+        public static implicit operator CustomResult<TError>(in Result<T, TError> result)
         {
             return new CustomResult<TError>(result.Logic);
         }
@@ -98,10 +98,10 @@ namespace Here.Results
         /// <param name="result"><see cref="Result{T, TError}"/> to convert.</param>
         /// <returns>A <see cref="Result{T}"/>.</returns>
         [PublicAPI, Pure]
-        public static implicit operator Result<T>(Result<T, TError> result)
+        public static implicit operator Result<T>(in Result<T, TError> result)
         {
             return new Result<T>(
-                result.IsSuccess ? result.Value : default(T),
+                result.IsSuccess ? result.Value : default,
                 ResultLogic.ToResultLogic(result.Logic));
         }
 
@@ -111,7 +111,7 @@ namespace Here.Results
         /// <param name="result"><see cref="Result{T}"/> to convert.</param>
         /// <returns>A <see cref="Maybe{T}"/>.</returns>
         [PublicAPI, Pure]
-        public static implicit operator Maybe<T>(Result<T, TError> result)
+        public static implicit operator Maybe<T>(in Result<T, TError> result)
         {
             return result.ToMaybe();
         }

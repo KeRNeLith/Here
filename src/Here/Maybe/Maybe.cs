@@ -57,7 +57,7 @@ namespace Here.Maybes
         /// Constructor.
         /// </summary>
         /// <param name="value">A value.</param>
-        private Maybe([NotNull] T value)
+        private Maybe([NotNull] in T value)
         {
             HasValue = true;
             _value = value;
@@ -68,7 +68,7 @@ namespace Here.Maybes
         /// </summary>
         /// <param name="value">A value.</param>
         [PublicAPI]
-        public static Maybe<T> Some([NotNull] T value)
+        public static Maybe<T> Some([NotNull] in T value)
         {
             if (value == null)
                 throw new ArgumentNullException(nameof(value), "Cannot initialize a Maybe with a null value.");
@@ -100,7 +100,7 @@ namespace Here.Maybes
         /// <param name="equalityComparer">Equality comparer to use to compare values.</param>
         /// <returns>True if both <see cref="Maybe{T}"/> are equal, otherwise false.</returns>
         [PublicAPI, Pure]
-        public static bool AreEqual(Maybe<T> maybe1, Maybe<T> maybe2, [CanBeNull] IEqualityComparer<T> equalityComparer = null)
+        public static bool AreEqual(in Maybe<T> maybe1, in Maybe<T> maybe2, [CanBeNull] in IEqualityComparer<T> equalityComparer = null)
         {
             if (maybe1.HasNoValue && maybe2.HasNoValue)
                 return true;
@@ -123,7 +123,7 @@ namespace Here.Maybes
         /// <param name="maybe1">First <see cref="Maybe{T}"/> to compare.</param>
         /// <param name="maybe2">Second <see cref="Maybe{T}"/> to compare.</param>
         /// <returns>True if both <see cref="Maybe{T}"/> are equal, otherwise false.</returns>
-        public static bool operator==(Maybe<T> maybe1, Maybe<T> maybe2)
+        public static bool operator==(in Maybe<T> maybe1, in Maybe<T> maybe2)
         {
             return AreEqual(maybe1, maybe2);
         }
@@ -134,7 +134,7 @@ namespace Here.Maybes
         /// <param name="maybe1">First <see cref="Maybe{T}"/> to compare.</param>
         /// <param name="maybe2">Second <see cref="Maybe{T}"/> to compare.</param>
         /// <returns>True if <see cref="Maybe{T}"/> are not equal, otherwise false.</returns>
-        public static bool operator!=(Maybe<T> maybe1, Maybe<T> maybe2)
+        public static bool operator!=(in Maybe<T> maybe1, in Maybe<T> maybe2)
         {
             return !(maybe1 == maybe2);
         }
@@ -145,7 +145,7 @@ namespace Here.Maybes
         /// <param name="maybe"><see cref="Maybe{T}"/> that may embed a value to compare.</param>
         /// <param name="value">Value to compare.</param>
         /// <returns>True if the <see cref="Maybe{T}"/> value is equals to the given value, otherwise false.</returns>
-        public static bool operator ==(Maybe<T> maybe, T value)
+        public static bool operator ==(in Maybe<T> maybe, in T value)
         {
             if (maybe.HasNoValue)
                 return false;
@@ -158,7 +158,7 @@ namespace Here.Maybes
         /// <param name="maybe"><see cref="Maybe{T}"/> that may embed a value to compare.</param>
         /// <param name="value">Value to compare.</param>
         /// <returns>True if the <see cref="Maybe{T}"/> value is not equals to the given value, otherwise false.</returns>
-        public static bool operator !=(Maybe<T> maybe, T value)
+        public static bool operator !=(in Maybe<T> maybe, in T value)
         {
             return !(maybe == value);
         }
@@ -169,7 +169,7 @@ namespace Here.Maybes
         /// <param name="value">Value to compare.</param>
         /// <param name="maybe"><see cref="Maybe{T}"/> that may embed a value to compare.</param>
         /// <returns>True if the <see cref="Maybe{T}"/> value is equals to the given value, otherwise false.</returns>
-        public static bool operator ==(T value, Maybe<T> maybe)
+        public static bool operator ==(in T value, in Maybe<T> maybe)
         {
             return maybe == value;
         }
@@ -180,7 +180,7 @@ namespace Here.Maybes
         /// <param name="value">Value to compare.</param>
         /// <param name="maybe"><see cref="Maybe{T}"/> that may embed a value to compare.</param>
         /// <returns>True if the <see cref="Maybe{T}"/> value is not equals to the given value, otherwise false.</returns>
-        public static bool operator !=(T value, Maybe<T> maybe)
+        public static bool operator !=(in T value, in Maybe<T> maybe)
         {
             return !(maybe == value);
         }
@@ -221,7 +221,7 @@ namespace Here.Maybes
         /// <param name="comparer">Equality comparer to use to compare values.</param>
         /// <returns>An integer that indicates the relative order of compared objects.</returns>
         [PublicAPI, Pure]
-        public static int Compare(Maybe<T> maybe1, Maybe<T> maybe2, [CanBeNull] IComparer<T> comparer = null)
+        public static int Compare(in Maybe<T> maybe1, in Maybe<T> maybe2, [CanBeNull] in IComparer<T> comparer = null)
         {
             if (maybe1.HasValue && !maybe2.HasValue)
                 return 1;
@@ -236,7 +236,7 @@ namespace Here.Maybes
         /// <param name="left">The first <see cref="Maybe{T}"/> to compare.</param>
         /// <param name="right">The second <see cref="Maybe{T}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator <(Maybe<T> left, Maybe<T> right)
+        public static bool operator <(in Maybe<T> left, in Maybe<T> right)
         {
             return Compare(left, right) < 0;
         }
@@ -247,7 +247,7 @@ namespace Here.Maybes
         /// <param name="left">The first <see cref="Maybe{T}"/> to compare.</param>
         /// <param name="right">The second <see cref="Maybe{T}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator <=(Maybe<T> left, Maybe<T> right)
+        public static bool operator <=(in Maybe<T> left, in Maybe<T> right)
         {
             return Compare(left, right) <= 0;
         }
@@ -258,7 +258,7 @@ namespace Here.Maybes
         /// <param name="left">The first <see cref="Maybe{T}"/> to compare.</param>
         /// <param name="right">The second <see cref="Maybe{T}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator >(Maybe<T> left, Maybe<T> right)
+        public static bool operator >(in Maybe<T> left, in Maybe<T> right)
         {
             return Compare(left, right) > 0;
         }
@@ -269,7 +269,7 @@ namespace Here.Maybes
         /// <param name="left">The first <see cref="Maybe{T}"/> to compare.</param>
         /// <param name="right">The second <see cref="Maybe{T}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator >=(Maybe<T> left, Maybe<T> right)
+        public static bool operator >=(in Maybe<T> left, in Maybe<T> right)
         {
             return Compare(left, right) >= 0;
         }

@@ -15,7 +15,7 @@ namespace Here.Results
         /// <param name="action">Function to call.</param>
         /// <returns>A <see cref="Result"/>.</returns>
         [PublicAPI]
-        public static Result SafeResult([NotNull, InstantHandle] Action action)
+        public static Result SafeResult([NotNull, InstantHandle] in Action action)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace Here.Results
         /// <param name="action">Function to call.</param>
         /// <returns>A <see cref="Result"/>.</returns>
         [PublicAPI]
-        public static Result SafeResult([NotNull, InstantHandle] Func<Result> action)
+        public static Result SafeResult([NotNull, InstantHandle] in Func<Result> action)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace Here.Results
         /// <param name="action">Function to call.</param>
         /// <returns>A <see cref="Result{T}"/>.</returns>
         [PublicAPI]
-        public static Result<T> SafeValueResult<T>([NotNull, InstantHandle] Func<Result<T>> action)
+        public static Result<T> SafeValueResult<T>([NotNull, InstantHandle] in Func<Result<T>> action)
         {
             try
             {
@@ -77,7 +77,7 @@ namespace Here.Results
         /// <param name="errorObject">Error object to return in case an exception is thrown.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI]
-        public static CustomResult<TError> SafeCustomResult<TError>([NotNull, InstantHandle] Func<CustomResult<TError>> action, [NotNull] TError errorObject)
+        public static CustomResult<TError> SafeCustomResult<TError>([NotNull, InstantHandle] in Func<CustomResult<TError>> action, [NotNull] in TError errorObject)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace Here.Results
         /// <param name="errorFactory">Function to create a custom error object in case an exception is thrown.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI]
-        public static CustomResult<TError> SafeCustomResult<TError>([NotNull, InstantHandle] Func<CustomResult<TError>> action, [NotNull] Func<TError> errorFactory)
+        public static CustomResult<TError> SafeCustomResult<TError>([NotNull, InstantHandle] in Func<CustomResult<TError>> action, [NotNull] in Func<TError> errorFactory)
         {
             try
             {
@@ -121,7 +121,7 @@ namespace Here.Results
         /// <param name="errorObject">Error object to return in case an exception is thrown.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI]
-        public static Result<T, TError> SafeValueCustomResult<T, TError>([NotNull, InstantHandle] Func<Result<T, TError>> action, [NotNull] TError errorObject)
+        public static Result<T, TError> SafeValueCustomResult<T, TError>([NotNull, InstantHandle] in Func<Result<T, TError>> action, [NotNull] in TError errorObject)
         {
             try
             {
@@ -143,7 +143,7 @@ namespace Here.Results
         /// <param name="errorFactory">Function to create a custom error object in case an exception is thrown.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI]
-        public static Result<T, TError> SafeValueCustomResult<T, TError>([NotNull, InstantHandle] Func<Result<T, TError>> action, [NotNull] Func<TError> errorFactory)
+        public static Result<T, TError> SafeValueCustomResult<T, TError>([NotNull, InstantHandle] in Func<Result<T, TError>> action, [NotNull] in Func<TError> errorFactory)
         {
             try
             {

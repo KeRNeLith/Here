@@ -11,7 +11,7 @@ namespace Here.Maybes.Extensions
     {
         // Helper method to try get a value
         [Pure]
-        private static Maybe<TValue> TryGetValue<TKey, TValue>(MaybeTryGetExtensions.TryGet<TKey, TValue> tryGetFunc, [CanBeNull] TKey key)
+        private static Maybe<TValue> TryGetValue<TKey, TValue>(in MaybeTryGetExtensions.TryGet<TKey, TValue> tryGetFunc, [CanBeNull] in TKey key)
         {
             if (key == null)
                 return Maybe<TValue>.None;
@@ -29,7 +29,7 @@ namespace Here.Maybes.Extensions
         /// <param name="key">Searched key.</param>
         /// <returns><see cref="Maybe{TValue}"/> that wrap the result of the get.</returns>
         [PublicAPI, Pure]
-        public static Maybe<TValue> TryGetValue<TKey, TValue>([NotNull] this IDictionary<TKey, TValue> dictionary, [CanBeNull] TKey key)
+        public static Maybe<TValue> TryGetValue<TKey, TValue>([NotNull] this IDictionary<TKey, TValue> dictionary, [CanBeNull] in TKey key)
         {
             return TryGetValue<TKey, TValue>(dictionary.TryGetValue, key);
         }
@@ -43,7 +43,7 @@ namespace Here.Maybes.Extensions
         /// <param name="key">Searched key.</param>
         /// <returns><see cref="Maybe{TValue}"/> that wrap the result of the get.</returns>
         [PublicAPI, Pure]
-        public static Maybe<TValue> TryGetValue<TKey, TValue>([NotNull] this IDictionary<TKey, object> dictionary, [CanBeNull] TKey key)
+        public static Maybe<TValue> TryGetValue<TKey, TValue>([NotNull] this IDictionary<TKey, object> dictionary, [CanBeNull] in TKey key)
         {
             var objectValue = dictionary.TryGetValue(key);
             if (objectValue.HasValue && objectValue.Value is TValue expectedValue)
@@ -61,7 +61,7 @@ namespace Here.Maybes.Extensions
         /// <param name="key">Searched key.</param>
         /// <returns><see cref="Maybe{TValue}"/> that wrap the result of the get.</returns>
         [PublicAPI, Pure]
-        public static Maybe<TValue> TryGetReadonlyValue<TKey, TValue>([NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary, [CanBeNull] TKey key)
+        public static Maybe<TValue> TryGetReadonlyValue<TKey, TValue>([NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary, [CanBeNull] in TKey key)
         {
             return TryGetValue<TKey, TValue>(dictionary.TryGetValue, key);
         }
@@ -75,7 +75,7 @@ namespace Here.Maybes.Extensions
         /// <param name="key">Searched key.</param>
         /// <returns><see cref="Maybe{TValue}"/> that wrap the result of the get.</returns>
         [PublicAPI, Pure]
-        public static Maybe<TValue> TryGetReadonlyValue<TKey, TValue>([NotNull] this IReadOnlyDictionary<TKey, object> dictionary, [CanBeNull] TKey key)
+        public static Maybe<TValue> TryGetReadonlyValue<TKey, TValue>([NotNull] this IReadOnlyDictionary<TKey, object> dictionary, [CanBeNull] in TKey key)
         {
             var objectValue = dictionary.TryGetReadonlyValue(key);
             if (objectValue.HasValue && objectValue.Value is TValue expectedValue)

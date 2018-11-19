@@ -74,6 +74,10 @@ Supports Source Link</Description>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  
   <ItemGroup>
     <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
   </ItemGroup>

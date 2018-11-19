@@ -18,7 +18,7 @@ namespace Here.Results.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result"/>.</returns>
         [PublicAPI]
-        public static Result OnFailure(this Result result, [NotNull, InstantHandle] Action onFailure, bool treatWarningAsError = false)
+        public static Result OnFailure(this Result result, [NotNull, InstantHandle] in Action onFailure, in bool treatWarningAsError = false)
         {
             if (IsConsideredFailure(result, treatWarningAsError))
             {
@@ -39,7 +39,7 @@ namespace Here.Results.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result"/>.</returns>
         [PublicAPI]
-        public static Result OnFailure(this Result result, [NotNull, InstantHandle] Action<Result> onFailure, bool treatWarningAsError = false)
+        public static Result OnFailure(this Result result, [NotNull, InstantHandle] in Action<Result> onFailure, in bool treatWarningAsError = false)
         {
             if (IsConsideredFailure(result, treatWarningAsError))
             {
@@ -65,7 +65,7 @@ namespace Here.Results.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T}"/>.</returns>
         [PublicAPI]
-        public static Result<T> OnFailure<T>(this Result<T> result, [NotNull, InstantHandle] Action onFailure, bool treatWarningAsError = false)
+        public static Result<T> OnFailure<T>(this Result<T> result, [NotNull, InstantHandle] in Action onFailure, in bool treatWarningAsError = false)
         {
             if (IsConsideredFailure(result, treatWarningAsError))
             {
@@ -87,7 +87,7 @@ namespace Here.Results.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T}"/>.</returns>
         [PublicAPI]
-        public static Result<T> OnFailure<T>(this Result<T> result, [NotNull, InstantHandle] Action<Result<T>> onFailure, bool treatWarningAsError = false)
+        public static Result<T> OnFailure<T>(this Result<T> result, [NotNull, InstantHandle] in Action<Result<T>> onFailure, in bool treatWarningAsError = false)
         {
             if (IsConsideredFailure(result, treatWarningAsError))
             {
@@ -115,9 +115,9 @@ namespace Here.Results.Extensions
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI]
         public static CustomResult<TError> OnFailure<TError>(this CustomResult<TError> result,
-            [NotNull, InstantHandle] Action onFailure,
-            [NotNull] TError errorObject,
-            bool treatWarningAsError = false)
+            [NotNull, InstantHandle] in Action onFailure,
+            [NotNull] in TError errorObject,
+            in bool treatWarningAsError = false)
         {
             if (IsConsideredFailure(result, treatWarningAsError))
             {
@@ -141,9 +141,9 @@ namespace Here.Results.Extensions
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI]
         public static CustomResult<TError> OnFailure<TError>(this CustomResult<TError> result, 
-            [NotNull, InstantHandle] Action onFailure,
-            [NotNull, InstantHandle] Func<TError> errorFactory, 
-            bool treatWarningAsError = false)
+            [NotNull, InstantHandle] in Action onFailure,
+            [NotNull, InstantHandle] in Func<TError> errorFactory,
+            in bool treatWarningAsError = false)
         {
             if (IsConsideredFailure(result, treatWarningAsError))
             {
@@ -167,9 +167,9 @@ namespace Here.Results.Extensions
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI]
         public static CustomResult<TError> OnFailure<TError>(this CustomResult<TError> result,
-            [NotNull, InstantHandle] Action<CustomResult<TError>> onFailure,
-            [NotNull] TError errorObject,
-            bool treatWarningAsError = false)
+            [NotNull, InstantHandle] in Action<CustomResult<TError>> onFailure,
+            [NotNull] in TError errorObject,
+            in bool treatWarningAsError = false)
         {
             if (IsConsideredFailure(result, treatWarningAsError))
             {
@@ -193,9 +193,9 @@ namespace Here.Results.Extensions
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI]
         public static CustomResult<TError> OnFailure<TError>(this CustomResult<TError> result, 
-            [NotNull, InstantHandle] Action<CustomResult<TError>> onFailure,
-            [NotNull, InstantHandle] Func<TError> errorFactory, 
-            bool treatWarningAsError = false)
+            [NotNull, InstantHandle] in Action<CustomResult<TError>> onFailure,
+            [NotNull, InstantHandle] in Func<TError> errorFactory,
+            in bool treatWarningAsError = false)
         {
             if (IsConsideredFailure(result, treatWarningAsError))
             {
@@ -224,9 +224,9 @@ namespace Here.Results.Extensions
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI]
         public static Result<T, TError> OnFailure<T, TError>(this Result<T, TError> result, 
-            [NotNull, InstantHandle] Action onFailure,
-            [NotNull] TError errorObject, 
-            bool treatWarningAsError = false)
+            [NotNull, InstantHandle] in Action onFailure,
+            [NotNull] in TError errorObject,
+            in bool treatWarningAsError = false)
         {
             if (IsConsideredFailure(result, treatWarningAsError))
             {
@@ -251,9 +251,9 @@ namespace Here.Results.Extensions
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI]
         public static Result<T, TError> OnFailure<T, TError>(this Result<T, TError> result,
-            [NotNull, InstantHandle] Action onFailure,
-            [NotNull, InstantHandle] Func<TError> errorFactory,
-            bool treatWarningAsError = false)
+            [NotNull, InstantHandle] in Action onFailure,
+            [NotNull, InstantHandle] in Func<TError> errorFactory,
+            in bool treatWarningAsError = false)
         {
             if (IsConsideredFailure(result, treatWarningAsError))
             {
@@ -278,9 +278,9 @@ namespace Here.Results.Extensions
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI]
         public static Result<T, TError> OnFailure<T, TError>(this Result<T, TError> result, 
-            [NotNull, InstantHandle] Action<Result<T, TError>> onFailure,
-            [NotNull] TError errorObject,
-            bool treatWarningAsError = false)
+            [NotNull, InstantHandle] in Action<Result<T, TError>> onFailure,
+            [NotNull] in TError errorObject,
+            in bool treatWarningAsError = false)
         {
             if (IsConsideredFailure(result, treatWarningAsError))
             {
@@ -305,9 +305,9 @@ namespace Here.Results.Extensions
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI]
         public static Result<T, TError> OnFailure<T, TError>(this Result<T, TError> result,
-            [NotNull, InstantHandle] Action<Result<T, TError>> onFailure,
-            [NotNull, InstantHandle] Func<TError> errorFactory,
-            bool treatWarningAsError = false)
+            [NotNull, InstantHandle] in Action<Result<T, TError>> onFailure,
+            [NotNull, InstantHandle] in Func<TError> errorFactory,
+            in bool treatWarningAsError = false)
         {
             if (IsConsideredFailure(result, treatWarningAsError))
             {

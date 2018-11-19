@@ -30,7 +30,7 @@ namespace Here.Maybes.Extensions
         /// <param name="predicate">Predicate to check on items.</param>
         /// <returns><see cref="Maybe{T}"/> wrapping the first matching element.</returns>
         [PublicAPI, Pure]
-        public static Maybe<T> FirstOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull, InstantHandle] Predicate<T> predicate) 
+        public static Maybe<T> FirstOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull, InstantHandle] in Predicate<T> predicate) 
         {
             foreach(var item in enumerable)
             {
@@ -50,7 +50,7 @@ namespace Here.Maybes.Extensions
         /// if the enumerable has more than one value. Otherwise it will just return an empty <see cref="Maybe{T}"/>.</param>
         /// <returns><see cref="Maybe{T}"/> wrapping the single element.</returns>
         [PublicAPI, Pure]
-        public static Maybe<T> SingleOrNone<T>([NotNull] this IEnumerable<T> enumerable, bool throwInvalidException = true)
+        public static Maybe<T> SingleOrNone<T>([NotNull] this IEnumerable<T> enumerable, in bool throwInvalidException = true)
         {
             using (var enumerator = enumerable.GetEnumerator())
             {
@@ -77,7 +77,7 @@ namespace Here.Maybes.Extensions
         /// if the enumerable has more than one value that matches the predicate. Otherwise it will just return an empty <see cref="Maybe{T}"/>.</param>
         /// <returns><see cref="Maybe{T}"/> wrapping the matching single element.</returns>
         [PublicAPI, Pure]
-        public static Maybe<T> SingleOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull, InstantHandle] Predicate<T> predicate, bool throwInvalidException = true)
+        public static Maybe<T> SingleOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull, InstantHandle] in Predicate<T> predicate, in bool throwInvalidException = true)
         {
             using (var enumerator = enumerable.GetEnumerator())
             {
@@ -124,9 +124,9 @@ namespace Here.Maybes.Extensions
         /// <param name="predicate">Predicate to check on items.</param>
         /// <returns><see cref="Maybe{T}"/> wrapping the matching last element.</returns>
         [PublicAPI, Pure]
-        public static Maybe<T> LastOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull, InstantHandle] Predicate<T> predicate)
+        public static Maybe<T> LastOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull, InstantHandle] in Predicate<T> predicate)
         {
-            T matchedItem = default(T);
+            T matchedItem = default;
             bool match = false;
 
             foreach (var item in enumerable)
@@ -252,7 +252,7 @@ namespace Here.Maybes.Extensions
         /// <param name="keySelector">Method called to create dictionary keys.</param>
         /// <returns>A <see cref="Dictionary{TKey, TValue}"/> generated from this enumerable of <see cref="Maybe{TValue}"/>.</returns>
         [PublicAPI, Pure, NotNull]
-        public static Dictionary<TKey, TValue> ToDictionary<TValue, TKey>([NotNull] this IEnumerable<Maybe<TValue>> enumerable, [NotNull, InstantHandle] Func<TValue, TKey> keySelector)
+        public static Dictionary<TKey, TValue> ToDictionary<TValue, TKey>([NotNull] this IEnumerable<Maybe<TValue>> enumerable, [NotNull, InstantHandle] in Func<TValue, TKey> keySelector)
         {
             return enumerable.ExtractValues().ToDictionary(keySelector);
         }

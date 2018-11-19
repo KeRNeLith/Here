@@ -34,7 +34,7 @@ namespace Here.Maybes.Extensions
         /// <param name="predicate">Condition to match.</param>
         /// <returns>True if this <see cref="Maybe{T}"/> enumerable has at least one value that matches, otherwise false.</returns>
         [PublicAPI, Pure]
-        public static bool AnyItem<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Predicate<object> predicate)
+        public static bool AnyItem<T>(this Maybe<T> maybe, [NotNull, InstantHandle] in Predicate<object> predicate)
             where T : IEnumerable
         {
             if (maybe.HasValue)
@@ -74,7 +74,7 @@ namespace Here.Maybes.Extensions
         /// <param name="predicate">Predicate to check.</param>
         /// <returns>True if this <see cref="Maybe{T}"/> enumerable items all match the <paramref name="predicate"/>, otherwise false.</returns>
         [PublicAPI, Pure]
-        public static bool AllItems<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Predicate<object> predicate)
+        public static bool AllItems<T>(this Maybe<T> maybe, [NotNull, InstantHandle] in Predicate<object> predicate)
             where T : IEnumerable
         {
             if (maybe.HasValue)
@@ -116,7 +116,7 @@ namespace Here.Maybes.Extensions
         /// <param name="value">Value to check equality with <see cref="Maybe{T}"/> value.</param>
         /// <returns>True if this <see cref="Maybe{T}"/> contains the <paramref name="value"/>, otherwise false.</returns>
         [PublicAPI, Pure]
-        public static bool ContainsItem<T>(this Maybe<T> maybe, [CanBeNull] object value)
+        public static bool ContainsItem<T>(this Maybe<T> maybe, [CanBeNull] in object value)
             where T : IEnumerable
         {
             if (maybe.HasValue)
@@ -140,7 +140,7 @@ namespace Here.Maybes.Extensions
         /// <param name="comparer">Equality comparer to use.</param>
         /// <returns>True if this <see cref="Maybe{T}"/> contains the <paramref name="value"/>, otherwise false.</returns>
         [PublicAPI, Pure]
-        public static bool ContainsItem<T>(this Maybe<T> maybe, [CanBeNull] object value, [NotNull] IEqualityComparer<object> comparer)
+        public static bool ContainsItem<T>(this Maybe<T> maybe, [CanBeNull] in object value, [NotNull] in IEqualityComparer<object> comparer)
             where T : IEnumerable
         {
             if (maybe.HasValue)
@@ -164,7 +164,7 @@ namespace Here.Maybes.Extensions
         /// <param name="value">Value to check equality with <see cref="Maybe{T}"/> value.</param>
         /// <returns>True if this <see cref="Maybe{T}"/> contains the <paramref name="value"/>, otherwise false.</returns>
         [PublicAPI, Pure]
-        public static bool ContainsItem<T, TItem>(this Maybe<T> maybe, [CanBeNull] TItem value)
+        public static bool ContainsItem<T, TItem>(this Maybe<T> maybe, [CanBeNull] in TItem value)
             where T : IEnumerable<TItem>
         {
             if (maybe.HasValue)
@@ -182,7 +182,7 @@ namespace Here.Maybes.Extensions
         /// <param name="comparer">Equality comparer to use.</param>
         /// <returns>True if this <see cref="Maybe{T}"/> contains the <paramref name="value"/>, otherwise false.</returns>
         [PublicAPI, Pure]
-        public static bool ContainsItem<T, TItem>(this Maybe<T> maybe, [CanBeNull] TItem value, [NotNull] IEqualityComparer<TItem> comparer)
+        public static bool ContainsItem<T, TItem>(this Maybe<T> maybe, [CanBeNull] in TItem value, [NotNull] in IEqualityComparer<TItem> comparer)
             where T : IEnumerable<TItem>
         {
             if (maybe.HasValue)
@@ -199,7 +199,7 @@ namespace Here.Maybes.Extensions
         /// <param name="selector">Method called to select the value from this <see cref="Maybe{T}"/> enumerable items.</param>
         /// <returns>A <see cref="Maybe{T}"/> with selected items.</returns>
         [PublicAPI, Pure]
-        public static Maybe<IEnumerable<TItemOut>> SelectItems<T, TItemOut>(this Maybe<T> maybe, [NotNull, InstantHandle] Func<object, TItemOut> selector)
+        public static Maybe<IEnumerable<TItemOut>> SelectItems<T, TItemOut>(this Maybe<T> maybe, [NotNull, InstantHandle] in Func<object, TItemOut> selector)
             where T : IEnumerable
         {
             if (maybe.HasValue)
@@ -226,7 +226,7 @@ namespace Here.Maybes.Extensions
         /// <param name="selector">Method called to select the value from this <see cref="Maybe{T}"/> enumerable items.</param>
         /// <returns>A <see cref="Maybe{T}"/> with selected items.</returns>
         [PublicAPI, Pure]
-        public static Maybe<IEnumerable<TItemOut>> SelectItems<T, TItemIn, TItemOut>(this Maybe<T> maybe, [NotNull, InstantHandle] Func<TItemIn, TItemOut> selector)
+        public static Maybe<IEnumerable<TItemOut>> SelectItems<T, TItemIn, TItemOut>(this Maybe<T> maybe, [NotNull, InstantHandle] in Func<TItemIn, TItemOut> selector)
             where T : IEnumerable<TItemIn>
         {
             if (maybe.HasValue)
@@ -247,7 +247,7 @@ namespace Here.Maybes.Extensions
         /// <param name="predicate">Condition to match.</param>
         /// <returns>A <see cref="Maybe{T}"/> with matched items.</returns>
         [PublicAPI, Pure]
-        public static Maybe<IEnumerable> WhereItems<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Predicate<object> predicate)
+        public static Maybe<IEnumerable> WhereItems<T>(this Maybe<T> maybe, [NotNull, InstantHandle] in Predicate<object> predicate)
             where T : IEnumerable
         {
             if (maybe.HasValue)
@@ -298,7 +298,7 @@ namespace Here.Maybes.Extensions
         /// <param name="onItem">Treatment to do on each item.</param>
         /// <returns>This <see cref="Maybe{T}"/>.</returns>
         [PublicAPI]
-        public static Maybe<T> ForEachItems<T>(this Maybe<T> maybe, [NotNull, InstantHandle] Action<object> onItem)
+        public static Maybe<T> ForEachItems<T>(this Maybe<T> maybe, [NotNull, InstantHandle] in Action<object> onItem)
             where T : IEnumerable
         {
             if (maybe.HasValue)
@@ -319,7 +319,7 @@ namespace Here.Maybes.Extensions
         /// <param name="onItem">Treatment to do on each item.</param>
         /// <returns>This <see cref="Maybe{T}"/>.</returns>
         [PublicAPI]
-        public static Maybe<T> ForEachItems<T, TItem>(this Maybe<T> maybe, [NotNull, InstantHandle] Action<TItem> onItem)
+        public static Maybe<T> ForEachItems<T, TItem>(this Maybe<T> maybe, [NotNull, InstantHandle] in Action<TItem> onItem)
             where T : IEnumerable<TItem>
         {
             if (maybe.HasValue)
@@ -344,8 +344,8 @@ namespace Here.Maybes.Extensions
         /// <paramref name="initialValue"/>, otherwise <paramref name="initialValue"/>.</returns>
         [PublicAPI, NotNull, Pure]
         public static TAggregate AggregateItems<T, TAggregate>(this Maybe<T> maybe,
-            [NotNull] TAggregate initialValue,
-            [NotNull, InstantHandle] Func<TAggregate, object, TAggregate> aggregator)
+            [NotNull] in TAggregate initialValue,
+            [NotNull, InstantHandle] in Func<TAggregate, object, TAggregate> aggregator)
             where T : IEnumerable
         {
             if (maybe.HasValue)
@@ -374,8 +374,8 @@ namespace Here.Maybes.Extensions
         /// <paramref name="initialValue"/>, otherwise <paramref name="initialValue"/>.</returns>
         [PublicAPI, NotNull, Pure]
         public static TAggregate AggregateItems<T, TItem, TAggregate>(this Maybe<T> maybe,
-            [NotNull] TAggregate initialValue,
-            [NotNull, InstantHandle] Func<TAggregate, TItem, TAggregate> aggregator)
+            [NotNull] in TAggregate initialValue,
+            [NotNull, InstantHandle] in Func<TAggregate, TItem, TAggregate> aggregator)
             where T : IEnumerable<TItem>
         {
             if (maybe.HasValue)
