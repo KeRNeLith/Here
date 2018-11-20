@@ -219,22 +219,22 @@ namespace Here.Tests.Maybes
             var emptyMaybePerson1 = Maybe<Person>.None;
             var emptyMaybePerson2 = Maybe<Person>.None;
 
-            Assert.IsTrue(Maybe.AreEqual(maybePerson1, maybePerson1));
+            Assert.IsTrue(MaybeHelpers.AreEqual(maybePerson1, maybePerson1));
 
-            Assert.IsTrue(Maybe.AreEqual(maybePerson1, maybePerson2));
-            Assert.IsTrue(Maybe.AreEqual(maybePerson2, maybePerson1));
+            Assert.IsTrue(MaybeHelpers.AreEqual(maybePerson1, maybePerson2));
+            Assert.IsTrue(MaybeHelpers.AreEqual(maybePerson2, maybePerson1));
 
-            Assert.IsTrue(Maybe.AreEqual(maybePerson1, maybePerson3));
-            Assert.IsTrue(Maybe.AreEqual(maybePerson3, maybePerson1));
+            Assert.IsTrue(MaybeHelpers.AreEqual(maybePerson1, maybePerson3));
+            Assert.IsTrue(MaybeHelpers.AreEqual(maybePerson3, maybePerson1));
 
-            Assert.IsFalse(Maybe.AreEqual(maybePerson1, maybePerson4));
-            Assert.IsFalse(Maybe.AreEqual(maybePerson4, maybePerson1));
+            Assert.IsFalse(MaybeHelpers.AreEqual(maybePerson1, maybePerson4));
+            Assert.IsFalse(MaybeHelpers.AreEqual(maybePerson4, maybePerson1));
 
-            Assert.IsFalse(Maybe.AreEqual(maybePerson1, emptyMaybePerson1));
-            Assert.IsFalse(Maybe.AreEqual(emptyMaybePerson1, maybePerson1));
+            Assert.IsFalse(MaybeHelpers.AreEqual(maybePerson1, emptyMaybePerson1));
+            Assert.IsFalse(MaybeHelpers.AreEqual(emptyMaybePerson1, maybePerson1));
 
-            Assert.IsTrue(Maybe.AreEqual(emptyMaybePerson1, emptyMaybePerson2));
-            Assert.IsTrue(Maybe.AreEqual(emptyMaybePerson2, emptyMaybePerson1));
+            Assert.IsTrue(MaybeHelpers.AreEqual(emptyMaybePerson1, emptyMaybePerson2));
+            Assert.IsTrue(MaybeHelpers.AreEqual(emptyMaybePerson2, emptyMaybePerson1));
         }
 
         [Test]
@@ -390,19 +390,19 @@ namespace Here.Tests.Maybes
             var emptyMaybeInt1 = Maybe<int>.None;
             var emptyMaybeInt2 = Maybe<int>.None;
 
-            Assert.AreEqual(0, Maybe.Compare(maybeInt1, maybeInt1));
+            Assert.AreEqual(0, MaybeHelpers.Compare(maybeInt1, maybeInt1));
 
-            Assert.AreEqual(0, Maybe.Compare(maybeInt1, maybeInt2));
-            Assert.AreEqual(0, Maybe.Compare(maybeInt2, maybeInt1));
+            Assert.AreEqual(0, MaybeHelpers.Compare(maybeInt1, maybeInt2));
+            Assert.AreEqual(0, MaybeHelpers.Compare(maybeInt2, maybeInt1));
 
-            Assert.AreEqual(-1, Maybe.Compare(maybeInt1, maybeInt3));
-            Assert.AreEqual(1, Maybe.Compare(maybeInt3, maybeInt1));
+            Assert.AreEqual(-1, MaybeHelpers.Compare(maybeInt1, maybeInt3));
+            Assert.AreEqual(1, MaybeHelpers.Compare(maybeInt3, maybeInt1));
 
-            Assert.AreEqual(1, Maybe.Compare(maybeInt1, emptyMaybeInt1));
-            Assert.AreEqual(-1, Maybe.Compare(emptyMaybeInt1, maybeInt1));
+            Assert.AreEqual(1, MaybeHelpers.Compare(maybeInt1, emptyMaybeInt1));
+            Assert.AreEqual(-1, MaybeHelpers.Compare(emptyMaybeInt1, maybeInt1));
 
-            Assert.AreEqual(0, Maybe.Compare(emptyMaybeInt1, emptyMaybeInt2));
-            Assert.AreEqual(0, Maybe.Compare(emptyMaybeInt2, emptyMaybeInt1));
+            Assert.AreEqual(0, MaybeHelpers.Compare(emptyMaybeInt1, emptyMaybeInt2));
+            Assert.AreEqual(0, MaybeHelpers.Compare(emptyMaybeInt2, emptyMaybeInt1));
         }
 
         [Test]

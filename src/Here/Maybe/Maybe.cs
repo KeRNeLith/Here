@@ -89,7 +89,7 @@ namespace Here.Maybes
         {
             if (obj is null)
                 return false;
-            return obj is Maybe<T> maybe && Equals(maybe);
+            return obj is Maybe<T> maybe && AreEqual(this, maybe);
         }
 
         /// <summary>
@@ -99,8 +99,8 @@ namespace Here.Maybes
         /// <param name="maybe2">Second <see cref="Maybe{T}"/> to compare.</param>
         /// <param name="equalityComparer">Equality comparer to use to compare values.</param>
         /// <returns>True if both <see cref="Maybe{T}"/> are equal, otherwise false.</returns>
-        [PublicAPI, Pure]
-        public static bool AreEqual(in Maybe<T> maybe1, in Maybe<T> maybe2, [CanBeNull] in IEqualityComparer<T> equalityComparer = null)
+        [Pure]
+        internal static bool AreEqual(in Maybe<T> maybe1, in Maybe<T> maybe2, [CanBeNull] in IEqualityComparer<T> equalityComparer = null)
         {
             if (maybe1.HasNoValue && maybe2.HasNoValue)
                 return true;
