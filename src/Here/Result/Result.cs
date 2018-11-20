@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using JetBrains.Annotations;
 
@@ -99,7 +98,6 @@ namespace Here.Results
             if (IsFailure)
                 return ToFailCustomResult(errorObject);
             if (IsWarning)
-                // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
                 return CustomWarn<TError>(Logic.Message, Logic.Exception);
             return CustomOk<TError>();
         }
@@ -116,7 +114,6 @@ namespace Here.Results
             if (IsFailure)
                 return ToFailCustomResult(errorFactory());
             if (IsWarning)
-                // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
                 return CustomWarn<TError>(Logic.Message, Logic.Exception);
             return CustomOk<TError>();
         }
@@ -135,7 +132,6 @@ namespace Here.Results
             if (IsFailure)
                 return ToFailCustomValueResult<T, TError>(errorObject);
             if (IsWarning)
-                // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
                 return Warn<T, TError>(value, Logic.Message, Logic.Exception);
             return Ok<T, TError>(value);
         }
@@ -154,7 +150,6 @@ namespace Here.Results
             if (IsFailure)
                 return ToFailCustomValueResult<T, TError>(errorFactory());
             if (IsWarning)
-                // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
                 return Warn<T, TError>(value, Logic.Message, Logic.Exception);
             return Ok<T, TError>(value);
         }
@@ -173,7 +168,6 @@ namespace Here.Results
             if (IsFailure)
                 return ToFailCustomValueResult<T, TError>(errorObject);
             if (IsWarning)
-                // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
                 return Warn<T, TError>(valueFactory(), Logic.Message, Logic.Exception);
             return Ok<T, TError>(valueFactory());
         }
@@ -192,7 +186,6 @@ namespace Here.Results
             if (IsFailure)
                 return ToFailCustomValueResult<T, TError>(errorFactory());
             if (IsWarning)
-                // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
                 return Warn<T, TError>(valueFactory(), Logic.Message, Logic.Exception);
             return Ok<T, TError>(valueFactory());
         }
@@ -216,7 +209,6 @@ namespace Here.Results
         internal Result ToFailResult()
         {
             Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result to a Result failure.");
-            // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Fail(Logic.Message, Logic.Exception);
         }
 
@@ -231,7 +223,6 @@ namespace Here.Results
         internal Result ToFailResult([NotNull] in string additionalMessage, [CanBeNull] in Exception exception = null)
         {
             Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result to a Result failure.");
-            // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Fail(Logic.Message + additionalMessage, exception);
         }
 
@@ -244,7 +235,6 @@ namespace Here.Results
         internal Result<T> ToFailValueResult<T>()
         {
             Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result to a Result<T> failure.");
-            // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Fail<T>(Logic.Message, Logic.Exception);
         }
 
@@ -258,7 +248,6 @@ namespace Here.Results
         internal CustomResult<TError> ToFailCustomResult<TError>([NotNull] in TError errorObject)
         {
             Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result to a CustomResult<TError> failure.");
-            // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return CustomFail(Logic.Message, errorObject, Logic.Exception);
         }
 
@@ -272,7 +261,6 @@ namespace Here.Results
         internal Result<T, TError> ToFailCustomValueResult<T, TError>([NotNull] in TError errorObject)
         {
             Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result to a Result<T, TError> failure.");
-            // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Fail<T, TError>(Logic.Message, errorObject, Logic.Exception);
         }
 
@@ -287,7 +275,6 @@ namespace Here.Results
         internal Result ToWarnResult([NotNull] in string message, [CanBeNull] in Exception exception = null)
         {
             Debug.Assert(ResultLogic.IsConvertibleToWarning(Logic), "Cannot convert a warning Result<T> to a Result<T> warning.");
-            // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
             return Warn(message, exception);
         }
 

@@ -177,10 +177,7 @@ namespace Here.Results.Extensions
                         chosenException);
                 }
 
-                return embeddedResult.Value.ToWarnResult(
-                    // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
-                    embeddedResult.Message,
-                    chosenException);
+                return embeddedResult.Value.ToWarnResult(embeddedResult.Message, chosenException);
             }
 
             return embeddedResult.Value;
@@ -217,10 +214,7 @@ namespace Here.Results.Extensions
                         chosenException);
                 }
 
-                return embeddedResult.Value.ToWarnValueResult(
-                    // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
-                    embeddedResult.Message,
-                    chosenException);
+                return embeddedResult.Value.ToWarnValueResult(embeddedResult.Message, chosenException);
             }
 
             return embeddedResult.Value;
@@ -387,10 +381,7 @@ namespace Here.Results.Extensions
                         chosenException);
                 }
 
-                return embeddedResult.Value.ToWarnCustomValueResult(
-                    // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
-                    embeddedResult.Message,
-                    chosenException);
+                return embeddedResult.Value.ToWarnCustomValueResult(embeddedResult.Message, chosenException);
             }
 
             return embeddedResult.Value;
@@ -427,10 +418,7 @@ namespace Here.Results.Extensions
                         chosenException);
                 }
 
-                return embeddedResult.Value.ToWarnCustomValueResult(
-                    // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
-                    embeddedResult.Message,
-                    chosenException);
+                return embeddedResult.Value.ToWarnCustomValueResult(embeddedResult.Message, chosenException);
             }
 
             return embeddedResult.Value;

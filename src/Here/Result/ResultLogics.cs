@@ -287,8 +287,7 @@ namespace Here.Results
         {
             if (logic.IsSuccess && !logic.IsWarning)
                 return new ResultLogic();
-            
-            // ReSharper disable once AssignNullToNotNullAttribute, Justification The message is always not null or empty when here.
+
             return new ResultLogic(logic.IsWarning, logic.Message, logic.Exception);
         }
 
