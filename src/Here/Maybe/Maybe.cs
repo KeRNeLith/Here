@@ -11,7 +11,7 @@ namespace Here.Maybes
     /// <typeparam name="T">Type of the value embedded in the <see cref="Maybe{T}"/>.</typeparam>
     [PublicAPI]
     [DebuggerDisplay("{" + nameof(HasValue) + " ? \"Value = \" + " + nameof(Value) + " : \"No value\"}")]
-    public partial struct Maybe<T> : IEquatable<Maybe<T>>, IComparable, IComparable<Maybe<T>>
+    public partial struct Maybe<T> : IEquatable<T>, IEquatable<Maybe<T>>, IComparable, IComparable<Maybe<T>>
     {
         /// <summary>
         /// Nothing value.
@@ -79,6 +79,12 @@ namespace Here.Maybes
         #region Equality / IEquatable
 
         /// <inheritdoc />
+        public bool Equals(T other)
+        {
+            return AreEqual(this, other);
+        }
+
+        /// <inheritdoc />
         public bool Equals(Maybe<T> other)
         {
             return AreEqual(this, other);
@@ -89,7 +95,24 @@ namespace Here.Maybes
         {
             if (obj is null)
                 return false;
-            return obj is Maybe<T> maybe && AreEqual(this, maybe);
+            if (obj is Maybe<T> maybe)
+                return AreEqual(this, maybe);
+            return obj is T value && AreEqual(this, value);
+        }
+
+        /// <summary>
+        /// Indicates whether <see cref="Maybe{T}"/> value is equals to the given value.
+        /// </summary>
+        /// <param name="maybe"><see cref="Maybe{T}"/> that may embed a value to compare.</param>
+        /// <param name="value">Value to compare.</param>
+        /// <param name="equalityComparer">Equality comparer to use to compare values.</param>
+        /// <returns>True if the <see cref="Maybe{T}"/> value is equals to the given value, otherwise false.</returns>
+        [Pure]
+        internal static bool AreEqual(in Maybe<T> maybe, [CanBeNull] in T value, [CanBeNull] in IEqualityComparer<T> equalityComparer = null)
+        {
+            if (maybe.HasNoValue)
+                return false;
+            return (equalityComparer ?? EqualityComparer<T>.Default).Equals(maybe._value, value);
         }
 
         /// <summary>
@@ -147,9 +170,7 @@ namespace Here.Maybes
         /// <returns>True if the <see cref="Maybe{T}"/> value is equals to the given value, otherwise false.</returns>
         public static bool operator ==(in Maybe<T> maybe, in T value)
         {
-            if (maybe.HasNoValue)
-                return false;
-            return maybe._value.Equals(value);
+            return AreEqual(maybe, value);
         }
 
         /// <summary>
