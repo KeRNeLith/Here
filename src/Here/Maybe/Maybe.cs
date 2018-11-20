@@ -220,8 +220,8 @@ namespace Here.Maybes
         /// <param name="maybe2">Second <see cref="Maybe{T}"/> to compare.</param>
         /// <param name="comparer">Equality comparer to use to compare values.</param>
         /// <returns>An integer that indicates the relative order of compared objects.</returns>
-        [PublicAPI, Pure]
-        public static int Compare(in Maybe<T> maybe1, in Maybe<T> maybe2, [CanBeNull] in IComparer<T> comparer = null)
+        [Pure]
+        internal static int Compare(in Maybe<T> maybe1, in Maybe<T> maybe2, [CanBeNull] in IComparer<T> comparer = null)
         {
             if (maybe1.HasValue && !maybe2.HasValue)
                 return 1;
