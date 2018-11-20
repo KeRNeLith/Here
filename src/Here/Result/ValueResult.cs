@@ -268,16 +268,13 @@ namespace Here.Results
         [PublicAPI, Pure]
         public bool SuccessEquals(in Result<T> other)
         {
-            if (IsSuccess && other.IsSuccess)
-                return Equals(other);
-            return false;
+            return AreSuccessEqual(this, other);
         }
 
         /// <inheritdoc />
         public bool Equals(Result<T> other)
         {
-            return Logic.Equals(other.Logic)
-                && EqualityComparer<T>.Default.Equals(_value, other._value);
+            return AreEqual(this, other);
         }
 
         /// <inheritdoc />
@@ -285,7 +282,36 @@ namespace Here.Results
         {
             if (obj is null)
                 return false;
-            return obj is Result<T> result && Equals(result);
+            return obj is Result<T> result && AreEqual(this, result);
+        }
+
+        /// <summary>
+        /// Indicates whether both <see cref="Result{T}"/> are equal.
+        /// </summary>
+        /// <param name="result1">First <see cref="Result{T}"/> to compare.</param>
+        /// <param name="result2">Second <see cref="Result{T}"/> to compare.</param>
+        /// <param name="equalityComparer">Equality comparer to use to compare values.</param>
+        /// <returns>True if both <see cref="Result{T}"/> are equal, otherwise false.</returns>
+        [Pure]
+        internal static bool AreEqual(in Result<T> result1, in Result<T> result2, [CanBeNull] in IEqualityComparer<T> equalityComparer = null)
+        {
+            return result1.Logic.Equals(result2.Logic)
+                && (equalityComparer ?? EqualityComparer<T>.Default).Equals(result1._value, result2._value);
+        }
+
+        /// <summary>
+        /// Indicates whether both <see cref="Result{T}"/> are equal.
+        /// </summary>
+        /// <param name="result1">First <see cref="Result{T}"/> to compare.</param>
+        /// <param name="result2">Second <see cref="Result{T}"/> to compare.</param>
+        /// <param name="equalityComparer">Equality comparer to use to compare values.</param>
+        /// <returns>True if both <see cref="Result{T}"/> are equal, otherwise false.</returns>
+        [Pure]
+        internal static bool AreSuccessEqual(in Result<T> result1, in Result<T> result2, [CanBeNull] in IEqualityComparer<T> equalityComparer = null)
+        {
+            if (result1.IsSuccess && result2.IsSuccess)
+                return AreEqual(result1, result2);
+            return false;
         }
 
         /// <summary>
@@ -296,7 +322,7 @@ namespace Here.Results
         /// <returns>True if both <see cref="Result{T}"/> are equal, otherwise false.</returns>
         public static bool operator ==(in Result<T> result1, in Result<T> result2)
         {
-            return result1.Equals(result2);
+            return AreEqual(result1, result2);
         }
 
         /// <summary>
