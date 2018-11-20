@@ -38,6 +38,20 @@ namespace Here.Results
         }
 
         /// <summary>
+        /// Indicates whether <see cref="Result{T}"/> value is equals to the given value.
+        /// </summary>
+        /// <typeparam name="T">Type of the result value.</typeparam>
+        /// <param name="result"><see cref="Result{T}"/> that may embed a value to compare.</param>
+        /// <param name="value">Value to compare.</param>
+        /// <param name="equalityComparer">Equality comparer to use to compare values.</param>
+        /// <returns>True if the <see cref="Result{T}"/> value is equals to the given value, otherwise false.</returns>
+        [PublicAPI, Pure]
+        public static bool AreEqual<T>(in Result<T> result, [CanBeNull] in T value, [CanBeNull] in IEqualityComparer<T> equalityComparer = null)
+        {
+            return Result<T>.AreEqual(result, value, equalityComparer);
+        }
+
+        /// <summary>
         /// Checks that both <see cref="CustomResult{TError}"/> are equal.
         /// </summary>
         /// <typeparam name="TError">Type of the result error object.</typeparam>
@@ -63,6 +77,21 @@ namespace Here.Results
         public static bool AreEqual<T, TError>(in Result<T, TError> result1, in Result<T, TError> result2, [CanBeNull] in IEqualityComparer<T> equalityComparer = null)
         {
             return Result<T, TError>.AreEqual(result1, result2);
+        }
+
+        /// <summary>
+        /// Indicates whether <see cref="Result{T, TError}"/> value is equals to the given value.
+        /// </summary>
+        /// <typeparam name="T">Type of the result value.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
+        /// <param name="result"><see cref="Result{T, TError}"/> that may embed a value to compare.</param>
+        /// <param name="value">Value to compare.</param>
+        /// <param name="equalityComparer">Equality comparer to use to compare values.</param>
+        /// <returns>True if the <see cref="Result{T, TError}"/> value is equals to the given value, otherwise false.</returns>
+        [PublicAPI, Pure]
+        public static bool AreEqual<T, TError>(in Result<T, TError> result, [CanBeNull] in T value, [CanBeNull] in IEqualityComparer<T> equalityComparer = null)
+        {
+            return Result<T, TError>.AreEqual(result, value, equalityComparer);
         }
 
         #endregion

@@ -11,7 +11,7 @@ namespace Here.Results
     /// </summary>
     [PublicAPI]
     [DebuggerDisplay("{" + nameof(IsSuccess) + " ? \"IsSuccess\" + (" + nameof(IsWarning) + " ? \" with warning\" : System.String.Empty) + \", Value = \" + " + nameof(Value) + " : \"IsFailure\"}")]
-    public partial struct Result<T> : IResult<T>, IEquatable<Result<T>>, IComparable, IComparable<Result<T>>
+    public partial struct Result<T> : IResult<T>, IEquatable<T>, IEquatable<Result<T>>, IComparable, IComparable<Result<T>>
     {
         /// <inheritdoc />
         public bool IsSuccess => Logic.IsSuccess;
@@ -262,6 +262,12 @@ namespace Here.Results
         }
 
         /// <inheritdoc />
+        public bool Equals(T other)
+        {
+            return AreEqual(this, other);
+        }
+
+        /// <inheritdoc />
         public bool Equals(Result<T> other)
         {
             return AreEqual(this, other);
@@ -272,7 +278,24 @@ namespace Here.Results
         {
             if (obj is null)
                 return false;
-            return obj is Result<T> result && AreEqual(this, result);
+            if (obj is Result<T> result)
+                return AreEqual(this, result);
+            return obj is T value && AreEqual(this, value);
+        }
+
+        /// <summary>
+        /// Indicates whether <see cref="Result{T}"/> value is equals to the given value.
+        /// </summary>
+        /// <param name="result"><see cref="Result{T}"/> that may embed a value to compare.</param>
+        /// <param name="value">Value to compare.</param>
+        /// <param name="equalityComparer">Equality comparer to use to compare values.</param>
+        /// <returns>True if the <see cref="Result{T}"/> value is equals to the given value, otherwise false.</returns>
+        [PublicAPI, Pure]
+        internal static bool AreEqual(in Result<T> result, [CanBeNull] in T value, [CanBeNull] in IEqualityComparer<T> equalityComparer = null)
+        {
+            if (result.IsSuccess)
+                return (equalityComparer ?? EqualityComparer<T>.Default).Equals(result._value, value);
+            return false;
         }
 
         /// <summary>
@@ -340,9 +363,7 @@ namespace Here.Results
         /// <returns>True if the <see cref="Result{T}"/> value is equals to the given value, otherwise false.</returns>
         public static bool operator ==(in Result<T> result, in T value)
         {
-            if (result.IsSuccess)
-                return EqualityComparer<T>.Default.Equals(result.Value, value);
-            return false;
+            return AreEqual(result, value);
         }
 
         /// <summary>

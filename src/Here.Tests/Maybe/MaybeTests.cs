@@ -247,6 +247,7 @@ namespace Here.Tests.Maybes
 
             Assert.IsTrue(MaybeHelpers.AreEqual(maybePerson1, maybePerson1));
             Assert.IsTrue(MaybeHelpers.AreEqual(maybePerson1, person1));
+            Assert.IsFalse(MaybeHelpers.AreEqual(maybePerson1, new Person("Test2")));
             Assert.IsFalse(MaybeHelpers.AreEqual(maybePerson1, null));
 
             Assert.IsTrue(MaybeHelpers.AreEqual(maybePerson1, maybePerson2));
@@ -277,7 +278,11 @@ namespace Here.Tests.Maybes
             var emptyMaybeInt = Maybe<int>.None;
 
             Assert.IsTrue(maybeInt.Equals(12));
+            // ReSharper disable once SuspiciousTypeConversion.Global
             Assert.IsTrue(maybeInt.Equals((object)12));
+            Assert.IsFalse(maybeInt.Equals(42));
+            // ReSharper disable once SuspiciousTypeConversion.Global
+            Assert.IsFalse(maybeInt.Equals((object)42));
             Assert.IsTrue(maybeInt == 12);
             Assert.IsTrue(12 == maybeInt);
             Assert.IsFalse(maybeInt == 42);
@@ -285,6 +290,7 @@ namespace Here.Tests.Maybes
             Assert.IsFalse(12 != maybeInt);
 
             Assert.IsFalse(emptyMaybeInt.Equals(12));
+            // ReSharper disable once SuspiciousTypeConversion.Global
             Assert.IsFalse(emptyMaybeInt.Equals((object)12));
             Assert.IsFalse(emptyMaybeInt == 12);
             Assert.IsFalse(12 == emptyMaybeInt);
@@ -299,13 +305,18 @@ namespace Here.Tests.Maybes
             var emptyMaybePerson1 = Maybe<Person>.None;
 
             Assert.IsTrue(maybePerson1.Equals(person1));
+            // ReSharper disable once SuspiciousTypeConversion.Global
             Assert.IsTrue(maybePerson1.Equals((object)person1));
+            Assert.IsFalse(maybePerson1.Equals(new Person("Test2")));
+            // ReSharper disable once SuspiciousTypeConversion.Global
+            Assert.IsFalse(maybePerson1.Equals((object)new Person("Test2")));
             Assert.IsTrue(maybePerson1 == person1);
             Assert.IsTrue(person1 == maybePerson1);
             Assert.IsFalse(maybePerson1 != person1);
             Assert.IsFalse(person1 != maybePerson1);
 
             Assert.IsTrue(maybePerson2.Equals(person1));
+            // ReSharper disable once SuspiciousTypeConversion.Global
             Assert.IsTrue(maybePerson2.Equals((object)person1));
             Assert.IsTrue(maybePerson2 == person1);
             Assert.IsTrue(person1 == maybePerson2);
@@ -313,6 +324,7 @@ namespace Here.Tests.Maybes
             Assert.IsFalse(new Person("Test") != maybePerson2);
 
             Assert.IsFalse(maybePerson3.Equals(person1));
+            // ReSharper disable once SuspiciousTypeConversion.Global
             Assert.IsFalse(maybePerson3.Equals((object)person1));
             Assert.IsFalse(maybePerson3 == person1);
             Assert.IsFalse(person1 == maybePerson3);
@@ -320,6 +332,7 @@ namespace Here.Tests.Maybes
             Assert.IsTrue(person1 != maybePerson3);
 
             Assert.IsFalse(emptyMaybePerson1.Equals(person1));
+            // ReSharper disable once SuspiciousTypeConversion.Global
             Assert.IsFalse(emptyMaybePerson1.Equals((object)person1));
             Assert.IsFalse(emptyMaybePerson1 == person1);
             Assert.IsFalse(person1 == emptyMaybePerson1);
@@ -327,18 +340,24 @@ namespace Here.Tests.Maybes
             Assert.IsTrue(person1 != emptyMaybePerson1);
 
             var person2 = new PersonNotEquatable("Test");
+            var person3 = new PersonNotEquatable("Test");
             var maybePerson4 = Maybe<PersonNotEquatable>.Some(person2);
             var maybePerson5 = Maybe<PersonNotEquatable>.Some(new PersonNotEquatable("Test"));
             var emptyMaybePerson2 = Maybe<PersonNotEquatable>.None;
 
             Assert.IsTrue(maybePerson4.Equals(person2));
+            // ReSharper disable once SuspiciousTypeConversion.Global
             Assert.IsTrue(maybePerson4.Equals((object)person2));
+            Assert.IsFalse(maybePerson4.Equals(person3));
+            // ReSharper disable once SuspiciousTypeConversion.Global
+            Assert.IsFalse(maybePerson4.Equals((object)person3));
             Assert.IsTrue(maybePerson4 == person2);
             Assert.IsTrue(person2 == maybePerson4);
             Assert.IsFalse(maybePerson4 != person2);
             Assert.IsFalse(person2 != maybePerson4);
 
             Assert.IsFalse(maybePerson5.Equals(person2));
+            // ReSharper disable once SuspiciousTypeConversion.Global
             Assert.IsFalse(maybePerson5.Equals((object)person2));
             Assert.IsFalse(maybePerson5 == person2);
             Assert.IsFalse(person2 == maybePerson5);
@@ -346,6 +365,7 @@ namespace Here.Tests.Maybes
             Assert.IsTrue(person2 != maybePerson5);
 
             Assert.IsFalse(emptyMaybePerson2.Equals(person2));
+            // ReSharper disable once SuspiciousTypeConversion.Global
             Assert.IsFalse(emptyMaybePerson2.Equals((object)person2));
             Assert.IsFalse(emptyMaybePerson2 == person2);
             Assert.IsFalse(person2 == emptyMaybePerson2);

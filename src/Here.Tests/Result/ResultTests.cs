@@ -557,7 +557,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void ValueResultEqualityHelper()
+        public void ValueResultEqualityHelpers()
         {
             // Results
             var resultOk1 = Result.Ok(12);
@@ -570,8 +570,16 @@ namespace Here.Tests.Results
             var resultFail2 = Result.Fail<int>("My Failure");
             var resultFail3 = Result.Fail<int>("My Failure 2");
 
+            var resultOk4 = Result.Ok(new Person("Test"));
+            var resultOk5 = Result.Ok<Person>(null);
+            var resultWarn4 = Result.Warn(new Person("Test2"), "My Warning");
+            var resultWarn5 = Result.Warn<Person>(null, "My Warning");
+            var resultFail4 = Result.Fail<Person>("My Failure");
+
             // Checks Ok
             Assert.IsTrue(ResultHelpers.AreEqual(resultOk1, resultOk1));
+            Assert.IsTrue(ResultHelpers.AreEqual(resultOk1, 12));
+            Assert.IsFalse(ResultHelpers.AreEqual(resultOk1, 42));
 
             Assert.IsTrue(ResultHelpers.AreEqual(resultOk1, resultOk2));
             Assert.IsTrue(ResultHelpers.AreEqual(resultOk2, resultOk1));
@@ -579,8 +587,15 @@ namespace Here.Tests.Results
             Assert.IsFalse(ResultHelpers.AreEqual(resultOk1, resultOk3));
             Assert.IsFalse(ResultHelpers.AreEqual(resultOk3, resultOk1));
 
+            Assert.IsTrue(ResultHelpers.AreEqual(resultOk4, new Person("Test")));
+            Assert.IsFalse(ResultHelpers.AreEqual(resultOk4, new Person("Test2")));
+            Assert.IsFalse(ResultHelpers.AreEqual(resultOk4, null));
+            Assert.IsTrue(ResultHelpers.AreEqual(resultOk5, null));
+
             // Checks Warn
             Assert.IsTrue(ResultHelpers.AreEqual(resultWarn1, resultWarn1));
+            Assert.IsTrue(ResultHelpers.AreEqual(resultWarn1, 12));
+            Assert.IsFalse(ResultHelpers.AreEqual(resultWarn1, 42));
 
             Assert.IsTrue(ResultHelpers.AreEqual(resultWarn1, resultWarn2));
             Assert.IsTrue(ResultHelpers.AreEqual(resultWarn2, resultWarn1));
@@ -588,14 +603,23 @@ namespace Here.Tests.Results
             Assert.IsFalse(ResultHelpers.AreEqual(resultWarn1, resultWarn3));
             Assert.IsFalse(ResultHelpers.AreEqual(resultWarn3, resultWarn1));
 
+            Assert.IsTrue(ResultHelpers.AreEqual(resultWarn4, new Person("Test2")));
+            Assert.IsFalse(ResultHelpers.AreEqual(resultWarn4, new Person("Test")));
+            Assert.IsFalse(ResultHelpers.AreEqual(resultWarn4, null));
+            Assert.IsTrue(ResultHelpers.AreEqual(resultWarn5, null));
+
             // Checks Fail
             Assert.IsTrue(ResultHelpers.AreEqual(resultFail1, resultFail1));
+            Assert.IsFalse(ResultHelpers.AreEqual(resultFail1, 12));
 
             Assert.IsTrue(ResultHelpers.AreEqual(resultFail1, resultFail2));
             Assert.IsTrue(ResultHelpers.AreEqual(resultFail2, resultFail1));
 
             Assert.IsFalse(ResultHelpers.AreEqual(resultFail1, resultFail3));
             Assert.IsFalse(ResultHelpers.AreEqual(resultFail3, resultFail1));
+
+            Assert.IsFalse(ResultHelpers.AreEqual(resultFail4, new Person("Test")));
+            Assert.IsFalse(ResultHelpers.AreEqual(resultFail4, null));
 
             // Checks Ok & Warn
             Assert.IsFalse(ResultHelpers.AreEqual(resultOk1, resultWarn1));
@@ -1049,7 +1073,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomValueResultEqualityHelper()
+        public void CustomValueResultEqualityHelpers()
         {
             var customErrorObject = new CustomErrorTest { ErrorCode = -5 };
 
@@ -1064,8 +1088,16 @@ namespace Here.Tests.Results
             var resultFail2 = Result.Fail<int, CustomErrorTest>("My Failure", customErrorObject);
             var resultFail3 = Result.Fail<int, CustomErrorTest>("My Failure 2", customErrorObject);
 
+            var resultOk4 = Result.Ok<Person, CustomErrorTest>(new Person("Test"));
+            var resultOk5 = Result.Ok<Person, CustomErrorTest>(null);
+            var resultWarn4 = Result.Warn<Person, CustomErrorTest>(new Person("Test2"), "My Warning");
+            var resultWarn5 = Result.Warn<Person, CustomErrorTest>(null, "My Warning");
+            var resultFail4 = Result.Fail<Person, CustomErrorTest>("My Failure", customErrorObject);
+
             // Checks Ok
             Assert.IsTrue(ResultHelpers.AreEqual(resultOk1, resultOk1));
+            Assert.IsTrue(ResultHelpers.AreEqual(resultOk1, 12));
+            Assert.IsFalse(ResultHelpers.AreEqual(resultOk1, 42));
 
             Assert.IsTrue(ResultHelpers.AreEqual(resultOk1, resultOk2));
             Assert.IsTrue(ResultHelpers.AreEqual(resultOk2, resultOk1));
@@ -1073,8 +1105,15 @@ namespace Here.Tests.Results
             Assert.IsFalse(ResultHelpers.AreEqual(resultOk1, resultOk3));
             Assert.IsFalse(ResultHelpers.AreEqual(resultOk3, resultOk1));
 
+            Assert.IsTrue(ResultHelpers.AreEqual(resultOk4, new Person("Test")));
+            Assert.IsFalse(ResultHelpers.AreEqual(resultOk4, new Person("Test2")));
+            Assert.IsFalse(ResultHelpers.AreEqual(resultOk4, null));
+            Assert.IsTrue(ResultHelpers.AreEqual(resultOk5, null));
+
             // Checks Warn
             Assert.IsTrue(ResultHelpers.AreEqual(resultWarn1, resultWarn1));
+            Assert.IsTrue(ResultHelpers.AreEqual(resultWarn1, 12));
+            Assert.IsFalse(ResultHelpers.AreEqual(resultWarn1, 42));
 
             Assert.IsTrue(ResultHelpers.AreEqual(resultWarn1, resultWarn2));
             Assert.IsTrue(ResultHelpers.AreEqual(resultWarn2, resultWarn1));
@@ -1082,14 +1121,23 @@ namespace Here.Tests.Results
             Assert.IsFalse(ResultHelpers.AreEqual(resultWarn1, resultWarn3));
             Assert.IsFalse(ResultHelpers.AreEqual(resultWarn3, resultWarn1));
 
+            Assert.IsTrue(ResultHelpers.AreEqual(resultWarn4, new Person("Test2")));
+            Assert.IsFalse(ResultHelpers.AreEqual(resultWarn4, new Person("Test")));
+            Assert.IsFalse(ResultHelpers.AreEqual(resultWarn4, null));
+            Assert.IsTrue(ResultHelpers.AreEqual(resultWarn5, null));
+
             // Checks Fail
             Assert.IsTrue(ResultHelpers.AreEqual(resultFail1, resultFail1));
+            Assert.IsFalse(ResultHelpers.AreEqual(resultFail1, 42));
 
             Assert.IsTrue(ResultHelpers.AreEqual(resultFail1, resultFail2));
             Assert.IsTrue(ResultHelpers.AreEqual(resultFail2, resultFail1));
 
             Assert.IsFalse(ResultHelpers.AreEqual(resultFail1, resultFail3));
             Assert.IsFalse(ResultHelpers.AreEqual(resultFail3, resultFail1));
+
+            Assert.IsFalse(ResultHelpers.AreEqual(resultFail4, new Person("Test")));
+            Assert.IsFalse(ResultHelpers.AreEqual(resultFail4, null));
 
             // Checks Ok & Warn
             Assert.IsFalse(ResultHelpers.AreEqual(resultOk1, resultWarn1));
@@ -1509,6 +1557,12 @@ namespace Here.Tests.Results
         {
             // Result ok
             var ok = Result.Ok(42);
+            Assert.IsTrue(ok.Equals(42));
+            // ReSharper disable once SuspiciousTypeConversion.Global
+            Assert.IsTrue(ok.Equals((object)42));
+            Assert.IsFalse(ok.Equals(12));
+            // ReSharper disable once SuspiciousTypeConversion.Global
+            Assert.IsFalse(ok.Equals((object)12));
             Assert.IsTrue(ok == 42);
             Assert.IsTrue(42 == ok);
             Assert.IsFalse(ok == 12);
@@ -1519,6 +1573,12 @@ namespace Here.Tests.Results
             var person1 = new Person("Jack");
             var person2 = new Person("Jean");
             var warn = Result.Warn(person1, "My warning");
+            Assert.IsTrue(warn.Equals(person1));
+            // ReSharper disable once SuspiciousTypeConversion.Global
+            Assert.IsTrue(warn.Equals((object)person1));
+            Assert.IsFalse(warn.Equals(person2));
+            // ReSharper disable once SuspiciousTypeConversion.Global
+            Assert.IsFalse(warn.Equals((object)person2));
             Assert.IsTrue(warn == person1);
             Assert.IsTrue(new Person("Jack") == warn);
             Assert.IsFalse(warn == person2);
@@ -1527,6 +1587,9 @@ namespace Here.Tests.Results
 
             // Result fail
             var fail = Result.Fail<int>("My failure");
+            Assert.IsFalse(fail.Equals(42));
+            // ReSharper disable once SuspiciousTypeConversion.Global
+            Assert.IsFalse(fail.Equals((object)42));
             Assert.IsFalse(fail == 2);
             Assert.IsFalse(4 == fail);
             Assert.IsTrue(fail != 6);
@@ -1538,6 +1601,12 @@ namespace Here.Tests.Results
         {
             // Result ok
             var ok = Result.Ok<int, CustomErrorTest>(42);
+            Assert.IsTrue(ok.Equals(42));
+            // ReSharper disable once SuspiciousTypeConversion.Global
+            Assert.IsTrue(ok.Equals((object)42));
+            Assert.IsFalse(ok.Equals(12));
+            // ReSharper disable once SuspiciousTypeConversion.Global
+            Assert.IsFalse(ok.Equals((object)12));
             Assert.IsTrue(ok == 42);
             Assert.IsTrue(42 == ok);
             Assert.IsFalse(ok == 12);
@@ -1548,6 +1617,12 @@ namespace Here.Tests.Results
             var person1 = new Person("Jack");
             var person2 = new Person("Jean");
             var warn = Result.Warn<Person, CustomErrorTest>(person1, "My warning");
+            Assert.IsTrue(warn.Equals(person1));
+            // ReSharper disable once SuspiciousTypeConversion.Global
+            Assert.IsTrue(warn.Equals((object)person1));
+            Assert.IsFalse(warn.Equals(person2));
+            // ReSharper disable once SuspiciousTypeConversion.Global
+            Assert.IsFalse(warn.Equals((object)person2));
             Assert.IsTrue(warn == person1);
             Assert.IsTrue(new Person("Jack") == warn);
             Assert.IsFalse(warn == person2);
@@ -1556,6 +1631,9 @@ namespace Here.Tests.Results
 
             // Result fail
             var fail = Result.Fail<int, CustomErrorTest>("My failure", new CustomErrorTest { ErrorCode = -3 });
+            Assert.IsFalse(fail.Equals(12));
+            // ReSharper disable once SuspiciousTypeConversion.Global
+            Assert.IsFalse(fail.Equals((object)12));
             Assert.IsFalse(fail == 2);
             Assert.IsFalse(4 == fail);
             Assert.IsTrue(fail != 6);
