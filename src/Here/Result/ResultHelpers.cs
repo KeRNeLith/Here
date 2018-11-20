@@ -8,6 +8,8 @@ namespace Here.Results
     [PublicAPI]
     public static class ResultHelpers
     {
+        #region Success Equal
+
         /// <summary>
         /// Checks that both <see cref="Result"/> are equal and that they are successful.
         /// </summary>
@@ -15,7 +17,7 @@ namespace Here.Results
         /// <param name="result2">Second <see cref="Result"/> to compare.</param>
         /// <returns>True if both <see cref="Result"/> are equal and successful, otherwise false.</returns>
         [PublicAPI, Pure]
-        public static bool SuccessEquals(in Result result1, in Result result2)
+        public static bool SuccessEqual(in Result result1, in Result result2)
         {
             return result1.SuccessEquals(result2);
         }
@@ -27,7 +29,7 @@ namespace Here.Results
         /// <param name="result2">Second <see cref="Result{T}"/> to compare.</param>
         /// <returns>True if both <see cref="Result{T}"/> are equal and successful, otherwise false.</returns>
         [PublicAPI, Pure]
-        public static bool SuccessEquals<T>(in Result<T> result1, in Result<T> result2)
+        public static bool SuccessEqual<T>(in Result<T> result1, in Result<T> result2)
         {
             return result1.SuccessEquals(result2);
         }
@@ -39,7 +41,7 @@ namespace Here.Results
         /// <param name="result2">Second <see cref="CustomResult{TError}"/> to compare.</param>
         /// <returns>True if both <see cref="CustomResult{TError}"/> are equal and successful, otherwise false.</returns>
         [PublicAPI, Pure]
-        public static bool SuccessEquals<TError>(in CustomResult<TError> result1, in CustomResult<TError> result2)
+        public static bool SuccessEqual<TError>(in CustomResult<TError> result1, in CustomResult<TError> result2)
         {
             return result1.SuccessEquals(result2);
         }
@@ -51,9 +53,11 @@ namespace Here.Results
         /// <param name="result2">Second <see cref="Result{T, TError}"/> to compare.</param>
         /// <returns>True if both <see cref="Result{T, TError}"/> are equal and successful, otherwise false.</returns>
         [PublicAPI, Pure]
-        public static bool SuccessEquals<T, TError>(in Result<T, TError> result1, in Result<T, TError> result2)
+        public static bool SuccessEqual<T, TError>(in Result<T, TError> result1, in Result<T, TError> result2)
         {
             return result1.SuccessEquals(result2);
         }
+
+        #endregion
     }
 }
