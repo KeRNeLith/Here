@@ -59,7 +59,7 @@ namespace Here.Results
         #region Cast
 
         /// <summary>
-        /// Converts this <see cref="Result"/> to a <see cref="Result{T}"/>
+        /// Converts this <see cref="Result"/> to a <see cref="Result{T}"/>.
         /// </summary>
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <param name="value">Value.</param>
@@ -73,7 +73,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Converts this <see cref="Result"/> to a <see cref="Result{T}"/>
+        /// Converts this <see cref="Result"/> to a <see cref="Result{T}"/>.
         /// </summary>
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <param name="valueFactory">Factory method that creates a value.</param>
@@ -87,7 +87,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Converts this <see cref="Result"/> to a <see cref="CustomResult{TError}"/>
+        /// Converts this <see cref="Result"/> to a <see cref="CustomResult{TError}"/>.
         /// </summary>
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
         /// <param name="errorObject">Custom error object.</param>
@@ -103,7 +103,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Converts this <see cref="Result"/> to a <see cref="CustomResult{TError}"/>
+        /// Converts this <see cref="Result"/> to a <see cref="CustomResult{TError}"/>.
         /// </summary>
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
         /// <param name="errorFactory">Factory method that creates a custom error object.</param>
@@ -119,7 +119,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Converts this <see cref="Result"/> to a <see cref="Result{T, TError}"/>
+        /// Converts this <see cref="Result"/> to a <see cref="Result{T, TError}"/>.
         /// </summary>
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
@@ -137,7 +137,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Converts this <see cref="Result"/> to a <see cref="Result{T, TError}"/>
+        /// Converts this <see cref="Result"/> to a <see cref="Result{T, TError}"/>.
         /// </summary>
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
@@ -155,7 +155,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Converts this <see cref="Result"/> to a <see cref="Result{T, TError}"/>
+        /// Converts this <see cref="Result"/> to a <see cref="Result{T, TError}"/>.
         /// </summary>
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
@@ -173,7 +173,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Converts this <see cref="Result"/> to a <see cref="Result{T, TError}"/>
+        /// Converts this <see cref="Result"/> to a <see cref="Result{T, TError}"/>.
         /// </summary>
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <typeparam name="TError">Type of the output result error type.</typeparam>

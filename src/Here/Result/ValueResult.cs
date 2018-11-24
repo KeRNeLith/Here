@@ -10,7 +10,7 @@ namespace Here.Results
     /// This <see cref="Result{T}"/> embed a <see cref="Value"/> resulting of the treatment.
     /// </summary>
     [PublicAPI]
-    [DebuggerDisplay("{" + nameof(IsSuccess) + " ? \"IsSuccess\" + (" + nameof(IsWarning) + " ? \" with warning\" : System.String.Empty) + \", Value = \" + " + nameof(Value) + " : \"IsFailure\"}")]
+    [DebuggerDisplay("{" + nameof(IsSuccess) + " ? \"IsSuccess\" + (" + nameof(IsWarning) + " ? \" with warning\" : System.String.Empty) + \", Value = \" + " + nameof(_value) + " : \"IsFailure\"}")]
     public partial struct Result<T> : IResult<T>, IEquatable<T>, IEquatable<Result<T>>, IComparable, IComparable<Result<T>>
     {
         /// <inheritdoc />
@@ -85,6 +85,20 @@ namespace Here.Results
         #region Cast
 
         /// <summary>
+        /// Converts this <see cref="Result{T}"/> to a <see cref="Result{TOut}"/> by using the "as" operator.
+        /// </summary>
+        /// <typeparam name="TOut">Type of the output result value.</typeparam>
+        /// <returns>A <see cref="Result{TOut}"/>.</returns>
+        [PublicAPI, Pure]
+        public Result<TOut> Cast<TOut>()
+            where TOut : class
+        {
+            if (IsFailure)
+                return ToFailValueResult<TOut>();
+            return new Result<TOut>(_value as TOut, Logic);
+        }
+
+        /// <summary>
         /// Converts this <see cref="Result{T}"/> to a <see cref="Result{TOut}"/>
         /// </summary>
         /// <typeparam name="TOut">Type of the output result value.</typeparam>
@@ -95,7 +109,7 @@ namespace Here.Results
         {
             if (IsFailure)
                 return ToFailValueResult<TOut>();
-            return new Result<TOut>(converter(Value), Logic);
+            return new Result<TOut>(converter(_value), Logic);
         }
 
         /// <summary>
@@ -115,7 +129,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Converts this <see cref="Result{T}"/> to a <see cref="CustomResult{TError}"/>
+        /// Converts this <see cref="Result{T}"/> to a <see cref="CustomResult{TError}"/>.
         /// </summary>
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
         /// <param name="errorFactory">Factory method that creates a custom error object.</param>
@@ -131,7 +145,43 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Converts this <see cref="Result{T}"/> to a <see cref="Result{TOut, TError}"/>
+        /// Converts this <see cref="Result{T}"/> to a <see cref="Result{TOut, TError}"/> using the "as" operator.
+        /// </summary>
+        /// <typeparam name="TOut">Type of the output result value.</typeparam>
+        /// <typeparam name="TError">Type of the output result error type.</typeparam>
+        /// <param name="errorObject">Custom error object.</param>
+        /// <returns>A <see cref="Result{TOut, TError}"/>.</returns>
+        [PublicAPI, Pure]
+        public Result<TOut, TError> Cast<TOut, TError>([NotNull] in TError errorObject)
+            where TOut : class
+        {
+            if (IsFailure)
+                return ToFailCustomValueResult<TOut, TError>(errorObject);
+            if (IsWarning)
+                return Result.Warn<TOut, TError>(_value as TOut, Logic.Message, Logic.Exception);
+            return Result.Ok<TOut, TError>(_value as TOut);
+        }
+
+        /// <summary>
+        /// Converts this <see cref="Result{T}"/> to a <see cref="Result{TOut, TError}"/> using the "as" operator.
+        /// </summary>
+        /// <typeparam name="TOut">Type of the output result value.</typeparam>
+        /// <typeparam name="TError">Type of the output result error type.</typeparam>
+        /// <param name="errorFactory">Factory method that creates a custom error object.</param>
+        /// <returns>A <see cref="Result{TOut, TError}"/>.</returns>
+        [PublicAPI, Pure]
+        public Result<TOut, TError> Cast<TOut, TError>([NotNull, InstantHandle] in Func<TError> errorFactory)
+            where TOut : class
+        {
+            if (IsFailure)
+                return ToFailCustomValueResult<TOut, TError>(errorFactory());
+            if (IsWarning)
+                return Result.Warn<TOut, TError>(_value as TOut, Logic.Message, Logic.Exception);
+            return Result.Ok<TOut, TError>(_value as TOut);
+        }
+
+        /// <summary>
+        /// Converts this <see cref="Result{T}"/> to a <see cref="Result{TOut, TError}"/>.
         /// </summary>
         /// <typeparam name="TOut">Type of the output result value.</typeparam>
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
@@ -144,12 +194,12 @@ namespace Here.Results
             if (IsFailure)
                 return ToFailCustomValueResult<TOut, TError>(errorObject);
             if (IsWarning)
-                return Result.Warn<TOut, TError>(converter(Value), Logic.Message, Logic.Exception);
-            return Result.Ok<TOut, TError>(converter(Value));
+                return Result.Warn<TOut, TError>(converter(_value), Logic.Message, Logic.Exception);
+            return Result.Ok<TOut, TError>(converter(_value));
         }
 
         /// <summary>
-        /// Converts this <see cref="Result{T}"/> to a <see cref="Result{TOut, TError}"/>
+        /// Converts this <see cref="Result{T}"/> to a <see cref="Result{TOut, TError}"/>.
         /// </summary>
         /// <typeparam name="TOut">Type of the output result value.</typeparam>
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
@@ -162,8 +212,8 @@ namespace Here.Results
             if (IsFailure)
                 return ToFailCustomValueResult<TOut, TError>(errorFactory());
             if (IsWarning)
-                return Result.Warn<TOut, TError>(converter(Value), Logic.Message, Logic.Exception);
-            return Result.Ok<TOut, TError>(converter(Value));
+                return Result.Warn<TOut, TError>(converter(_value), Logic.Message, Logic.Exception);
+            return Result.Ok<TOut, TError>(converter(_value));
         }
 
         #endregion
@@ -243,7 +293,7 @@ namespace Here.Results
         internal Result<T> ToWarnValueResult([NotNull] in string message, [CanBeNull] in Exception exception = null)
         {
             Debug.Assert(ResultLogic.IsConvertibleToWarning(Logic), "Cannot convert a warning Result<T> to a Result<T> warning.");
-            return Result.Warn(Value, message, exception);
+            return Result.Warn(_value, message, exception);
         }
 
         #endregion

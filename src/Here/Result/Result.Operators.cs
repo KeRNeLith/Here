@@ -30,7 +30,7 @@ namespace Here.Results
         public Maybe<T> ToMaybe()
         {
             if (Logic.IsSuccess)
-                return Value;
+                return _value;
             return Maybe<T>.None;
         }
 
@@ -66,7 +66,7 @@ namespace Here.Results
         public Maybe<T> ToMaybe()
         {
             if (Logic.IsSuccess)
-                return Value;
+                return _value;
             return Maybe<T>.None;
         }
 

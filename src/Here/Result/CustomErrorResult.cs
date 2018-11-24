@@ -64,7 +64,7 @@ namespace Here.Results
         #region Cast
 
         /// <summary>
-        /// Converts this <see cref="CustomResult{TError}"/> to a <see cref="Result{T}"/>
+        /// Converts this <see cref="CustomResult{TError}"/> to a <see cref="Result{T}"/>.
         /// </summary>
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <param name="value">Value.</param>
@@ -78,7 +78,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Converts this <see cref="CustomResult{TError}"/> to a <see cref="Result{T}"/>
+        /// Converts this <see cref="CustomResult{TError}"/> to a <see cref="Result{T}"/>.
         /// </summary>
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <param name="valueFactory">Factory method that creates a value.</param>
@@ -92,7 +92,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Converts this <see cref="CustomResult{TError}"/> to a <see cref="Result{T, TError}"/>
+        /// Converts this <see cref="CustomResult{TError}"/> to a <see cref="Result{T, TError}"/>.
         /// </summary>
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <param name="value">Value.</param>
@@ -108,7 +108,7 @@ namespace Here.Results
         }
 
         /// <summary>
-        /// Converts this <see cref="CustomResult{TError}"/> to a <see cref="Result{T, TError}"/>
+        /// Converts this <see cref="CustomResult{TError}"/> to a <see cref="Result{T, TError}"/>.
         /// </summary>
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <param name="valueFactory">Factory method that creates a value.</param>

@@ -11,7 +11,7 @@ namespace Here.Results
     /// or a custom error object in case of failed.
     /// </summary>
     [PublicAPI]
-    [DebuggerDisplay("{" + nameof(IsSuccess) + " ? \"IsSuccess\" + (" + nameof(IsWarning) + " ? \" with warning\" : System.String.Empty) + \", Value = \" + " + nameof(Value) + " : \"IsFailure\"}")]
+    [DebuggerDisplay("{" + nameof(IsSuccess) + " ? \"IsSuccess\" + (" + nameof(IsWarning) + " ? \" with warning\" : System.String.Empty) + \", Value = \" + " + nameof(_value) + " : \"IsFailure\"}")]
     public partial struct Result<T, TError> : IResult<T>, IResultError<TError>, IEquatable<T>, IEquatable<Result<T, TError>>, IComparable, IComparable<Result<T, TError>>
     {
         /// <inheritdoc />
@@ -100,7 +100,23 @@ namespace Here.Results
         #region Cast
 
         /// <summary>
-        /// Converts this <see cref="Result{T, TError}"/> to a <see cref="Result{TOut, TError}"/>
+        /// Converts this <see cref="Result{T, TError}"/> to a <see cref="Result{TOut, TError}"/> via the "as" operator.
+        /// </summary>
+        /// <typeparam name="TOut">Type of the output result value.</typeparam>
+        /// <returns>A <see cref="Result{TOut, TError}"/>.</returns>
+        [PublicAPI, Pure]
+        public Result<TOut, TError> Cast<TOut>()
+            where TOut : class 
+        {
+            if (IsFailure)
+                return ToFailCustomValueResult<TOut>();
+            if (IsWarning)
+                return Result.Warn<TOut, TError>(_value as TOut, Logic.Message, Logic.Exception);
+            return Result.Ok<TOut, TError>(_value as TOut);
+        }
+
+        /// <summary>
+        /// Converts this <see cref="Result{T, TError}"/> to a <see cref="Result{TOut, TError}"/>.
         /// </summary>
         /// <typeparam name="TOut">Type of the output result value.</typeparam>
         /// <param name="converter">Function that convert this result value from input type to output type.</param>
@@ -111,8 +127,8 @@ namespace Here.Results
             if (IsFailure)
                 return ToFailCustomValueResult<TOut>();
             if (IsWarning)
-                return Result.Warn<TOut, TError>(converter(Value), Logic.Message, Logic.Exception);
-            return Result.Ok<TOut, TError>(converter(Value));
+                return Result.Warn<TOut, TError>(converter(_value), Logic.Message, Logic.Exception);
+            return Result.Ok<TOut, TError>(converter(_value));
         }
 
         #endregion
@@ -218,7 +234,7 @@ namespace Here.Results
         internal Result<T, TError> ToWarnCustomValueResult([NotNull] in string message, [CanBeNull] in Exception exception = null)
         {
             Debug.Assert(ResultLogic.IsConvertibleToWarning(Logic), "Cannot convert a warning Result<T, TError> to a Result<T, TError> warning.");
-            return Result.Warn<T, TError>(Value, message, exception);
+            return Result.Warn<T, TError>(_value, message, exception);
         }
 
         #endregion

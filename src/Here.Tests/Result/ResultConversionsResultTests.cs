@@ -245,6 +245,36 @@ namespace Here.Tests.Results
         #region Result<T> Cast
 
         [Test]
+        public void CastValueResultTInToValueResultTOutWithAs()
+        {
+            var testObject = new TestClass();
+            var testObjectLeaf = new TestClassLeaf();
+
+            // Result ok
+            var ok = Result.Ok<TestClass>(testObjectLeaf);
+            var valueResult = ok.Cast<TestClassLeaf>();
+            CheckResultOk(valueResult, testObjectLeaf);
+
+            ok = Result.Ok(testObject);
+            valueResult = ok.Cast<TestClassLeaf>();
+            CheckResultOk(valueResult, null);
+
+            // Result warn
+            var warning = Result.Warn<TestClass>(testObjectLeaf, "My warning");
+            valueResult = warning.Cast<TestClassLeaf>();
+            CheckResultWarn(valueResult, testObjectLeaf, "My warning");
+
+            warning = Result.Warn(testObject, "My warning");
+            valueResult = warning.Cast<TestClassLeaf>();
+            CheckResultWarn(valueResult, null, "My warning");
+
+            // Result fail
+            var failure = Result.Fail<int>("My failure");
+            valueResult = failure.Cast<TestClassLeaf>();
+            CheckResultFail(valueResult, "My failure");
+        }
+
+        [Test]
         public void CastValueResultTInToValueResultTOut()
         {
             int counterValueFactory = 0;
@@ -336,6 +366,85 @@ namespace Here.Tests.Results
                 });
             Assert.AreEqual(1, counterErrorFactory);
             CheckResultFail(customResult, "My failure", customErrorObjectFactory);
+        }
+
+        [Test]
+        public void CastValueResultToCustomValueResultWithAs()
+        {
+            var testObject = new TestClass();
+            var testObjectLeaf = new TestClassLeaf();
+
+            var customErrorObjectFactory = new CustomErrorTest { ErrorCode = -8 };
+            int counterErrorFactory = 0;
+
+            // Result ok
+            var ok = Result.Ok<TestClass>(testObjectLeaf);
+            var result = ok.Cast<TestClassLeaf, CustomErrorTest>(customErrorObjectFactory);
+            CheckResultOk(result, testObjectLeaf);
+
+            result = ok.Cast<TestClassLeaf, CustomErrorTest>(
+                () =>
+                {
+                    ++counterErrorFactory;
+                    return customErrorObjectFactory;
+                });
+            Assert.AreEqual(0, counterErrorFactory);
+            CheckResultOk(result, testObjectLeaf);
+
+            ok = Result.Ok(testObject);
+            result = ok.Cast<TestClassLeaf, CustomErrorTest>(customErrorObjectFactory);
+            CheckResultOk(result, null);
+
+            result = ok.Cast<TestClassLeaf, CustomErrorTest>(
+                () =>
+                {
+                    ++counterErrorFactory;
+                    return customErrorObjectFactory;
+                });
+            Assert.AreEqual(0, counterErrorFactory);
+            CheckResultOk(result, null);
+
+            // Result warn
+            var warning = Result.Warn<TestClass>(testObjectLeaf, "My warning");
+            result = warning.Cast<TestClassLeaf, CustomErrorTest>(customErrorObjectFactory);
+            CheckResultWarn(result, testObjectLeaf, "My warning");
+
+            result = warning.Cast<TestClassLeaf, CustomErrorTest>(
+                () =>
+                {
+                    ++counterErrorFactory;
+                    return customErrorObjectFactory;
+                });
+            Assert.AreEqual(0, counterErrorFactory);
+            CheckResultWarn(result, testObjectLeaf, "My warning");
+
+
+            warning = Result.Warn(testObject, "My warning");
+            result = warning.Cast<TestClassLeaf, CustomErrorTest>(customErrorObjectFactory);
+            CheckResultWarn(result, null, "My warning");
+
+            result = warning.Cast<TestClassLeaf, CustomErrorTest>(
+                () =>
+                {
+                    ++counterErrorFactory;
+                    return customErrorObjectFactory;
+                });
+            Assert.AreEqual(0, counterErrorFactory);
+            CheckResultWarn(result, null, "My warning");
+
+            // Result fail
+            var failure = Result.Fail<TestClass>("My failure");
+            result = failure.Cast<TestClassLeaf, CustomErrorTest>(customErrorObjectFactory);
+            CheckResultFail(result, "My failure", customErrorObjectFactory);
+
+            result = failure.Cast<TestClassLeaf, CustomErrorTest>(
+                () =>
+                {
+                    ++counterErrorFactory;
+                    return customErrorObjectFactory;
+                });
+            Assert.AreEqual(1, counterErrorFactory);
+            CheckResultFail(result, "My failure", customErrorObjectFactory);
         }
 
         [Test]
@@ -539,6 +648,37 @@ namespace Here.Tests.Results
         #endregion
 
         #region Result<T> Cast
+
+        [Test]
+        public void CastCustomValueResultTInToCustomValueResultTOutWithAs()
+        {
+            var testObject = new TestClass();
+            var testObjectLeaf = new TestClassLeaf();
+            var customErrorObject = new CustomErrorTest { ErrorCode = -4 };
+
+            // Result ok
+            var ok = Result.Ok<TestClass, CustomErrorTest>(testObjectLeaf);
+            var result = ok.Cast<TestClassLeaf>();
+            CheckResultOk(result, testObjectLeaf);
+
+            ok = Result.Ok<TestClass, CustomErrorTest>(testObject);
+            result = ok.Cast<TestClassLeaf>();
+            CheckResultOk(result, null);
+
+            // Result warn
+            var warning = Result.Warn<TestClass, CustomErrorTest>(testObjectLeaf, "My warning");
+            result = warning.Cast<TestClassLeaf>();
+            CheckResultWarn(result, testObjectLeaf, "My warning");
+
+            warning = Result.Warn<TestClass, CustomErrorTest>(testObject, "My warning");
+            result = warning.Cast<TestClassLeaf>();
+            CheckResultWarn(result, null, "My warning");
+
+            // Result fail
+            var failure = Result.Fail<TestClass, CustomErrorTest>("My failure", customErrorObject);
+            result = failure.Cast<TestClassLeaf>();
+            CheckResultFail(result, "My failure", customErrorObject);
+        }
 
         [Test]
         public void CastCustomValueResultTInToCustomValueResultTOut()
