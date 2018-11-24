@@ -418,7 +418,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomValueResultEnsure()
+        public void ValueCustomResultEnsure()
         {
             string errorMessage = "My error message";
             var customErrorObject = new CustomErrorTest { ErrorCode = -1 };
@@ -740,7 +740,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomValueResultFlattenResult()
+        public void ValueCustomResultFlattenResult()
         {
             const string warningMessage = "My warning message";
             const string warningDeepMessage = "My deep warning message";
@@ -826,7 +826,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomValueResultFlattenValueResult()
+        public void ValueCustomResultFlattenValueResult()
         {
             const string warningMessage = "My warning message";
             const string warningDeepMessage = "My deep warning message";
@@ -912,7 +912,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomValueResultFlattenCustomResult()
+        public void ValueCustomResultFlattenCustomResult()
         {
             const string warningMessage = "My warning message";
             const string warningDeepMessage = "My deep warning message";
@@ -999,7 +999,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomValueResultFlattenCustomValueResult()
+        public void ValueCustomResultFlattenValueCustomResult()
         {
             const string warningMessage = "My warning message";
             const string warningDeepMessage = "My deep warning message";

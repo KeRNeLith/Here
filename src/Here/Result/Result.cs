@@ -130,7 +130,7 @@ namespace Here.Results
         public Result<T, TError> Cast<T, TError>([CanBeNull] in T value, [NotNull] in TError errorObject)
         {
             if (IsFailure)
-                return ToFailCustomValueResult<T, TError>(errorObject);
+                return ToFailValueCustomResult<T, TError>(errorObject);
             if (IsWarning)
                 return Warn<T, TError>(value, Logic.Message, Logic.Exception);
             return Ok<T, TError>(value);
@@ -148,7 +148,7 @@ namespace Here.Results
         public Result<T, TError> Cast<T, TError>([CanBeNull] in T value, [NotNull, InstantHandle] in Func<TError> errorFactory)
         {
             if (IsFailure)
-                return ToFailCustomValueResult<T, TError>(errorFactory());
+                return ToFailValueCustomResult<T, TError>(errorFactory());
             if (IsWarning)
                 return Warn<T, TError>(value, Logic.Message, Logic.Exception);
             return Ok<T, TError>(value);
@@ -166,7 +166,7 @@ namespace Here.Results
         public Result<T, TError> Cast<T, TError>([NotNull, InstantHandle] in Func<T> valueFactory, [NotNull] in TError errorObject)
         {
             if (IsFailure)
-                return ToFailCustomValueResult<T, TError>(errorObject);
+                return ToFailValueCustomResult<T, TError>(errorObject);
             if (IsWarning)
                 return Warn<T, TError>(valueFactory(), Logic.Message, Logic.Exception);
             return Ok<T, TError>(valueFactory());
@@ -184,7 +184,7 @@ namespace Here.Results
         public Result<T, TError> Cast<T, TError>([NotNull, InstantHandle] in Func<T> valueFactory, [NotNull, InstantHandle] in Func<TError> errorFactory)
         {
             if (IsFailure)
-                return ToFailCustomValueResult<T, TError>(errorFactory());
+                return ToFailValueCustomResult<T, TError>(errorFactory());
             if (IsWarning)
                 return Warn<T, TError>(valueFactory(), Logic.Message, Logic.Exception);
             return Ok<T, TError>(valueFactory());
@@ -258,7 +258,7 @@ namespace Here.Results
         /// <param name="errorObject">Error object to use.</param>
         /// <returns>A failed <see cref="Result{T, TError}"/>.</returns>
         [Pure]
-        internal Result<T, TError> ToFailCustomValueResult<T, TError>([NotNull] in TError errorObject)
+        internal Result<T, TError> ToFailValueCustomResult<T, TError>([NotNull] in TError errorObject)
         {
             Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result to a Result<T, TError> failure.");
             return Fail<T, TError>(Logic.Message, errorObject, Logic.Exception);

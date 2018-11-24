@@ -1337,7 +1337,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomValueResultSuccessEquality()
+        public void ValueCustomResultSuccessEquality()
         {
             var customErrorObject = new CustomErrorTest { ErrorCode = -5 };
 
@@ -1537,7 +1537,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomValueResultHashCode()
+        public void ValueCustomResultHashCode()
         {
             var customErrorObject = new CustomErrorTest { ErrorCode = -5 };
 
@@ -1633,7 +1633,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomValueResultEqualityValue()
+        public void ValueCustomResultEqualityValue()
         {
             // Result ok
             var ok = Result.Ok<int, CustomErrorTest>(42);
@@ -2226,7 +2226,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomValueResultCompare()
+        public void ValueCustomResultCompare()
         {
             var customErrorObject = new CustomErrorTest { ErrorCode = -10 };
 
@@ -2390,7 +2390,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomValueResultCompareHelper()
+        public void ValueCustomResultCompareHelper()
         {
             var customErrorObject = new CustomErrorTest { ErrorCode = -10 };
 

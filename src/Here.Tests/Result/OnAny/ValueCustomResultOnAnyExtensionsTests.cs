@@ -8,10 +8,10 @@ namespace Here.Tests.Results
     /// Tests for <see cref="Result{T, TError}"/> extensions.
     /// </summary>
     [TestFixture]
-    internal class CustomValueResultOnAnyExtensionsTests : ResultTestsBase
+    internal class ValueCustomResultOnAnyExtensionsTests : ResultTestsBase
     {
         [Test]
-        public void CustomValueResultOnAnyToCustomValueResult()
+        public void ValueCustomResultOnAnyToValueCustomResult()
         {
             int counter = 0;
             var customErrorObject = new CustomErrorTest { ErrorCode = -7 };
@@ -38,7 +38,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomValueResultOnAnyToCustomValueResultWithParam()
+        public void ValueCustomResultOnAnyToValueCustomResultWithParam()
         {
             int counter = 0;
             var customErrorObject = new CustomErrorTest { ErrorCode = -1 };
@@ -65,7 +65,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomValueResultOnAnyTOut()
+        public void ValueCustomResultOnAnyTOut()
         {
             int counter = 0;
             var customErrorObject = new CustomErrorTest { ErrorCode = -28 };

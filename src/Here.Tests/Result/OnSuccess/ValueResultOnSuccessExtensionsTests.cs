@@ -1212,7 +1212,7 @@ namespace Here.Tests.Results
         #region OnSuccess Result<T> => Result<T, TError>
 
         [Test]
-        public void ValueResultOkOnSuccessToCustomValueResult()
+        public void ValueResultOkOnSuccessToValueCustomResult()
         {
             int counterSuccess = 0;
             int counterErrorFactory = 0;
@@ -1390,7 +1390,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void ValueResultWarnOnSuccessToCustomValueResult()
+        public void ValueResultWarnOnSuccessToValueCustomResult()
         {
             int counterSuccess = 0;
             int counterErrorFactory = 0;
@@ -1570,7 +1570,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void ValueResultFailOnSuccessToCustomValueResult()
+        public void ValueResultFailOnSuccessToValueCustomResult()
         {
             int counterSuccess = 0;
             int counterErrorFactory = 0;

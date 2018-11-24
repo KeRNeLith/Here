@@ -295,7 +295,7 @@ namespace Here.Results.Extensions
                 onFailure();
 
                 if (result.IsWarning)   // Warning as error
-                    return result.ToFailCustomValueResult<T>(errorObject);
+                    return result.ToFailValueCustomResult<T>(errorObject);
             }
 
             return result;
@@ -322,7 +322,7 @@ namespace Here.Results.Extensions
                 onFailure();
 
                 if (result.IsWarning)   // Warning as error
-                    return result.ToFailCustomValueResult<T>(errorFactory());
+                    return result.ToFailValueCustomResult<T>(errorFactory());
             }
 
             return result;
@@ -349,7 +349,7 @@ namespace Here.Results.Extensions
                 onFailure(result);
 
                 if (result.IsWarning)   // Warning as error
-                    return result.ToFailCustomValueResult<T>(errorObject);
+                    return result.ToFailValueCustomResult<T>(errorObject);
             }
 
             return result;
@@ -376,7 +376,7 @@ namespace Here.Results.Extensions
                 onFailure(result);
 
                 if (result.IsWarning)   // Warning as error
-                    return result.ToFailCustomValueResult<T>(errorFactory());
+                    return result.ToFailValueCustomResult<T>(errorFactory());
             }
 
             return result;

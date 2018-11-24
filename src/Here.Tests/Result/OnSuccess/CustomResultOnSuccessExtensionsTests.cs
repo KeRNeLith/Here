@@ -690,7 +690,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomResultTInOnSuccessToCustomValueResultTOut()
+        public void CustomResultTInOnSuccessToValueCustomResultTOut()
         {
             int counterSuccess = 0;
             int counterFailureFactory = 0;
@@ -1405,7 +1405,7 @@ namespace Here.Tests.Results
         #region OnSuccess CustomResult<TError> => Result<T, TError>
 
         [Test]
-        public void CustomResultOkOnSuccessToCustomValueResult()
+        public void CustomResultOkOnSuccessToValueCustomResult()
         {
             int counterSuccess = 0;
             int counterFailureFactory = 0;
@@ -1583,7 +1583,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomResultWarnOnSuccessToCustomValueResult()
+        public void CustomResultWarnOnSuccessToValueCustomResult()
         {
             int counterSuccess = 0;
             int counterFailureFactory = 0;
@@ -1762,7 +1762,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomResultFailOnSuccessToCustomValueResult()
+        public void CustomResultFailOnSuccessToValueCustomResult()
         {
             int counterSuccess = 0;
             int counterFailureFactory = 0;

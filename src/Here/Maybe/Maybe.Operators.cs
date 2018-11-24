@@ -105,7 +105,7 @@ namespace Here.Maybes
         /// <param name="failureMessage">Failure message in case the <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>The corresponding <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI, Pure]
-        public Result<T, TError> ToCustomValueResult<TError>([NotNull, InstantHandle] in Func<TError> errorFactory, [CanBeNull] in string failureMessage = null)
+        public Result<T, TError> ToValueCustomResult<TError>([NotNull, InstantHandle] in Func<TError> errorFactory, [CanBeNull] in string failureMessage = null)
         {
             if (HasValue)
                 return Result.Ok<T, TError>(Value);
@@ -119,7 +119,7 @@ namespace Here.Maybes
         /// <param name="failureMessage">Failure message in case the <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>The corresponding <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI, Pure]
-        public Result<T, TError> ToCustomValueResult<TError>([NotNull] in TError errorObject, [CanBeNull] in string failureMessage = null)
+        public Result<T, TError> ToValueCustomResult<TError>([NotNull] in TError errorObject, [CanBeNull] in string failureMessage = null)
         {
             if (HasValue)
                 return Result.Ok<T, TError>(Value);

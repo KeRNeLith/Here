@@ -105,35 +105,35 @@ namespace Here.Tests.Maybes
         }
 
         [Test]
-        public void MaybeToCustomValueResult()
+        public void MaybeToValueCustomResult()
         {
             // Maybe has value
             var customErrorObject = new CustomErrorTest { ErrorCode = -32 };
             var maybeInt = Maybe<int>.Some(42);
-            Result<int, CustomErrorTest> result = maybeInt.ToCustomValueResult(customErrorObject);
+            Result<int, CustomErrorTest> result = maybeInt.ToValueCustomResult(customErrorObject);
             CheckResultOk(result, 42);
 
-            result = maybeInt.ToCustomValueResult(customErrorObject, "Empty maybeInt");
+            result = maybeInt.ToValueCustomResult(customErrorObject, "Empty maybeInt");
             CheckResultOk(result, 42);
 
-            result = maybeInt.ToCustomValueResult(() => customErrorObject);
+            result = maybeInt.ToValueCustomResult(() => customErrorObject);
             CheckResultOk(result, 42);
 
-            result = maybeInt.ToCustomValueResult(() => customErrorObject, "Empty maybeInt");
+            result = maybeInt.ToValueCustomResult(() => customErrorObject, "Empty maybeInt");
             CheckResultOk(result, 42);
 
             // Empty Maybe
             var emptyMaybeInt = Maybe<int>.None;
-            result = emptyMaybeInt.ToCustomValueResult(customErrorObject);
+            result = emptyMaybeInt.ToValueCustomResult(customErrorObject);
             CheckResultFail(result, string.Format(Maybe.FailedToResultMessage, typeof(int)), customErrorObject);
 
-            result = emptyMaybeInt.ToCustomValueResult(customErrorObject, "Empty emptyMaybeInt");
+            result = emptyMaybeInt.ToValueCustomResult(customErrorObject, "Empty emptyMaybeInt");
             CheckResultFail(result, "Empty emptyMaybeInt", customErrorObject);
 
-            result = emptyMaybeInt.ToCustomValueResult(() => customErrorObject);
+            result = emptyMaybeInt.ToValueCustomResult(() => customErrorObject);
             CheckResultFail(result, string.Format(Maybe.FailedToResultMessage, typeof(int)), customErrorObject);
 
-            result = emptyMaybeInt.ToCustomValueResult(() => customErrorObject, "Empty emptyMaybeInt");
+            result = emptyMaybeInt.ToValueCustomResult(() => customErrorObject, "Empty emptyMaybeInt");
             CheckResultFail(result, "Empty emptyMaybeInt", customErrorObject);
         }
     }

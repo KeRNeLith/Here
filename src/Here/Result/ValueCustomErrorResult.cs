@@ -109,7 +109,7 @@ namespace Here.Results
             where TOut : class 
         {
             if (IsFailure)
-                return ToFailCustomValueResult<TOut>();
+                return ToFailValueCustomResult<TOut>();
             if (IsWarning)
                 return Result.Warn<TOut, TError>(_value as TOut, Logic.Message, Logic.Exception);
             return Result.Ok<TOut, TError>(_value as TOut);
@@ -125,7 +125,7 @@ namespace Here.Results
         public Result<TOut, TError> Cast<TOut>([NotNull, InstantHandle] in Func<T, TOut> converter)
         {
             if (IsFailure)
-                return ToFailCustomValueResult<TOut>();
+                return ToFailValueCustomResult<TOut>();
             if (IsWarning)
                 return Result.Warn<TOut, TError>(converter(_value), Logic.Message, Logic.Exception);
             return Result.Ok<TOut, TError>(converter(_value));
@@ -190,7 +190,7 @@ namespace Here.Results
         /// </summary>
         /// <returns>A failed <see cref="Result{TOut, TError}"/>.</returns>
         [Pure]
-        internal Result<TOut, TError> ToFailCustomValueResult<TOut>()
+        internal Result<TOut, TError> ToFailValueCustomResult<TOut>()
         {
             Debug.Assert(Logic.IsFailure, "Cannot convert a success Result<TIn, TError> to a Result<TOut, TError> failure.");
             return Result.Fail<TOut, TError>(Logic.Message, Logic.Error, Logic.Exception);
@@ -203,7 +203,7 @@ namespace Here.Results
         /// <param name="errorObject">Custom error object to use.</param>
         /// <returns>A failed <see cref="Result{TOut, TError}"/>.</returns>
         [Pure]
-        internal Result<TOut, TError> ToFailCustomValueResult<TOut>([NotNull] in TError errorObject)
+        internal Result<TOut, TError> ToFailValueCustomResult<TOut>([NotNull] in TError errorObject)
         {
             Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result<TIn, TError> to a Result<TOut, TError> failure.");
             return Result.Fail<TOut, TError>(Logic.Message, errorObject, Logic.Exception);
@@ -217,7 +217,7 @@ namespace Here.Results
         /// <param name="exception">Exception to set in the failure <see cref="Result{TOut, TError}"/>.</param>
         /// <returns>A failed <see cref="Result{TOut, TError}"/>.</returns>
         [Pure]
-        internal Result<TOut, TError> ToFailCustomValueResult<TOut>([NotNull] in string additionalMessage, [CanBeNull] in Exception exception = null)
+        internal Result<TOut, TError> ToFailValueCustomResult<TOut>([NotNull] in string additionalMessage, [CanBeNull] in Exception exception = null)
         {
             Debug.Assert(Logic.IsFailure, "Cannot convert a success Result<TIn, TError> to a Result<TOut, TError> failure.");
             return Result.Fail<TOut, TError>(Logic.Message + additionalMessage, Logic.Error, exception);
@@ -231,7 +231,7 @@ namespace Here.Results
         /// <param name="exception">Exception to set in the warning <see cref="Result{T, TError}"/>.</param>
         /// <returns>A warning <see cref="Result{T, TError}"/>.</returns>
         [Pure]
-        internal Result<T, TError> ToWarnCustomValueResult([NotNull] in string message, [CanBeNull] in Exception exception = null)
+        internal Result<T, TError> ToWarnValueCustomResult([NotNull] in string message, [CanBeNull] in Exception exception = null)
         {
             Debug.Assert(ResultLogic.IsConvertibleToWarning(Logic), "Cannot convert a warning Result<T, TError> to a Result<T, TError> warning.");
             return Result.Warn<T, TError>(_value, message, exception);

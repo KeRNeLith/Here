@@ -101,7 +101,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomValueResultToMaybe()
+        public void ValueCustomResultToMaybe()
         {
             // Explicit conversions
             Result<int, CustomErrorTest> resultOk = Result.Ok<int, CustomErrorTest>(42);

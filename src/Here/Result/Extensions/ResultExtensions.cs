@@ -376,12 +376,12 @@ namespace Here.Results.Extensions
 
                 if (embeddedResult.Value.IsWarning)
                 {
-                    return embeddedResult.Value.ToWarnCustomValueResult(
+                    return embeddedResult.Value.ToWarnValueCustomResult(
                         $"{embeddedResult.Value.Message}{Environment.NewLine}Resulting in: {embeddedResult.Message}",
                         chosenException);
                 }
 
-                return embeddedResult.Value.ToWarnCustomValueResult(embeddedResult.Message, chosenException);
+                return embeddedResult.Value.ToWarnValueCustomResult(embeddedResult.Message, chosenException);
             }
 
             return embeddedResult.Value;
@@ -397,7 +397,7 @@ namespace Here.Results.Extensions
         {
             if (embeddedResult.IsFailure)
             {
-                return embeddedResult.ToFailCustomValueResult<T>();
+                return embeddedResult.ToFailValueCustomResult<T>();
             }
 
             if (embeddedResult.IsWarning)
@@ -406,19 +406,19 @@ namespace Here.Results.Extensions
 
                 if (embeddedResult.Value.IsFailure)
                 {
-                    return embeddedResult.Value.ToFailCustomValueResult<T>(
+                    return embeddedResult.Value.ToFailValueCustomResult<T>(
                         $"{Environment.NewLine}Resulting in: {embeddedResult.Message}",
                         chosenException);
                 }
 
                 if (embeddedResult.Value.IsWarning)
                 {
-                    return embeddedResult.Value.ToWarnCustomValueResult(
+                    return embeddedResult.Value.ToWarnValueCustomResult(
                         $"{embeddedResult.Value.Message}{Environment.NewLine}Resulting in: {embeddedResult.Message}",
                         chosenException);
                 }
 
-                return embeddedResult.Value.ToWarnCustomValueResult(embeddedResult.Message, chosenException);
+                return embeddedResult.Value.ToWarnValueCustomResult(embeddedResult.Message, chosenException);
             }
 
             return embeddedResult.Value;

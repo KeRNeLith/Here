@@ -167,7 +167,7 @@ namespace Here.Results.Extensions
             in bool treatWarningAsError = false)
         {
             if (IsConsideredFailure(result, treatWarningAsError))
-                return result.ToFailCustomValueResult<T, TError>(errorObject);
+                return result.ToFailValueCustomResult<T, TError>(errorObject);
 
             return onSuccess();
         }
@@ -191,7 +191,7 @@ namespace Here.Results.Extensions
             in bool treatWarningAsError = false)
         {
             if (IsConsideredFailure(result, treatWarningAsError))
-                return result.ToFailCustomValueResult<T, TError>(errorFactory());
+                return result.ToFailValueCustomResult<T, TError>(errorFactory());
 
             return onSuccess();
         }
@@ -371,7 +371,7 @@ namespace Here.Results.Extensions
             in bool treatWarningAsError = false)
         {
             if (IsConsideredFailure(result, treatWarningAsError))
-                return result.ToFailCustomValueResult<TOut, TError>(errorObject);
+                return result.ToFailValueCustomResult<TOut, TError>(errorObject);
 
             return onSuccess(result.Value);
         }
@@ -396,7 +396,7 @@ namespace Here.Results.Extensions
             in bool treatWarningAsError = false)
         {
             if (IsConsideredFailure(result, treatWarningAsError))
-                return result.ToFailCustomValueResult<TOut, TError>(errorFactory());
+                return result.ToFailValueCustomResult<TOut, TError>(errorFactory());
 
             return onSuccess(result.Value);
         }
@@ -492,8 +492,8 @@ namespace Here.Results.Extensions
             {
                 // Warning as error
                 return result.IsWarning 
-                    ? result.ToFailCustomValueResult<T>(errorObject) 
-                    : result.ToFailCustomValueResult<T>();
+                    ? result.ToFailValueCustomResult<T>(errorObject) 
+                    : result.ToFailValueCustomResult<T>();
             }
 
             return new Result<T, TError>(onSuccess(), result.Logic);
@@ -519,8 +519,8 @@ namespace Here.Results.Extensions
             {
                 // Warning as error
                 return result.IsWarning
-                    ? result.ToFailCustomValueResult<T>(errorFactory())
-                    : result.ToFailCustomValueResult<T>();
+                    ? result.ToFailValueCustomResult<T>(errorFactory())
+                    : result.ToFailValueCustomResult<T>();
             }
 
             return new Result<T, TError>(onSuccess(), result.Logic);
@@ -636,8 +636,8 @@ namespace Here.Results.Extensions
             {
                 // Warning as error
                 return result.IsWarning
-                    ? result.ToFailCustomValueResult<T>(errorObject)
-                    : result.ToFailCustomValueResult<T>();
+                    ? result.ToFailValueCustomResult<T>(errorObject)
+                    : result.ToFailValueCustomResult<T>();
             }
 
             return onSuccess();
@@ -663,8 +663,8 @@ namespace Here.Results.Extensions
             {
                 // Warning as error
                 return result.IsWarning
-                    ? result.ToFailCustomValueResult<T>(errorFactory())
-                    : result.ToFailCustomValueResult<T>();
+                    ? result.ToFailValueCustomResult<T>(errorFactory())
+                    : result.ToFailValueCustomResult<T>();
             }
 
             return onSuccess();
@@ -714,7 +714,7 @@ namespace Here.Results.Extensions
             if (IsConsideredSuccess(result, treatWarningAsError))
                 onSuccess(result.Value);
             else if (result.IsWarning)  // Warning as error
-                return result.ToFailCustomValueResult<T>(errorObject);
+                return result.ToFailValueCustomResult<T>(errorObject);
 
             return result;
         }
@@ -738,7 +738,7 @@ namespace Here.Results.Extensions
             if (IsConsideredSuccess(result, treatWarningAsError))
                 onSuccess(result.Value);
             else if (result.IsWarning)  // Warning as error
-                return result.ToFailCustomValueResult<T>(errorFactory());
+                return result.ToFailValueCustomResult<T>(errorFactory());
 
             return result;
         }
@@ -763,8 +763,8 @@ namespace Here.Results.Extensions
             if (IsConsideredFailure(result, treatWarningAsError))
             {
                 if (result.IsWarning)
-                    return result.ToFailCustomValueResult<TOut>(errorObject);
-                return result.ToFailCustomValueResult<TOut>();
+                    return result.ToFailValueCustomResult<TOut>(errorObject);
+                return result.ToFailValueCustomResult<TOut>();
             }
 
             return new Result<TOut, TError>(converter(result.Value), result.Logic);
@@ -790,8 +790,8 @@ namespace Here.Results.Extensions
             if (IsConsideredFailure(result, treatWarningAsError))
             {
                 if (result.IsWarning)
-                    return result.ToFailCustomValueResult<TOut>(errorFactory());
-                return result.ToFailCustomValueResult<TOut>();
+                    return result.ToFailValueCustomResult<TOut>(errorFactory());
+                return result.ToFailValueCustomResult<TOut>();
             }
 
             return new Result<TOut, TError>(converter(result.Value), result.Logic);
@@ -912,8 +912,8 @@ namespace Here.Results.Extensions
             {
                 // Warning as error
                 return result.IsWarning 
-                    ? result.ToFailCustomValueResult<TOut>(errorObject) 
-                    : result.ToFailCustomValueResult<TOut>();
+                    ? result.ToFailValueCustomResult<TOut>(errorObject) 
+                    : result.ToFailValueCustomResult<TOut>();
             }
 
             return onSuccess(result.Value);
@@ -940,8 +940,8 @@ namespace Here.Results.Extensions
             {
                 // Warning as error
                 return result.IsWarning
-                    ? result.ToFailCustomValueResult<TOut>(errorFactory())
-                    : result.ToFailCustomValueResult<TOut>();
+                    ? result.ToFailValueCustomResult<TOut>(errorFactory())
+                    : result.ToFailValueCustomResult<TOut>();
             }
 
             return onSuccess(result.Value);

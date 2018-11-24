@@ -88,7 +88,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void ValueCustomResultOnFailureToCustomValueResult()
+        public void ValueCustomResultOnFailureToValueCustomResult()
         {
             int counterFailure = 0;
             int counterFailureFactory = 0;
@@ -199,7 +199,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void ValueCustomResultOnFailureToCustomValueResultWithParam()
+        public void ValueCustomResultOnFailureToValueCustomResultWithParam()
         {
             int counterFailure = 0;
             int counterFailureFactory = 0;

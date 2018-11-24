@@ -115,7 +115,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CastResultToCustomValueResult()
+        public void CastResultToValueCustomResult()
         {
             var customErrorObjectFactory = new CustomErrorTest { ErrorCode = -8 };
             int counterValueFactory = 0;
@@ -369,7 +369,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CastValueResultToCustomValueResultWithAs()
+        public void CastValueResultToValueCustomResultWithAs()
         {
             var testObject = new TestClass();
             var testObjectLeaf = new TestClassLeaf();
@@ -448,7 +448,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CastValueResultToCustomValueResult()
+        public void CastValueResultToValueCustomResult()
         {
             var customErrorObjectFactory = new CustomErrorTest { ErrorCode = -8 };
             int counterValueFactory = 0;
@@ -594,7 +594,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CastCustomResultToCustomValueResult()
+        public void CastCustomResultToValueCustomResult()
         {
             var customErrorObject = new CustomErrorTest { ErrorCode = -5 };
             int counterValueFactory = 0;
@@ -650,7 +650,7 @@ namespace Here.Tests.Results
         #region Result<T> Cast
 
         [Test]
-        public void CastCustomValueResultTInToCustomValueResultTOutWithAs()
+        public void CastValueCustomResultTInToValueCustomResultTOutWithAs()
         {
             var testObject = new TestClass();
             var testObjectLeaf = new TestClassLeaf();
@@ -681,7 +681,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CastCustomValueResultTInToCustomValueResultTOut()
+        public void CastValueCustomResultTInToValueCustomResultTOut()
         {
             var customErrorObject = new CustomErrorTest { ErrorCode = -4 };
             int counterValueFactory = 0;
