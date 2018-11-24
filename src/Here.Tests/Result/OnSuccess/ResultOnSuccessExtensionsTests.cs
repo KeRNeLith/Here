@@ -10,6 +10,87 @@ namespace Here.Tests.Results
     [TestFixture]
     internal class ResultOnSuccessExtensionsTests : ResultTestsBase
     {
+        #region OnSuccess Result => Value
+
+        [Test]
+        public void ResultOnSuccessToValue()
+        {
+            int counter = 0;
+            // Ok result
+            var ok = Result.Ok();
+
+            float result = ok.OnSuccess(
+                res =>
+                {
+                    ++counter;
+                    return 12.5f;
+                },
+                -1f);
+            Assert.AreEqual(1, counter);
+            Assert.AreEqual(12.5f, result);
+
+            result = ok.OnSuccess(
+                res =>
+                {
+                    ++counter;
+                    return 13.5f;
+                },
+                -1f,
+                true);
+            Assert.AreEqual(2, counter);
+            Assert.AreEqual(13.5f, result);
+
+            // Warning result
+            var warning = Result.Warn("My warning");
+
+            result = warning.OnSuccess(
+                res =>
+                {
+                    ++counter;
+                    return 14.5f;
+                },
+                -1f);
+            Assert.AreEqual(3, counter);
+            Assert.AreEqual(14.5f, result);
+
+            result = warning.OnSuccess(
+                res =>
+                {
+                    ++counter;
+                    return 14.5f;
+                },
+                -1f,
+                true);
+            Assert.AreEqual(3, counter);
+            Assert.AreEqual(-1f, result);
+
+            // Failure result
+            var failure = Result.Fail("My failure");
+
+            result = failure.OnSuccess(
+                res =>
+                {
+                    ++counter;
+                    return 15.5f;
+                },
+                -2f);
+            Assert.AreEqual(3, counter);
+            Assert.AreEqual(-2f, result);
+
+            result = failure.OnSuccess(
+                res =>
+                {
+                    ++counter;
+                    return 16.5f;
+                },
+                -3f,
+                true);
+            Assert.AreEqual(3, counter);
+            Assert.AreEqual(-3f, result);
+        }
+
+        #endregion
+
         #region OnSuccess Result => Result
 
         [Test]

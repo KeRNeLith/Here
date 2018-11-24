@@ -8,8 +8,89 @@ namespace Here.Tests.Results
     /// Tests for <see cref="Result{T}"/> extensions.
     /// </summary>
     [TestFixture]
-    internal class ResultValueOnSuccessExtensionsTests : ResultTestsBase
+    internal class ValueResultOnSuccessExtensionsTests : ResultTestsBase
     {
+        #region OnSuccess Result<T> => Value
+
+        [Test]
+        public void ValueResultOnSuccessToValue()
+        {
+            int counter = 0;
+            // Ok result
+            var ok = Result.Ok(26);
+
+            float result = ok.OnSuccess(
+                res =>
+                {
+                    ++counter;
+                    return res.Value + 0.1f;
+                },
+                -1f);
+            Assert.AreEqual(1, counter);
+            Assert.AreEqual(26.1f, result);
+
+            result = ok.OnSuccess(
+                res =>
+                {
+                    ++counter;
+                    return res.Value + 0.2f;
+                },
+                -1f,
+                true);
+            Assert.AreEqual(2, counter);
+            Assert.AreEqual(26.2f, result);
+
+            // Warning result
+            var warning = Result.Warn(32, "My warning");
+
+            result = warning.OnSuccess(
+                res =>
+                {
+                    ++counter;
+                    return res.Value + 0.1f;
+                },
+                -1f);
+            Assert.AreEqual(3, counter);
+            Assert.AreEqual(32.1f, result);
+
+            result = warning.OnSuccess(
+                res =>
+                {
+                    ++counter;
+                    return res.Value + 0.2f;
+                },
+                -1f,
+                true);
+            Assert.AreEqual(3, counter);
+            Assert.AreEqual(-1f, result);
+
+            // Failure result
+            var failure = Result.Fail<int>("My failure");
+
+            result = failure.OnSuccess(
+                res =>
+                {
+                    ++counter;
+                    return res.Value + 0.1f;
+                },
+                -2f);
+            Assert.AreEqual(3, counter);
+            Assert.AreEqual(-2f, result);
+
+            result = failure.OnSuccess(
+                res =>
+                {
+                    ++counter;
+                    return res.Value + 0.2f;
+                },
+                -3f,
+                true);
+            Assert.AreEqual(3, counter);
+            Assert.AreEqual(-3f, result);
+        }
+
+        #endregion
+
         #region OnSuccess Result<T> => Result
 
         [Test]

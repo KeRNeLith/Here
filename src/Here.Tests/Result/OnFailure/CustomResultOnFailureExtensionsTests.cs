@@ -11,6 +11,83 @@ namespace Here.Tests.Results
     internal class CustomResultOnFailureExtensionsTests : ResultTestsBase
     {
         [Test]
+        public void CustomResultOnFailureToValue()
+        {
+            int counter = 0;
+            // Ok result
+            var ok = Result.CustomOk<CustomErrorTest>();
+
+            var result = ok.OnFailure(
+                res =>
+                {
+                    ++counter;
+                    return 55.1f;
+                },
+                -1f);
+            Assert.AreEqual(0, counter);
+            Assert.AreEqual(-1f, result);
+
+            result = ok.OnFailure(
+                res =>
+                {
+                    ++counter;
+                    return 55.2f;
+                },
+                -2f,
+                true);
+            Assert.AreEqual(0, counter);
+            Assert.AreEqual(-2f, result);
+
+            // Warning result
+            var warning = Result.CustomWarn<CustomErrorTest>("My warning");
+
+            result = warning.OnFailure(
+                res =>
+                {
+                    ++counter;
+                    return 56.1f;
+                },
+                -3f);
+            Assert.AreEqual(0, counter);
+            Assert.AreEqual(-3f, result);
+
+            result = warning.OnFailure(
+                res =>
+                {
+                    ++counter;
+                    return 56.2f;
+                },
+                -4f,
+                true);
+            Assert.AreEqual(1, counter);
+            Assert.AreEqual(56.2f, result);
+
+            // Failure result
+            var failure = Result.CustomFail("My failure", new CustomErrorTest());
+
+            result = failure.OnFailure(
+                res =>
+                {
+                    ++counter;
+                    return -15f;
+                },
+                -4f);
+            Assert.AreEqual(2, counter);
+            Assert.AreEqual(-15f, result);
+
+            result = failure.OnFailure(
+                res =>
+                {
+                    ++counter;
+                    return -16f;
+                },
+                -4f,
+                true);
+            Assert.AreEqual(3, counter);
+            Assert.AreEqual(-16f, result);
+        }
+
+        [Test]
         public void CustomResultOnFailureToCustomResult()
         {
             int counterFailure = 0;

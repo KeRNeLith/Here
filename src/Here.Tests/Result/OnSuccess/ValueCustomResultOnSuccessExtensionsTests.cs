@@ -8,12 +8,93 @@ namespace Here.Tests.Results
     /// Tests for <see cref="Result{T, TError}"/> extensions.
     /// </summary>
     [TestFixture]
-    internal class CustomValueResultOnSuccessExtensionsTests : ResultTestsBase
+    internal class ValueCustomResultOnSuccessExtensionsTests : ResultTestsBase
     {
+        #region OnSuccess Result<T, TError> => Value
+
+        [Test]
+        public void ValueCustomResultOnSuccessToValue()
+        {
+            int counter = 0;
+            // Ok result
+            var ok = Result.Ok<int, CustomErrorTest>(98);
+
+            float result = ok.OnSuccess(
+                res =>
+                {
+                    ++counter;
+                    return res.Value + 0.1f;
+                },
+                -1f);
+            Assert.AreEqual(1, counter);
+            Assert.AreEqual(98.1f, result);
+
+            result = ok.OnSuccess(
+                res =>
+                {
+                    ++counter;
+                    return res.Value + 0.2f;
+                },
+                -1f,
+                true);
+            Assert.AreEqual(2, counter);
+            Assert.AreEqual(98.2f, result);
+
+            // Warning result
+            var warning = Result.Warn<int, CustomErrorTest>(99, "My warning");
+
+            result = warning.OnSuccess(
+                res =>
+                {
+                    ++counter;
+                    return res.Value + 0.1f;
+                },
+                -1f);
+            Assert.AreEqual(3, counter);
+            Assert.AreEqual(99.1f, result);
+
+            result = warning.OnSuccess(
+                res =>
+                {
+                    ++counter;
+                    return res.Value + 0.2f;
+                },
+                -1f,
+                true);
+            Assert.AreEqual(3, counter);
+            Assert.AreEqual(-1f, result);
+
+            // Failure result
+            var failure = Result.Fail<int, CustomErrorTest>("My failure", new CustomErrorTest());
+
+            result = failure.OnSuccess(
+                res =>
+                {
+                    ++counter;
+                    return res.Value + 0.1f;
+                },
+                -2f);
+            Assert.AreEqual(3, counter);
+            Assert.AreEqual(-2f, result);
+
+            result = failure.OnSuccess(
+                res =>
+                {
+                    ++counter;
+                    return res.Value + 0.2f;
+                },
+                -3f,
+                true);
+            Assert.AreEqual(3, counter);
+            Assert.AreEqual(-3f, result);
+        }
+
+        #endregion
+
         #region OnSuccess Result<T, TError> => Result
 
         [Test]
-        public void CustomValueResultOkOnSuccessToResult()
+        public void ValueCustomResultOkOnSuccessToResult()
         {
             int counter = 0;
             string produceWarningMessage = "OnSuccess produce a warning.";
@@ -89,7 +170,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomValueResultWarnOnSuccessToResult()
+        public void ValueCustomResultWarnOnSuccessToResult()
         {
             int counter = 0;
             string warningMessage = "My warning";
@@ -166,7 +247,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomValueResultFailOnSuccessToResult()
+        public void ValueCustomResultFailOnSuccessToResult()
         {
             int counter = 0;
             var customErrorObject = new CustomErrorTest { ErrorCode = -6 };
@@ -248,7 +329,7 @@ namespace Here.Tests.Results
         #region OnSuccess Result<T, TError> => Result<T>
 
         [Test]
-        public void CustomValueResultOkOnSuccessToValueResult()
+        public void ValueCustomResultOkOnSuccessToValueResult()
         {
             int counter = 0;
             string produceWarningMessage = "OnSuccess produce a warning.";
@@ -324,7 +405,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomValueResultWarnOnSuccessToValueResult()
+        public void ValueCustomResultWarnOnSuccessToValueResult()
         {
             int counter = 0;
             string warningMessage = "My warning";
@@ -401,7 +482,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomValueResultFailOnSuccessToResultValue()
+        public void ValueCustomResultFailOnSuccessToResultValue()
         {
             int counter = 0;
             var customErrorObject = new CustomErrorTest { ErrorCode = -3 };
@@ -483,7 +564,7 @@ namespace Here.Tests.Results
         #region OnSuccess Result<T, TError> => CustomResult<TError>
 
         [Test]
-        public void CustomValueResultOkOnSuccessToCustomResult()
+        public void ValueCustomResultOkOnSuccessToCustomResult()
         {
             int counterSuccess = 0;
             int counterFailureFactory = 0;
@@ -661,7 +742,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomValueResultWarnOnSuccessToCustomResult()
+        public void ValueCustomResultWarnOnSuccessToCustomResult()
         {
             int counterSuccess = 0;
             int counterFailureFactory = 0;
@@ -840,7 +921,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomValueResultFailOnSuccessToCustomResult()
+        public void ValueCustomResultFailOnSuccessToCustomResult()
         {
             int counterSuccess = 0;
             int counterFailureFactory = 0;
@@ -1024,7 +1105,7 @@ namespace Here.Tests.Results
         #region OnSuccess Result<T, TError> => Result<T, TError>
 
         [Test]
-        public void CustomValueResultOnSuccessToCustomValueResult()
+        public void ValueCustomResultOnSuccessToValueCustomResult()
         {
             int counterSuccess = 0;
             int counterFailureFactory = 0;
@@ -1150,7 +1231,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomValueResultTInOnSuccessToCustomValueResultTOut()
+        public void ValueCustomResultTInOnSuccessToValueCustomResultTOut()
         {
             int counterSuccess = 0;
             int counterFailureFactory = 0;
@@ -1324,7 +1405,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomValueResultOkOnSuccessToCustomValueResult()
+        public void ValueCustomResultOkOnSuccessToValueCustomResult()
         {
             int counterSuccess = 0;
             int counterFailureFactory = 0;
@@ -1502,7 +1583,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomValueResultWarnOnSuccessToCustomValueResult()
+        public void ValueCustomResultWarnOnSuccessToValueCustomResult()
         {
             int counterSuccess = 0;
             int counterFailureFactory = 0;
@@ -1681,7 +1762,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomValueResultFailOnSuccessToCustomValueResult()
+        public void ValueCustomResultFailOnSuccessToValueCustomResult()
         {
             int counterSuccess = 0;
             int counterFailureFactory = 0;

@@ -52,6 +52,26 @@ namespace Here.Results.Extensions
             return result;
         }
 
+        /// <summary>
+        /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure, otherwise return the <paramref name="defaultValue"/>.
+        /// </summary>
+        /// <typeparam name="TOut">Type of the output value.</typeparam>
+        /// <param name="result"><see cref="Result"/> to check.</param>
+        /// <param name="onFailure">Action to run if the <see cref="Result"/> is failure.</param>
+        /// <param name="defaultValue">Value to return if the result is not a failure.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <returns>An output value.</returns>
+        [PublicAPI]
+        public static TOut OnFailure<TOut>(this Result result, 
+            [NotNull, InstantHandle] in Func<Result, TOut> onFailure, 
+            [CanBeNull] in TOut defaultValue,
+            in bool treatWarningAsError = false)
+        {
+            if (IsConsideredFailure(result, treatWarningAsError))
+                return onFailure(result);
+            return defaultValue;
+        }
+
         #endregion
 
         #region Result<T>
@@ -98,6 +118,27 @@ namespace Here.Results.Extensions
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure, otherwise return the <paramref name="defaultValue"/>.
+        /// </summary>
+        /// <typeparam name="TIn">Result value type.</typeparam>
+        /// <typeparam name="TOut">Type of the output value.</typeparam>
+        /// <param name="result"><see cref="Result{TIn}"/> to check.</param>
+        /// <param name="onFailure">Action to run if the <see cref="Result{TIn}"/> is failure.</param>
+        /// <param name="defaultValue">Value to return if the result is not a failure.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <returns>An output value.</returns>
+        [PublicAPI]
+        public static TOut OnFailure<TIn, TOut>(this Result<TIn> result,
+            [NotNull, InstantHandle] in Func<Result<TIn>, TOut> onFailure,
+            [CanBeNull] in TOut defaultValue,
+            in bool treatWarningAsError = false)
+        {
+            if (IsConsideredFailure(result, treatWarningAsError))
+                return onFailure(result);
+            return defaultValue;
         }
 
         #endregion
@@ -206,6 +247,27 @@ namespace Here.Results.Extensions
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure, otherwise return the <paramref name="defaultValue"/>.
+        /// </summary>
+        /// <typeparam name="TOut">Type of the output value.</typeparam>
+        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
+        /// <param name="onFailure">Action to run if the <see cref="CustomResult{TError}"/> is failure.</param>
+        /// <param name="defaultValue">Value to return if the result is not a failure.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <returns>An output value.</returns>
+        [PublicAPI]
+        public static TOut OnFailure<TOut, TError>(this CustomResult<TError> result,
+            [NotNull, InstantHandle] in Func<CustomResult<TError>, TOut> onFailure,
+            [CanBeNull] in TOut defaultValue,
+            in bool treatWarningAsError = false)
+        {
+            if (IsConsideredFailure(result, treatWarningAsError))
+                return onFailure(result);
+            return defaultValue;
         }
 
         #endregion
@@ -318,6 +380,28 @@ namespace Here.Results.Extensions
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure, otherwise return the <paramref name="defaultValue"/>.
+        /// </summary>
+        /// <typeparam name="TIn">Result value type.</typeparam>
+        /// <typeparam name="TOut">Type of the output value.</typeparam>
+        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <param name="result"><see cref="Result{TIn, TError}"/> to check.</param>
+        /// <param name="onFailure">Action to run if the <see cref="Result{TIn, TError}"/> is failure.</param>
+        /// <param name="defaultValue">Value to return if the result is not a failure.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <returns>An output value.</returns>
+        [PublicAPI]
+        public static TOut OnFailure<TIn, TOut, TError>(this Result<TIn, TError> result,
+            [NotNull, InstantHandle] in Func<Result<TIn, TError>, TOut> onFailure,
+            [CanBeNull] in TOut defaultValue,
+            in bool treatWarningAsError = false)
+        {
+            if (IsConsideredFailure(result, treatWarningAsError))
+                return onFailure(result);
+            return defaultValue;
         }
 
         #endregion

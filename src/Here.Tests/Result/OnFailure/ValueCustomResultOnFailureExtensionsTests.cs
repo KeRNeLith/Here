@@ -11,7 +11,84 @@ namespace Here.Tests.Results
     internal class ValueCustomResultOnFailureExtensionsTests : ResultTestsBase
     {
         [Test]
-        public void CustomValueResultOnFailureToCustomValueResult()
+        public void ValueCustomResultOnFailureToValue()
+        {
+            int counter = 0;
+            // Ok result
+            var ok = Result.Ok<int, CustomErrorTest>(55);
+
+            var result = ok.OnFailure(
+                res =>
+                {
+                    ++counter;
+                    return res.Value + 0.1f;
+                },
+                -1f);
+            Assert.AreEqual(0, counter);
+            Assert.AreEqual(-1f, result);
+
+            result = ok.OnFailure(
+                res =>
+                {
+                    ++counter;
+                    return res.Value + 0.2f;
+                },
+                -2f,
+                true);
+            Assert.AreEqual(0, counter);
+            Assert.AreEqual(-2f, result);
+
+            // Warning result
+            var warning = Result.Warn<int, CustomErrorTest>(65, "My warning");
+
+            result = warning.OnFailure(
+                res =>
+                {
+                    ++counter;
+                    return res.Value + 0.1f;
+                },
+                -3f);
+            Assert.AreEqual(0, counter);
+            Assert.AreEqual(-3f, result);
+
+            result = warning.OnFailure(
+                res =>
+                {
+                    ++counter;
+                    return res.Value + 0.2f;
+                },
+                -4f,
+                true);
+            Assert.AreEqual(1, counter);
+            Assert.AreEqual(65.2f, result);
+
+            // Failure result
+            var failure = Result.Fail<int, CustomErrorTest>("My failure", new CustomErrorTest());
+
+            result = failure.OnFailure(
+                res =>
+                {
+                    ++counter;
+                    return -12f;
+                },
+                -4f);
+            Assert.AreEqual(2, counter);
+            Assert.AreEqual(-12f, result);
+
+            result = failure.OnFailure(
+                res =>
+                {
+                    ++counter;
+                    return -13f;
+                },
+                -4f,
+                true);
+            Assert.AreEqual(3, counter);
+            Assert.AreEqual(-13f, result);
+        }
+
+        [Test]
+        public void ValueCustomResultOnFailureToCustomValueResult()
         {
             int counterFailure = 0;
             int counterFailureFactory = 0;
@@ -122,7 +199,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomValueResultOnFailureToCustomValueResultWithParam()
+        public void ValueCustomResultOnFailureToCustomValueResultWithParam()
         {
             int counterFailure = 0;
             int counterFailureFactory = 0;
