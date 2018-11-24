@@ -554,6 +554,12 @@ namespace Here.Tests.Results
             var testObject = new TestClass();
             Assert.AreNotEqual(resultOk1, testObject);
             Assert.AreNotEqual(testObject, resultOk1);
+
+            // Equals with an object value
+            Assert.IsFalse(resultOk1.Equals((object)null));
+            Assert.IsTrue(resultOk1.Equals((object)resultOk1));
+            Assert.IsTrue(resultOk1.Equals((object)resultOk2));
+            Assert.IsFalse(resultOk1.Equals((object)resultOk3));
         }
 
         [Test]
@@ -818,7 +824,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void CustomValueResultEquality()
+        public void ValueCustomResultEquality()
         {
             var customErrorObject1 = new CustomErrorTest { ErrorCode = -5 };
             var customErrorObject2 = new CustomErrorTest { ErrorCode = -6 };
@@ -1070,10 +1076,16 @@ namespace Here.Tests.Results
             var testObject = new TestClass();
             Assert.AreNotEqual(resultOk1, testObject);
             Assert.AreNotEqual(testObject, resultOk1);
+
+            // Equals with an object value
+            Assert.IsFalse(resultOk1.Equals((object)null));
+            Assert.IsTrue(resultOk1.Equals((object)resultOk1));
+            Assert.IsTrue(resultOk1.Equals((object)resultOk2));
+            Assert.IsFalse(resultOk1.Equals((object)resultOk3));
         }
 
         [Test]
-        public void CustomValueResultEqualityHelpers()
+        public void ValueCustomResultEqualityHelpers()
         {
             var customErrorObject = new CustomErrorTest { ErrorCode = -5 };
 
@@ -1222,42 +1234,54 @@ namespace Here.Tests.Results
 
             // Checks Ok
             Assert.IsTrue(ResultHelpers.SuccessEqual(resultOk1, resultOk1));
+            Assert.IsTrue(resultOk1.SuccessEquals(resultOk1));
 
             Assert.IsTrue(ResultHelpers.SuccessEqual(resultOk1, resultOk2));
             Assert.IsTrue(ResultHelpers.SuccessEqual(resultOk2, resultOk1));
+            Assert.IsTrue(resultOk1.SuccessEquals(resultOk2));
 
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultOk1, resultOk3));
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultOk3, resultOk1));
+            Assert.IsFalse(resultOk1.SuccessEquals(resultOk3));
 
             // Checks Warn
             Assert.IsTrue(ResultHelpers.SuccessEqual(resultWarn1, resultWarn1));
+            Assert.IsTrue(resultWarn1.SuccessEquals(resultWarn1));
 
             Assert.IsTrue(ResultHelpers.SuccessEqual(resultWarn1, resultWarn2));
             Assert.IsTrue(ResultHelpers.SuccessEqual(resultWarn2, resultWarn1));
+            Assert.IsTrue(resultWarn1.SuccessEquals(resultWarn2));
 
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultWarn1, resultWarn3));
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultWarn3, resultWarn1));
+            Assert.IsFalse(resultWarn1.SuccessEquals(resultWarn3));
 
             // Checks Fail
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultFail1, resultFail1));
+            Assert.IsFalse(resultFail1.SuccessEquals(resultFail1));
 
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultFail1, resultFail2));
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultFail2, resultFail1));
+            Assert.IsFalse(resultFail1.SuccessEquals(resultFail2));
 
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultFail1, resultFail3));
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultFail3, resultFail1));
+            Assert.IsFalse(resultFail1.SuccessEquals(resultFail3));
 
             // Checks Ok & Warn
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultOk1, resultWarn1));
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultWarn1, resultOk1));
+            Assert.IsFalse(resultOk1.SuccessEquals(resultWarn1));
 
             // Checks Ok & Fail
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultOk1, resultFail1));
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultFail1, resultOk1));
+            Assert.IsFalse(resultOk1.SuccessEquals(resultFail1));
 
             // Checks Warn & Fail
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultWarn1, resultFail1));
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultFail1, resultWarn1));
+            Assert.IsFalse(resultWarn1.SuccessEquals(resultFail1));
         }
 
         [Test]
@@ -1330,42 +1354,54 @@ namespace Here.Tests.Results
 
             // Checks Ok
             Assert.IsTrue(ResultHelpers.SuccessEqual(resultOk1, resultOk1));
+            Assert.IsTrue(resultOk1.SuccessEquals(resultOk1));
 
             Assert.IsTrue(ResultHelpers.SuccessEqual(resultOk1, resultOk2));
             Assert.IsTrue(ResultHelpers.SuccessEqual(resultOk2, resultOk1));
+            Assert.IsTrue(resultOk1.SuccessEquals(resultOk2));
 
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultOk1, resultOk3));
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultOk3, resultOk1));
+            Assert.IsFalse(resultOk1.SuccessEquals(resultOk3));
 
             // Checks Warn
             Assert.IsTrue(ResultHelpers.SuccessEqual(resultWarn1, resultWarn1));
+            Assert.IsTrue(resultWarn1.SuccessEquals(resultWarn1));
 
             Assert.IsTrue(ResultHelpers.SuccessEqual(resultWarn1, resultWarn2));
             Assert.IsTrue(ResultHelpers.SuccessEqual(resultWarn2, resultWarn1));
+            Assert.IsTrue(resultWarn1.SuccessEquals(resultWarn2));
 
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultWarn1, resultWarn3));
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultWarn3, resultWarn1));
+            Assert.IsFalse(resultWarn1.SuccessEquals(resultWarn3));
 
             // Checks Fail
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultFail1, resultFail1));
+            Assert.IsFalse(resultFail1.SuccessEquals(resultFail1));
 
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultFail1, resultFail2));
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultFail2, resultFail1));
+            Assert.IsFalse(resultFail1.SuccessEquals(resultFail2));
 
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultFail1, resultFail3));
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultFail3, resultFail1));
+            Assert.IsFalse(resultFail1.SuccessEquals(resultFail3));
 
             // Checks Ok & Warn
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultOk1, resultWarn1));
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultWarn1, resultOk1));
+            Assert.IsFalse(resultOk1.SuccessEquals(resultWarn1));
 
             // Checks Ok & Fail
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultOk1, resultFail1));
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultFail1, resultOk1));
+            Assert.IsFalse(resultOk1.SuccessEquals(resultFail1));
 
             // Checks Warn & Fail
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultWarn1, resultFail1));
             Assert.IsFalse(ResultHelpers.SuccessEqual(resultFail1, resultWarn1));
+            Assert.IsFalse(resultWarn1.SuccessEquals(resultFail1));
         }
 
         #endregion

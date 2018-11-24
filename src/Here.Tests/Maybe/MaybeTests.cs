@@ -230,8 +230,10 @@ namespace Here.Tests.Maybes
             var embedMaybeClass2 = Maybe<Maybe<Person>>.Some(Maybe<Person>.Some(new Person("Test3")));
             Assert.IsFalse(maybePerson1.Equals(embedMaybeClass2));
 
-            // Equals with a null value
+            // Equals with an object value
             Assert.IsFalse(maybeInt1.Equals((object)null));
+            Assert.IsTrue(maybeInt1.Equals((object)maybeInt1));
+            Assert.IsFalse(maybeInt1.Equals((object)emptyMaybeInt1));
         }
 
         [Test]
