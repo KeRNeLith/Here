@@ -11,7 +11,7 @@ namespace Here
     /// <typeparam name="T">Type of the value embedded in the <see cref="Maybe{T}"/>.</typeparam>
     [PublicAPI]
     [DebuggerDisplay("{" + nameof(HasValue) + " ? \"Value = \" + " + nameof(Value) + " : \"No value\"}")]
-    public partial struct Maybe<T> : IEquatable<T>, IEquatable<Maybe<T>>, IComparable, IComparable<Maybe<T>>
+    public readonly partial struct Maybe<T> : IEquatable<T>, IEquatable<Maybe<T>>, IComparable, IComparable<Maybe<T>>
     {
         /// <summary>
         /// Nothing value.

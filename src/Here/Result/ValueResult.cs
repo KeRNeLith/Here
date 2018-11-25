@@ -11,7 +11,7 @@ namespace Here
     /// </summary>
     [PublicAPI]
     [DebuggerDisplay("{" + nameof(IsSuccess) + " ? \"IsSuccess\" + (" + nameof(IsWarning) + " ? \" with warning\" : System.String.Empty) + \", Value = \" + " + nameof(_value) + " : \"IsFailure\"}")]
-    public partial struct Result<T> : IResult<T>, IEquatable<T>, IEquatable<Result<T>>, IComparable, IComparable<Result<T>>
+    public readonly partial struct Result<T> : IResult<T>, IEquatable<T>, IEquatable<Result<T>>, IComparable, IComparable<Result<T>>
     {
         /// <inheritdoc />
         public bool IsSuccess => Logic.IsSuccess;

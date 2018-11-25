@@ -9,7 +9,7 @@ namespace Here
     /// </summary>
     [PublicAPI]
     [DebuggerDisplay("{" + nameof(IsSuccess) + " ? \"IsSuccess\" + (" + nameof(IsWarning) + " ? \" with warning\" : System.String.Empty) : \"IsFailure\"}")]
-    public partial struct Result : IResult, IEquatable<Result>, IComparable, IComparable<Result>
+    public readonly partial struct Result : IResult, IEquatable<Result>, IComparable, IComparable<Result>
     {
         /// <summary>
         /// A success <see cref="Result"/>.

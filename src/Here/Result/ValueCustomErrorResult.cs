@@ -12,7 +12,7 @@ namespace Here
     /// </summary>
     [PublicAPI]
     [DebuggerDisplay("{" + nameof(IsSuccess) + " ? \"IsSuccess\" + (" + nameof(IsWarning) + " ? \" with warning\" : System.String.Empty) + \", Value = \" + " + nameof(_value) + " : \"IsFailure\"}")]
-    public partial struct Result<T, TError> : IResult<T>, IResultError<TError>, IEquatable<T>, IEquatable<Result<T, TError>>, IComparable, IComparable<Result<T, TError>>
+    public readonly partial struct Result<T, TError> : IResult<T>, IResultError<TError>, IEquatable<T>, IEquatable<Result<T, TError>>, IComparable, IComparable<Result<T, TError>>
     {
         /// <inheritdoc />
         public bool IsSuccess => Logic.IsSuccess;

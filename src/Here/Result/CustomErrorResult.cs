@@ -10,7 +10,7 @@ namespace Here
     /// </summary>
     [PublicAPI]
     [DebuggerDisplay("{" + nameof(IsSuccess) + " ? \"IsSuccess\" + (" + nameof(IsWarning) + " ? \" with warning\" : System.String.Empty) : \"IsFailure\"}")]
-    public partial struct CustomResult<TError> : IResultError<TError>, IEquatable<CustomResult<TError>>, IComparable, IComparable<CustomResult<TError>>
+    public readonly partial struct CustomResult<TError> : IResultError<TError>, IEquatable<CustomResult<TError>>, IComparable, IComparable<CustomResult<TError>>
     {
         /// <summary>
         /// A success <see cref="CustomResult{TError}"/>.
