@@ -450,6 +450,20 @@ namespace Here
             return new Result(false, error, exception);
         }
 
+        /// <summary>
+        /// Gets a failure <see cref="Result"/>.
+        /// </summary> 
+        /// <param name="exception">Result embedded exception.</param>
+        /// <returns>A <see cref="Result"/>.</returns>
+        [PublicAPI, Pure]
+        [ContractAnnotation("exception:null => halt")]
+        public static Result Fail([NotNull] in Exception exception)
+        {
+            if (exception is null)
+                throw new ArgumentNullException(nameof(exception), "Cannot initialize a failure Result with a null exception.");
+            return new Result(false, exception.Message, exception);
+        }
+
         #endregion
 
         #region Result with Value
@@ -490,6 +504,20 @@ namespace Here
         public static Result<T> Fail<T>([NotNull] in string error, [CanBeNull] in Exception exception = null)
         {
             return new Result<T>(false, default, error, exception);
+        }
+
+        /// <summary>
+        /// Gets a failure <see cref="Result{T}"/>.
+        /// </summary>
+        /// <param name="exception">Result embedded exception.</param>
+        /// <returns>A <see cref="Result{T}"/>.</returns>
+        [PublicAPI, Pure]
+        [ContractAnnotation("exception:null => halt")]
+        public static Result<T> Fail<T>([NotNull] in Exception exception)
+        {
+            if (exception is null)
+                throw new ArgumentNullException(nameof(exception), "Cannot initialize a failure Result<T> with a null exception.");
+            return new Result<T>(false, default, exception.Message, exception);
         }
 
         #endregion
@@ -533,6 +561,21 @@ namespace Here
             return new CustomResult<TError>(false, message, error, exception);
         }
 
+        /// <summary>
+        /// Gets a failure <see cref="CustomResult{TError}"/>.
+        /// </summary>
+        /// <param name="error">Result error object.</param>
+        /// <param name="exception">Result embedded exception.</param>
+        /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
+        [PublicAPI, Pure]
+        [ContractAnnotation("error:null => halt; exception:null => halt")]
+        public static CustomResult<TError> CustomFail<TError>([NotNull] in TError error, [NotNull] in Exception exception)
+        {
+            if (exception is null)
+                throw new ArgumentNullException(nameof(exception), "Cannot initialize a failure CustomResult<TError> with a null exception.");
+            return new CustomResult<TError>(false, exception.Message, error, exception);
+        }
+
         #endregion
 
         #region Result with Value + Custom error
@@ -574,6 +617,21 @@ namespace Here
         public static Result<T, TError> Fail<T, TError>([NotNull] in string message, [NotNull] in TError error, [CanBeNull] in Exception exception = null)
         {
             return new Result<T, TError>(message, error, exception);
+        }
+
+        /// <summary>
+        /// Gets a failure <see cref="Result{T, TError}"/>.
+        /// </summary>
+        /// <param name="error">Result error object.</param>
+        /// <param name="exception">Result embedded exception.</param>
+        /// <returns>A <see cref="Result{T, TError}"/>.</returns>
+        [PublicAPI, Pure]
+        [ContractAnnotation("message:null => halt; error:null => halt")]
+        public static Result<T, TError> Fail<T, TError>([NotNull] in TError error, [NotNull] in Exception exception)
+        {
+            if (exception is null)
+                throw new ArgumentNullException(nameof(exception), "Cannot initialize a failure Result<T, TError> with a null exception.");
+            return new Result<T, TError>(exception.Message, error, exception);
         }
 
         #endregion

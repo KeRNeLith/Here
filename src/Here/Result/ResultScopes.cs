@@ -24,9 +24,7 @@ namespace Here
             }
             catch (Exception ex)
             {
-                return Result.Fail(
-                    string.Format(ResultConstants.ResultScopeErrorMessage, ex.Message),
-                    ex);
+                return Result.Fail(ex);
             }
         }
 
@@ -44,9 +42,7 @@ namespace Here
             }
             catch (Exception ex)
             {
-                return Result.Fail(
-                    string.Format(ResultConstants.ResultScopeErrorMessage, ex.Message), 
-                    ex);
+                return Result.Fail(ex);
             }
         }
 
@@ -64,9 +60,7 @@ namespace Here
             }
             catch (Exception ex)
             {
-                return Result.Fail<T>(
-                    string.Format(ResultConstants.ValueResultScopeErrorMessage, ex.Message),
-                    ex);
+                return Result.Fail<T>(ex);
             }
         }
 
@@ -85,10 +79,7 @@ namespace Here
             }
             catch (Exception ex)
             {
-                return Result.CustomFail(
-                    string.Format(ResultConstants.CustomResultScopeErrorMessage, ex.Message),
-                    errorObject,
-                    ex);
+                return Result.CustomFail(errorObject, ex);
             }
         }
 
@@ -107,10 +98,7 @@ namespace Here
             }
             catch (Exception ex)
             {
-                return Result.CustomFail(
-                    string.Format(ResultConstants.CustomResultScopeErrorMessage, ex.Message),
-                    errorFactory(),
-                    ex);
+                return Result.CustomFail(errorFactory(), ex);
             }
         }
 
@@ -129,10 +117,7 @@ namespace Here
             }
             catch (Exception ex)
             {
-                return Result.Fail<T, TError>(
-                    string.Format(ResultConstants.ValueCustomResultScopeErrorMessage, ex.Message),
-                    errorObject,
-                    ex);
+                return Result.Fail<T, TError>(errorObject, ex);
             }
         }
 
@@ -151,10 +136,7 @@ namespace Here
             }
             catch (Exception ex)
             {
-                return Result.Fail<T, TError>(
-                    string.Format(ResultConstants.ValueCustomResultScopeErrorMessage, ex.Message),
-                    errorFactory(),
-                    ex);
+                return Result.Fail<T, TError>(errorFactory(), ex);
             }
         }
     }

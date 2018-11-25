@@ -26,6 +26,10 @@ namespace Here.Tests.Results
             warning = Result.Warn("My warning", warnException);
             CheckResultWarn(warning, "My warning", warnException);
 
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => { var _ = Result.Warn(null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = Result.Warn(""); });
+            
             // Failure result
             var failure = Result.Fail("My failure");
             CheckResultFail(failure, "My failure");
@@ -33,6 +37,15 @@ namespace Here.Tests.Results
             var failException = new Exception("Failure exception");
             failure = Result.Fail("My failure", failException);
             CheckResultFail(failure, "My failure", failException);
+
+            failure = Result.Fail(failException);
+            CheckResultFail(failure, "Failure exception", failException);
+
+            // ReSharper disable AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => { var _ = Result.Fail((string)null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = Result.Fail(""); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = Result.Fail(null); });
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Test]
@@ -50,6 +63,10 @@ namespace Here.Tests.Results
             warning = Result.CustomWarn<Exception>("My warning", warnException);
             CheckResultWarn(warning, "My warning", warnException);
 
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => { var _ = Result.CustomWarn<Exception>(null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = Result.CustomWarn<Exception>(""); });
+
             // Failure result
             var errorObject = new CustomErrorTest { ErrorCode = -42 };
             var failure = Result.CustomFail("My failure", errorObject);
@@ -58,6 +75,18 @@ namespace Here.Tests.Results
             var failException = new Exception("Failure exception");
             failure = Result.CustomFail("My failure", errorObject, failException);
             CheckResultFail(failure, "My failure", errorObject, failException);
+
+            failure = Result.CustomFail(errorObject, failException);
+            CheckResultFail(failure, "Failure exception", errorObject, failException);
+
+            // ReSharper disable AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => { var _ = Result.CustomFail<Exception>((string)null, null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = Result.CustomFail<Exception>("", null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = Result.CustomFail<Exception>("My failure", null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = Result.CustomFail(failException, null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = Result.CustomFail<Exception>(null, failException); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = Result.CustomFail<Exception>(null, null); });
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Test]
@@ -87,9 +116,14 @@ namespace Here.Tests.Results
             failure = Result.Fail<int>("My failure", failException);
             CheckResultFail(failure, "My failure", failException);
 
-            // ReSharper disable once AssignNullToNotNullAttribute
-            Assert.Throws<ArgumentNullException>(() => { var _ = Result.Fail<int>(null); });
+            failure = Result.Fail<int>(failException);
+            CheckResultFail(failure, "Failure exception", failException);
+
+            // ReSharper disable AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => { var _ = Result.Fail<int>((string)null); });
             Assert.Throws<ArgumentNullException>(() => { var _ = Result.Fail<int>(""); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = Result.Fail<int>(null); });
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Test]
@@ -120,10 +154,16 @@ namespace Here.Tests.Results
             failure = Result.Fail<int, CustomErrorTest>("My failure", customErrorObject, failException);
             CheckResultFail(failure, "My failure", customErrorObject, failException);
 
+            failure = Result.Fail<int, CustomErrorTest>(customErrorObject, failException);
+            CheckResultFail(failure, "Failure exception", customErrorObject, failException);
+
             // ReSharper disable AssignNullToNotNullAttribute
-            Assert.Throws<ArgumentNullException>(() => { var _ = Result.Fail<int, Exception>(null, null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = Result.Fail<int, Exception>((string)null, null); });
             Assert.Throws<ArgumentNullException>(() => { var _ = Result.Fail<int, Exception>("", null); });
             Assert.Throws<ArgumentNullException>(() => { var _ = Result.Fail<int, Exception>("My failure", null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = Result.Fail<int, Exception>(failException, null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = Result.Fail<int, Exception>(null, failException); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = Result.Fail<int, Exception>(null, null); });
             // ReSharper restore AssignNullToNotNullAttribute
         }
 
