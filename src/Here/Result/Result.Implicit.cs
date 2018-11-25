@@ -1,7 +1,6 @@
 ﻿using JetBrains.Annotations;
-using Here.Maybes;
 
-namespace Here.Results
+namespace Here
 {
     // Implicit operators
     public partial struct Result

@@ -2,7 +2,7 @@
 using System.Globalization;
 using JetBrains.Annotations;
 
-namespace Here.Maybes.Extensions
+namespace Here.Extensions
 {
     /// <summary>
     /// Extensions related to <see cref="Maybe{T}"/> for trying to get value methods.

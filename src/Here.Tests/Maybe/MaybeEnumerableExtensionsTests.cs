@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using NUnit.Framework;
-using Here.Maybes;
-using Here.Maybes.Extensions;
+using Here.Extensions;
 
 namespace Here.Tests.Maybes
 {

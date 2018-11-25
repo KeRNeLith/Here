@@ -5,13 +5,13 @@ It safely handles this mechanic without you have to worry about having a null va
 What you just have to do to use it is to put a using like this for basic implementation:
 
 ```csharp
-using Here.Maybes;
+using Here;
 ```
 
 And this one for extensions:
 
 ```csharp
-using Here.Maybes.Extensions;
+using Here.Extensions;
 ```
 
 ## Why Maybe?

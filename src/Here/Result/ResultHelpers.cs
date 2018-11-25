@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using JetBrains.Annotations;
 
-namespace Here.Results
+namespace Here
 {
     /// <summary>
     /// Helpers to work with results.

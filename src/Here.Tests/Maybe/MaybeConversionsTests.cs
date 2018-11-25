@@ -1,6 +1,4 @@
 ﻿using NUnit.Framework;
-using Here.Maybes;
-using Here.Results;
 using Here.Tests.Results;
 
 namespace Here.Tests.Maybes

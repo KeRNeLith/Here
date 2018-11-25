@@ -2,8 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
-using Here.Maybes;
-using Here.Maybes.Extensions;
+using Here.Extensions;
 
 namespace Here.Tests.Maybes
 {

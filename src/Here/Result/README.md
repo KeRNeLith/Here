@@ -6,13 +6,13 @@ This can be useful when trying to implement a clear and simple error handling.
 What you just have to do to use it is to put a using like this for basic implementation:
 
 ```csharp
-using Here.Results;
+using Here;
 ```
 
 And this one for extensions:
 
 ```csharp
-using Here.Results.Extensions;
+using Here.Extensions;
 ```
 
 ## Why Result?

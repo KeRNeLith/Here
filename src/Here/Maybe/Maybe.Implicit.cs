@@ -1,8 +1,7 @@
 ﻿using JetBrains.Annotations;
-using Here.Maybes.Extensions;
-using Here.Results;
+using Here.Extensions;
 
-namespace Here.Maybes
+namespace Here
 {
 	// Implicit operators
     public partial struct Maybe<T>
@@ -10,6 +9,7 @@ namespace Here.Maybes
         /// <summary>
         /// Implicit constructor for an empty <see cref="Maybe{T}"/>.
         /// </summary>
+        /// <returns>A None maybe.</returns>
         [PublicAPI, Pure]
         public static implicit operator Maybe<T>([NotNull] in Maybe.NoneClass none)
         {
@@ -19,6 +19,8 @@ namespace Here.Maybes
         /// <summary>
         /// Implicit constructor of <see cref="Maybe{T}"/>.
         /// </summary>
+        /// <param name="value">Value to initialize the <see cref="Maybe{T}"/>.</param>
+        /// <returns>A <see cref="Maybe{T}"/>.</returns>
         [PublicAPI, Pure]
         public static implicit operator Maybe<T>([CanBeNull] in T value)
         {

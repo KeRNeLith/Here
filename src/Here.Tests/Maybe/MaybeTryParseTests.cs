@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using JetBrains.Annotations;
 using NUnit.Framework;
-using Here.Maybes;
-using Here.Maybes.Extensions;
+using Here.Extensions;
 
 namespace Here.Tests.Maybes
 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 
-namespace Here.Maybes.Extensions
+namespace Here.Extensions
 {
     /// <summary>
     /// Extensions related to <see cref="Maybe{T}"/> for <see cref="IEnumerable{T}"/>.

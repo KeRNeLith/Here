@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using JetBrains.Annotations;
 
-namespace Here.Results
+namespace Here
 {
     /// <summary>
     /// <see cref="Result{T, TError}"/> is an object that represents the result/state of a treatment.

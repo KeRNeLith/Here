@@ -1,8 +1,7 @@
 ﻿using System;
 using JetBrains.Annotations;
-using Here.Results;
 
-namespace Here.Maybes
+namespace Here
 {
     // Operators
     public partial struct Maybe<T>

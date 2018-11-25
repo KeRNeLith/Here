@@ -1,7 +1,5 @@
 ﻿using NUnit.Framework;
-using Here.Maybes;
 using Here.Tests.Maybes;
-using Here.Results;
 
 namespace Here.Tests.Results
 {

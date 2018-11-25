@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using JetBrains.Annotations;
 
-namespace Here.Maybes
+namespace Here
 {
     /// <summary>
     /// <see cref="Maybe{T}"/> is an object that may embed something (otherwise it's nothing).

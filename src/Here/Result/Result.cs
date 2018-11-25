@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using JetBrains.Annotations;
 
-namespace Here.Results
+namespace Here
 {
     /// <summary>
     /// <see cref="Result"/> is an object that represents the result/state of a treatment.

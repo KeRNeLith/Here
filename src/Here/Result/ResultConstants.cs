@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Here.Results
+namespace Here
 {
     /// <summary>
     /// Constants used for results in the library.

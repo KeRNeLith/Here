@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using JetBrains.Annotations;
 
-namespace Here.Maybes.Extensions
+namespace Here.Extensions
 {
     /// <summary>
     /// Extensions related to <see cref="Maybe{T}"/> for Linq features.

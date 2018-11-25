@@ -1,6 +1,5 @@
 ﻿using System;
 using NUnit.Framework;
-using Here.Results;
 
 namespace Here.Tests.Results
 {
@@ -62,7 +61,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void ResultConstructionWithValue()
+        public void ValueResultConstruction()
         {
             // Ok result
             var ok = Result.Ok(42);
@@ -94,7 +93,7 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void ResultConstructionWithValueCustomError()
+        public void ValueCustomResultConstruction()
         {
             // Ok result
             var ok = Result.Ok<int, Exception>(42);

@@ -1,7 +1,7 @@
 ﻿using System;
 using JetBrains.Annotations;
 
-namespace Here.Results
+namespace Here
 {
     /// <summary>
     /// Represents the result of an operation/treatment.

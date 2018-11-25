@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using Here.Results;
 
 namespace Here.Tests.Results
 {

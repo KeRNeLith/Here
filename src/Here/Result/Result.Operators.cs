@@ -1,6 +1,4 @@
-﻿using Here.Maybes;
-
-namespace Here.Results
+﻿namespace Here
 {
     // Operators
     public partial struct Result

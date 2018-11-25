@@ -1,7 +1,7 @@
 ﻿using JetBrains.Annotations;
 using System.Collections.Generic;
 
-namespace Here.Maybes
+namespace Here
 {
     /// <summary>
     /// Helpers to work with <see cref="Maybe{T}"/>.

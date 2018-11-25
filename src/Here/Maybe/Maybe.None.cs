@@ -1,6 +1,6 @@
 ﻿using JetBrains.Annotations;
 
-namespace Here.Maybes
+namespace Here
 {
     /// <summary>
     /// Empty Maybe construction helper. Used by implicit construction.

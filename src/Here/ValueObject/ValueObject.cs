@@ -2,7 +2,7 @@
 using System.Linq;
 using JetBrains.Annotations;
 
-namespace Here.ValueObjects
+namespace Here
 {
     /// <summary>
     /// Base class for Value object which is an object that represents something whose equality is not based on identity but on value.

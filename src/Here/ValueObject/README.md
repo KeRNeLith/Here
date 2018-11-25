@@ -7,7 +7,7 @@ It gives a common logic to manage the comparison of **immutable** objects. It ac
 What you just have to do to use it is to put a using like this and inherits from this class:
 
 ```csharp
-using Here.ValueObjects;
+using Here;
 ```
 
 ## Why Value object?
