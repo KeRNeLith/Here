@@ -16,7 +16,7 @@ namespace Here.Extensions
         /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the check.</param>
         /// <returns>True if this <see cref="Maybe{T}"/> has a value, otherwise false.</returns>
         [PublicAPI, Pure]
-        public static bool Any<T>(this Maybe<T> maybe)
+        public static bool Any<T>(in this Maybe<T> maybe)
         {
             return maybe.HasValue;
         }
@@ -29,7 +29,7 @@ namespace Here.Extensions
         /// <param name="predicate">Predicate to use.</param>
         /// <returns>True if this <see cref="Maybe{T}"/> matches the predicate, otherwise false.</returns>
         [PublicAPI, Pure]
-        public static bool Any<T>(this Maybe<T> maybe, [NotNull, InstantHandle] in Predicate<T> predicate)
+        public static bool Any<T>(in this Maybe<T> maybe, [NotNull, InstantHandle] in Predicate<T> predicate)
         {
             return maybe.Exists(predicate);
         }
@@ -42,7 +42,7 @@ namespace Here.Extensions
         /// <param name="predicate">Predicate to check.</param>
         /// <returns>True if this <see cref="Maybe{T}"/> value matches the predicate, otherwise false.</returns>
         [PublicAPI, Pure]
-        public static bool All<T>(this Maybe<T> maybe, [NotNull, InstantHandle] in Predicate<T> predicate)
+        public static bool All<T>(in this Maybe<T> maybe, [NotNull, InstantHandle] in Predicate<T> predicate)
         {
             return maybe.Exists(predicate);
         }
@@ -55,7 +55,7 @@ namespace Here.Extensions
         /// <param name="value">Value to check equality with <see cref="Maybe{T}"/> value.</param>
         /// <returns>True if this <see cref="Maybe{T}"/> contains the given <paramref name="value"/>, otherwise false.</returns>
         [PublicAPI, Pure]
-        public static bool Contains<T>(this Maybe<T> maybe, [CanBeNull] in T value)
+        public static bool Contains<T>(in this Maybe<T> maybe, [CanBeNull] in T value)
         {
             if (maybe.HasValue)
                 return EqualityComparer<T>.Default.Equals(maybe.Value, value);
@@ -71,7 +71,7 @@ namespace Here.Extensions
         /// <param name="selector">Method called to select the value from this <see cref="Maybe{TIn}"/> value.</param>
         /// <returns>A <see cref="Maybe{TOut}"/> wrapping selected value.</returns>
         [PublicAPI, Pure]
-        public static Maybe<TOut> Select<TIn, TOut>(this Maybe<TIn> maybe, [NotNull, InstantHandle] in Func<TIn, TOut> selector)
+        public static Maybe<TOut> Select<TIn, TOut>(in this Maybe<TIn> maybe, [NotNull, InstantHandle] in Func<TIn, TOut> selector)
         {
             if (maybe.HasValue)
                 return selector(maybe.Value);
@@ -86,7 +86,7 @@ namespace Here.Extensions
         /// <param name="predicate">Condition to match.</param>
         /// <returns>This <see cref="Maybe{T}"/> if it matches the <paramref name="predicate"/>, otherwise an empty <see cref="Maybe{T}"/>.</returns>
         [PublicAPI, Pure]
-        public static Maybe<T> Where<T>(this Maybe<T> maybe, [NotNull, InstantHandle] in Predicate<T> predicate)
+        public static Maybe<T> Where<T>(in this Maybe<T> maybe, [NotNull, InstantHandle] in Predicate<T> predicate)
         {
             if (maybe.Exists(predicate))
                 return maybe;
@@ -100,7 +100,7 @@ namespace Here.Extensions
         /// <param name="maybe"><see cref="Maybe{T}"/> on which performing the treatment.</param>
         /// <param name="doAction">Action to perform on this <see cref="Maybe{T}"/> value.</param>
         [PublicAPI]
-        public static void ForEach<T>(this Maybe<T> maybe, [NotNull, InstantHandle] in Action<T> doAction)
+        public static void ForEach<T>(in this Maybe<T> maybe, [NotNull, InstantHandle] in Action<T> doAction)
         {
             if (maybe.HasValue)
                 doAction(maybe.Value);
@@ -118,7 +118,7 @@ namespace Here.Extensions
         /// <returns>This <see cref="Maybe{T}"/> value aggregated with <paramref name="initialValue"/>, 
         /// otherwise <paramref name="initialValue"/>.</returns>
         [PublicAPI, NotNull, Pure]
-        public static TAggregate Aggregate<T, TAggregate>(this Maybe<T> maybe, 
+        public static TAggregate Aggregate<T, TAggregate>(in this Maybe<T> maybe, 
             [NotNull] in TAggregate initialValue, 
             [NotNull, InstantHandle] in Func<TAggregate, T, TAggregate> aggregator)
         {

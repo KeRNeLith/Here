@@ -40,7 +40,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result"/>.</returns>
         [PublicAPI]
-        public static Result OnSuccess(this Result result, [NotNull, InstantHandle] in Action onSuccess, in bool treatWarningAsError = false)
+        public static Result OnSuccess(in this Result result, [NotNull, InstantHandle] in Action onSuccess, in bool treatWarningAsError = false)
         {
             if (IsConsideredSuccess(result, treatWarningAsError))
                 onSuccess();
@@ -58,7 +58,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
-        public static Result OnSuccess(this Result result, [NotNull, InstantHandle] in Func<Result> onSuccess, in bool treatWarningAsError = false)
+        public static Result OnSuccess(in this Result result, [NotNull, InstantHandle] in Func<Result> onSuccess, in bool treatWarningAsError = false)
         {
             if (IsConsideredSuccess(result, treatWarningAsError))
                 return onSuccess();
@@ -77,7 +77,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T}"/>.</returns>
         [PublicAPI]
-        public static Result<T> OnSuccess<T>(this Result result, [NotNull, InstantHandle] in Func<T> onSuccess, in bool treatWarningAsError = false)
+        public static Result<T> OnSuccess<T>(in this Result result, [NotNull, InstantHandle] in Func<T> onSuccess, in bool treatWarningAsError = false)
         {
             if (IsConsideredFailure(result, treatWarningAsError))
                 return result.ToFailValueResult<T>();
@@ -94,7 +94,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
-        public static Result<T> OnSuccess<T>(this Result result, [NotNull, InstantHandle] in Func<Result<T>> onSuccess, in bool treatWarningAsError = false)
+        public static Result<T> OnSuccess<T>(in this Result result, [NotNull, InstantHandle] in Func<Result<T>> onSuccess, in bool treatWarningAsError = false)
         {
             if (IsConsideredFailure(result, treatWarningAsError))
                 return result.ToFailValueResult<T>();
@@ -114,7 +114,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="CustomResult{TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
-        public static CustomResult<TError> OnSuccess<TError>(this Result result,
+        public static CustomResult<TError> OnSuccess<TError>(in this Result result,
             [NotNull, InstantHandle] in Func<CustomResult<TError>> onSuccess,
             [NotNull] in TError errorObject,
             in bool treatWarningAsError = false)
@@ -137,7 +137,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="CustomResult{TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
-        public static CustomResult<TError> OnSuccess<TError>(this Result result,
+        public static CustomResult<TError> OnSuccess<TError>(in this Result result,
             [NotNull, InstantHandle] in Func<CustomResult<TError>> onSuccess,
             [NotNull, InstantHandle] in Func<TError> errorFactory,
             in bool treatWarningAsError = false)
@@ -161,7 +161,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T, TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
-        public static Result<T, TError> OnSuccess<T, TError>(this Result result,
+        public static Result<T, TError> OnSuccess<T, TError>(in this Result result,
             [NotNull, InstantHandle] in Func<Result<T, TError>> onSuccess,
             [NotNull] in TError errorObject,
             in bool treatWarningAsError = false)
@@ -185,7 +185,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T, TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
-        public static Result<T, TError> OnSuccess<T, TError>(this Result result, 
+        public static Result<T, TError> OnSuccess<T, TError>(in this Result result, 
             [NotNull, InstantHandle] in Func<Result<T, TError>> onSuccess, 
             [NotNull, InstantHandle] in Func<TError> errorFactory,
             in bool treatWarningAsError = false)
@@ -206,7 +206,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>An output value.</returns>
         [PublicAPI]
-        public static TOut OnSuccess<TOut>(this Result result,
+        public static TOut OnSuccess<TOut>(in this Result result,
             [NotNull, InstantHandle] in Func<Result, TOut> onSuccess,
             [CanBeNull] in TOut defaultValue,
             in bool treatWarningAsError = false)
@@ -229,7 +229,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T}"/>.</returns>
         [PublicAPI]
-        public static Result<T> OnSuccess<T>(this Result<T> result,
+        public static Result<T> OnSuccess<T>(in this Result<T> result,
             [NotNull, InstantHandle] in Action<T> onSuccess,
             in bool treatWarningAsError = false)
         {
@@ -251,7 +251,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{TOut}"/>.</returns>
         [PublicAPI]
-        public static Result<TOut> OnSuccess<TIn, TOut>(this Result<TIn> result,
+        public static Result<TOut> OnSuccess<TIn, TOut>(in this Result<TIn> result,
             [NotNull, InstantHandle] in Func<TIn, TOut> converter,
             in bool treatWarningAsError = false)
         {
@@ -270,7 +270,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
-        public static Result OnSuccess<T>(this Result<T> result,
+        public static Result OnSuccess<T>(in this Result<T> result,
             [NotNull, InstantHandle] in Func<T, Result> onSuccess,
             in bool treatWarningAsError = false)
         {
@@ -293,7 +293,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{TOut}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
-        public static Result<TOut> OnSuccess<TIn, TOut>(this Result<TIn> result,
+        public static Result<TOut> OnSuccess<TIn, TOut>(in this Result<TIn> result,
             [NotNull, InstantHandle] in Func<TIn, Result<TOut>> onSuccess,
             in bool treatWarningAsError = false)
         {
@@ -316,7 +316,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="CustomResult{TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
-        public static CustomResult<TError> OnSuccess<T, TError>(this Result<T> result,
+        public static CustomResult<TError> OnSuccess<T, TError>(in this Result<T> result,
             [NotNull, InstantHandle] in Func<T, CustomResult<TError>> onSuccess,
             [NotNull] in TError errorObject,
             in bool treatWarningAsError = false)
@@ -340,7 +340,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="CustomResult{TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
-        public static CustomResult<TError> OnSuccess<T, TError>(this Result<T> result,
+        public static CustomResult<TError> OnSuccess<T, TError>(in this Result<T> result,
             [NotNull, InstantHandle] in Func<T, CustomResult<TError>> onSuccess,
             [NotNull, InstantHandle] in Func<TError> errorFactory,
             in bool treatWarningAsError = false)
@@ -365,7 +365,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{TOut, TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
-        public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(this Result<TIn> result,
+        public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(in this Result<TIn> result,
             [NotNull, InstantHandle] in Func<TIn, Result<TOut, TError>> onSuccess,
             [NotNull] in TError errorObject,
             in bool treatWarningAsError = false)
@@ -390,7 +390,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{TOut, TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
-        public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(this Result<TIn> result,
+        public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(in this Result<TIn> result,
             [NotNull, InstantHandle] in Func<TIn, Result<TOut, TError>> onSuccess,
             [NotNull, InstantHandle] in Func<TError> errorFactory,
             in bool treatWarningAsError = false)
@@ -412,7 +412,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>An output value.</returns>
         [PublicAPI]
-        public static TOut OnSuccess<TIn, TOut>(this Result<TIn> result,
+        public static TOut OnSuccess<TIn, TOut>(in this Result<TIn> result,
             [NotNull, InstantHandle] in Func<Result<TIn>, TOut> onSuccess,
             [CanBeNull] in TOut defaultValue,
             in bool treatWarningAsError = false)
@@ -436,7 +436,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI]
-        public static CustomResult<TError> OnSuccess<TError>(this CustomResult<TError> result,
+        public static CustomResult<TError> OnSuccess<TError>(in this CustomResult<TError> result,
             [NotNull, InstantHandle] in Action onSuccess,
             [NotNull] in TError errorObject,
             in bool treatWarningAsError = false)
@@ -459,7 +459,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI]
-        public static CustomResult<TError> OnSuccess<TError>(this CustomResult<TError> result,
+        public static CustomResult<TError> OnSuccess<TError>(in this CustomResult<TError> result,
             [NotNull, InstantHandle] in Action onSuccess,
             [NotNull, InstantHandle] in Func<TError> errorFactory,
             in bool treatWarningAsError = false)
@@ -483,7 +483,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI]
-        public static Result<T, TError> OnSuccess<T, TError>(this CustomResult<TError> result,
+        public static Result<T, TError> OnSuccess<T, TError>(in this CustomResult<TError> result,
             [NotNull, InstantHandle] in Func<T> onSuccess,
             [NotNull] in TError errorObject,
             in bool treatWarningAsError = false)
@@ -510,7 +510,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI]
-        public static Result<T, TError> OnSuccess<T, TError>(this CustomResult<TError> result,
+        public static Result<T, TError> OnSuccess<T, TError>(in this CustomResult<TError> result,
             [NotNull, InstantHandle] in Func<T> onSuccess,
             [NotNull, InstantHandle] in Func<TError> errorFactory,
             in bool treatWarningAsError = false)
@@ -535,7 +535,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
-        public static Result OnSuccess<TError>(this CustomResult<TError> result,
+        public static Result OnSuccess<TError>(in this CustomResult<TError> result,
             [NotNull, InstantHandle] in Func<Result> onSuccess,
             in bool treatWarningAsError = false)
         {
@@ -558,7 +558,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
-        public static Result<T> OnSuccess<T, TError>(this CustomResult<TError> result,
+        public static Result<T> OnSuccess<T, TError>(in this CustomResult<TError> result,
             [NotNull, InstantHandle] in Func<Result<T>> onSuccess,
             in bool treatWarningAsError = false)
         {
@@ -578,7 +578,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="CustomResult{TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
-        public static CustomResult<TError> OnSuccess<TError>(this CustomResult<TError> result,
+        public static CustomResult<TError> OnSuccess<TError>(in this CustomResult<TError> result,
             [NotNull, InstantHandle] in Func<CustomResult<TError>> onSuccess,
             [NotNull] in TError errorObject,
             in bool treatWarningAsError = false)
@@ -602,7 +602,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="CustomResult{TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
-        public static CustomResult<TError> OnSuccess<TError>(this CustomResult<TError> result,
+        public static CustomResult<TError> OnSuccess<TError>(in this CustomResult<TError> result,
             [NotNull, InstantHandle] in Func<CustomResult<TError>> onSuccess,
             [NotNull, InstantHandle] in Func<TError> errorFactory,
             in bool treatWarningAsError = false)
@@ -627,7 +627,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T, TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
-        public static Result<T, TError> OnSuccess<T, TError>(this CustomResult<TError> result,
+        public static Result<T, TError> OnSuccess<T, TError>(in this CustomResult<TError> result,
             [NotNull, InstantHandle] in Func<Result<T, TError>> onSuccess,
             [NotNull] in TError errorObject,
             in bool treatWarningAsError = false)
@@ -654,7 +654,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T, TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
-        public static Result<T, TError> OnSuccess<T, TError>(this CustomResult<TError> result,
+        public static Result<T, TError> OnSuccess<T, TError>(in this CustomResult<TError> result,
             [NotNull, InstantHandle] in Func<Result<T, TError>> onSuccess,
             [NotNull, InstantHandle] in Func<TError> errorFactory,
             in bool treatWarningAsError = false)
@@ -681,7 +681,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>An output value.</returns>
         [PublicAPI]
-        public static TOut OnSuccess<TOut, TError>(this CustomResult<TError> result,
+        public static TOut OnSuccess<TOut, TError>(in this CustomResult<TError> result,
             [NotNull, InstantHandle] in Func<CustomResult<TError>, TOut> onSuccess,
             [CanBeNull] in TOut defaultValue,
             in bool treatWarningAsError = false)
@@ -706,7 +706,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI]
-        public static Result<T, TError> OnSuccess<T, TError>(this Result<T, TError> result,
+        public static Result<T, TError> OnSuccess<T, TError>(in this Result<T, TError> result,
             [NotNull, InstantHandle] in Action<T> onSuccess,
             [NotNull] in TError errorObject,
             in bool treatWarningAsError = false)
@@ -730,7 +730,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI]
-        public static Result<T, TError> OnSuccess<T, TError>(this Result<T, TError> result,
+        public static Result<T, TError> OnSuccess<T, TError>(in this Result<T, TError> result,
             [NotNull, InstantHandle] in Action<T> onSuccess,
             [NotNull, InstantHandle] in Func<TError> errorFactory,
             in bool treatWarningAsError = false)
@@ -755,7 +755,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{TOut, TError}"/>.</returns>
         [PublicAPI]
-        public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(this Result<TIn, TError> result,
+        public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(in this Result<TIn, TError> result,
             [NotNull, InstantHandle] in Func<TIn, TOut> converter, 
             [NotNull] in TError errorObject,
             in bool treatWarningAsError = false)
@@ -782,7 +782,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{TOut, TError}"/>.</returns>
         [PublicAPI]
-        public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(this Result<TIn, TError> result,
+        public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(in this Result<TIn, TError> result,
             [NotNull, InstantHandle] in Func<TIn, TOut> converter,
             [NotNull, InstantHandle] in Func<TError> errorFactory,
             in bool treatWarningAsError = false)
@@ -807,7 +807,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
-        public static Result OnSuccess<T, TError>(this Result<T, TError> result,
+        public static Result OnSuccess<T, TError>(in this Result<T, TError> result,
             [NotNull, InstantHandle] in Func<T, Result> onSuccess,
             in bool treatWarningAsError = false)
         {
@@ -831,7 +831,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{TOut}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
-        public static Result<TOut> OnSuccess<TIn, TOut, TError>(this Result<TIn, TError> result,
+        public static Result<TOut> OnSuccess<TIn, TOut, TError>(in this Result<TIn, TError> result,
             [NotNull, InstantHandle] in Func<TIn, Result<TOut>> onSuccess,
             in bool treatWarningAsError = false)
         {
@@ -852,7 +852,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="CustomResult{TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
-        public static CustomResult<TError> OnSuccess<T, TError>(this Result<T, TError> result,
+        public static CustomResult<TError> OnSuccess<T, TError>(in this Result<T, TError> result,
             [NotNull, InstantHandle] in Func<T, CustomResult<TError>> onSuccess,
             [NotNull] in TError errorObject,
             in bool treatWarningAsError = false)
@@ -877,7 +877,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="CustomResult{TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
-        public static CustomResult<TError> OnSuccess<T, TError>(this Result<T, TError> result,
+        public static CustomResult<TError> OnSuccess<T, TError>(in this Result<T, TError> result,
             [NotNull, InstantHandle] in Func<T, CustomResult<TError>> onSuccess,
             [NotNull, InstantHandle] in Func<TError> errorFactory,
             in bool treatWarningAsError = false)
@@ -903,7 +903,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{TOut, TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
-        public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(this Result<TIn, TError> result,
+        public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(in this Result<TIn, TError> result,
             [NotNull, InstantHandle] in Func<TIn, Result<TOut, TError>> onSuccess,
             [NotNull] in TError errorObject,
             in bool treatWarningAsError = false)
@@ -931,7 +931,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{TOut, TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         [PublicAPI]
-        public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(this Result<TIn, TError> result,
+        public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(in this Result<TIn, TError> result,
             [NotNull, InstantHandle] in Func<TIn, Result<TOut, TError>> onSuccess,
             [NotNull, InstantHandle] in Func<TError> errorFactory,
             in bool treatWarningAsError = false)
@@ -959,7 +959,7 @@ namespace Here.Extensions
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>An output value.</returns>
         [PublicAPI]
-        public static TOut OnSuccess<TIn, TOut, TError>(this Result<TIn, TError> result,
+        public static TOut OnSuccess<TIn, TOut, TError>(in this Result<TIn, TError> result,
             [NotNull, InstantHandle] in Func<Result<TIn, TError>, TOut> onSuccess,
             [CanBeNull] in TOut defaultValue,
             in bool treatWarningAsError = false)

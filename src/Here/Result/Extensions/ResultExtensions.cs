@@ -111,7 +111,7 @@ namespace Here.Extensions
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
         /// <returns>A <see cref="Result"/>.</returns>
         [PublicAPI, Pure]
-        public static Result Ensure(this Result result, [NotNull, InstantHandle] in Func<bool> predicate, [NotNull] in string errorMessage)
+        public static Result Ensure(in this Result result, [NotNull, InstantHandle] in Func<bool> predicate, [NotNull] in string errorMessage)
         {
             if (result.IsFailure)
                 return result;
@@ -135,7 +135,7 @@ namespace Here.Extensions
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
         /// <returns>A <see cref="Result{T}"/>.</returns>
         [PublicAPI, Pure]
-        public static Result<T> Ensure<T>(this Result<T> result, [NotNull, InstantHandle] in Predicate<T> predicate, [NotNull] in string errorMessage)
+        public static Result<T> Ensure<T>(in this Result<T> result, [NotNull, InstantHandle] in Predicate<T> predicate, [NotNull] in string errorMessage)
         {
             if (result.IsFailure)
                 return result;
@@ -152,7 +152,7 @@ namespace Here.Extensions
         /// <param name="embeddedResult">A <see cref="Result{Result}"/>.</param>
         /// <returns>Flattened <see cref="Result"/>.</returns>
         [PublicAPI, Pure]
-        public static Result Flatten(this Result<Result> embeddedResult)
+        public static Result Flatten(in this Result<Result> embeddedResult)
         {
             if (embeddedResult.IsFailure)
             {
@@ -189,7 +189,7 @@ namespace Here.Extensions
         /// <param name="embeddedResult">A <see cref="Result{Result}"/>.</param>
         /// <returns>Flattened <see cref="Result{T}"/>.</returns>
         [PublicAPI, Pure]
-        public static Result<T> Flatten<T>(this Result<Result<T>> embeddedResult)
+        public static Result<T> Flatten<T>(in this Result<Result<T>> embeddedResult)
         {
             if (embeddedResult.IsFailure)
             {
@@ -234,7 +234,7 @@ namespace Here.Extensions
         /// <param name="errorObject">Custom error object.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI, Pure]
-        public static CustomResult<TError> Ensure<TError>(this CustomResult<TError> result, 
+        public static CustomResult<TError> Ensure<TError>(in this CustomResult<TError> result, 
             [NotNull, InstantHandle] in Func<bool> predicate, 
             [NotNull] in string errorMessage, 
             [NotNull] in TError errorObject)
@@ -258,7 +258,7 @@ namespace Here.Extensions
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI, Pure]
-        public static CustomResult<TError> Ensure<TError>(this CustomResult<TError> result,
+        public static CustomResult<TError> Ensure<TError>(in this CustomResult<TError> result,
             [NotNull, InstantHandle] in Func<bool> predicate,
             [NotNull] in string errorMessage,
             [NotNull, InstantHandle] in Func<TError> errorFactory)
@@ -287,7 +287,7 @@ namespace Here.Extensions
         /// <param name="errorObject">Custom error object.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI, Pure]
-        public static Result<T, TError> Ensure<T, TError>(this Result<T, TError> result,
+        public static Result<T, TError> Ensure<T, TError>(in this Result<T, TError> result,
             [NotNull, InstantHandle] in Predicate<T> predicate,
             [NotNull] in string errorMessage,
             [NotNull] in TError errorObject)
@@ -312,7 +312,7 @@ namespace Here.Extensions
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI, Pure]
-        public static Result<T, TError> Ensure<T, TError>(this Result<T, TError> result,
+        public static Result<T, TError> Ensure<T, TError>(in this Result<T, TError> result,
             [NotNull, InstantHandle] in Predicate<T> predicate,
             [NotNull] in string errorMessage,
             [NotNull, InstantHandle] in Func<TError> errorFactory)
@@ -332,7 +332,7 @@ namespace Here.Extensions
         /// <param name="embeddedResult">A <see cref="Result{Result, TError}"/>.</param>
         /// <returns>Flattened <see cref="Result"/>.</returns>
         [PublicAPI, Pure]
-        public static Result Flatten<TError>(this Result<Result, TError> embeddedResult)
+        public static Result Flatten<TError>(in this Result<Result, TError> embeddedResult)
         {
             Result<Result> tmpResult = embeddedResult;
             return tmpResult.Flatten();
@@ -344,7 +344,7 @@ namespace Here.Extensions
         /// <param name="embeddedResult">A <see cref="Result{Result, TError}"/>.</param>
         /// <returns>Flattened <see cref="Result{T}"/>.</returns>
         [PublicAPI, Pure]
-        public static Result<T> Flatten<T, TError>(this Result<Result<T>, TError> embeddedResult)
+        public static Result<T> Flatten<T, TError>(in this Result<Result<T>, TError> embeddedResult)
         {
             Result<Result<T>> tmpResult = embeddedResult;
             return tmpResult.Flatten();
@@ -356,7 +356,7 @@ namespace Here.Extensions
         /// <param name="embeddedResult">A <see cref="Result{Result, TError}"/>.</param>
         /// <returns>Flattened <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI, Pure]
-        public static CustomResult<TError> Flatten<TError>(this Result<CustomResult<TError>, TError> embeddedResult)
+        public static CustomResult<TError> Flatten<TError>(in this Result<CustomResult<TError>, TError> embeddedResult)
         {
             if (embeddedResult.IsFailure)
             {
@@ -393,7 +393,7 @@ namespace Here.Extensions
         /// <param name="embeddedResult">A <see cref="Result{Result, TError}"/>.</param>
         /// <returns>Flattened <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI, Pure]
-        public static Result<T, TError> Flatten<T, TError>(this Result<Result<T, TError>, TError> embeddedResult)
+        public static Result<T, TError> Flatten<T, TError>(in this Result<Result<T, TError>, TError> embeddedResult)
         {
             if (embeddedResult.IsFailure)
             {

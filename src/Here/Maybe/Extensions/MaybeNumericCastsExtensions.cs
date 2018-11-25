@@ -8,7 +8,7 @@ namespace Here.Extensions
     /// </summary>
     public static class MaybeNumericCastsExtensions
     {
-        private static Maybe<TTo> SafeConvert<TFrom, TTo>(this Maybe<TFrom> maybe, [NotNull, InstantHandle] Func<TFrom, TTo> converter)
+        private static Maybe<TTo> SafeConvert<TFrom, TTo>(in this Maybe<TFrom> maybe, [NotNull, InstantHandle] Func<TFrom, TTo> converter)
         {
             return maybe.Cast(
                 input =>
@@ -32,7 +32,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Byte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<bool> ToBool(this Maybe<byte> maybe)
+        public static Maybe<bool> ToBool(in this Maybe<byte> maybe)
         {
             return SafeConvert(maybe, Convert.ToBoolean);
         }
@@ -43,7 +43,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Byte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<sbyte> ToSByte(this Maybe<byte> maybe)
+        public static Maybe<sbyte> ToSByte(in this Maybe<byte> maybe)
         {
             return SafeConvert(maybe, Convert.ToSByte);
         }
@@ -54,7 +54,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Byte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<short> ToShort(this Maybe<byte> maybe)
+        public static Maybe<short> ToShort(in this Maybe<byte> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt16);
         }
@@ -65,7 +65,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Byte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<ushort> ToUShort(this Maybe<byte> maybe)
+        public static Maybe<ushort> ToUShort(in this Maybe<byte> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt16);
         }
@@ -76,7 +76,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Byte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<int> ToInt(this Maybe<byte> maybe)
+        public static Maybe<int> ToInt(in this Maybe<byte> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt32);
         }
@@ -87,7 +87,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Byte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<uint> ToUInt(this Maybe<byte> maybe)
+        public static Maybe<uint> ToUInt(in this Maybe<byte> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt32);
         }
@@ -98,7 +98,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Byte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<long> ToLong(this Maybe<byte> maybe)
+        public static Maybe<long> ToLong(in this Maybe<byte> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt64);
         }
@@ -109,7 +109,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Byte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<ulong> ToULong(this Maybe<byte> maybe)
+        public static Maybe<ulong> ToULong(in this Maybe<byte> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt64);
         }
@@ -120,7 +120,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Byte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<decimal> ToDecimal(this Maybe<byte> maybe)
+        public static Maybe<decimal> ToDecimal(in this Maybe<byte> maybe)
         {
             return SafeConvert(maybe, Convert.ToDecimal);
         }
@@ -131,7 +131,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Byte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<float> ToFloat(this Maybe<byte> maybe)
+        public static Maybe<float> ToFloat(in this Maybe<byte> maybe)
         {
             return SafeConvert(maybe, Convert.ToSingle);
         }
@@ -142,7 +142,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Byte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<double> ToDouble(this Maybe<byte> maybe)
+        public static Maybe<double> ToDouble(in this Maybe<byte> maybe)
         {
             return SafeConvert(maybe, Convert.ToDouble);
         }
@@ -157,7 +157,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{SByte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<bool> ToBool(this Maybe<sbyte> maybe)
+        public static Maybe<bool> ToBool(in this Maybe<sbyte> maybe)
         {
             return SafeConvert(maybe, Convert.ToBoolean);
         }
@@ -168,7 +168,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{SByte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<byte> ToByte(this Maybe<sbyte> maybe)
+        public static Maybe<byte> ToByte(in this Maybe<sbyte> maybe)
         {
             return SafeConvert(maybe, Convert.ToByte);
         }
@@ -179,7 +179,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{SByte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<short> ToShort(this Maybe<sbyte> maybe)
+        public static Maybe<short> ToShort(in this Maybe<sbyte> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt16);
         }
@@ -190,7 +190,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{SByte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<ushort> ToUShort(this Maybe<sbyte> maybe)
+        public static Maybe<ushort> ToUShort(in this Maybe<sbyte> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt16);
         }
@@ -201,7 +201,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{SByte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<int> ToInt(this Maybe<sbyte> maybe)
+        public static Maybe<int> ToInt(in this Maybe<sbyte> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt32);
         }
@@ -212,7 +212,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{SByte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<uint> ToUInt(this Maybe<sbyte> maybe)
+        public static Maybe<uint> ToUInt(in this Maybe<sbyte> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt32);
         }
@@ -223,7 +223,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{SByte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<long> ToLong(this Maybe<sbyte> maybe)
+        public static Maybe<long> ToLong(in this Maybe<sbyte> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt64);
         }
@@ -234,7 +234,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{SByte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<ulong> ToULong(this Maybe<sbyte> maybe)
+        public static Maybe<ulong> ToULong(in this Maybe<sbyte> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt64);
         }
@@ -245,7 +245,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{SByte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<decimal> ToDecimal(this Maybe<sbyte> maybe)
+        public static Maybe<decimal> ToDecimal(in this Maybe<sbyte> maybe)
         {
             return SafeConvert(maybe, Convert.ToDecimal);
         }
@@ -256,7 +256,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{SByte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<float> ToFloat(this Maybe<sbyte> maybe)
+        public static Maybe<float> ToFloat(in this Maybe<sbyte> maybe)
         {
             return SafeConvert(maybe, Convert.ToSingle);
         }
@@ -267,7 +267,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{SByte}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<double> ToDouble(this Maybe<sbyte> maybe)
+        public static Maybe<double> ToDouble(in this Maybe<sbyte> maybe)
         {
             return SafeConvert(maybe, Convert.ToDouble);
         }
@@ -282,7 +282,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<bool> ToBool(this Maybe<short> maybe)
+        public static Maybe<bool> ToBool(in this Maybe<short> maybe)
         {
             return SafeConvert(maybe, Convert.ToBoolean);
         }
@@ -293,7 +293,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<byte> ToByte(this Maybe<short> maybe)
+        public static Maybe<byte> ToByte(in this Maybe<short> maybe)
         {
             return SafeConvert(maybe, Convert.ToByte);
         }
@@ -304,7 +304,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<sbyte> ToSByte(this Maybe<short> maybe)
+        public static Maybe<sbyte> ToSByte(in this Maybe<short> maybe)
         {
             return SafeConvert(maybe, Convert.ToSByte);
         }
@@ -315,7 +315,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<ushort> ToUShort(this Maybe<short> maybe)
+        public static Maybe<ushort> ToUShort(in this Maybe<short> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt16);
         }
@@ -326,7 +326,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<int> ToInt(this Maybe<short> maybe)
+        public static Maybe<int> ToInt(in this Maybe<short> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt32);
         }
@@ -337,7 +337,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<uint> ToUInt(this Maybe<short> maybe)
+        public static Maybe<uint> ToUInt(in this Maybe<short> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt32);
         }
@@ -348,7 +348,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<long> ToLong(this Maybe<short> maybe)
+        public static Maybe<long> ToLong(in this Maybe<short> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt64);
         }
@@ -359,7 +359,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<ulong> ToULong(this Maybe<short> maybe)
+        public static Maybe<ulong> ToULong(in this Maybe<short> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt64);
         }
@@ -370,7 +370,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<decimal> ToDecimal(this Maybe<short> maybe)
+        public static Maybe<decimal> ToDecimal(in this Maybe<short> maybe)
         {
             return SafeConvert(maybe, Convert.ToDecimal);
         }
@@ -381,7 +381,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<float> ToFloat(this Maybe<short> maybe)
+        public static Maybe<float> ToFloat(in this Maybe<short> maybe)
         {
             return SafeConvert(maybe, Convert.ToSingle);
         }
@@ -392,7 +392,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<double> ToDouble(this Maybe<short> maybe)
+        public static Maybe<double> ToDouble(in this Maybe<short> maybe)
         {
             return SafeConvert(maybe, Convert.ToDouble);
         }
@@ -407,7 +407,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<bool> ToBool(this Maybe<ushort> maybe)
+        public static Maybe<bool> ToBool(in this Maybe<ushort> maybe)
         {
             return SafeConvert(maybe, Convert.ToBoolean);
         }
@@ -418,7 +418,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<byte> ToByte(this Maybe<ushort> maybe)
+        public static Maybe<byte> ToByte(in this Maybe<ushort> maybe)
         {
             return SafeConvert(maybe, Convert.ToByte);
         }
@@ -429,7 +429,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<sbyte> ToSByte(this Maybe<ushort> maybe)
+        public static Maybe<sbyte> ToSByte(in this Maybe<ushort> maybe)
         {
             return SafeConvert(maybe, Convert.ToSByte);
         }
@@ -440,7 +440,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<short> ToShort(this Maybe<ushort> maybe)
+        public static Maybe<short> ToShort(in this Maybe<ushort> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt16);
         }
@@ -451,7 +451,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<int> ToInt(this Maybe<ushort> maybe)
+        public static Maybe<int> ToInt(in this Maybe<ushort> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt32);
         }
@@ -462,7 +462,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<uint> ToUInt(this Maybe<ushort> maybe)
+        public static Maybe<uint> ToUInt(in this Maybe<ushort> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt32);
         }
@@ -473,7 +473,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<long> ToLong(this Maybe<ushort> maybe)
+        public static Maybe<long> ToLong(in this Maybe<ushort> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt64);
         }
@@ -484,7 +484,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<ulong> ToULong(this Maybe<ushort> maybe)
+        public static Maybe<ulong> ToULong(in this Maybe<ushort> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt64);
         }
@@ -495,7 +495,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<decimal> ToDecimal(this Maybe<ushort> maybe)
+        public static Maybe<decimal> ToDecimal(in this Maybe<ushort> maybe)
         {
             return SafeConvert(maybe, Convert.ToDecimal);
         }
@@ -506,7 +506,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<float> ToFloat(this Maybe<ushort> maybe)
+        public static Maybe<float> ToFloat(in this Maybe<ushort> maybe)
         {
             return SafeConvert(maybe, Convert.ToSingle);
         }
@@ -517,7 +517,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt16}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<double> ToDouble(this Maybe<ushort> maybe)
+        public static Maybe<double> ToDouble(in this Maybe<ushort> maybe)
         {
             return SafeConvert(maybe, Convert.ToDouble);
         }
@@ -532,7 +532,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<bool> ToBool(this Maybe<int> maybe)
+        public static Maybe<bool> ToBool(in this Maybe<int> maybe)
         {
             return SafeConvert(maybe, Convert.ToBoolean);
         }
@@ -543,7 +543,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<byte> ToByte(this Maybe<int> maybe)
+        public static Maybe<byte> ToByte(in this Maybe<int> maybe)
         {
             return SafeConvert(maybe, Convert.ToByte);
         }
@@ -554,7 +554,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<sbyte> ToSByte(this Maybe<int> maybe)
+        public static Maybe<sbyte> ToSByte(in this Maybe<int> maybe)
         {
             return SafeConvert(maybe, Convert.ToSByte);
         }
@@ -565,7 +565,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<short> ToShort(this Maybe<int> maybe)
+        public static Maybe<short> ToShort(in this Maybe<int> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt16);
         }
@@ -576,7 +576,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<ushort> ToUShort(this Maybe<int> maybe)
+        public static Maybe<ushort> ToUShort(in this Maybe<int> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt16);
         }
@@ -587,7 +587,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<uint> ToUInt(this Maybe<int> maybe)
+        public static Maybe<uint> ToUInt(in this Maybe<int> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt32);
         }
@@ -598,7 +598,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<long> ToLong(this Maybe<int> maybe)
+        public static Maybe<long> ToLong(in this Maybe<int> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt64);
         }
@@ -609,7 +609,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<ulong> ToULong(this Maybe<int> maybe)
+        public static Maybe<ulong> ToULong(in this Maybe<int> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt64);
         }
@@ -620,7 +620,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<decimal> ToDecimal(this Maybe<int> maybe)
+        public static Maybe<decimal> ToDecimal(in this Maybe<int> maybe)
         {
             return SafeConvert(maybe, Convert.ToDecimal);
         }
@@ -631,7 +631,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<float> ToFloat(this Maybe<int> maybe)
+        public static Maybe<float> ToFloat(in this Maybe<int> maybe)
         {
             return SafeConvert(maybe, Convert.ToSingle);
         }
@@ -642,7 +642,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<double> ToDouble(this Maybe<int> maybe)
+        public static Maybe<double> ToDouble(in this Maybe<int> maybe)
         {
             return SafeConvert(maybe, Convert.ToDouble);
         }
@@ -657,7 +657,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<bool> ToBool(this Maybe<uint> maybe)
+        public static Maybe<bool> ToBool(in this Maybe<uint> maybe)
         {
             return SafeConvert(maybe, Convert.ToBoolean);
         }
@@ -668,7 +668,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<byte> ToByte(this Maybe<uint> maybe)
+        public static Maybe<byte> ToByte(in this Maybe<uint> maybe)
         {
             return SafeConvert(maybe, Convert.ToByte);
         }
@@ -679,7 +679,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<sbyte> ToSByte(this Maybe<uint> maybe)
+        public static Maybe<sbyte> ToSByte(in this Maybe<uint> maybe)
         {
             return SafeConvert(maybe, Convert.ToSByte);
         }
@@ -690,7 +690,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<short> ToShort(this Maybe<uint> maybe)
+        public static Maybe<short> ToShort(in this Maybe<uint> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt16);
         }
@@ -701,7 +701,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<ushort> ToUShort(this Maybe<uint> maybe)
+        public static Maybe<ushort> ToUShort(in this Maybe<uint> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt16);
         }
@@ -712,7 +712,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<int> ToInt(this Maybe<uint> maybe)
+        public static Maybe<int> ToInt(in this Maybe<uint> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt32);
         }
@@ -723,7 +723,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<long> ToLong(this Maybe<uint> maybe)
+        public static Maybe<long> ToLong(in this Maybe<uint> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt64);
         }
@@ -734,7 +734,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<ulong> ToULong(this Maybe<uint> maybe)
+        public static Maybe<ulong> ToULong(in this Maybe<uint> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt64);
         }
@@ -745,7 +745,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<decimal> ToDecimal(this Maybe<uint> maybe)
+        public static Maybe<decimal> ToDecimal(in this Maybe<uint> maybe)
         {
             return SafeConvert(maybe, Convert.ToDecimal);
         }
@@ -756,7 +756,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<float> ToFloat(this Maybe<uint> maybe)
+        public static Maybe<float> ToFloat(in this Maybe<uint> maybe)
         {
             return SafeConvert(maybe, Convert.ToSingle);
         }
@@ -767,7 +767,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt32}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<double> ToDouble(this Maybe<uint> maybe)
+        public static Maybe<double> ToDouble(in this Maybe<uint> maybe)
         {
             return SafeConvert(maybe, Convert.ToDouble);
         }
@@ -782,7 +782,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<bool> ToBool(this Maybe<long> maybe)
+        public static Maybe<bool> ToBool(in this Maybe<long> maybe)
         {
             return SafeConvert(maybe, Convert.ToBoolean);
         }
@@ -793,7 +793,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<byte> ToByte(this Maybe<long> maybe)
+        public static Maybe<byte> ToByte(in this Maybe<long> maybe)
         {
             return SafeConvert(maybe, Convert.ToByte);
         }
@@ -804,7 +804,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<sbyte> ToSByte(this Maybe<long> maybe)
+        public static Maybe<sbyte> ToSByte(in this Maybe<long> maybe)
         {
             return SafeConvert(maybe, Convert.ToSByte);
         }
@@ -815,7 +815,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<short> ToShort(this Maybe<long> maybe)
+        public static Maybe<short> ToShort(in this Maybe<long> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt16);
         }
@@ -826,7 +826,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<ushort> ToUShort(this Maybe<long> maybe)
+        public static Maybe<ushort> ToUShort(in this Maybe<long> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt16);
         }
@@ -837,7 +837,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<int> ToInt(this Maybe<long> maybe)
+        public static Maybe<int> ToInt(in this Maybe<long> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt32);
         }
@@ -848,7 +848,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<uint> ToUInt(this Maybe<long> maybe)
+        public static Maybe<uint> ToUInt(in this Maybe<long> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt32);
         }
@@ -859,7 +859,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<ulong> ToULong(this Maybe<long> maybe)
+        public static Maybe<ulong> ToULong(in this Maybe<long> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt64);
         }
@@ -870,7 +870,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<decimal> ToDecimal(this Maybe<long> maybe)
+        public static Maybe<decimal> ToDecimal(in this Maybe<long> maybe)
         {
             return SafeConvert(maybe, Convert.ToDecimal);
         }
@@ -881,7 +881,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<float> ToFloat(this Maybe<long> maybe)
+        public static Maybe<float> ToFloat(in this Maybe<long> maybe)
         {
             return SafeConvert(maybe, Convert.ToSingle);
         }
@@ -892,7 +892,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Int64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<double> ToDouble(this Maybe<long> maybe)
+        public static Maybe<double> ToDouble(in this Maybe<long> maybe)
         {
             return SafeConvert(maybe, Convert.ToDouble);
         }
@@ -907,7 +907,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<bool> ToBool(this Maybe<ulong> maybe)
+        public static Maybe<bool> ToBool(in this Maybe<ulong> maybe)
         {
             return SafeConvert(maybe, Convert.ToBoolean);
         }
@@ -918,7 +918,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<byte> ToByte(this Maybe<ulong> maybe)
+        public static Maybe<byte> ToByte(in this Maybe<ulong> maybe)
         {
             return SafeConvert(maybe, Convert.ToByte);
         }
@@ -929,7 +929,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<sbyte> ToSByte(this Maybe<ulong> maybe)
+        public static Maybe<sbyte> ToSByte(in this Maybe<ulong> maybe)
         {
             return SafeConvert(maybe, Convert.ToSByte);
         }
@@ -940,7 +940,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<short> ToShort(this Maybe<ulong> maybe)
+        public static Maybe<short> ToShort(in this Maybe<ulong> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt16);
         }
@@ -951,7 +951,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<ushort> ToUShort(this Maybe<ulong> maybe)
+        public static Maybe<ushort> ToUShort(in this Maybe<ulong> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt16);
         }
@@ -962,7 +962,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<int> ToInt(this Maybe<ulong> maybe)
+        public static Maybe<int> ToInt(in this Maybe<ulong> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt32);
         }
@@ -973,7 +973,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<uint> ToUInt(this Maybe<ulong> maybe)
+        public static Maybe<uint> ToUInt(in this Maybe<ulong> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt32);
         }
@@ -984,7 +984,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<long> ToLong(this Maybe<ulong> maybe)
+        public static Maybe<long> ToLong(in this Maybe<ulong> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt64);
         }
@@ -995,7 +995,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<decimal> ToDecimal(this Maybe<ulong> maybe)
+        public static Maybe<decimal> ToDecimal(in this Maybe<ulong> maybe)
         {
             return SafeConvert(maybe, Convert.ToDecimal);
         }
@@ -1006,7 +1006,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<float> ToFloat(this Maybe<ulong> maybe)
+        public static Maybe<float> ToFloat(in this Maybe<ulong> maybe)
         {
             return SafeConvert(maybe, Convert.ToSingle);
         }
@@ -1017,7 +1017,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{UInt64}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<double> ToDouble(this Maybe<ulong> maybe)
+        public static Maybe<double> ToDouble(in this Maybe<ulong> maybe)
         {
             return SafeConvert(maybe, Convert.ToDouble);
         }
@@ -1032,7 +1032,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Decimal}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<bool> ToBool(this Maybe<decimal> maybe)
+        public static Maybe<bool> ToBool(in this Maybe<decimal> maybe)
         {
             return SafeConvert(maybe, Convert.ToBoolean);
         }
@@ -1043,7 +1043,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Decimal}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<byte> ToByte(this Maybe<decimal> maybe)
+        public static Maybe<byte> ToByte(in this Maybe<decimal> maybe)
         {
             return SafeConvert(maybe, Convert.ToByte);
         }
@@ -1054,7 +1054,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Decimal}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<sbyte> ToSByte(this Maybe<decimal> maybe)
+        public static Maybe<sbyte> ToSByte(in this Maybe<decimal> maybe)
         {
             return SafeConvert(maybe, Convert.ToSByte);
         }
@@ -1065,7 +1065,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Decimal}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<short> ToShort(this Maybe<decimal> maybe)
+        public static Maybe<short> ToShort(in this Maybe<decimal> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt16);
         }
@@ -1076,7 +1076,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Decimal}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<ushort> ToUShort(this Maybe<decimal> maybe)
+        public static Maybe<ushort> ToUShort(in this Maybe<decimal> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt16);
         }
@@ -1087,7 +1087,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Decimal}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<int> ToInt(this Maybe<decimal> maybe)
+        public static Maybe<int> ToInt(in this Maybe<decimal> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt32);
         }
@@ -1098,7 +1098,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Decimal}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<uint> ToUInt(this Maybe<decimal> maybe)
+        public static Maybe<uint> ToUInt(in this Maybe<decimal> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt32);
         }
@@ -1109,7 +1109,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Decimal}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<long> ToLong(this Maybe<decimal> maybe)
+        public static Maybe<long> ToLong(in this Maybe<decimal> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt64);
         }
@@ -1120,7 +1120,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Decimal}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<ulong> ToULong(this Maybe<decimal> maybe)
+        public static Maybe<ulong> ToULong(in this Maybe<decimal> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt64);
         }
@@ -1131,7 +1131,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Decimal}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<float> ToFloat(this Maybe<decimal> maybe)
+        public static Maybe<float> ToFloat(in this Maybe<decimal> maybe)
         {
             return SafeConvert(maybe, Convert.ToSingle);
         }
@@ -1142,7 +1142,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Decimal}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<double> ToDouble(this Maybe<decimal> maybe)
+        public static Maybe<double> ToDouble(in this Maybe<decimal> maybe)
         {
             return SafeConvert(maybe, Convert.ToDouble);
         }
@@ -1157,7 +1157,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Single}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<bool> ToBool(this Maybe<float> maybe)
+        public static Maybe<bool> ToBool(in this Maybe<float> maybe)
         {
             return SafeConvert(maybe, Convert.ToBoolean);
         }
@@ -1168,7 +1168,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Single}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<byte> ToByte(this Maybe<float> maybe)
+        public static Maybe<byte> ToByte(in this Maybe<float> maybe)
         {
             return SafeConvert(maybe, Convert.ToByte);
         }
@@ -1179,7 +1179,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Single}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<sbyte> ToSByte(this Maybe<float> maybe)
+        public static Maybe<sbyte> ToSByte(in this Maybe<float> maybe)
         {
             return SafeConvert(maybe, Convert.ToSByte);
         }
@@ -1190,7 +1190,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Single}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<short> ToShort(this Maybe<float> maybe)
+        public static Maybe<short> ToShort(in this Maybe<float> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt16);
         }
@@ -1201,7 +1201,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Single}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<ushort> ToUShort(this Maybe<float> maybe)
+        public static Maybe<ushort> ToUShort(in this Maybe<float> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt16);
         }
@@ -1212,7 +1212,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Single}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<int> ToInt(this Maybe<float> maybe)
+        public static Maybe<int> ToInt(in this Maybe<float> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt32);
         }
@@ -1223,7 +1223,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Single}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<uint> ToUInt(this Maybe<float> maybe)
+        public static Maybe<uint> ToUInt(in this Maybe<float> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt32);
         }
@@ -1234,7 +1234,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Single}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<long> ToLong(this Maybe<float> maybe)
+        public static Maybe<long> ToLong(in this Maybe<float> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt64);
         }
@@ -1245,7 +1245,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Single}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<ulong> ToULong(this Maybe<float> maybe)
+        public static Maybe<ulong> ToULong(in this Maybe<float> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt64);
         }
@@ -1256,7 +1256,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Single}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<decimal> ToDecimal(this Maybe<float> maybe)
+        public static Maybe<decimal> ToDecimal(in this Maybe<float> maybe)
         {
             return SafeConvert(maybe, Convert.ToDecimal);
         }
@@ -1267,7 +1267,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Single}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<double> ToDouble(this Maybe<float> maybe)
+        public static Maybe<double> ToDouble(in this Maybe<float> maybe)
         {
             return SafeConvert(maybe, Convert.ToDouble);
         }
@@ -1282,7 +1282,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Double}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<bool> ToBool(this Maybe<double> maybe)
+        public static Maybe<bool> ToBool(in this Maybe<double> maybe)
         {
             return SafeConvert(maybe, Convert.ToBoolean);
         }
@@ -1293,7 +1293,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Double}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<byte> ToByte(this Maybe<double> maybe)
+        public static Maybe<byte> ToByte(in this Maybe<double> maybe)
         {
             return SafeConvert(maybe, Convert.ToByte);
         }
@@ -1304,7 +1304,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Double}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<sbyte> ToSByte(this Maybe<double> maybe)
+        public static Maybe<sbyte> ToSByte(in this Maybe<double> maybe)
         {
             return SafeConvert(maybe, Convert.ToSByte);
         }
@@ -1315,7 +1315,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Double}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<short> ToShort(this Maybe<double> maybe)
+        public static Maybe<short> ToShort(in this Maybe<double> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt16);
         }
@@ -1326,7 +1326,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Double}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<ushort> ToUShort(this Maybe<double> maybe)
+        public static Maybe<ushort> ToUShort(in this Maybe<double> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt16);
         }
@@ -1337,7 +1337,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Double}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<int> ToInt(this Maybe<double> maybe)
+        public static Maybe<int> ToInt(in this Maybe<double> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt32);
         }
@@ -1348,7 +1348,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Double}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<uint> ToUInt(this Maybe<double> maybe)
+        public static Maybe<uint> ToUInt(in this Maybe<double> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt32);
         }
@@ -1359,7 +1359,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Double}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<long> ToLong(this Maybe<double> maybe)
+        public static Maybe<long> ToLong(in this Maybe<double> maybe)
         {
             return SafeConvert(maybe, Convert.ToInt64);
         }
@@ -1370,7 +1370,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Double}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<ulong> ToULong(this Maybe<double> maybe)
+        public static Maybe<ulong> ToULong(in this Maybe<double> maybe)
         {
             return SafeConvert(maybe, Convert.ToUInt64);
         }
@@ -1381,7 +1381,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Double}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<decimal> ToDecimal(this Maybe<double> maybe)
+        public static Maybe<decimal> ToDecimal(in this Maybe<double> maybe)
         {
             return SafeConvert(maybe, Convert.ToDecimal);
         }
@@ -1392,7 +1392,7 @@ namespace Here.Extensions
         /// <param name="maybe">The <see cref="Maybe{Double}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
-        public static Maybe<float> ToFloat(this Maybe<double> maybe)
+        public static Maybe<float> ToFloat(in this Maybe<double> maybe)
         {
             return SafeConvert(maybe, Convert.ToSingle);
         }

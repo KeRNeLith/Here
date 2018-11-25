@@ -29,7 +29,7 @@ namespace Here.Extensions
         /// <param name="nullable">Nullable to convert.</param>
         /// <returns>A <see cref="Maybe{T}"/>.</returns>
         [PublicAPI, Pure]
-        public static Maybe<T> ToMaybe<T>([CanBeNull] this T? nullable)
+        public static Maybe<T> ToMaybe<T>([CanBeNull] in this T? nullable)
             where T : struct
         {
             return nullable?.ToMaybe() ?? Maybe<T>.None;
@@ -42,7 +42,7 @@ namespace Here.Extensions
         /// <param name="maybe"><see cref="Maybe{T}"/> to convert.</param>
         /// <returns>A <see cref="Nullable{T}"/>.</returns>
         [PublicAPI, Pure]
-        public static T? ToNullable<T>(this Maybe<T> maybe)
+        public static T? ToNullable<T>(in this Maybe<T> maybe)
             where T : struct
         {
             return maybe.HasValue
@@ -56,7 +56,7 @@ namespace Here.Extensions
         /// <param name="embeddedMaybe">A <see cref="Maybe{Maybe}"/>.</param>
         /// <returns>Flattened <see cref="Maybe{T}"/>.</returns>
         [PublicAPI, Pure]
-        public static Maybe<T> Flatten<T>(this Maybe<Maybe<T>> embeddedMaybe)
+        public static Maybe<T> Flatten<T>(in this Maybe<Maybe<T>> embeddedMaybe)
         {
             return embeddedMaybe.HasValue ? embeddedMaybe.Value : Maybe<T>.None;
         }
@@ -95,7 +95,7 @@ namespace Here.Extensions
         /// <param name="maybe"><see cref="Maybe{String}"/> on which applying the treatment.</param>
         /// <returns>A <see cref="Maybe{String}"/>.</returns>
         [PublicAPI, Pure]
-        public static Maybe<string> NoneIfEmpty(this Maybe<string> maybe)
+        public static Maybe<string> NoneIfEmpty(in this Maybe<string> maybe)
         {
             return maybe.IfElse(
                 str => string.IsNullOrEmpty(str) ? Maybe<string>.None : Maybe<string>.Some(str), 
@@ -109,7 +109,7 @@ namespace Here.Extensions
         /// <param name="maybe"><see cref="Maybe{String}"/> on which applying the treatment.</param>
         /// <returns>A <see cref="Maybe{String}"/>.</returns>
         [PublicAPI, Pure]
-        public static Maybe<string> NoneIfEmptyOrSpace(this Maybe<string> maybe)
+        public static Maybe<string> NoneIfEmptyOrSpace(in this Maybe<string> maybe)
         {
             return maybe.IfElse(
                 str => string.IsNullOrWhiteSpace(str) ? Maybe<string>.None : Maybe<string>.Some(str),

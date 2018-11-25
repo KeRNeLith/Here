@@ -26,6 +26,10 @@
     <RepositoryUrl>https://github.com/KeRNeLith/Here</RepositoryUrl>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
   <!-- Common dependencies -->
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />

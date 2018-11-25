@@ -16,7 +16,7 @@ namespace Here.Extensions
         /// <param name="then">Treatment to do.</param>
         /// <returns>This <see cref="Maybe{T}"/>.</returns>
         [PublicAPI]
-        public static Maybe<T> If<T>(this Maybe<T> maybe, [NotNull, InstantHandle] in Action<T> then)
+        public static Maybe<T> If<T>(in this Maybe<T> maybe, [NotNull, InstantHandle] in Action<T> then)
         {
             if (maybe.HasValue)
                 then(maybe.Value);
@@ -31,7 +31,7 @@ namespace Here.Extensions
         /// <param name="else">Treatment to do.</param>
         /// <returns>This <see cref="Maybe{T}"/>.</returns>
         [PublicAPI]
-        public static Maybe<T> Else<T>(this Maybe<T> maybe, [NotNull, InstantHandle] in Action @else)
+        public static Maybe<T> Else<T>(in this Maybe<T> maybe, [NotNull, InstantHandle] in Action @else)
         {
             if (maybe.HasNoValue)
                 @else();
@@ -47,7 +47,7 @@ namespace Here.Extensions
         /// <param name="else">Treatment to do if this <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>This <see cref="Maybe{T}"/>.</returns>
         [PublicAPI]
-        public static Maybe<T> IfElse<T>(this Maybe<T> maybe, [NotNull, InstantHandle] in Action<T> then, [NotNull, InstantHandle] in Action @else)
+        public static Maybe<T> IfElse<T>(in this Maybe<T> maybe, [NotNull, InstantHandle] in Action<T> then, [NotNull, InstantHandle] in Action @else)
         {
             if (maybe.HasValue)
                 then(maybe.Value);
@@ -67,7 +67,7 @@ namespace Here.Extensions
         /// <param name="else">Treatment to do if this <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>Result of the executed callback.</returns>
         [PublicAPI]
-        public static TResult IfElse<T, TResult>(this Maybe<T> maybe, [NotNull, InstantHandle] in Func<T, TResult> then, [NotNull, InstantHandle] in Func<TResult> @else)
+        public static TResult IfElse<T, TResult>(in this Maybe<T> maybe, [NotNull, InstantHandle] in Func<T, TResult> then, [NotNull, InstantHandle] in Func<TResult> @else)
         {
             if (maybe.HasValue)
                 return then(maybe.Value);
@@ -84,7 +84,7 @@ namespace Here.Extensions
         /// <param name="orValue">Value to return if this <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>Result of the executed treatment, otherwise the <paramref name="orValue"/>.</returns>
         [PublicAPI]
-        public static TResult IfOr<T, TResult>(this Maybe<T> maybe, [NotNull, InstantHandle] in Func<T, TResult> then, [NotNull] in TResult orValue)
+        public static TResult IfOr<T, TResult>(in this Maybe<T> maybe, [NotNull, InstantHandle] in Func<T, TResult> then, [NotNull] in TResult orValue)
         {
             if (maybe.HasValue)
                 return then(maybe.Value);
@@ -101,7 +101,7 @@ namespace Here.Extensions
         /// <param name="orValue">Value to return if this <see cref="Maybe{T}"/> has a value.</param>
         /// <returns>Result of the executed treatment, otherwise the <paramref name="orValue"/>.</returns>
         [PublicAPI]
-        public static TResult ElseOr<T, TResult>(this Maybe<T> maybe, [NotNull, InstantHandle] in Func<TResult> @else, [NotNull] in TResult orValue)
+        public static TResult ElseOr<T, TResult>(in this Maybe<T> maybe, [NotNull, InstantHandle] in Func<TResult> @else, [NotNull] in TResult orValue)
         {
             if (maybe.HasNoValue)
                 return @else();
@@ -116,7 +116,7 @@ namespace Here.Extensions
         /// <param name="orValue">Value to use if this <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>This <see cref="Maybe{T}"/> value, otherwise the <paramref name="orValue"/>.</returns>
         [PublicAPI, Pure, NotNull]
-        public static T Or<T>(this Maybe<T> maybe, [NotNull] in T orValue)
+        public static T Or<T>(in this Maybe<T> maybe, [NotNull] in T orValue)
         {
             return maybe.Unwrap(orValue);
         }
@@ -129,7 +129,7 @@ namespace Here.Extensions
         /// <param name="orFunc">Function called if this <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>This <see cref="Maybe{T}"/> value, otherwise the result of <paramref name="orFunc"/>.</returns>
         [PublicAPI, Pure]
-        public static T Or<T>(this Maybe<T> maybe, [NotNull, InstantHandle] in Func<T> orFunc)
+        public static T Or<T>(in this Maybe<T> maybe, [NotNull, InstantHandle] in Func<T> orFunc)
         {
             return maybe.Unwrap(orFunc);
         }
@@ -141,7 +141,7 @@ namespace Here.Extensions
         /// <param name="maybe"><see cref="Maybe{T}"/> to check.</param>
         /// <returns>This <see cref="Maybe{T}"/> value, otherwise the default of <typeparamref name="T"/> type.</returns>
         [PublicAPI, Pure, CanBeNull]
-        public static T OrDefault<T>(this Maybe<T> maybe)
+        public static T OrDefault<T>(in this Maybe<T> maybe)
         {
             return maybe.Unwrap();
         }
@@ -154,7 +154,7 @@ namespace Here.Extensions
         /// <param name="then">Treatment to do with this <see cref="Maybe{T}"/> value.</param>
         /// <param name="exception">The exception to throw if this <see cref="Maybe{T}"/> has no value.</param>
         [PublicAPI]
-        public static void IfOrThrows<T>(this Maybe<T> maybe, [NotNull, InstantHandle] in Action<T> then, [NotNull] in Exception exception)
+        public static void IfOrThrows<T>(in this Maybe<T> maybe, [NotNull, InstantHandle] in Action<T> then, [NotNull] in Exception exception)
         {
             if (maybe.HasNoValue)
                 throw exception;
@@ -170,7 +170,7 @@ namespace Here.Extensions
         /// <param name="then">Treatment to do with this <see cref="Maybe{T}"/> value.</param>
         /// <param name="exceptionFunc">The factory exception method used to throw if this <see cref="Maybe{T}"/> has no value.</param>
         [PublicAPI]
-        public static void IfOrThrows<T>(this Maybe<T> maybe, [NotNull, InstantHandle] in Action<T> then, [NotNull, InstantHandle] in Func<Exception> exceptionFunc)
+        public static void IfOrThrows<T>(in this Maybe<T> maybe, [NotNull, InstantHandle] in Action<T> then, [NotNull, InstantHandle] in Func<Exception> exceptionFunc)
         {
             if (maybe.HasNoValue)
                 throw exceptionFunc();
@@ -188,7 +188,7 @@ namespace Here.Extensions
         /// <param name="exception">The exception to throw if this <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>Result of the treatment.</returns>
         [PublicAPI]
-        public static TResult IfOrThrows<T, TResult>(this Maybe<T> maybe, [NotNull, InstantHandle] in Func<T, TResult> then, [NotNull] in Exception exception)
+        public static TResult IfOrThrows<T, TResult>(in this Maybe<T> maybe, [NotNull, InstantHandle] in Func<T, TResult> then, [NotNull] in Exception exception)
         {
             if (maybe.HasValue)
                 return then(maybe.Value);
@@ -205,7 +205,7 @@ namespace Here.Extensions
         /// <param name="exceptionFunc">The factory exception method used to throw if this <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>Result of the treatment.</returns>
         [PublicAPI]
-        public static TResult IfOrThrows<T, TResult>(this Maybe<T> maybe, [NotNull, InstantHandle] in Func<T, TResult> then, [NotNull, InstantHandle] in Func<Exception> exceptionFunc)
+        public static TResult IfOrThrows<T, TResult>(in this Maybe<T> maybe, [NotNull, InstantHandle] in Func<T, TResult> then, [NotNull, InstantHandle] in Func<Exception> exceptionFunc)
         {
             if (maybe.HasValue)
                 return then(maybe.Value);
@@ -220,7 +220,7 @@ namespace Here.Extensions
         /// <param name="exception">The exception to throw if this <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>This <see cref="Maybe{T}"/> value.</returns>
         [PublicAPI, NotNull]
-        public static T OrThrows<T>(this Maybe<T> maybe, [NotNull] in Exception exception)
+        public static T OrThrows<T>(in this Maybe<T> maybe, [NotNull] in Exception exception)
         {
             if (maybe.HasValue)
                 return maybe.Value;
@@ -235,7 +235,7 @@ namespace Here.Extensions
         /// <param name="exceptionFunc">The factory exception method used to throw if this <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>This <see cref="Maybe{T}"/> value.</returns>
         [PublicAPI, NotNull]
-        public static T OrThrows<T>(this Maybe<T> maybe, [NotNull, InstantHandle] in Func<Exception> exceptionFunc)
+        public static T OrThrows<T>(in this Maybe<T> maybe, [NotNull, InstantHandle] in Func<Exception> exceptionFunc)
         {
             if (maybe.HasValue)
                 return maybe.Value;
@@ -250,7 +250,7 @@ namespace Here.Extensions
         /// <param name="orFunc">Function called if this <see cref="Maybe{T}"/> has no value.</param>
         /// <returns>This <see cref="Maybe{T}"/>, otherwise the result of <paramref name="orFunc"/>.</returns>
         [PublicAPI, Pure]
-        public static Maybe<T> Or<T>(this Maybe<T> maybe, [NotNull, InstantHandle] in Func<Maybe<T>> orFunc)
+        public static Maybe<T> Or<T>(in this Maybe<T> maybe, [NotNull, InstantHandle] in Func<Maybe<T>> orFunc)
         {
             if (maybe.HasValue)
                 return maybe;
@@ -265,7 +265,7 @@ namespace Here.Extensions
         /// <param name="defaultValue">Default value to use.</param>
         /// <returns>The unwrapped value, otherwise the default one.</returns>
         [PublicAPI, Pure]
-        public static T Unwrap<T>(this Maybe<T> maybe, [CanBeNull] in T defaultValue = default)
+        public static T Unwrap<T>(in this Maybe<T> maybe, [CanBeNull] in T defaultValue = default)
         {
             if (maybe.HasValue)
                 return maybe.Value;
@@ -280,7 +280,7 @@ namespace Here.Extensions
         /// <param name="orFunc">Default value factory method.</param>
         /// <returns>The unwrapped value from this <see cref="Maybe{T}"/> if it has value, otherwise the result from <paramref name="orFunc"/>.</returns>
         [PublicAPI, Pure]
-        public static T Unwrap<T>(this Maybe<T> maybe, [NotNull, InstantHandle] in Func<T> orFunc)
+        public static T Unwrap<T>(in this Maybe<T> maybe, [NotNull, InstantHandle] in Func<T> orFunc)
         {
             if (maybe.HasValue)
                 return maybe.Value;
@@ -299,7 +299,7 @@ namespace Here.Extensions
         /// <param name="defaultValue">Default value to use.</param>
         /// <returns>The converted unwrapped value from this <see cref="Maybe{T}"/>, otherwise the default one.</returns>
         [PublicAPI, Pure]
-        public static TOut Unwrap<T, TOut>(this Maybe<T> maybe, 
+        public static TOut Unwrap<T, TOut>(in this Maybe<T> maybe, 
             [NotNull, InstantHandle] in Func<T, TOut> converter, 
             [CanBeNull] in TOut defaultValue = default)
         {
@@ -320,7 +320,7 @@ namespace Here.Extensions
         /// <param name="orFunc">Default value factory method.</param>
         /// <returns>The converted unwrapped value from this <see cref="Maybe{T}"/>, otherwise the result from <paramref name="orFunc"/>.</returns>
         [PublicAPI, Pure]
-        public static TOut Unwrap<T, TOut>(this Maybe<T> maybe, 
+        public static TOut Unwrap<T, TOut>(in this Maybe<T> maybe, 
             [NotNull, InstantHandle] in Func<T, TOut> converter, 
             [NotNull, InstantHandle] in Func<TOut> orFunc)
         {
@@ -338,7 +338,7 @@ namespace Here.Extensions
         /// <param name="converter">Function called to convert this <see cref="Maybe{TFrom}"/> value.</param>
         /// <returns>Converted <see cref="Maybe{TTo}"/>.</returns>
         [PublicAPI, Pure]
-        public static Maybe<TTo> Cast<TFrom, TTo>(this Maybe<TFrom> maybe, [NotNull, InstantHandle] in Func<TFrom, TTo> converter)
+        public static Maybe<TTo> Cast<TFrom, TTo>(in this Maybe<TFrom> maybe, [NotNull, InstantHandle] in Func<TFrom, TTo> converter)
         {
             if (maybe.HasValue)
                 return converter(maybe.Value);
@@ -353,7 +353,7 @@ namespace Here.Extensions
         /// <param name="predicate">Condition to match.</param>
         /// <returns>True if this <see cref="Maybe{T}"/> matches the <paramref name="predicate"/>, otherwise false.</returns>
         [PublicAPI, Pure]
-        public static bool Exists<T>(this Maybe<T> maybe, [NotNull, InstantHandle] in Predicate<T> predicate)
+        public static bool Exists<T>(in this Maybe<T> maybe, [NotNull, InstantHandle] in Predicate<T> predicate)
         {
             if (maybe.HasValue)
                 return predicate(maybe.Value);
