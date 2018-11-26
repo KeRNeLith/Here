@@ -13,8 +13,8 @@
 **Here** is a .NET library that mainly provides functional features for C#.
 It handles and encapsulates the logic of functional based objects including the following ones.
 
-- The `Maybe<T>`, also called Option or Monad. This structure encapsulates the concept of having a value or not. This mechanic safely handles a traditional null return.
-For more details on `Maybe<T>` usage see the following [tips](src/Here/Maybe/README.md).
+- The `Option<T>`. This structure encapsulates the concept of having a value or not. This mechanic safely handles a traditional null return.
+For more details on `Option<T>` usage see the following [tips](src/Here/Option/README.md).
 
 - The `Result`. This structure encapsulates treatments results. This provides an improved return state, and also a better error management.
 For more details on `Result` usage see the following [tips](src/Here/Result/README.md).

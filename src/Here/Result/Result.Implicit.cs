@@ -6,14 +6,14 @@ namespace Here
     public partial struct Result
     {
         /// <summary>
-        /// Implicit conversion from <see cref="Result"/> to a <see cref="Maybe{Boolean}"/>.
+        /// Implicit conversion from <see cref="Result"/> to an <see cref="Option{T}"/>.
         /// </summary>
         /// <param name="result"><see cref="Result"/> to convert.</param>
-        /// <returns>A <see cref="Maybe{Boolean}"/>.</returns>
+        /// <returns>An <see cref="Option{T}"/>.</returns>
         [PublicAPI, Pure]
-        public static implicit operator Maybe<bool>(in Result result)
+        public static implicit operator Option<bool>(in Result result)
         {
-            return result.ToMaybe();
+            return result.ToOption();
         }
     }
 
@@ -31,14 +31,14 @@ namespace Here
         }
 
         /// <summary>
-        /// Implicit conversion from <see cref="Result{T}"/> to a <see cref="Maybe{T}"/>.
+        /// Implicit conversion from <see cref="Result{T}"/> to an <see cref="Option{T}"/>.
         /// </summary>
         /// <param name="result"><see cref="Result{T}"/> to convert.</param>
-        /// <returns>A <see cref="Maybe{T}"/>.</returns>
+        /// <returns>An <see cref="Option{T}"/>.</returns>
         [PublicAPI, Pure]
-        public static implicit operator Maybe<T>(in Result<T> result)
+        public static implicit operator Option<T>(in Result<T> result)
         {
-            return result.ToMaybe();
+            return result.ToOption();
         }
     }
 
@@ -56,14 +56,14 @@ namespace Here
         }
 
         /// <summary>
-        /// Implicit conversion from <see cref="CustomResult{TError}"/> to a <see cref="Maybe{Boolean}"/>.
+        /// Implicit conversion from <see cref="CustomResult{TError}"/> to an <see cref="Option{T}"/>.
         /// </summary>
         /// <param name="result"><see cref="CustomResult{TError}"/> to convert.</param>
-        /// <returns>A <see cref="Maybe{Boolean}"/>.</returns>
+        /// <returns>An <see cref="Option{T}"/>.</returns>
         [PublicAPI, Pure]
-        public static implicit operator Maybe<bool>(in CustomResult<TError> result)
+        public static implicit operator Option<bool>(in CustomResult<TError> result)
         {
-            return result.ToMaybe();
+            return result.ToOption();
         }
     }
 
@@ -105,14 +105,14 @@ namespace Here
         }
 
         /// <summary>
-        /// Implicit conversion from <see cref="Result{T, TError}"/> to a <see cref="Maybe{T}"/>.
+        /// Implicit conversion from <see cref="Result{T, TError}"/> to an <see cref="Option{T}"/>.
         /// </summary>
         /// <param name="result"><see cref="Result{T}"/> to convert.</param>
-        /// <returns>A <see cref="Maybe{T}"/>.</returns>
+        /// <returns>An <see cref="Option{T}"/>.</returns>
         [PublicAPI, Pure]
-        public static implicit operator Maybe<T>(in Result<T, TError> result)
+        public static implicit operator Option<T>(in Result<T, TError> result)
         {
-            return result.ToMaybe();
+            return result.ToOption();
         }
     }
 }

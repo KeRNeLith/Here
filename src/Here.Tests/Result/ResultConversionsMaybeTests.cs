@@ -1,13 +1,13 @@
 ﻿using NUnit.Framework;
-using Here.Tests.Maybes;
+using Here.Tests.Options;
 
 namespace Here.Tests.Results
 {
     /// <summary>
-    /// Tests for <see cref="Result"/>, <see cref="Result{T}"/>, <see cref="CustomResult{TError}"/> and <see cref="Result{T, TError}"/> conversions to <see cref="Maybe{T}"/>.
+    /// Tests for <see cref="Result"/>, <see cref="Result{T}"/>, <see cref="CustomResult{TError}"/> and <see cref="Result{T, TError}"/> conversions to <see cref="Option{T}"/>.
     /// </summary>
     [TestFixture]
-    internal class ResultConversionsMaybeTests : MaybeTestsBase
+    internal class ResultConversionsOptionTests : OptionTestsBase
     {
         #region Test class
 
@@ -18,111 +18,111 @@ namespace Here.Tests.Results
         #endregion
 
         [Test]
-        public void ResultToMaybe()
+        public void ResultToOption()
         {
             // Explicit conversions
             Result resultOk = Result.Ok();
-            Maybe<bool> maybeBool = resultOk.ToMaybe();
-            CheckMaybeValue(maybeBool, true);
+            Option<bool> optionBool = resultOk.ToOption();
+            CheckOptionValue(optionBool, true);
 
             Result resultWarn = Result.Warn("Warning");
-            maybeBool = resultWarn.ToMaybe();
-            CheckMaybeValue(maybeBool, true);
+            optionBool = resultWarn.ToOption();
+            CheckOptionValue(optionBool, true);
 
             Result resultFail = Result.Fail("Failure");
-            maybeBool = resultFail.ToMaybe();
-            CheckMaybeValue(maybeBool, false);
+            optionBool = resultFail.ToOption();
+            CheckOptionValue(optionBool, false);
 
             // Implicit conversions
-            maybeBool = resultOk;
-            CheckMaybeValue(maybeBool, true);
+            optionBool = resultOk;
+            CheckOptionValue(optionBool, true);
 
-            maybeBool = resultWarn;
-            CheckMaybeValue(maybeBool, true);
+            optionBool = resultWarn;
+            CheckOptionValue(optionBool, true);
 
-            maybeBool = resultFail;
-            CheckMaybeValue(maybeBool, false);
+            optionBool = resultFail;
+            CheckOptionValue(optionBool, false);
         }
 
         [Test]
-        public void ValueResultToMaybe()
+        public void ValueResultToOption()
         {
             // Explicit conversions
             Result<int> resultOk = Result.Ok(42);
-            Maybe<int> maybeInt = resultOk.ToMaybe();
-            CheckMaybeValue(maybeInt, 42);
+            Option<int> optionInt = resultOk.ToOption();
+            CheckOptionValue(optionInt, 42);
 
             Result<int> resultWarn = Result.Warn(12, "Warning");
-            maybeInt = resultWarn.ToMaybe();
-            CheckMaybeValue(maybeInt, 12);
+            optionInt = resultWarn.ToOption();
+            CheckOptionValue(optionInt, 12);
 
             Result<int> resultFail = Result.Fail<int>("Failure");
-            maybeInt = resultFail.ToMaybe();
-            CheckEmptyMaybe(maybeInt);
+            optionInt = resultFail.ToOption();
+            CheckEmptyOption(optionInt);
 
             // Implicit conversions
-            maybeInt = resultOk;
-            CheckMaybeValue(maybeInt, 42);
+            optionInt = resultOk;
+            CheckOptionValue(optionInt, 42);
 
-            maybeInt = resultWarn;
-            CheckMaybeValue(maybeInt, 12);
+            optionInt = resultWarn;
+            CheckOptionValue(optionInt, 12);
 
-            maybeInt = resultFail;
-            CheckEmptyMaybe(maybeInt);
+            optionInt = resultFail;
+            CheckEmptyOption(optionInt);
         }
 
         [Test]
-        public void CustomResultToMaybe()
+        public void CustomResultToOption()
         {
             // Explicit conversions
             CustomResult<CustomErrorTest> resultOk = Result.CustomOk<CustomErrorTest>();
-            Maybe<bool> maybeBool = resultOk.ToMaybe();
-            CheckMaybeValue(maybeBool, true);
+            Option<bool> optionBool = resultOk.ToOption();
+            CheckOptionValue(optionBool, true);
 
             CustomResult<CustomErrorTest> resultWarn = Result.CustomWarn<CustomErrorTest>("Warning");
-            maybeBool = resultWarn.ToMaybe();
-            CheckMaybeValue(maybeBool, true);
+            optionBool = resultWarn.ToOption();
+            CheckOptionValue(optionBool, true);
 
             CustomResult<CustomErrorTest> resultFail = Result.CustomFail("Failure", new CustomErrorTest());
-            maybeBool = resultFail.ToMaybe();
-            CheckMaybeValue(maybeBool, false);
+            optionBool = resultFail.ToOption();
+            CheckOptionValue(optionBool, false);
 
             // Implicit conversions
-            maybeBool = resultOk;
-            CheckMaybeValue(maybeBool, true);
+            optionBool = resultOk;
+            CheckOptionValue(optionBool, true);
 
-            maybeBool = resultWarn;
-            CheckMaybeValue(maybeBool, true);
+            optionBool = resultWarn;
+            CheckOptionValue(optionBool, true);
 
-            maybeBool = resultFail;
-            CheckMaybeValue(maybeBool, false);
+            optionBool = resultFail;
+            CheckOptionValue(optionBool, false);
         }
 
         [Test]
-        public void ValueCustomResultToMaybe()
+        public void ValueCustomResultToOption()
         {
             // Explicit conversions
             Result<int, CustomErrorTest> resultOk = Result.Ok<int, CustomErrorTest>(42);
-            Maybe<int> maybeInt = resultOk.ToMaybe();
-            CheckMaybeValue(maybeInt, 42);
+            Option<int> optionInt = resultOk.ToOption();
+            CheckOptionValue(optionInt, 42);
 
             Result<int, CustomErrorTest> resultWarn = Result.Warn<int, CustomErrorTest>(12, "Warning");
-            maybeInt = resultWarn.ToMaybe();
-            CheckMaybeValue(maybeInt, 12);
+            optionInt = resultWarn.ToOption();
+            CheckOptionValue(optionInt, 12);
 
             Result<int, CustomErrorTest> resultFail = Result.Fail<int, CustomErrorTest>("Failure", new CustomErrorTest());
-            maybeInt = resultFail.ToMaybe();
-            CheckEmptyMaybe(maybeInt);
+            optionInt = resultFail.ToOption();
+            CheckEmptyOption(optionInt);
 
             // Implicit conversions
-            maybeInt = resultOk;
-            CheckMaybeValue(maybeInt, 42);
+            optionInt = resultOk;
+            CheckOptionValue(optionInt, 42);
 
-            maybeInt = resultWarn;
-            CheckMaybeValue(maybeInt, 12);
+            optionInt = resultWarn;
+            CheckOptionValue(optionInt, 12);
 
-            maybeInt = resultFail;
-            CheckEmptyMaybe(maybeInt);
+            optionInt = resultFail;
+            CheckEmptyOption(optionInt);
         }
     }
 }
