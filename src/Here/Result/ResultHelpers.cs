@@ -157,7 +157,7 @@ namespace Here
         #region Compare
 
         /// <summary>
-        /// Compares this <see cref="Result"/> with the given one.
+        /// Compares both <see cref="Result"/>.
         /// Order keeps failures first, then warnings and finally successes.
         /// </summary>
         /// <param name="result1">First <see cref="Result"/> to compare.</param>
@@ -170,12 +170,12 @@ namespace Here
         }
 
         /// <summary>
-        /// Compares this <see cref="Result"/> with the given one.
+        /// Compares both <see cref="Result{T}"/>.
         /// Order keeps failures first, then warnings and finally successes.
         /// </summary>
         /// <typeparam name="T">Type of the result value.</typeparam>
-        /// <param name="result1">First <see cref="Result"/> to compare.</param>
-        /// <param name="result2">Second <see cref="Result"/> to compare.</param>
+        /// <param name="result1">First <see cref="Result{T}"/> to compare.</param>
+        /// <param name="result2">Second <see cref="Result{T}"/> to compare.</param>
         /// <returns>An integer that indicates the relative order of compared objects.</returns>
         [PublicAPI, Pure]
         public static int Compare<T>(in Result<T> result1, in Result<T> result2)
@@ -184,7 +184,7 @@ namespace Here
         }
 
         /// <summary>
-        /// Compares this <see cref="CustomResult{TError}"/> with the given one.
+        /// Compares both <see cref="CustomResult{TError}"/>.
         /// Order keeps failures first, then warnings and finally successes.
         /// </summary>
         /// <typeparam name="TError">Type of the result error object.</typeparam>
@@ -198,7 +198,7 @@ namespace Here
         }
 
         /// <summary>
-        /// Compares this <see cref="Result{T,TError}"/> with the given one.
+        /// Compares both <see cref="Result{T,TError}"/>.
         /// Order keeps failures first, then warnings and finally successes.
         /// </summary>
         /// <typeparam name="T">Type of the result value.</typeparam>

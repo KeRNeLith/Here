@@ -36,7 +36,7 @@ namespace Here
         }
 
         /// <summary>
-        /// Compares this <see cref="Maybe{T}"/> with the given one.
+        /// Compares both <see cref="Maybe{T}"/>.
         /// Order keeps <see cref="Maybe{T}.None"/> first and <see cref="Maybe{T}"/> with value after.
         /// Then it uses the <see cref="Maybe{T}.Value"/> for the comparison.
         /// </summary>

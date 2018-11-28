@@ -64,7 +64,7 @@ namespace Here
         }
 
         /// <summary>
-        /// Construct a <see cref="Maybe{T}"/> with a value.
+        /// Constructs a <see cref="Maybe{T}"/> with a value.
         /// </summary>
         /// <param name="value">A value.</param>
         [PublicAPI]
@@ -233,7 +233,7 @@ namespace Here
         }
 
         /// <summary>
-        /// Compares this <see cref="Maybe{T}"/> with the given one.
+        /// Compares both <see cref="Maybe{T}"/>.
         /// Order keeps <see cref="Maybe{T}.None"/> first and <see cref="Maybe{T}"/> with value after.
         /// Then it uses the <see cref="Maybe{T}.Value"/> for the comparison.
         /// </summary>
