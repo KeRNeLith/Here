@@ -5,18 +5,18 @@ using JetBrains.Annotations;
 namespace Here.Extensions
 {
     /// <summary>
-    /// Extensions related to <see cref="Maybe{T}"/> for <see cref="IDictionary{TKey, TValue}"/>.
+    /// Extensions related to <see cref="Option{T}"/> for <see cref="IDictionary{TKey, TValue}"/>.
     /// </summary>
-    public static class MaybeDictionaryExtensions
+    public static class OptionDictionaryExtensions
     {
         // Helper method to try get a value
         [Pure]
-        private static Maybe<TValue> TryGetValue<TKey, TValue>(in MaybeTryGetExtensions.TryGet<TKey, TValue> tryGetFunc, [CanBeNull] in TKey key)
+        private static Option<TValue> TryGetValue<TKey, TValue>(in OptionTryGetExtensions.TryGet<TKey, TValue> tryGetFunc, [CanBeNull] in TKey key)
         {
             if (key == null)
-                return Maybe<TValue>.None;
+                return Option<TValue>.None;
 
-            var getter = MaybeTryGetExtensions.CreateGet(tryGetFunc);
+            var getter = OptionTryGetExtensions.CreateGet(tryGetFunc);
             return getter(key);
         }
 
@@ -27,9 +27,9 @@ namespace Here.Extensions
         /// <typeparam name="TValue"><see cref="Type"/> of this <see cref="IDictionary{TKey, TValue}"/> value.</typeparam>
         /// <param name="dictionary"><see cref="IDictionary{TKey, TValue}"/> on which performing the get.</param>
         /// <param name="key">Searched key.</param>
-        /// <returns><see cref="Maybe{TValue}"/> that wrap the result of the get.</returns>
+        /// <returns><see cref="Option{T}"/> that wrap the result of the get.</returns>
         [PublicAPI, Pure]
-        public static Maybe<TValue> TryGetValue<TKey, TValue>([NotNull] this IDictionary<TKey, TValue> dictionary, [CanBeNull] in TKey key)
+        public static Option<TValue> TryGetValue<TKey, TValue>([NotNull] this IDictionary<TKey, TValue> dictionary, [CanBeNull] in TKey key)
         {
             return TryGetValue<TKey, TValue>(dictionary.TryGetValue, key);
         }
@@ -41,14 +41,14 @@ namespace Here.Extensions
         /// <typeparam name="TValue">Type of the expected value.</typeparam>
         /// <param name="dictionary"><see cref="IDictionary{TKey, Object}"/> on which performing the get.</param>
         /// <param name="key">Searched key.</param>
-        /// <returns><see cref="Maybe{TValue}"/> that wrap the result of the get.</returns>
+        /// <returns><see cref="Option{T}"/> that wrap the result of the get.</returns>
         [PublicAPI, Pure]
-        public static Maybe<TValue> TryGetValue<TKey, TValue>([NotNull] this IDictionary<TKey, object> dictionary, [CanBeNull] in TKey key)
+        public static Option<TValue> TryGetValue<TKey, TValue>([NotNull] this IDictionary<TKey, object> dictionary, [CanBeNull] in TKey key)
         {
             var objectValue = dictionary.TryGetValue(key);
             if (objectValue.HasValue && objectValue.Value is TValue expectedValue)
-                return Maybe<TValue>.Some(expectedValue);
-            return Maybe<TValue>.None;
+                return Option<TValue>.Some(expectedValue);
+            return Option<TValue>.None;
         }
 
 #if (!NET20 && !NET30 && !NET35 && !NET40)
@@ -59,9 +59,9 @@ namespace Here.Extensions
         /// <typeparam name="TValue">Type of this <see cref="IReadOnlyDictionary{TKey, TValue}"/> value.</typeparam>
         /// <param name="dictionary"><see cref="IReadOnlyDictionary{TKey, TValue}"/> on which performing the get.</param>
         /// <param name="key">Searched key.</param>
-        /// <returns><see cref="Maybe{TValue}"/> that wrap the result of the get.</returns>
+        /// <returns><see cref="Option{T}"/> that wrap the result of the get.</returns>
         [PublicAPI, Pure]
-        public static Maybe<TValue> TryGetReadonlyValue<TKey, TValue>([NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary, [CanBeNull] in TKey key)
+        public static Option<TValue> TryGetReadonlyValue<TKey, TValue>([NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary, [CanBeNull] in TKey key)
         {
             return TryGetValue<TKey, TValue>(dictionary.TryGetValue, key);
         }
@@ -73,14 +73,14 @@ namespace Here.Extensions
         /// <typeparam name="TValue">Type of the expected value.</typeparam>
         /// <param name="dictionary"><see cref="IReadOnlyDictionary{TKey, Object}"/> on which performing the get.</param>
         /// <param name="key">Searched key.</param>
-        /// <returns><see cref="Maybe{TValue}"/> that wrap the result of the get.</returns>
+        /// <returns><see cref="Option{T}"/> that wrap the result of the get.</returns>
         [PublicAPI, Pure]
-        public static Maybe<TValue> TryGetReadonlyValue<TKey, TValue>([NotNull] this IReadOnlyDictionary<TKey, object> dictionary, [CanBeNull] in TKey key)
+        public static Option<TValue> TryGetReadonlyValue<TKey, TValue>([NotNull] this IReadOnlyDictionary<TKey, object> dictionary, [CanBeNull] in TKey key)
         {
             var objectValue = dictionary.TryGetReadonlyValue(key);
             if (objectValue.HasValue && objectValue.Value is TValue expectedValue)
-                return Maybe<TValue>.Some(expectedValue);
-            return Maybe<TValue>.None;
+                return Option<TValue>.Some(expectedValue);
+            return Option<TValue>.None;
         }
 #endif
     }

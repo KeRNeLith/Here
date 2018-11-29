@@ -211,7 +211,7 @@ These calls can be chained to easily produce complex treatments but keeping them
 See following examples for a quick overview. Note that each result type offers similar extensions.
 
 ```csharp
-// In this example we call a method on a database that returns a Maybe<string>
+// In this example we call a method on a database that returns an Option<string>
 Database.GetUser("Jack")
         .ToResult()
         .OnAny(() => Console.WriteLine("Hello"))
@@ -264,33 +264,33 @@ Result<double> resDouble = res.Cast<double>(() => GetADouble() * 2.5);
 
 Results with more data inside provide less Cast methods because as said before the implicit conversion is used when you specify the target type.
 
-### Bridge to Maybe
+### Bridge to Option
 
-It is possible to convert a `Result`, `Result<T>`, `CustomResult<TError>` or `Result<T, TError>` to a `Maybe<T>`.
+It is possible to convert a `Result`, `Result<T>`, `CustomResult<TError>` or `Result<T, TError>` to an `Option<T>`.
 
-Conversions from a `Result` or a `CustomResult<TError>` give a `Maybe<bool>`, the other give a `Maybe<T>`.
+Conversions from a `Result` or a `CustomResult<TError>` give an `Option<bool>`, the other give an `Option<T>`.
 Each conversion can be done implicitly too.
 
 ```csharp
 // Result without value
 Result resultOK = Result.Ok();
 
-Maybe<bool> maybeBool = resultOK.ToMaybe(); // Explicit => Maybe.Some(true)
-Maybe<bool> maybeBool = resultOK;           // Implicit => Maybe.Some(true)
+Option<bool> optionBool = resultOK.ToOption(); // Explicit => Option.Some(true)
+Option<bool> optionBool = resultOK;           // Implicit => Option.Some(true)
 
 Result resultFail = Result.Fail("Failure");
 
-Maybe<bool> maybeBool = resultFail.ToMaybe(); // Explicit => Maybe.Some(false)
-Maybe<bool> maybeBool = resultFail;           // Implicit => Maybe.Some(false)
+Option<bool> optionBool = resultFail.ToOption(); // Explicit => Option.Some(false)
+Option<bool> optionBool = resultFail;           // Implicit => Option.Some(false)
 
 // Result with value
 Result<int> resultOK = Result.Ok(12);
 
-Maybe<bool> maybeBool = resultOK.ToMaybe(); // Explicit => Maybe.Some(12)
-Maybe<bool> maybeBool = resultOK;           // Implicit => Maybe.Some(12)
+Option<bool> optionBool = resultOK.ToOption(); // Explicit => Option.Some(12)
+Option<bool> optionBool = resultOK;           // Implicit => Option.Some(12)
 
 Result<int> resultFail = Result.Fail<int>("Failure");
 
-Maybe<bool> maybeBool = resultFail.ToMaybe(); // Explicit => Maybe.None
-Maybe<bool> maybeBool = resultFail;           // Implicit => Maybe.None
+Option<bool> optionBool = resultFail.ToOption(); // Explicit => Option.None
+Option<bool> optionBool = resultFail;           // Implicit => Option.None
 ```

@@ -3,13 +3,13 @@
 namespace Here
 {
     /// <summary>
-    /// Empty Maybe construction helper. Used by implicit construction.
+    /// Empty Option construction helper. Used by implicit construction.
     /// </summary>
     [PublicAPI]
-    public static class Maybe
+    public static class Option
     {
         /// <summary>
-        /// Represents empty Maybe (nothing).
+        /// Represents empty Option (nothing).
         /// </summary>
         public class NoneClass
         {
@@ -18,10 +18,10 @@ namespace Here
         /// <summary>
         /// Failed conversion to result message.
         /// </summary>
-        internal static readonly string FailedToResultMessage = "Maybe<{0}> has no value";
+        internal static readonly string FailedToResultMessage = "Option<{0}> has no value";
 
         /// <summary>
-        /// Represents a non typed empty Maybe.
+        /// Represents a non typed empty Option.
         /// </summary>
         [PublicAPI, NotNull]
         public static NoneClass None { get; } = new NoneClass();
