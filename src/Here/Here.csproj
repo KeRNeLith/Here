@@ -91,7 +91,7 @@ Supports Source Link</Description>
   </PropertyGroup>
 
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>7.2</LangVersion>
   </PropertyGroup>
   
   <ItemGroup>
