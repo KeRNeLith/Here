@@ -8,8 +8,8 @@ namespace Here
     /// <summary>
     /// <see cref="Either{TLeft,TRight}"/> is an object that represents a value of one of two possible types.
     /// <see cref="Either{TLeft,TRight}"/> is an instance of "Left" or "Right".
-    /// A common use of <see cref="Either{TLeft,TRight}"/> is as an alternative to <see cref="Maybe{T}"/> for dealing with possible missing values.
-    /// In this usage, <see cref="Maybe{TLeft}.None"/> is replaced with a Left which can contain useful information. Right takes the place of <see cref="Maybe{TRight}.Some"/>.
+    /// A common use of <see cref="Either{TLeft,TRight}"/> is as an alternative to <see cref="Option{T}"/> for dealing with possible missing values.
+    /// In this usage, <see cref="Option{TLeft}.None"/> is replaced with a Left which can contain useful information. Right takes the place of <see cref="Option{TRight}.Some"/>.
     /// Convention is that Left is used for failure and Right is used for success.
     /// </summary>
     /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
@@ -54,7 +54,7 @@ namespace Here
         /// <summary>
         /// Gets the left value.
         /// </summary>
-        [NotNull]
+        [PublicAPI, NotNull]
         public TLeft LeftValue
         {
             get
@@ -73,7 +73,7 @@ namespace Here
         /// <summary>
         /// Gets the right value.
         /// </summary>
-        [NotNull]
+        [PublicAPI, NotNull]
         public TRight RightValue
         {
             get
@@ -133,6 +133,32 @@ namespace Here
         internal static Either<TLeft, TRight> Right(in TRight value)
         {
             return new Either<TLeft, TRight>(value);
+        }
+
+        /// <summary>
+        /// Explicit conversion operator from <see cref="Either{TLeft,TRight}"/> to a value of left type.
+        /// </summary>
+        /// <param name="either"><see cref="Either{TLeft,TRight}"/> to convert.</param>
+        /// <returns>The left value.</returns>
+        [PublicAPI, Pure]
+        public static explicit operator TLeft(in Either<TLeft, TRight> either)
+        {
+            return either.IsLeft
+                ? either._left
+                : throw new InvalidCastException("Either<TLeft, TRight> is not in Left state.");
+        }
+
+        /// <summary>
+        /// Explicit conversion operator from <see cref="Either{TLeft,TRight}"/> to a value of right type.
+        /// </summary>
+        /// <param name="either"><see cref="Either{TLeft,TRight}"/> to convert.</param>
+        /// <returns>The right value.</returns>
+        [PublicAPI, Pure]
+        public static explicit operator TRight(in Either<TLeft, TRight> either)
+        {
+            return either.IsRight
+                ? either._right
+                : throw new InvalidCastException("Either<TLeft, TRight> is not in Right state.");
         }
 
         #region Equality / IEquatable
