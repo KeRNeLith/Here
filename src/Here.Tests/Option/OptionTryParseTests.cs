@@ -5,13 +5,13 @@ using JetBrains.Annotations;
 using NUnit.Framework;
 using Here.Extensions;
 
-namespace Here.Tests.Maybes
+namespace Here.Tests.Options
 {
     /// <summary>
-    /// Tests for <see cref="Maybe{T}"/> try parse.
+    /// Tests for <see cref="Option{T}"/> try parse.
     /// </summary>
     [TestFixture]
-    internal class MaybeTryParseTests : MaybeTestsBase
+    internal class OptionTryParseTests : OptionTestsBase
     {
         private static readonly CultureInfo TestParseUSCultureInfo = new CultureInfo("en-US");
         private static readonly CultureInfo TestParseFRCultureInfo = new CultureInfo("fr-FR");
@@ -21,13 +21,13 @@ namespace Here.Tests.Maybes
         /// <summary>
         /// Call the <paramref name="tryParseFunc"/> and check if the result match expected value.
         /// </summary>
-        private static void TryParseTest<T>([NotNull, InstantHandle] Func<Maybe<T>> tryParseFunc, bool mustHaveValue, T expectedValue)
+        private static void TryParseTest<T>([NotNull, InstantHandle] Func<Option<T>> tryParseFunc, bool mustHaveValue, T expectedValue)
         {
-            var maybe = tryParseFunc();
+            var option = tryParseFunc();
             if (mustHaveValue)
-                CheckMaybeValue(maybe, expectedValue);
+                CheckOptionValue(option, expectedValue);
             else
-                CheckEmptyMaybe(maybe);
+                CheckEmptyOption(option);
         }
 
         #region TryParse bool
