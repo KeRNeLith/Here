@@ -11,7 +11,7 @@ namespace Here
     /// </summary>
     /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="EitherRight{TRight}"/>.</typeparam>
     [PublicAPI]
-    [DebuggerDisplay("IsRight, Value = {" + nameof(_right) + "}")]
+    [DebuggerDisplay("IsRight, Value = {" + nameof(Value) + "}")]
     public readonly struct EitherRight<TRight> :
         IEither,
         IEquatable<TRight>,
@@ -26,8 +26,11 @@ namespace Here
         /// <inheritdoc />
         public bool IsRight => true;
 
-        [NotNull]
-        internal readonly TRight _right;
+        /// <summary>
+        /// Right value.
+        /// </summary>
+        [PublicAPI, NotNull]
+        public readonly TRight Value;
 
         /// <summary>
         /// Construct an <see cref="EitherRight{TRight}"/> with a value.
@@ -38,7 +41,7 @@ namespace Here
             if (value == null)
                 throw new ArgumentNullException(nameof(value), "Cannot initialize an EitherRight<TRight> with a null value.");
 
-            _right = value;
+            Value = value;
         }
 
         #region Equality / IEquatable
@@ -46,13 +49,13 @@ namespace Here
         /// <inheritdoc />
         public bool Equals(TRight other)
         {
-            return EqualityComparer<TRight>.Default.Equals(_right, other);
+            return EqualityComparer<TRight>.Default.Equals(Value, other);
         }
 
         /// <inheritdoc />
         public bool Equals(EitherRight<TRight> other)
         {
-            return Equals(_right, other._right);
+            return Equals(Value, other.Value);
         }
 
         /// <inheritdoc />
@@ -90,7 +93,7 @@ namespace Here
         /// <inheritdoc />
         public override int GetHashCode()
         {
-            return EqualityComparer<TRight>.Default.GetHashCode(_right);
+            return EqualityComparer<TRight>.Default.GetHashCode(Value);
         }
 
         #endregion
@@ -104,8 +107,6 @@ namespace Here
                 return 1;
             if (obj is EitherRight<TRight> other)
                 return CompareTo(other);
-            if (obj is TRight value)
-                return CompareTo(value);
 
             throw new ArgumentException($"Cannot compare an object of type {obj.GetType()} with an {typeof(EitherRight<>)}");
         }
@@ -113,13 +114,13 @@ namespace Here
         /// <inheritdoc />
         public int CompareTo(TRight other)
         {
-            return Comparer<TRight>.Default.Compare(_right, other);
+            return Comparer<TRight>.Default.Compare(Value, other);
         }
 
         /// <inheritdoc />
         public int CompareTo(EitherRight<TRight> other)
         {
-            return CompareTo(other._right);
+            return CompareTo(other.Value);
         }
 
         /// <summary>
@@ -171,7 +172,7 @@ namespace Here
         /// <inheritdoc />
         public override string ToString()
         {
-            return $"Right({_right})";
+            return $"Right({Value})";
         }
     }
 }

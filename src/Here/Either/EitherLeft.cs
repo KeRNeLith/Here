@@ -104,8 +104,6 @@ namespace Here
                 return 1;
             if (obj is EitherLeft<TLeft> other)
                 return CompareTo(other);
-            if (obj is TLeft value)
-                return CompareTo(value);
 
             throw new ArgumentException($"Cannot compare an object of type {obj.GetType()} with an {typeof(EitherLeft<>)}");
         }

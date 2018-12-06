@@ -27,6 +27,12 @@ namespace Here
         IComparable<Either<TLeft, TRight>>
     {
         /// <summary>
+        /// <see cref="Either{TLeft,TRight}"/> that is not in <see cref="EitherStates.Left"/> state neither in <see cref="EitherStates.Right"/> state.
+        /// </summary>
+        [PublicAPI]
+        public static readonly Either<TLeft, TRight> None = new Either<TLeft, TRight>();
+
+        /// <summary>
         /// State of this <see cref="Either{TLeft,TRight}"/>.
         /// </summary>
         /// <seealso cref="EitherStates"/>
@@ -218,16 +224,16 @@ namespace Here
         /// <param name="either2">Second <see cref="Either{TLeft,TRight}"/> to compare.</param>
         /// <returns>True if both <see cref="Either{TLeft,TRight}"/> are equal, otherwise false.</returns>
         [Pure]
-        private static bool AreEqual(in Either<TLeft, TRight> either1, in Either<TLeft, TRight> either2)
+        internal static bool AreEqual(in Either<TLeft, TRight> either1, in Either<TLeft, TRight> either2)
         {
-            if (either1.IsNone == either2.IsNone)
-                return true;
-
             if (either1.IsLeft && either2.IsLeft)
                 return EqualityComparer<TLeft>.Default.Equals(either1._left, either2._left);
 
             if (either1.IsRight && either2.IsRight)
                 return EqualityComparer<TRight>.Default.Equals(either1._right, either2._right);
+
+            if (either1.IsNone == either2.IsNone)
+                return either1.IsNone;
 
             return false;
         }
@@ -367,14 +373,6 @@ namespace Here
                 return 1;
             if (obj is Either<TLeft, TRight> other)
                 return Compare(this, other);
-            if (obj is EitherRight<TRight> eitherRight)
-                return Compare(this, eitherRight);
-            if (obj is TRight rightValue)
-                return Compare(this, Right(rightValue));
-            if (obj is EitherLeft<TLeft> eitherLeft)
-                return Compare(this, eitherLeft);
-            if (obj is TLeft leftValue)
-                return Compare(this, Left(leftValue));
 
             throw new ArgumentException($"Cannot compare an object of type {obj.GetType()} with an {typeof(Either<TLeft, TRight>)}");
         }
@@ -410,7 +408,7 @@ namespace Here
         /// <inheritdoc />
         public int CompareTo(EitherRight<TRight> other)
         {
-            return Compare(this, Right(other._right));
+            return Compare(this, Right(other.Value));
         }
 
         /// <inheritdoc />
@@ -427,7 +425,7 @@ namespace Here
         /// <param name="either2">Second <see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <returns>An integer that indicates the relative order of compared objects.</returns>
         [Pure]
-        private static int Compare(in Either<TLeft, TRight> either1, in Either<TLeft, TRight> either2)
+        internal static int Compare(in Either<TLeft, TRight> either1, in Either<TLeft, TRight> either2)
         {
             if (either1.IsNone)
                 return either2.IsNone ? 0 : -1;
@@ -442,7 +440,7 @@ namespace Here
             // Implicitly either1 is Right
             if (either2.IsRight)
                 return Comparer<TRight>.Default.Compare(either1._right, either2._right);
-            return either2.IsNone ? 1 : -1;
+            return 1;
         }
 
         #region Operators < <= > >= (Either<TLeft, TRight> Vs Either<TLeft, TRight>)

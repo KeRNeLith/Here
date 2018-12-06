@@ -24,7 +24,7 @@ namespace Here
         [PublicAPI, Pure]
         public static implicit operator Either<TLeft, TRight>(EitherRight<TRight> eitherRight)
         {
-            return Right(eitherRight._right);
+            return Right(eitherRight.Value);
         }
     }
 }
