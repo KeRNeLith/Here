@@ -219,7 +219,7 @@ namespace Here
 
         #endregion
 
-        #region Equality
+        #region Equality / IEquatable<T>
 
         /// <summary>
         /// Checks that this <see cref="CustomResult{TError}"/> is equals to the given one and that they are successful.
@@ -288,7 +288,7 @@ namespace Here
             if (obj is CustomResult<TError> other)
                 return CompareTo(other);
 
-            throw new ArgumentException($"Cannot compare an object of type {obj.GetType()} with a {typeof(CustomResult<TError>)}");
+            throw new ArgumentException($"Cannot compare an object of type {obj.GetType()} with a {typeof(CustomResult<TError>)}.");
         }
 
         /// <inheritdoc />

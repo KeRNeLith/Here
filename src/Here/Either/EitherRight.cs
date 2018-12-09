@@ -44,7 +44,7 @@ namespace Here
             Value = value;
         }
 
-        #region Equality / IEquatable
+        #region Equality / IEquatable<T>
 
         /// <inheritdoc />
         public bool Equals(TRight other)
@@ -108,7 +108,7 @@ namespace Here
             if (obj is EitherRight<TRight> other)
                 return CompareTo(other);
 
-            throw new ArgumentException($"Cannot compare an object of type {obj.GetType()} with an {typeof(EitherRight<>)}");
+            throw new ArgumentException($"Cannot compare an object of type {obj.GetType()} with an {typeof(EitherRight<>)}.");
         }
 
         /// <inheritdoc />

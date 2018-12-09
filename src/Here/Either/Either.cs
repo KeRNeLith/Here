@@ -55,7 +55,7 @@ namespace Here
 
         [CanBeNull]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private readonly TLeft _left;
+        internal readonly TLeft _left;
 
         /// <summary>
         /// Gets the left value.
@@ -75,7 +75,7 @@ namespace Here
 
         [CanBeNull]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private readonly TRight _right;
+        internal readonly TRight _right;
 
         /// <summary>
         /// Gets the right value.
@@ -169,7 +169,7 @@ namespace Here
                 : throw new InvalidCastException("Either<TLeft, TRight> is not in Right state.");
         }
 
-        #region Equality / IEquatable
+        #region Equality / IEquatable<T>
 
         /// <summary>
         /// Indicates whether this <see cref="Either{TLeft,TRight}"/> is equals to the given value.
@@ -376,7 +376,7 @@ namespace Here
             if (obj is Either<TLeft, TRight> other)
                 return Compare(this, other);
 
-            throw new ArgumentException($"Cannot compare an object of type {obj.GetType()} with an {typeof(Either<TLeft, TRight>)}");
+            throw new ArgumentException($"Cannot compare an object of type {obj.GetType()} with an {typeof(Either<TLeft, TRight>)}.");
         }
 
         /// <summary>

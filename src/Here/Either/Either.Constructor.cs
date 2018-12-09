@@ -76,8 +76,6 @@ namespace Here
         [PublicAPI, Pure]
         public static EitherLeft<TLeft> Left<TLeft>([NotNull] in TLeft value)
         {
-            if (value == null)
-                throw new ArgumentNullException(nameof(value), "Cannot initialize an EitherLeft with a null value.");
             return new EitherLeft<TLeft>(value);
         }
 
@@ -165,8 +163,6 @@ namespace Here
         [PublicAPI, Pure]
         public static EitherRight<TRight> Right<TRight>([NotNull] in TRight value)
         {
-            if (value == null)
-                throw new ArgumentNullException(nameof(value), "Cannot initialize an EitherRight with a null value.");
             return new EitherRight<TRight>(value);
         }
 

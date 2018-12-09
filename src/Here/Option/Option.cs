@@ -76,7 +76,7 @@ namespace Here
             return new Option<T>(value);
         }
 
-        #region Equality / IEquatable
+        #region Equality / IEquatable<T>
 
         /// <inheritdoc />
         public bool Equals(T other)
@@ -218,7 +218,7 @@ namespace Here
             if (obj is Option<T> other)
                 return Compare(this, other);
 
-            throw new ArgumentException($"Cannot compare an object of type {obj.GetType()} with a {typeof(Option<T>)}");
+            throw new ArgumentException($"Cannot compare an object of type {obj.GetType()} with a {typeof(Option<T>)}.");
         }
 
         /// <inheritdoc />

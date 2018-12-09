@@ -280,7 +280,7 @@ namespace Here
 
         #endregion
 
-        #region Equality
+        #region Equality / IEquatable<T>
 
         /// <summary>
         /// Checks that this <see cref="Result"/> is equals to the given one and that they are successful.
@@ -349,7 +349,7 @@ namespace Here
             if (obj is Result other)
                 return CompareTo(other);
 
-            throw new ArgumentException($"Cannot compare an object of type {obj.GetType()} with a {typeof(Result)}");
+            throw new ArgumentException($"Cannot compare an object of type {obj.GetType()} with a {typeof(Result)}.");
         }
 
         /// <inheritdoc />
