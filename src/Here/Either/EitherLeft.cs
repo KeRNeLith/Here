@@ -11,7 +11,7 @@ namespace Here
     /// </summary>
     /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="EitherLeft{TLeft}"/>.</typeparam>
     [PublicAPI]
-    [DebuggerDisplay("IsLeft, Value = {" + nameof(_left) + "}")]
+    [DebuggerDisplay("IsLeft, Value = {" + nameof(Left) + "}")]
     public readonly struct EitherLeft<TLeft> :
         IEither,
         IEquatable<TLeft>,
@@ -27,7 +27,7 @@ namespace Here
         public bool IsRight => false;
 
         [NotNull]
-        internal readonly TLeft _left;
+        internal readonly TLeft Left;
 
         /// <summary>
         /// Construct an <see cref="EitherLeft{TLeft}"/> with a value.
@@ -38,7 +38,7 @@ namespace Here
             if (value == null)
                 throw new ArgumentNullException(nameof(value), "Cannot initialize an EitherLeft<TLeft> with a null value.");
 
-            _left = value;
+            Left = value;
         }
 
         #region Equality / IEquatable
@@ -46,13 +46,13 @@ namespace Here
         /// <inheritdoc />
         public bool Equals(TLeft other)
         {
-            return EqualityComparer<TLeft>.Default.Equals(_left, other);
+            return EqualityComparer<TLeft>.Default.Equals(Left, other);
         }
 
         /// <inheritdoc />
         public bool Equals(EitherLeft<TLeft> other)
         {
-            return Equals(_left, other._left);
+            return Equals(Left, other.Left);
         }
 
         /// <inheritdoc />
@@ -90,7 +90,7 @@ namespace Here
         /// <inheritdoc />
         public override int GetHashCode()
         {
-            return EqualityComparer<TLeft>.Default.GetHashCode(_left);
+            return EqualityComparer<TLeft>.Default.GetHashCode(Left);
         }
 
         #endregion
@@ -111,13 +111,13 @@ namespace Here
         /// <inheritdoc />
         public int CompareTo(TLeft other)
         {
-            return Comparer<TLeft>.Default.Compare(_left, other);
+            return Comparer<TLeft>.Default.Compare(Left, other);
         }
 
         /// <inheritdoc />
         public int CompareTo(EitherLeft<TLeft> other)
         {
-            return CompareTo(other._left);
+            return CompareTo(other.Left);
         }
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace Here
         /// <inheritdoc />
         public override string ToString()
         {
-            return $"Left({_left})";
+            return $"Left({Left})";
         }
     }
 }

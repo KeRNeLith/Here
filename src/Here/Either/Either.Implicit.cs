@@ -13,7 +13,7 @@ namespace Here
         [PublicAPI, Pure]
         public static implicit operator Either<TLeft, TRight>(EitherLeft<TLeft> eitherLeft)
         {
-            return Left(eitherLeft._left);
+            return Left(eitherLeft.Left);
         }
 
         /// <summary>

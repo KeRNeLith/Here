@@ -30,7 +30,7 @@ namespace Here
         /// <see cref="Either{TLeft,TRight}"/> that is not in <see cref="EitherStates.Left"/> state neither in <see cref="EitherStates.Right"/> state.
         /// </summary>
         [PublicAPI]
-        public static readonly Either<TLeft, TRight> None = new Either<TLeft, TRight>();
+        public static readonly Either<TLeft, TRight> None;
 
         /// <summary>
         /// State of this <see cref="Either{TLeft,TRight}"/>.
@@ -68,6 +68,7 @@ namespace Here
                 if (!IsLeft)
                     throw new InvalidOperationException("Trying to get the left value while there is no one.");
 
+                // ReSharper disable once AssignNullToNotNullAttribute, Justification: Here the value should be not null because the Either is in a left state.
                 return _left;
             }
         }
@@ -87,6 +88,7 @@ namespace Here
                 if (!IsRight)
                     throw new InvalidOperationException("Trying to get the right value while there is no one.");
 
+                // ReSharper disable once AssignNullToNotNullAttribute, Justification: Here the value should be not null because the Either is in a right state.
                 return _right;
             }
         }
@@ -396,7 +398,7 @@ namespace Here
         /// <returns>The comparison with the given <see cref="EitherLeft{TLeft}"/>.</returns>
         public int CompareTo(EitherLeft<TLeft> other)
         {
-            return Compare(this, Left(other._left));
+            return Compare(this, Left(other.Left));
         }
 
         /// <inheritdoc />

@@ -36,6 +36,9 @@ namespace Here.Tests.Eithers
             Either<double, int> eitherLeft6 = ((double?)22.0).ToEither<double, int>();
             CheckLeftEither(eitherLeft6, 22.0);
 
+            Assert.Throws<ArgumentNullException>(() => { Either<Person, int> _ = Either.Left((Person)null); });
+            Assert.Throws<ArgumentNullException>(() => { Either<Person, int> _ = Either.Left<Person, int>(null); });
+            // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => { Either<double, int> _ = ((double?)null).ToEither<double, int>(); });
 
             Either<int, int> eitherLeft7 = Either.Left(1);
@@ -80,6 +83,9 @@ namespace Here.Tests.Eithers
             Either<double, int> eitherRight6 = ((int?)22).ToEither<double, int>();
             CheckRightEither(eitherRight6, 22);
 
+            Assert.Throws<ArgumentNullException>(() => { Either<double, Person> _ = Either.Right((Person)null); });
+            Assert.Throws<ArgumentNullException>(() => { Either<double, Person> _ = Either.Right<double, Person>(null); });
+            // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => { Either<double, int> _ = ((double?)null).ToEither<double, int>(); });
 
             Either<int, int> eitherRight7 = Either.Right(1);
@@ -265,8 +271,10 @@ namespace Here.Tests.Eithers
 
             var eitherRightInt1 = Either.Right(12);
             var eitherRightInt2 = Either.Right(42);
+            // ReSharper disable SuspiciousTypeConversion.Global
             Assert.IsFalse(eitherLeftIntDouble1.Equals(eitherRightInt1));
             Assert.IsFalse(eitherLeftIntDouble1.Equals(eitherRightInt2));
+            // ReSharper restore SuspiciousTypeConversion.Global
 
             var eitherRightDouble = Either.Right(12.5);
             Assert.IsFalse(eitherLeftIntDouble1 == eitherRightDouble);
@@ -472,8 +480,10 @@ namespace Here.Tests.Eithers
 
             var eitherLeftInt1 = Either.Left(12);
             var eitherLeftInt2 = Either.Left(42);
+            // ReSharper disable SuspiciousTypeConversion.Global
             Assert.IsFalse(eitherRightDoubleInt1.Equals(eitherLeftInt1));
             Assert.IsFalse(eitherRightDoubleInt1.Equals(eitherLeftInt2));
+            // ReSharper restore SuspiciousTypeConversion.Global
 
             var eitherLeftDouble = Either.Left(12.5);
             Assert.IsFalse(eitherRightDoubleInt1 == eitherLeftDouble);
@@ -547,8 +557,10 @@ namespace Here.Tests.Eithers
             var eitherLeftIntDouble = Either.Left<int, double>(12);
             var eitherRightDoubleInt = Either.Right<double, int>(12);
 
+            // ReSharper disable SuspiciousTypeConversion.Global
             Assert.IsFalse(eitherLeftDoubleInt.Equals(eitherLeftIntDouble));
             Assert.IsFalse(eitherLeftIntDouble.Equals(eitherLeftDoubleInt));
+            // ReSharper restore SuspiciousTypeConversion.Global
 
             Assert.IsFalse(eitherLeftDoubleInt.Equals(eitherRightDoubleInt));
             Assert.IsFalse(eitherRightDoubleInt.Equals(eitherLeftDoubleInt));
@@ -557,8 +569,10 @@ namespace Here.Tests.Eithers
             Assert.IsTrue(eitherLeftDoubleInt != eitherRightDoubleInt);
             Assert.IsTrue(eitherRightDoubleInt != eitherLeftDoubleInt);
 
+            // ReSharper disable SuspiciousTypeConversion.Global
             Assert.IsFalse(eitherLeftIntDouble.Equals(eitherRightDoubleInt));
             Assert.IsFalse(eitherRightDoubleInt.Equals(eitherLeftIntDouble));
+            // ReSharper restore SuspiciousTypeConversion.Global
 
             // Same left and right type
             var eitherLeftIntInt = Either.Left<int, int>(12);
@@ -936,6 +950,7 @@ namespace Here.Tests.Eithers
             CheckEitherLeft(eitherLeft2, 12);
 
             Assert.Throws<ArgumentNullException>(() => Either.Left((int?)null));
+            Assert.Throws<ArgumentNullException>(() => Either.Left((Person)null));
         }
 
         [Test]
@@ -1010,8 +1025,8 @@ namespace Here.Tests.Eithers
             // Mixed
             Assert.IsTrue(eitherLeftInt1.Equals(12));
             Assert.IsFalse(eitherLeftInt1.Equals(42));
-            Assert.IsFalse(eitherLeftPerson1.Equals(12));
             // ReSharper disable SuspiciousTypeConversion.Global
+            Assert.IsFalse(eitherLeftPerson1.Equals(12));
             Assert.IsFalse(eitherLeftInt1.Equals(eitherLeftPerson1));
             Assert.IsFalse(eitherLeftPerson1.Equals(eitherLeftInt1));
             // ReSharper restore SuspiciousTypeConversion.Global
@@ -1107,6 +1122,7 @@ namespace Here.Tests.Eithers
             EitherRight<int> eitherLeft2 = Either.Right((int?)12);
             CheckEitherRight(eitherLeft2, 12);
 
+            Assert.Throws<ArgumentNullException>(() => Either.Right((Person)null));
             Assert.Throws<ArgumentNullException>(() => Either.Right((int?)null));
         }
 
@@ -1182,8 +1198,8 @@ namespace Here.Tests.Eithers
             // Mixed
             Assert.IsTrue(eitherRightInt1.Equals(12));
             Assert.IsFalse(eitherRightInt1.Equals(42));
-            Assert.IsFalse(eitherRightPerson1.Equals(12));
             // ReSharper disable SuspiciousTypeConversion.Global
+            Assert.IsFalse(eitherRightPerson1.Equals(12));
             Assert.IsFalse(eitherRightInt1.Equals(eitherRightPerson1));
             Assert.IsFalse(eitherRightPerson1.Equals(eitherRightInt1));
             // ReSharper restore SuspiciousTypeConversion.Global
