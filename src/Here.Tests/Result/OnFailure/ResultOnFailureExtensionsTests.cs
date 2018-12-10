@@ -12,154 +12,128 @@ namespace Here.Tests.Results
         [Test]
         public void ResultOnFailureToValue()
         {
-            int counter = 0;
+            #region Local functions
+
+            void CheckOnFailure(Result result, bool treatWarningAsError, bool expectFailure)
+            {
+                int counterFailure = 0;
+                float res = result.OnFailure(
+                    r =>
+                    {
+                        ++counterFailure;
+                        return 42.5f;
+                    },
+                    -1f,
+                    treatWarningAsError);
+                Assert.AreEqual(expectFailure ? 1 : 0, counterFailure);
+                Assert.AreEqual(expectFailure ? 42.5f : -1f, res);
+            }
+
+            void CheckOnFailureFunc(Result result, bool treatWarningAsError, bool expectFailure)
+            {
+                int counterFailure = 0;
+                int counterFactory = 0;
+                float res = result.OnFailure(
+                    r =>
+                    {
+                        ++counterFailure;
+                        return 43.5f;
+                    },
+                    () =>
+                    {
+                        ++counterFactory;
+                        return -2f;
+                    },
+                    treatWarningAsError);
+                Assert.AreEqual(expectFailure ? 1 : 0, counterFailure);
+                Assert.AreEqual(expectFailure ? 0 : 1, counterFactory);
+                Assert.AreEqual(expectFailure ? 43.5f : -2f, res);
+            }
+
+            #endregion
+
             // Ok result
             var ok = Result.Ok();
-
-            var result = ok.OnFailure(
-                res =>
-                {
-                    ++counter;
-                    return 42.5f;
-                },
-                -1f);
-            Assert.AreEqual(0, counter);
-            Assert.AreEqual(-1f, result);
-
-            result = ok.OnFailure(
-                res =>
-                {
-                    ++counter;
-                    return 43.5f;
-                },
-                -2f,
-                true);
-            Assert.AreEqual(0, counter);
-            Assert.AreEqual(-2f, result);
+            CheckOnFailure(ok, false, false); 
+            CheckOnFailure(ok, true, false);
+            CheckOnFailureFunc(ok, false, false);
+            CheckOnFailureFunc(ok, true, false);
 
             // Warning result
             var warning = Result.Warn("My warning");
-
-            result = warning.OnFailure(
-                res =>
-                {
-                    ++counter;
-                    return 44.5f;
-                },
-                -3f);
-            Assert.AreEqual(0, counter);
-            Assert.AreEqual(-3f, result);
-
-            result = warning.OnFailure(
-                res =>
-                {
-                    ++counter;
-                    return 45.5f;
-                },
-                -4f,
-                true);
-            Assert.AreEqual(1, counter);
-            Assert.AreEqual(45.5f, result);
+            CheckOnFailure(warning, false, false);
+            CheckOnFailure(warning, true, true);
+            CheckOnFailureFunc(warning, false, false);
+            CheckOnFailureFunc(warning, true, true);
 
             // Failure result
             var failure = Result.Fail("My failure");
-
-            result = failure.OnFailure(
-                res =>
-                {
-                    ++counter;
-                    return 46.5f;
-                },
-                -4f);
-            Assert.AreEqual(2, counter);
-            Assert.AreEqual(46.5f, result);
-
-            result = failure.OnFailure(
-                res =>
-                {
-                    ++counter;
-                    return 47.5f;
-                },
-                -4f,
-                true);
-            Assert.AreEqual(3, counter);
-            Assert.AreEqual(47.5f, result);
+            CheckOnFailure(failure, false, true);
+            CheckOnFailure(failure, true, true);
+            CheckOnFailureFunc(failure, false, true);
+            CheckOnFailureFunc(failure, true, true);
         }
 
         [Test]
         public void ResultOnFailureToResult()
         {
-            int counter = 0;
+            #region Local function
+
+            void CheckOnFailure(Result result, bool treatWarningAsError, bool expectFailure)
+            {
+                int counterFailure = 0;
+                Result res = result.OnFailure(() => ++counterFailure, treatWarningAsError);
+                Assert.AreEqual(expectFailure ? 1 : 0, counterFailure);
+                Assert.AreEqual(result, res);
+            }
+
+            #endregion
+            
             // Ok result
             var ok = Result.Ok();
-
-            var result = ok.OnFailure(() => ++counter);
-            Assert.AreEqual(0, counter);
-            CheckResultOk(result);
-
-            result = ok.OnFailure(() => ++counter, true);
-            Assert.AreEqual(0, counter);
-            CheckResultOk(result);
+            CheckOnFailure(ok, false, false);
+            CheckOnFailure(ok, true, false);
 
             // Warning result
             var warning = Result.Warn("My warning");
-
-            result = warning.OnFailure(() => ++counter);
-            Assert.AreEqual(0, counter);
-            CheckResultWarn(result, "My warning");
-
-            result = warning.OnFailure(() => ++counter, true);
-            Assert.AreEqual(1, counter);
-            CheckResultFail(result, "My warning");
+            CheckOnFailure(warning, false, false);
+            CheckOnFailure(warning, true, true);
 
             // Failure result
             var failure = Result.Fail("My failure");
-
-            result = failure.OnFailure(() => ++counter);
-            Assert.AreEqual(2, counter);
-            CheckResultFail(result, "My failure");
-
-            result = failure.OnFailure(() => ++counter, true);
-            Assert.AreEqual(3, counter);
-            CheckResultFail(result, "My failure");
+            CheckOnFailure(failure, false, true);
+            CheckOnFailure(failure, true, true);
         }
 
         [Test]
         public void ResultOnFailureToResultWithParam()
         {
-            int counter = 0;
+            #region Local function
+
+            void CheckOnFailure(Result result, bool treatWarningAsError, bool expectFailure)
+            {
+                int counterFailure = 0;
+                Result res = result.OnFailure(r => ++counterFailure, treatWarningAsError);
+                Assert.AreEqual(expectFailure ? 1 : 0, counterFailure);
+                Assert.AreEqual(result, res);
+            }
+
+            #endregion
+
             // Ok result
             var ok = Result.Ok();
-
-            var result = ok.OnFailure(res => ++counter);
-            Assert.AreEqual(0, counter);
-            CheckResultOk(result);
-
-            result = ok.OnFailure(res => ++counter, true);
-            Assert.AreEqual(0, counter);
-            CheckResultOk(result);
+            CheckOnFailure(ok, false, false);
+            CheckOnFailure(ok, true, false);
 
             // Warning result
             var warning = Result.Warn("My warning");
-
-            result = warning.OnFailure(res => ++counter);
-            Assert.AreEqual(0, counter);
-            CheckResultWarn(result, "My warning");
-
-            result = warning.OnFailure(res => ++counter, true);
-            Assert.AreEqual(1, counter);
-            CheckResultFail(result, "My warning");
+            CheckOnFailure(warning, false, false);
+            CheckOnFailure(warning, true, true);
 
             // Failure result
             var failure = Result.Fail("My failure");
-
-            result = failure.OnFailure(res => ++counter);
-            Assert.AreEqual(2, counter);
-            CheckResultFail(result, "My failure");
-
-            result = failure.OnFailure(res => ++counter, true);
-            Assert.AreEqual(3, counter);
-            CheckResultFail(result, "My failure");
+            CheckOnFailure(failure, false, true);
+            CheckOnFailure(failure, true, true);
         }
     }
 }
