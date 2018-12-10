@@ -38,14 +38,28 @@ namespace Here.Extensions
         /// <param name="result"><see cref="Result"/> to check.</param>
         /// <param name="onSuccess">Action to run if the <see cref="Result"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="Result"/>.</returns>
+        /// <returns>This <see cref="Result"/>.</returns>
         [PublicAPI]
         public static Result OnSuccess(in this Result result, [NotNull, InstantHandle] in Action onSuccess, in bool treatWarningAsError = false)
         {
             if (IsConsideredSuccess(result, treatWarningAsError))
                 onSuccess();
-            else if (result.IsWarning)  // Warning as error
-                return result.ToFailResult();
+
+            return result;
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onSuccess"/> action when the <paramref name="result"/> is a success.
+        /// </summary>
+        /// <param name="result"><see cref="Result"/> to check.</param>
+        /// <param name="onSuccess">Action to run if the <see cref="Result"/> is a success.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <returns>This <see cref="Result"/>.</returns>
+        [PublicAPI]
+        public static Result OnSuccess(in this Result result, [NotNull, InstantHandle] in Action<Result> onSuccess, in bool treatWarningAsError = false)
+        {
+            if (IsConsideredSuccess(result, treatWarningAsError))
+                onSuccess(result);
 
             return result;
         }
@@ -216,6 +230,27 @@ namespace Here.Extensions
             return defaultValue;
         }
 
+        /// <summary>
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success,
+        /// otherwise return the <paramref name="valueFactory"/> return value.
+        /// </summary>
+        /// <typeparam name="TOut">Type of the output value.</typeparam>
+        /// <param name="result"><see cref="Result"/> to check.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="Result"/> is a success.</param>
+        /// <param name="valueFactory">Function called to create a value to return if the result is not a success.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <returns>An output value.</returns>
+        [PublicAPI]
+        public static TOut OnSuccess<TOut>(in this Result result,
+            [NotNull, InstantHandle] in Func<Result, TOut> onSuccess,
+            [NotNull, InstantHandle] in Func<TOut> valueFactory,
+            in bool treatWarningAsError = false)
+        {
+            if (IsConsideredSuccess(result, treatWarningAsError))
+                return onSuccess(result);
+            return valueFactory();
+        }
+
         #endregion
 
         #region Result<T>
@@ -227,7 +262,7 @@ namespace Here.Extensions
         /// <param name="result"><see cref="Result{T}"/> to check.</param>
         /// <param name="onSuccess">Action to run if the <see cref="Result{T}"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="Result{T}"/>.</returns>
+        /// <returns>This <see cref="Result{T}"/>.</returns>
         [PublicAPI]
         public static Result<T> OnSuccess<T>(in this Result<T> result,
             [NotNull, InstantHandle] in Action<T> onSuccess,
@@ -235,8 +270,6 @@ namespace Here.Extensions
         {
             if (IsConsideredSuccess(result, treatWarningAsError))
                 onSuccess(result.Value);
-            else if (result.IsWarning)  // Warning as error
-                return result.ToFailValueResult<T>();
 
             return result;
         }
@@ -422,6 +455,28 @@ namespace Here.Extensions
             return defaultValue;
         }
 
+        /// <summary>
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success,
+        /// otherwise return the <paramref name="valueFactory"/> return value.
+        /// </summary>
+        /// <typeparam name="TIn">Result input value type.</typeparam>
+        /// <typeparam name="TOut">Type of the output value.</typeparam>
+        /// <param name="result"><see cref="Result{TIn}"/> to check.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="Result{TIn}"/> is a success.</param>
+        /// <param name="valueFactory">Function called to create a value to return if the result is not a success.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <returns>An output value.</returns>
+        [PublicAPI]
+        public static TOut OnSuccess<TIn, TOut>(in this Result<TIn> result,
+            [NotNull, InstantHandle] in Func<Result<TIn>, TOut> onSuccess,
+            [NotNull, InstantHandle] in Func<TOut> valueFactory,
+            in bool treatWarningAsError = false)
+        {
+            if (IsConsideredSuccess(result, treatWarningAsError))
+                return onSuccess(result);
+            return valueFactory();
+        }
+
         #endregion
 
         #region CustomResult<TError>
@@ -432,19 +487,15 @@ namespace Here.Extensions
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
         /// <param name="onSuccess">Action to run if the <see cref="CustomResult{TError}"/> is a success.</param>
-        /// <param name="errorObject">Custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
+        /// <returns>This <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI]
         public static CustomResult<TError> OnSuccess<TError>(in this CustomResult<TError> result,
             [NotNull, InstantHandle] in Action onSuccess,
-            [NotNull] in TError errorObject,
             in bool treatWarningAsError = false)
         {
             if (IsConsideredSuccess(result, treatWarningAsError))
                 onSuccess();
-            else if (result.IsWarning)  // Warning as error
-                return result.ToFailCustomResult(errorObject);
 
             return result;
         }
@@ -455,19 +506,15 @@ namespace Here.Extensions
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
         /// <param name="onSuccess">Action to run if the <see cref="CustomResult{TError}"/> is a success.</param>
-        /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
+        /// <returns>This <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI]
         public static CustomResult<TError> OnSuccess<TError>(in this CustomResult<TError> result,
-            [NotNull, InstantHandle] in Action onSuccess,
-            [NotNull, InstantHandle] in Func<TError> errorFactory,
+            [NotNull, InstantHandle] in Action<CustomResult<TError>> onSuccess,
             in bool treatWarningAsError = false)
         {
             if (IsConsideredSuccess(result, treatWarningAsError))
-                onSuccess();
-            else if (result.IsWarning)  // Warning as error
-                return result.ToFailCustomResult(errorFactory());
+                onSuccess(result);
 
             return result;
         }
@@ -691,6 +738,28 @@ namespace Here.Extensions
             return defaultValue;
         }
 
+        /// <summary>
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success,
+        /// otherwise return the <paramref name="valueFactory"/> return value.
+        /// </summary>
+        /// <typeparam name="TOut">Type of the output value.</typeparam>
+        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="CustomResult{TError}"/> is a success.</param>
+        /// <param name="valueFactory">Function called to create a value to return if the result is not a success.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <returns>An output value.</returns>
+        [PublicAPI]
+        public static TOut OnSuccess<TOut, TError>(in this CustomResult<TError> result,
+            [NotNull, InstantHandle] in Func<CustomResult<TError>, TOut> onSuccess,
+            [NotNull, InstantHandle] in Func<TOut> valueFactory,
+            in bool treatWarningAsError = false)
+        {
+            if (IsConsideredSuccess(result, treatWarningAsError))
+                return onSuccess(result);
+            return valueFactory();
+        }
+
         #endregion
 
         #region Result<T, TError>
@@ -702,43 +771,15 @@ namespace Here.Extensions
         /// <typeparam name="TError">Result custom error type.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/> to check.</param>
         /// <param name="onSuccess">Action to run if the <see cref="Result{T, TError}"/> is a success.</param>
-        /// <param name="errorObject">Custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="Result{T, TError}"/>.</returns>
+        /// <returns>This <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI]
         public static Result<T, TError> OnSuccess<T, TError>(in this Result<T, TError> result,
             [NotNull, InstantHandle] in Action<T> onSuccess,
-            [NotNull] in TError errorObject,
             in bool treatWarningAsError = false)
         {
             if (IsConsideredSuccess(result, treatWarningAsError))
                 onSuccess(result.Value);
-            else if (result.IsWarning)  // Warning as error
-                return result.ToFailValueCustomResult<T>(errorObject);
-
-            return result;
-        }
-
-        /// <summary>
-        /// Calls the <paramref name="onSuccess"/> action when the <paramref name="result"/> is a success.
-        /// </summary>
-        /// <typeparam name="T">Result value type.</typeparam>
-        /// <typeparam name="TError">Result custom error type.</typeparam>
-        /// <param name="result"><see cref="Result{T, TError}"/> to check.</param>
-        /// <param name="onSuccess">Action to run if the <see cref="Result{T, TError}"/> is a success.</param>
-        /// <param name="errorFactory">Function to create a custom error object.</param>
-        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>A <see cref="Result{T, TError}"/>.</returns>
-        [PublicAPI]
-        public static Result<T, TError> OnSuccess<T, TError>(in this Result<T, TError> result,
-            [NotNull, InstantHandle] in Action<T> onSuccess,
-            [NotNull, InstantHandle] in Func<TError> errorFactory,
-            in bool treatWarningAsError = false)
-        {
-            if (IsConsideredSuccess(result, treatWarningAsError))
-                onSuccess(result.Value);
-            else if (result.IsWarning)  // Warning as error
-                return result.ToFailValueCustomResult<T>(errorFactory());
 
             return result;
         }
@@ -967,6 +1008,29 @@ namespace Here.Extensions
             if (IsConsideredSuccess(result, treatWarningAsError))
                 return onSuccess(result);
             return defaultValue;
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success,
+        /// otherwise return the <paramref name="valueFactory"/> return value.
+        /// </summary>
+        /// <typeparam name="TIn">Result input value type.</typeparam>
+        /// <typeparam name="TOut">Type of the output value.</typeparam>
+        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <param name="result"><see cref="Result{TIn, TError}"/> to check.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="Result{TIn, TError}"/> is a success.</param>
+        /// <param name="valueFactory">Function called to create a value to return if the result is not a success.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <returns>An output value.</returns>
+        [PublicAPI]
+        public static TOut OnSuccess<TIn, TOut, TError>(in this Result<TIn, TError> result,
+            [NotNull, InstantHandle] in Func<Result<TIn, TError>, TOut> onSuccess,
+            [NotNull, InstantHandle] in Func<TOut> valueFactory,
+            in bool treatWarningAsError = false)
+        {
+            if (IsConsideredSuccess(result, treatWarningAsError))
+                return onSuccess(result);
+            return valueFactory();
         }
 
         #endregion
