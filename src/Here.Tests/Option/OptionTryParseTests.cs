@@ -485,5 +485,136 @@ namespace Here.Tests.Options
         }
 
         #endregion
+
+        #region TryParse Guid
+
+        /// <summary>
+        /// Call the <paramref name="tryParseFunc"/> and check if the result match expected value.
+        /// </summary>
+        private static void TryParseGuidTest([NotNull, InstantHandle] Func<Option<Guid>> tryParseFunc, bool mustHaveValue)
+        {
+            var option = tryParseFunc();
+            if (mustHaveValue)
+            {
+                Assert.IsTrue(option.HasValue);
+                Assert.IsFalse(option.HasNoValue);
+            }
+            else
+                CheckEmptyOption(option);
+        }
+
+        private static IEnumerable<TestCaseData> CreateTryParseGuidTestCases
+        {
+            [UsedImplicitly]
+            get
+            {
+                yield return new TestCaseData(null, false);
+                yield return new TestCaseData(string.Empty, false);
+                yield return new TestCaseData("81a130d2502f4cf1a37663edeb000e9f", true);
+                yield return new TestCaseData("81a130d2-502f-4cf1-a376-63edeb000e9f", true);
+                yield return new TestCaseData("{81a130d2-502f-4cf1-a376-63edeb000e9f}", true);
+                yield return new TestCaseData("(81a130d2-502f-4cf1-a376-63edeb000e9f)", true);
+                yield return new TestCaseData("(81a130d2-502f-4cf1-a376-63edeb000e9f)", true);
+                yield return new TestCaseData("{0x81a130d2,0x502f,0x4cf1,{0xa3,0x76,0x63,0xed,0xeb,0x00,0x0e,0x9f}}", true);
+                yield return new TestCaseData("guid", false);
+                yield return new TestCaseData("azerty", false);
+                yield return new TestCaseData("     ", false);
+            }
+        }
+
+        [TestCaseSource(nameof(CreateTryParseGuidTestCases))]
+        public void TryParseGuid(string input, bool mustHaveValue)
+        {
+            TryParseGuidTest(input.TryParseGuid, mustHaveValue);
+        }
+
+        #endregion
+
+        #region TryParse DateTime
+
+        private static IEnumerable<TestCaseData> CreateTryParseDateTimeTestCases
+        {
+            [UsedImplicitly]
+            get
+            {
+                yield return new TestCaseData(null, false, null);
+                yield return new TestCaseData(string.Empty, false, null);
+                yield return new TestCaseData("05/01/2009 14:57:32.8", true, new DateTime(2009, 1, 5, 14, 57, 32, 800));
+                yield return new TestCaseData("2009-05-01 14:57:32.8", true, new DateTime(2009, 5, 1, 14, 57, 32, 800));
+                yield return new TestCaseData("5/01/2008", true, new DateTime(2008, 1, 5));
+                yield return new TestCaseData("5/01/2008 14:57:32.80 -07:00", true, new DateTime(2008, 1, 5, 22, 57, 32, 800));
+                yield return new TestCaseData("1 May 2008 2:57:32.8 PM", true, new DateTime(2008, 5, 1, 14, 57, 32, 800));
+                yield return new TestCaseData("16-05-2009 1:00:32 PM", true, new DateTime(2009, 5, 16, 13, 0, 32));
+                yield return new TestCaseData("Fri, 15 May 2009 20:10:57 GMT", true, new DateTime(2009, 5, 15, 22, 10, 57));
+                yield return new TestCaseData("azerty", false, null);
+                yield return new TestCaseData("   ", false, null);
+            }
+        }
+
+
+        [TestCaseSource(nameof(CreateTryParseDateTimeTestCases))]
+        public void TryParseDateTime(string input, bool mustHaveValue, DateTime expectedValue)
+        {
+            TryParseTest(input.TryParseDateTime, mustHaveValue, expectedValue);
+        }
+
+        #endregion
+
+        #region TryParse DateTimeOffset
+
+        private static IEnumerable<TestCaseData> CreateTryParseDateTimeOffsetTestCases
+        {
+            [UsedImplicitly]
+            get
+            {
+                yield return new TestCaseData(null, false, null);
+                yield return new TestCaseData(string.Empty, false, null);
+                yield return new TestCaseData("05/01/2008 6:00:00", true, new DateTimeOffset(2008, 1, 5, 6, 0, 0, new TimeSpan(0, 1, 0, 0)));
+                yield return new TestCaseData("05/01/2008 6:00:00AM +5:00", true, new DateTimeOffset(2008, 1, 5, 6, 0, 0, new TimeSpan(0, 5, 0, 0)));
+                yield return new TestCaseData("azerty", false, null);
+                yield return new TestCaseData("   ", false, null);
+            }
+        }
+
+
+        [TestCaseSource(nameof(CreateTryParseDateTimeOffsetTestCases))]
+        public void TryParseDateTimeOffset(string input, bool mustHaveValue, DateTimeOffset expectedValue)
+        {
+            TryParseTest(input.TryParseDateTimeOffset, mustHaveValue, expectedValue);
+        }
+
+        #endregion
+
+        #region TryParse Enumeration
+
+        public enum TestEnum
+        {
+            Value1,
+            Value2
+        }
+
+        private static IEnumerable<TestCaseData> CreateTryParseEnumTestCases
+        {
+            [UsedImplicitly]
+            get
+            {
+                yield return new TestCaseData(null, false, null);
+                yield return new TestCaseData(string.Empty, false, null);
+                yield return new TestCaseData("Value1", true, TestEnum.Value1);
+                yield return new TestCaseData("Value2", true, TestEnum.Value2);
+                yield return new TestCaseData("value1", false, null);
+                yield return new TestCaseData("azerty", false, null);
+                yield return new TestCaseData("   ", false, null);
+            }
+        }
+
+
+        [TestCaseSource(nameof(CreateTryParseEnumTestCases))]
+        public void TryParseEnum(string input, bool mustHaveValue, TestEnum expectedValue)
+        {
+            TryParseTest(input.TryParseEnum<TestEnum>, mustHaveValue, expectedValue);
+        }
+
+        #endregion
     }
 }
