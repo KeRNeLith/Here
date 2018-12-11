@@ -382,6 +382,7 @@ namespace Here.Extensions
             return Parse<double>(str, double.TryParse, style, culture);
         }
 
+#if (!NET20 && !NET30 && !NET35)
         /// <summary>
         /// Try to parse a <see cref="Guid"/> from the given string.
         /// </summary>
@@ -392,6 +393,7 @@ namespace Here.Extensions
         {
             return Get<string, Guid>(str, Guid.TryParse);
         }
+#endif
 
         /// <summary>
         /// Try to parse a <see cref="DateTime"/> from the given string.
@@ -415,6 +417,7 @@ namespace Here.Extensions
             return Get<string, DateTimeOffset>(str, DateTimeOffset.TryParse);
         }
 
+#if (!NET20 && !NET30 && !NET35)
         /// <summary>
         /// Try to parse an enumeration value from the given string to its <see cref="Enum"/> equivalent.
         /// </summary>
@@ -427,6 +430,7 @@ namespace Here.Extensions
         {
             return Get<string, TEnum>(str, Enum.TryParse);
         }
+#endif
 
         #endregion
     }
