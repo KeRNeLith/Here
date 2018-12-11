@@ -14,7 +14,7 @@ namespace Here.Tests.Results
         {
             #region Local function
 
-            void CheckOnAny(Result<int> result, bool treatWarningAsError)
+            void CheckOnAny(Result<int> result)
             {
                 int counter = 0;
                 Result<int> res = result.OnAny(() => { ++counter; });
@@ -26,18 +26,15 @@ namespace Here.Tests.Results
 
             // Ok result
             var ok = Result.Ok(81);
-            CheckOnAny(ok, false);
-            CheckOnAny(ok, true);
+            CheckOnAny(ok);
 
             // Warning result
             var warning = Result.Warn(92, "My warning");
-            CheckOnAny(warning, false);
-            CheckOnAny(warning, true);
+            CheckOnAny(warning);
 
             // Failure result
             var failure = Result.Fail<int>("My failure");
-            CheckOnAny(failure, false);
-            CheckOnAny(failure, true);
+            CheckOnAny(failure);
         }
 
         [Test]
@@ -45,7 +42,7 @@ namespace Here.Tests.Results
         {
             #region Local function
 
-            void CheckOnAny(Result<int> result, bool treatWarningAsError)
+            void CheckOnAny(Result<int> result)
             {
                 int counter = 0;
                 Result<int> res = result.OnAny(r => { ++counter; });
@@ -57,18 +54,15 @@ namespace Here.Tests.Results
 
             // Ok result
             var ok = Result.Ok(42);
-            CheckOnAny(ok, false);
-            CheckOnAny(ok, true);
+            CheckOnAny(ok);
 
             // Warning result
             var warning = Result.Warn(78, "My warning");
-            CheckOnAny(warning, false);
-            CheckOnAny(warning, true);
+            CheckOnAny(warning);
 
             // Failure result
             var failure = Result.Fail<int>("My failure");
-            CheckOnAny(failure, false);
-            CheckOnAny(failure, true);
+            CheckOnAny(failure);
         }
 
         [Test]
@@ -76,7 +70,7 @@ namespace Here.Tests.Results
         {
             #region Local functions
 
-            void CheckOnAny(Result<int> result, bool treatWarningAsError)
+            void CheckOnAny(Result<int> result)
             {
                 int counter = 0;
                 float res = result.OnAny(r =>
@@ -88,7 +82,7 @@ namespace Here.Tests.Results
                 Assert.AreEqual(12.5f, res);
             }
 
-            void CheckOnAnyNoInput(Result<int> result, bool treatWarningAsError)
+            void CheckOnAnyNoInput(Result<int> result)
             {
                 int counter = 0;
                 float res = result.OnAny(() =>
@@ -104,24 +98,18 @@ namespace Here.Tests.Results
 
             // Ok result
             var ok = Result.Ok(96);
-            CheckOnAny(ok, false);
-            CheckOnAny(ok, true);
-            CheckOnAnyNoInput(ok, false);
-            CheckOnAnyNoInput(ok, true);
+            CheckOnAny(ok);
+            CheckOnAnyNoInput(ok);
 
             // Warning result
             var warning = Result.Warn(102, "My warning");
-            CheckOnAny(warning, false);
-            CheckOnAny(warning, true);
-            CheckOnAnyNoInput(warning, false);
-            CheckOnAnyNoInput(warning, true);
+            CheckOnAny(warning);
+            CheckOnAnyNoInput(warning);
 
             // Failure result
             var failure = Result.Fail<int>("My failure");
-            CheckOnAny(failure, false);
-            CheckOnAny(failure, true);
-            CheckOnAnyNoInput(failure, false);
-            CheckOnAnyNoInput(failure, true);
+            CheckOnAny(failure);
+            CheckOnAnyNoInput(failure);
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
+#if (!NET20 && !NET30 && !NET35 && !NET40)
 using System.Runtime.CompilerServices;
+#endif
 using JetBrains.Annotations;
 
 namespace Here.Extensions

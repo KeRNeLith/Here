@@ -14,7 +14,7 @@ namespace Here.Tests.Results
         {
             #region Local function
 
-            void CheckOnAny(Result<int, CustomErrorTest> result, bool treatWarningAsError)
+            void CheckOnAny(Result<int, CustomErrorTest> result)
             {
                 int counter = 0;
                 Result<int, CustomErrorTest> res = result.OnAny(() => { ++counter; });
@@ -26,19 +26,16 @@ namespace Here.Tests.Results
 
             // Ok result
             var ok = Result.Ok<int, CustomErrorTest>(25);
-            CheckOnAny(ok, false);
-            CheckOnAny(ok, true);
+            CheckOnAny(ok);
 
             // Warning result
             var warning = Result.Warn<int, CustomErrorTest>(42, "My warning");
-            CheckOnAny(warning, false);
-            CheckOnAny(warning, true);
+            CheckOnAny(warning);
 
             // Failure result
             var customErrorObject = new CustomErrorTest { ErrorCode = -7 };
             var failure = Result.Fail<int, CustomErrorTest>("My failure", customErrorObject);
-            CheckOnAny(failure, false);
-            CheckOnAny(failure, true);
+            CheckOnAny(failure);
         }
 
         [Test]
@@ -46,7 +43,7 @@ namespace Here.Tests.Results
         {
             #region Local function
 
-            void CheckOnAny(Result<int, CustomErrorTest> result, bool treatWarningAsError)
+            void CheckOnAny(Result<int, CustomErrorTest> result)
             {
                 int counter = 0;
                 Result<int, CustomErrorTest> res = result.OnAny(r => { ++counter; });
@@ -58,19 +55,16 @@ namespace Here.Tests.Results
 
             // Ok result
             var ok = Result.Ok<int, CustomErrorTest>(14);
-            CheckOnAny(ok, false);
-            CheckOnAny(ok, true);
+            CheckOnAny(ok);
 
             // Warning result
             var warning = Result.Warn<int, CustomErrorTest>(78, "My warning");
-            CheckOnAny(warning, false);
-            CheckOnAny(warning, true);
+            CheckOnAny(warning);
 
             // Failure result
             var customErrorObject = new CustomErrorTest { ErrorCode = -1 };
             var failure = Result.Fail<int, CustomErrorTest>("My failure", customErrorObject);
-            CheckOnAny(failure, false);
-            CheckOnAny(failure, true);
+            CheckOnAny(failure);
         }
 
         [Test]
@@ -78,7 +72,7 @@ namespace Here.Tests.Results
         {
             #region Local functions
 
-            void CheckOnAny(Result<int, CustomErrorTest> result, bool treatWarningAsError)
+            void CheckOnAny(Result<int, CustomErrorTest> result)
             {
                 int counter = 0;
                 float res = result.OnAny(r =>
@@ -90,7 +84,7 @@ namespace Here.Tests.Results
                 Assert.AreEqual(12.5f, res);
             }
 
-            void CheckOnAnyNoInput(Result<int, CustomErrorTest> result, bool treatWarningAsError)
+            void CheckOnAnyNoInput(Result<int, CustomErrorTest> result)
             {
                 int counter = 0;
                 float res = result.OnAny(() =>
@@ -106,25 +100,19 @@ namespace Here.Tests.Results
 
             // Ok result
             var ok = Result.Ok<int, CustomErrorTest>(46);
-            CheckOnAny(ok, false);
-            CheckOnAny(ok, true);
-            CheckOnAnyNoInput(ok, false);
-            CheckOnAnyNoInput(ok, true);
+            CheckOnAny(ok);
+            CheckOnAnyNoInput(ok);
 
             // Warning result
             var warning = Result.Warn<int, CustomErrorTest>(96, "My warning");
-            CheckOnAny(warning, false);
-            CheckOnAny(warning, true);
-            CheckOnAnyNoInput(warning, false);
-            CheckOnAnyNoInput(warning, true);
+            CheckOnAny(warning);
+            CheckOnAnyNoInput(warning);
 
             // Failure result
             var customErrorObject = new CustomErrorTest { ErrorCode = -28 };
             var failure = Result.Fail<int, CustomErrorTest>("My failure", customErrorObject);
-            CheckOnAny(failure, false);
-            CheckOnAny(failure, true);
-            CheckOnAnyNoInput(failure, false);
-            CheckOnAnyNoInput(failure, true);
+            CheckOnAny(failure);
+            CheckOnAnyNoInput(failure);
         }
     }
 }

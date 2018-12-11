@@ -133,7 +133,7 @@ namespace Here.Tests.Results
 
             // Failure result
             var customErrorObject = new CustomErrorTest { ErrorCode = -2 };
-            var failure = Result.CustomFail<CustomErrorTest>("My failure", customErrorObject);
+            var failure = Result.CustomFail("My failure", customErrorObject);
             CheckOnFailure(failure, false, true);
             CheckOnFailure(failure, true, true);
         }

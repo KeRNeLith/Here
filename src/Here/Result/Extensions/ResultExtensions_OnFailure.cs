@@ -241,7 +241,7 @@ namespace Here.Extensions
         [PublicAPI]
         public static TOut OnFailure<TOut, TError>(in this CustomResult<TError> result,
             [NotNull, InstantHandle] in Func<CustomResult<TError>, TOut> onFailure,
-            [CanBeNull] in Func<TOut> valueFactory,
+            [NotNull, InstantHandle] in Func<TOut> valueFactory,
             in bool treatWarningAsError = false)
         {
             if (IsConsideredFailure(result, treatWarningAsError))
