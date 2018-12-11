@@ -16,8 +16,7 @@ namespace Here.Extensions
             if (key == null)
                 return Option<TValue>.None;
 
-            var getter = OptionTryGetExtensions.CreateGet(tryGetFunc);
-            return getter(key);
+            return OptionTryGetExtensions.Get(key, tryGetFunc);
         }
 
         /// <summary>
