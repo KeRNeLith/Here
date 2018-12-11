@@ -39,7 +39,7 @@ namespace Here.Tests.Results
                         ++counterFailure;
                         return 43.5f;
                     },
-                    () =>
+                    val =>
                     {
                         ++counterFactory;
                         return -2f;

@@ -41,7 +41,7 @@ namespace Here.Tests.Results
                         ++counterSuccess;
                         return 43.5f;
                     },
-                    () =>
+                    r =>
                     {
                         ++counterFactory;
                         return -2f;
@@ -676,7 +676,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomOk<CustomErrorTest>();
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -702,7 +702,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomWarn<CustomErrorTest>(produceWarningMessage);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -728,7 +728,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomFail(produceFailureMessage, customErrorObject);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -755,7 +755,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomOk<CustomErrorTest>();
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -783,7 +783,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomWarn<CustomErrorTest>(produceWarningMessage);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -811,7 +811,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomFail(produceFailureMessage, customErrorObject);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -855,7 +855,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomOk<CustomErrorTest>();
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -881,7 +881,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomWarn<CustomErrorTest>(produceWarningMessage);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -908,7 +908,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomFail(produceFailureMessage, customErrorObject);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -935,7 +935,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomOk<CustomErrorTest>();
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -963,7 +963,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomWarn<CustomErrorTest>(produceWarningMessage);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -991,7 +991,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomFail(produceFailureMessage, customErrorObject);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -1035,7 +1035,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomOk<CustomErrorTest>();
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -1061,7 +1061,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomWarn<CustomErrorTest>(produceWarningMessage);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -1087,7 +1087,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomFail(produceFailureMessage, customErrorObject);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -1114,7 +1114,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomOk<CustomErrorTest>();
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -1142,7 +1142,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomWarn<CustomErrorTest>(produceWarningMessage);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -1170,7 +1170,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomFail(produceFailureMessage, customErrorObject);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -1217,7 +1217,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Ok<int, CustomErrorTest>(12);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -1243,7 +1243,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Warn<int, CustomErrorTest>(14, produceWarningMessage);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -1269,7 +1269,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Fail<int, CustomErrorTest>(produceFailureMessage, customErrorObject);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -1296,7 +1296,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Ok<int, CustomErrorTest>(16);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -1324,7 +1324,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Warn<int, CustomErrorTest>(18, produceWarningMessage);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -1352,7 +1352,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Fail<int, CustomErrorTest>(produceFailureMessage, customErrorObject);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -1396,7 +1396,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Ok<int, CustomErrorTest>(1);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -1422,7 +1422,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Warn<int, CustomErrorTest>(3, produceWarningMessage);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -1449,7 +1449,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Fail<int, CustomErrorTest>(produceFailureMessage, customErrorObject);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -1476,7 +1476,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Ok<int, CustomErrorTest>(5);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -1504,7 +1504,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Warn<int, CustomErrorTest>(7, produceWarningMessage);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -1532,7 +1532,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Fail<int, CustomErrorTest>(produceFailureMessage, customErrorObject);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -1576,7 +1576,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Ok<int, CustomErrorTest>(0);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -1602,7 +1602,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Warn<int, CustomErrorTest>(2, produceWarningMessage);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -1628,7 +1628,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Fail<int, CustomErrorTest>(produceFailureMessage, customErrorObject);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -1655,7 +1655,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Ok<int, CustomErrorTest>(4);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -1683,7 +1683,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Warn<int, CustomErrorTest>(6, produceWarningMessage);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;
@@ -1711,7 +1711,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Fail<int, CustomErrorTest>(produceFailureMessage, customErrorObject);
                 },
-                () =>
+                r =>
                 {
                     ++counterErrorFactory;
                     return customErrorObjectFactory;

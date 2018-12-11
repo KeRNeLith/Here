@@ -156,12 +156,12 @@ namespace Here.Extensions
         [PublicAPI]
         public static TOut OnFailure<TIn, TOut>(in this Result<TIn> result,
             [NotNull, InstantHandle] in Func<Result<TIn>, TOut> onFailure,
-            [NotNull, InstantHandle] in Func<TOut> valueFactory,
+            [NotNull, InstantHandle] in Func<TIn, TOut> valueFactory,
             in bool treatWarningAsError = false)
         {
             if (IsConsideredFailure(result, treatWarningAsError))
                 return onFailure(result);
-            return valueFactory();
+            return valueFactory(result.Value);
         }
 
         #endregion
@@ -330,12 +330,12 @@ namespace Here.Extensions
         [PublicAPI]
         public static TOut OnFailure<TIn, TOut, TError>(in this Result<TIn, TError> result,
             [NotNull, InstantHandle] in Func<Result<TIn, TError>, TOut> onFailure,
-            [NotNull, InstantHandle] in Func<TOut> valueFactory,
+            [NotNull, InstantHandle] in Func<TIn, TOut> valueFactory,
             in bool treatWarningAsError = false)
         {
             if (IsConsideredFailure(result, treatWarningAsError))
                 return onFailure(result);
-            return valueFactory();
+            return valueFactory(result.Value);
         }
 
         #endregion
