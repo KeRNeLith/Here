@@ -9,6 +9,22 @@ namespace Here.Extensions
     public static class EitherExtensions
     {
         /// <summary>
+        /// Indicates if this <see cref="IEither"/> is a success (right state).
+        /// </summary>
+        /// <param name="either"><see cref="IEither"/> to check.</param>
+        /// <returns>True if the <see cref="IEither"/> is a success, otherwise false.</returns>
+        [PublicAPI]
+        public static bool IsSuccess(this IEither either) => either.IsRight;
+
+        /// <summary>
+        /// Indicates if this <see cref="IEither"/> is a success (left state).
+        /// </summary>
+        /// <param name="either"><see cref="IEither"/> to check.</param>
+        /// <returns>True if the <see cref="IEither"/> is a failure, otherwise false.</returns>
+        [PublicAPI]
+        public static bool IsFailure(this IEither either) => either.IsLeft;
+
+        /// <summary>
         /// Calls the <paramref name="onRight"/> action when the <paramref name="either"/> is a success.
         /// </summary>
         /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>

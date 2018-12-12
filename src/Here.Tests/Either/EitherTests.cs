@@ -1,4 +1,5 @@
 ﻿using System;
+using Here.Extensions;
 using NUnit.Framework;
 
 namespace Here.Tests.Eithers
@@ -1283,6 +1284,30 @@ namespace Here.Tests.Eithers
         }
 
         #endregion
+
+        [Test]
+        public void EitherStates()
+        {
+            Either<string, int> eitherLeft = Either.Left<string, int>("Error message");
+            Assert.IsFalse(eitherLeft.IsSuccess());
+            Assert.IsTrue(eitherLeft.IsFailure());
+
+            EitherLeft<int> eitherLeftInt = Either.Left(12);
+            Assert.IsFalse(eitherLeftInt.IsSuccess());
+            Assert.IsTrue(eitherLeftInt.IsFailure());
+
+            Either<string, int> eitherRight = Either.Right<string, int>(42);
+            Assert.IsTrue(eitherRight.IsSuccess());
+            Assert.IsFalse(eitherRight.IsFailure());
+
+            EitherRight<int> eitherRightInt = Either.Right(62);
+            Assert.IsTrue(eitherRightInt.IsSuccess());
+            Assert.IsFalse(eitherRightInt.IsFailure());
+
+            Either<string, int> eitherNone = Either<string, int>.None;
+            Assert.IsFalse(eitherNone.IsSuccess());
+            Assert.IsFalse(eitherNone.IsFailure());
+        }
 
         [Test]
         public void EitherHashCode()
