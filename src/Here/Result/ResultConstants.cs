@@ -17,5 +17,11 @@
         /// <see cref="Either{String,TRight}"/>, while <see cref="Result{T, TError}"/> had a null value.
         /// </summary>
         public const string ValueCustomResultToEitherNullValue = "Result<T, TError> had a null value.";
+
+        /// <summary>
+        /// <see cref="Either{TLeft,TRight}"/> is in a <see cref="EitherStates.Left"/> state while trying
+        /// to convert it to a <see cref="Result"/>, so it produces a failed <see cref="Result"/>.
+        /// </summary>
+        public const string EitherToFailedResult = "Either<TLeft, TRight> was in Left state.";
     }
 }
