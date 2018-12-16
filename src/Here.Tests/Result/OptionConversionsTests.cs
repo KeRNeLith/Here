@@ -1,10 +1,9 @@
 ﻿using NUnit.Framework;
-using Here.Tests.Results;
 
-namespace Here.Tests.Options
+namespace Here.Tests.Results
 {
     /// <summary>
-    /// Tests for <see cref="Option{T}"/> conversions.
+    /// Tests for <see cref="Option{T}"/> conversions to results.
     /// </summary>
     [TestFixture]
     internal class OptionConversionsTests : ResultTestsBase

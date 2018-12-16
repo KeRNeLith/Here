@@ -126,5 +126,46 @@ namespace Here
         }
 
         #endregion
+
+        #region Gateway to Either
+
+        /// <summary>
+        /// Converts this <see cref="Option{T}"/> to an <see cref="Either{TLeft,T}"/> in
+        /// <see cref="EitherStates.Right"/> state if it has a value, otherwise in a <see cref="EitherStates.Left"/> state.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, T}"/>.</typeparam>
+        /// <param name="defaultLeftValue">Default left value to use if the <see cref="Option{T}"/> has no value.</param>
+        /// <returns>The corresponding <see cref="Either{TLeft,T}"/>.</returns>
+        [PublicAPI, Pure]
+        public Either<TLeft, T> ToEither<TLeft>([NotNull] in TLeft defaultLeftValue)
+        {
+            if (defaultLeftValue == null)
+                throw new ArgumentNullException(nameof(defaultLeftValue), "Cannot convert Option<T> to Either<TLeft, T> because the default left value is null.");
+
+            if (HasValue)
+                return Either<TLeft, T>.Right(_value);
+            return Either<TLeft, T>.Left(defaultLeftValue);
+        }
+
+        /// <summary>
+        /// Converts this <see cref="Option{T}"/> to an <see cref="Either{TLeft,T}"/> in
+        /// <see cref="EitherStates.Right"/> state if it has a value, otherwise in a <see cref="EitherStates.Left"/> state.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, T}"/>.</typeparam>
+        /// <param name="leftValueFactory">Function called to create a left value if the
+        /// <see cref="Option{T}"/> has no value.</param>
+        /// <returns>The corresponding <see cref="Either{TLeft,T}"/>.</returns>
+        [PublicAPI, Pure]
+        public Either<TLeft, T> ToEither<TLeft>([NotNull, InstantHandle] in Func<TLeft> leftValueFactory)
+        {
+            if (leftValueFactory == null)
+                throw new ArgumentNullException(nameof(leftValueFactory), "Cannot convert Option<T> to Either<TLeft, T> because the default left value factory method is null.");
+
+            if (HasValue)
+                return Either<TLeft, T>.Right(_value);
+            return Either<TLeft, T>.Left(leftValueFactory());
+        }
+
+        #endregion
     }
 }

@@ -182,5 +182,85 @@ namespace Here
         }
 
         #endregion
+
+        #region Left & Right construction
+
+        /// <summary>
+        /// Creates an instance of <see cref="Either{TLeft, TRight}"/> in <see cref="EitherStates.Right"/> state
+        /// if the provided value is not null, otherwise creates an <see cref="Either{TLeft,TRight}"/> in
+        /// <see cref="EitherStates.Left"/> state with the <paramref name="defaultLeftValue"/>.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <param name="value">A nullable value.</param>
+        /// <param name="defaultLeftValue">Default value to use if the provided value is null.</param>
+        /// <returns>An <see cref="Either{TLeft, TRight}"/>.</returns>
+        [PublicAPI, Pure]
+        public static Either<TLeft, TRight> ToEither<TLeft, TRight>([CanBeNull] this TRight value, [NotNull] in TLeft defaultLeftValue)
+            where TRight : class
+        {
+            return value is null
+                ? Left<TLeft, TRight>(defaultLeftValue)
+                : Right<TLeft, TRight>(value);
+        }
+
+        /// <summary>
+        /// Creates an instance of <see cref="Either{TLeft, TRight}"/> in <see cref="EitherStates.Right"/> state
+        /// if the provided value is not null, otherwise creates an <see cref="Either{TLeft,TRight}"/> in
+        /// <see cref="EitherStates.Left"/> state with the return from <paramref name="leftValueFactory"/>.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <param name="value">A nullable value.</param>
+        /// <param name="leftValueFactory">Function to create a value to use if the provided value is null.</param>
+        /// <returns>An <see cref="Either{TLeft, TRight}"/>.</returns>
+        [PublicAPI, Pure]
+        public static Either<TLeft, TRight> ToEither<TLeft, TRight>([CanBeNull] this TRight value, [NotNull, InstantHandle] in Func<TLeft> leftValueFactory)
+            where TRight : class
+        {
+            return value is null
+                ? Left<TLeft, TRight>(leftValueFactory())
+                : Right<TLeft, TRight>(value);
+        }
+
+        /// <summary>
+        /// Creates an instance of <see cref="Either{TLeft, TRight}"/> in <see cref="EitherStates.Right"/> state
+        /// if the provided nullable is not null, otherwise creates an <see cref="Either{TLeft,TRight}"/> in
+        /// <see cref="EitherStates.Left"/> state with the <paramref name="defaultLeftValue"/>.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <param name="nullable">A nullable value.</param>
+        /// <param name="defaultLeftValue">Default value to use if the provided value is null.</param>
+        /// <returns>An <see cref="Either{TLeft, TRight}"/>.</returns>
+        [PublicAPI, Pure]
+        public static Either<TLeft, TRight> ToEither<TLeft, TRight>([CanBeNull] in this TRight? nullable, [NotNull] in TLeft defaultLeftValue)
+            where TRight : struct
+        {
+            return nullable.HasValue
+                ? Right<TLeft, TRight>(nullable.Value)
+                : Left<TLeft, TRight>(defaultLeftValue);
+        }
+
+        /// <summary>
+        /// Creates an instance of <see cref="Either{TLeft, TRight}"/> in <see cref="EitherStates.Right"/> state
+        /// if the provided nullable is not null, otherwise creates an <see cref="Either{TLeft,TRight}"/> in
+        /// <see cref="EitherStates.Left"/> state with the return from <paramref name="leftValueFactory"/>.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <param name="nullable">A nullable value.</param>
+        /// <param name="leftValueFactory">Function to create a value to use if the provided value is null.</param>
+        /// <returns>An <see cref="Either{TLeft, TRight}"/>.</returns>
+        [PublicAPI, Pure]
+        public static Either<TLeft, TRight> ToEither<TLeft, TRight>([CanBeNull] in this TRight? nullable, [NotNull, InstantHandle] in Func<TLeft> leftValueFactory)
+            where TRight : struct
+        {
+            return nullable.HasValue
+                ? Right<TLeft, TRight>(nullable.Value)
+                : Left<TLeft, TRight>(leftValueFactory());
+        }
+
+        #endregion
     }
 }

@@ -30,31 +30,22 @@ namespace Here.Tests.Eithers
             CheckLeftEither(eitherLeft4, 12.0);
 
             Assert.Throws<ArgumentNullException>(() => { Either<double, int> _ = Either.Left((double?)null); });
-
-            Either<double, int> eitherLeft5 = 18.0.ToEither<double, int>();
-            CheckLeftEither(eitherLeft5, 18.0);
-
-            Either<double, int> eitherLeft6 = ((double?)22.0).ToEither<double, int>();
-            CheckLeftEither(eitherLeft6, 22.0);
-
             Assert.Throws<ArgumentNullException>(() => { Either<Person, int> _ = Either.Left((Person)null); });
             Assert.Throws<ArgumentNullException>(() => { Either<Person, int> _ = Either.Left<Person, int>(null); });
-            // ReSharper disable once AssignNullToNotNullAttribute
-            Assert.Throws<ArgumentNullException>(() => { Either<double, int> _ = ((double?)null).ToEither<double, int>(); });
 
-            Either<int, int> eitherLeft7 = Either.Left(1);
-            CheckLeftEither(eitherLeft7, 1);
+            Either<int, int> eitherLeft5 = Either.Left(1);
+            CheckLeftEither(eitherLeft5, 1);
 
-            Either<int, int> eitherLeft8 = Either.Left((int?)2);
-            CheckLeftEither(eitherLeft8, 2);
+            Either<int, int> eitherLeft6 = Either.Left((int?)2);
+            CheckLeftEither(eitherLeft6, 2);
 
             Assert.Throws<ArgumentNullException>(() => { Either<int, int> _ = Either.Left((int?)null); });
 
-            Either<int, int> eitherLeft9 = Either.Left<int, int>(3);
-            CheckLeftEither(eitherLeft9, 3);
+            Either<int, int> eitherLeft7 = Either.Left<int, int>(3);
+            CheckLeftEither(eitherLeft7, 3);
 
-            Either<int, int> eitherLeft10 = Either.Left<int, int>((int?)4);
-            CheckLeftEither(eitherLeft10, 4);
+            Either<int, int> eitherLeft8 = Either.Left<int, int>((int?)4);
+            CheckLeftEither(eitherLeft8, 4);
 
             Assert.Throws<ArgumentNullException>(() => { Either<int, int> _ = Either.Left<int, int>(null); });
         }
@@ -77,31 +68,22 @@ namespace Here.Tests.Eithers
             CheckRightEither(eitherRight4, 8);
 
             Assert.Throws<ArgumentNullException>(() => { Either<double, int> _ = Either.Right((int?)null); });
-
-            Either<double, int> eitherRight5 = 18.ToEither<double, int>();
-            CheckRightEither(eitherRight5, 18);
-
-            Either<double, int> eitherRight6 = ((int?)22).ToEither<double, int>();
-            CheckRightEither(eitherRight6, 22);
-
             Assert.Throws<ArgumentNullException>(() => { Either<double, Person> _ = Either.Right((Person)null); });
             Assert.Throws<ArgumentNullException>(() => { Either<double, Person> _ = Either.Right<double, Person>(null); });
-            // ReSharper disable once AssignNullToNotNullAttribute
-            Assert.Throws<ArgumentNullException>(() => { Either<double, int> _ = ((double?)null).ToEither<double, int>(); });
 
-            Either<int, int> eitherRight7 = Either.Right(1);
-            CheckRightEither(eitherRight7, 1);
+            Either<int, int> eitherRight5 = Either.Right(1);
+            CheckRightEither(eitherRight5, 1);
 
-            Either<int, int> eitherRight8 = Either.Right((int?)2);
-            CheckRightEither(eitherRight8, 2);
+            Either<int, int> eitherRight6 = Either.Right((int?)2);
+            CheckRightEither(eitherRight6, 2);
 
             Assert.Throws<ArgumentNullException>(() => { Either<int, int> _ = Either.Right((int?)null); });
 
-            Either<int, int> eitherRight9 = Either.Right<int, int>(3);
-            CheckRightEither(eitherRight9, 3);
+            Either<int, int> eitherRight7 = Either.Right<int, int>(3);
+            CheckRightEither(eitherRight7, 3);
 
-            Either<int, int> eitherRight10 = Either.Right<int, int>((int?)4);
-            CheckRightEither(eitherRight10, 4);
+            Either<int, int> eitherRight8 = Either.Right<int, int>((int?)4);
+            CheckRightEither(eitherRight8, 4);
 
             Assert.Throws<ArgumentNullException>(() => { Either<int, int> _ = Either.Right<int, int>(null); });
         }
@@ -114,6 +96,56 @@ namespace Here.Tests.Eithers
 
             Either<string, int> eitherNone2 = Either<string, int>.None;
             CheckNoneEither(eitherNone2);
+        }
+
+        [Test]
+        public void EitherConstructionFromToEither()
+        {
+            // Left construction
+            Either<double, int> eitherLeft1 = 18.0.ToEither<double, int>();
+            CheckLeftEither(eitherLeft1, 18.0);
+
+            Either<double, int> eitherLeft2 = ((double?)22.0).ToEither<double, int>();
+            CheckLeftEither(eitherLeft2, 22.0);
+
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => { Either<double, int> _ = ((double?)null).ToEither<double, int>(); });
+
+            Either<double, int> eitherLeft3 = ((int?)null).ToEither(42.5);
+            CheckLeftEither(eitherLeft3, 42.5);
+
+            Either<double, int> eitherLeft4 = ((int?)null).ToEither(() => 12.5);
+            CheckLeftEither(eitherLeft4, 12.5);
+
+            Either<double, Person> eitherLeft5 = ((Person)null).ToEither(42.5);
+            CheckLeftEither(eitherLeft5, 42.5);
+
+            Either<double, Person> eitherLeft6 = ((Person)null).ToEither(() => 12.5);
+            CheckLeftEither(eitherLeft6, 12.5);
+
+
+            // Right construction
+            Either<double, int> eitherRight1 = 18.ToEither<double, int>();
+            CheckRightEither(eitherRight1, 18);
+
+            Either<double, int> eitherRight2 = ((int?)22).ToEither<double, int>();
+            CheckRightEither(eitherRight2, 22);
+
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => { Either<double, int> _ = ((double?)null).ToEither<double, int>(); });
+
+            Either<double, int> eitherRight3 = ((int?)12).ToEither(42.5);
+            CheckRightEither(eitherRight3, 12);
+
+            Either<double, int> eitherRight4 = ((int?)42).ToEither(() => 12.5);
+            CheckRightEither(eitherRight4, 42);
+
+            Either<double, Person> eitherRight5 = new Person("Test").ToEither(42.5);
+            CheckRightEither(eitherRight5, new Person("Test"));
+
+            var person = new Person("Test 2");
+            Either<double, Person> eitherRight6 = person.ToEither(() => 12.5);
+            CheckRightEither(eitherRight6, person);
         }
 
         [Test]
