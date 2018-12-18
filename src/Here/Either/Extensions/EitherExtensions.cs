@@ -391,5 +391,121 @@ namespace Here.Extensions
         }
 
         #endregion
+
+        #region Unwrapping
+
+        /// <summary>
+        /// Gets the right value if the <see cref="Either{TLeft,TRight}"/> is in the
+        /// <see cref="EitherStates.Right"/> state, otherwise return the default value of <typeparamref name="TRight"/>.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <param name="either"><see cref="Either{TLeft,TRight}"/> to check.</param>
+        /// <returns>The either right value, otherwise the default <typeparamref name="TRight"/> value.</returns>
+        [PublicAPI, Pure, CanBeNull]
+        public static TRight RightOrDefault<TLeft, TRight>(in this Either<TLeft, TRight> either)
+        {
+            if (either.IsRight)
+                return either._right;
+            return default;
+        }
+
+        /// <summary>
+        /// Gets the right value if the <see cref="Either{TLeft,TRight}"/> is in the
+        /// <see cref="EitherStates.Right"/> state, otherwise return the provided default value.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <param name="either"><see cref="Either{TLeft,TRight}"/> to check.</param>
+        /// <param name="defaultValue">Default value to use if the <see cref="Either{TLeft,TRight}"/> is not in <see cref="EitherStates.Right"/> state.</param>
+        /// <returns>The either right value, otherwise the provided default value.</returns>
+        [PublicAPI, Pure, NotNull]
+        public static TRight RightOr<TLeft, TRight>(in this Either<TLeft, TRight> either, [NotNull] in TRight defaultValue)
+        {
+            if (defaultValue == null)
+                throw new ArgumentNullException(nameof(defaultValue), "Cannot use RightOr extension with a null default value.");
+
+            if (either.IsRight)
+                return either._right;
+            return defaultValue;
+        }
+
+        /// <summary>
+        /// Gets the right value if the <see cref="Either{TLeft,TRight}"/> is in the
+        /// <see cref="EitherStates.Right"/> state, otherwise return the provided default value.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <param name="either"><see cref="Either{TLeft,TRight}"/> to check.</param>
+        /// <param name="valueFactory">Function to create a value to use if the <see cref="Either{TLeft,TRight}"/> is not in <see cref="EitherStates.Right"/> state.</param>
+        /// <returns>The either right value, otherwise the provided default value.</returns>
+        [PublicAPI, Pure, NotNull]
+        public static TRight RightOr<TLeft, TRight>(in this Either<TLeft, TRight> either, [NotNull, InstantHandle] in Func<TRight> valueFactory)
+        {
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory), "Cannot use RightOr extension with a null value factory.");
+
+            if (either.IsRight)
+                return either._right;
+            return valueFactory();
+        }
+
+        /// <summary>
+        /// Gets the left value if the <see cref="Either{TLeft,TRight}"/> is in the
+        /// <see cref="EitherStates.Left"/> state, otherwise return the default value of <typeparamref name="TLeft"/>.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <param name="either"><see cref="Either{TLeft,TRight}"/> to check.</param>
+        /// <returns>The either left value, otherwise the default <typeparamref name="TLeft"/> value.</returns>
+        [PublicAPI, Pure, CanBeNull]
+        public static TLeft LeftOrDefault<TLeft, TRight>(in this Either<TLeft, TRight> either)
+        {
+            if (either.IsLeft)
+                return either._left;
+            return default;
+        }
+
+        /// <summary>
+        /// Gets the left value if the <see cref="Either{TLeft,TRight}"/> is in the
+        /// <see cref="EitherStates.Left"/> state, otherwise return the provided default value.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <param name="either"><see cref="Either{TLeft,TRight}"/> to check.</param>
+        /// <param name="defaultValue">Default value to use if the <see cref="Either{TLeft,TRight}"/> is not in <see cref="EitherStates.Left"/> state.</param>
+        /// <returns>The either left value, otherwise the provided default value.</returns>
+        [PublicAPI, Pure, NotNull]
+        public static TLeft LeftOr<TLeft, TRight>(in this Either<TLeft, TRight> either, [NotNull] in TLeft defaultValue)
+        {
+            if (defaultValue == null)
+                throw new ArgumentNullException(nameof(defaultValue), "Cannot use LeftOr extension with a null default value.");
+
+            if (either.IsLeft)
+                return either._left;
+            return defaultValue;
+        }
+
+        /// <summary>
+        /// Gets the left value if the <see cref="Either{TLeft,TRight}"/> is in the
+        /// <see cref="EitherStates.Left"/> state, otherwise return the provided default value.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <param name="either"><see cref="Either{TLeft,TRight}"/> to check.</param>
+        /// <param name="valueFactory">Function to create a value to use if the <see cref="Either{TLeft,TRight}"/> is not in <see cref="EitherStates.Left"/> state.</param>
+        /// <returns>The either left value, otherwise the provided default value.</returns>
+        [PublicAPI, Pure, NotNull]
+        public static TLeft LeftOr<TLeft, TRight>(in this Either<TLeft, TRight> either, [NotNull, InstantHandle] in Func<TLeft> valueFactory)
+        {
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory), "Cannot use LeftOr extension with a null value factory.");
+
+            if (either.IsLeft)
+                return either._left;
+            return valueFactory();
+        }
+
+        #endregion
     }
 }

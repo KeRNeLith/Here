@@ -892,5 +892,91 @@ namespace Here.Tests.Eithers
         }
 
         #endregion
+
+        #region Unwrapping
+
+        [Test]
+        public void LeftOrDefault()
+        {
+            // Either left
+            Either<string, int> eitherLeft = Either.Left("Error");
+            Assert.AreEqual("Error", eitherLeft.LeftOrDefault());
+
+            // Either right
+            Either<string, int> eitherRight = Either.Right(12);
+            Assert.AreEqual(default(string), eitherRight.LeftOrDefault());
+
+            // Either none
+            Either<string, int> eitherNone = Either<string, int>.None;
+            Assert.AreEqual(default(string), eitherNone.LeftOrDefault());
+        }
+
+        [Test]
+        public void LeftOr()
+        {
+            // Either left
+            Either<string, int> eitherLeft = Either.Left("Error");
+            Assert.AreEqual("Error", eitherLeft.LeftOr("Default"));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.LeftOr((string)null));
+            Assert.AreEqual("Error", eitherLeft.LeftOr(() => "Default"));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.LeftOr((Func<string>)null));
+
+            // Either right
+            Either<string, int> eitherRight = Either.Right(12);
+            Assert.AreEqual("Default", eitherRight.LeftOr("Default"));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.LeftOr((string)null));
+            Assert.AreEqual("Default", eitherRight.LeftOr(() => "Default"));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.LeftOr((Func<string>)null));
+
+            // Either none
+            Either<string, int> eitherNone = Either<string, int>.None;
+            Assert.AreEqual("Default", eitherNone.LeftOr("Default"));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.LeftOr((string)null));
+            Assert.AreEqual("Default", eitherNone.LeftOr(() => "Default"));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.LeftOr((Func<string>)null));
+        }
+
+        [Test]
+        public void RightOrDefault()
+        {
+            // Either left
+            Either<string, int> eitherLeft = Either.Left("Error");
+            Assert.AreEqual(default(int), eitherLeft.RightOrDefault());
+
+            // Either right
+            Either<string, int> eitherRight = Either.Right(12);
+            Assert.AreEqual(12, eitherRight.RightOrDefault());
+
+            // Either none
+            Either<string, int> eitherNone = Either<string, int>.None;
+            Assert.AreEqual(default(int), eitherNone.RightOrDefault());
+        }
+
+        [Test]
+        public void RightOr()
+        {
+            // Either left
+            Either<int, string> eitherLeft = Either.Left(12);
+            Assert.AreEqual("Default", eitherLeft.RightOr("Default"));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.RightOr((string)null));
+            Assert.AreEqual("Default", eitherLeft.RightOr(() => "Default"));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.RightOr((Func<string>)null));
+
+            // Either right
+            Either<int, string> eitherRight = Either.Right("Error");
+            Assert.AreEqual("Error", eitherRight.RightOr("Default"));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.RightOr((string)null));
+            Assert.AreEqual("Error", eitherRight.RightOr(() => "Default"));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.RightOr((Func<string>)null));
+
+            // Either none
+            Either<int, string> eitherNone = Either<int, string>.None;
+            Assert.AreEqual("Default", eitherNone.RightOr("Default"));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.RightOr((string)null));
+            Assert.AreEqual("Default", eitherNone.RightOr(() => "Default"));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.RightOr((Func<string>)null));
+        }
+
+        #endregion
     }
 }
