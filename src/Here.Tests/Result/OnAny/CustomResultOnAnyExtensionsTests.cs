@@ -12,97 +12,107 @@ namespace Here.Tests.Results
         [Test]
         public void CustomResultOnAnyToCustomResult()
         {
-            int counter = 0;
-            var customErrorObject = new CustomErrorTest { ErrorCode = -8 };
+            #region Local function
+
+            void CheckOnAny(CustomResult<CustomErrorTest> result)
+            {
+                int counter = 0;
+                CustomResult<CustomErrorTest> res = result.OnAny(() => { ++counter; });
+                Assert.AreEqual(1, counter);
+                Assert.AreEqual(result, res);
+            }
+
+            #endregion
+
             // Ok result
             var ok = Result.CustomOk<CustomErrorTest>();
-
-            var result = ok.OnAny(() => ++counter);
-            Assert.AreEqual(1, counter);
-            CheckResultOk(result);
+            CheckOnAny(ok);
 
             // Warning result
             var warning = Result.CustomWarn<CustomErrorTest>("My warning");
-
-            result = warning.OnAny(() => ++counter);
-            Assert.AreEqual(2, counter);
-            CheckResultWarn(result, "My warning");
+            CheckOnAny(warning);
 
             // Failure result
+            var customErrorObject = new CustomErrorTest { ErrorCode = -8 };
             var failure = Result.CustomFail("My failure", customErrorObject);
-
-            result = failure.OnAny(() => ++counter);
-            Assert.AreEqual(3, counter);
-            CheckResultFail(result, "My failure");
+            CheckOnAny(failure);
         }
 
         [Test]
         public void CustomResultOnAnyToCustomResultWithParam()
         {
-            int counter = 0;
-            var customErrorObject = new CustomErrorTest { ErrorCode = -12 };
+            #region Local function
+
+            void CheckOnAny(CustomResult<CustomErrorTest> result)
+            {
+                int counter = 0;
+                CustomResult<CustomErrorTest> res = result.OnAny(r => { ++counter; });
+                Assert.AreEqual(1, counter);
+                Assert.AreEqual(result, res);
+            }
+
+            #endregion
+
             // Ok result
             var ok = Result.CustomOk<CustomErrorTest>();
-
-            var result = ok.OnAny(res => { ++counter; });
-            Assert.AreEqual(1, counter);
-            CheckResultOk(result);
+            CheckOnAny(ok);
 
             // Warning result
             var warning = Result.CustomWarn<CustomErrorTest>("My warning");
-
-            result = warning.OnAny(res => { ++counter; });
-            Assert.AreEqual(2, counter);
-            CheckResultWarn(result, "My warning");
+            CheckOnAny(warning);
 
             // Failure result
+            var customErrorObject = new CustomErrorTest { ErrorCode = -12 };
             var failure = Result.CustomFail("My failure", customErrorObject);
-
-            result = failure.OnAny(res => { ++counter; });
-            Assert.AreEqual(3, counter);
-            CheckResultFail(result, "My failure");
+            CheckOnAny(failure);
         }
 
         [Test]
         public void CustomResultOnAnyTOut()
         {
-            int counter = 0;
-            var customErrorObject = new CustomErrorTest { ErrorCode = -15 };
-            // Ok result
-            var ok = Result.CustomOk<CustomErrorTest>();
+            #region Local functions
 
-            float result = ok.OnAny(
-                res => 
+            void CheckOnAny(CustomResult<CustomErrorTest> result)
+            {
+                int counter = 0;
+                float res = result.OnAny(r =>
                 {
                     ++counter;
-                    return 12.2f;
+                    return 12.5f;
                 });
-            Assert.AreEqual(1, counter);
-            Assert.AreEqual(12.2f, result);
+                Assert.AreEqual(1, counter);
+                Assert.AreEqual(12.5f, res);
+            }
+
+            void CheckOnAnyNoInput(CustomResult<CustomErrorTest> result)
+            {
+                int counter = 0;
+                float res = result.OnAny(() =>
+                {
+                    ++counter;
+                    return 13.5f;
+                });
+                Assert.AreEqual(1, counter);
+                Assert.AreEqual(13.5f, res);
+            }
+
+            #endregion
+
+            // Ok result
+            var ok = Result.CustomOk<CustomErrorTest>();
+            CheckOnAny(ok);
+            CheckOnAnyNoInput(ok);
 
             // Warning result
             var warning = Result.CustomWarn<CustomErrorTest>("My warning");
-
-            result = warning.OnAny(
-                res => 
-                {
-                    ++counter;
-                    return 42.2f;
-                });
-            Assert.AreEqual(2, counter);
-            Assert.AreEqual(42.2f, result);
+            CheckOnAny(warning);
+            CheckOnAnyNoInput(warning);
 
             // Failure result
+            var customErrorObject = new CustomErrorTest { ErrorCode = -15 };
             var failure = Result.CustomFail("My failure", customErrorObject);
-
-            result = failure.OnAny(
-                res => 
-                {
-                    ++counter;
-                    return 62.2f;
-                });
-            Assert.AreEqual(3, counter);
-            Assert.AreEqual(62.2f, result);
+            CheckOnAny(failure);
+            CheckOnAnyNoInput(failure);
         }
     }
 }
