@@ -1,4 +1,7 @@
 ﻿using System;
+#if (!NET20 && !NET30 && !NET35 && !NET40)
+using System.Runtime.CompilerServices;
+#endif
 using JetBrains.Annotations;
 
 namespace Here.Extensions
@@ -8,6 +11,9 @@ namespace Here.Extensions
     /// </summary>
     public static class OptionNumericCastsExtensions
     {
+#if (!NET20 && !NET30 && !NET35 && !NET40)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
         private static Option<TTo> SafeConvert<TFrom, TTo>(in this Option<TFrom> option, [NotNull, InstantHandle] Func<TFrom, TTo> converter)
         {
             return option.Cast(
