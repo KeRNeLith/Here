@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using Here.Extensions;
 
 namespace Here.Tests.Options
@@ -22,6 +23,8 @@ namespace Here.Tests.Options
             Option<int> emptyOptionInt = Option.None;
             Assert.IsFalse(emptyOptionInt.Any());
             Assert.IsFalse(emptyOptionInt.Any(intValue => intValue == 12));
+
+            Assert.Throws<ArgumentNullException>(() => optionInt.Any(null));
         }
 
         [Test]
@@ -35,6 +38,8 @@ namespace Here.Tests.Options
             // Empty option
             Option<int> emptyOptionInt = Option.None;
             Assert.IsFalse(emptyOptionInt.All(intValue => intValue == 12));
+
+            Assert.Throws<ArgumentNullException>(() => optionInt.All(null));
         }
 
         [Test]
@@ -88,6 +93,8 @@ namespace Here.Tests.Options
             Option<TestClass> emptyOptionClass = Option.None;
             optionIntResult = emptyOptionClass.Select(obj => obj.TestInt);
             CheckEmptyOption(optionIntResult);
+
+            Assert.Throws<ArgumentNullException>(() => optionInt.Select((Func<int, int>)null));
         }
 
         [Test]
@@ -105,6 +112,8 @@ namespace Here.Tests.Options
             Option<int> emptyOptionInt = Option.None;
             optionIntResult = emptyOptionInt.Where(intValue => intValue == 1);
             CheckEmptyOption(optionIntResult);
+
+            Assert.Throws<ArgumentNullException>(() => optionInt.Where(null));
         }
 
         [Test]
@@ -143,6 +152,8 @@ namespace Here.Tests.Options
             Option<int> emptyOptionInt = Option.None;
             emptyOptionInt.ForEach(intValue => optionValue = intValue);
             Assert.AreEqual(-1, optionValue);
+
+            Assert.Throws<ArgumentNullException>(() => optionInt.ForEach(null));
         }
 
         [Test]
@@ -155,6 +166,10 @@ namespace Here.Tests.Options
             // Empty option
             Option<int> emptyOptionInt = Option.None;
             Assert.AreEqual(3, emptyOptionInt.Aggregate(3, (intValue, initValue) => intValue + initValue));
+
+            Assert.Throws<ArgumentNullException>(() => optionInt.Aggregate(1, null));
+            Assert.Throws<ArgumentNullException>(() => optionInt.Aggregate((Person)null, (person, int32) => null));
+            Assert.Throws<ArgumentNullException>(() => optionInt.Aggregate((Person)null, null));
         }
     }
 }

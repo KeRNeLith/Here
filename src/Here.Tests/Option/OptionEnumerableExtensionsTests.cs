@@ -93,6 +93,13 @@ namespace Here.Tests.Options
             CheckEmptyOption(optionClass);
             optionClass = enumerableTestClass3.FirstOrNone(value => ReferenceEquals(testObj1, value));
             CheckEmptyOption(optionClass);
+
+            // ReSharper disable AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => { var _ = ((IEnumerable<int>) null).FirstOrNone(); });
+            Assert.Throws<ArgumentNullException>(() => ((IEnumerable<int>)null).FirstOrNone(x => true));
+            Assert.Throws<ArgumentNullException>(() => ((IEnumerable<int>)null).FirstOrNone(null));
+            // ReSharper restore AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => enumerableInts.FirstOrNone(null));
         }
 
         [Test]
@@ -183,6 +190,13 @@ namespace Here.Tests.Options
 
             CheckEmptyOption(enumerableTestClass4.SingleOrNone(value => ReferenceEquals(testObj1, value)));
             CheckEmptyOption(enumerableTestClass4.SingleOrNone(value => ReferenceEquals(testObj1, value), false));
+
+            // ReSharper disable AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => { var _ = ((IEnumerable<int>) null).SingleOrNone(); });
+            Assert.Throws<ArgumentNullException>(() => ((IEnumerable<int>)null).SingleOrNone(x => true));
+            Assert.Throws<ArgumentNullException>(() => ((IEnumerable<int>)null).SingleOrNone(null));
+            // ReSharper restore AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => enumerableInts.SingleOrNone(null));
         }
 
         [Test]
@@ -250,6 +264,13 @@ namespace Here.Tests.Options
             CheckEmptyOption(optionClass);
             optionClass = enumerableTestClass3.LastOrNone(value => ReferenceEquals(testObj1, value));
             CheckEmptyOption(optionClass);
+
+            // ReSharper disable AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => { var _ = ((IEnumerable<int>) null).LastOrNone(); });
+            Assert.Throws<ArgumentNullException>(() => ((IEnumerable<int>)null).LastOrNone(x => true));
+            Assert.Throws<ArgumentNullException>(() => ((IEnumerable<int>)null).LastOrNone(null));
+            // ReSharper restore AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => enumerableInts.LastOrNone(null));
         }
 
         [Test]
@@ -302,6 +323,9 @@ namespace Here.Tests.Options
             CheckOptionSameValue(enumerableTestClasses3.ElementAtOrNone(0), testObject1);
             // Even if element [1] exists, it's value is null so it will result in an empty option
             CheckEmptyOption(enumerableTestClasses3.ElementAtOrNone(1));
+
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => { var _ = ((IEnumerable<int>) null).ElementAtOrNone(0); });
         }
 
         [Test]
@@ -355,6 +379,9 @@ namespace Here.Tests.Options
             };
 
             CollectionAssert.AreEqual(new[] { 12, 0, 1, 10 }, list.ExtractValues());
+
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => { var _ = ((IEnumerable<Option<int>>)null).ExtractValues().ToArray(); }); // ToArray force enumeration
         }
 
         [Test]
@@ -372,6 +399,9 @@ namespace Here.Tests.Options
             IReadOnlyCollection<Option<int>> readonlyCollectionOptionInts = new ReadOnlyCollection<Option<int>>(listOptionInts);
             CollectionAssert.AreEqual(new[] { 7, 4, 1 }, readonlyCollectionOptionInts.ToArray());
 #endif
+
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => { var _ = ((IEnumerable<Option<int>>) null).ToArray(); });
         }
 
         [Test]
@@ -389,6 +419,9 @@ namespace Here.Tests.Options
             IReadOnlyCollection<Option<int>> readonlyCollectionOptionInts = new ReadOnlyCollection<Option<int>>(listOptionInts);
             CollectionAssert.AreEqual(new[] { 7, 4, 1 }, readonlyCollectionOptionInts.ToList());
 #endif
+
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => { var _ = ((IEnumerable<Option<int>>) null).ToList(); });
         }
 
         [Test]
@@ -414,6 +447,10 @@ namespace Here.Tests.Options
                 new Dictionary<string, int> { ["7"] = 7, ["4"] = 4, ["1"] = 1 }, 
                 readonlyCollectionOptionInts.ToDictionary<int, string>(value => value.ToString()));  // Need explicit arguments
 #endif
+
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => ((IEnumerable<Option<int>>)null).ToDictionary<int, string>(value => value.ToString()));
+            Assert.Throws<ArgumentNullException>(() => enumerableOptionInts.ToDictionary<int, string>(null));
         }
     }
 }

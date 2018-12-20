@@ -42,7 +42,7 @@ namespace Here.Extensions
         /// <param name="input">Input in which getting something.</param>
         /// <param name="tryGetFunc">Try get method.</param>
         /// <returns>The result of the try get wrapped in an <see cref="Option{T}"/>.</returns>
-        [PublicAPI, NotNull, Pure]
+        [PublicAPI, Pure]
 #if (!NET20 && !NET30 && !NET35 && !NET40)
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
@@ -64,7 +64,7 @@ namespace Here.Extensions
         /// <param name="input">String to parse.</param>
         /// <param name="tryParseFunc">Try parse method.</param>
         /// <returns>The result of the try parse wrapped in an <see cref="Option{T}"/>.</returns>
-        [PublicAPI, NotNull, Pure]
+        [PublicAPI, Pure]
 #if (!NET20 && !NET30 && !NET35 && !NET40)
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
@@ -83,7 +83,7 @@ namespace Here.Extensions
         /// <param name="style">Style number to use.</param>
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns>The result of the try parse wrapped in an <see cref="Option{T}"/>.</returns>
-        [PublicAPI, NotNull, Pure]
+        [PublicAPI, Pure]
 #if (!NET20 && !NET30 && !NET35 && !NET40)
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif

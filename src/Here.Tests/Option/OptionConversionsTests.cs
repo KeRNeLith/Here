@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using Here.Tests.Results;
 
 namespace Here.Tests.Options
@@ -100,6 +101,9 @@ namespace Here.Tests.Options
 
             result = emptyOptionInt.ToCustomResult(() => customErrorObject, "Empty emptyOptionInt");
             CheckResultFail(result, "Empty emptyOptionInt", customErrorObject);
+            
+            Assert.Throws<ArgumentNullException>(() => optionInt.ToCustomResult((CustomErrorTest)null, "Useless"));
+            Assert.Throws<ArgumentNullException>(() => optionInt.ToCustomResult((Func<CustomErrorTest>)null, "Useless"));
         }
 
         [Test]
@@ -133,6 +137,9 @@ namespace Here.Tests.Options
 
             result = emptyOptionInt.ToValueCustomResult(() => customErrorObject, "Empty emptyOptionInt");
             CheckResultFail(result, "Empty emptyOptionInt", customErrorObject);
+
+            Assert.Throws<ArgumentNullException>(() => optionInt.ToValueCustomResult((CustomErrorTest)null, "Useless"));
+            Assert.Throws<ArgumentNullException>(() => optionInt.ToValueCustomResult((Func<CustomErrorTest>)null, "Useless"));
         }
     }
 }
