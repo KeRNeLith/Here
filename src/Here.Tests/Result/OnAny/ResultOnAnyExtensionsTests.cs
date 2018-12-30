@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using Here.Extensions;
 
 namespace Here.Tests.Results
@@ -35,6 +36,8 @@ namespace Here.Tests.Results
             // Failure result
             var failure = Result.Fail("My failure");
             CheckOnAny(failure);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnAny((Action)null));
         }
 
         [Test]
@@ -63,6 +66,8 @@ namespace Here.Tests.Results
             // Failure result
             var failure = Result.Fail("My failure");
             CheckOnAny(failure);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnAny((Action<Result>)null));
         }
 
         [Test]
@@ -110,6 +115,9 @@ namespace Here.Tests.Results
             var failure = Result.Fail("My failure");
             CheckOnAny(failure);
             CheckOnAnyNoInput(failure);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnAny((Func<float>)null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnAny((Func<Result, float>)null));
         }
     }
 }

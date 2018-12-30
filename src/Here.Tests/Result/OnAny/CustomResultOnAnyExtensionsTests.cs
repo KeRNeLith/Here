@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using Here.Extensions;
 
 namespace Here.Tests.Results
@@ -36,6 +37,8 @@ namespace Here.Tests.Results
             var customErrorObject = new CustomErrorTest { ErrorCode = -8 };
             var failure = Result.CustomFail("My failure", customErrorObject);
             CheckOnAny(failure);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnAny((Action)null));
         }
 
         [Test]
@@ -65,6 +68,8 @@ namespace Here.Tests.Results
             var customErrorObject = new CustomErrorTest { ErrorCode = -12 };
             var failure = Result.CustomFail("My failure", customErrorObject);
             CheckOnAny(failure);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnAny((Action<CustomResult<CustomErrorTest>>)null));
         }
 
         [Test]
@@ -113,6 +118,9 @@ namespace Here.Tests.Results
             var failure = Result.CustomFail("My failure", customErrorObject);
             CheckOnAny(failure);
             CheckOnAnyNoInput(failure);
+            
+            Assert.Throws<ArgumentNullException>(() => ok.OnAny((Func<float>)null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnAny((Func<CustomResult<CustomErrorTest>, float>)null));
         }
     }
 }

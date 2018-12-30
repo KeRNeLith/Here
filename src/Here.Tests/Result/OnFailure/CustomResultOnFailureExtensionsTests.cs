@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using Here.Extensions;
 
 namespace Here.Tests.Results
@@ -72,6 +73,9 @@ namespace Here.Tests.Results
             CheckOnFailure(failure, true, true);
             CheckOnFailureFunc(failure, false, true);
             CheckOnFailureFunc(failure, true, true);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnFailure(null, 12.5f));
+            Assert.Throws<ArgumentNullException>(() => ok.OnFailure((Func<CustomResult<CustomErrorTest>, float>)null, null));
         }
 
         [Test]
@@ -104,6 +108,8 @@ namespace Here.Tests.Results
             var failure = Result.CustomFail("My failure", customErrorObject);
             CheckOnFailure(failure, false, true);
             CheckOnFailure(failure, true, true);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnFailure((Action)null));
         }
 
         [Test]
@@ -136,6 +142,8 @@ namespace Here.Tests.Results
             var failure = Result.CustomFail("My failure", customErrorObject);
             CheckOnFailure(failure, false, true);
             CheckOnFailure(failure, true, true);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnFailure((Action<CustomResult<CustomErrorTest>>)null));
         }
     }
 }

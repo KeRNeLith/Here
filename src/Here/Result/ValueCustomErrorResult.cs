@@ -30,6 +30,7 @@ namespace Here
         public Exception Exception => Logic.Exception;
 
         /// <inheritdoc />
+        /// <exception cref="InvalidOperationException">If the result is not a failure.</exception>
         public TError Error => Logic.Error;
 
         [CanBeNull]
@@ -37,6 +38,7 @@ namespace Here
         private readonly T _value;
 
         /// <inheritdoc />
+        /// <exception cref="InvalidOperationException">If the result is not a success.</exception>
         public T Value
         {
             get
@@ -121,9 +123,12 @@ namespace Here
         /// <typeparam name="TOut">Type of the output result value.</typeparam>
         /// <param name="converter">Function that convert this result value from input type to output type.</param>
         /// <returns>A <see cref="Result{TOut, TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<TOut, TError> Cast<TOut>([NotNull, InstantHandle] in Func<T, TOut> converter)
         {
+            Throw.IfArgumentNull(converter, nameof(converter));
+
             if (IsFailure)
                 return ToFailValueCustomResult<TOut>();
             if (IsWarning)

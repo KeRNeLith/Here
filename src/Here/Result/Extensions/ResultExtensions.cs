@@ -16,7 +16,7 @@ namespace Here.Extensions
         /// <param name="result"><see cref="IResult"/> to check.</param>
         /// <returns>True if the result is a success without warning, otherwise false.</returns>
         [PublicAPI, Pure]
-        public static bool IsOnlySuccess(this IResult result)
+        public static bool IsOnlySuccess([NotNull] this IResult result)
         {
             return result.IsSuccess && !result.IsWarning;
         }
@@ -34,7 +34,7 @@ namespace Here.Extensions
         /// <param name="defaultValue">Default value to use.</param>
         /// <returns>The unwrapped value from this <see cref="IResult{T}"/> if it has a value, otherwise the default value.</returns>
         [PublicAPI, Pure]
-        public static T Unwrap<T>(this IResult<T> result, [CanBeNull] in T defaultValue = default)
+        public static T Unwrap<T>([NotNull]this IResult<T> result, [CanBeNull] in T defaultValue = default)
         {
             if (result.IsSuccess)
                 return result.Value;
@@ -49,9 +49,12 @@ namespace Here.Extensions
         /// <param name="result"><see cref="IResult{T}"/> to unwrap value.</param>
         /// <param name="orFunc">Default value factory method.</param>
         /// <returns>The unwrapped value from this <see cref="IResult{T}"/> if it has a value, otherwise the default value.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="orFunc"/> is null.</exception>
         [PublicAPI, Pure]
-        public static T Unwrap<T>(this IResult<T> result, [NotNull, InstantHandle] in Func<T> orFunc)
+        public static T Unwrap<T>([NotNull] this IResult<T> result, [NotNull, InstantHandle] in Func<T> orFunc)
         {
+            Throw.IfArgumentNull(orFunc, nameof(orFunc));
+
             if (result.IsSuccess)
                 return result.Value;
             return orFunc();
@@ -68,11 +71,14 @@ namespace Here.Extensions
         /// <param name="converter">Function called to convert this <see cref="IResult{T}"/> value.</param>
         /// <param name="defaultValue">Default value to use.</param>
         /// <returns>The unwrapped value from this <see cref="IResult{T}"/> if it has a value, otherwise the default value.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
         [PublicAPI, Pure]
-        public static TOut Unwrap<T, TOut>(this IResult<T> result,
+        public static TOut Unwrap<T, TOut>([NotNull] this IResult<T> result,
             [NotNull, InstantHandle] in Func<T, TOut> converter,
             [CanBeNull] in TOut defaultValue = default)
         {
+            Throw.IfArgumentNull(converter, nameof(converter));
+
             if (result.IsSuccess)
                 return converter(result.Value);
             return defaultValue;
@@ -89,11 +95,16 @@ namespace Here.Extensions
         /// <param name="converter">Function called to convert this <see cref="IResult{T}"/> value.</param>
         /// <param name="orFunc">Default value factory method.</param>
         /// <returns>The unwrapped value from this <see cref="IResult{T}"/> if it has a value, otherwise the default value.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="orFunc"/> is null.</exception>
         [PublicAPI, Pure]
-        public static TOut Unwrap<T, TOut>(this IResult<T> result,
+        public static TOut Unwrap<T, TOut>([NotNull] this IResult<T> result,
             [NotNull, InstantHandle] in Func<T, TOut> converter,
-            [NotNull] in Func<TOut> orFunc)
+            [NotNull, InstantHandle] in Func<TOut> orFunc)
         {
+            Throw.IfArgumentNull(converter, nameof(converter));
+            Throw.IfArgumentNull(orFunc, nameof(orFunc));
+
             if (result.IsSuccess)
                 return converter(result.Value);
             return orFunc();
@@ -110,9 +121,14 @@ namespace Here.Extensions
         /// <param name="predicate">Predicate to match.</param>
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
         /// <returns>A <see cref="Result"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
         [PublicAPI, Pure]
         public static Result Ensure(in this Result result, [NotNull, InstantHandle] in Func<bool> predicate, [NotNull] in string errorMessage)
         {
+            Throw.IfArgumentNull(predicate, nameof(predicate));
+            Throw.IfArgumentNull(errorMessage, nameof(errorMessage));
+
             if (result.IsFailure)
                 return result;
 
@@ -134,9 +150,14 @@ namespace Here.Extensions
         /// <param name="predicate">Predicate to match.</param>
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
         /// <returns>A <see cref="Result{T}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
         [PublicAPI, Pure]
         public static Result<T> Ensure<T>(in this Result<T> result, [NotNull, InstantHandle] in Predicate<T> predicate, [NotNull] in string errorMessage)
         {
+            Throw.IfArgumentNull(predicate, nameof(predicate));
+            Throw.IfArgumentNull(errorMessage, nameof(errorMessage));
+
             if (result.IsFailure)
                 return result;
 
@@ -233,12 +254,19 @@ namespace Here.Extensions
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
         /// <param name="errorObject">Custom error object.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null or empty.</exception>
         [PublicAPI, Pure]
         public static CustomResult<TError> Ensure<TError>(in this CustomResult<TError> result, 
             [NotNull, InstantHandle] in Func<bool> predicate, 
             [NotNull] in string errorMessage, 
             [NotNull] in TError errorObject)
         {
+            Throw.IfArgumentNull(predicate, nameof(predicate));
+            Throw.IfArgumentNull(errorMessage, nameof(errorMessage));
+            Throw.IfArgumentNull(errorObject, nameof(errorObject));
+
             if (result.IsFailure)
                 return result;
 
@@ -257,12 +285,19 @@ namespace Here.Extensions
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null or empty.</exception>
         [PublicAPI, Pure]
         public static CustomResult<TError> Ensure<TError>(in this CustomResult<TError> result,
             [NotNull, InstantHandle] in Func<bool> predicate,
             [NotNull] in string errorMessage,
             [NotNull, InstantHandle] in Func<TError> errorFactory)
         {
+            Throw.IfArgumentNull(predicate, nameof(predicate));
+            Throw.IfArgumentNull(errorMessage, nameof(errorMessage));
+            Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
+
             if (result.IsFailure)
                 return result;
 
@@ -286,12 +321,19 @@ namespace Here.Extensions
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
         /// <param name="errorObject">Custom error object.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null or empty.</exception>
         [PublicAPI, Pure]
         public static Result<T, TError> Ensure<T, TError>(in this Result<T, TError> result,
             [NotNull, InstantHandle] in Predicate<T> predicate,
             [NotNull] in string errorMessage,
             [NotNull] in TError errorObject)
         {
+            Throw.IfArgumentNull(predicate, nameof(predicate));
+            Throw.IfArgumentNull(errorMessage, nameof(errorMessage));
+            Throw.IfArgumentNull(errorObject, nameof(errorObject));
+
             if (result.IsFailure)
                 return result;
 
@@ -311,12 +353,19 @@ namespace Here.Extensions
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null or empty.</exception>
         [PublicAPI, Pure]
         public static Result<T, TError> Ensure<T, TError>(in this Result<T, TError> result,
             [NotNull, InstantHandle] in Predicate<T> predicate,
             [NotNull] in string errorMessage,
             [NotNull, InstantHandle] in Func<TError> errorFactory)
         {
+            Throw.IfArgumentNull(predicate, nameof(predicate));
+            Throw.IfArgumentNull(errorMessage, nameof(errorMessage));
+            Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
+
             if (result.IsFailure)
                 return result;
 

@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using Here.Extensions;
 
 namespace Here.Tests.Results
@@ -74,6 +75,12 @@ namespace Here.Tests.Results
             CheckOnSuccess(failure, true, false);
             CheckOnSuccessFunc(failure, false, false);
             CheckOnSuccessFunc(failure, true, false);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess(null, 12.5f));
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess(r => 12.5f, (Func<CustomResult<CustomErrorTest>, float>)null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess(null, r => 12.5f));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<CustomResult<CustomErrorTest>, float>)null, (Func<CustomResult<CustomErrorTest>, float>)null));
         }
 
         #endregion
@@ -154,6 +161,8 @@ namespace Here.Tests.Results
                 true);
             Assert.AreEqual(6, counter);
             CheckResultFail(result, produceFailureMessage);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess(null));
         }
 
         [Test]
@@ -389,6 +398,8 @@ namespace Here.Tests.Results
                 true);
             Assert.AreEqual(6, counter);
             CheckResultFail(result, produceFailureMessage);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<CustomResult<CustomErrorTest>, Result<int>>)null));
         }
 
         [Test]
@@ -604,6 +615,9 @@ namespace Here.Tests.Results
             CheckOnSuccess(failure, true, false);
             CheckOnSuccessNoInput(failure, false, false);
             CheckOnSuccessNoInput(failure, true, false);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Action)null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Action<CustomResult<CustomErrorTest>>)null));
         }
 
         [Test]
@@ -778,6 +792,14 @@ namespace Here.Tests.Results
             Assert.AreEqual(6, counterSuccess);
             Assert.AreEqual(1, counterFailureFactory);
             CheckResultFail(result, "My failure", customErrorObject);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<CustomResult<CustomErrorTest>, int>)null, customErrorObject));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess(r => 12, (CustomErrorTest)null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<CustomResult<CustomErrorTest>, int>)null, (CustomErrorTest)null));
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<CustomResult<CustomErrorTest>, int>)null, r => customErrorObject));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess(r => 12, (Func<CustomResult<CustomErrorTest>, CustomErrorTest>)null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<CustomResult<CustomErrorTest>, int>)null, (Func<CustomResult<CustomErrorTest>, CustomErrorTest>)null));
         }
 
         [Test]
@@ -956,6 +978,14 @@ namespace Here.Tests.Results
             Assert.AreEqual(12, counterSuccess);
             Assert.AreEqual(0, counterFailureFactory);
             CheckResultFail(result, produceFailureMessage, customErrorObject);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<CustomResult<CustomErrorTest>, CustomResult<CustomErrorTest>>)null, customErrorObject));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess(r=> Result.CustomOk<CustomErrorTest>(), (CustomErrorTest)null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<CustomResult<CustomErrorTest>, CustomResult<CustomErrorTest>>)null, (CustomErrorTest)null));
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<CustomResult<CustomErrorTest>, CustomResult<CustomErrorTest>>)null, r => customErrorObject));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess(r => Result.CustomOk<CustomErrorTest>(), (Func<CustomResult<CustomErrorTest>, CustomErrorTest>)null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<CustomResult<CustomErrorTest>, CustomResult<CustomErrorTest>>)null, (Func<CustomResult<CustomErrorTest>, CustomErrorTest>)null));
         }
 
         [Test]
@@ -1497,6 +1527,14 @@ namespace Here.Tests.Results
             Assert.AreEqual(12, counterSuccess);
             Assert.AreEqual(0, counterFailureFactory);
             CheckResultFail(result, produceFailureMessage, customErrorObject);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<CustomResult<CustomErrorTest>, Result<int, CustomErrorTest>>)null, customErrorObject));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess(r => Result.Ok<int, CustomErrorTest>(12), (CustomErrorTest)null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<CustomResult<CustomErrorTest>, Result<int, CustomErrorTest>>)null, (CustomErrorTest)null));
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<CustomResult<CustomErrorTest>, Result<int, CustomErrorTest>>)null, r => customErrorObject));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess(r => Result.Ok<int, CustomErrorTest>(12), (Func<CustomResult<CustomErrorTest>, CustomErrorTest>)null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<CustomResult<CustomErrorTest>, Result<int, CustomErrorTest>>)null, (Func<CustomResult<CustomErrorTest>, CustomErrorTest>)null));
         }
 
         [Test]

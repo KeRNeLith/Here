@@ -34,6 +34,7 @@ namespace Here
         public Exception Exception => Logic.Exception;
 
         /// <inheritdoc />
+        /// <exception cref="InvalidOperationException">If the result is not a failure.</exception>
         public TError Error => Logic.Error;
 
         [NotNull]
@@ -83,9 +84,12 @@ namespace Here
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <param name="valueFactory">Factory method that creates a value.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<T> Cast<T>([NotNull, InstantHandle] in Func<T> valueFactory)
         {
+            Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
+
             if (IsFailure)
                 return ToFailValueResult<T>();
             return new Result<T>(valueFactory(), ResultLogic.ToResultLogic(Logic));
@@ -113,9 +117,12 @@ namespace Here
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <param name="valueFactory">Factory method that creates a value.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<T, TError> CustomCast<T>([NotNull, InstantHandle] in Func<T> valueFactory)
         {
+            Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
+
             if (IsFailure)
                 return ToFailValueCustomResult<T>();
             if (IsWarning)

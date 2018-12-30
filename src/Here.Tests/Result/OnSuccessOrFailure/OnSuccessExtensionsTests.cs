@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using Here.Extensions;
 
 namespace Here.Tests.Results
@@ -51,6 +52,10 @@ namespace Here.Tests.Results
             var failure = Result.Fail("My failure");
             CheckOnSuccessOrFailure(failure, false, false);
             CheckOnSuccessOrFailure(failure, true, false);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure(() => {}, (Action)null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure(null, () => {}));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure(null, (Action)null));
         }
 
         [Test]
@@ -93,6 +98,10 @@ namespace Here.Tests.Results
             var failure = Result.Fail("My failure");
             CheckOnSuccessOrFailure(failure, false, false);
             CheckOnSuccessOrFailure(failure, true, false);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure(() => { }, (Action<Result>)null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure((Action)null, r => { }));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure((Action)null, (Action<Result>)null));
         }
 
         [Test]
@@ -135,6 +144,14 @@ namespace Here.Tests.Results
             var failure = Result.Fail("My failure");
             CheckOnSuccessOrFailure(failure, false, false);
             CheckOnSuccessOrFailure(failure, true, false);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure(r => {}, null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure((Action<Result>)null, r => { }));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure((Action<Result>)null, null));
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure(r => 12.5f, null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure(null, r => 12.5f));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure((Func<Result, float>)null, null));
         }
 
         [Test]
@@ -225,6 +242,10 @@ namespace Here.Tests.Results
             var failure = Result.Fail<int>("My failure");
             CheckOnSuccessOrFailure(failure, false, false);
             CheckOnSuccessOrFailure(failure, true, false);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure(() => {}, null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure(null, () => {}));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure((Action)null, null));
         }
 
         [Test]
@@ -267,6 +288,10 @@ namespace Here.Tests.Results
             var failure = Result.Fail<int>("My failure");
             CheckOnSuccessOrFailure(failure, false, false);
             CheckOnSuccessOrFailure(failure, true, false);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure(r => { }, null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure(null, r => { }));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure((Action<Result<int>>)null, null));
         }
 
         [Test]
@@ -311,6 +336,10 @@ namespace Here.Tests.Results
             var failure = Result.Fail<int>("My failure");
             CheckOnSuccessOrFailure(failure, false, -1.0f, false);
             CheckOnSuccessOrFailure(failure, true, -1.0f, false);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure(r => 12.5f, null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure(null, r => 12.5f));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure((Func<Result<int>, float>)null, null));
         }
 
         #endregion
@@ -357,6 +386,10 @@ namespace Here.Tests.Results
             var failure = Result.CustomFail("My failure", new CustomErrorTest { ErrorCode = -1 });
             CheckOnSuccessOrFailure(failure, false, false);
             CheckOnSuccessOrFailure(failure, true, false);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure(() => {}, (Action)null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure(null, () => {}));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure(null, (Action)null));
         }
 
         [Test]
@@ -399,6 +432,10 @@ namespace Here.Tests.Results
             var failure = Result.CustomFail("My failure", new CustomErrorTest { ErrorCode = -1 });
             CheckOnSuccessOrFailure(failure, false, false);
             CheckOnSuccessOrFailure(failure, true, false);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure(() => {}, (Action<CustomResult<CustomErrorTest>>)null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure((Action)null, r => {}));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure((Action)null, (Action<CustomResult<CustomErrorTest>>)null));
         }
 
         [Test]
@@ -441,6 +478,10 @@ namespace Here.Tests.Results
             var failure = Result.CustomFail("My failure", new CustomErrorTest { ErrorCode = -1 });
             CheckOnSuccessOrFailure(failure, false, false);
             CheckOnSuccessOrFailure(failure, true, false);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure(r => { }, null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure((Action<CustomResult<CustomErrorTest>>)null, r => { }));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure((Action<CustomResult<CustomErrorTest>>)null, null));
         }
 
         [Test]
@@ -485,6 +526,10 @@ namespace Here.Tests.Results
             var failure = Result.CustomFail("My failure", new CustomErrorTest { ErrorCode = -1 });
             CheckOnSuccessOrFailure(failure, false, -1.0f, false);
             CheckOnSuccessOrFailure(failure, true, -1.0f, false);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure(r => 12.5f, null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure(null, r => 12.5f));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure((Func<CustomResult<CustomErrorTest>, float>)null, null));
         }
 
         #endregion
@@ -531,6 +576,10 @@ namespace Here.Tests.Results
             var failure = Result.Fail<int, CustomErrorTest>("My failure", new CustomErrorTest { ErrorCode = -2 });
             CheckOnSuccessOrFailure(failure, false, false);
             CheckOnSuccessOrFailure(failure, true, false);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure(() => {}, null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure(null, () => {}));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure((Action)null, null));
         }
 
         [Test]
@@ -573,6 +622,10 @@ namespace Here.Tests.Results
             var failure = Result.Fail<int, CustomErrorTest>("My failure", new CustomErrorTest { ErrorCode = -2 });
             CheckOnSuccessOrFailure(failure, false, false);
             CheckOnSuccessOrFailure(failure, true, false);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure(r => { }, null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure(null, r => { }));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure((Action<Result<int, CustomErrorTest>>)null, null));
         }
 
         [Test]
@@ -617,6 +670,10 @@ namespace Here.Tests.Results
             var failure = Result.Fail<int, CustomErrorTest>("My failure", new CustomErrorTest { ErrorCode = -2 });
             CheckOnSuccessOrFailure(failure, false, -1.0f, false);
             CheckOnSuccessOrFailure(failure, true, -1.0f, false);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure(r => 12.5f, null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure(null, r => 12.5f));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccessOrFailure((Func<Result<int, CustomErrorTest>, float>)null, null));
         }
 
         #endregion
