@@ -60,6 +60,7 @@ namespace Here
         /// <summary>
         /// Gets the left value.
         /// </summary>
+        /// <exception cref="InvalidOperationException">If the either is not in <see cref="EitherStates.Left"/> state.</exception>
         [PublicAPI, NotNull]
         public TLeft LeftValue
         {
@@ -80,6 +81,7 @@ namespace Here
         /// <summary>
         /// Gets the right value.
         /// </summary>
+        /// <exception cref="InvalidOperationException">If the either is not in <see cref="EitherStates.Right"/> state.</exception>
         [PublicAPI, NotNull]
         public TRight RightValue
         {
@@ -97,7 +99,8 @@ namespace Here
         /// Constructs an <see cref="Either{TLeft,TRight}"/> in a <see cref="EitherStates.Left"/> state.
         /// </summary>
         /// <param name="value">Left value.</param>
-        private Either(in TLeft value)
+        /// <exception cref="ArgumentNullException">If the <paramref name="value"/> is null.</exception>
+        private Either([NotNull] in TLeft value)
         {
             if (value == null)
                 throw new ArgumentNullException(nameof(value), "Cannot initialize an Either<TLeft, TRight> in Left state with a null value.");
@@ -111,7 +114,8 @@ namespace Here
         /// Constructs an <see cref="Either{TLeft,TRight}"/> in a <see cref="EitherStates.Right"/> state.
         /// </summary>
         /// <param name="value">Right value.</param>
-        private Either(in TRight value)
+        /// <exception cref="ArgumentNullException">If the <paramref name="value"/> is null.</exception>
+        private Either([NotNull] in TRight value)
         {
             if (value == null)
                 throw new ArgumentNullException(nameof(value), "Cannot initialize an Either<TLeft, TRight> in Right with a null value.");
@@ -126,8 +130,9 @@ namespace Here
         /// </summary>
         /// <param name="value">Left value.</param>
         /// <returns>An <see cref="Either{TLeft,TRight}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="value"/> is null.</exception>
         [Pure]
-        internal static Either<TLeft, TRight> Left(in TLeft value)
+        internal static Either<TLeft, TRight> Left([NotNull] in TLeft value)
         {
             return new Either<TLeft, TRight>(value);
         }
@@ -137,8 +142,9 @@ namespace Here
         /// </summary>
         /// <param name="value">Right value.</param>
         /// <returns>An <see cref="Either{TLeft,TRight}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="value"/> is null.</exception>
         [Pure]
-        internal static Either<TLeft, TRight> Right(in TRight value)
+        internal static Either<TLeft, TRight> Right([NotNull] in TRight value)
         {
             return new Either<TLeft, TRight>(value);
         }
@@ -148,6 +154,7 @@ namespace Here
         /// </summary>
         /// <param name="either"><see cref="Either{TLeft,TRight}"/> to convert.</param>
         /// <returns>The left value.</returns>
+        /// <exception cref="InvalidCastException">If the either is casted to a left value while not being in <see cref="EitherStates.Left"/> state.</exception>
         [PublicAPI, Pure]
         public static explicit operator TLeft(in Either<TLeft, TRight> either)
         {
@@ -161,6 +168,7 @@ namespace Here
         /// </summary>
         /// <param name="either"><see cref="Either{TLeft,TRight}"/> to convert.</param>
         /// <returns>The right value.</returns>
+        /// <exception cref="InvalidCastException">If the either is casted to a left value while not being in <see cref="EitherStates.Right"/> state.</exception>
         [PublicAPI, Pure]
         public static explicit operator TRight(in Either<TLeft, TRight> either)
         {

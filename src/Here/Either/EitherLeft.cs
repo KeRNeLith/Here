@@ -33,6 +33,7 @@ namespace Here
         /// Construct an <see cref="EitherLeft{TLeft}"/> with a value.
         /// </summary>
         /// <param name="value">A value.</param>
+        /// <exception cref="ArgumentNullException">If the <paramref name="value"/> is null.</exception>
         internal EitherLeft([NotNull] TLeft value)
         {
             if (value == null)

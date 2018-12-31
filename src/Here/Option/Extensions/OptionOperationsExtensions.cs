@@ -160,7 +160,7 @@ namespace Here.Extensions
         /// <param name="orFunc">Function called if this <see cref="Option{T}"/> has no value.</param>
         /// <returns>This <see cref="Option{T}"/> value, otherwise the result of <paramref name="orFunc"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="orFunc"/> is null.</exception>
-        /// <exception cref="InvalidOperationException">If the <see cref="Option{T}"/> has no value and <paramref name="orFunc"/> returns null.</exception>
+        /// <exception cref="NullResultException">If the <see cref="Option{T}"/> has no value and <paramref name="orFunc"/> returns null.</exception>
         [PublicAPI, Pure, NotNull]
         public static T Or<T>(in this Option<T> option, [NotNull, InstantHandle] in Func<T> orFunc)
         {
@@ -171,7 +171,7 @@ namespace Here.Extensions
 
             T orValue = orFunc();
             if (orValue == null)
-                throw new InvalidOperationException("Cannot return a null value from orFunc() while using Or extension, consider using Unwrap otherwise.");
+                throw new NullResultException();
             return orValue;
         }
 

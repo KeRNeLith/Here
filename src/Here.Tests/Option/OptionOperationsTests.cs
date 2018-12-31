@@ -238,7 +238,7 @@ namespace Here.Tests.Options
             optionResultClass = optionClass.Or(() => null);     // We don't detect the null return of the factory,
                                                                 // and in this case we will not run the function if it is not needed
             CheckOptionSameValue(optionResultClass, testObject);
-            Assert.Throws<InvalidOperationException>(() => emptyOptionClass.Or(() => null));
+            Assert.Throws<NullResultException>(() => emptyOptionClass.Or(() => null));
             Assert.Throws<ArgumentNullException>(() => optionInt.Or((Func<Option<int>>)null));
             Assert.Throws<ArgumentNullException>(() => optionInt.Or((Func<Option<int>>)null));
 

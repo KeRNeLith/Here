@@ -114,6 +114,18 @@ namespace Here.Tests.Eithers
                     ++counterNone;
                 });
             CheckCounters(2, 2, 1);
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.Match(r => { }, null));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.Match(null, l => { }));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.Match(null, null));
+
+            Assert.Throws<ArgumentNullException>(() => eitherRight.Match(r => { }, null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.Match(null, l => { }));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.Match(null, null));
+
+            Assert.Throws<ArgumentNullException>(() => eitherNone.Match(r => { }, null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.Match(null, l => { }));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.Match(null, null));
         }
 
         [Test]
@@ -283,6 +295,18 @@ namespace Here.Tests.Eithers
                     return null;
                 }));
             CheckCounters(3, 3, 2);
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.MatchNullable(r => 12.5f, null));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.MatchNullable(null, l => 12.5f));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.MatchNullable((Func<int, float>)null, null));
+
+            Assert.Throws<ArgumentNullException>(() => eitherRight.MatchNullable(r => 12.5f, null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.MatchNullable(null, l => 12.5f));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.MatchNullable((Func<int, float>)null, null));
+
+            Assert.Throws<ArgumentNullException>(() => eitherNone.MatchNullable(r => 12.5f, null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.MatchNullable(null, l => 12.5f));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.MatchNullable((Func<int, float>)null, null));
         }
 
         [Test]
@@ -455,6 +479,21 @@ namespace Here.Tests.Eithers
                         return null;
                     }));
             CheckCounters(3, 3, 2);
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.Match(r => 12.5f, null));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.Match(null, l => 12.5f));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.Match((Func<int, float>)null, null));
+            Assert.Throws<NullResultException>(() => eitherLeft.Match(r => "never executed", l => null));
+
+            Assert.Throws<ArgumentNullException>(() => eitherRight.Match(r => 12.5f, null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.Match(null, l => 12.5f));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.Match((Func<int, float>)null, null));
+            Assert.Throws<NullResultException>(() => eitherRight.Match(r => null, l => "never executed"));
+
+            Assert.Throws<ArgumentNullException>(() => eitherNone.Match(r => 12.5f, null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.Match(null, l => 12.5f));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.Match((Func<int, float>)null, null));
+            Assert.Throws<NullResultException>(() => eitherNone.Match(r => "never executed", l => "never executed", () => null));
         }
 
         #endregion
@@ -492,6 +531,10 @@ namespace Here.Tests.Eithers
                     ++counter;
                 });
             Assert.AreEqual(1, counter);
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.IfLeft((Action<string>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.IfLeft((Action<string>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.IfLeft((Action<string>)null));
         }
 
         [Test]
@@ -525,6 +568,10 @@ namespace Here.Tests.Eithers
                     ++counter;
                 });
             Assert.AreEqual(1, counter);
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.IfFailure(null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.IfFailure(null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.IfFailure(null));
         }
 
         [Test]
@@ -600,6 +647,27 @@ namespace Here.Tests.Eithers
                         return 55;
                     }));
             Assert.AreEqual(2, counter);
+
+
+            var eitherLeftStringPerson = Either.Left<string, Person>("Error");
+            var eitherRightStringPerson = Either.Right<string, Person>(new Person("Test"));
+            var eitherNoneStringPerson = Either.Left<string, Person>("Error");
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeftStringPerson.IfLeft((Person)null));
+            Assert.Throws<ArgumentNullException>(() => eitherRightStringPerson.IfLeft((Person)null));
+            Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfLeft((Person)null));
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeftStringPerson.IfLeft((Func<Person>)null));
+            Assert.Throws<NullResultException>(() => eitherLeftStringPerson.IfLeft(() => null));
+            Assert.Throws<ArgumentNullException>(() => eitherRightStringPerson.IfLeft((Func<Person>)null));
+            Assert.AreEqual(new Person("Test"),  eitherRightStringPerson.IfLeft(() => null));
+            Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfLeft((Func<Person>)null));
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeftStringPerson.IfLeft((Func<string, Person>)null));
+            Assert.Throws<NullResultException>(() => eitherLeftStringPerson.IfLeft(s => null));
+            Assert.Throws<ArgumentNullException>(() => eitherRightStringPerson.IfLeft((Func<string, Person>)null));
+            Assert.AreEqual(new Person("Test"), eitherRightStringPerson.IfLeft(s => null));
+            Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfLeft((Func<string, Person>)null));
         }
 
         [Test]
@@ -672,6 +740,38 @@ namespace Here.Tests.Eithers
                     },
                     () => 99.5f));
             Assert.AreEqual(2, counter);
+
+
+            var eitherLeftStringPerson = Either.Left<string, Person>("Error");
+            var eitherRightStringPerson = Either.Right<string, Person>(new Person("Test"));
+            var eitherNoneStringPerson = Either.Left<string, Person>("Error");
+            var testObject = new TestClass();
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeftStringPerson.IfLeft(r => testObject, (TestClass)null));
+            Assert.Throws<NullResultException>(() => eitherLeftStringPerson.IfLeft(r => null, testObject));
+            Assert.Throws<ArgumentNullException>(() => eitherLeftStringPerson.IfLeft(null, testObject));
+            Assert.Throws<ArgumentNullException>(() => eitherLeftStringPerson.IfLeft(null, (TestClass)null));
+            Assert.Throws<ArgumentNullException>(() => eitherRightStringPerson.IfLeft(r => testObject, (TestClass)null));
+            Assert.AreSame(testObject, eitherRightStringPerson.IfLeft(r => null, testObject));
+            Assert.Throws<ArgumentNullException>(() => eitherRightStringPerson.IfLeft(null, testObject));
+            Assert.Throws<ArgumentNullException>(() => eitherRightStringPerson.IfLeft(null, (TestClass)null));
+            Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfLeft(r => testObject, (TestClass)null));
+            Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfLeft(null, testObject));
+            Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfLeft(null, (TestClass)null));
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeftStringPerson.IfLeft(r => testObject, (Func<TestClass>)null));
+            Assert.Throws<NullResultException>(() => eitherLeftStringPerson.IfLeft(r => null, () => testObject));
+            Assert.AreSame(testObject, eitherLeftStringPerson.IfLeft(l => testObject, () => null));
+            Assert.Throws<ArgumentNullException>(() => eitherLeftStringPerson.IfLeft(null, () => testObject));
+            Assert.Throws<ArgumentNullException>(() => eitherLeftStringPerson.IfLeft((Func<string, TestClass>)null, (Func<TestClass>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherRightStringPerson.IfLeft(r => testObject, (Func<TestClass>)null));
+            Assert.AreSame(testObject, eitherRightStringPerson.IfLeft(r => null, () => testObject));
+            Assert.Throws<NullResultException>(() => eitherRightStringPerson.IfLeft(r => testObject, () => null));
+            Assert.Throws<ArgumentNullException>(() => eitherRightStringPerson.IfLeft(null, () => testObject));
+            Assert.Throws<ArgumentNullException>(() => eitherRightStringPerson.IfLeft((Func<string, TestClass>)null, (Func<TestClass>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfLeft(r => testObject, (Func<TestClass>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfLeft(null, () => testObject));
+            Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfLeft((Func<string, TestClass>)null, (Func<TestClass>)null));
         }
 
         #endregion
@@ -709,6 +809,10 @@ namespace Here.Tests.Eithers
                     ++counter;
                 });
             Assert.AreEqual(1, counter);
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.IfRight((Action<int>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.IfRight((Action<int>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.IfRight((Action<int>)null));
         }
 
         [Test]
@@ -742,6 +846,10 @@ namespace Here.Tests.Eithers
                     ++counter;
                 });
             Assert.AreEqual(1, counter);
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.IfSuccess(null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.IfSuccess(null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.IfSuccess(null));
         }
 
         [Test]
@@ -817,6 +925,26 @@ namespace Here.Tests.Eithers
                         return "Error 9";
                     }));
             Assert.AreEqual(2, counter);
+
+            var eitherLeftStringPerson = Either.Left<string, Person>("Error");
+            var eitherRightStringPerson = Either.Right<string, Person>(new Person("Test"));
+            var eitherNoneStringPerson = Either.Left<string, Person>("Error");
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeftStringPerson.IfRight((string)null));
+            Assert.Throws<ArgumentNullException>(() => eitherRightStringPerson.IfRight((string)null));
+            Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfRight((string)null));
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeftStringPerson.IfRight((Func<string>)null));
+            Assert.AreEqual("Error", eitherLeftStringPerson.IfRight(() => null));
+            Assert.Throws<ArgumentNullException>(() => eitherRightStringPerson.IfRight((Func<string>)null));
+            Assert.Throws<NullResultException>(() => eitherRightStringPerson.IfRight(() => null));
+            Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfRight((Func<string>)null));
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeftStringPerson.IfRight((Func<Person, string>)null));
+            Assert.AreEqual("Error", eitherLeftStringPerson.IfRight(p => null));
+            Assert.Throws<ArgumentNullException>(() => eitherRightStringPerson.IfRight((Func<Person, string>)null));
+            Assert.Throws<NullResultException>(() => eitherRightStringPerson.IfRight(s => null));
+            Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfRight((Func<Person, string>)null));
         }
 
         [Test]
@@ -889,6 +1017,38 @@ namespace Here.Tests.Eithers
                     },
                     () => 99.5f));
             Assert.AreEqual(2, counter);
+
+
+            var eitherLeftStringPerson = Either.Left<string, Person>("Error");
+            var eitherRightStringPerson = Either.Right<string, Person>(new Person("Test"));
+            var eitherNoneStringPerson = Either.Left<string, Person>("Error");
+            var testObject = new TestClass();
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeftStringPerson.IfRight(l => testObject, (TestClass)null));
+            Assert.AreSame(testObject, eitherLeftStringPerson.IfRight(l => null, testObject));
+            Assert.Throws<ArgumentNullException>(() => eitherLeftStringPerson.IfRight(null, testObject));
+            Assert.Throws<ArgumentNullException>(() => eitherLeftStringPerson.IfRight(null, (TestClass)null));
+            Assert.Throws<ArgumentNullException>(() => eitherRightStringPerson.IfRight(l => testObject, (TestClass)null));
+            Assert.Throws<NullResultException>(() => eitherRightStringPerson.IfRight(l => null, testObject));
+            Assert.Throws<ArgumentNullException>(() => eitherRightStringPerson.IfRight(null, testObject));
+            Assert.Throws<ArgumentNullException>(() => eitherRightStringPerson.IfRight(null, (TestClass)null));
+            Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfRight(l => testObject, (TestClass)null));
+            Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfRight(null, testObject));
+            Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfRight(null, (TestClass)null));
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeftStringPerson.IfRight(l => testObject, (Func<TestClass>)null));
+            Assert.AreSame(testObject, eitherLeftStringPerson.IfRight(l => null, () => testObject));
+            Assert.Throws<NullResultException>(() => eitherLeftStringPerson.IfRight(l => testObject, () => null));
+            Assert.Throws<ArgumentNullException>(() => eitherLeftStringPerson.IfRight(null, () => testObject));
+            Assert.Throws<ArgumentNullException>(() => eitherLeftStringPerson.IfRight((Func<Person, TestClass>)null, (Func<TestClass>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherRightStringPerson.IfRight(l => testObject, (Func<TestClass>)null));
+            Assert.Throws<NullResultException>(() => eitherRightStringPerson.IfRight(l => null, () => testObject));
+            Assert.AreSame(testObject, eitherRightStringPerson.IfRight(l => testObject, () => null));
+            Assert.Throws<ArgumentNullException>(() => eitherRightStringPerson.IfRight(null, () => testObject));
+            Assert.Throws<ArgumentNullException>(() => eitherRightStringPerson.IfRight((Func<Person, TestClass>)null, (Func<TestClass>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfRight(l => testObject, (Func<TestClass>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfRight(null, () => testObject));
+            Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfRight((Func<Person, TestClass>)null, (Func<TestClass>)null));
         }
 
         #endregion
@@ -920,6 +1080,7 @@ namespace Here.Tests.Eithers
             Assert.Throws<ArgumentNullException>(() => eitherLeft.LeftOr((string)null));
             Assert.AreEqual("Error", eitherLeft.LeftOr(() => "Default"));
             Assert.Throws<ArgumentNullException>(() => eitherLeft.LeftOr((Func<string>)null));
+            Assert.AreEqual("Error", eitherLeft.LeftOr(() => null));
 
             // Either right
             Either<string, int> eitherRight = Either.Right(12);
@@ -927,6 +1088,7 @@ namespace Here.Tests.Eithers
             Assert.Throws<ArgumentNullException>(() => eitherRight.LeftOr((string)null));
             Assert.AreEqual("Default", eitherRight.LeftOr(() => "Default"));
             Assert.Throws<ArgumentNullException>(() => eitherRight.LeftOr((Func<string>)null));
+            Assert.Throws<NullResultException>(() => eitherRight.LeftOr(() => null));
 
             // Either none
             Either<string, int> eitherNone = Either<string, int>.None;
@@ -934,6 +1096,7 @@ namespace Here.Tests.Eithers
             Assert.Throws<ArgumentNullException>(() => eitherNone.LeftOr((string)null));
             Assert.AreEqual("Default", eitherNone.LeftOr(() => "Default"));
             Assert.Throws<ArgumentNullException>(() => eitherNone.LeftOr((Func<string>)null));
+            Assert.Throws<NullResultException>(() => eitherNone.LeftOr(() => null));
         }
 
         [Test]
@@ -961,13 +1124,15 @@ namespace Here.Tests.Eithers
             Assert.Throws<ArgumentNullException>(() => eitherLeft.RightOr((string)null));
             Assert.AreEqual("Default", eitherLeft.RightOr(() => "Default"));
             Assert.Throws<ArgumentNullException>(() => eitherLeft.RightOr((Func<string>)null));
+            Assert.Throws<NullResultException>(() => eitherLeft.RightOr(() => null));
 
             // Either right
-            Either<int, string> eitherRight = Either.Right("Error");
-            Assert.AreEqual("Error", eitherRight.RightOr("Default"));
+            Either<int, string> eitherRight = Either.Right("Value");
+            Assert.AreEqual("Value", eitherRight.RightOr("Default"));
             Assert.Throws<ArgumentNullException>(() => eitherRight.RightOr((string)null));
-            Assert.AreEqual("Error", eitherRight.RightOr(() => "Default"));
+            Assert.AreEqual("Value", eitherRight.RightOr(() => "Default"));
             Assert.Throws<ArgumentNullException>(() => eitherRight.RightOr((Func<string>)null));
+            Assert.AreEqual("Value", eitherRight.RightOr(() => null));
 
             // Either none
             Either<int, string> eitherNone = Either<int, string>.None;
@@ -975,6 +1140,7 @@ namespace Here.Tests.Eithers
             Assert.Throws<ArgumentNullException>(() => eitherNone.RightOr((string)null));
             Assert.AreEqual("Default", eitherNone.RightOr(() => "Default"));
             Assert.Throws<ArgumentNullException>(() => eitherNone.RightOr((Func<string>)null));
+            Assert.Throws<NullResultException>(() => eitherNone.RightOr(() => null));
         }
 
         #endregion

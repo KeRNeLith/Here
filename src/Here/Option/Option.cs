@@ -34,7 +34,7 @@ namespace Here
         /// <summary>
         /// Option value.
         /// </summary>
-        [NotNull]
+        [CanBeNull]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly T _value;
 
@@ -48,7 +48,7 @@ namespace Here
             get
             {
                 if (HasNoValue)
-                    throw new InvalidOperationException("Trying to get the value while there is no one.");
+                    throw new InvalidOperationException("Trying to get the value while there is none.");
                 return _value;
             }
         }

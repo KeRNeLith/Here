@@ -123,6 +123,18 @@ namespace Here.Tests.Eithers
             Either<double, Person> eitherLeft6 = ((Person)null).ToEither(() => 12.5);
             CheckLeftEither(eitherLeft6, 12.5);
 
+            var person = new Person("Test");
+            Assert.Throws<ArgumentNullException>(() => { Either<string, Person> _ = person.ToEither((string)null); });
+            Assert.Throws<ArgumentNullException>(() => { Either<string, Person> _ = ((Person)null).ToEither((string)null); });
+            Assert.Throws<ArgumentNullException>(() => { Either<string, Person> _ = person.ToEither((Func<string>)null); });
+            Assert.Throws<ArgumentNullException>(() => { Either<string, Person> _ = ((Person)null).ToEither((Func<string>)null); });
+            Assert.Throws<ArgumentNullException>(() => { Either<string, Person> _ = ((Person)null).ToEither(() => (string)null); });
+
+            Assert.Throws<ArgumentNullException>(() => { Either<string, int> _ = ((int?)12).ToEither((string)null); });
+            Assert.Throws<ArgumentNullException>(() => { Either<string, int> _ = ((int?)null).ToEither((string)null); });
+            Assert.Throws<ArgumentNullException>(() => { Either<string, int> _ = ((int?)12).ToEither((Func<string>)null); });
+            Assert.Throws<ArgumentNullException>(() => { Either<string, int> _ = ((int?)null).ToEither((Func<string>)null); });
+            Assert.Throws<ArgumentNullException>(() => { Either<string, int> _ = ((int?)null).ToEither(() => (string)null); });
 
             // Right construction
             Either<double, int> eitherRight1 = 18.ToEither<double, int>();
@@ -143,9 +155,9 @@ namespace Here.Tests.Eithers
             Either<double, Person> eitherRight5 = new Person("Test").ToEither(42.5);
             CheckRightEither(eitherRight5, new Person("Test"));
 
-            var person = new Person("Test 2");
-            Either<double, Person> eitherRight6 = person.ToEither(() => 12.5);
-            CheckRightEither(eitherRight6, person);
+            var person2 = new Person("Test 2");
+            Either<double, Person> eitherRight6 = person2.ToEither(() => 12.5);
+            CheckRightEither(eitherRight6, person2);
         }
 
         [Test]

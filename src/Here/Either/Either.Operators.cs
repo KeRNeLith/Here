@@ -48,6 +48,7 @@ namespace Here
         /// Converts this <see cref="Either{TLeft,TRight}"/> to a <see cref="CustomResult{TError}"/>.
         /// </summary>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
+        /// <exception cref="InvalidOperationException">If the either is in <see cref="EitherStates.None"/> state.</exception>
         public CustomResult<TLeft> ToCustomResult()
         {
             if (IsRight)
@@ -62,6 +63,7 @@ namespace Here
         /// Converts this <see cref="Either{TLeft,TRight}"/> to a <see cref="Result{TRight, TLeft}"/>.
         /// </summary>
         /// <returns>A <see cref="Result{TRight, TLeft}"/>.</returns>
+        /// <exception cref="InvalidOperationException">If the either is in <see cref="EitherStates.None"/> state.</exception>
         public Result<TRight, TLeft> ToValueCustomResult()
         {
             if (IsRight)
