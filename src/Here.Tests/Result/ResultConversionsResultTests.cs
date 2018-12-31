@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace Here.Tests.Results
 {
@@ -59,6 +60,8 @@ namespace Here.Tests.Results
                 });
             Assert.AreEqual(2, counterValueFactory);
             CheckResultFail(valueResult, "My failure");
+
+            Assert.Throws<ArgumentNullException>(() => ok.Cast((Func<int>)null));
         }
 
         [Test]
@@ -111,6 +114,9 @@ namespace Here.Tests.Results
                 });
             Assert.AreEqual(1, counterErrorFactory);
             CheckResultFail(customResult, "My failure", customErrorObjectFactory);
+
+            Assert.Throws<ArgumentNullException>(() => ok.CustomCast((CustomErrorTest)null));
+            Assert.Throws<ArgumentNullException>(() => ok.CustomCast((Func<CustomErrorTest>)null));
         }
 
         [Test]
@@ -237,6 +243,13 @@ namespace Here.Tests.Results
             Assert.AreEqual(4, counterValueFactory);
             Assert.AreEqual(2, counterErrorFactory);
             CheckResultFail(result, "My failure", customErrorObjectFactory);
+
+            Assert.Throws<ArgumentNullException>(() => ok.Cast(12.5f, (CustomErrorTest)null));
+            Assert.Throws<ArgumentNullException>(() => ok.Cast(12.5f, (Func<CustomErrorTest>)null));
+            Assert.Throws<ArgumentNullException>(() => ok.Cast(() => 12.5f, (CustomErrorTest)null));
+            Assert.Throws<ArgumentNullException>(() => ok.Cast(() => 12.5f, (Func<CustomErrorTest>)null));
+            Assert.Throws<ArgumentNullException>(() => ok.Cast((Func<float>)null, (CustomErrorTest)null));
+            Assert.Throws<ArgumentNullException>(() => ok.Cast((Func<float>)null, (Func<CustomErrorTest>)null));
         }
 
         #endregion
@@ -313,6 +326,8 @@ namespace Here.Tests.Results
                 });
             Assert.AreEqual(2, counterValueFactory);
             CheckResultFail(valueResult, "My failure");
+
+            Assert.Throws<ArgumentNullException>(() => ok.Cast((Func<int, float>)null));
         }
 
         [Test]
@@ -365,6 +380,9 @@ namespace Here.Tests.Results
                 });
             Assert.AreEqual(1, counterErrorFactory);
             CheckResultFail(customResult, "My failure", customErrorObjectFactory);
+
+            Assert.Throws<ArgumentNullException>(() => ok.CustomCast((CustomErrorTest)null));
+            Assert.Throws<ArgumentNullException>(() => ok.CustomCast((Func<CustomErrorTest>)null));
         }
 
         [Test]
@@ -444,6 +462,9 @@ namespace Here.Tests.Results
                 });
             Assert.AreEqual(1, counterErrorFactory);
             CheckResultFail(result, "My failure", customErrorObjectFactory);
+
+            Assert.Throws<ArgumentNullException>(() => ok.Cast<TestClass, CustomErrorTest>((CustomErrorTest)null));
+            Assert.Throws<ArgumentNullException>(() => ok.Cast<TestClass, CustomErrorTest>((Func<CustomErrorTest>)null));
         }
 
         [Test]
@@ -534,6 +555,13 @@ namespace Here.Tests.Results
             Assert.AreEqual(4, counterValueFactory);
             Assert.AreEqual(1, counterErrorFactory);
             CheckResultFail(result, "My failure", customErrorObjectFactory);
+
+            Assert.Throws<ArgumentNullException>(() => ok.Cast(val => val + 0.1f, (CustomErrorTest)null));
+            Assert.Throws<ArgumentNullException>(() => ok.Cast(val => val + 0.1f, (Func<CustomErrorTest>)null));
+            Assert.Throws<ArgumentNullException>(() => ok.Cast((Func<int, float>)null, counterErrorFactory));
+            Assert.Throws<ArgumentNullException>(() => ok.Cast((Func<int, float>)null, () => customErrorObjectFactory));
+            Assert.Throws<ArgumentNullException>(() => ok.Cast((Func<int, float>)null, (CustomErrorTest)null));
+            Assert.Throws<ArgumentNullException>(() => ok.Cast((Func<int, float>)null, (Func<CustomErrorTest>)null));
         }
 
         #endregion
@@ -590,6 +618,8 @@ namespace Here.Tests.Results
                 });
             Assert.AreEqual(2, counterValueFactory);
             CheckResultFail(valueResult, "My failure");
+
+            Assert.Throws<ArgumentNullException>(() => ok.Cast((Func<float>)null));
         }
 
         [Test]
@@ -642,6 +672,8 @@ namespace Here.Tests.Results
                 });
             Assert.AreEqual(2, counterValueFactory);
             CheckResultFail(result, "My failure", customErrorObject);
+
+            Assert.Throws<ArgumentNullException>(() => ok.CustomCast((Func<float>)null));
         }
 
         #endregion
@@ -720,6 +752,8 @@ namespace Here.Tests.Results
                 });
             Assert.AreEqual(2, counterValueFactory);
             CheckResultFail(result, "My failure", customErrorObject);
+
+            Assert.Throws<ArgumentNullException>(() => ok.Cast((Func<int, float>)null));
         }
 
         #endregion

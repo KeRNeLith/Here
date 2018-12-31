@@ -1,5 +1,6 @@
-﻿using NUnit.Framework;
+﻿using System;
 using System.Collections.Generic;
+using NUnit.Framework;
 using Here.Extensions;
 
 namespace Here.Tests.Options
@@ -30,6 +31,9 @@ namespace Here.Tests.Options
             optionString = dictionaryStringString.TryGetValue(null);
             CheckEmptyOption(optionString);
 
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => ((IDictionary<string, object>)null).TryGetValue("2"));
+
 #if (!NET20 && !NET30 && !NET35 && !NET40)
             // Readonly Dictionary
             IReadOnlyDictionary<string, string> readonlyDictionaryStringString = new Dictionary<string, string>
@@ -47,6 +51,9 @@ namespace Here.Tests.Options
             // Try get with a null key always return None result
             optionString = readonlyDictionaryStringString.TryGetReadonlyValue(null);
             CheckEmptyOption(optionString);
+
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => ((IReadOnlyDictionary<string, object>)null).TryGetReadonlyValue("2"));
 #endif
         }
 
@@ -73,6 +80,9 @@ namespace Here.Tests.Options
             optionString = dictionaryStringObject.TryGetValue<string, string>(null);
             CheckEmptyOption(optionString);
 
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => ((IDictionary<string, object>)null).TryGetValue<string, string>("2"));
+
 #if (!NET20 && !NET30 && !NET35 && !NET40)
             // Readonly Dictionary
             IReadOnlyDictionary<string, object> readonlyDictionaryStringObject = new Dictionary<string, object>
@@ -93,6 +103,9 @@ namespace Here.Tests.Options
             // Try get with a null key always return None result
             optionString = readonlyDictionaryStringObject.TryGetReadonlyValue<string, string>(null);
             CheckEmptyOption(optionString);
+
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => ((IReadOnlyDictionary<string, object>)null).TryGetReadonlyValue<string, string>("2"));
 #endif
         }
     }

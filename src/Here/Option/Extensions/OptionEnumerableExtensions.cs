@@ -16,6 +16,7 @@ namespace Here.Extensions
         /// <typeparam name="T"><see cref="IEnumerable{T}"/> element type.</typeparam>
         /// <param name="enumerable">Enumerable..</param>
         /// <returns><see cref="Option{T}"/> wrapping the first element.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
         [PublicAPI, Pure]
         public static Option<T> FirstOrNone<T>([NotNull] this IEnumerable<T> enumerable)
         {
@@ -29,10 +30,15 @@ namespace Here.Extensions
         /// <param name="enumerable">Enumerable.</param>
         /// <param name="predicate">Predicate to check on items.</param>
         /// <returns><see cref="Option{T}"/> wrapping the first matching element.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         [PublicAPI, Pure]
-        public static Option<T> FirstOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull, InstantHandle] in Predicate<T> predicate) 
+        public static Option<T> FirstOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull, InstantHandle] in Predicate<T> predicate)
         {
-            foreach(var item in enumerable)
+            Throw.IfArgumentNull(enumerable, nameof(enumerable));
+            Throw.IfArgumentNull(predicate, nameof(predicate));
+
+            foreach (var item in enumerable)
             {
                 if (predicate(item))
                     return item;
@@ -49,9 +55,13 @@ namespace Here.Extensions
         /// <param name="throwInvalidException">Indicates if the method should throw an <see cref="InvalidOperationException"/> 
         /// if the enumerable has more than one value. Otherwise it will just return an empty <see cref="Option{T}"/>.</param>
         /// <returns><see cref="Option{T}"/> wrapping the single element.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">If the <paramref name="enumerable"/> contains more than one element.</exception>
         [PublicAPI, Pure]
         public static Option<T> SingleOrNone<T>([NotNull] this IEnumerable<T> enumerable, in bool throwInvalidException = true)
         {
+            Throw.IfArgumentNull(enumerable, nameof(enumerable));
+
             using (var enumerator = enumerable.GetEnumerator())
             {
                 if (enumerator.MoveNext())
@@ -76,9 +86,15 @@ namespace Here.Extensions
         /// <param name="throwInvalidException">Indicates if the method should throw an <see cref="InvalidOperationException"/> 
         /// if the enumerable has more than one value that matches the predicate. Otherwise it will just return an empty <see cref="Option{T}"/>.</param>
         /// <returns><see cref="Option{T}"/> wrapping the matching single element.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">If the <paramref name="enumerable"/> contains more than one element matching the <paramref name="predicate"/>.</exception>
         [PublicAPI, Pure]
         public static Option<T> SingleOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull, InstantHandle] in Predicate<T> predicate, in bool throwInvalidException = true)
         {
+            Throw.IfArgumentNull(enumerable, nameof(enumerable));
+            Throw.IfArgumentNull(predicate, nameof(predicate));
+
             using (var enumerator = enumerable.GetEnumerator())
             {
                 while (enumerator.MoveNext())
@@ -110,6 +126,7 @@ namespace Here.Extensions
         /// <typeparam name="T"><see cref="IEnumerable{T}"/> element type.</typeparam>
         /// <param name="enumerable">Enumerable.</param>
         /// <returns><see cref="Option{T}"/> wrapping the last element.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
         [PublicAPI, Pure]
         public static Option<T> LastOrNone<T>([NotNull] this IEnumerable<T> enumerable)
         {
@@ -123,9 +140,14 @@ namespace Here.Extensions
         /// <param name="enumerable">Enumerable.</param>
         /// <param name="predicate">Predicate to check on items.</param>
         /// <returns><see cref="Option{T}"/> wrapping the matching last element.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         [PublicAPI, Pure]
         public static Option<T> LastOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull, InstantHandle] in Predicate<T> predicate)
         {
+            Throw.IfArgumentNull(enumerable, nameof(enumerable));
+            Throw.IfArgumentNull(predicate, nameof(predicate));
+
             T matchedItem = default;
             bool match = false;
 
@@ -149,9 +171,12 @@ namespace Here.Extensions
         /// <param name="enumerable">Enumerable.</param>
         /// <param name="index">Index of the element to get in the collection.</param>
         /// <returns><see cref="Option{T}"/> wrapping the element.</returns> 
+        /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
         [PublicAPI, Pure]
         public static Option<T> ElementAtOrNone<T>([NotNull] this IEnumerable<T> enumerable, int index)
         {
+            Throw.IfArgumentNull(enumerable, nameof(enumerable));
+
             if (index >= 0)
             {
                 if (enumerable is IList<T> list)
@@ -209,9 +234,12 @@ namespace Here.Extensions
         /// <typeparam name="T">Type of the value embedded in <see cref="Option{T}"/>.</typeparam>
         /// <param name="enumerable">Enumerable of <see cref="Option{T}"/>.</param>
         /// <returns>An <see cref="IEnumerable{T}"/> generated from this enumerable of <see cref="Option{T}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
         [PublicAPI, Pure, NotNull]
         public static IEnumerable<T> ExtractValues<T>([NotNull] this IEnumerable<Option<T>> enumerable)
         {
+            Throw.IfArgumentNull(enumerable, nameof(enumerable));
+
             foreach (var option in enumerable)
             {
                 if (option.HasValue)
@@ -225,9 +253,12 @@ namespace Here.Extensions
         /// <typeparam name="T">Type of the value embedded in <see cref="Option{T}"/>.</typeparam>
         /// <param name="enumerable">Enumerable of <see cref="Option{T}"/>.</param>
         /// <returns>An array generated from this enumerable of <see cref="Option{T}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
         [PublicAPI, Pure, NotNull]
         public static T[] ToArray<T>([NotNull] this IEnumerable<Option<T>> enumerable)
         {
+            Throw.IfArgumentNull(enumerable, nameof(enumerable));
+
             return enumerable.ExtractValues().ToArray();
         }
 
@@ -237,9 +268,12 @@ namespace Here.Extensions
         /// <typeparam name="T">Type of the value embedded in <see cref="Option{T}"/>.</typeparam>
         /// <param name="enumerable">Enumerable of <see cref="Option{T}"/>.</param>
         /// <returns>A <see cref="List{T}"/> generated from this enumerable of <see cref="Option{T}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
         [PublicAPI, Pure, NotNull]
         public static List<T> ToList<T>([NotNull] this IEnumerable<Option<T>> enumerable)
         {
+            Throw.IfArgumentNull(enumerable, nameof(enumerable));
+
             return enumerable.ExtractValues().ToList();
         }
 
@@ -251,9 +285,14 @@ namespace Here.Extensions
         /// <param name="enumerable">Enumerable of <see cref="Option{T}"/>.</param>
         /// <param name="keySelector">Method called to create dictionary keys.</param>
         /// <returns>A <see cref="Dictionary{TKey, TValue}"/> generated from this enumerable of <see cref="Option{T}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="keySelector"/> is null.</exception>
         [PublicAPI, Pure, NotNull]
         public static Dictionary<TKey, TValue> ToDictionary<TValue, TKey>([NotNull] this IEnumerable<Option<TValue>> enumerable, [NotNull, InstantHandle] in Func<TValue, TKey> keySelector)
         {
+            Throw.IfArgumentNull(enumerable, nameof(enumerable));
+            Throw.IfArgumentNull(keySelector, nameof(keySelector));
+
             return enumerable.ExtractValues().ToDictionary(keySelector);
         }
     }

@@ -85,6 +85,11 @@ namespace Here.Tests.Options
             Assert.IsFalse(emptyOption.AnyItem());
             Assert.IsFalse(emptyOption.AnyItem(value => true));
             Assert.IsFalse(emptyOption.AnyItem((int value) => true));
+
+            // ReSharper disable AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.AnyItem(null));
+            Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.AnyItem((Predicate<int>)null));
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Test]
@@ -141,6 +146,11 @@ namespace Here.Tests.Options
             var emptyOption = Option<IList<int>>.None;
             Assert.IsFalse(emptyOption.AllItems(value => true));
             Assert.IsFalse(emptyOption.AllItems((int value) => true));
+
+            // ReSharper disable AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.AllItems(null));
+            Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.AllItems((Predicate<int>)null));
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Test]
@@ -214,6 +224,9 @@ namespace Here.Tests.Options
             Assert.IsFalse(emptyOption.ContainsItem(null, EqualityComparer<TestClass>.Default));
             Assert.IsFalse(emptyOption.ContainsItem(testObject1));
             Assert.IsFalse(emptyOption.ContainsItem(testObject2, EqualityComparer<TestClass>.Default));
+
+            Assert.Throws<ArgumentNullException>(() => optionEnumerableTestClasses.ContainsItem<IEnumerable<TestClass>, TestClass>(null, null));
+            Assert.Throws<ArgumentNullException>(() => optionEnumerable.ContainsItem(null, null));
         }
 
         [Test]
@@ -303,6 +316,9 @@ namespace Here.Tests.Options
             var emptyOption = Option<IList<int>>.None;
             CheckEmptyOption(emptyOption.SelectItems(selectFromObject));
             CheckEmptyOption(emptyOption.SelectItems(selectFromInt));
+
+            Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.SelectItems((Func<object, int>)null));
+            Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.SelectItems((Func<int, int>)null));
         }
 
         [Test]
@@ -359,6 +375,11 @@ namespace Here.Tests.Options
             var emptyOption = Option<IList<int>>.None;
             CheckEmptyOption(emptyOption.WhereItems(item => true));
             CheckEmptyOption(emptyOption.WhereItems((int value) => value > 1));
+
+            // ReSharper disable AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.WhereItems(null));
+            Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.WhereItems((Predicate<int>)null));
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Test]
@@ -427,6 +448,9 @@ namespace Here.Tests.Options
 
             emptyOption.ForEachItems((int item) => ++counter);
             Assert.AreEqual(0, counter);
+
+            Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.ForEachItems(null));
+            Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.ForEachItems((Action<int>)null));
         }
 
 #if (NET20) || (NET30)
@@ -492,6 +516,13 @@ namespace Here.Tests.Options
             var emptyOption = Option<IList<int>>.None;
             Assert.AreEqual(1, emptyOption.AggregateItems(1, (acc, cur) => accumulatorFromObject(acc, cur)));
             Assert.AreEqual(1, emptyOption.AggregateItems(1, (int acc, int cur) => accumulatorFromInt(acc, cur)));
+
+            Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.AggregateItems(1, null));
+            Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.AggregateItems((Person)null, (acc, cur) => null));
+            Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.AggregateItems((Person)null, null));
+            Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.AggregateItems<IEnumerable<int>, int, float>(1.0f, null));
+            Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.AggregateItems(null, (Person acc, int cur) => null));
+            Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.AggregateItems<IEnumerable<int>, int, Person>(null, null));
         }
     }
 }

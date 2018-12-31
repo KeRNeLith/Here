@@ -19,7 +19,7 @@ namespace Here.Tests.Options
         // Common TryParse
 
         /// <summary>
-        /// Call the <paramref name="tryParseFunc"/> and check if the result match expected value.
+        /// Calls the <paramref name="tryParseFunc"/> and check if the result match expected value.
         /// </summary>
         private static void TryParseTest<T>([NotNull, InstantHandle] Func<Option<T>> tryParseFunc, bool mustHaveValue, T expectedValue)
         {
@@ -484,6 +484,131 @@ namespace Here.Tests.Options
             TryParseTest(() => input.TryParseDouble(NumberStyles.Any, TestParseFRCultureInfo), mustHaveValue, expectedValue);
         }
 
+        #endregion
+
+        #region TryParse Guid
+
+#if (!NET20 && !NET30 && !NET35)
+        /// <summary>
+        /// Calls the <paramref name="tryParseFunc"/> and check if the result match expected value.
+        /// </summary>
+        private static void TryParseGuidTest([NotNull, InstantHandle] Func<Option<Guid>> tryParseFunc, bool mustHaveValue)
+        {
+            var option = tryParseFunc();
+            if (mustHaveValue)
+            {
+                Assert.IsTrue(option.HasValue);
+                Assert.IsFalse(option.HasNoValue);
+            }
+            else
+                CheckEmptyOption(option);
+        }
+
+        private static IEnumerable<TestCaseData> CreateTryParseGuidTestCases
+        {
+            [UsedImplicitly]
+            get
+            {
+                yield return new TestCaseData(null, false);
+                yield return new TestCaseData(string.Empty, false);
+                yield return new TestCaseData("81a130d2502f4cf1a37663edeb000e9f", true);
+                yield return new TestCaseData("81a130d2-502f-4cf1-a376-63edeb000e9f", true);
+                yield return new TestCaseData("{81a130d2-502f-4cf1-a376-63edeb000e9f}", true);
+                yield return new TestCaseData("(81a130d2-502f-4cf1-a376-63edeb000e9f)", true);
+                yield return new TestCaseData("(81a130d2-502f-4cf1-a376-63edeb000e9f)", true);
+                yield return new TestCaseData("{0x81a130d2,0x502f,0x4cf1,{0xa3,0x76,0x63,0xed,0xeb,0x00,0x0e,0x9f}}", true);
+                yield return new TestCaseData("guid", false);
+                yield return new TestCaseData("azerty", false);
+                yield return new TestCaseData("     ", false);
+            }
+        }
+
+        [TestCaseSource(nameof(CreateTryParseGuidTestCases))]
+        public void TryParseGuid(string input, bool mustHaveValue)
+        {
+            TryParseGuidTest(input.TryParseGuid, mustHaveValue);
+        }
+#endif
+        #endregion
+
+        #region TryParse DateTime
+
+        private static IEnumerable<TestCaseData> CreateTryParseDateTimeTestCases
+        {
+            [UsedImplicitly]
+            get
+            {
+                yield return new TestCaseData(null, false, null);
+                yield return new TestCaseData(string.Empty, false, null);
+                yield return new TestCaseData("azerty", false, null);
+                yield return new TestCaseData("   ", false, null);
+            }
+        }
+
+
+        [SetCulture("en-US")]
+        [TestCaseSource(nameof(CreateTryParseDateTimeTestCases))]
+        public void TryParseDateTime(string input, bool mustHaveValue, DateTime expectedValue)
+        {
+            TryParseTest(input.TryParseDateTime, mustHaveValue, expectedValue);
+        }
+
+        #endregion
+
+        #region TryParse DateTimeOffset
+
+        private static IEnumerable<TestCaseData> CreateTryParseDateTimeOffsetTestCases
+        {
+            [UsedImplicitly]
+            get
+            {
+                yield return new TestCaseData(null, false, null);
+                yield return new TestCaseData(string.Empty, false, null);
+                yield return new TestCaseData("azerty", false, null);
+                yield return new TestCaseData("   ", false, null);
+            }
+        }
+
+        [SetCulture("en-US")]
+        [TestCaseSource(nameof(CreateTryParseDateTimeOffsetTestCases))]
+        public void TryParseDateTimeOffset(string input, bool mustHaveValue, DateTimeOffset expectedValue)
+        {
+            TryParseTest(input.TryParseDateTimeOffset, mustHaveValue, expectedValue);
+        }
+
+        #endregion
+
+        #region TryParse Enumeration
+
+#if (!NET20 && !NET30 && !NET35)
+        public enum TestEnum
+        {
+            Value1,
+            Value2
+        }
+
+        private static IEnumerable<TestCaseData> CreateTryParseEnumTestCases
+        {
+            [UsedImplicitly]
+            get
+            {
+                yield return new TestCaseData(null, false, null);
+                yield return new TestCaseData(string.Empty, false, null);
+                yield return new TestCaseData("Value1", true, TestEnum.Value1);
+                yield return new TestCaseData("Value2", true, TestEnum.Value2);
+                yield return new TestCaseData("value1", false, null);
+                yield return new TestCaseData("azerty", false, null);
+                yield return new TestCaseData("   ", false, null);
+            }
+        }
+
+
+        [TestCaseSource(nameof(CreateTryParseEnumTestCases))]
+        public void TryParseEnum(string input, bool mustHaveValue, TestEnum expectedValue)
+        {
+            TryParseTest(input.TryParseEnum<TestEnum>, mustHaveValue, expectedValue);
+        }
+#endif
         #endregion
     }
 }

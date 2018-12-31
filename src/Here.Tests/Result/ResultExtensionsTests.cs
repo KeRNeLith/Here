@@ -21,6 +21,8 @@ namespace Here.Tests.Results
 
             var failure = Result.Fail("My failure");
             Assert.IsFalse(failure.IsOnlySuccess());
+
+            Assert.Throws<NullReferenceException>(() => ((IResult)null).IsOnlySuccess());
         }
         
         #region Unwrapping
@@ -80,6 +82,24 @@ namespace Here.Tests.Results
             Assert.AreEqual(0f, customValueResultFail.Unwrap(val => val + 0.5f));
             Assert.AreEqual(789f, customValueResultFail.Unwrap(val => val + 0.5f, 789f));
             Assert.AreEqual(101112f, customValueResultFail.Unwrap(val => val + 0.5f, () => 101112f));
+
+
+            Assert.Throws<NullReferenceException>(() => ((IResult<int>) null).Unwrap());
+            Assert.Throws<ArgumentNullException>(() => ((IResult<int>) null).Unwrap(null));
+            Assert.Throws<ArgumentNullException>(() => valueResultOk.Unwrap(null));
+
+            Assert.Throws<NullReferenceException>(() => ((IResult<int>)null).Unwrap(val => 12.5f, 12.5f));
+            Assert.Throws<ArgumentNullException>(() => ((IResult<int>)null).Unwrap(null, 12.5f));
+            Assert.Throws<ArgumentNullException>(() => valueResultOk.Unwrap(null, 12.5f));
+
+            Assert.Throws<NullReferenceException>(() => ((IResult<int>)null).Unwrap(val => 12.5f, () => 12.5f));
+            Assert.Throws<ArgumentNullException>(() => ((IResult<int>)null).Unwrap(null, () => 12.5f));
+            Assert.Throws<ArgumentNullException>(() => valueResultOk.Unwrap(null, () => 12.5f));
+            Assert.Throws<ArgumentNullException>(() => ((IResult<int>)null).Unwrap(val => 12.5f, null));
+            Assert.Throws<ArgumentNullException>(() => valueResultOk.Unwrap(val => 12.5f, null));
+
+            Assert.Throws<ArgumentNullException>(() => ((IResult<int>)null).Unwrap((Func<int, TestClass>)null, (Func<TestClass>)null));
+            Assert.Throws<ArgumentNullException>(() => valueResultOk.Unwrap((Func<int, TestClass>)null, (Func<TestClass>)null));
         }
 
         #endregion
@@ -159,6 +179,10 @@ namespace Here.Tests.Results
                 errorMessage);
             Assert.AreEqual(4, counter);
             CheckResultFail(result, "My failure");
+
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(null, "Error")));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(() => true, null)));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(null, null)));
         }
 
         [Test]
@@ -234,6 +258,10 @@ namespace Here.Tests.Results
                 errorMessage);
             Assert.AreEqual(4, counter);
             CheckResultFail(result, "My failure");
+
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(null, "Error")));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(val => true, null)));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(null, null)));
         }
 
         [Test]
@@ -414,6 +442,23 @@ namespace Here.Tests.Results
             Assert.AreEqual(8, counterPredicate);
             Assert.AreEqual(2, counterErrorFactory);
             CheckResultFail(result, "My failure", customErrorObject);
+
+
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(null, "Error", customErrorObject)));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(() => true, null, customErrorObject)));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(() => true, "Error", (CustomErrorTest)null)));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(null, null, customErrorObject)));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(() => true, null, (CustomErrorTest)null)));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(null, "Error", (CustomErrorTest)null)));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(null, null, (CustomErrorTest)null)));
+
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(null, "Error", () => customErrorObjectFactory)));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(() => true, null, () => customErrorObjectFactory)));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(() => true, "Error", (Func<CustomErrorTest>)null)));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(null, null, () => customErrorObjectFactory)));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(() => true, null, (Func<CustomErrorTest>)null)));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(null, "Error", (Func<CustomErrorTest>)null)));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(null, null, (Func<CustomErrorTest>)null)));
         }
 
         [Test]
@@ -594,6 +639,23 @@ namespace Here.Tests.Results
             Assert.AreEqual(8, counterPredicate);
             Assert.AreEqual(2, counterErrorFactory);
             CheckResultFail(result, "My failure", customErrorObject);
+
+
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(null, "Error", customErrorObject)));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(val => true, null, customErrorObject)));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(val => true, "Error", (CustomErrorTest)null)));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(null, null, customErrorObject)));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(val => true, null, (CustomErrorTest)null)));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(null , "Error", (CustomErrorTest)null)));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(null, null, (CustomErrorTest)null)));
+
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(null, "Error", () => customErrorObjectFactory)));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(val => true, null, () => customErrorObjectFactory)));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(val => true, "Error", (Func<CustomErrorTest>)null)));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(null, null, () => customErrorObjectFactory)));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(val => true, null, (Func<CustomErrorTest>)null)));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(null, "Error", (Func<CustomErrorTest>)null)));
+            Assert.Throws<ArgumentNullException>((() => result.Ensure(null, null, (Func<CustomErrorTest>)null)));
         }
 
         #endregion

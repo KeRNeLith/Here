@@ -28,6 +28,7 @@ namespace Here.Extensions
         /// <param name="option"><see cref="Option{T}"/> on which performing the check.</param>
         /// <param name="predicate">Predicate to use.</param>
         /// <returns>True if this <see cref="Option{T}"/> matches the predicate, otherwise false.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         [PublicAPI, Pure]
         public static bool Any<T>(in this Option<T> option, [NotNull, InstantHandle] in Predicate<T> predicate)
         {
@@ -41,6 +42,7 @@ namespace Here.Extensions
         /// <param name="option"><see cref="Option{T}"/> on which performing the check.</param>
         /// <param name="predicate">Predicate to check.</param>
         /// <returns>True if this <see cref="Option{T}"/> value matches the predicate, otherwise false.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         [PublicAPI, Pure]
         public static bool All<T>(in this Option<T> option, [NotNull, InstantHandle] in Predicate<T> predicate)
         {
@@ -70,9 +72,12 @@ namespace Here.Extensions
         /// <param name="option"><see cref="Option{T}"/> on which performing the selection.</param>
         /// <param name="selector">Method called to select the value from this <see cref="Option{T}"/> value.</param>
         /// <returns>A <see cref="Option{T}"/> wrapping selected value.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="selector"/> is null.</exception>
         [PublicAPI, Pure]
         public static Option<TOut> Select<TIn, TOut>(in this Option<TIn> option, [NotNull, InstantHandle] in Func<TIn, TOut> selector)
         {
+            Throw.IfArgumentNull(selector, nameof(selector));
+
             if (option.HasValue)
                 return selector(option.Value);
             return Option<TOut>.None;
@@ -85,6 +90,7 @@ namespace Here.Extensions
         /// <param name="option"><see cref="Option{T}"/> on which performing the check.</param>
         /// <param name="predicate">Condition to match.</param>
         /// <returns>This <see cref="Option{T}"/> if it matches the <paramref name="predicate"/>, otherwise an empty <see cref="Option{T}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         [PublicAPI, Pure]
         public static Option<T> Where<T>(in this Option<T> option, [NotNull, InstantHandle] in Predicate<T> predicate)
         {
@@ -99,9 +105,12 @@ namespace Here.Extensions
         /// <typeparam name="T">Type of the value embedded in this <see cref="Option{T}"/>.</typeparam>
         /// <param name="option"><see cref="Option{T}"/> on which performing the treatment.</param>
         /// <param name="doAction">Action to perform on this <see cref="Option{T}"/> value.</param>
+        /// <exception cref="ArgumentNullException">If the <paramref name="doAction"/> is null.</exception>
         [PublicAPI]
         public static void ForEach<T>(in this Option<T> option, [NotNull, InstantHandle] in Action<T> doAction)
         {
+            Throw.IfArgumentNull(doAction, nameof(doAction));
+
             if (option.HasValue)
                 doAction(option.Value);
         }
@@ -117,11 +126,16 @@ namespace Here.Extensions
         /// <param name="aggregator">The aggregator function called on this <see cref="Option{T}"/> value.</param>
         /// <returns>This <see cref="Option{T}"/> value aggregated with <paramref name="initialValue"/>, 
         /// otherwise <paramref name="initialValue"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="initialValue"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="aggregator"/> is null.</exception>
         [PublicAPI, NotNull, Pure]
         public static TAggregate Aggregate<T, TAggregate>(in this Option<T> option, 
             [NotNull] in TAggregate initialValue, 
             [NotNull, InstantHandle] in Func<TAggregate, T, TAggregate> aggregator)
         {
+            Throw.IfArgumentNull(initialValue, nameof(initialValue));
+            Throw.IfArgumentNull(aggregator, nameof(aggregator));
+
             if (option.HasValue)
                 return aggregator(initialValue, option.Value);
             return initialValue;

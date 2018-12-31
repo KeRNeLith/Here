@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using Here.Extensions;
 
 namespace Here.Tests.Results
@@ -12,94 +13,111 @@ namespace Here.Tests.Results
         [Test]
         public void ValueResultOnAnyToValueResult()
         {
-            int counter = 0;
+            #region Local function
+
+            void CheckOnAny(Result<int> result)
+            {
+                int counter = 0;
+                Result<int> res = result.OnAny(() => { ++counter; });
+                Assert.AreEqual(1, counter);
+                Assert.AreEqual(result, res);
+            }
+
+            #endregion
+
             // Ok result
             var ok = Result.Ok(81);
-
-            var result = ok.OnAny(() => ++counter);
-            Assert.AreEqual(1, counter);
-            CheckResultOk(result, 81);
+            CheckOnAny(ok);
 
             // Warning result
             var warning = Result.Warn(92, "My warning");
-
-            result = warning.OnAny(() => ++counter);
-            Assert.AreEqual(2, counter);
-            CheckResultWarn(result, 92, "My warning");
+            CheckOnAny(warning);
 
             // Failure result
             var failure = Result.Fail<int>("My failure");
+            CheckOnAny(failure);
 
-            result = failure.OnAny(() => ++counter);
-            Assert.AreEqual(3, counter);
-            CheckResultFail(result, "My failure");
+            Assert.Throws<ArgumentNullException>(() => ok.OnAny((Action)null));
         }
 
         [Test]
         public void ValueResultOnAnyToValueResultWithParam()
         {
-            int counter = 0;
-            // Ok result
-            var ok = Result.Ok(45);
+            #region Local function
 
-            var result = ok.OnAny(res => { ++counter; });
-            Assert.AreEqual(1, counter);
-            CheckResultOk(result, 45);
+            void CheckOnAny(Result<int> result)
+            {
+                int counter = 0;
+                Result<int> res = result.OnAny(r => { ++counter; });
+                Assert.AreEqual(1, counter);
+                Assert.AreEqual(result, res);
+            }
+
+            #endregion
+
+            // Ok result
+            var ok = Result.Ok(42);
+            CheckOnAny(ok);
 
             // Warning result
             var warning = Result.Warn(78, "My warning");
-
-            result = warning.OnAny(res => { ++counter; });
-            Assert.AreEqual(2, counter);
-            CheckResultWarn(result, 78, "My warning");
+            CheckOnAny(warning);
 
             // Failure result
             var failure = Result.Fail<int>("My failure");
+            CheckOnAny(failure);
 
-            result = failure.OnAny(res => { ++counter; });
-            Assert.AreEqual(3, counter);
-            CheckResultFail(result, "My failure");
+            Assert.Throws<ArgumentNullException>(() => ok.OnAny((Action<Result<int>>)null));
         }
 
         [Test]
         public void ValueResultOnAnyTOut()
         {
-            int counter = 0;
-            // Ok result
-            var ok = Result.Ok(96);
+            #region Local functions
 
-            float result = ok.OnAny(
-                res => 
+            void CheckOnAny(Result<int> result)
+            {
+                int counter = 0;
+                float res = result.OnAny(r =>
                 {
                     ++counter;
-                    return 12.2f;
+                    return 12.5f;
                 });
-            Assert.AreEqual(1, counter);
-            Assert.AreEqual(12.2f, result);
+                Assert.AreEqual(1, counter);
+                Assert.AreEqual(12.5f, res);
+            }
+
+            void CheckOnAnyNoInput(Result<int> result)
+            {
+                int counter = 0;
+                float res = result.OnAny(() =>
+                {
+                    ++counter;
+                    return 13.5f;
+                });
+                Assert.AreEqual(1, counter);
+                Assert.AreEqual(13.5f, res);
+            }
+
+            #endregion
+
+            // Ok result
+            var ok = Result.Ok(96);
+            CheckOnAny(ok);
+            CheckOnAnyNoInput(ok);
 
             // Warning result
             var warning = Result.Warn(102, "My warning");
-
-            result = warning.OnAny(
-                res => 
-                {
-                    ++counter;
-                    return 42.2f;
-                });
-            Assert.AreEqual(2, counter);
-            Assert.AreEqual(42.2f, result);
+            CheckOnAny(warning);
+            CheckOnAnyNoInput(warning);
 
             // Failure result
             var failure = Result.Fail<int>("My failure");
+            CheckOnAny(failure);
+            CheckOnAnyNoInput(failure);
 
-            result = failure.OnAny(
-                res => 
-                {
-                    ++counter;
-                    return 62.2f;
-                });
-            Assert.AreEqual(3, counter);
-            Assert.AreEqual(62.2f, result);
+            Assert.Throws<ArgumentNullException>(() => ok.OnAny((Func<float>)null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnAny((Func<Result<int>, float>)null));
         }
     }
 }

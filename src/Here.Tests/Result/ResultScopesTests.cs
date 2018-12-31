@@ -32,6 +32,8 @@ namespace Here.Tests.Results
                 });
             Assert.AreEqual(2, counter);
             CheckResultFail(result, "My exception", thrownException);
+
+            Assert.Throws<ArgumentNullException>(() => ResultScope.SafeResult((Action)null));
         }
 
         [Test]
@@ -49,6 +51,8 @@ namespace Here.Tests.Results
             var thrownException = new Exception("My exception");
             result = ResultScope.SafeResult(() => throw thrownException);
             CheckResultFail(result, "My exception", thrownException);
+
+            Assert.Throws<ArgumentNullException>(() => ResultScope.SafeResult(null));
         }
 
         [Test]
@@ -66,6 +70,8 @@ namespace Here.Tests.Results
             var thrownException = new Exception("My exception");
             result = ResultScope.SafeValueResult<int>(() => throw thrownException);
             CheckResultFail(result, "My exception", thrownException);
+
+            Assert.Throws<ArgumentNullException>(() => ResultScope.SafeValueResult((Func<Result<int>>)null));
         }
 
         [Test]
@@ -97,6 +103,13 @@ namespace Here.Tests.Results
 
             result = ResultScope.SafeCustomResult(() => throw thrownException, defaultError);
             CheckResultFail(result, "My exception", defaultError, thrownException);
+
+            Assert.Throws<ArgumentNullException>(() => ResultScope.SafeCustomResult(null, defaultError));
+            Assert.Throws<ArgumentNullException>(() => ResultScope.SafeCustomResult(null, () => defaultError));
+            Assert.Throws<ArgumentNullException>(() => ResultScope.SafeCustomResult(Result.CustomOk<CustomErrorTest>, (CustomErrorTest)null));
+            Assert.Throws<ArgumentNullException>(() => ResultScope.SafeCustomResult(Result.CustomOk<CustomErrorTest>, (Func<CustomErrorTest>)null));
+            Assert.Throws<ArgumentNullException>(() => ResultScope.SafeCustomResult(null, (CustomErrorTest)null));
+            Assert.Throws<ArgumentNullException>(() => ResultScope.SafeCustomResult((Func<CustomResult<CustomErrorTest>>)null, (Func<CustomErrorTest>)null));
         }
 
         [Test]
@@ -128,6 +141,13 @@ namespace Here.Tests.Results
 
             result = ResultScope.SafeValueCustomResult<int, CustomErrorTest>(() => throw thrownException, defaultError);
             CheckResultFail(result, "My exception", defaultError, thrownException);
+
+            Assert.Throws<ArgumentNullException>(() => ResultScope.SafeValueCustomResult((Func<Result<int, CustomErrorTest>>)null, defaultError));
+            Assert.Throws<ArgumentNullException>(() => ResultScope.SafeValueCustomResult((Func<Result<int, CustomErrorTest>>)null, () => defaultError));
+            Assert.Throws<ArgumentNullException>(() => ResultScope.SafeValueCustomResult(() => Result.Ok<int, CustomErrorTest>(12), (CustomErrorTest)null));
+            Assert.Throws<ArgumentNullException>(() => ResultScope.SafeValueCustomResult(() => Result.Ok<int, CustomErrorTest>(12), (Func<CustomErrorTest>)null));
+            Assert.Throws<ArgumentNullException>(() => ResultScope.SafeValueCustomResult((Func<Result<int, CustomErrorTest>>)null, (CustomErrorTest)null));
+            Assert.Throws<ArgumentNullException>(() => ResultScope.SafeValueCustomResult((Func<Result<int, CustomErrorTest>>)null, (Func<CustomErrorTest>)null));
         }
     }
 }

@@ -33,6 +33,7 @@ namespace Here
         private readonly T _value;
 
         /// <inheritdoc />
+        /// <exception cref="InvalidOperationException">If the result is not a success.</exception>
         public T Value
         {
             get
@@ -104,9 +105,12 @@ namespace Here
         /// <typeparam name="TOut">Type of the output result value.</typeparam>
         /// <param name="converter">Function that converts this result value from input type to output type.</param>
         /// <returns>A <see cref="Result{TOut}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<TOut> Cast<TOut>([NotNull, InstantHandle] in Func<T, TOut> converter)
         {
+            Throw.IfArgumentNull(converter, nameof(converter));
+
             if (IsFailure)
                 return ToFailValueResult<TOut>();
             return new Result<TOut>(converter(_value), Logic);
@@ -118,9 +122,12 @@ namespace Here
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
         /// <param name="errorObject">Custom error object.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI, Pure]
         public CustomResult<TError> CustomCast<TError>([NotNull] in TError errorObject)
         {
+            Throw.IfArgumentNull(errorObject, nameof(errorObject));
+
             if (IsFailure)
                 return ToFailCustomResult(errorObject);
             if (IsWarning)
@@ -134,9 +141,12 @@ namespace Here
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
         /// <param name="errorFactory">Factory method that creates a custom error object.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public CustomResult<TError> CustomCast<TError>([NotNull, InstantHandle] in Func<TError> errorFactory)
         {
+            Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
+
             if (IsFailure)
                 return ToFailCustomResult(errorFactory());
             if (IsWarning)
@@ -151,10 +161,13 @@ namespace Here
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
         /// <param name="errorObject">Custom error object.</param>
         /// <returns>A <see cref="Result{TOut, TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<TOut, TError> Cast<TOut, TError>([NotNull] in TError errorObject)
             where TOut : class
         {
+            Throw.IfArgumentNull(errorObject, nameof(errorObject));
+
             if (IsFailure)
                 return ToFailValueCustomResult<TOut, TError>(errorObject);
             if (IsWarning)
@@ -169,10 +182,13 @@ namespace Here
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
         /// <param name="errorFactory">Factory method that creates a custom error object.</param>
         /// <returns>A <see cref="Result{TOut, TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<TOut, TError> Cast<TOut, TError>([NotNull, InstantHandle] in Func<TError> errorFactory)
             where TOut : class
         {
+            Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
+
             if (IsFailure)
                 return ToFailValueCustomResult<TOut, TError>(errorFactory());
             if (IsWarning)
@@ -188,9 +204,14 @@ namespace Here
         /// <param name="converter">Function that converts this result value from input type to output type.</param>
         /// <param name="errorObject">Custom error object.</param>
         /// <returns>A <see cref="Result{TOut, TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<TOut, TError> Cast<TOut, TError>([NotNull, InstantHandle] in Func<T, TOut> converter, [NotNull] in TError errorObject)
         {
+            Throw.IfArgumentNull(converter, nameof(converter));
+            Throw.IfArgumentNull(errorObject, nameof(errorObject));
+
             if (IsFailure)
                 return ToFailValueCustomResult<TOut, TError>(errorObject);
             if (IsWarning)
@@ -206,9 +227,14 @@ namespace Here
         /// <param name="converter">Function that converts this result value from input type to output type.</param>
         /// <param name="errorFactory">Factory method that creates a custom error object.</param>
         /// <returns>A <see cref="Result{TOut, TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<TOut, TError> Cast<TOut, TError>([NotNull, InstantHandle] in Func<T, TOut> converter, [NotNull, InstantHandle] in Func<TError> errorFactory)
         {
+            Throw.IfArgumentNull(converter, nameof(converter));
+            Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
+
             if (IsFailure)
                 return ToFailValueCustomResult<TOut, TError>(errorFactory());
             if (IsWarning)

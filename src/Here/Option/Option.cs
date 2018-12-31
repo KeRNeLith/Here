@@ -41,7 +41,7 @@ namespace Here
         /// <summary>
         /// Gets the value stored in the <see cref="Option{T}"/> if present otherwise throws.
         /// </summary>
-        /// <exception cref="InvalidOperationException"> if no value is present.</exception>
+        /// <exception cref="InvalidOperationException"> if the <see cref="Option{T}"/> has no value.</exception>
         [PublicAPI, NotNull]
         public T Value
         {
@@ -67,6 +67,7 @@ namespace Here
         /// Constructs an <see cref="Option{T}"/> with a value.
         /// </summary>
         /// <param name="value">A value.</param>
+        /// <exception cref="ArgumentNullException">If the <paramref name="value"/> is null.</exception>
         [PublicAPI]
         public static Option<T> Some([NotNull] in T value)
         {

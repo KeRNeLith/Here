@@ -259,17 +259,17 @@ The library provide a default implementation for them:
 
 ```csharp
 // Try Get
-public static Func<TInput, Option<TValue>> CreateGet<TInput, TValue>([NotNull] TryGet<TInput, TValue> tryGetFunc)
+public static Option<TValue> Get<TInput, TValue>([CanBeNull] TInput input, [NotNull] TryGet<TInput, TValue> tryGetFunc)
 {
-    return input => tryGetFunc(input, out TValue result)
+    return tryGetFunc(input, out TValue result)
         ? result.ToOption()
         : Option.None;
 }
 
 // TryParse
-public static Func<string, Option<TValue>> CreateParse<TValue>([NotNull] TryParse<TValue> tryParseFunc, NumberStyles style, IFormatProvider culture)
+public static Option<TValue> Parse<TValue>([CanBeNull] string input, [NotNull] TryParse<TValue> tryParseFunc, NumberStyles style, IFormatProvider culture)
 {
-    return input => tryParseFunc(input, NumberStyles.Any, culture, out TValue result)
+    return tryParseFunc(input, NumberStyles.Any, culture, out TValue result)
         ? result.ToOption()
         : Option.None;
 }

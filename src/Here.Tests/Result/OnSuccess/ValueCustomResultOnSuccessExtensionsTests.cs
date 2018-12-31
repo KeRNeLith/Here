@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using Here.Extensions;
 
 namespace Here.Tests.Results
@@ -14,78 +15,72 @@ namespace Here.Tests.Results
         [Test]
         public void ValueCustomResultOnSuccessToValue()
         {
-            int counter = 0;
+            #region Local functions
+
+            void CheckOnSuccess(Result<int, CustomErrorTest> result, bool treatWarningAsError, bool expectSuccess)
+            {
+                int counterSuccess = 0;
+                float res = result.OnSuccess(
+                    r =>
+                    {
+                        ++counterSuccess;
+                        return 42.5f;
+                    },
+                    -1f,
+                    treatWarningAsError);
+                Assert.AreEqual(expectSuccess ? 1 : 0, counterSuccess);
+                Assert.AreEqual(expectSuccess ? 42.5f : -1f, res);
+            }
+
+            void CheckOnSuccessFunc(Result<int, CustomErrorTest> result, bool treatWarningAsError, bool expectSuccess)
+            {
+                int counterSuccess = 0;
+                int counterFactory = 0;
+                float res = result.OnSuccess(
+                    r =>
+                    {
+                        ++counterSuccess;
+                        return 43.5f;
+                    },
+                    r =>
+                    {
+                        ++counterFactory;
+                        return -2f;
+                    },
+                    treatWarningAsError);
+                Assert.AreEqual(expectSuccess ? 1 : 0, counterSuccess);
+                Assert.AreEqual(expectSuccess ? 0 : 1, counterFactory);
+                Assert.AreEqual(expectSuccess ? 43.5f : -2f, res);
+            }
+
+            #endregion
+
             // Ok result
             var ok = Result.Ok<int, CustomErrorTest>(98);
-
-            float result = ok.OnSuccess(
-                res =>
-                {
-                    ++counter;
-                    return res.Value + 0.1f;
-                },
-                -1f);
-            Assert.AreEqual(1, counter);
-            Assert.AreEqual(98.1f, result);
-
-            result = ok.OnSuccess(
-                res =>
-                {
-                    ++counter;
-                    return res.Value + 0.2f;
-                },
-                -1f,
-                true);
-            Assert.AreEqual(2, counter);
-            Assert.AreEqual(98.2f, result);
+            CheckOnSuccess(ok, false, true);
+            CheckOnSuccess(ok, true, true);
+            CheckOnSuccessFunc(ok, false, true);
+            CheckOnSuccessFunc(ok, true, true);
 
             // Warning result
             var warning = Result.Warn<int, CustomErrorTest>(99, "My warning");
-
-            result = warning.OnSuccess(
-                res =>
-                {
-                    ++counter;
-                    return res.Value + 0.1f;
-                },
-                -1f);
-            Assert.AreEqual(3, counter);
-            Assert.AreEqual(99.1f, result);
-
-            result = warning.OnSuccess(
-                res =>
-                {
-                    ++counter;
-                    return res.Value + 0.2f;
-                },
-                -1f,
-                true);
-            Assert.AreEqual(3, counter);
-            Assert.AreEqual(-1f, result);
+            CheckOnSuccess(warning, false, true);
+            CheckOnSuccess(warning, true, false);
+            CheckOnSuccessFunc(warning, false, true);
+            CheckOnSuccessFunc(warning, true, false);
 
             // Failure result
             var failure = Result.Fail<int, CustomErrorTest>("My failure", new CustomErrorTest());
+            CheckOnSuccess(failure, false, false);
+            CheckOnSuccess(failure, true, false);
+            CheckOnSuccessFunc(failure, false, false);
+            CheckOnSuccessFunc(failure, true, false);
 
-            result = failure.OnSuccess(
-                res =>
-                {
-                    ++counter;
-                    return res.Value + 0.1f;
-                },
-                -2f);
-            Assert.AreEqual(3, counter);
-            Assert.AreEqual(-2f, result);
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess(null, 12.5f));
 
-            result = failure.OnSuccess(
-                res =>
-                {
-                    ++counter;
-                    return res.Value + 0.2f;
-                },
-                -3f,
-                true);
-            Assert.AreEqual(3, counter);
-            Assert.AreEqual(-3f, result);
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess(null, r => 12.5f));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess(r => 12.5f, (Func<Result<int, CustomErrorTest>, float>)null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<Result<int, CustomErrorTest>, float>)null, null));
         }
 
         #endregion
@@ -166,6 +161,8 @@ namespace Here.Tests.Results
                 true);
             Assert.AreEqual(6, counter);
             CheckResultFail(result, produceFailureMessage);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess(null));
         }
 
         [Test]
@@ -401,6 +398,8 @@ namespace Here.Tests.Results
                 true);
             Assert.AreEqual(6, counter);
             CheckResultFail(result, produceFailureMessage);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<int, Result<float>>)null));
         }
 
         [Test]
@@ -593,7 +592,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomOk<CustomErrorTest>();
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -619,7 +618,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomWarn<CustomErrorTest>(produceWarningMessage);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -645,7 +644,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomFail(produceFailureMessage, customErrorObject);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -673,7 +672,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomOk<CustomErrorTest>();
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -701,7 +700,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomWarn<CustomErrorTest>(produceWarningMessage);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -729,7 +728,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomFail(produceFailureMessage, customErrorObject);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -738,6 +737,14 @@ namespace Here.Tests.Results
             Assert.AreEqual(12, counterSuccess);
             Assert.AreEqual(0, counterFailureFactory);
             CheckResultFail(result, produceFailureMessage, customErrorObject);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<int, CustomResult<CustomErrorTest>>)null, customErrorObject));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess(val => Result.CustomOk<CustomErrorTest>(), (CustomErrorTest)null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<int, CustomResult<CustomErrorTest>>)null, (CustomErrorTest)null));
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<int, CustomResult<CustomErrorTest>>)null, r => customErrorObject));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess(val => Result.CustomOk<CustomErrorTest>(), (Func<Result<int, CustomErrorTest>, CustomErrorTest>)null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<int, CustomResult<CustomErrorTest>>)null, (Func<Result<int, CustomErrorTest>, CustomErrorTest>)null));
         }
 
         [Test]
@@ -772,7 +779,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomOk<CustomErrorTest>();
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -798,7 +805,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomWarn<CustomErrorTest>(produceWarningMessage);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -824,7 +831,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomFail(produceFailureMessage, customErrorObject);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -852,7 +859,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomOk<CustomErrorTest>();
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -880,7 +887,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomWarn<CustomErrorTest>(produceWarningMessage);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -908,7 +915,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomFail(produceFailureMessage, customErrorObject);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -952,7 +959,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomOk<CustomErrorTest>();
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -978,7 +985,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomWarn<CustomErrorTest>(produceWarningMessage);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1004,7 +1011,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomFail(produceFailureMessage, produceCustomErrorObject);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1032,7 +1039,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomOk<CustomErrorTest>();
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1060,7 +1067,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomWarn<CustomErrorTest>(produceWarningMessage);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1088,7 +1095,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.CustomFail(produceFailureMessage, produceCustomErrorObject);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1106,127 +1113,40 @@ namespace Here.Tests.Results
         [Test]
         public void ValueCustomResultOnSuccessToValueCustomResult()
         {
-            int counterSuccess = 0;
-            int counterFailureFactory = 0;
-            var customErrorObject = new CustomErrorTest { ErrorCode = -4 };
-            var customErrorObjectFactory = new CustomErrorTest { ErrorCode = -25 };
+            #region Local function
+
+            void CheckOnSuccess(Result<int, CustomErrorTest> result, bool treatWarningAsError, bool expectSuccess)
+            {
+                int counterSuccess = 0;
+                Result<int, CustomErrorTest> res = result.OnSuccess(
+                    val =>
+                    {
+                        ++counterSuccess;
+                    },
+                    treatWarningAsError);
+                Assert.AreEqual(expectSuccess ? 1 : 0, counterSuccess);
+                Assert.AreEqual(result, res);
+            }
+
+            #endregion
 
             // Ok result
             var ok = Result.Ok<int, CustomErrorTest>(12);
-
-            var result = ok.OnSuccess(
-                value => { ++counterSuccess; },
-                customErrorObjectFactory);
-            Assert.AreEqual(1, counterSuccess);
-            CheckResultOk(result, 12);
-
-            result = ok.OnSuccess(
-                value => { ++counterSuccess; },
-                () =>
-                {
-                    ++counterFailureFactory;
-                    return customErrorObjectFactory;
-                });
-            Assert.AreEqual(2, counterSuccess);
-            Assert.AreEqual(0, counterFailureFactory);
-            CheckResultOk(result, 12);
-
-            result = ok.OnSuccess(
-                value => { ++counterSuccess; },
-                customErrorObjectFactory,
-                true);
-            Assert.AreEqual(3, counterSuccess);
-            CheckResultOk(result, 12);
-
-            result = ok.OnSuccess(
-                value => { ++counterSuccess; },
-                () =>
-                {
-                    ++counterFailureFactory;
-                    return customErrorObjectFactory;
-                },
-                true);
-            Assert.AreEqual(4, counterSuccess);
-            Assert.AreEqual(0, counterFailureFactory);
-            CheckResultOk(result, 12);
+            CheckOnSuccess(ok, false, true);
+            CheckOnSuccess(ok, true, true);
 
             // Warning result
             var warning = Result.Warn<int, CustomErrorTest>(13, "My warning");
-
-            result = warning.OnSuccess(
-                value => { ++counterSuccess; },
-                customErrorObjectFactory);
-            Assert.AreEqual(5, counterSuccess);
-            CheckResultWarn(result, 13, "My warning");
-
-            result = warning.OnSuccess(
-                value => { ++counterSuccess; },
-                () =>
-                {
-                    ++counterFailureFactory;
-                    return customErrorObjectFactory;
-                });
-            Assert.AreEqual(6, counterSuccess);
-            Assert.AreEqual(0, counterFailureFactory);
-            CheckResultWarn(result, 13, "My warning");
-
-            result = warning.OnSuccess(
-                value => { ++counterSuccess; },
-                customErrorObjectFactory,
-                true);
-            Assert.AreEqual(6, counterSuccess);
-            CheckResultFail(result, "My warning", customErrorObjectFactory);
-
-            result = warning.OnSuccess(
-                value => { ++counterSuccess; },
-                () =>
-                {
-                    ++counterFailureFactory;
-                    return customErrorObjectFactory;
-                },
-                true);
-            Assert.AreEqual(6, counterSuccess);
-            Assert.AreEqual(1, counterFailureFactory);
-            CheckResultFail(result, "My warning", customErrorObjectFactory);
+            CheckOnSuccess(warning, false, true);
+            CheckOnSuccess(warning, true, false);
 
             // Failure result
+            var customErrorObject = new CustomErrorTest { ErrorCode = -4 };
             var failure = Result.Fail<int, CustomErrorTest>("My failure", customErrorObject);
+            CheckOnSuccess(failure, false, false);
+            CheckOnSuccess(failure, true, false);
 
-            result = failure.OnSuccess(
-                value => { ++counterSuccess; },
-                customErrorObjectFactory);
-            Assert.AreEqual(6, counterSuccess);
-            CheckResultFail(result, "My failure", customErrorObject);
-
-            result = failure.OnSuccess(
-                value => { ++counterSuccess; },
-                () =>
-                {
-                    ++counterFailureFactory;
-                    return customErrorObjectFactory;
-                });
-            Assert.AreEqual(6, counterSuccess);
-            Assert.AreEqual(1, counterFailureFactory);
-            CheckResultFail(result, "My failure", customErrorObject);
-
-            result = failure.OnSuccess(
-                value => { ++counterSuccess; },
-                customErrorObjectFactory,
-                true);
-            Assert.AreEqual(6, counterSuccess);
-            CheckResultFail(result, "My failure", customErrorObject);
-
-            result = failure.OnSuccess(
-                value => { ++counterSuccess; },
-                () =>
-                {
-                    ++counterFailureFactory;
-                    return customErrorObjectFactory;
-                },
-                true);
-            Assert.AreEqual(6, counterSuccess);
-            Assert.AreEqual(1, counterFailureFactory);
-            CheckResultFail(result, "My failure", customErrorObject);
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Action<int>)null));
         }
 
         [Test]
@@ -1256,7 +1176,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return valueInt + 0.2f;
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1282,7 +1202,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return valueInt + 0.4f;
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1311,7 +1231,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return valueInt + 0.2f;
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1337,7 +1257,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return valueInt + 0.4f;
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1366,7 +1286,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return valueInt + 0.2f;
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1392,7 +1312,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return valueInt + 0.4f;
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1401,6 +1321,14 @@ namespace Here.Tests.Results
             Assert.AreEqual(6, counterSuccess);
             Assert.AreEqual(1, counterFailureFactory);
             CheckResultFail(result, "My failure", customErrorObject);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<int, float>)null, customErrorObject));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess(val => val + 0.1f, (CustomErrorTest)null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<int, float>)null, (CustomErrorTest)null));
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<int, float>)null, r => customErrorObject));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess(val => val + 0.1f, (Func<Result<int, CustomErrorTest>, CustomErrorTest>)null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<int, float>)null, (Func<Result<int, CustomErrorTest>, CustomErrorTest>)null));
         }
 
         [Test]
@@ -1434,7 +1362,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Ok<int, CustomErrorTest>(42);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1460,7 +1388,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Warn<int, CustomErrorTest>(12, produceWarningMessage);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1486,7 +1414,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Fail<int, CustomErrorTest>(produceFailureMessage, customErrorObject);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1514,7 +1442,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Ok<int, CustomErrorTest>(42);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1542,7 +1470,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Warn<int, CustomErrorTest>(12, produceWarningMessage);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1570,7 +1498,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Fail<int, CustomErrorTest>(produceFailureMessage, customErrorObject);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1579,6 +1507,14 @@ namespace Here.Tests.Results
             Assert.AreEqual(12, counterSuccess);
             Assert.AreEqual(0, counterFailureFactory);
             CheckResultFail(result, produceFailureMessage, customErrorObject);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<int, Result<float, CustomErrorTest>>)null, customErrorObject));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess(val => Result.Ok<float, CustomErrorTest>(12.5f), (CustomErrorTest)null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<int, Result<float, CustomErrorTest>>)null, (CustomErrorTest)null));
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<int, Result<float, CustomErrorTest>>)null, r => customErrorObjectFactory));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess(val => Result.Ok<float, CustomErrorTest>(12.5f), (Func<Result<int, CustomErrorTest>, CustomErrorTest>)null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<int, Result<float, CustomErrorTest>>)null, (Func<Result<int, CustomErrorTest>, CustomErrorTest>)null));
         }
 
         [Test]
@@ -1613,7 +1549,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Ok<int, CustomErrorTest>(25);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1639,7 +1575,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Warn<int, CustomErrorTest>(32, produceWarningMessage);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1665,7 +1601,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Fail<int, CustomErrorTest>(produceFailureMessage, customErrorObject);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1693,7 +1629,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Ok<int, CustomErrorTest>(81);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1721,7 +1657,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Warn<int, CustomErrorTest>(92, produceWarningMessage);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1749,7 +1685,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Fail<int, CustomErrorTest>(produceFailureMessage, customErrorObject);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1793,7 +1729,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Ok<int, CustomErrorTest>(51);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1819,7 +1755,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Warn<int, CustomErrorTest>(45, produceWarningMessage);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1845,7 +1781,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Fail<int, CustomErrorTest>(produceFailureMessage, produceCustomErrorObject);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1873,7 +1809,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Ok<int, CustomErrorTest>(21);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1901,7 +1837,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Warn<int, CustomErrorTest>(75, produceWarningMessage);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;
@@ -1929,7 +1865,7 @@ namespace Here.Tests.Results
                     ++counterSuccess;
                     return Result.Fail<int, CustomErrorTest>(produceFailureMessage, produceCustomErrorObject);
                 },
-                () =>
+                r =>
                 {
                     ++counterFailureFactory;
                     return customErrorObjectFactory;

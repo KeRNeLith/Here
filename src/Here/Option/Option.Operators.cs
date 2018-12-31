@@ -75,9 +75,12 @@ namespace Here
         /// <param name="errorFactory">Function that create the custom error object to use to construct the result in case this <see cref="Option{T}"/> has no value.</param>
         /// <param name="failureMessage">Failure message in case the <see cref="Option{T}"/> has no value.</param>
         /// <returns>The corresponding <see cref="CustomResult{TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public CustomResult<TError> ToCustomResult<TError>([NotNull, InstantHandle] in Func<TError> errorFactory, [CanBeNull] in string failureMessage = null)
         {
+            Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
+
             if (HasValue)
                 return Result.CustomOk<TError>();
             return Result.CustomFail(failureMessage ?? string.Format(Option.FailedToResultMessage, typeof(T)), errorFactory());
@@ -89,9 +92,12 @@ namespace Here
         /// <param name="errorObject">Custom error object to use to construct the result in case this <see cref="Option{T}"/> has no value.</param>
         /// <param name="failureMessage">Failure message in case the <see cref="Option{T}"/> has no value.</param>
         /// <returns>The corresponding <see cref="CustomResult{TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI, Pure]
         public CustomResult<TError> ToCustomResult<TError>([NotNull] in TError errorObject, [CanBeNull] in string failureMessage = null)
         {
+            Throw.IfArgumentNull(errorObject, nameof(errorObject));
+
             if (HasValue)
                 return Result.CustomOk<TError>();
             return Result.CustomFail(failureMessage ?? string.Format(Option.FailedToResultMessage, typeof(T)), errorObject);
@@ -103,9 +109,12 @@ namespace Here
         /// <param name="errorFactory">Function that create the custom error object to use to construct the result in case this <see cref="Option{T}"/> has no value.</param>
         /// <param name="failureMessage">Failure message in case the <see cref="Option{T}"/> has no value.</param>
         /// <returns>The corresponding <see cref="Result{T, TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<T, TError> ToValueCustomResult<TError>([NotNull, InstantHandle] in Func<TError> errorFactory, [CanBeNull] in string failureMessage = null)
         {
+            Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
+
             if (HasValue)
                 return Result.Ok<T, TError>(Value);
             return Result.Fail<T, TError>(failureMessage ?? string.Format(Option.FailedToResultMessage, typeof(T)), errorFactory());
@@ -117,9 +126,12 @@ namespace Here
         /// <param name="errorObject">Custom error object to use to construct the result in case this <see cref="Option{T}"/> has no value.</param>
         /// <param name="failureMessage">Failure message in case the <see cref="Option{T}"/> has no value.</param>
         /// <returns>The corresponding <see cref="Result{T, TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<T, TError> ToValueCustomResult<TError>([NotNull] in TError errorObject, [CanBeNull] in string failureMessage = null)
         {
+            Throw.IfArgumentNull(errorObject, nameof(errorObject));
+
             if (HasValue)
                 return Result.Ok<T, TError>(Value);
             return Result.Fail<T, TError>(failureMessage ?? string.Format(Option.FailedToResultMessage, typeof(T)), errorObject);

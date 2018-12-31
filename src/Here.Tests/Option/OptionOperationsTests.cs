@@ -21,6 +21,8 @@ namespace Here.Tests.Options
             var emptyOptionInt = Option<int>.None;
             emptyOptionInt.If(value => ++counter);
             Assert.AreEqual(1, counter);
+
+            Assert.Throws<ArgumentNullException>(() => optionInt.If(null));
         }
 
         [Test]
@@ -34,6 +36,8 @@ namespace Here.Tests.Options
             var emptyOptionInt = Option<int>.None;
             emptyOptionInt.Else(() => ++counter);
             Assert.AreEqual(1, counter);
+
+            Assert.Throws<ArgumentNullException>(() => optionInt.Else(null));
         }
 
         [Test]
@@ -60,6 +64,8 @@ namespace Here.Tests.Options
                 () => ++counterElse);
             Assert.AreEqual(1, counterIf);
             Assert.AreEqual(1, counterElse);
+
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfElse(null, null));
         }
 
         [Test]
@@ -96,6 +102,10 @@ namespace Here.Tests.Options
                 }));
             Assert.AreEqual(1, counterIf);
             Assert.AreEqual(1, counterElse);
+
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfElse(val => 12.2f, null));
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfElse(null, () => 12.2f));
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfElse<int, float>(null, null));
         }
 
         [Test]
@@ -121,6 +131,11 @@ namespace Here.Tests.Options
                 },
                 12.2f));
             Assert.AreEqual(1, counterIf);
+
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfOr(null, 1));
+            var optionPerson = Option<Person>.Some(new Person("Test"));
+            Assert.Throws<ArgumentNullException>(() => optionPerson.IfOr(person => person, null));
+            Assert.Throws<ArgumentNullException>(() => optionPerson.IfOr(null, (Person)null));
         }
 
         [Test]
@@ -146,6 +161,11 @@ namespace Here.Tests.Options
                 },
                 42.2f));
             Assert.AreEqual(1, counterElse);
+
+            Assert.Throws<ArgumentNullException>(() => optionInt.ElseOr(null, 1));
+            var optionPerson = Option<Person>.Some(new Person("Test"));
+            Assert.Throws<ArgumentNullException>(() => optionPerson.ElseOr(() => (Person)null, null));
+            Assert.Throws<ArgumentNullException>(() => optionPerson.ElseOr(null, (Person)null));
         }
 
         [Test]
@@ -213,8 +233,14 @@ namespace Here.Tests.Options
             optionResultClass = emptyOptionClass.Or(() => Option<TestClass>.None);
             CheckEmptyOption(optionResultClass);
 
-            optionResultClass = emptyOptionClass.Or(() => null);
-            CheckEmptyOption(optionResultClass);
+            Assert.Throws<ArgumentNullException>(() => optionClass.Or((TestClass)null));
+            Assert.Throws<ArgumentNullException>(() => optionClass.Or((Func<TestClass>)null));
+            optionResultClass = optionClass.Or(() => null);     // We don't detect the null return of the factory,
+                                                                // and in this case we will not run the function if it is not needed
+            CheckOptionSameValue(optionResultClass, testObject);
+            Assert.Throws<InvalidOperationException>(() => emptyOptionClass.Or(() => null));
+            Assert.Throws<ArgumentNullException>(() => optionInt.Or((Func<Option<int>>)null));
+            Assert.Throws<ArgumentNullException>(() => optionInt.Or((Func<Option<int>>)null));
 
             Assert.AreEqual(null, emptyOptionClass.OrDefault());
         }
@@ -251,6 +277,20 @@ namespace Here.Tests.Options
             });
             Assert.Throws<InvalidOperationException>(() => emptyOptionInt.IfOrThrows(value => { }, new InvalidOperationException()));
             Assert.Throws<InvalidOperationException>(() => emptyOptionInt.IfOrThrows(value => { }, () => new InvalidOperationException()));
+
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows<int, float>(value => 12, (Exception)null));
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows<int, float>(null, new InvalidOperationException()));
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows<int, float>(null, (Exception)null));
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows<int, float>(value => 12, (Func<Exception>)null));
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows<int, float>(null, () => new InvalidOperationException()));
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows<int, float>(null, (Func<Exception>)null));
+
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows(value => { }, (Exception)null));
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows(null, new InvalidOperationException()));
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows(null, (Exception)null));
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows(value => { }, (Func<Exception>)null));
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows(null, () => new InvalidOperationException()));
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows(null, (Func<Exception>)null));
         }
 
         [Test]
@@ -266,6 +306,9 @@ namespace Here.Tests.Options
             Option<int> emptyOptionInt = Option.None;
             Assert.Throws<InvalidOperationException>(() => emptyOptionInt.OrThrows(new InvalidOperationException()));
             Assert.Throws<InvalidOperationException>(() => emptyOptionInt.OrThrows(() => new InvalidOperationException()));
+
+            Assert.Throws<ArgumentNullException>(() => emptyOptionInt.OrThrows((Exception)null));
+            Assert.Throws<ArgumentNullException>(() => emptyOptionInt.OrThrows((Func<Exception>)null));
         }
 
         [Test]
@@ -304,10 +347,20 @@ namespace Here.Tests.Options
             Option<TestClass> emptyOptionClass = Option.None;
             Assert.AreSame(null, emptyOptionClass.Unwrap());
             Assert.AreSame(defaultTestObject, emptyOptionClass.Unwrap(defaultTestObject));
+            Assert.AreSame(null, emptyOptionClass.Unwrap(() => null));
             Assert.AreSame(defaultTestObject, emptyOptionClass.Unwrap(() => defaultTestObject));
+            Assert.AreEqual(null, emptyOptionClass.Unwrap(value => (TestClass)null));
             Assert.AreEqual(0.0f, emptyOptionClass.Unwrap(value => 25.5f));
             Assert.AreEqual(15.1f, emptyOptionClass.Unwrap(value => 25.5f, 15.1f));
+            Assert.AreEqual(null, emptyOptionClass.Unwrap(value => null, (TestClass)null));
             Assert.AreEqual(15.2f, emptyOptionClass.Unwrap(value => 25.5f, () => 15.2f));
+            Assert.AreEqual(null, emptyOptionClass.Unwrap(value => (TestClass)null, () => null));
+
+            Assert.Throws<ArgumentNullException>(() => optionInt.Unwrap(null));
+            Assert.Throws<ArgumentNullException>(() => optionInt.Unwrap(null, 12.2f));
+            Assert.Throws<ArgumentNullException>(() => optionInt.Unwrap(null, () => 12.2f));
+            Assert.Throws<ArgumentNullException>(() => optionInt.Unwrap(val => 12.2f, null));
+            Assert.Throws<ArgumentNullException>(() => optionInt.Unwrap((Func<int, float>)null, null));
         }
 
         [Test]
@@ -348,6 +401,8 @@ namespace Here.Tests.Options
 
             optionClass = emptyOptionClassLeaf.Cast<TestClass>();
             CheckEmptyOption(optionClass);
+
+            Assert.Throws<ArgumentNullException>(() => optionInt.Cast<int, float>(null));
         }
 
         [Test]
@@ -361,6 +416,8 @@ namespace Here.Tests.Options
             // Empty option
             Option<int> emptyOptionInt = Option.None;
             Assert.IsFalse(emptyOptionInt.Exists(intValue => intValue == 12));
+
+            Assert.Throws<ArgumentNullException>(() => optionInt.Exists(null));
         }
     }
 }

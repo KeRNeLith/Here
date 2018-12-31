@@ -11,13 +11,12 @@ namespace Here.Extensions
     {
         // Helper method to try get a value
         [Pure]
-        private static Option<TValue> TryGetValue<TKey, TValue>(in OptionTryGetExtensions.TryGet<TKey, TValue> tryGetFunc, [CanBeNull] in TKey key)
+        private static Option<TValue> TryGetValue<TKey, TValue>([NotNull] in OptionTryGetExtensions.TryGet<TKey, TValue> tryGetFunc, [CanBeNull] in TKey key)
         {
             if (key == null)
                 return Option<TValue>.None;
 
-            var getter = OptionTryGetExtensions.CreateGet(tryGetFunc);
-            return getter(key);
+            return OptionTryGetExtensions.Get(key, tryGetFunc);
         }
 
         /// <summary>
@@ -28,9 +27,12 @@ namespace Here.Extensions
         /// <param name="dictionary"><see cref="IDictionary{TKey, TValue}"/> on which performing the get.</param>
         /// <param name="key">Searched key.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the get.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="dictionary"/> is null.</exception>
         [PublicAPI, Pure]
         public static Option<TValue> TryGetValue<TKey, TValue>([NotNull] this IDictionary<TKey, TValue> dictionary, [CanBeNull] in TKey key)
         {
+            Throw.IfArgumentNull(dictionary, nameof(dictionary));
+
             return TryGetValue<TKey, TValue>(dictionary.TryGetValue, key);
         }
 
@@ -42,9 +44,12 @@ namespace Here.Extensions
         /// <param name="dictionary"><see cref="IDictionary{TKey, Object}"/> on which performing the get.</param>
         /// <param name="key">Searched key.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the get.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="dictionary"/> is null.</exception>
         [PublicAPI, Pure]
         public static Option<TValue> TryGetValue<TKey, TValue>([NotNull] this IDictionary<TKey, object> dictionary, [CanBeNull] in TKey key)
         {
+            Throw.IfArgumentNull(dictionary, nameof(dictionary));
+
             var objectValue = dictionary.TryGetValue(key);
             if (objectValue.HasValue && objectValue.Value is TValue expectedValue)
                 return Option<TValue>.Some(expectedValue);
@@ -60,9 +65,12 @@ namespace Here.Extensions
         /// <param name="dictionary"><see cref="IReadOnlyDictionary{TKey, TValue}"/> on which performing the get.</param>
         /// <param name="key">Searched key.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the get.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="dictionary"/> is null.</exception>
         [PublicAPI, Pure]
         public static Option<TValue> TryGetReadonlyValue<TKey, TValue>([NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary, [CanBeNull] in TKey key)
         {
+            Throw.IfArgumentNull(dictionary, nameof(dictionary));
+
             return TryGetValue<TKey, TValue>(dictionary.TryGetValue, key);
         }
 
@@ -74,9 +82,12 @@ namespace Here.Extensions
         /// <param name="dictionary"><see cref="IReadOnlyDictionary{TKey, Object}"/> on which performing the get.</param>
         /// <param name="key">Searched key.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the get.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="dictionary"/> is null.</exception>
         [PublicAPI, Pure]
         public static Option<TValue> TryGetReadonlyValue<TKey, TValue>([NotNull] this IReadOnlyDictionary<TKey, object> dictionary, [CanBeNull] in TKey key)
         {
+            Throw.IfArgumentNull(dictionary, nameof(dictionary));
+
             var objectValue = dictionary.TryGetReadonlyValue(key);
             if (objectValue.HasValue && objectValue.Value is TValue expectedValue)
                 return Option<TValue>.Some(expectedValue);

@@ -78,9 +78,12 @@ namespace Here
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <param name="valueFactory">Factory method that creates a value.</param>
         /// <returns>A <see cref="Result{T}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<T> Cast<T>([NotNull, InstantHandle] in Func<T> valueFactory)
         {
+            Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
+
             if (IsFailure)
                 return ToFailValueResult<T>();
             return new Result<T>(valueFactory(), Logic);
@@ -92,9 +95,12 @@ namespace Here
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
         /// <param name="errorObject">Custom error object.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI, Pure]
         public CustomResult<TError> CustomCast<TError>([NotNull] in TError errorObject)
         {
+            Throw.IfArgumentNull(errorObject, nameof(errorObject));
+
             if (IsFailure)
                 return ToFailCustomResult(errorObject);
             if (IsWarning)
@@ -108,9 +114,12 @@ namespace Here
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
         /// <param name="errorFactory">Factory method that creates a custom error object.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public CustomResult<TError> CustomCast<TError>([NotNull, InstantHandle] in Func<TError> errorFactory)
         {
+            Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
+
             if (IsFailure)
                 return ToFailCustomResult(errorFactory());
             if (IsWarning)
@@ -126,9 +135,12 @@ namespace Here
         /// <param name="value">Value.</param>
         /// <param name="errorObject">Custom error object.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<T, TError> Cast<T, TError>([CanBeNull] in T value, [NotNull] in TError errorObject)
         {
+            Throw.IfArgumentNull(errorObject, nameof(errorObject));
+
             if (IsFailure)
                 return ToFailValueCustomResult<T, TError>(errorObject);
             if (IsWarning)
@@ -144,9 +156,12 @@ namespace Here
         /// <param name="value">Value.</param>
         /// <param name="errorFactory">Factory method that creates a custom error object.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<T, TError> Cast<T, TError>([CanBeNull] in T value, [NotNull, InstantHandle] in Func<TError> errorFactory)
         {
+            Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
+
             if (IsFailure)
                 return ToFailValueCustomResult<T, TError>(errorFactory());
             if (IsWarning)
@@ -162,9 +177,14 @@ namespace Here
         /// <param name="valueFactory">Factory method that creates a value.</param>
         /// <param name="errorObject">Custom error object.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<T, TError> Cast<T, TError>([NotNull, InstantHandle] in Func<T> valueFactory, [NotNull] in TError errorObject)
         {
+            Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
+            Throw.IfArgumentNull(errorObject, nameof(errorObject));
+
             if (IsFailure)
                 return ToFailValueCustomResult<T, TError>(errorObject);
             if (IsWarning)
@@ -180,9 +200,14 @@ namespace Here
         /// <param name="valueFactory">Factory method that creates a value.</param>
         /// <param name="errorFactory">Factory method that creates a custom error object.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<T, TError> Cast<T, TError>([NotNull, InstantHandle] in Func<T> valueFactory, [NotNull, InstantHandle] in Func<TError> errorFactory)
         {
+            Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
+            Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
+
             if (IsFailure)
                 return ToFailValueCustomResult<T, TError>(errorFactory());
             if (IsWarning)
@@ -430,6 +455,7 @@ namespace Here
         /// <param name="message">Result message.</param>
         /// <param name="exception">Result embedded exception.</param>
         /// <returns>A <see cref="Result"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="message"/> is null or empty.</exception>
         [PublicAPI, Pure]
         [ContractAnnotation("message:null => halt")]
         public static Result Warn([NotNull] in string message, [CanBeNull] in Exception exception = null)
@@ -443,6 +469,7 @@ namespace Here
         /// <param name="error">Result error message.</param>
         /// <param name="exception">Result embedded exception.</param>
         /// <returns>A <see cref="Result"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="error"/> is null or empty.</exception>
         [PublicAPI, Pure]
         [ContractAnnotation("error:null => halt")]
         public static Result Fail([NotNull] in string error, [CanBeNull] in Exception exception = null)
@@ -455,12 +482,13 @@ namespace Here
         /// </summary> 
         /// <param name="exception">Result embedded exception.</param>
         /// <returns>A <see cref="Result"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="exception"/> is null.</exception>
         [PublicAPI, Pure]
         [ContractAnnotation("exception:null => halt")]
         public static Result Fail([NotNull] in Exception exception)
         {
-            if (exception is null)
-                throw new ArgumentNullException(nameof(exception), "Cannot initialize a failure Result with a null exception.");
+            Throw.IfArgumentNull(exception, nameof(exception));
+
             return new Result(false, exception.Message, exception);
         }
 
@@ -486,6 +514,7 @@ namespace Here
         /// <param name="message">Result message.</param>
         /// <param name="exception">Result embedded exception.</param>
         /// <returns>A <see cref="Result{T}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="message"/> is null or empty.</exception>
         [PublicAPI, Pure]
         [ContractAnnotation("message:null => halt")]
         public static Result<T> Warn<T>([CanBeNull] in T value, [NotNull] in string message, [CanBeNull] in Exception exception = null)
@@ -499,6 +528,7 @@ namespace Here
         /// <param name="error">Result error message.</param>
         /// <param name="exception">Result embedded exception.</param>
         /// <returns>A <see cref="Result{T}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="error"/> is null or empty.</exception>
         [PublicAPI, Pure]
         [ContractAnnotation("error:null => halt")]
         public static Result<T> Fail<T>([NotNull] in string error, [CanBeNull] in Exception exception = null)
@@ -511,12 +541,13 @@ namespace Here
         /// </summary>
         /// <param name="exception">Result embedded exception.</param>
         /// <returns>A <see cref="Result{T}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="exception"/> is null.</exception>
         [PublicAPI, Pure]
         [ContractAnnotation("exception:null => halt")]
         public static Result<T> Fail<T>([NotNull] in Exception exception)
         {
-            if (exception is null)
-                throw new ArgumentNullException(nameof(exception), "Cannot initialize a failure Result<T> with a null exception.");
+            Throw.IfArgumentNull(exception, nameof(exception));
+
             return new Result<T>(false, default, exception.Message, exception);
         }
 
@@ -540,6 +571,7 @@ namespace Here
         /// <param name="message">Result message.</param>
         /// <param name="exception">Result embedded exception.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="message"/> is null or empty.</exception>
         [PublicAPI, Pure]
         [ContractAnnotation("message:null => halt")]
         public static CustomResult<TError> CustomWarn<TError>([NotNull] in string message, [CanBeNull] in Exception exception = null)
@@ -554,6 +586,8 @@ namespace Here
         /// <param name="error">Result error object.</param>
         /// <param name="exception">Result embedded exception.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="message"/> is null or empty.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="error"/> is null.</exception>
         [PublicAPI, Pure]
         [ContractAnnotation("message:null => halt; error:null => halt")]
         public static CustomResult<TError> CustomFail<TError>([NotNull] in string message, [NotNull] in TError error, [CanBeNull] in Exception exception = null)
@@ -567,12 +601,14 @@ namespace Here
         /// <param name="error">Result error object.</param>
         /// <param name="exception">Result embedded exception.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="error"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="exception"/> is null.</exception>
         [PublicAPI, Pure]
         [ContractAnnotation("error:null => halt; exception:null => halt")]
         public static CustomResult<TError> CustomFail<TError>([NotNull] in TError error, [NotNull] in Exception exception)
         {
-            if (exception is null)
-                throw new ArgumentNullException(nameof(exception), "Cannot initialize a failure CustomResult<TError> with a null exception.");
+            Throw.IfArgumentNull(exception, nameof(exception));
+
             return new CustomResult<TError>(false, exception.Message, error, exception);
         }
 
@@ -598,6 +634,7 @@ namespace Here
         /// <param name="message">Result message.</param>
         /// <param name="exception">Result embedded exception.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="message"/> is null or empty.</exception>
         [PublicAPI, Pure]
         [ContractAnnotation("message:null => halt")]
         public static Result<T, TError> Warn<T, TError>([CanBeNull] in T value, [NotNull] in string message, [CanBeNull] in Exception exception = null)
@@ -612,6 +649,8 @@ namespace Here
         /// <param name="error">Result error object.</param>
         /// <param name="exception">Result embedded exception.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="message"/> is null or empty.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="error"/> is null.</exception>
         [PublicAPI, Pure]
         [ContractAnnotation("message:null => halt; error:null => halt")]
         public static Result<T, TError> Fail<T, TError>([NotNull] in string message, [NotNull] in TError error, [CanBeNull] in Exception exception = null)
@@ -625,12 +664,14 @@ namespace Here
         /// <param name="error">Result error object.</param>
         /// <param name="exception">Result embedded exception.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="error"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="exception"/> is null.</exception>
         [PublicAPI, Pure]
         [ContractAnnotation("message:null => halt; error:null => halt")]
         public static Result<T, TError> Fail<T, TError>([NotNull] in TError error, [NotNull] in Exception exception)
         {
-            if (exception is null)
-                throw new ArgumentNullException(nameof(exception), "Cannot initialize a failure Result<T, TError> with a null exception.");
+            Throw.IfArgumentNull(exception, nameof(exception));
+
             return new Result<T, TError>(exception.Message, error, exception);
         }
 

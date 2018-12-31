@@ -11,7 +11,7 @@ namespace Here
         /// </summary>
         /// <returns>A None option.</returns>
         [PublicAPI, Pure]
-        public static implicit operator Option<T>([NotNull] in Option.NoneClass none)
+        public static implicit operator Option<T>([CanBeNull] in Option.NoneClass none)
         {
             return None;
         }
