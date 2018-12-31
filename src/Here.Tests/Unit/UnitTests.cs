@@ -47,6 +47,7 @@ namespace Here.Tests.Units
             Assert.IsFalse(unit3 != unit1);
 
             // Mixed
+            // ReSharper disable once SuspiciousTypeConversion.Global
             Assert.IsFalse(unit1.Equals(new TestClass()));
         }
 
@@ -80,8 +81,7 @@ namespace Here.Tests.Units
 
             // Mixed
             Assert.AreEqual(1, unit1.CompareTo(null));
-
-            var testObject = new TestClass();
+            
             Assert.Throws<ArgumentException>(() => { var _ = unit1.CompareTo(new TestClass()); });
         }
 

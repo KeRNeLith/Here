@@ -653,6 +653,7 @@ namespace Here.Tests.Eithers
             var eitherRightStringPerson = Either.Right<string, Person>(new Person("Test"));
             var eitherNoneStringPerson = Either.Left<string, Person>("Error");
 
+            // ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => eitherLeftStringPerson.IfLeft((Person)null));
             Assert.Throws<ArgumentNullException>(() => eitherRightStringPerson.IfLeft((Person)null));
             Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfLeft((Person)null));
@@ -668,6 +669,7 @@ namespace Here.Tests.Eithers
             Assert.Throws<ArgumentNullException>(() => eitherRightStringPerson.IfLeft((Func<string, Person>)null));
             Assert.AreEqual(new Person("Test"), eitherRightStringPerson.IfLeft(s => null));
             Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfLeft((Func<string, Person>)null));
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Test]
@@ -747,6 +749,7 @@ namespace Here.Tests.Eithers
             var eitherNoneStringPerson = Either.Left<string, Person>("Error");
             var testObject = new TestClass();
 
+            // ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => eitherLeftStringPerson.IfLeft(r => testObject, (TestClass)null));
             Assert.Throws<NullResultException>(() => eitherLeftStringPerson.IfLeft(r => null, testObject));
             Assert.Throws<ArgumentNullException>(() => eitherLeftStringPerson.IfLeft(null, testObject));
@@ -772,6 +775,7 @@ namespace Here.Tests.Eithers
             Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfLeft(r => testObject, (Func<TestClass>)null));
             Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfLeft(null, () => testObject));
             Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfLeft((Func<string, TestClass>)null, (Func<TestClass>)null));
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         #endregion
@@ -930,6 +934,7 @@ namespace Here.Tests.Eithers
             var eitherRightStringPerson = Either.Right<string, Person>(new Person("Test"));
             var eitherNoneStringPerson = Either.Left<string, Person>("Error");
 
+            // ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => eitherLeftStringPerson.IfRight((string)null));
             Assert.Throws<ArgumentNullException>(() => eitherRightStringPerson.IfRight((string)null));
             Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfRight((string)null));
@@ -945,6 +950,7 @@ namespace Here.Tests.Eithers
             Assert.Throws<ArgumentNullException>(() => eitherRightStringPerson.IfRight((Func<Person, string>)null));
             Assert.Throws<NullResultException>(() => eitherRightStringPerson.IfRight(s => null));
             Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfRight((Func<Person, string>)null));
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Test]
@@ -1024,6 +1030,7 @@ namespace Here.Tests.Eithers
             var eitherNoneStringPerson = Either.Left<string, Person>("Error");
             var testObject = new TestClass();
 
+            // ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => eitherLeftStringPerson.IfRight(l => testObject, (TestClass)null));
             Assert.AreSame(testObject, eitherLeftStringPerson.IfRight(l => null, testObject));
             Assert.Throws<ArgumentNullException>(() => eitherLeftStringPerson.IfRight(null, testObject));
@@ -1049,6 +1056,7 @@ namespace Here.Tests.Eithers
             Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfRight(l => testObject, (Func<TestClass>)null));
             Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfRight(null, () => testObject));
             Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfRight((Func<Person, TestClass>)null, (Func<TestClass>)null));
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         #endregion

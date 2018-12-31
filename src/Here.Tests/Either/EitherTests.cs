@@ -736,7 +736,7 @@ namespace Here.Tests.Eithers
             var eitherLeftInt2 = Either.Left(42);
             var eitherLeftInt3 = Either.Left(2);
             Assert.AreEqual(0, eitherLeftIntDouble1.CompareTo(eitherLeftInt1));
-            Assert.Throws<ArgumentException>(() => eitherLeftIntDouble1.CompareTo((object)eitherLeftInt1));
+            Assert.Throws<ArgumentException>(() => { var _ = eitherLeftIntDouble1.CompareTo((object) eitherLeftInt1); });
             Assert.IsFalse(eitherLeftIntDouble1 < eitherLeftInt1);
             Assert.IsTrue(eitherLeftIntDouble1 <= eitherLeftInt1);
             Assert.IsFalse(eitherLeftIntDouble1 > eitherLeftInt1);
@@ -747,7 +747,7 @@ namespace Here.Tests.Eithers
             Assert.IsTrue(eitherLeftInt1 >= eitherLeftIntDouble1);
 
             Assert.AreEqual(-1, eitherLeftIntDouble1.CompareTo(eitherLeftInt2));
-            Assert.Throws<ArgumentException>(() => eitherLeftIntDouble1.CompareTo((object)eitherLeftInt2));
+            Assert.Throws<ArgumentException>(() => { var _ = eitherLeftIntDouble1.CompareTo((object)eitherLeftInt2); });
             Assert.IsTrue(eitherLeftIntDouble1 < eitherLeftInt2);
             Assert.IsTrue(eitherLeftIntDouble1 <= eitherLeftInt2);
             Assert.IsFalse(eitherLeftIntDouble1 > eitherLeftInt2);
@@ -758,7 +758,7 @@ namespace Here.Tests.Eithers
             Assert.IsTrue(eitherLeftInt2 >= eitherLeftIntDouble1);
 
             Assert.AreEqual(1, eitherLeftIntDouble1.CompareTo(eitherLeftInt3));
-            Assert.Throws<ArgumentException>(() => eitherLeftIntDouble1.CompareTo((object)eitherLeftInt3));
+            Assert.Throws<ArgumentException>(() => { var _ = eitherLeftIntDouble1.CompareTo((object)eitherLeftInt3); });
             Assert.IsFalse(eitherLeftIntDouble1 < eitherLeftInt3);
             Assert.IsFalse(eitherLeftIntDouble1 <= eitherLeftInt3);
             Assert.IsTrue(eitherLeftIntDouble1 > eitherLeftInt3);
@@ -771,7 +771,7 @@ namespace Here.Tests.Eithers
             // With EitherRight
             var eitherRightDouble = Either.Right(12.5);
             Assert.AreEqual(-1, eitherLeftIntDouble1.CompareTo(eitherRightDouble));
-            Assert.Throws<ArgumentException>(() => eitherLeftIntDouble1.CompareTo((object)eitherRightDouble));
+            Assert.Throws<ArgumentException>(() => { var _ = eitherLeftIntDouble1.CompareTo((object)eitherRightDouble); });
             Assert.IsTrue(eitherLeftIntDouble1 < eitherRightDouble);
             Assert.IsTrue(eitherLeftIntDouble1 <= eitherRightDouble);
             Assert.IsFalse(eitherLeftIntDouble1 > eitherRightDouble);
@@ -783,23 +783,23 @@ namespace Here.Tests.Eithers
 
             // With left value
             Assert.AreEqual(0, eitherLeftIntDouble1.CompareTo(12));
-            Assert.Throws<ArgumentException>(() => eitherLeftIntDouble1.CompareTo((object)12));
+            Assert.Throws<ArgumentException>(() => { var _ = eitherLeftIntDouble1.CompareTo((object)12); });
 
             Assert.AreEqual(-1, eitherLeftIntDouble1.CompareTo(42));
-            Assert.Throws<ArgumentException>(() => eitherLeftIntDouble1.CompareTo((object)42));
+            Assert.Throws<ArgumentException>(() => { var _ = eitherLeftIntDouble1.CompareTo((object)42); });
 
             Assert.AreEqual(1, eitherLeftIntDouble1.CompareTo(2));
-            Assert.Throws<ArgumentException>(() => eitherLeftIntDouble1.CompareTo((object)2));
+            Assert.Throws<ArgumentException>(() => { var _ = eitherLeftIntDouble1.CompareTo((object)2); });
 
             // With right value
             Assert.AreEqual(-1, eitherLeftIntDouble1.CompareTo(12.5));
-            Assert.Throws<ArgumentException>(() => eitherLeftIntDouble1.CompareTo((object)12.5));
+            Assert.Throws<ArgumentException>(() => { var _ = eitherLeftIntDouble1.CompareTo((object)12.5); });
 
             Assert.AreEqual(-1, eitherLeftIntDouble1.CompareTo(42.5));
-            Assert.Throws<ArgumentException>(() => eitherLeftIntDouble1.CompareTo((object)42.5));
+            Assert.Throws<ArgumentException>(() => { var _ = eitherLeftIntDouble1.CompareTo((object)42.5); });
 
             Assert.AreEqual(-1, eitherLeftIntDouble1.CompareTo(2.5));
-            Assert.Throws<ArgumentException>(() => eitherLeftIntDouble1.CompareTo((object)2.5));
+            Assert.Throws<ArgumentException>(() => { var _ = eitherLeftIntDouble1.CompareTo((object)2.5); });
 
             // Mixed
             // ReSharper disable once SuspiciousTypeConversion.Global
@@ -861,7 +861,7 @@ namespace Here.Tests.Eithers
             // With EitherLeft
             var eitherLeftInt = Either.Left(12);
             Assert.AreEqual(1, eitherRightIntDouble1.CompareTo(eitherLeftInt));
-            Assert.Throws<ArgumentException>(() => eitherRightIntDouble1.CompareTo((object)eitherLeftInt));
+            Assert.Throws<ArgumentException>(() => { var _ = eitherRightIntDouble1.CompareTo((object)eitherLeftInt); });
             Assert.IsFalse(eitherRightIntDouble1 < eitherLeftInt);
             Assert.IsFalse(eitherRightIntDouble1 <= eitherLeftInt);
             Assert.IsTrue(eitherRightIntDouble1 > eitherLeftInt);
@@ -876,7 +876,7 @@ namespace Here.Tests.Eithers
             var eitherRightDouble2 = Either.Right(42.5);
             var eitherRightDouble3 = Either.Right(2.5);
             Assert.AreEqual(0, eitherRightIntDouble1.CompareTo(eitherRightDouble1));
-            Assert.Throws<ArgumentException>(() => eitherRightIntDouble1.CompareTo((object)eitherRightDouble1));
+            Assert.Throws<ArgumentException>(() => { var _ = eitherRightIntDouble1.CompareTo((object)eitherRightDouble1); });
             Assert.IsFalse(eitherRightIntDouble1 < eitherRightDouble1);
             Assert.IsTrue(eitherRightIntDouble1 <= eitherRightDouble1);
             Assert.IsFalse(eitherRightIntDouble1 > eitherRightDouble1);
@@ -887,7 +887,7 @@ namespace Here.Tests.Eithers
             Assert.IsTrue(eitherRightDouble1 >= eitherRightIntDouble1);
 
             Assert.AreEqual(-1, eitherRightIntDouble1.CompareTo(eitherRightDouble2));
-            Assert.Throws<ArgumentException>(() => eitherRightIntDouble1.CompareTo((object)eitherRightDouble2));
+            Assert.Throws<ArgumentException>(() => { var _ = eitherRightIntDouble1.CompareTo((object)eitherRightDouble2); });
             Assert.IsTrue(eitherRightIntDouble1 < eitherRightDouble2);
             Assert.IsTrue(eitherRightIntDouble1 <= eitherRightDouble2);
             Assert.IsFalse(eitherRightIntDouble1 > eitherRightDouble2);
@@ -898,7 +898,7 @@ namespace Here.Tests.Eithers
             Assert.IsTrue(eitherRightDouble2 >= eitherRightIntDouble1);
 
             Assert.AreEqual(1, eitherRightIntDouble1.CompareTo(eitherRightDouble3));
-            Assert.Throws<ArgumentException>(() => eitherRightIntDouble1.CompareTo((object)eitherRightDouble3));
+            Assert.Throws<ArgumentException>(() => { var _ = eitherRightIntDouble1.CompareTo((object)eitherRightDouble3); });
             Assert.IsFalse(eitherRightIntDouble1 < eitherRightDouble3);
             Assert.IsFalse(eitherRightIntDouble1 <= eitherRightDouble3);
             Assert.IsTrue(eitherRightIntDouble1 > eitherRightDouble3);
@@ -910,23 +910,23 @@ namespace Here.Tests.Eithers
 
             // With left value
             Assert.AreEqual(1, eitherRightIntDouble1.CompareTo(12));
-            Assert.Throws<ArgumentException>(() => eitherRightIntDouble1.CompareTo((object)12));
+            Assert.Throws<ArgumentException>(() => { var _ = eitherRightIntDouble1.CompareTo((object)12); });
 
             Assert.AreEqual(1, eitherRightIntDouble1.CompareTo(42));
-            Assert.Throws<ArgumentException>(() => eitherRightIntDouble1.CompareTo((object)42));
+            Assert.Throws<ArgumentException>(() => { var _ = eitherRightIntDouble1.CompareTo((object)42); });
 
             Assert.AreEqual(1, eitherRightIntDouble1.CompareTo(2));
-            Assert.Throws<ArgumentException>(() => eitherRightIntDouble1.CompareTo((object)2));
+            Assert.Throws<ArgumentException>(() => { var _ = eitherRightIntDouble1.CompareTo((object)2); });
 
             // With right value
             Assert.AreEqual(0, eitherRightIntDouble1.CompareTo(12.5));
-            Assert.Throws<ArgumentException>(() => eitherRightIntDouble1.CompareTo((object)12.5));
+            Assert.Throws<ArgumentException>(() => { var _ = eitherRightIntDouble1.CompareTo((object)12.5); });
 
             Assert.AreEqual(-1, eitherRightIntDouble1.CompareTo(42.5));
-            Assert.Throws<ArgumentException>(() => eitherRightIntDouble1.CompareTo((object)42.5));
+            Assert.Throws<ArgumentException>(() => { var _ = eitherRightIntDouble1.CompareTo((object)42.5); });
 
             Assert.AreEqual(1, eitherRightIntDouble1.CompareTo(2.5));
-            Assert.Throws<ArgumentException>(() => eitherRightIntDouble1.CompareTo((object)2.5));
+            Assert.Throws<ArgumentException>(() => { var _ = eitherRightIntDouble1.CompareTo((object)2.5); });
 
             // Mixed
             // ReSharper disable once SuspiciousTypeConversion.Global

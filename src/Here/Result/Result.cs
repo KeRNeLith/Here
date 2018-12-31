@@ -667,7 +667,7 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="error"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="exception"/> is null.</exception>
         [PublicAPI, Pure]
-        [ContractAnnotation("message:null => halt; error:null => halt")]
+        [ContractAnnotation("error:null => halt; exception:null => halt")]
         public static Result<T, TError> Fail<T, TError>([NotNull] in TError error, [NotNull] in Exception exception)
         {
             Throw.IfArgumentNull(exception, nameof(exception));

@@ -149,7 +149,7 @@ namespace Here.Extensions
         /// <param name="onLeft">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
         /// <returns>The result of the applied treatment.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
-        [PublicAPI, NotNull]
+        [PublicAPI]
         public static Unit IfLeft<TLeft, TRight>(
             in this Either<TLeft, TRight> either,
             [NotNull, InstantHandle] in Action<TLeft> onLeft)
@@ -166,7 +166,7 @@ namespace Here.Extensions
         /// <param name="onFailure">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
         /// <returns>The result of the applied treatment.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
-        [PublicAPI, NotNull]
+        [PublicAPI]
 #if (!NET20 && !NET30 && !NET35 && !NET40)
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
@@ -314,7 +314,7 @@ namespace Here.Extensions
         /// <param name="onRight">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
         /// <returns>The result of the applied treatment.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
-        [PublicAPI, NotNull]
+        [PublicAPI]
         public static Unit IfRight<TLeft, TRight>(
             in this Either<TLeft, TRight> either,
             [NotNull, InstantHandle] in Action<TRight> onRight)
@@ -331,7 +331,7 @@ namespace Here.Extensions
         /// <param name="onSuccess">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
         /// <returns>The result of the applied treatment.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
-        [PublicAPI, NotNull]
+        [PublicAPI]
 #if (!NET20 && !NET30 && !NET35 && !NET40)
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
@@ -502,7 +502,11 @@ namespace Here.Extensions
             Throw.IfArgumentNull(defaultValue, nameof(defaultValue));
 
             if (either.IsRight)
+            {
+                // ReSharper disable once AssignNullToNotNullAttribute, Justification: Here the either is in right state.
                 return either._right;
+            }
+
             return defaultValue;
         }
 
@@ -523,7 +527,10 @@ namespace Here.Extensions
             Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
 
             if (either.IsRight)
+            {
+                // ReSharper disable once AssignNullToNotNullAttribute, Justification: Here the either is in right state.
                 return either._right;
+            }
 
             TRight orValue = valueFactory();
             if (orValue == null)
@@ -563,7 +570,11 @@ namespace Here.Extensions
             Throw.IfArgumentNull(defaultValue, nameof(defaultValue));
 
             if (either.IsLeft)
+            {
+                // ReSharper disable once AssignNullToNotNullAttribute, Justification: Here the either is in left state.
                 return either._left;
+            }
+
             return defaultValue;
         }
 
@@ -584,7 +595,10 @@ namespace Here.Extensions
             Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
 
             if (either.IsLeft)
+            {
+                // ReSharper disable once AssignNullToNotNullAttribute, Justification: Here the either is in left state.
                 return either._left;
+            }
 
             TLeft orValue = valueFactory();
             if (orValue == null)

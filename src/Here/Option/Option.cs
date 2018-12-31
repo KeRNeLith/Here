@@ -49,6 +49,7 @@ namespace Here
             {
                 if (HasNoValue)
                     throw new InvalidOperationException("Trying to get the value while there is none.");
+                // ReSharper disable once AssignNullToNotNullAttribute, Justification: Here the option has a value.
                 return _value;
             }
         }

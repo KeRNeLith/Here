@@ -205,17 +205,17 @@ namespace Here.Tests.Options
             var optionEnumerable = Option<IEnumerable>.Some(Items);
             Assert.IsFalse(optionEnumerable.ContainsItem(null));
             Assert.IsFalse(optionEnumerable.ContainsItem(null, EqualityComparer<object>.Default));
-            Assert.IsTrue(optionEnumerable.ContainsItem((object)"Test"));
+            Assert.IsTrue(optionEnumerable.ContainsItem("Test"));
             Assert.IsTrue(optionEnumerable.ContainsItem(1, EqualityComparer<object>.Default));
-            Assert.IsFalse(optionEnumerable.ContainsItem((object)testObject2));
+            Assert.IsFalse(optionEnumerable.ContainsItem(testObject2));
             Assert.IsFalse(optionEnumerable.ContainsItem(testObject2, EqualityComparer<object>.Default));
 
             optionEnumerable = Option<IEnumerable>.Some(listTestClasses);
             Assert.IsFalse(optionEnumerable.ContainsItem(null));
             Assert.IsFalse(optionEnumerable.ContainsItem(null, EqualityComparer<object>.Default));
-            Assert.IsTrue(optionEnumerable.ContainsItem((object)testObject1));
+            Assert.IsTrue(optionEnumerable.ContainsItem(testObject1));
             Assert.IsTrue(optionEnumerable.ContainsItem(testObject1, EqualityComparer<object>.Default));
-            Assert.IsFalse(optionEnumerable.ContainsItem((object)testObject2));
+            Assert.IsFalse(optionEnumerable.ContainsItem(testObject2));
             Assert.IsFalse(optionEnumerable.ContainsItem(testObject2, EqualityComparer<object>.Default));
 
             // Empty option

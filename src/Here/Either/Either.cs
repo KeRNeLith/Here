@@ -55,6 +55,7 @@ namespace Here
 
         [CanBeNull]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        // ReSharper disable once InconsistentNaming
         internal readonly TLeft _left;
 
         /// <summary>
@@ -76,6 +77,7 @@ namespace Here
 
         [CanBeNull]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        // ReSharper disable once InconsistentNaming
         internal readonly TRight _right;
 
         /// <summary>

@@ -22,7 +22,8 @@ namespace Here.Tests.Results
             var failure = Result.Fail("My failure");
             Assert.IsFalse(failure.IsOnlySuccess());
 
-            Assert.Throws<NullReferenceException>(() => ((IResult)null).IsOnlySuccess());
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Assert.Throws<NullReferenceException>(() => { var _ = ((IResult)null).IsOnlySuccess(); });
         }
         
         #region Unwrapping
@@ -84,6 +85,7 @@ namespace Here.Tests.Results
             Assert.AreEqual(101112f, customValueResultFail.Unwrap(val => val + 0.5f, () => 101112f));
 
 
+            // ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<NullReferenceException>(() => ((IResult<int>) null).Unwrap());
             Assert.Throws<ArgumentNullException>(() => ((IResult<int>) null).Unwrap(null));
             Assert.Throws<ArgumentNullException>(() => valueResultOk.Unwrap(null));
@@ -100,6 +102,7 @@ namespace Here.Tests.Results
 
             Assert.Throws<ArgumentNullException>(() => ((IResult<int>)null).Unwrap((Func<int, TestClass>)null, (Func<TestClass>)null));
             Assert.Throws<ArgumentNullException>(() => valueResultOk.Unwrap((Func<int, TestClass>)null, (Func<TestClass>)null));
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         #endregion
