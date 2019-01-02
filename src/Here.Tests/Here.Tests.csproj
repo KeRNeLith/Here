@@ -26,24 +26,25 @@
     <RepositoryUrl>https://github.com/KeRNeLith/Here</RepositoryUrl>
   </PropertyGroup>
 
+  <!-- C# configuration -->
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
-  <!-- Common dependencies -->
+  <!-- Dependencies -->
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.11.0" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' != 'net20' And '$(TargetFramework)' != 'net30'">
+  <ItemGroup Condition="'$(TargetFramework)' != 'net20' AND '$(TargetFramework)' != 'net30'">
     <PackageReference Include="NUnit" Version="3.11.0" />
   </ItemGroup>
 
   <!-- In later releases NUnit target net30 was removed, so it use the net20 build.
        The problem is that build contains an implementation of Func delegate which 
        is incompatible with System.Core. -->
-  <ItemGroup Condition="'$(TargetFramework)' == 'net20' Or '$(TargetFramework)' == 'net30'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'net20' OR '$(TargetFramework)' == 'net30'">
     <PackageReference Include="NUnit" Version="3.2.1" />
   </ItemGroup>
 

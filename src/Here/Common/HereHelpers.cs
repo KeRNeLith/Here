@@ -13,11 +13,17 @@ namespace Here
         /// <summary>
         /// Do nothing action.
         /// </summary>
-        public static void DoNothing() {}
+        public static void DoNothing()
+        {
+            // Do nothing because it's an helper to pass as functor that should do nothing.
+        }
 
         /// <summary>
         /// Do nothing action.
         /// </summary>
-        public static void DoNothing<T>(T param) {}
+        public static void DoNothing<T>(T param)
+        {
+            // Do nothing because it's an helper to pass as functor that should do nothing.
+        }
     }
 }
