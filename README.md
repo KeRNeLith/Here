@@ -26,7 +26,7 @@ For more details on `ValueObject` usage see the following [tips](src/Here/ValueO
 
 ## Target
 
-- .NET Standard 1.1+
+- .NET Standard 1.0+
 - .NET Core 1.0+
 - .NET Framework 2.0+
 
