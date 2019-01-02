@@ -47,7 +47,7 @@ Supports Source Link</Description>
     - Annotate with "in" all functions parameters that support it.
     - WARNING: All existing classes/structs have been moved from their own namespaces to the Here namespace, and extensions to the Here.Extensions namespace.
 
-- Maybe => Option:
+- Maybe =&gt; Option:
     - Add extensions to unwrap the value embedded by Maybe&lt;T&gt;.
     - Add static helpers to check equality and compare Maybe&lt;T&gt; (allows custom comparer).
     - Maybe&lt;T&gt; is equatable with object of the wrapped type (also add a static helper for this).
@@ -104,25 +104,32 @@ Supports Source Link</Description>
 
   <!-- Targets defines -->
   <PropertyGroup Condition="'$(TargetFramework)'=='net20'">
+    <AssemblyTitle>Here .NET 2.0</AssemblyTitle>
     <DefineConstants>$(DefineConstants);NET20;SUPPORTS_BINARY_EXCEPTION_SERIALIZATION;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net30'">
+    <AssemblyTitle>Here .NET 3.0</AssemblyTitle>
     <DefineConstants>$(DefineConstants);NET30;SUPPORTS_BINARY_EXCEPTION_SERIALIZATION;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net35'">
+    <AssemblyTitle>Here .NET 3.5</AssemblyTitle>
     <DefineConstants>$(DefineConstants);NET35;SUPPORTS_BINARY_EXCEPTION_SERIALIZATION;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net40'">
-    <DefineConstants>$(DefineConstants);NET40;SUPPORTS_BINARY_EXCEPTION_SERIALIZATION;$(AdditionalConstants)</DefineConstants>
+    <AssemblyTitle>Here .NET 4.0</AssemblyTitle>
+    <DefineConstants>$(DefineConstants);NET40;SUPPORTS_BINARY_EXCEPTION_SERIALIZATION;SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE;SUPPORTS_PARSE_GUID;SUPPORTS_PARSE_ENUM;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net45'">
-    <DefineConstants>$(DefineConstants);NET45;SUPPORTS_BINARY_EXCEPTION_SERIALIZATION;$(AdditionalConstants)</DefineConstants>
+    <AssemblyTitle>Here .NET 4.5</AssemblyTitle>
+    <DefineConstants>$(DefineConstants);NET45;SUPPORTS_BINARY_EXCEPTION_SERIALIZATION;SUPPORTS_AGGRESSIVE_INLINING;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE;SUPPORTS_PARSE_GUID;SUPPORTS_PARSE_ENUM;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='netstandard1.0'">
-    <DefineConstants>$(DefineConstants);NETSTANDARD1_0;$(AdditionalConstants)</DefineConstants>
+    <AssemblyTitle>Here .NET Standard 1.0</AssemblyTitle>
+    <DefineConstants>$(DefineConstants);NETSTANDARD1_0;SUPPORTS_AGGRESSIVE_INLINING;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE;SUPPORTS_PARSE_GUID;SUPPORTS_PARSE_ENUM;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
-    <DefineConstants>$(DefineConstants);NETSTANDARD2_0;SUPPORTS_BINARY_EXCEPTION_SERIALIZATION;$(AdditionalConstants)</DefineConstants>
+    <AssemblyTitle>Here .NET Standard 2.0</AssemblyTitle>
+    <DefineConstants>$(DefineConstants);NETSTANDARD2_0;SUPPORTS_BINARY_EXCEPTION_SERIALIZATION;SUPPORTS_AGGRESSIVE_INLINING;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE;SUPPORTS_PARSE_GUID;SUPPORTS_PARSE_ENUM;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
 
   <!-- Dependencies -->

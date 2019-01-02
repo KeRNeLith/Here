@@ -56,7 +56,7 @@ namespace Here.Extensions
             return Option<TValue>.None;
         }
 
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_READONLY_DICTIONARY
         /// <summary>
         /// Try to get the value for the given key in the dictionary.
         /// </summary>

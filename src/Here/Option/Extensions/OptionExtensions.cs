@@ -74,7 +74,7 @@ namespace Here.Extensions
                 : Option<string>.Some(str);
         }
 
-#if (!NET20 && !NET30 && !NET35)
+#if SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE
         /// <summary>
         /// Converts this string to an <see cref="Option{T}"/> after applying <see cref="string.IsNullOrWhiteSpace(string)"/>.
         /// </summary>
@@ -102,7 +102,7 @@ namespace Here.Extensions
                 () => Option<string>.None);
         }
 
-#if (!NET20 && !NET30 && !NET35)
+#if SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE
         /// <summary>
         /// Converts this <see cref="Option{T}"/> to another <see cref="Option{T}"/> after applying <see cref="string.IsNullOrWhiteSpace(string)"/>.
         /// </summary>

@@ -488,7 +488,7 @@ namespace Here.Tests.Options
 
         #region TryParse Guid
 
-#if (!NET20 && !NET30 && !NET35)
+#if SUPPORTS_PARSE_GUID
         /// <summary>
         /// Calls the <paramref name="tryParseFunc"/> and check if the result match expected value.
         /// </summary>
@@ -580,7 +580,7 @@ namespace Here.Tests.Options
 
         #region TryParse Enumeration
 
-#if (!NET20 && !NET30 && !NET35)
+#if SUPPORTS_PARSE_ENUM
         public enum TestEnum
         {
             Value1,

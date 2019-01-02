@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Globalization;
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
 using System.Runtime.CompilerServices;
 #endif
 using JetBrains.Annotations;
@@ -43,7 +43,7 @@ namespace Here.Extensions
         /// <param name="tryGetFunc">Try get method.</param>
         /// <returns>The result of the try get wrapped in an <see cref="Option{T}"/>.</returns>
         [PublicAPI, Pure]
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static Option<TValue> Get<TInput, TValue>([CanBeNull] in TInput input, [NotNull, InstantHandle] in TryGet<TInput, TValue> tryGetFunc)
@@ -65,7 +65,7 @@ namespace Here.Extensions
         /// <param name="tryParseFunc">Try parse method.</param>
         /// <returns>The result of the try parse wrapped in an <see cref="Option{T}"/>.</returns>
         [PublicAPI, Pure]
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static Option<TValue> DefaultParse<TValue>([CanBeNull] in string input, [NotNull, InstantHandle] in TryParse<TValue> tryParseFunc)
@@ -84,7 +84,7 @@ namespace Here.Extensions
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns>The result of the try parse wrapped in an <see cref="Option{T}"/>.</returns>
         [PublicAPI, Pure]
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static Option<TValue> Parse<TValue>([CanBeNull] in string input, [NotNull, InstantHandle] in TryParse<TValue> tryParseFunc, in NumberStyles style, in IFormatProvider culture)
@@ -382,7 +382,7 @@ namespace Here.Extensions
             return Parse<double>(str, double.TryParse, style, culture);
         }
 
-#if (!NET20 && !NET30 && !NET35)
+#if SUPPORTS_PARSE_GUID
         /// <summary>
         /// Try to parse a <see cref="Guid"/> from the given string.
         /// </summary>
@@ -417,7 +417,7 @@ namespace Here.Extensions
             return Get<string, DateTimeOffset>(str, DateTimeOffset.TryParse);
         }
 
-#if (!NET20 && !NET30 && !NET35)
+#if SUPPORTS_PARSE_ENUM
         /// <summary>
         /// Try to parse an enumeration value from the given string to its <see cref="Enum"/> equivalent.
         /// </summary>

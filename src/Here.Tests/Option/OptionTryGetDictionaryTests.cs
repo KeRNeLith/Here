@@ -34,7 +34,7 @@ namespace Here.Tests.Options
             // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => ((IDictionary<string, object>)null).TryGetValue("2"));
 
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_READONLY_DICTIONARY
             // Readonly Dictionary
             IReadOnlyDictionary<string, string> readonlyDictionaryStringString = new Dictionary<string, string>
             {
@@ -83,7 +83,7 @@ namespace Here.Tests.Options
             // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => ((IDictionary<string, object>)null).TryGetValue<string, string>("2"));
 
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_READONLY_DICTIONARY
             // Readonly Dictionary
             IReadOnlyDictionary<string, object> readonlyDictionaryStringObject = new Dictionary<string, object>
             {

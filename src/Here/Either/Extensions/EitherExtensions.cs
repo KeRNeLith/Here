@@ -1,5 +1,5 @@
 ﻿using System;
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
 using System.Runtime.CompilerServices;
 #endif
 using JetBrains.Annotations;
@@ -167,7 +167,7 @@ namespace Here.Extensions
         /// <returns>The result of the applied treatment.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static Unit IfFailure<TLeft, TRight>(
@@ -332,7 +332,7 @@ namespace Here.Extensions
         /// <returns>The result of the applied treatment.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static Unit IfSuccess<TLeft, TRight>(

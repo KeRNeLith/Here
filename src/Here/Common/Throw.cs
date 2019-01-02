@@ -1,6 +1,6 @@
 using System;
 using System.Diagnostics;
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
 using System.Runtime.CompilerServices;
 #endif
 using JetBrains.Annotations;
@@ -20,7 +20,7 @@ namespace Here
         /// <param name="message">Exception message.</param>
         [DebuggerStepThrough]
         [ContractAnnotation("argument:null => halt")]
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static void IfArgumentNull([CanBeNull] object argument, [NotNull, InvokerParameterName] string argumentName, [CanBeNull] string message = null)

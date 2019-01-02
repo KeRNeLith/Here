@@ -1,5 +1,5 @@
 ﻿using System;
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
 using System.Runtime.CompilerServices;
 #endif
 using JetBrains.Annotations;
@@ -17,7 +17,7 @@ namespace Here.Extensions
         /// <param name="result">Result to check.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>True if the result is considered as a failure, otherwise false.</returns>
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         private static bool IsConsideredFailure([NotNull] in IResult result, in bool treatWarningAsError)
@@ -31,7 +31,7 @@ namespace Here.Extensions
         /// <param name="result">Result to check.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>True if the result is considered as a success, otherwise false.</returns>
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         private static bool IsConsideredSuccess([NotNull] in IResult result, in bool treatWarningAsError)

@@ -1,5 +1,5 @@
 ﻿using System;
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
 using System.Runtime.CompilerServices;
 #endif
 using JetBrains.Annotations;
@@ -21,7 +21,7 @@ namespace Here.Extensions
         /// <returns>This <see cref="Result"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static Result OnAny(in this Result result, [NotNull, InstantHandle] in Action onAny)
@@ -40,7 +40,7 @@ namespace Here.Extensions
         /// <returns>This <see cref="Result"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static Result OnAny(in this Result result, [NotNull, InstantHandle] in Action<Result> onAny)
@@ -60,7 +60,7 @@ namespace Here.Extensions
         /// <returns>An output value.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static TOut OnAny<TOut>(in this Result result, [NotNull, InstantHandle] in Func<TOut> onAny)
@@ -79,7 +79,7 @@ namespace Here.Extensions
         /// <returns>An output value.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static TOut OnAny<TOut>(in this Result result, [NotNull, InstantHandle] in Func<Result, TOut> onAny)
@@ -102,7 +102,7 @@ namespace Here.Extensions
         /// <returns>This <see cref="Result{T}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static Result<T> OnAny<T>(in this Result<T> result, [NotNull, InstantHandle] in Action onAny)
@@ -122,7 +122,7 @@ namespace Here.Extensions
         /// <returns>This <see cref="Result{T}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static Result<T> OnAny<T>(in this Result<T> result, [NotNull, InstantHandle] in Action<Result<T>> onAny)
@@ -143,7 +143,7 @@ namespace Here.Extensions
         /// <returns>An output value.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static TOut OnAny<TIn, TOut>(in this Result<TIn> result, [NotNull, InstantHandle] in Func<TOut> onAny)
@@ -163,7 +163,7 @@ namespace Here.Extensions
         /// <returns>An output value.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static TOut OnAny<TIn, TOut>(in this Result<TIn> result, [NotNull, InstantHandle] in Func<Result<TIn>, TOut> onAny)
@@ -186,7 +186,7 @@ namespace Here.Extensions
         /// <returns>This <see cref="CustomResult{TError}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static CustomResult<TError> OnAny<TError>(in this CustomResult<TError> result, [NotNull, InstantHandle] in Action onAny)
@@ -206,7 +206,7 @@ namespace Here.Extensions
         /// <returns>This <see cref="CustomResult{TError}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static CustomResult<TError> OnAny<TError>(in this CustomResult<TError> result, [NotNull, InstantHandle] in Action<CustomResult<TError>> onAny)
@@ -227,7 +227,7 @@ namespace Here.Extensions
         /// <returns>An output value.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static TOut OnAny<TOut, TError>(in this CustomResult<TError> result, [NotNull, InstantHandle] in Func<TOut> onAny)
@@ -247,7 +247,7 @@ namespace Here.Extensions
         /// <returns>An output value.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static TOut OnAny<TOut, TError>(in this CustomResult<TError> result, [NotNull, InstantHandle] in Func<CustomResult<TError>, TOut> onAny)
@@ -271,7 +271,7 @@ namespace Here.Extensions
         /// <returns>This <see cref="Result{T, TError}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static Result<T, TError> OnAny<T, TError>(in this Result<T, TError> result, [NotNull, InstantHandle] in Action onAny)
@@ -292,7 +292,7 @@ namespace Here.Extensions
         /// <returns>This <see cref="Result{T, TError}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static Result<T, TError> OnAny<T, TError>(in this Result<T, TError> result, [NotNull, InstantHandle] in Action<Result<T, TError>> onAny)
@@ -314,7 +314,7 @@ namespace Here.Extensions
         /// <returns>An output value.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static TOut OnAny<TIn, TOut, TError>(in this Result<TIn, TError> result, [NotNull, InstantHandle] in Func<TOut> onAny)
@@ -335,7 +335,7 @@ namespace Here.Extensions
         /// <returns>An output value.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
-#if (!NET20 && !NET30 && !NET35 && !NET40)
+#if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public static TOut OnAny<TIn, TOut, TError>(in this Result<TIn, TError> result, [NotNull, InstantHandle] in Func<Result<TIn, TError>, TOut> onAny)

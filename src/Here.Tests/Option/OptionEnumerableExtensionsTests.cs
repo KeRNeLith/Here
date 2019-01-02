@@ -395,7 +395,7 @@ namespace Here.Tests.Options
             CollectionAssert.AreEqual(new[] { 7, 4, 1 }, listOptionInts.ToArray<int>());     // Template parameter force the use of the extension
             CollectionAssert.AreEqual(new[] { 12, 4, 7 }, arrayOptionInts.ToArray());
 
-#if (!NET20) && (!NET30) && (!NET35) && (!NET40)
+#if SUPPORTS_READONLY_DICTIONARY
             IReadOnlyCollection<Option<int>> readonlyCollectionOptionInts = new ReadOnlyCollection<Option<int>>(listOptionInts);
             CollectionAssert.AreEqual(new[] { 7, 4, 1 }, readonlyCollectionOptionInts.ToArray());
 #endif
@@ -415,7 +415,7 @@ namespace Here.Tests.Options
             CollectionAssert.AreEqual(new[] { 7, 4, 1 }, listOptionInts.ToList());
             CollectionAssert.AreEqual(new[] { 12, 4, 7 }, arrayOptionInts.ToList());
 
-#if (!NET20) && (!NET30) && (!NET35) && (!NET40)
+#if SUPPORTS_READONLY_DICTIONARY
             IReadOnlyCollection<Option<int>> readonlyCollectionOptionInts = new ReadOnlyCollection<Option<int>>(listOptionInts);
             CollectionAssert.AreEqual(new[] { 7, 4, 1 }, readonlyCollectionOptionInts.ToList());
 #endif
@@ -441,7 +441,7 @@ namespace Here.Tests.Options
                 new Dictionary<string, int> { ["12"] = 12, ["4"] = 4, ["7"] = 7 }, 
                 arrayOptionInts.ToDictionary<int, string>(value => value.ToString()));       // Need explicit arguments
 
-#if (!NET20) && (!NET30) && (!NET35) && (!NET40)
+#if SUPPORTS_READONLY_DICTIONARY
             IReadOnlyCollection<Option<int>> readonlyCollectionOptionInts = new ReadOnlyCollection<Option<int>>(listOptionInts);
             CollectionAssert.AreEquivalent(
                 new Dictionary<string, int> { ["7"] = 7, ["4"] = 4, ["1"] = 1 }, 
