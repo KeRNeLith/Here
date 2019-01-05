@@ -481,9 +481,7 @@ namespace Here.Extensions
         [PublicAPI, Pure, CanBeNull]
         public static TRight RightOrDefault<TLeft, TRight>(in this Either<TLeft, TRight> either)
         {
-            if (either.IsRight)
-                return either._right;
-            return default;
+            return either._right;
         }
 
         /// <summary>
@@ -549,9 +547,7 @@ namespace Here.Extensions
         [PublicAPI, Pure, CanBeNull]
         public static TLeft LeftOrDefault<TLeft, TRight>(in this Either<TLeft, TRight> either)
         {
-            if (either.IsLeft)
-                return either._left;
-            return default;
+            return either._left;
         }
 
         /// <summary>
