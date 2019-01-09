@@ -880,6 +880,290 @@ namespace Here.Tests.Eithers
 
         #endregion
 
+        #region Fold/BiFold
+        
+        [Test]
+        public void EitherFoldLeft()
+        {
+            var testObject = new TestClass();
+
+            #region Local function
+
+            void CheckFold(Either<string, int> either, bool expectLeft, float expectedResult = 1.0f)
+            {
+                int counter = 0;
+                float res = either.Fold(
+                    1.0f,
+                    (float seed, string l) =>
+                    {
+                        ++counter;
+                        return seed + l.Length;
+                    });
+                Assert.AreEqual(expectLeft ? 1 : 0, counter);
+                Assert.AreEqual(expectLeft ? expectedResult : 1.0f, res);
+            }
+
+            void CheckFoldNullReturn(Either<string, int> either, bool expectThrow)
+            {
+                int counter = 0;
+                if (expectThrow)
+                {
+                    Assert.Throws<NullResultException>(
+                        () => either.Fold(
+                            testObject,
+                            (TestClass seed, string l) =>
+                            {
+                                ++counter;
+                                return null;
+                            }));
+                    Assert.AreEqual(1, counter);
+                }
+                else
+                {
+                    TestClass result = either.Fold(
+                        testObject,
+                        (TestClass seed, string l) =>
+                        {
+                            ++counter;
+                            return null;
+                        });
+                    Assert.AreEqual(0, counter);
+                    Assert.AreSame(testObject, result);
+                }
+            }
+
+            #endregion
+
+            // Either left
+            var eitherLeft = Either.Left<string, int>("A string");
+            CheckFold(eitherLeft, true, 9.0f);
+
+            // Either right
+            var eitherRight = Either.Right<string, int>(42);
+            CheckFold(eitherRight, false);
+
+            // Either none
+            var eitherNone = Either<string, int>.None;
+            CheckFold(eitherNone, false);
+
+            // Null return
+            CheckFoldNullReturn(eitherLeft, true);
+            CheckFoldNullReturn(eitherRight, false);
+            CheckFoldNullReturn(eitherNone, false);
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.Fold(null, (TestClass seed, string l) => seed));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.Fold(null, (TestClass seed, string l) => seed));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.Fold(null, (TestClass seed, string l) => seed));
+
+            // Cannot test this in NET20 and NET30 due to NUnit package
+#if !NET20 && !NET30
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.Fold(testObject, (Func<TestClass, string, TestClass>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.Fold(null, (Func<TestClass, string, TestClass>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.Fold(testObject, (Func<TestClass, string, TestClass>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.Fold(null, (Func<TestClass, string, TestClass>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.Fold(testObject, (Func<TestClass, string, TestClass>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.Fold(null, (Func<TestClass, string, TestClass>)null));
+#endif
+        }
+
+        [Test]
+        public void EitherFoldRight()
+        {
+            var testObject = new TestClass();
+
+            #region Local function
+
+            void CheckFold(Either<string, int> either, bool expectRight, float expectedResult = 1.0f)
+            {
+                int counter = 0;
+                float res = either.Fold(
+                    1.0f,
+                    (float seed, int r) =>
+                    {
+                        ++counter;
+                        return seed + r;
+                    });
+                Assert.AreEqual(expectRight ? 1 : 0, counter);
+                Assert.AreEqual(expectRight ? expectedResult : 1.0f, res);
+            }
+
+            void CheckFoldNullReturn(Either<string, int> either, bool expectThrow)
+            {
+                int counter = 0;
+                if (expectThrow)
+                {
+                    Assert.Throws<NullResultException>(
+                        () => either.Fold(
+                            testObject,
+                            (TestClass seed, int r) =>
+                            {
+                                ++counter;
+                                return null;
+                            }));
+                    Assert.AreEqual(1, counter);
+                }
+                else
+                {
+                    TestClass result = either.Fold(
+                        testObject,
+                        (TestClass seed, int r) =>
+                        {
+                            ++counter;
+                            return null;
+                        });
+                    Assert.AreEqual(0, counter);
+                    Assert.AreSame(testObject, result);
+                }
+            }
+
+            #endregion
+
+            // Either left
+            var eitherLeft = Either.Left<string, int>("A string");
+            CheckFold(eitherLeft, false);
+
+            // Either right
+            var eitherRight = Either.Right<string, int>(42);
+            CheckFold(eitherRight, true, 43.0f);
+
+            // Either none
+            var eitherNone = Either<string, int>.None;
+            CheckFold(eitherNone, false);
+
+            // Null return
+            CheckFoldNullReturn(eitherLeft, false);
+            CheckFoldNullReturn(eitherRight, true);
+            CheckFoldNullReturn(eitherNone, false);
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.Fold(null, (TestClass seed, int r) => seed));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.Fold(null, (TestClass seed, int r) => seed));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.Fold(null, (TestClass seed, int r) => seed));
+
+            // Cannot test this in NET20 and NET30 due to NUnit package
+#if !NET20 && !NET30
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.Fold(testObject, (Func<TestClass, int, TestClass>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.Fold(null, (Func<TestClass, int, TestClass>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.Fold(testObject, (Func<TestClass, int, TestClass>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.Fold(null, (Func<TestClass, int, TestClass>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.Fold(testObject, (Func<TestClass, int, TestClass>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.Fold(null, (Func<TestClass, int, TestClass>)null));
+#endif
+        }
+
+        [Test]
+        public void EitherBiFold()
+        {
+            var testObject = new TestClass();
+
+            #region Local function
+
+            void CheckBiFold(Either<string, int> either, bool expectRight, bool expectLeft, float expectedResult = 1.0f)
+            {
+                int counterLeft = 0;
+                int counterRight = 0;
+                float res = either.BiFold(
+                    1.0f, 
+                    (float seed, int r) =>
+                    {
+                        ++counterRight;
+                        return seed + r;
+                    },
+                    (float seed, string l) =>
+                    {
+                        ++counterLeft;
+                        return seed + l.Length;
+                    });
+                Assert.AreEqual(expectLeft && !expectRight ? 1 : 0, counterLeft);
+                Assert.AreEqual(expectRight && !expectLeft ? 1 : 0, counterRight);
+                Assert.AreEqual(expectLeft || expectRight ? expectedResult : 1.0f, res);
+            }
+
+            void CheckBiFoldNullReturn(Either<string, int> either, bool expectThrow, bool expectRight)
+            {
+                int counterLeft = 0;
+                int counterRight = 0;
+
+                if (expectThrow)
+                {
+                    Assert.Throws<NullResultException>(
+                        () => either.BiFold(
+                            testObject,
+                            (TestClass seed, int r) =>
+                            {
+                                ++counterRight;
+                                return null;
+                            },
+                            (TestClass seed, string l) =>
+                            {
+                                ++counterLeft;
+                                return null;
+                            }));
+                    Assert.AreEqual(expectRight ? 1 : 0, counterRight);
+                    Assert.AreEqual(!expectRight ? 1 : 0, counterLeft);
+                }
+                else
+                {
+                    TestClass result = either.BiFold(
+                        testObject,
+                        (TestClass seed, int r) =>
+                        {
+                            ++counterRight;
+                            return null;
+                        },
+                        (TestClass seed, string l) =>
+                        {
+                            ++counterLeft;
+                            return null;
+                        });
+                    Assert.AreEqual(0, counterRight);
+                    Assert.AreEqual(0, counterLeft);
+                    Assert.AreSame(testObject, result);
+                }
+            }
+
+            #endregion
+
+            // Either left
+            var eitherLeft = Either.Left<string, int>("A string");
+            CheckBiFold(eitherLeft, false, true, 9.0f);
+
+            // Either right
+            var eitherRight = Either.Right<string, int>(42);
+            CheckBiFold(eitherRight, true, false, 43.0f);
+
+            // Either none
+            var eitherNone = Either<string, int>.None;
+            CheckBiFold(eitherNone, false, false);
+
+            // Null return
+            CheckBiFoldNullReturn(eitherLeft, true, false);
+            CheckBiFoldNullReturn(eitherRight, true, true);
+            CheckBiFoldNullReturn(eitherNone, false, false);
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiFold(null, (TestClass seed, int r) => seed, (TestClass seed, string l) => seed));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiFold(testObject, null, (TestClass seed, string l) => seed));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiFold(testObject, (TestClass seed, int r) => seed, null));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiFold(null, null, (TestClass seed, string l) => seed));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiFold(null, (TestClass seed, int r) => seed, null));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiFold((TestClass)null, null, null));
+
+            Assert.Throws<ArgumentNullException>(() => eitherRight.BiFold(null, (TestClass seed, int r) => seed, (TestClass seed, string l) => seed));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.BiFold(testObject, null, (TestClass seed, string l) => seed));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.BiFold(testObject, (TestClass seed, int r) => seed, null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.BiFold(null, null, (TestClass seed, string l) => seed));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.BiFold(null, (TestClass seed, int r) => seed, null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.BiFold((TestClass)null, null, null));
+
+            Assert.Throws<ArgumentNullException>(() => eitherNone.BiFold(null, (TestClass seed, int r) => seed, (TestClass seed, string l) => seed));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.BiFold(testObject, null, (TestClass seed, string l) => seed));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.BiFold(testObject, (TestClass seed, int r) => seed, null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.BiFold(null, null, (TestClass seed, string l) => seed));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.BiFold(null, (TestClass seed, int r) => seed, null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.BiFold((TestClass)null, null, null));
+        }
+
+        #endregion
+
         #region IfLeft/IfFailure
 
         [Test]

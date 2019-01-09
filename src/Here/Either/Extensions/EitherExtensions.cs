@@ -190,7 +190,8 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Calls the <paramref name="onRight"/> function when the <paramref name="either"/> is in <see cref="EitherStates.Right"/> state.
+        /// Calls the <paramref name="onRight"/> function when the <paramref name="either"/> is in <see cref="EitherStates.Right"/> state,
+        /// or the <paramref name="onLeft"/> function if it is in <see cref="EitherStates.Left"/> state.
         /// </summary>
         /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
         /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
@@ -218,7 +219,8 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Calls the <paramref name="onRight"/> function when the <paramref name="either"/> is in <see cref="EitherStates.Right"/> state.
+        /// Calls the <paramref name="onRight"/> function when the <paramref name="either"/> is in <see cref="EitherStates.Right"/> state,
+        /// or the <paramref name="onLeft"/> function if it is in <see cref="EitherStates.Left"/> state.
         /// </summary>
         /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
         /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
@@ -244,6 +246,105 @@ namespace Here.Extensions
                 right => Either<TLeftOut, TRightOut>.Right(Throw.IfResultNull(onRight(right))),
                 left => Either<TLeftOut, TRightOut>.Left(Throw.IfResultNull(onLeft(left))),
                 () => Either<TLeftOut, TRightOut>.None);
+        }
+
+        #endregion
+
+        #region Fold/BiFold
+
+        /// <summary>
+        /// Calls the <paramref name="onLeft"/> function when the <paramref name="either"/> is in <see cref="EitherStates.Left"/> state
+        /// to combine the initial state with, otherwise returns the initial state.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TState">Type of the value to combine.</typeparam>
+        /// <param name="either"><see cref="Either{TLeft,TRight}"/> to check.</param>
+        /// <param name="state">The initial value to combine with the left value.</param>
+        /// <param name="onLeft">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
+        /// <returns>Combined state value.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="state"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
+        /// <exception cref="NullResultException">If the result of the <paramref name="onLeft"/> is null.</exception>
+        [PublicAPI, Pure]
+        public static TState Fold<TLeft, TRight, TState>(
+            in this Either<TLeft, TRight> either,
+            [NotNull] TState state,
+            [NotNull, InstantHandle] Func<TState, TLeft, TState> onLeft)
+        {
+            Throw.IfArgumentNull(state, nameof(state));
+            Throw.IfArgumentNull(onLeft, nameof(onLeft));
+
+            return Throw.IfResultNull(
+                either.Match(
+                    right => state,
+                    left => onLeft(state, left),
+                    () => state));
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onRight"/> function when the <paramref name="either"/> is in <see cref="EitherStates.Right"/> state
+        /// to combine the initial state with, otherwise returns the initial state.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TState">Type of the value to combine.</typeparam>
+        /// <param name="either"><see cref="Either{TLeft,TRight}"/> to check.</param>
+        /// <param name="state">The initial value to combine with the left value.</param>
+        /// <param name="onRight">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
+        /// <returns>Combined state value.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="state"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
+        /// <exception cref="NullResultException">If the result of the <paramref name="onRight"/> is null.</exception>
+        [PublicAPI, Pure]
+        public static TState Fold<TLeft, TRight, TState>(
+            in this Either<TLeft, TRight> either,
+            [NotNull] TState state,
+            [NotNull, InstantHandle] Func<TState, TRight, TState> onRight)
+        {
+            Throw.IfArgumentNull(state, nameof(state));
+            Throw.IfArgumentNull(onRight, nameof(onRight));
+
+            return Throw.IfResultNull(
+                either.Match(
+                    right => onRight(state, right),
+                    left => state,
+                    () => state));
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onRight"/> function when the <paramref name="either"/> is in <see cref="EitherStates.Right"/> state
+        /// to combine the initial state with, or the <paramref name="onLeft"/> function if it is in <see cref="EitherStates.Left"/> state,
+        /// otherwise returns the initial state.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TState">Type of the value to combine.</typeparam>
+        /// <param name="either"><see cref="Either{TLeft,TRight}"/> to check.</param>
+        /// <param name="state">The initial value to combine with the left value.</param>
+        /// <param name="onRight">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
+        /// <param name="onLeft">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
+        /// <returns>Combined state value.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="state"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
+        /// <exception cref="NullResultException">If the result of the <paramref name="onRight"/> or <paramref name="onLeft"/> is null.</exception>
+        [PublicAPI, Pure]
+        public static TState BiFold<TLeft, TRight, TState>(
+            in this Either<TLeft, TRight> either,
+            [NotNull] TState state,
+            [NotNull, InstantHandle] Func<TState, TRight, TState> onRight,
+            [NotNull, InstantHandle] Func<TState, TLeft, TState> onLeft)
+        {
+            Throw.IfArgumentNull(state, nameof(state));
+            Throw.IfArgumentNull(onRight, nameof(onRight));
+            Throw.IfArgumentNull(onLeft, nameof(onLeft));
+
+            return Throw.IfResultNull(
+                either.Match(
+                    right => onRight(state, right),
+                    left => onLeft(state, left),
+                    () => state));
         }
 
         #endregion
