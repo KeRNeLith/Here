@@ -498,6 +498,388 @@ namespace Here.Tests.Eithers
 
         #endregion
 
+        #region Map/BiMap
+
+        [Test]
+        public void EitherMapLeft()
+        {
+            int counterLeft = 0;
+
+            // Either left
+            var eitherLeft = Either.Left<string, int>("A string");
+            Either<float, int> result = eitherLeft.Map(
+                (string l) =>
+                {
+                    ++counterLeft;
+                    return 42.5f;
+                });
+            Assert.AreEqual(1, counterLeft);
+            CheckLeftEither(result, 42.5f);
+            
+            // Either right
+            var eitherRight = Either.Right<string, int>(42);
+            result = eitherRight.Map(
+                (string l) =>
+                {
+                    ++counterLeft;
+                    return 47.5f;
+                });
+            Assert.AreEqual(1, counterLeft);
+            CheckRightEither(result, 42);
+
+            // Either none
+            var eitherNone = Either<string, int>.None;
+            result = eitherNone.Map(
+                (string l) =>
+                {
+                    ++counterLeft;
+                    return 50.5f;
+                });
+            Assert.AreEqual(1, counterLeft);
+            CheckNoneEither(result);
+
+            // Null return
+            Assert.Throws<NullResultException>(
+                () => Either.Left<string, int>("str").Map(
+                    (string l) =>
+                    {
+                        ++counterLeft;
+                        return (TestClass)null;
+                    }));
+            Assert.AreEqual(2, counterLeft);
+
+            Either<TestClass, int> result2 = Either.Right<string, int>(42).Map(
+                (string l) =>
+                {
+                    ++counterLeft;
+                    return (TestClass)null;
+                });
+            Assert.AreEqual(2, counterLeft);
+            CheckRightEither(result2, 42);
+
+            result2 = eitherNone.Map(
+                (string l) =>
+                {
+                    ++counterLeft;
+                    return (TestClass)null;
+                });
+            Assert.AreEqual(2, counterLeft);
+            CheckNoneEither(result2);
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.Map((Func<string, float>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.Map((Func<string, float>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.Map((Func<string, float>)null));
+        }
+
+        [Test]
+        public void EitherMapRight()
+        {
+            int counterRight = 0;
+
+            // Either left
+            var eitherLeft = Either.Left<string, int>("A string");
+            Either<string, float> result = eitherLeft.Map(
+                (int r) =>
+                {
+                    ++counterRight;
+                    return 42.5f;
+                });
+            Assert.AreEqual(0, counterRight);
+            CheckLeftEither(result, "A string");
+
+            // Either right
+            var eitherRight = Either.Right<string, int>(42);
+            result = eitherRight.Map(
+                (int r) =>
+                {
+                    ++counterRight;
+                    return 47.5f;
+                });
+            Assert.AreEqual(1, counterRight);
+            CheckRightEither(result, 47.5f);
+
+            // Either none
+            var eitherNone = Either<string, int>.None;
+            result = eitherNone.Map(
+                (int r) =>
+                {
+                    ++counterRight;
+                    return 50.5f;
+                });
+            Assert.AreEqual(1, counterRight);
+            CheckNoneEither(result);
+
+            // Null return
+            Either<string, TestClass> result2 = Either.Left<string, int>("str").Map(
+                    (int r) =>
+                    {
+                        ++counterRight;
+                        return (TestClass)null;
+                    });
+            Assert.AreEqual(1, counterRight);
+            CheckLeftEither(result2, "str");
+
+            Assert.Throws<NullResultException>(() => Either.Right<string, int>(42).Map(
+                (int r) =>
+                {
+                    ++counterRight;
+                    return (TestClass)null;
+                }));
+            Assert.AreEqual(2, counterRight);
+
+            result2 = eitherNone.Map(
+                (int r) =>
+                {
+                    ++counterRight;
+                    return (TestClass)null;
+                });
+            Assert.AreEqual(2, counterRight);
+            CheckNoneEither(result2);
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.Map((Func<int, float>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.Map((Func<int, float>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.Map((Func<int, float>)null));
+        }
+
+        [Test]
+        public void EitherBiMapToEitherRightOut()
+        {
+            int counterLeft = 0;
+            int counterRight = 0;
+
+            #region Local function
+
+            void CheckCounters(int left, int right)
+            {
+                Assert.AreEqual(left, counterLeft);
+                Assert.AreEqual(right, counterRight);
+            }
+
+            #endregion
+
+            // Either left
+            var eitherLeft = Either.Left<string, int>("A string");
+            Either<string, float> result = eitherLeft.BiMap<string, int, float>(
+                r =>
+                {
+                    ++counterRight;
+                    return 42.5f;
+                },
+                l =>
+                {
+                    ++counterLeft;
+                    return 43.5f;
+                });
+            CheckCounters(1, 0);
+            CheckRightEither(result, 43.5f);
+
+            // Either right
+            var eitherRight = Either.Right<string, int>(42);
+            result = eitherRight.BiMap<string, int, float>(
+                r =>
+                {
+                    ++counterRight;
+                    return 42.5f;
+                },
+                l =>
+                {
+                    ++counterLeft;
+                    return 43.5f;
+                });
+            CheckCounters(1, 1);
+            CheckRightEither(result, 42.5f);
+
+            // Either none
+            var eitherNone = Either<string, int>.None;
+            result = eitherNone.BiMap<string, int, float>(
+                r =>
+                {
+                    ++counterRight;
+                    return 42.5f;
+                },
+                l =>
+                {
+                    ++counterLeft;
+                    return 43.5f;
+                });
+            CheckCounters(1, 1);
+            CheckNoneEither(result);
+
+            // Null return
+            Assert.Throws<NullResultException>(
+                () => Either.Left<string, int>("str").BiMap<string, int, TestClass>(
+                    r =>
+                    {
+                        ++counterRight;
+                        return null;
+                    },
+                    l =>
+                    {
+                        ++counterLeft;
+                        return null;
+                    }));
+            CheckCounters(2, 1);
+
+            Assert.Throws<NullResultException>(
+                () => Either.Right<string, int>(42).BiMap<string, int, TestClass>(
+                    r =>
+                    {
+                        ++counterRight;
+                        return null;
+                    },
+                    l =>
+                    {
+                        ++counterLeft;
+                        return null;
+                    }));
+            CheckCounters(2, 2);
+
+            Either<string, TestClass> result2 = eitherNone.BiMap<string, int, TestClass>(
+                r =>
+                {
+                    ++counterRight;
+                    return null;
+                },
+                l =>
+                {
+                    ++counterLeft;
+                    return null;
+                });
+            CheckCounters(2, 2);
+            CheckNoneEither(result2);
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiMap(r => 12.5f, null));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiMap(null, l => 15.5f));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiMap<string, int, float>(null, null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.BiMap(r => 12.5f, null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.BiMap(null, l => 15.5f));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.BiMap<string, int, float>(null, null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.BiMap(r => 12.5f, null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.BiMap(null, l => 15.5f));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.BiMap<string, int, float>(null, null));
+        }
+
+        [Test]
+        public void EitherBiMapToEither()
+        {
+            int counterLeft = 0;
+            int counterRight = 0;
+            var testObject = new TestClass();
+
+            #region Local function
+
+            void CheckCounters(int left, int right)
+            {
+                Assert.AreEqual(left, counterLeft);
+                Assert.AreEqual(right, counterRight);
+            }
+
+            #endregion
+
+            // Either left
+            var eitherLeft = Either.Left<string, int>("A string");
+            Either<TestClass, string> result = eitherLeft.BiMap(
+                r =>
+                {
+                    ++counterRight;
+                    return "success";
+                },
+                l =>
+                {
+                    ++counterLeft;
+                    return testObject;
+                });
+            CheckCounters(1, 0);
+            CheckLeftEither(result, testObject);
+
+            // Either right
+            var eitherRight = Either.Right<string, int>(42);
+            result = eitherRight.BiMap(
+                r =>
+                {
+                    ++counterRight;
+                    return "success";
+                },
+                l =>
+                {
+                    ++counterLeft;
+                    return testObject;
+                });
+            CheckCounters(1, 1);
+            CheckRightEither(result, "success");
+
+            // Either none
+            var eitherNone = Either<string, int>.None;
+            result = eitherNone.BiMap(
+                r =>
+                {
+                    ++counterRight;
+                    return "success";
+                },
+                l =>
+                {
+                    ++counterLeft;
+                    return testObject;
+                });
+            CheckCounters(1, 1);
+            CheckNoneEither(result);
+
+            // Null return
+            Assert.Throws<NullResultException>(
+                () => Either.Left<string, int>("str").BiMap(
+                    r =>
+                    {
+                        ++counterRight;
+                        return (string)null;
+                    },
+                    l =>
+                    {
+                        ++counterLeft;
+                        return (TestClass)null;
+                    }));
+            CheckCounters(2, 1);
+
+            Assert.Throws<NullResultException>(
+                () => Either.Right<string, int>(42).BiMap(
+                    r =>
+                    {
+                        ++counterRight;
+                        return (string)null;
+                    },
+                    l =>
+                    {
+                        ++counterLeft;
+                        return (TestClass)null;
+                    }));
+            CheckCounters(2, 2);
+
+            Either<TestClass, string> result2 = eitherNone.BiMap(
+                r =>
+                {
+                    ++counterRight;
+                    return (string)null;
+                },
+                l =>
+                {
+                    ++counterLeft;
+                    return (TestClass)null;
+                });
+            CheckCounters(2, 2);
+            CheckNoneEither(result2);
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiMap(r => "success", (Func<string, TestClass>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiMap((Func<int, string>)null, l => testObject));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiMap((Func<int, string>)null, (Func<string, TestClass>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.BiMap(r => "success", (Func<string, TestClass>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.BiMap((Func<int, string>)null, l => testObject));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.BiMap((Func<int, string>)null, (Func<string, TestClass>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.BiMap(r => "success", (Func<string, TestClass>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.BiMap((Func<int, string>)null, l => testObject));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.BiMap((Func<int, string>)null, (Func<string, TestClass>)null));
+        }
+
+        #endregion
+
         #region IfLeft/IfFailure
 
         [Test]

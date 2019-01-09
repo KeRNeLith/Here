@@ -31,7 +31,8 @@ namespace Here.Extensions
         #region Match
 
         /// <summary>
-        /// Calls the <paramref name="onRight"/> action when the <paramref name="either"/> is a success.
+        /// Calls the <paramref name="onRight"/> action when the <paramref name="either"/> is in <see cref="EitherStates.Right"/> state,
+        /// the <paramref name="onLeft"/> if it is in <see cref="EitherStates.Left"/> state, otherwise calls the <paramref name="none"/> action.
         /// </summary>
         /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
         /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
@@ -43,7 +44,7 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
         /// <exception cref="InvalidOperationException">If the <paramref name="either"/> is in <see cref="EitherStates.None"/> state without providing a <paramref name="none"/> action.</exception>
-        [PublicAPI, Pure]
+        [PublicAPI]
         public static Unit Match<TLeft, TRight>(
             in this Either<TLeft, TRight> either,
             [NotNull, InstantHandle] in Action<TRight> onRight,
@@ -72,7 +73,8 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Calls the <paramref name="onRight"/> action when the <paramref name="either"/> is a success.
+        /// Calls the <paramref name="onRight"/> function when the <paramref name="either"/> is in <see cref="EitherStates.Right"/> state,
+        /// the <paramref name="onLeft"/> function if it is in <see cref="EitherStates.Left"/> state, otherwise calls the <paramref name="none"/> function.
         /// </summary>
         /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
         /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
@@ -85,7 +87,7 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
         /// <exception cref="InvalidOperationException">If the <paramref name="either"/> is in <see cref="EitherStates.None"/> state without providing a <paramref name="none"/> action.</exception>
-        [PublicAPI, CanBeNull, Pure]
+        [PublicAPI, CanBeNull]
         public static TOut MatchNullable<TLeft, TRight, TOut>(
             in this Either<TLeft, TRight> either,
             [NotNull, InstantHandle] in Func<TRight, TOut> onRight,
@@ -109,7 +111,8 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Calls the <paramref name="onRight"/> action when the <paramref name="either"/> is a success.
+        /// Calls the <paramref name="onRight"/> function when the <paramref name="either"/> is in <see cref="EitherStates.Right"/> state,
+        /// the <paramref name="onLeft"/> function if it is in <see cref="EitherStates.Left"/> state, otherwise calls the <paramref name="none"/> function.
         /// </summary>
         /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
         /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
@@ -123,7 +126,7 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
         /// <exception cref="InvalidOperationException">If the <paramref name="either"/> is in <see cref="EitherStates.None"/> state without providing a <paramref name="none"/> action.</exception>
         /// <exception cref="NullResultException">If the result of the match is null.</exception>
-        [PublicAPI, NotNull, Pure]
+        [PublicAPI, NotNull]
         public static TOut Match<TLeft, TRight, TOut>(
             in this Either<TLeft, TRight> either,
             [NotNull, InstantHandle] in Func<TRight, TOut> onRight,
@@ -131,9 +134,116 @@ namespace Here.Extensions
             [CanBeNull, InstantHandle] in Func<TOut> none = null)
         {
             TOut result = either.MatchNullable(onRight, onLeft, none);
-            if (result == null)
-                throw new NullResultException();
-            return result;
+            return Throw.IfResultNull(result);
+        }
+
+        #endregion
+
+        #region Map/BiMap
+
+        /// <summary>
+        /// Calls the <paramref name="onLeft"/> function when the <paramref name="either"/> is in <see cref="EitherStates.Left"/> state.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TLeftOut">Type of the value embedded as left value in the output <see cref="Either{TLeftOut, TRight}"/>.</typeparam>
+        /// <param name="either"><see cref="Either{TLeft,TRight}"/> to check.</param>
+        /// <param name="onLeft">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
+        /// <returns>An <see cref="Either{TLeftOut,TRight}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
+        /// <exception cref="NullResultException">If the result of the <paramref name="onLeft"/> is null.</exception>
+        [PublicAPI, Pure]
+        public static Either<TLeftOut, TRight> Map<TLeft, TRight, TLeftOut>(
+            in this Either<TLeft, TRight> either,
+            [NotNull, InstantHandle] Func<TLeft, TLeftOut> onLeft)
+        {
+            Throw.IfArgumentNull(onLeft, nameof(onLeft));
+
+            return either.Match(
+                right => Either<TLeftOut, TRight>.Right(right),
+                left => Either<TLeftOut, TRight>.Left(Throw.IfResultNull(onLeft(left))),
+                () => Either<TLeftOut, TRight>.None);
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onRight"/> function when the <paramref name="either"/> is in <see cref="EitherStates.Right"/> state.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRightOut">Type of the value embedded as right value in the output <see cref="Either{TLeft, TRightOut}"/>.</typeparam>
+        /// <param name="either"><see cref="Either{TLeft,TRight}"/> to check.</param>
+        /// <param name="onRight">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
+        /// <returns>An <see cref="Either{TLeft,TRightOut}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
+        /// <exception cref="NullResultException">If the result of the <paramref name="onRight"/> is null.</exception>
+        [PublicAPI, Pure]
+        public static Either<TLeft, TRightOut> Map<TLeft, TRight, TRightOut>(
+            in this Either<TLeft, TRight> either,
+            [NotNull, InstantHandle] Func<TRight, TRightOut> onRight)
+        {
+            Throw.IfArgumentNull(onRight, nameof(onRight));
+
+            return either.Match(
+                right => Either<TLeft, TRightOut>.Right(Throw.IfResultNull(onRight(right))),
+                left => Either<TLeft, TRightOut>.Left(left),
+                () => Either<TLeft, TRightOut>.None);
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onRight"/> function when the <paramref name="either"/> is in <see cref="EitherStates.Right"/> state.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRightOut">Type of the value embedded as right value in the output <see cref="Either{TLeft, TRightOut}"/>.</typeparam>
+        /// <param name="either"><see cref="Either{TLeft,TRight}"/> to check.</param>
+        /// <param name="onRight">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
+        /// <param name="onLeft">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
+        /// <returns>An <see cref="Either{TLeft,TRightOut}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
+        /// <exception cref="NullResultException">If the result of the <paramref name="onRight"/> or <paramref name="onLeft"/> is null.</exception>
+        [PublicAPI, Pure]
+        public static Either<TLeft, TRightOut> BiMap<TLeft, TRight, TRightOut>(
+            in this Either<TLeft, TRight> either,
+            [NotNull, InstantHandle] Func<TRight, TRightOut> onRight,
+            [NotNull, InstantHandle] Func<TLeft, TRightOut> onLeft)
+        {
+            Throw.IfArgumentNull(onRight, nameof(onRight));
+            Throw.IfArgumentNull(onLeft, nameof(onLeft));
+
+            return either.Match(
+                right => Either<TLeft, TRightOut>.Right(Throw.IfResultNull(onRight(right))),
+                left => Either<TLeft, TRightOut>.Right(Throw.IfResultNull(onLeft(left))),
+                () => Either<TLeft, TRightOut>.None);
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onRight"/> function when the <paramref name="either"/> is in <see cref="EitherStates.Right"/> state.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TLeftOut">Type of the value embedded as left value in the output <see cref="Either{TLeftOut, TRightOut}"/>.</typeparam>
+        /// <typeparam name="TRightOut">Type of the value embedded as right value in the output <see cref="Either{TLeftOut, TRightOut}"/>.</typeparam>
+        /// <param name="either"><see cref="Either{TLeft,TRight}"/> to check.</param>
+        /// <param name="onRight">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
+        /// <param name="onLeft">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
+        /// <returns>An <see cref="Either{TLeftOut,TRightOut}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
+        /// <exception cref="NullResultException">If the result of the <paramref name="onRight"/> or <paramref name="onLeft"/> is null.</exception>
+        [PublicAPI, Pure]
+        public static Either<TLeftOut, TRightOut> BiMap<TLeft, TRight, TLeftOut, TRightOut>(
+            in this Either<TLeft, TRight> either,
+            [NotNull, InstantHandle] Func<TRight, TRightOut> onRight,
+            [NotNull, InstantHandle] Func<TLeft, TLeftOut> onLeft)
+        {
+            Throw.IfArgumentNull(onRight, nameof(onRight));
+            Throw.IfArgumentNull(onLeft, nameof(onLeft));
+
+            return either.Match(
+                right => Either<TLeftOut, TRightOut>.Right(Throw.IfResultNull(onRight(right))),
+                left => Either<TLeftOut, TRightOut>.Left(Throw.IfResultNull(onLeft(left))),
+                () => Either<TLeftOut, TRightOut>.None);
         }
 
         #endregion
@@ -531,9 +641,7 @@ namespace Here.Extensions
             }
 
             TRight orValue = valueFactory();
-            if (orValue == null)
-                throw new NullResultException();
-            return orValue;
+            return Throw.IfResultNull(orValue);
         }
 
         /// <summary>
@@ -597,9 +705,7 @@ namespace Here.Extensions
             }
 
             TLeft orValue = valueFactory();
-            if (orValue == null)
-                throw new NullResultException();
-            return orValue;
+            return Throw.IfResultNull(orValue);
         }
 
         #endregion

@@ -170,9 +170,7 @@ namespace Here.Extensions
                 return option.Value;
 
             T orValue = orFunc();
-            if (orValue == null)
-                throw new NullResultException();
-            return orValue;
+            return Throw.IfResultNull(orValue);
         }
 
         /// <summary>

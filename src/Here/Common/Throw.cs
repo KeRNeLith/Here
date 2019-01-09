@@ -13,7 +13,7 @@ namespace Here
     internal static class Throw
     {
         /// <summary>
-        /// Throws an <see cref="ArgumentNullException"/> if the given value is null.
+        /// Throws an <see cref="ArgumentNullException"/> if the given argument is null.
         /// </summary>
         /// <param name="argument">Argument to check.</param>
         /// <param name="argumentName">Name of the object to check nullity.</param>
@@ -27,6 +27,23 @@ namespace Here
         {
             if (argument is null)
                 throw new ArgumentNullException(argumentName, message);
+        }
+
+        /// <summary>
+        /// Throws a <see cref="NullResultException"/> if the given result is null.
+        /// </summary>
+        /// <param name="result">Result to check.</param>
+        /// <returns>The input value if not null.</returns>
+        [DebuggerStepThrough]
+        [ContractAnnotation("result:null => halt")]
+#if SUPPORTS_AGGRESSIVE_INLINING
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static T IfResultNull<T>([CanBeNull] T result)
+        {
+            if (result == null)
+                throw new NullResultException();
+            return result;
         }
     }
 }
