@@ -592,6 +592,51 @@ namespace Here.Extensions
 
         #endregion
 
+        #region OnLeft/OnFailure
+
+        /// <summary>
+        /// Calls the <paramref name="onLeft"/> action when the <paramref name="either"/> is in <see cref="EitherStates.Left"/> state.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <param name="either"><see cref="Either{TLeft,TRight}"/> to check.</param>
+        /// <param name="onLeft">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
+        /// <returns>This <see cref="Either{TLeft,TRight}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
+        [PublicAPI]
+        public static Either<TLeft, TRight> OnLeft<TLeft, TRight>(
+            in this Either<TLeft, TRight> either,
+            [NotNull, InstantHandle] in Action<TLeft> onLeft)
+        {
+            Throw.IfArgumentNull(onLeft, nameof(onLeft));
+
+            if (either.IsLeft)
+                onLeft(either._left);
+            return either;
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onFailure"/> action when the <paramref name="either"/> is in <see cref="EitherStates.Left"/> state.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <param name="either"><see cref="Either{TLeft,TRight}"/> to check.</param>
+        /// <param name="onFailure">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
+        /// <returns>This <see cref="Either{TLeft,TRight}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
+        [PublicAPI]
+#if SUPPORTS_AGGRESSIVE_INLINING
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static Either<TLeft, TRight> OnFailure<TLeft, TRight>(
+            in this Either<TLeft, TRight> either,
+            [NotNull, InstantHandle] in Action<TLeft> onFailure)
+        {
+            return either.OnLeft(onFailure);
+        }
+
+        #endregion
+
         #region IfRight/IfSuccess
 
         /// <summary>
@@ -753,6 +798,115 @@ namespace Here.Extensions
             Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
 
             return either.Match(right => onRight(right), _ => valueFactory());
+        }
+
+        #endregion
+
+        #region OnRight/OnSuccess
+
+        /// <summary>
+        /// Calls the <paramref name="onRight"/> action when the <paramref name="either"/> is in <see cref="EitherStates.Right"/> state.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <param name="either"><see cref="Either{TLeft,TRight}"/> to check.</param>
+        /// <param name="onRight">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
+        /// <returns>This <see cref="Either{TLeft,TRight}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
+        [PublicAPI]
+        public static Either<TLeft, TRight> OnRight<TLeft, TRight>(
+            in this Either<TLeft, TRight> either,
+            [NotNull, InstantHandle] in Action<TRight> onRight)
+        {
+            Throw.IfArgumentNull(onRight, nameof(onRight));
+
+            if (either.IsRight)
+                onRight(either._right);
+            return either;
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onSuccess"/> action when the <paramref name="either"/> is in <see cref="EitherStates.Right"/> state.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <param name="either"><see cref="Either{TLeft,TRight}"/> to check.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
+        /// <returns>This <see cref="Either{TLeft,TRight}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        [PublicAPI]
+#if SUPPORTS_AGGRESSIVE_INLINING
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static Either<TLeft, TRight> OnSuccess<TLeft, TRight>(
+            in this Either<TLeft, TRight> either,
+            [NotNull, InstantHandle] in Action<TRight> onSuccess)
+        {
+            return either.OnRight(onSuccess);
+        }
+
+        #endregion
+
+        #region OnRightOrLeft/OnSuccessOrFailure
+
+        /// <summary>
+        /// Calls the <paramref name="onRight"/> action when the <paramref name="either"/> is in <see cref="EitherStates.Right"/> state,
+        /// or the <paramref name="onLeft"/> action when in <see cref="EitherStates.Left"/> state.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <param name="either"><see cref="Either{TLeft,TRight}"/> to check.</param>
+        /// <param name="onRight">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
+        /// <param name="onLeft">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
+        /// <returns>This <see cref="Either{TLeft,TRight}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
+        [PublicAPI]
+        public static Either<TLeft, TRight> OnRightOrLeft<TLeft, TRight>(
+            in this Either<TLeft, TRight> either,
+            [NotNull, InstantHandle] in Action<TRight> onRight,
+            [NotNull, InstantHandle] in Action<TLeft> onLeft)
+        {
+            Throw.IfArgumentNull(onRight, nameof(onRight));
+            Throw.IfArgumentNull(onLeft, nameof(onLeft));
+
+            if (either.IsRight)
+            {
+                onRight(either._right);
+                return either;
+            }
+
+            if (either.IsLeft)
+            {
+                onLeft(either._left);
+                return either;
+            }
+
+            return either;
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onSuccess"/> action when the <paramref name="either"/> is in <see cref="EitherStates.Right"/> state,
+        /// or the <paramref name="onFailure"/> action when in <see cref="EitherStates.Left"/> state.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <param name="either"><see cref="Either{TLeft,TRight}"/> to check.</param>
+        /// <param name="onSuccess">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
+        /// <param name="onFailure">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
+        /// <returns>This <see cref="Either{TLeft,TRight}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
+        [PublicAPI]
+#if SUPPORTS_AGGRESSIVE_INLINING
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public static Either<TLeft, TRight> OnSuccessOrFailure<TLeft, TRight>(
+            in this Either<TLeft, TRight> either,
+            [NotNull, InstantHandle] in Action<TRight> onSuccess,
+            [NotNull, InstantHandle] in Action<TLeft> onFailure)
+        {
+            return either.OnRightOrLeft(onSuccess, onFailure);
         }
 
         #endregion

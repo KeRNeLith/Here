@@ -1611,6 +1611,94 @@ namespace Here.Tests.Eithers
 
         #endregion
 
+        #region OnLeft/OnFailure
+
+        [Test]
+        public void EitherOnLeft()
+        {
+            int counter = 0;
+
+            // Either left
+            var eitherLeft = Either.Left<string, int>("A string");
+            CheckLeftEither(
+                eitherLeft.OnLeft(
+                    l =>
+                    {
+                        ++counter;
+                    }),
+                "A string");
+            Assert.AreEqual(1, counter);
+
+            // Either right
+            var eitherRight = Either.Right<string, int>(42);
+            CheckRightEither(
+                eitherRight.OnLeft(
+                    l =>
+                    {
+                        ++counter;
+                    }),
+                42);
+            Assert.AreEqual(1, counter);
+
+            // Either none
+            var eitherNone = Either<string, int>.None;
+            CheckNoneEither(
+                eitherNone.OnLeft(
+                    l =>
+                    {
+                        ++counter;
+                    }));
+            Assert.AreEqual(1, counter);
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.OnLeft(null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.OnLeft(null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.OnLeft(null));
+        }
+
+        [Test]
+        public void EitherOnFailure()
+        {
+            int counter = 0;
+
+            // Either left
+            var eitherLeft = Either.Left<string, int>("A string");
+            CheckLeftEither(
+                eitherLeft.OnFailure(
+                    l =>
+                    {
+                        ++counter;
+                    }),
+                "A string");
+            Assert.AreEqual(1, counter);
+
+            // Either right
+            var eitherRight = Either.Right<string, int>(42);
+            CheckRightEither(
+                eitherRight.OnFailure(
+                    l =>
+                    {
+                        ++counter;
+                    }),
+                42);
+            Assert.AreEqual(1, counter);
+
+            // Either none
+            var eitherNone = Either<string, int>.None;
+            CheckNoneEither(
+                eitherNone.OnFailure(
+                    l =>
+                    {
+                        ++counter;
+                    }));
+            Assert.AreEqual(1, counter);
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.OnFailure(null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.OnFailure(null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.OnFailure(null));
+        }
+
+        #endregion
+
         #region IfRight/IfSuccess
 
         [Test]
@@ -1888,6 +1976,240 @@ namespace Here.Tests.Eithers
             Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfRight(null, () => testObject));
             Assert.Throws<ArgumentNullException>(() => eitherNoneStringPerson.IfRight((Func<Person, TestClass>)null, (Func<TestClass>)null));
             // ReSharper restore AssignNullToNotNullAttribute
+        }
+
+        #endregion
+
+        #region OnRight/OnSuccess
+
+        [Test]
+        public void EitherOnRight()
+        {
+            int counter = 0;
+
+            // Either left
+            var eitherLeft = Either.Left<string, int>("A string");
+            CheckLeftEither(
+                eitherLeft.OnRight(
+                    r =>
+                    {
+                        ++counter;
+                    }),
+                "A string");
+            Assert.AreEqual(0, counter);
+
+            // Either right
+            var eitherRight = Either.Right<string, int>(42);
+            CheckRightEither(
+                eitherRight.OnRight(
+                    r =>
+                    {
+                        ++counter;
+                    }),
+                42);
+            Assert.AreEqual(1, counter);
+
+            // Either none
+            var eitherNone = Either<string, int>.None;
+            CheckNoneEither(
+                eitherNone.OnRight(
+                    r =>
+                    {
+                        ++counter;
+                    }));
+            Assert.AreEqual(1, counter);
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.OnRight(null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.OnRight(null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.OnRight(null));
+        }
+
+        [Test]
+        public void EitherOnSuccess()
+        {
+            int counter = 0;
+
+            // Either left
+            var eitherLeft = Either.Left<string, int>("A string");
+            CheckLeftEither(
+                eitherLeft.OnSuccess(
+                    r =>
+                    {
+                        ++counter;
+                    }),
+                "A string");
+            Assert.AreEqual(0, counter);
+
+            // Either right
+            var eitherRight = Either.Right<string, int>(42);
+            CheckRightEither(
+                eitherRight.OnSuccess(
+                    r =>
+                    {
+                        ++counter;
+                    }),
+                42);
+            Assert.AreEqual(1, counter);
+
+            // Either none
+            var eitherNone = Either<string, int>.None;
+            CheckNoneEither(
+                eitherNone.OnSuccess(
+                    r =>
+                    {
+                        ++counter;
+                    }));
+            Assert.AreEqual(1, counter);
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.OnRight(null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.OnRight(null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.OnRight(null));
+        }
+
+        #endregion
+
+        #region OnRightOrLeft/OnSuccessOrFailure
+
+        [Test]
+        public void EitherOnRightOrLeft()
+        {
+            int counterRight = 0;
+            int counterLeft = 0;
+
+            #region Local function
+
+            void CheckCounters(int left, int right)
+            {
+                Assert.AreEqual(left, counterLeft);
+                Assert.AreEqual(right, counterRight);
+            }
+
+            #endregion
+
+            // Either left
+            var eitherLeft = Either.Left<string, int>("A string");
+            CheckLeftEither(
+                eitherLeft.OnRightOrLeft(
+                    r =>
+                    {
+                        ++counterRight;
+                    },
+                    l =>
+                    {
+                        ++counterLeft;
+                    }),
+                "A string");
+            CheckCounters(1, 0);
+
+            // Either right
+            var eitherRight = Either.Right<string, int>(42);
+            CheckRightEither(
+                eitherRight.OnRightOrLeft(
+                    r =>
+                    {
+                        ++counterRight;
+                    },
+                    l =>
+                    {
+                        ++counterLeft;
+                    }),
+                42);
+            CheckCounters(1, 1);
+
+            // Either none
+            var eitherNone = Either<string, int>.None;
+            CheckNoneEither(
+                eitherNone.OnRightOrLeft(
+                    r =>
+                    {
+                        ++counterRight;
+                    },
+                    l =>
+                    {
+                        ++counterLeft;
+                    }));
+            CheckCounters(1, 1);
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.OnRightOrLeft(r => ++counterRight, null));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.OnRightOrLeft(null, l => ++counterLeft));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.OnRightOrLeft(null, null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.OnRightOrLeft(r => ++counterRight, null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.OnRightOrLeft(null, l => ++counterLeft));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.OnRightOrLeft(null, null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.OnRightOrLeft(r => ++counterRight, null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.OnRightOrLeft(null, l => ++counterLeft));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.OnRightOrLeft(null, null));
+        }
+
+        [Test]
+        public void EitherOnSuccessOrFailure()
+        {
+            int counterRight = 0;
+            int counterLeft = 0;
+
+            #region Local function
+
+            void CheckCounters(int left, int right)
+            {
+                Assert.AreEqual(left, counterLeft);
+                Assert.AreEqual(right, counterRight);
+            }
+
+            #endregion
+
+            // Either left
+            var eitherLeft = Either.Left<string, int>("A string");
+            CheckLeftEither(
+                eitherLeft.OnSuccessOrFailure(
+                    r =>
+                    {
+                        ++counterRight;
+                    },
+                    l =>
+                    {
+                        ++counterLeft;
+                    }),
+                "A string");
+            CheckCounters(1, 0);
+
+            // Either right
+            var eitherRight = Either.Right<string, int>(42);
+            CheckRightEither(
+                eitherRight.OnSuccessOrFailure(
+                    r =>
+                    {
+                        ++counterRight;
+                    },
+                    l =>
+                    {
+                        ++counterLeft;
+                    }),
+                42);
+            CheckCounters(1, 1);
+
+            // Either none
+            var eitherNone = Either<string, int>.None;
+            CheckNoneEither(
+                eitherNone.OnSuccessOrFailure(
+                    r =>
+                    {
+                        ++counterRight;
+                    },
+                    l =>
+                    {
+                        ++counterLeft;
+                    }));
+            CheckCounters(1, 1);
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.OnSuccessOrFailure(r => ++counterRight, null));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.OnSuccessOrFailure(null, l => ++counterLeft));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.OnSuccessOrFailure(null, null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.OnSuccessOrFailure(r => ++counterRight, null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.OnSuccessOrFailure(null, l => ++counterLeft));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.OnSuccessOrFailure(null, null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.OnSuccessOrFailure(r => ++counterRight, null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.OnSuccessOrFailure(null, l => ++counterLeft));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.OnSuccessOrFailure(null, null));
         }
 
         #endregion
