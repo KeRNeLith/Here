@@ -880,8 +880,173 @@ namespace Here.Tests.Eithers
 
         #endregion
 
+        #region Bind/BiBind
+
+        [Test]
+        public void EitherBindLeft()
+        {
+            int counterLeft = 0;
+
+            // Either left
+            var eitherLeft = Either.Left<string, int>("A string");
+            Either<float, int> result = eitherLeft.Bind(
+                (string l) =>
+                {
+                    ++counterLeft;
+                    return Either.Left<float, int>(12.5f);
+                });
+            Assert.AreEqual(1, counterLeft);
+            CheckLeftEither(result, 12.5f);
+
+            // Either right
+            var eitherRight = Either.Right<string, int>(42);
+            result = eitherRight.Bind(
+                (string l) =>
+                {
+                    ++counterLeft;
+                    return Either.Left<float, int>(12.5f);
+                });
+            Assert.AreEqual(1, counterLeft);
+            CheckRightEither(result, 42);
+
+            // Either none
+            var eitherNone = Either<string, int>.None;
+            result = eitherNone.Bind(
+                (string l) =>
+                {
+                    ++counterLeft;
+                    return Either.Left<float, int>(12.5f);
+                });
+            Assert.AreEqual(1, counterLeft);
+            CheckNoneEither(result);
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.Bind((Func<string, Either<float, int>>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.Bind((Func<string, Either<float, int>>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.Bind((Func<string, Either<float, int>>)null));
+        }
+
+        [Test]
+        public void EitherBindRight()
+        {
+            int counterRight = 0;
+
+            // Either left
+            var eitherLeft = Either.Left<string, int>("A string");
+            Either<string, float> result = eitherLeft.Bind(
+                (int r) =>
+                {
+                    ++counterRight;
+                    return Either.Right<string, float>(42.5f);
+                });
+            Assert.AreEqual(0, counterRight);
+            CheckLeftEither(result, "A string");
+
+            // Either right
+            var eitherRight = Either.Right<string, int>(42);
+            result = eitherRight.Bind(
+                (int r) =>
+                {
+                    ++counterRight;
+                    return Either.Right<string, float>(47.5f);
+                });
+            Assert.AreEqual(1, counterRight);
+            CheckRightEither(result, 47.5f);
+
+            // Either none
+            var eitherNone = Either<string, int>.None;
+            result = eitherNone.Bind(
+                (int r) =>
+                {
+                    ++counterRight;
+                    return Either.Right<string, float>(42.5f);
+                });
+            Assert.AreEqual(1, counterRight);
+            CheckNoneEither(result);
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.Map((Func<int, Either<string, float>>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.Map((Func<int, Either<string, float>>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.Map((Func<int, Either<string, float>>)null));
+        }
+
+        [Test]
+        public void EitherBiBind()
+        {
+            int counterLeft = 0;
+            int counterRight = 0;
+
+            #region Local function
+
+            void CheckCounters(int left, int right)
+            {
+                Assert.AreEqual(left, counterLeft);
+                Assert.AreEqual(right, counterRight);
+            }
+
+            #endregion
+
+            // Either left
+            var eitherLeft = Either.Left<string, int>("A string");
+            Either<string, float> result = eitherLeft.BiBind(
+                r =>
+                {
+                    ++counterRight;
+                    return Either.Right<string, float>(45.5f);
+                },
+                l =>
+                {
+                    ++counterLeft;
+                    return Either.Right<string, float>(47.5f);
+                });
+            CheckCounters(1, 0);
+            CheckRightEither(result, 47.5f);
+
+            // Either right
+            var eitherRight = Either.Right<string, int>(42);
+            result = eitherRight.BiBind(
+                r =>
+                {
+                    ++counterRight;
+                    return Either.Right<string, float>(42.5f);
+                },
+                l =>
+                {
+                    ++counterLeft;
+                    return Either.Left<string, float>("Error");
+                });
+            CheckCounters(1, 1);
+            CheckRightEither(result, 42.5f);
+
+            // Either none
+            var eitherNone = Either<string, int>.None;
+            result = eitherNone.BiBind(
+                r =>
+                {
+                    ++counterRight;
+                    return Either.Left<string, float>("Error");
+                },
+                l =>
+                {
+                    ++counterLeft;
+                    return Either.Right<string, float>(42.5f);
+                });
+            CheckCounters(1, 1);
+            CheckNoneEither(result);
+
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiBind(r => Either.Right<string, float>(12.5f), null));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiBind(null, l => Either.Right<string, float>(12.5f)));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiBind<string, int, float>(null, null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.BiBind(r => Either.Right<string, float>(12.5f), null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.BiBind(null, l => Either.Right<string, float>(12.5f)));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.BiBind<string, int, float>(null, null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.BiBind(r => Either.Right<string, float>(12.5f), null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.BiBind(null, l => Either.Right<string, float>(12.5f)));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.BiBind<string, int, float>(null, null));
+        }
+
+        #endregion
+
         #region Fold/BiFold
-        
+
         [Test]
         public void EitherFoldLeft()
         {
