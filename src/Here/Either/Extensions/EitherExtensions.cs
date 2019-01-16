@@ -646,7 +646,7 @@ namespace Here.Extensions
         /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
         /// <param name="either"><see cref="Either{TLeft,TRight}"/> to check.</param>
         /// <param name="onRight">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
-        /// <returns>The result of the applied treatment.</returns>
+        /// <returns>A <see cref="Unit"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
         [PublicAPI]
         public static Unit IfRight<TLeft, TRight>(
@@ -663,7 +663,7 @@ namespace Here.Extensions
         /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
         /// <param name="either"><see cref="Either{TLeft,TRight}"/> to check.</param>
         /// <param name="onSuccess">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
-        /// <returns>The result of the applied treatment.</returns>
+        /// <returns>A <see cref="Unit"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
 #if SUPPORTS_AGGRESSIVE_INLINING
