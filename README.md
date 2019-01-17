@@ -16,6 +16,9 @@ It handles and encapsulates the logic of functional based objects including the 
 - The `Option<T>`. This structure encapsulates the concept of having a value or not. This mechanic safely handles a traditional null return.
 For more details on `Option<T>` usage see the following [tips](src/Here/Option/README.md).
 
+- The `Either<TLeft, TRight>`. This structure encapsulates the concept of having a success value (right) or a failure (left). This provides a better management of method returns that can generate error by clarifying the error case.
+For more details on `Either<TLeft, TRight>` usage see the following [tips](src/Here/Either/README.md).
+
 - The `Result`. This structure encapsulates treatments results. This provides an improved return state, and also a better error management.
 For more details on `Result` usage see the following [tips](src/Here/Result/README.md).
 

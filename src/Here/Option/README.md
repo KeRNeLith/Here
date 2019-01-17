@@ -128,7 +128,6 @@ if (optionInt == 12)
 }
 
 // Or with reference types
-// This code will never throw a null reference exception as option ensure not null value
 var testClass = new TestClass();
 Option<TestClass> optionClass = Option<TestClass>.Some(new TestClass());
 if (optionClass == testClass)
@@ -214,14 +213,17 @@ Option<int> optionInt = 12.ToOption();
 
 if (optionInt.Any())
 {
-    bool result = optionInt.Aggregate(10, (initial, value) => initial + value) // 22
-                          .Where(intValue => intValue > 20)                   // Is true
-                          .Contains(22);                                      // Is true
+    // code
 }
+
+int result = optionInt.Aggregate(10, (initial, value) => initial + value); // 22
+
+bool result = optionInt.Where(intValue => intValue > 10) // Is true
+                       .Contains(12);                    // Is true
 
 Option<Type> optionType = typeof(string);
 optionType.Select(type => type.Name)
-         .ForEach(name => Console.WriteLine(name));
+          .ForEach(name => Console.WriteLine(name));
 ```
 
 ### Lookup and Parsing
@@ -317,4 +319,16 @@ var emptyOptionInt = Option<int>.None;
 Result result = emptyOptionInt.ToResult();    // Explicit => Result.Fail
 Result result = emptyOptionInt.ToResult("Custom failure message");    // Explicit => Result.Fail
 Result result = emptyOptionInt;               // Implicit => Result.Fail
+```
+
+### Bridge to Either
+
+It is possible to convert an `Option<T>` to an `Either<TLeft, T>`.
+
+```csharp
+Option<int> optionInt = Option<int>.Some(12);
+Either<string, int> eitherStrInt = optionInt.ToEither("Error");         // eitherStrInt.IsRight
+
+Option<int> emptyOptionInt = Option<int>.None;
+Either<string, int> eitherStrInt = emptyOptionInt.ToEither("Error");    // eitherStrInt.IsLeft
 ```

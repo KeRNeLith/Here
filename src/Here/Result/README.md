@@ -294,3 +294,15 @@ Result<int> resultFail = Result.Fail<int>("Failure");
 Option<bool> optionBool = resultFail.ToOption(); // Explicit => Option.None
 Option<bool> optionBool = resultFail;           // Implicit => Option.None
 ```
+
+### Bridge to Either
+
+It is possible to convert a `Result<T>` to an `Either<string, T>`, or `Result<T, TError>` to an `Either<string, T>` and `Either<TError, T>`.
+
+```csharp
+Result<int> resultOK = Result.Ok(12);
+Either<string, int> eitherStrInt = resultOK.ToEither();    // eitherStrInt.IsRight
+
+Result<int> resultFail = Result.Fail<int>("Failure");
+Either<string, int> eitherStrInt = resultFail.ToEither();  // eitherStrInt.IsLeft
+```
