@@ -71,7 +71,7 @@ namespace Here.Extensions
         /// <typeparam name="TOut">Type of the value embedded in the selected value.</typeparam>
         /// <param name="option"><see cref="Option{T}"/> on which performing the selection.</param>
         /// <param name="selector">Method called to select the value from this <see cref="Option{T}"/> value.</param>
-        /// <returns>A <see cref="Option{T}"/> wrapping selected value.</returns>
+        /// <returns>An <see cref="Option{T}"/> wrapping selected value.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="selector"/> is null.</exception>
         [PublicAPI, Pure]
         public static Option<TOut> Select<TIn, TOut>(in this Option<TIn> option, [NotNull, InstantHandle] in Func<TIn, TOut> selector)
@@ -105,14 +105,16 @@ namespace Here.Extensions
         /// <typeparam name="T">Type of the value embedded in this <see cref="Option{T}"/>.</typeparam>
         /// <param name="option"><see cref="Option{T}"/> on which performing the treatment.</param>
         /// <param name="doAction">Action to perform on this <see cref="Option{T}"/> value.</param>
+        /// <returns>A <see cref="Unit"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="doAction"/> is null.</exception>
         [PublicAPI]
-        public static void ForEach<T>(in this Option<T> option, [NotNull, InstantHandle] in Action<T> doAction)
+        public static Unit ForEach<T>(in this Option<T> option, [NotNull, InstantHandle] in Action<T> doAction)
         {
             Throw.IfArgumentNull(doAction, nameof(doAction));
 
             if (option.HasValue)
                 doAction(option.Value);
+            return Unit.Default;
         }
 
         /// <summary>
