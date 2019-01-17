@@ -360,6 +360,102 @@ namespace Here
             return !(either == eitherRight);
         }
 
+        /// <summary>
+        /// Indicates whether the <see cref="Either{TLeft, TRight}"/> is equals to the value.
+        /// </summary>
+        /// <param name="either">First <see cref="Either{TLeft, TRight}"/> to compare.</param>
+        /// <param name="rightValue">Value to compare.</param>
+        /// <returns>True if the <see cref="Either{TLeft, TRight}"/> is in <see cref="EitherStates.Right"/> state
+        /// and its value is equals to the <paramref name="rightValue"/>, otherwise false.</returns>
+        public static bool operator ==(in Either<TLeft, TRight> either, in TRight rightValue)
+        {
+            return either.Equals(rightValue);
+        }
+
+        /// <summary>
+        /// Indicates whether the <see cref="Either{TLeft, TRight}"/> is not equals to the value.
+        /// </summary>
+        /// <param name="either">First <see cref="Either{TLeft, TRight}"/> to compare.</param>
+        /// <param name="rightValue">Value to compare.</param>
+        /// <returns>True if the <see cref="Either{TLeft, TRight}"/> is not in <see cref="EitherStates.Right"/> state
+        /// with its value equals to the <paramref name="rightValue"/>, otherwise false.</returns>
+        public static bool operator !=(in Either<TLeft, TRight> either, in TRight rightValue)
+        {
+            return !(either == rightValue);
+        }
+
+        /// <summary>
+        /// Indicates whether the <see cref="Either{TLeft, TRight}"/> is equals to the value.
+        /// </summary>
+        /// <param name="rightValue">Value to compare.</param>
+        /// <param name="either">First <see cref="Either{TLeft, TRight}"/> to compare.</param>
+        /// <returns>True if the <see cref="Either{TLeft, TRight}"/> is in <see cref="EitherStates.Right"/> state
+        /// and its value is equals to the <paramref name="rightValue"/>, otherwise false.</returns>
+        public static bool operator ==(in TRight rightValue, in Either<TLeft, TRight> either)
+        {
+            return either == rightValue;
+        }
+
+        /// <summary>
+        /// Indicates whether the <see cref="Either{TLeft, TRight}"/> is not equals to the value.
+        /// </summary>
+        /// <param name="rightValue">Value to compare.</param>
+        /// <param name="either">First <see cref="Either{TLeft, TRight}"/> to compare.</param>
+        /// <returns>True if the <see cref="Either{TLeft, TRight}"/> is not in <see cref="EitherStates.Right"/> state
+        /// with its value equals to the <paramref name="rightValue"/>, otherwise false.</returns>
+        public static bool operator !=(in TRight rightValue, in Either<TLeft, TRight> either)
+        {
+            return !(either == rightValue);
+        }
+
+        /// <summary>
+        /// Indicates whether the <see cref="Either{TLeft, TRight}"/> is equals to the value.
+        /// </summary>
+        /// <param name="either">First <see cref="Either{TLeft, TRight}"/> to compare.</param>
+        /// <param name="leftValue">Value to compare.</param>
+        /// <returns>True if the <see cref="Either{TLeft, TRight}"/> is in <see cref="EitherStates.Left"/> state
+        /// and its value is equals to the <paramref name="leftValue"/>, otherwise false.</returns>
+        public static bool operator ==(in Either<TLeft, TRight> either, in TLeft leftValue)
+        {
+            return either.Equals(leftValue);
+        }
+
+        /// <summary>
+        /// Indicates whether the <see cref="Either{TLeft, TRight}"/> is not equals to the value.
+        /// </summary>
+        /// <param name="either">First <see cref="Either{TLeft, TRight}"/> to compare.</param>
+        /// <param name="leftValue">Value to compare.</param>
+        /// <returns>True if the <see cref="Either{TLeft, TRight}"/> is not in <see cref="EitherStates.Left"/> state
+        /// with its value equals to the <paramref name="leftValue"/>, otherwise false.</returns>
+        public static bool operator !=(in Either<TLeft, TRight> either, in TLeft leftValue)
+        {
+            return !(either == leftValue);
+        }
+
+        /// <summary>
+        /// Indicates whether the <see cref="Either{TLeft, TRight}"/> is equals to the value.
+        /// </summary>
+        /// <param name="leftValue">Value to compare.</param>
+        /// <param name="either">First <see cref="Either{TLeft, TRight}"/> to compare.</param>
+        /// <returns>True if the <see cref="Either{TLeft, TRight}"/> is in <see cref="EitherStates.Left"/> state
+        /// and its value is equals to the <paramref name="leftValue"/>, otherwise false.</returns>
+        public static bool operator ==(in TLeft leftValue, in Either<TLeft, TRight> either)
+        {
+            return either == leftValue;
+        }
+
+        /// <summary>
+        /// Indicates whether the <see cref="Either{TLeft, TRight}"/> is not equals to the value.
+        /// </summary>
+        /// <param name="leftValue">Value to compare.</param>
+        /// <param name="either">First <see cref="Either{TLeft, TRight}"/> to compare.</param>
+        /// <returns>True if the <see cref="Either{TLeft, TRight}"/> is not in <see cref="EitherStates.Left"/> state
+        /// with its value equals to the <paramref name="leftValue"/>, otherwise false.</returns>
+        public static bool operator !=(in TLeft leftValue, in Either<TLeft, TRight> either)
+        {
+            return !(either == leftValue);
+        }
+
         /// <inheritdoc />
         public override int GetHashCode()
         {

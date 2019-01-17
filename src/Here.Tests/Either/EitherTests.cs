@@ -215,6 +215,7 @@ namespace Here.Tests.Eithers
             Assert.IsFalse(eitherNoneIntDouble1 != eitherNoneIntDouble2);
             Assert.IsFalse(eitherNoneIntDouble2 != eitherNoneIntDouble1);
 
+
             // Either reference type
             var person1 = new Person("Test");
             var eitherLeftPersonInt1 = Either.Left<Person, int>(person1);
@@ -294,11 +295,34 @@ namespace Here.Tests.Eithers
             Assert.IsFalse(eitherNonePersonInt3 != eitherNonePersonInt4);
             Assert.IsFalse(eitherNonePersonInt4 != eitherNonePersonInt3);
 
-            // Mixed
-            Assert.IsTrue(eitherLeftIntDouble1.Equals(12));
-            Assert.IsFalse(eitherLeftIntDouble1.Equals(42));
-            Assert.IsFalse(eitherLeftIntDouble1.Equals(12.0));
 
+            // Direct comparison
+            Assert.IsFalse(eitherNoneIntDouble1.Equals(12));
+            Assert.IsFalse(eitherNoneIntDouble1 == 12);
+            Assert.IsFalse(12 == eitherNoneIntDouble1);
+            Assert.IsTrue(eitherNoneIntDouble1 != 12);
+            Assert.IsTrue(12 != eitherNoneIntDouble1);
+
+            Assert.IsTrue(eitherLeftIntDouble1.Equals(12));
+            Assert.IsTrue(eitherLeftIntDouble1 == 12);
+            Assert.IsTrue(12 == eitherLeftIntDouble1);
+            Assert.IsFalse(eitherLeftIntDouble1 != 12);
+            Assert.IsFalse(12 != eitherLeftIntDouble1);
+
+            Assert.IsFalse(eitherLeftIntDouble1.Equals(42));
+            Assert.IsFalse(eitherLeftIntDouble1 == 42);
+            Assert.IsFalse(42 == eitherLeftIntDouble1);
+            Assert.IsTrue(eitherLeftIntDouble1 != 42);
+            Assert.IsTrue(42 != eitherLeftIntDouble1);
+
+            Assert.IsFalse(eitherLeftIntDouble1.Equals(12.0));
+            Assert.IsFalse(eitherLeftIntDouble1 == 12.0);
+            Assert.IsFalse(12.0 == eitherLeftIntDouble1);
+            Assert.IsTrue(eitherLeftIntDouble1 != 12.0);
+            Assert.IsTrue(12.0 != eitherLeftIntDouble1);
+
+
+            // Mixed
             var eitherLeftInt1 = Either.Left(12);
             var eitherLeftInt2 = Either.Left(42);
             Assert.IsTrue(eitherLeftIntDouble1.Equals(eitherLeftInt1));
@@ -424,6 +448,7 @@ namespace Here.Tests.Eithers
             Assert.IsFalse(eitherNoneDoubleInt1 != eitherNoneDoubleInt2);
             Assert.IsFalse(eitherNoneDoubleInt2 != eitherNoneDoubleInt1);
 
+
             // Either reference type
             var person1 = new Person("Test");
             var eitherRightIntPerson1 = Either.Right<int, Person>(person1);
@@ -502,12 +527,35 @@ namespace Here.Tests.Eithers
             Assert.IsTrue(eitherNoneIntPerson4 == eitherNoneIntPerson3);
             Assert.IsFalse(eitherNoneIntPerson3 != eitherNoneIntPerson4);
             Assert.IsFalse(eitherNoneIntPerson4 != eitherNoneIntPerson3);
+            
+
+            // Direct comparison
+            Assert.IsFalse(eitherNoneDoubleInt1.Equals(12));
+            Assert.IsFalse(eitherNoneDoubleInt1 == 12);
+            Assert.IsFalse(12 == eitherNoneDoubleInt1);
+            Assert.IsTrue(eitherNoneDoubleInt1 != 12);
+            Assert.IsTrue(12 != eitherNoneDoubleInt1);
+
+            Assert.IsTrue(eitherRightDoubleInt1.Equals(12));
+            Assert.IsTrue(eitherRightDoubleInt1 == 12);
+            Assert.IsTrue(12 == eitherRightDoubleInt1);
+            Assert.IsFalse(eitherRightDoubleInt1 != 12);
+            Assert.IsFalse(12 != eitherRightDoubleInt1);
+
+            Assert.IsFalse(eitherRightDoubleInt1.Equals(42));
+            Assert.IsFalse(eitherRightDoubleInt1 == 42);
+            Assert.IsFalse(42 == eitherRightDoubleInt1);
+            Assert.IsTrue(eitherRightDoubleInt1 != 42);
+            Assert.IsTrue(42 != eitherRightDoubleInt1);
+
+            Assert.IsFalse(eitherRightDoubleInt1.Equals(12.0));
+            Assert.IsFalse(eitherRightDoubleInt1 == 12.0);
+            Assert.IsFalse(12.0 == eitherRightDoubleInt1);
+            Assert.IsTrue(eitherRightDoubleInt1 != 12.0);
+            Assert.IsTrue(12.0 != eitherRightDoubleInt1);
+
 
             // Mixed
-            Assert.IsTrue(eitherRightDoubleInt1.Equals(12));
-            Assert.IsFalse(eitherRightDoubleInt1.Equals(42));
-            Assert.IsFalse(eitherRightDoubleInt1.Equals(12.0));
-
             var eitherRightInt1 = Either.Right(12);
             var eitherRightInt2 = Either.Right(42);
             Assert.IsTrue(eitherRightDoubleInt1.Equals(eitherRightInt1));
