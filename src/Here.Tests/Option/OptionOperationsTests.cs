@@ -105,7 +105,7 @@ namespace Here.Tests.Options
 
             Assert.Throws<ArgumentNullException>(() => optionInt.IfElse(val => 12.2f, null));
             Assert.Throws<ArgumentNullException>(() => optionInt.IfElse(null, () => 12.2f));
-            Assert.Throws<ArgumentNullException>(() => optionInt.IfElse<int, float>(null, null));
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfElse(null, null));
         }
 
         [Test]
@@ -278,12 +278,12 @@ namespace Here.Tests.Options
             Assert.Throws<InvalidOperationException>(() => emptyOptionInt.IfOrThrows(value => { }, new InvalidOperationException()));
             Assert.Throws<InvalidOperationException>(() => emptyOptionInt.IfOrThrows(value => { }, () => new InvalidOperationException()));
 
-            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows<int, float>(value => 12, (Exception)null));
-            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows<int, float>(null, new InvalidOperationException()));
-            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows<int, float>(null, (Exception)null));
-            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows<int, float>(value => 12, (Func<Exception>)null));
-            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows<int, float>(null, () => new InvalidOperationException()));
-            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows<int, float>(null, (Func<Exception>)null));
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows(value => 12, (Exception)null));
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows(null, new InvalidOperationException()));
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows(null, (Exception)null));
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows(value => 12, (Func<Exception>)null));
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows(null, () => new InvalidOperationException()));
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows(null, (Func<Exception>)null));
 
             Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows(value => { }, (Exception)null));
             Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows(null, new InvalidOperationException()));
@@ -402,7 +402,7 @@ namespace Here.Tests.Options
             optionClass = emptyOptionClassLeaf.Cast<TestClass>();
             CheckEmptyOption(optionClass);
 
-            Assert.Throws<ArgumentNullException>(() => optionInt.Cast<int, float>(null));
+            Assert.Throws<ArgumentNullException>(() => optionInt.Cast<float>(null));
         }
 
         [Test]

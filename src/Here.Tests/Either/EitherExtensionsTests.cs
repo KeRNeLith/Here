@@ -659,7 +659,7 @@ namespace Here.Tests.Eithers
 
             // Either left
             var eitherLeft = Either.Left<string, int>("A string");
-            Either<string, float> result = eitherLeft.BiMap<string, int, float>(
+            Either<string, float> result = eitherLeft.BiMap<float>(
                 r =>
                 {
                     ++counterRight;
@@ -675,7 +675,7 @@ namespace Here.Tests.Eithers
 
             // Either right
             var eitherRight = Either.Right<string, int>(42);
-            result = eitherRight.BiMap<string, int, float>(
+            result = eitherRight.BiMap<float>(
                 r =>
                 {
                     ++counterRight;
@@ -691,7 +691,7 @@ namespace Here.Tests.Eithers
 
             // Either none
             var eitherNone = Either<string, int>.None;
-            result = eitherNone.BiMap<string, int, float>(
+            result = eitherNone.BiMap<float>(
                 r =>
                 {
                     ++counterRight;
@@ -707,7 +707,7 @@ namespace Here.Tests.Eithers
 
             // Null return
             Assert.Throws<NullResultException>(
-                () => Either.Left<string, int>("str").BiMap<string, int, TestClass>(
+                () => Either.Left<string, int>("str").BiMap<TestClass>(
                     r =>
                     {
                         ++counterRight;
@@ -721,7 +721,7 @@ namespace Here.Tests.Eithers
             CheckCounters(2, 1);
 
             Assert.Throws<NullResultException>(
-                () => Either.Right<string, int>(42).BiMap<string, int, TestClass>(
+                () => Either.Right<string, int>(42).BiMap<TestClass>(
                     r =>
                     {
                         ++counterRight;
@@ -734,7 +734,7 @@ namespace Here.Tests.Eithers
                     }));
             CheckCounters(2, 2);
 
-            Either<string, TestClass> result2 = eitherNone.BiMap<string, int, TestClass>(
+            Either<string, TestClass> result2 = eitherNone.BiMap<TestClass>(
                 r =>
                 {
                     ++counterRight;
@@ -750,13 +750,13 @@ namespace Here.Tests.Eithers
 
             Assert.Throws<ArgumentNullException>(() => eitherLeft.BiMap(r => 12.5f, null));
             Assert.Throws<ArgumentNullException>(() => eitherLeft.BiMap(null, l => 15.5f));
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiMap<string, int, float>(null, null));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiMap<float>(null, null));
             Assert.Throws<ArgumentNullException>(() => eitherRight.BiMap(r => 12.5f, null));
             Assert.Throws<ArgumentNullException>(() => eitherRight.BiMap(null, l => 15.5f));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.BiMap<string, int, float>(null, null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.BiMap<float>(null, null));
             Assert.Throws<ArgumentNullException>(() => eitherNone.BiMap(r => 12.5f, null));
             Assert.Throws<ArgumentNullException>(() => eitherNone.BiMap(null, l => 15.5f));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.BiMap<string, int, float>(null, null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.BiMap<float>(null, null));
         }
 
         [Test]
@@ -1034,13 +1034,13 @@ namespace Here.Tests.Eithers
 
             Assert.Throws<ArgumentNullException>(() => eitherLeft.BiBind(r => Either.Right<string, float>(12.5f), null));
             Assert.Throws<ArgumentNullException>(() => eitherLeft.BiBind(null, l => Either.Right<string, float>(12.5f)));
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiBind<string, int, float>(null, null));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiBind<float>(null, null));
             Assert.Throws<ArgumentNullException>(() => eitherRight.BiBind(r => Either.Right<string, float>(12.5f), null));
             Assert.Throws<ArgumentNullException>(() => eitherRight.BiBind(null, l => Either.Right<string, float>(12.5f)));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.BiBind<string, int, float>(null, null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.BiBind<float>(null, null));
             Assert.Throws<ArgumentNullException>(() => eitherNone.BiBind(r => Either.Right<string, float>(12.5f), null));
             Assert.Throws<ArgumentNullException>(() => eitherNone.BiBind(null, l => Either.Right<string, float>(12.5f)));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.BiBind<string, int, float>(null, null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.BiBind<float>(null, null));
         }
 
         #endregion
