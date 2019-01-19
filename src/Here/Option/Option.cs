@@ -36,6 +36,7 @@ namespace Here
         /// </summary>
         [CanBeNull]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        // ReSharper disable once InconsistentNaming
         internal readonly T _value;
 
         /// <summary>

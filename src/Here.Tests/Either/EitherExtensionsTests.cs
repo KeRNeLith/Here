@@ -1,5 +1,4 @@
 ﻿using System;
-using Here.Extensions;
 using NUnit.Framework;
 
 namespace Here.Tests.Eithers
@@ -540,12 +539,15 @@ namespace Here.Tests.Eithers
 
             // Null return
             Assert.Throws<NullResultException>(
-                () => Either.Left<string, int>("str").Map(
-                    (string l) =>
-                    {
-                        ++counterLeft;
-                        return (TestClass)null;
-                    }));
+                () =>
+                {
+                    var _ = Either.Left<string, int>("str").Map(
+                        (string l) =>
+                        {
+                            ++counterLeft;
+                            return (TestClass) null;
+                        });
+                });
             Assert.AreEqual(2, counterLeft);
 
             Either<TestClass, int> result2 = Either.Right<string, int>(42).Map(
@@ -566,9 +568,11 @@ namespace Here.Tests.Eithers
             Assert.AreEqual(2, counterLeft);
             CheckNoneEither(result2);
 
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.Map((Func<string, float>)null));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.Map((Func<string, float>)null));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.Map((Func<string, float>)null));
+            // ReSharper disable AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.Map((Func<string, float>) null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.Map((Func<string, float>)null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.Map((Func<string, float>)null); });
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Test]
@@ -619,12 +623,16 @@ namespace Here.Tests.Eithers
             Assert.AreEqual(1, counterRight);
             CheckLeftEither(result2, "str");
 
-            Assert.Throws<NullResultException>(() => Either.Right<string, int>(42).Map(
-                (int r) =>
+            Assert.Throws<NullResultException>(
+                () =>
                 {
-                    ++counterRight;
-                    return (TestClass)null;
-                }));
+                    var _ = Either.Right<string, int>(42).Map(
+                        (int r) =>
+                        {
+                            ++counterRight;
+                            return (TestClass) null;
+                        });
+                });
             Assert.AreEqual(2, counterRight);
 
             result2 = eitherNone.Map(
@@ -636,9 +644,11 @@ namespace Here.Tests.Eithers
             Assert.AreEqual(2, counterRight);
             CheckNoneEither(result2);
 
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.Map((Func<int, float>)null));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.Map((Func<int, float>)null));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.Map((Func<int, float>)null));
+            // ReSharper disable AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.Map((Func<int, float>)null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.Map((Func<int, float>)null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.Map((Func<int, float>)null); });
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Test]
@@ -707,31 +717,37 @@ namespace Here.Tests.Eithers
 
             // Null return
             Assert.Throws<NullResultException>(
-                () => Either.Left<string, int>("str").BiMap<TestClass>(
-                    r =>
-                    {
-                        ++counterRight;
-                        return null;
-                    },
-                    l =>
-                    {
-                        ++counterLeft;
-                        return null;
-                    }));
+                () =>
+                {
+                    var _ = Either.Left<string, int>("str").BiMap<TestClass>(
+                        r =>
+                        {
+                            ++counterRight;
+                            return null;
+                        },
+                        l =>
+                        {
+                            ++counterLeft;
+                            return null;
+                        });
+                });
             CheckCounters(2, 1);
 
             Assert.Throws<NullResultException>(
-                () => Either.Right<string, int>(42).BiMap<TestClass>(
-                    r =>
-                    {
-                        ++counterRight;
-                        return null;
-                    },
-                    l =>
-                    {
-                        ++counterLeft;
-                        return null;
-                    }));
+                () =>
+                {
+                    var _ = Either.Right<string, int>(42).BiMap<TestClass>(
+                        r =>
+                        {
+                            ++counterRight;
+                            return null;
+                        },
+                        l =>
+                        {
+                            ++counterLeft;
+                            return null;
+                        });
+                });
             CheckCounters(2, 2);
 
             Either<string, TestClass> result2 = eitherNone.BiMap<TestClass>(
@@ -748,15 +764,17 @@ namespace Here.Tests.Eithers
             CheckCounters(2, 2);
             CheckNoneEither(result2);
 
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiMap(r => 12.5f, null));
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiMap(null, l => 15.5f));
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiMap<float>(null, null));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.BiMap(r => 12.5f, null));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.BiMap(null, l => 15.5f));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.BiMap<float>(null, null));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.BiMap(r => 12.5f, null));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.BiMap(null, l => 15.5f));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.BiMap<float>(null, null));
+            // ReSharper disable AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.BiMap(r => 12.5f, null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.BiMap(null, l => 15.5f); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.BiMap<float>(null, null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.BiMap(r => 12.5f, null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.BiMap(null, l => 15.5f); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.BiMap<float>(null, null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.BiMap(r => 12.5f, null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.BiMap(null, l => 15.5f); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.BiMap<float>(null, null); });
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Test]
@@ -826,31 +844,37 @@ namespace Here.Tests.Eithers
 
             // Null return
             Assert.Throws<NullResultException>(
-                () => Either.Left<string, int>("str").BiMap(
-                    r =>
-                    {
-                        ++counterRight;
-                        return (string)null;
-                    },
-                    l =>
-                    {
-                        ++counterLeft;
-                        return (TestClass)null;
-                    }));
+                () =>
+                {
+                    var _ = Either.Left<string, int>("str").BiMap(
+                        r =>
+                        {
+                            ++counterRight;
+                            return (string) null;
+                        },
+                        l =>
+                        {
+                            ++counterLeft;
+                            return (TestClass) null;
+                        });
+                });
             CheckCounters(2, 1);
 
             Assert.Throws<NullResultException>(
-                () => Either.Right<string, int>(42).BiMap(
-                    r =>
-                    {
-                        ++counterRight;
-                        return (string)null;
-                    },
-                    l =>
-                    {
-                        ++counterLeft;
-                        return (TestClass)null;
-                    }));
+                () =>
+                {
+                    var _ = Either.Right<string, int>(42).BiMap(
+                        r =>
+                        {
+                            ++counterRight;
+                            return (string) null;
+                        },
+                        l =>
+                        {
+                            ++counterLeft;
+                            return (TestClass) null;
+                        });
+                });
             CheckCounters(2, 2);
 
             Either<TestClass, string> result2 = eitherNone.BiMap(
@@ -867,15 +891,17 @@ namespace Here.Tests.Eithers
             CheckCounters(2, 2);
             CheckNoneEither(result2);
 
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiMap(r => "success", (Func<string, TestClass>)null));
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiMap((Func<int, string>)null, l => testObject));
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiMap((Func<int, string>)null, (Func<string, TestClass>)null));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.BiMap(r => "success", (Func<string, TestClass>)null));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.BiMap((Func<int, string>)null, l => testObject));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.BiMap((Func<int, string>)null, (Func<string, TestClass>)null));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.BiMap(r => "success", (Func<string, TestClass>)null));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.BiMap((Func<int, string>)null, l => testObject));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.BiMap((Func<int, string>)null, (Func<string, TestClass>)null));
+            // ReSharper disable AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.BiMap(r => "success", (Func<string, TestClass>)null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.BiMap((Func<int, string>)null, l => testObject); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.BiMap((Func<int, string>)null, (Func<string, TestClass>)null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.BiMap(r => "success", (Func<string, TestClass>)null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.BiMap((Func<int, string>)null, l => testObject); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.BiMap((Func<int, string>)null, (Func<string, TestClass>)null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.BiMap(r => "success", (Func<string, TestClass>)null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.BiMap((Func<int, string>)null, l => testObject); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.BiMap((Func<int, string>)null, (Func<string, TestClass>)null); });
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         #endregion
@@ -890,7 +916,7 @@ namespace Here.Tests.Eithers
             // Either left
             var eitherLeft = Either.Left<string, int>("A string");
             Either<float, int> result = eitherLeft.Bind(
-                (string l) =>
+                l =>
                 {
                     ++counterLeft;
                     return Either.Left<float, int>(12.5f);
@@ -901,7 +927,7 @@ namespace Here.Tests.Eithers
             // Either right
             var eitherRight = Either.Right<string, int>(42);
             result = eitherRight.Bind(
-                (string l) =>
+                l =>
                 {
                     ++counterLeft;
                     return Either.Left<float, int>(12.5f);
@@ -912,7 +938,7 @@ namespace Here.Tests.Eithers
             // Either none
             var eitherNone = Either<string, int>.None;
             result = eitherNone.Bind(
-                (string l) =>
+                l =>
                 {
                     ++counterLeft;
                     return Either.Left<float, int>(12.5f);
@@ -920,9 +946,11 @@ namespace Here.Tests.Eithers
             Assert.AreEqual(1, counterLeft);
             CheckNoneEither(result);
 
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.Bind((Func<string, Either<float, int>>)null));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.Bind((Func<string, Either<float, int>>)null));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.Bind((Func<string, Either<float, int>>)null));
+            // ReSharper disable AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.Bind((Func<string, Either<float, int>>)null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.Bind((Func<string, Either<float, int>>)null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.Bind((Func<string, Either<float, int>>)null); });
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Test]
@@ -933,7 +961,7 @@ namespace Here.Tests.Eithers
             // Either left
             var eitherLeft = Either.Left<string, int>("A string");
             Either<string, float> result = eitherLeft.Bind(
-                (int r) =>
+                r =>
                 {
                     ++counterRight;
                     return Either.Right<string, float>(42.5f);
@@ -944,7 +972,7 @@ namespace Here.Tests.Eithers
             // Either right
             var eitherRight = Either.Right<string, int>(42);
             result = eitherRight.Bind(
-                (int r) =>
+                r =>
                 {
                     ++counterRight;
                     return Either.Right<string, float>(47.5f);
@@ -955,7 +983,7 @@ namespace Here.Tests.Eithers
             // Either none
             var eitherNone = Either<string, int>.None;
             result = eitherNone.Bind(
-                (int r) =>
+                r =>
                 {
                     ++counterRight;
                     return Either.Right<string, float>(42.5f);
@@ -963,9 +991,11 @@ namespace Here.Tests.Eithers
             Assert.AreEqual(1, counterRight);
             CheckNoneEither(result);
 
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.Map((Func<int, Either<string, float>>)null));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.Map((Func<int, Either<string, float>>)null));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.Map((Func<int, Either<string, float>>)null));
+            // ReSharper disable AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.Map((Func<int, Either<string, float>>)null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.Map((Func<int, Either<string, float>>)null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.Map((Func<int, Either<string, float>>)null); });
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Test]
@@ -1032,15 +1062,17 @@ namespace Here.Tests.Eithers
             CheckCounters(1, 1);
             CheckNoneEither(result);
 
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiBind(r => Either.Right<string, float>(12.5f), null));
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiBind(null, l => Either.Right<string, float>(12.5f)));
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiBind<float>(null, null));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.BiBind(r => Either.Right<string, float>(12.5f), null));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.BiBind(null, l => Either.Right<string, float>(12.5f)));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.BiBind<float>(null, null));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.BiBind(r => Either.Right<string, float>(12.5f), null));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.BiBind(null, l => Either.Right<string, float>(12.5f)));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.BiBind<float>(null, null));
+            // ReSharper disable AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.BiBind(r => Either.Right<string, float>(12.5f), null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.BiBind(null, l => Either.Right<string, float>(12.5f)); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.BiBind<float>(null, null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.BiBind(r => Either.Right<string, float>(12.5f), null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.BiBind(null, l => Either.Right<string, float>(12.5f)); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.BiBind<float>(null, null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.BiBind(r => Either.Right<string, float>(12.5f), null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.BiBind(null, l => Either.Right<string, float>(12.5f)); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.BiBind<float>(null, null); });
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         #endregion
@@ -1059,7 +1091,7 @@ namespace Here.Tests.Eithers
                 int counter = 0;
                 float res = either.Fold(
                     1.0f,
-                    (float seed, string l) =>
+                    (seed, l) =>
                     {
                         ++counter;
                         return seed + l.Length;
@@ -1074,13 +1106,16 @@ namespace Here.Tests.Eithers
                 if (expectThrow)
                 {
                     Assert.Throws<NullResultException>(
-                        () => either.Fold(
-                            testObject,
-                            (TestClass seed, string l) =>
-                            {
-                                ++counter;
-                                return null;
-                            }));
+                        () =>
+                        {
+                            var _ = either.Fold(
+                                testObject,
+                                (TestClass seed, string l) =>
+                                {
+                                    ++counter;
+                                    return null;
+                                });
+                        });
                     Assert.AreEqual(1, counter);
                 }
                 else
@@ -1116,19 +1151,21 @@ namespace Here.Tests.Eithers
             CheckFoldNullReturn(eitherRight, false);
             CheckFoldNullReturn(eitherNone, false);
 
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.Fold(null, (TestClass seed, string l) => seed));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.Fold(null, (TestClass seed, string l) => seed));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.Fold(null, (TestClass seed, string l) => seed));
+            // ReSharper disable AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.Fold(null, (TestClass seed, string l) => seed); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.Fold(null, (TestClass seed, string l) => seed); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.Fold(null, (TestClass seed, string l) => seed); });
 
             // Cannot test this in NET20 and NET30 due to NUnit package
 #if !NET20 && !NET30
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.Fold(testObject, (Func<TestClass, string, TestClass>)null));
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.Fold(null, (Func<TestClass, string, TestClass>)null));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.Fold(testObject, (Func<TestClass, string, TestClass>)null));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.Fold(null, (Func<TestClass, string, TestClass>)null));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.Fold(testObject, (Func<TestClass, string, TestClass>)null));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.Fold(null, (Func<TestClass, string, TestClass>)null));
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.Fold(testObject, (Func<TestClass, string, TestClass>)null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.Fold(null, (Func<TestClass, string, TestClass>)null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.Fold(testObject, (Func<TestClass, string, TestClass>)null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.Fold(null, (Func<TestClass, string, TestClass>)null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.Fold(testObject, (Func<TestClass, string, TestClass>)null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.Fold(null, (Func<TestClass, string, TestClass>)null); });
 #endif
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Test]
@@ -1143,7 +1180,7 @@ namespace Here.Tests.Eithers
                 int counter = 0;
                 float res = either.Fold(
                     1.0f,
-                    (float seed, int r) =>
+                    (seed, r) =>
                     {
                         ++counter;
                         return seed + r;
@@ -1158,13 +1195,16 @@ namespace Here.Tests.Eithers
                 if (expectThrow)
                 {
                     Assert.Throws<NullResultException>(
-                        () => either.Fold(
-                            testObject,
-                            (TestClass seed, int r) =>
-                            {
-                                ++counter;
-                                return null;
-                            }));
+                        () =>
+                        {
+                            var _ = either.Fold(
+                                testObject,
+                                (TestClass seed, int r) =>
+                                {
+                                    ++counter;
+                                    return null;
+                                });
+                        });
                     Assert.AreEqual(1, counter);
                 }
                 else
@@ -1200,19 +1240,21 @@ namespace Here.Tests.Eithers
             CheckFoldNullReturn(eitherRight, true);
             CheckFoldNullReturn(eitherNone, false);
 
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.Fold(null, (TestClass seed, int r) => seed));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.Fold(null, (TestClass seed, int r) => seed));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.Fold(null, (TestClass seed, int r) => seed));
+            // ReSharper disable AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.Fold(null, (TestClass seed, int r) => seed); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.Fold(null, (TestClass seed, int r) => seed); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.Fold(null, (TestClass seed, int r) => seed); });
 
             // Cannot test this in NET20 and NET30 due to NUnit package
 #if !NET20 && !NET30
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.Fold(testObject, (Func<TestClass, int, TestClass>)null));
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.Fold(null, (Func<TestClass, int, TestClass>)null));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.Fold(testObject, (Func<TestClass, int, TestClass>)null));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.Fold(null, (Func<TestClass, int, TestClass>)null));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.Fold(testObject, (Func<TestClass, int, TestClass>)null));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.Fold(null, (Func<TestClass, int, TestClass>)null));
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.Fold(testObject, (Func<TestClass, int, TestClass>)null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.Fold(null, (Func<TestClass, int, TestClass>)null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.Fold(testObject, (Func<TestClass, int, TestClass>)null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.Fold(null, (Func<TestClass, int, TestClass>)null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.Fold(testObject, (Func<TestClass, int, TestClass>)null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.Fold(null, (Func<TestClass, int, TestClass>)null); });
 #endif
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Test]
@@ -1228,12 +1270,12 @@ namespace Here.Tests.Eithers
                 int counterRight = 0;
                 float res = either.BiFold(
                     1.0f, 
-                    (float seed, int r) =>
+                    (seed, r) =>
                     {
                         ++counterRight;
                         return seed + r;
                     },
-                    (float seed, string l) =>
+                    (seed, l) =>
                     {
                         ++counterLeft;
                         return seed + l.Length;
@@ -1251,18 +1293,21 @@ namespace Here.Tests.Eithers
                 if (expectThrow)
                 {
                     Assert.Throws<NullResultException>(
-                        () => either.BiFold(
-                            testObject,
-                            (TestClass seed, int r) =>
-                            {
-                                ++counterRight;
-                                return null;
-                            },
-                            (TestClass seed, string l) =>
-                            {
-                                ++counterLeft;
-                                return null;
-                            }));
+                        () =>
+                        {
+                            var _ = either.BiFold(
+                                testObject,
+                                (seed, r) =>
+                                {
+                                    ++counterRight;
+                                    return null;
+                                },
+                                (seed, l) =>
+                                {
+                                    ++counterLeft;
+                                    return null;
+                                });
+                        });
                     Assert.AreEqual(expectRight ? 1 : 0, counterRight);
                     Assert.AreEqual(!expectRight ? 1 : 0, counterLeft);
                 }
@@ -1270,12 +1315,12 @@ namespace Here.Tests.Eithers
                 {
                     TestClass result = either.BiFold(
                         testObject,
-                        (TestClass seed, int r) =>
+                        (seed, r) =>
                         {
                             ++counterRight;
                             return null;
                         },
-                        (TestClass seed, string l) =>
+                        (seed, l) =>
                         {
                             ++counterLeft;
                             return null;
@@ -1305,26 +1350,28 @@ namespace Here.Tests.Eithers
             CheckBiFoldNullReturn(eitherRight, true, true);
             CheckBiFoldNullReturn(eitherNone, false, false);
 
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiFold(null, (TestClass seed, int r) => seed, (TestClass seed, string l) => seed));
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiFold(testObject, null, (TestClass seed, string l) => seed));
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiFold(testObject, (TestClass seed, int r) => seed, null));
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiFold(null, null, (TestClass seed, string l) => seed));
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiFold(null, (TestClass seed, int r) => seed, null));
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.BiFold((TestClass)null, null, null));
+            // ReSharper disable AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.BiFold(null, (TestClass seed, int r) => seed, (seed, l) => seed); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.BiFold(testObject, null, (seed, l) => seed); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.BiFold(testObject, (seed, r) => seed, null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.BiFold(null, null, (TestClass seed, string l) => seed); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.BiFold(null, (TestClass seed, int r) => seed, null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.BiFold((TestClass)null, null, null); });
 
-            Assert.Throws<ArgumentNullException>(() => eitherRight.BiFold(null, (TestClass seed, int r) => seed, (TestClass seed, string l) => seed));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.BiFold(testObject, null, (TestClass seed, string l) => seed));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.BiFold(testObject, (TestClass seed, int r) => seed, null));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.BiFold(null, null, (TestClass seed, string l) => seed));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.BiFold(null, (TestClass seed, int r) => seed, null));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.BiFold((TestClass)null, null, null));
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.BiFold(null, (TestClass seed, int r) => seed, (seed, l) => seed); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.BiFold(testObject, null, (seed, l) => seed); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.BiFold(testObject, (seed, r) => seed, null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.BiFold(null, null, (TestClass seed, string l) => seed); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.BiFold(null, (TestClass seed, int r) => seed, null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.BiFold((TestClass)null, null, null); });
 
-            Assert.Throws<ArgumentNullException>(() => eitherNone.BiFold(null, (TestClass seed, int r) => seed, (TestClass seed, string l) => seed));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.BiFold(testObject, null, (TestClass seed, string l) => seed));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.BiFold(testObject, (TestClass seed, int r) => seed, null));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.BiFold(null, null, (TestClass seed, string l) => seed));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.BiFold(null, (TestClass seed, int r) => seed, null));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.BiFold((TestClass)null, null, null));
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.BiFold(null, (TestClass seed, int r) => seed, (seed, l) => seed); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.BiFold(testObject, null, (seed, l) => seed); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.BiFold(testObject, (seed, r) => seed, null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.BiFold(null, null, (TestClass seed, string l) => seed); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.BiFold(null, (TestClass seed, int r) => seed, null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.BiFold((TestClass)null, null, null); });
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         #endregion

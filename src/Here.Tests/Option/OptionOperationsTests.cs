@@ -1,6 +1,5 @@
 ﻿using System;
 using NUnit.Framework;
-using Here.Extensions;
 
 namespace Here.Tests.Options
 {
@@ -202,8 +201,6 @@ namespace Here.Tests.Options
 
             Assert.AreEqual(0, emptyOptionInt.OrDefault());
 
-            Option<TestClass> optionResultClass;
-
             // Option class with value
             var testObject = new TestClass();
             var defaultTestObject = new TestClass { TestInt = 12 };
@@ -211,7 +208,7 @@ namespace Here.Tests.Options
             Assert.AreSame(testObject, optionClass.Or(defaultTestObject));
             Assert.AreSame(testObject, optionClass.Or(() => defaultTestObject));
 
-            optionResultClass = optionClass.Or(() => defaultTestObject);
+            Option<TestClass> optionResultClass = optionClass.Or(() => defaultTestObject);
             CheckOptionSameValue(optionResultClass, testObject);
 
             optionResultClass = optionClass.Or(() => Option<TestClass>.None);

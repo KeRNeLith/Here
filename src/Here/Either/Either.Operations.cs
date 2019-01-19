@@ -23,7 +23,7 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
         /// <exception cref="InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state without providing a <paramref name="none"/> action.</exception>
-        [PublicAPI]
+        [PublicAPI, Pure]
         public Unit Match(
             [NotNull, InstantHandle] in Action<TRight> onRight,
             [NotNull, InstantHandle] in Action<TLeft> onLeft,
@@ -62,7 +62,7 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
         /// <exception cref="InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state without providing a <paramref name="none"/> action.</exception>
-        [PublicAPI, CanBeNull]
+        [PublicAPI, CanBeNull, Pure]
         public TOut MatchNullable<TOut>(
             [NotNull, InstantHandle] in Func<TRight, TOut> onRight,
             [NotNull, InstantHandle] in Func<TLeft, TOut> onLeft,
@@ -97,7 +97,7 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
         /// <exception cref="InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state without providing a <paramref name="none"/> action.</exception>
         /// <exception cref="NullResultException">If the result of the match is null.</exception>
-        [PublicAPI, NotNull]
+        [PublicAPI, NotNull, Pure]
         public TOut Match<TOut>(
             [NotNull, InstantHandle] in Func<TRight, TOut> onRight,
             [NotNull, InstantHandle] in Func<TLeft, TOut> onLeft,

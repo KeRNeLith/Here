@@ -243,7 +243,7 @@ namespace Here.Tests.Eithers
                 int counter = 0;
                 float res = either.Aggregate(
                     1.0f,
-                    (float seed, int r) =>
+                    (seed, r) =>
                     {
                         ++counter;
                         return seed + r;
@@ -260,7 +260,7 @@ namespace Here.Tests.Eithers
                     Assert.Throws<NullResultException>(
                         () => either.Aggregate(
                             testObject,
-                            (TestClass seed, int r) =>
+                            (seed, r) =>
                             {
                                 ++counter;
                                 return null;
@@ -271,7 +271,7 @@ namespace Here.Tests.Eithers
                 {
                     TestClass result = either.Aggregate(
                         testObject,
-                        (TestClass seed, int r) =>
+                        (seed, r) =>
                         {
                             ++counter;
                             return null;
@@ -300,17 +300,19 @@ namespace Here.Tests.Eithers
             CheckAggregateNullReturn(eitherRight, true);
             CheckAggregateNullReturn(eitherNone, false);
 
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.Fold(null, (TestClass seed, int r) => seed));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.Fold(null, (TestClass seed, int r) => seed));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.Fold(null, (TestClass seed, int r) => seed));
+            // ReSharper disable AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.Fold(null, (TestClass seed, int r) => seed); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.Fold(null, (TestClass seed, int r) => seed); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.Fold(null, (TestClass seed, int r) => seed); });
+            // ReSharper restore AssignNullToNotNullAttribute
 
             // Cannot test this in NET20 and NET30 due to NUnit package
 #if !NET20 && !NET30
-            Assert.Throws<ArgumentNullException>(() => eitherLeft.Aggregate(testObject, (Func<TestClass, int, TestClass>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherLeft.Aggregate(testObject, null));
             Assert.Throws<ArgumentNullException>(() => eitherLeft.Aggregate(null, (Func<TestClass, int, TestClass>)null));
-            Assert.Throws<ArgumentNullException>(() => eitherRight.Aggregate(testObject, (Func<TestClass, int, TestClass>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherRight.Aggregate(testObject, null));
             Assert.Throws<ArgumentNullException>(() => eitherRight.Aggregate(null, (Func<TestClass, int, TestClass>)null));
-            Assert.Throws<ArgumentNullException>(() => eitherNone.Aggregate(testObject, (Func<TestClass, int, TestClass>)null));
+            Assert.Throws<ArgumentNullException>(() => eitherNone.Aggregate(testObject, null));
             Assert.Throws<ArgumentNullException>(() => eitherNone.Aggregate(null, (Func<TestClass, int, TestClass>)null));
 #endif
         }

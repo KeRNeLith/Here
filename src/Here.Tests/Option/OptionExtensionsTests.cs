@@ -113,9 +113,7 @@ namespace Here.Tests.Options
         public void StringToOption()
         {
             // Null or empty
-            Option<string> optionString;
-            
-            optionString = string.Empty.NoneIfEmpty();
+            Option<string> optionString = string.Empty.NoneIfEmpty();
             CheckEmptyOption(optionString);
             
             optionString = "".NoneIfEmpty();
@@ -156,11 +154,8 @@ namespace Here.Tests.Options
         public void OptionStringToOption()
         {
             // Null or empty
-            Option<string> inputOptionString;
-            Option<string> optionString;
-
-            inputOptionString = Option.None;
-            optionString = inputOptionString.NoneIfEmpty();
+            Option<string> inputOptionString = Option.None;
+            Option<string> optionString = inputOptionString.NoneIfEmpty();
             CheckEmptyOption(optionString);
 
             inputOptionString = Option<string>.Some(string.Empty);

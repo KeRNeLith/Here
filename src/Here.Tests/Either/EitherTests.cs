@@ -1483,15 +1483,15 @@ namespace Here.Tests.Eithers
         {
             // Either left
             Either<string, int> eitherStringInt = Either.Left("Either error message");
-            Assert.AreEqual($"Left(Either error message)", eitherStringInt.ToString());
+            Assert.AreEqual("Left(Either error message)", eitherStringInt.ToString());
             EitherLeft<int> eitherLeftInt = Either.Left(12);
-            Assert.AreEqual($"Left(12)", eitherLeftInt.ToString());
+            Assert.AreEqual("Left(12)", eitherLeftInt.ToString());
 
             // Either right
             eitherStringInt = Either.Right(42);
-            Assert.AreEqual($"Right(42)", eitherStringInt.ToString());
+            Assert.AreEqual("Right(42)", eitherStringInt.ToString());
             EitherRight<int> eitherRightInt = Either.Right(12);
-            Assert.AreEqual($"Right(12)", eitherRightInt.ToString());
+            Assert.AreEqual("Right(12)", eitherRightInt.ToString());
 
             // Either none
             Assert.AreEqual("None", new Either<string, int>().ToString());
