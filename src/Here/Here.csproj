@@ -36,38 +36,36 @@ Supports Source Link</Description>
 
     <IsPackable>true</IsPackable>
     <PackageId>Here</PackageId>
-    <PackageReleaseNotes>➟ Release 0.7.0
+    <PackageReleaseNotes>➟ Release 0.8.1
 - General:
-    - Clean the library documentation.
-    - Documentation of the library is now packaged.
-    - Add support of Source Link.
-    - Remove dependency to Jetbrains.Annotations, embed the code of some attributes internally.
-    - The library is ReSharper compliant (use internal annotations recognized by ReSharper).
-    - Remove target .NET Framework 4.5.2.
-    - Annotate with "in" all functions parameters that support it.
-    - WARNING: All existing classes/structs have been moved from their own namespaces to the Here namespace, and extensions to the Here.Extensions namespace.
+    - Library use C# 7.2 features.
+    - Change target NetStandard 1.1 to NetStandard 1.0.
+    - Adjust some annotations of library methods.
+    - Add early throw for parameters that should not be null.
+    - Add exception documentation on library functions.
 
-- Maybe =&gt; Option:
-    - Add extensions to unwrap the value embedded by Maybe&lt;T&gt;.
-    - Add static helpers to check equality and compare Maybe&lt;T&gt; (allows custom comparer).
-    - Maybe&lt;T&gt; is equatable with object of the wrapped type (also add a static helper for this).
-    - Make structure readonly.
-    - Rename Maybe&lt;T&gt; to Option&lt;T&gt;.
+- Option:
+    - Add extensions to Enum, DateTime, DateTimeOffset and Guid.
+    - Replace methods returning void by Unit.
+    - Transform conversions from Option to other library types to extensions.
+    - Transform operations available for Option as extensions into instance methods.
 
 - Results:
-    - Add extensions to unwrap the value embedded by results structures.
-    - Add extensions to Flatten results structures.
-    - Rename SuccessEquals static helpers to SuccessEqual.
-    - Add static helpers to check equality and compare results structures (allows custom comparer).
-    - Result structures with value are equatable with object of the wrapped type (also add a static helper for this).
-    - Add cast methods on Result with value that perform a cast with the "as" operator.
-    - Add extensions OnSuccess/OnFailure allowing to return an output value other than a result structure.
-    - Make structures readonly.
-    - Add factory method to create a result from an exception.
+    - Add extensions OnSuccessOrFailure.
+    - Update some OnSuccess/OnFailure extensions to return the input result to make possible to chain them.
+    - Add inputs parameters to lambda of some OnSuccess extensions.
+    - Transform conversions from Results to other library types to extensions.
 
-- ValueObject:
-    - Add a first implementation of a base class for value objects.</PackageReleaseNotes>
-    <PackageTags>Here Functional C# Option Maybe Result Monad</PackageTags>
+- Unit:
+    - Add an implementation of Unit type.
+
+- Either:
+    - Add a first implementation Either monad (readonly structure).
+        - Operations methods (IfLeft/IfRight/Match/Map, etc.).
+        - Linq extensions.
+        - Comparison helpers.
+        - Conversions to other library types.</PackageReleaseNotes>
+    <PackageTags>Here Functional C# Option Maybe Result Either ValueObject Monad</PackageTags>
 
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
