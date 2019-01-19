@@ -35,7 +35,7 @@ namespace Here
 
         [CanBeNull]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private readonly T _value;
+        internal readonly T _value;
 
         /// <inheritdoc />
         /// <exception cref="InvalidOperationException">If the result is not a success.</exception>

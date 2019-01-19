@@ -36,7 +36,7 @@ namespace Here
         /// </summary>
         [CanBeNull]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private readonly T _value;
+        internal readonly T _value;
 
         /// <summary>
         /// Gets the value stored in the <see cref="Option{T}"/> if present otherwise throws.

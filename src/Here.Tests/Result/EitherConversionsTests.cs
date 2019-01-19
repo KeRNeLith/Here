@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using Here.Extensions;
 
 namespace Here.Tests.Results
 {
@@ -13,9 +14,28 @@ namespace Here.Tests.Results
         public void EitherToResult()
         {
             // Either left
-            var eitherLeft = Either<string, int>.Left("Error");
+            var eitherLeft = Either<double, int>.Left(42.5);
             Result result = eitherLeft.ToResult();
             CheckResultFail(result, ResultConstants.EitherToFailedResult);
+
+            // Either right
+            var eitherRight = Either<double, int>.Right(42);
+            result = eitherRight.ToResult();
+            CheckResultOk(result);
+
+            // Either none
+            var eitherNone = Either<double, int>.None;
+            result = eitherNone.ToResult();
+            CheckResultFail(result, ResultConstants.EitherToFailedResult);
+        }
+
+        [Test]
+        public void EitherStrToResult()
+        {
+            // Either left
+            var eitherLeft = Either<string, int>.Left("Error");
+            Result result = eitherLeft.ToResult();
+            CheckResultFail(result, "Error");
 
             // Either right
             var eitherRight = Either<string, int>.Right(42);
@@ -32,9 +52,28 @@ namespace Here.Tests.Results
         public void EitherToValueResult()
         {
             // Either left
-            var eitherLeft = Either<string, int>.Left("Error");
+            var eitherLeft = Either<double, int>.Left(42.5);
             Result<int> result = eitherLeft.ToValueResult();
             CheckResultFail(result, ResultConstants.EitherToFailedResult);
+
+            // Either right
+            var eitherRight = Either<double, int>.Right(42);
+            result = eitherRight.ToValueResult();
+            CheckResultOk(result, 42);
+
+            // Either none
+            var eitherNone = Either<double, int>.None;
+            result = eitherNone.ToValueResult();
+            CheckResultFail(result, ResultConstants.EitherToFailedResult);
+        }
+
+        [Test]
+        public void EitherStrToValueResult()
+        {
+            // Either left
+            var eitherLeft = Either<string, int>.Left("Error");
+            Result<int> result = eitherLeft.ToValueResult();
+            CheckResultFail(result, "Error");
 
             // Either right
             var eitherRight = Either<string, int>.Right(42);

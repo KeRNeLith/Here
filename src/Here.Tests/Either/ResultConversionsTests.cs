@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using Here.Extensions;
 
 namespace Here.Tests.Eithers
 {

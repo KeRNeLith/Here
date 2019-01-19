@@ -19,9 +19,9 @@
         public const string ValueCustomResultToEitherNullValue = "Result<T, TError> had a null value.";
 
         /// <summary>
-        /// <see cref="Either{TLeft,TRight}"/> is in a <see cref="EitherStates.Left"/> state while trying
-        /// to convert it to a <see cref="Result"/>, so it produces a failed <see cref="Result"/>.
+        /// <see cref="Either{TLeft,TRight}"/> is in a <see cref="EitherStates.Left"/> or <see cref="EitherStates.None"/>
+        /// state while trying to convert it to a result, so it produces a failed result.
         /// </summary>
-        public const string EitherToFailedResult = "Either<TLeft, TRight> was in Left state.";
+        public const string EitherToFailedResult = "Either<TLeft, TRight> was in Left or None state.";
     }
 }
