@@ -33,7 +33,7 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         [PublicAPI, Pure]
-        public static Option<T> FirstOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull, InstantHandle] in Predicate<T> predicate)
+        public static Option<T> FirstOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull, InstantHandle] Predicate<T> predicate)
         {
             Throw.IfArgumentNull(enumerable, nameof(enumerable));
             Throw.IfArgumentNull(predicate, nameof(predicate));
@@ -58,7 +58,7 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
         /// <exception cref="InvalidOperationException">If the <paramref name="enumerable"/> contains more than one element.</exception>
         [PublicAPI, Pure]
-        public static Option<T> SingleOrNone<T>([NotNull] this IEnumerable<T> enumerable, in bool throwInvalidException = true)
+        public static Option<T> SingleOrNone<T>([NotNull] this IEnumerable<T> enumerable, bool throwInvalidException = true)
         {
             Throw.IfArgumentNull(enumerable, nameof(enumerable));
 
@@ -90,7 +90,7 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         /// <exception cref="InvalidOperationException">If the <paramref name="enumerable"/> contains more than one element matching the <paramref name="predicate"/>.</exception>
         [PublicAPI, Pure]
-        public static Option<T> SingleOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull, InstantHandle] in Predicate<T> predicate, in bool throwInvalidException = true)
+        public static Option<T> SingleOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull, InstantHandle] Predicate<T> predicate, bool throwInvalidException = true)
         {
             Throw.IfArgumentNull(enumerable, nameof(enumerable));
             Throw.IfArgumentNull(predicate, nameof(predicate));
@@ -143,12 +143,12 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         [PublicAPI, Pure]
-        public static Option<T> LastOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull, InstantHandle] in Predicate<T> predicate)
+        public static Option<T> LastOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull, InstantHandle] Predicate<T> predicate)
         {
             Throw.IfArgumentNull(enumerable, nameof(enumerable));
             Throw.IfArgumentNull(predicate, nameof(predicate));
 
-            T matchedItem = default;
+            T matchedItem = default(T);
             bool match = false;
 
             foreach (var item in enumerable)
@@ -288,7 +288,7 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="keySelector"/> is null.</exception>
         [PublicAPI, Pure, NotNull]
-        public static Dictionary<TKey, TValue> ToDictionary<TValue, TKey>([NotNull] this IEnumerable<Option<TValue>> enumerable, [NotNull, InstantHandle] in Func<TValue, TKey> keySelector)
+        public static Dictionary<TKey, TValue> ToDictionary<TValue, TKey>([NotNull] this IEnumerable<Option<TValue>> enumerable, [NotNull, InstantHandle] Func<TValue, TKey> keySelector)
         {
             Throw.IfArgumentNull(enumerable, nameof(enumerable));
             Throw.IfArgumentNull(keySelector, nameof(keySelector));

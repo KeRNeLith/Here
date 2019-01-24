@@ -12,7 +12,7 @@ namespace Here
         /// <param name="option"><see cref="Option{T}"/> to check.</param>
         /// <returns>True if <see cref="Option{T}"/> <see cref="HasNoValue"/>.</returns>
         [PublicAPI, Pure]
-        public static bool operator !(in Option<T> option) => option.HasNoValue;
+        public static bool operator !(Option<T> option) => option.HasNoValue;
 
         /// <summary>
         /// Converts this <see cref="Option{T}"/> if it has a value to an <see cref="Option{T}"/>.

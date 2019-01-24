@@ -110,7 +110,6 @@ deploy:
     api_key:
       secure: H9AFeC6uNE88rUiZxmDQNt50bhQ0ilMCua/X9s1++dNB0wMHWrKY8xjfM/M2xFja
     on:
-      branch: master
       configuration: Release
       APPVEYOR_REPO_TAG: true
 # GitHub
@@ -124,6 +123,5 @@ deploy:
     prerelease: false
     force_update: true
     on:
-      branch: master
       configuration: Release
       APPVEYOR_REPO_TAG: true

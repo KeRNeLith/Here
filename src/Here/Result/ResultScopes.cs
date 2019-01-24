@@ -16,7 +16,7 @@ namespace Here
         /// <returns>A <see cref="Result"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="action"/> is null.</exception>
         [PublicAPI]
-        public static Result SafeResult([NotNull, InstantHandle] in Action action)
+        public static Result SafeResult([NotNull, InstantHandle] Action action)
         {
             Throw.IfArgumentNull(action, nameof(action));
 
@@ -38,7 +38,7 @@ namespace Here
         /// <returns>A <see cref="Result"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="action"/> is null.</exception>
         [PublicAPI]
-        public static Result SafeResult([NotNull, InstantHandle] in Func<Result> action)
+        public static Result SafeResult([NotNull, InstantHandle] Func<Result> action)
         {
             Throw.IfArgumentNull(action, nameof(action));
 
@@ -59,7 +59,7 @@ namespace Here
         /// <returns>A <see cref="Result{T}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="action"/> is null.</exception>
         [PublicAPI]
-        public static Result<T> SafeValueResult<T>([NotNull, InstantHandle] in Func<Result<T>> action)
+        public static Result<T> SafeValueResult<T>([NotNull, InstantHandle] Func<Result<T>> action)
         {
             Throw.IfArgumentNull(action, nameof(action));
 
@@ -82,7 +82,7 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="action"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI]
-        public static CustomResult<TError> SafeCustomResult<TError>([NotNull, InstantHandle] in Func<CustomResult<TError>> action, [NotNull] in TError errorObject)
+        public static CustomResult<TError> SafeCustomResult<TError>([NotNull, InstantHandle] Func<CustomResult<TError>> action, [NotNull] TError errorObject)
         {
             Throw.IfArgumentNull(action, nameof(action));
             Throw.IfArgumentNull(errorObject, nameof(errorObject));
@@ -106,7 +106,7 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="action"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI]
-        public static CustomResult<TError> SafeCustomResult<TError>([NotNull, InstantHandle] in Func<CustomResult<TError>> action, [NotNull] in Func<TError> errorFactory)
+        public static CustomResult<TError> SafeCustomResult<TError>([NotNull, InstantHandle] Func<CustomResult<TError>> action, [NotNull] Func<TError> errorFactory)
         {
             Throw.IfArgumentNull(action, nameof(action));
             Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
@@ -130,7 +130,7 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="action"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI]
-        public static Result<T, TError> SafeValueCustomResult<T, TError>([NotNull, InstantHandle] in Func<Result<T, TError>> action, [NotNull] in TError errorObject)
+        public static Result<T, TError> SafeValueCustomResult<T, TError>([NotNull, InstantHandle] Func<Result<T, TError>> action, [NotNull] TError errorObject)
         {
             Throw.IfArgumentNull(action, nameof(action));
             Throw.IfArgumentNull(errorObject, nameof(errorObject));
@@ -154,7 +154,7 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="action"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI]
-        public static Result<T, TError> SafeValueCustomResult<T, TError>([NotNull, InstantHandle] in Func<Result<T, TError>> action, [NotNull] in Func<TError> errorFactory)
+        public static Result<T, TError> SafeValueCustomResult<T, TError>([NotNull, InstantHandle] Func<Result<T, TError>> action, [NotNull] Func<TError> errorFactory)
         {
             Throw.IfArgumentNull(action, nameof(action));
             Throw.IfArgumentNull(errorFactory, nameof(errorFactory));

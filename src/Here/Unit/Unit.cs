@@ -7,7 +7,7 @@ namespace Here
     /// Type that only have a unique value.
     /// </summary>
     [PublicAPI]
-    public readonly struct Unit : IEquatable<Unit>, IComparable, IComparable<Unit>
+    public struct Unit : IEquatable<Unit>, IComparable, IComparable<Unit>
     {
         /// <summary>
         /// Unique <see cref="Unit"/> value.

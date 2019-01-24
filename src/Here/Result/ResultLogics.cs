@@ -60,7 +60,7 @@ namespace Here
             IsWarning = false;
             IsFailure = false;
             Message = null;
-            _error = default;
+            _error = default(TError);
             Exception = null;
         }
 
@@ -71,7 +71,7 @@ namespace Here
         /// <param name="message">Message.</param>
         /// <param name="error">Error object.</param>
         /// <param name="exception">Result embedded exception.</param>
-        public ResultLogic(in bool isWarning, [NotNull] in string message, [CanBeNull] in TError error, [CanBeNull] in Exception exception)
+        public ResultLogic(bool isWarning, [NotNull] string message, [CanBeNull] TError error, [CanBeNull] Exception exception)
         {
             // Warning & Failure must have a message
             if (string.IsNullOrEmpty(message))
@@ -125,7 +125,7 @@ namespace Here
         /// <param name="result1">First <see cref="ResultLogic{TError}"/> to compare.</param>
         /// <param name="result2">Second <see cref="ResultLogic{TError}"/> to compare.</param>
         /// <returns>True if both <see cref="ResultLogic{TError}"/> are equal, otherwise false.</returns>
-        public static bool operator ==(in ResultLogic<TError> result1, in ResultLogic<TError> result2)
+        public static bool operator ==(ResultLogic<TError> result1, ResultLogic<TError> result2)
         {
             if (ReferenceEquals(result1, result2))
                 return true;
@@ -138,7 +138,7 @@ namespace Here
         /// <param name="result1">First <see cref="ResultLogic{TError}"/> to compare.</param>
         /// <param name="result2">Second <see cref="ResultLogic{TError}"/> to compare.</param>
         /// <returns>True if both <see cref="ResultLogic{TError}"/> are not equal, otherwise false.</returns>
-        public static bool operator !=(in ResultLogic<TError> result1, in ResultLogic<TError> result2)
+        public static bool operator !=(ResultLogic<TError> result1, ResultLogic<TError> result2)
         {
             return !(result1 == result2);
         }
@@ -179,7 +179,7 @@ namespace Here
         /// <param name="left">The first <see cref="ResultLogic{TError}"/> to compare.</param>
         /// <param name="right">The second <see cref="ResultLogic{TError}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator <(in ResultLogic<TError> left, in ResultLogic<TError> right)
+        public static bool operator <(ResultLogic<TError> left, ResultLogic<TError> right)
         {
             return left.CompareTo(right) < 0;
         }
@@ -190,7 +190,7 @@ namespace Here
         /// <param name="left">The first <see cref="ResultLogic{TError}"/> to compare.</param>
         /// <param name="right">The second <see cref="ResultLogic{TError}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator <=(in ResultLogic<TError> left, in ResultLogic<TError> right)
+        public static bool operator <=(ResultLogic<TError> left, ResultLogic<TError> right)
         {
             return left.CompareTo(right) <= 0;
         }
@@ -201,7 +201,7 @@ namespace Here
         /// <param name="left">The first <see cref="ResultLogic{TError}"/> to compare.</param>
         /// <param name="right">The second <see cref="ResultLogic{TError}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator >(in ResultLogic<TError> left, in ResultLogic<TError> right)
+        public static bool operator >(ResultLogic<TError> left, ResultLogic<TError> right)
         {
             return left.CompareTo(right) > 0;
         }
@@ -212,7 +212,7 @@ namespace Here
         /// <param name="left">The first <see cref="ResultLogic{TError}"/> to compare.</param>
         /// <param name="right">The second <see cref="ResultLogic{TError}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator >=(in ResultLogic<TError> left, in ResultLogic<TError> right)
+        public static bool operator >=(ResultLogic<TError> left, ResultLogic<TError> right)
         {
             return left.CompareTo(right) >= 0;
         }
@@ -248,7 +248,7 @@ namespace Here
         /// <param name="isWarning">Warning flag.</param>
         /// <param name="message">Result message.</param>
         /// <param name="exception">Result embedded exception.</param>
-        public ResultLogic(in bool isWarning, [NotNull] in string message, [CanBeNull] in Exception exception)
+        public ResultLogic(bool isWarning, [NotNull] string message, [CanBeNull] Exception exception)
             : base(isWarning, message, isWarning ? null : message, exception)
         {
         }
@@ -261,7 +261,7 @@ namespace Here
         /// <param name="logic"><see cref="ResultLogic{TError}"/> to check.</param>
         /// <returns>True if the <see cref="ResultLogic{TError}"/> is convertible, otherwise false.</returns>
         [Pure]
-        internal static bool IsConvertibleToFailure<TError>(in ResultLogic<TError> logic)
+        internal static bool IsConvertibleToFailure<TError>(ResultLogic<TError> logic)
         {
             return !logic.IsSuccess || logic.IsWarning;
         }
@@ -271,7 +271,7 @@ namespace Here
         /// </summary>
         /// <param name="logic"><see cref="ResultLogic{TError}"/> to check.</param>
         /// <returns>True if the <see cref="ResultLogic{TError}"/> is convertible, otherwise false.</returns>
-        internal static bool IsConvertibleToWarning<TError>(in ResultLogic<TError> logic)
+        internal static bool IsConvertibleToWarning<TError>(ResultLogic<TError> logic)
         {
             return !logic.IsFailure;
         }
@@ -283,7 +283,7 @@ namespace Here
         /// <param name="logic"><see cref="ResultLogic{TError}"/> to convert.</param>
         /// <returns>A <see cref="ResultLogic"/>.</returns>
         [Pure]
-        internal static ResultLogic ToResultLogic<TError>(in ResultLogic<TError> logic)
+        internal static ResultLogic ToResultLogic<TError>(ResultLogic<TError> logic)
         {
             if (logic.IsSuccess && !logic.IsWarning)
                 return new ResultLogic();
@@ -330,7 +330,7 @@ namespace Here
         /// <param name="result1">First <see cref="ResultLogic"/> to compare.</param>
         /// <param name="result2">Second <see cref="ResultLogic"/> to compare.</param>
         /// <returns>True if both <see cref="ResultLogic"/> are equal, otherwise false.</returns>
-        public static bool operator ==(in ResultLogic result1, in ResultLogic result2)
+        public static bool operator ==(ResultLogic result1, ResultLogic result2)
         {
             if (ReferenceEquals(result1, result2))
                 return true;
@@ -343,7 +343,7 @@ namespace Here
         /// <param name="result1">First <see cref="ResultLogic"/> to compare.</param>
         /// <param name="result2">Second <see cref="ResultLogic"/> to compare.</param>
         /// <returns>True if both <see cref="ResultLogic"/> are not equal, otherwise false.</returns>
-        public static bool operator !=(in ResultLogic result1, in ResultLogic result2)
+        public static bool operator !=(ResultLogic result1, ResultLogic result2)
         {
             return !(result1 == result2);
         }
@@ -368,7 +368,7 @@ namespace Here
         /// <param name="left">The first <see cref="ResultLogic"/> to compare.</param>
         /// <param name="right">The second <see cref="ResultLogic"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator <(in ResultLogic left, in ResultLogic right)
+        public static bool operator <(ResultLogic left, ResultLogic right)
         {
             return left.CompareTo(right) < 0;
         }
@@ -379,7 +379,7 @@ namespace Here
         /// <param name="left">The first <see cref="ResultLogic"/> to compare.</param>
         /// <param name="right">The second <see cref="ResultLogic"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator <=(in ResultLogic left, in ResultLogic right)
+        public static bool operator <=(ResultLogic left, ResultLogic right)
         {
             return left.CompareTo(right) <= 0;
         }
@@ -390,7 +390,7 @@ namespace Here
         /// <param name="left">The first <see cref="ResultLogic"/> to compare.</param>
         /// <param name="right">The second <see cref="ResultLogic"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator >(in ResultLogic left, in ResultLogic right)
+        public static bool operator >(ResultLogic left, ResultLogic right)
         {
             return left.CompareTo(right) > 0;
         }
@@ -401,7 +401,7 @@ namespace Here
         /// <param name="left">The first <see cref="ResultLogic"/> to compare.</param>
         /// <param name="right">The second <see cref="ResultLogic"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator >=(in ResultLogic left, in ResultLogic right)
+        public static bool operator >=(ResultLogic left, ResultLogic right)
         {
             return left.CompareTo(right) >= 0;
         }

@@ -11,7 +11,7 @@ namespace Here
     /// <typeparam name="T">Type of the value embedded in the <see cref="Option{T}"/>.</typeparam>
     [PublicAPI]
     [DebuggerDisplay("{" + nameof(HasValue) + " ? \"Value = \" + " + nameof(Value) + " : \"No value\"}")]
-    public readonly partial struct Option<T> : IEquatable<T>, IEquatable<Option<T>>, IComparable, IComparable<Option<T>>
+    public partial struct Option<T> : IEquatable<T>, IEquatable<Option<T>>, IComparable, IComparable<Option<T>>
     {
         /// <summary>
         /// Nothing value.
@@ -59,7 +59,7 @@ namespace Here
         /// Constructor.
         /// </summary>
         /// <param name="value">A value.</param>
-        private Option([NotNull] in T value)
+        private Option([NotNull] T value)
         {
             HasValue = true;
             _value = value;
@@ -71,7 +71,7 @@ namespace Here
         /// <param name="value">A value.</param>
         /// <exception cref="ArgumentNullException">If the <paramref name="value"/> is null.</exception>
         [PublicAPI]
-        public static Option<T> Some([NotNull] in T value)
+        public static Option<T> Some([NotNull] T value)
         {
             if (value == null)
                 throw new ArgumentNullException(nameof(value), "Cannot initialize an Option with a null value.");
@@ -111,7 +111,7 @@ namespace Here
         /// <param name="equalityComparer">Equality comparer to use to compare values.</param>
         /// <returns>True if the <see cref="Option{T}"/> value is equals to the given value, otherwise false.</returns>
         [Pure]
-        internal static bool AreEqual(in Option<T> option, [CanBeNull] in T value, [CanBeNull] in IEqualityComparer<T> equalityComparer = null)
+        internal static bool AreEqual(Option<T> option, [CanBeNull] T value, [CanBeNull] IEqualityComparer<T> equalityComparer = null)
         {
             if (option.HasNoValue)
                 return false;
@@ -126,7 +126,7 @@ namespace Here
         /// <param name="equalityComparer">Equality comparer to use to compare values.</param>
         /// <returns>True if both <see cref="Option{T}"/> are equal, otherwise false.</returns>
         [Pure]
-        internal static bool AreEqual(in Option<T> option1, in Option<T> option2, [CanBeNull] in IEqualityComparer<T> equalityComparer = null)
+        internal static bool AreEqual(Option<T> option1, Option<T> option2, [CanBeNull] IEqualityComparer<T> equalityComparer = null)
         {
             if (option1.HasNoValue && option2.HasNoValue)
                 return true;
@@ -149,7 +149,7 @@ namespace Here
         /// <param name="option1">First <see cref="Option{T}"/> to compare.</param>
         /// <param name="option2">Second <see cref="Option{T}"/> to compare.</param>
         /// <returns>True if both <see cref="Option{T}"/> are equal, otherwise false.</returns>
-        public static bool operator==(in Option<T> option1, in Option<T> option2)
+        public static bool operator==(Option<T> option1, Option<T> option2)
         {
             return AreEqual(option1, option2);
         }
@@ -160,7 +160,7 @@ namespace Here
         /// <param name="option1">First <see cref="Option{T}"/> to compare.</param>
         /// <param name="option2">Second <see cref="Option{T}"/> to compare.</param>
         /// <returns>True if <see cref="Option{T}"/> are not equal, otherwise false.</returns>
-        public static bool operator!=(in Option<T> option1, in Option<T> option2)
+        public static bool operator!=(Option<T> option1, Option<T> option2)
         {
             return !(option1 == option2);
         }
@@ -171,7 +171,7 @@ namespace Here
         /// <param name="option"><see cref="Option{T}"/> that may embed a value to compare.</param>
         /// <param name="value">Value to compare.</param>
         /// <returns>True if the <see cref="Option{T}"/> value is equals to the given value, otherwise false.</returns>
-        public static bool operator ==(in Option<T> option, in T value)
+        public static bool operator ==(Option<T> option, T value)
         {
             return AreEqual(option, value);
         }
@@ -182,7 +182,7 @@ namespace Here
         /// <param name="option"><see cref="Option{T}"/> that may embed a value to compare.</param>
         /// <param name="value">Value to compare.</param>
         /// <returns>True if the <see cref="Option{T}"/> value is not equals to the given value, otherwise false.</returns>
-        public static bool operator !=(in Option<T> option, in T value)
+        public static bool operator !=(Option<T> option, T value)
         {
             return !(option == value);
         }
@@ -193,7 +193,7 @@ namespace Here
         /// <param name="value">Value to compare.</param>
         /// <param name="option"><see cref="Option{T}"/> that may embed a value to compare.</param>
         /// <returns>True if the <see cref="Option{T}"/> value is equals to the given value, otherwise false.</returns>
-        public static bool operator ==(in T value, in Option<T> option)
+        public static bool operator ==(T value, Option<T> option)
         {
             return option == value;
         }
@@ -204,7 +204,7 @@ namespace Here
         /// <param name="value">Value to compare.</param>
         /// <param name="option"><see cref="Option{T}"/> that may embed a value to compare.</param>
         /// <returns>True if the <see cref="Option{T}"/> value is not equals to the given value, otherwise false.</returns>
-        public static bool operator !=(in T value, in Option<T> option)
+        public static bool operator !=(T value, Option<T> option)
         {
             return !(option == value);
         }
@@ -245,7 +245,7 @@ namespace Here
         /// <param name="comparer">Equality comparer to use to compare values.</param>
         /// <returns>An integer that indicates the relative order of compared objects.</returns>
         [Pure]
-        internal static int Compare(in Option<T> option1, in Option<T> option2, [CanBeNull] in IComparer<T> comparer = null)
+        internal static int Compare(Option<T> option1, Option<T> option2, [CanBeNull] IComparer<T> comparer = null)
         {
             if (option1.HasValue && !option2.HasValue)
                 return 1;
@@ -260,7 +260,7 @@ namespace Here
         /// <param name="left">The first <see cref="Option{T}"/> to compare.</param>
         /// <param name="right">The second <see cref="Option{T}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator <(in Option<T> left, in Option<T> right)
+        public static bool operator <(Option<T> left, Option<T> right)
         {
             return Compare(left, right) < 0;
         }
@@ -271,7 +271,7 @@ namespace Here
         /// <param name="left">The first <see cref="Option{T}"/> to compare.</param>
         /// <param name="right">The second <see cref="Option{T}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator <=(in Option<T> left, in Option<T> right)
+        public static bool operator <=(Option<T> left, Option<T> right)
         {
             return Compare(left, right) <= 0;
         }
@@ -282,7 +282,7 @@ namespace Here
         /// <param name="left">The first <see cref="Option{T}"/> to compare.</param>
         /// <param name="right">The second <see cref="Option{T}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator >(in Option<T> left, in Option<T> right)
+        public static bool operator >(Option<T> left, Option<T> right)
         {
             return Compare(left, right) > 0;
         }
@@ -293,7 +293,7 @@ namespace Here
         /// <param name="left">The first <see cref="Option{T}"/> to compare.</param>
         /// <param name="right">The second <see cref="Option{T}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator >=(in Option<T> left, in Option<T> right)
+        public static bool operator >=(Option<T> left, Option<T> right)
         {
             return Compare(left, right) >= 0;
         }

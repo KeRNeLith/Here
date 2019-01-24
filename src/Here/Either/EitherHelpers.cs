@@ -15,7 +15,7 @@ namespace Here
         /// <param name="either2">Second <see cref="Either{TLeft,TRight}"/> to compare.</param>
         /// <returns>True if both <see cref="Either{TLeft,TRight}"/> are equal, otherwise false.</returns>
         [PublicAPI, Pure]
-        public static bool AreEqual<TLeft, TRight>(in Either<TLeft, TRight> either1, in Either<TLeft, TRight> either2)
+        public static bool AreEqual<TLeft, TRight>(Either<TLeft, TRight> either1, Either<TLeft, TRight> either2)
         {
             return Either<TLeft, TRight>.AreEqual(either1, either2);
         }
@@ -27,7 +27,7 @@ namespace Here
         /// <param name="eitherLeft2">Second <see cref="EitherLeft{TLeft}"/> to compare.</param>
         /// <returns>True if both <see cref="EitherLeft{TLeft}"/> are equal, otherwise false.</returns>
         [PublicAPI, Pure]
-        public static bool AreEqual<TLeft>(in EitherLeft<TLeft> eitherLeft1, in EitherLeft<TLeft> eitherLeft2)
+        public static bool AreEqual<TLeft>(EitherLeft<TLeft> eitherLeft1, EitherLeft<TLeft> eitherLeft2)
         {
             return eitherLeft1.Equals(eitherLeft2);
         }
@@ -39,7 +39,7 @@ namespace Here
         /// <param name="eitherRight2">Second <see cref="EitherRight{TRight}"/> to compare.</param>
         /// <returns>True if both <see cref="EitherRight{TRight}"/> are equal, otherwise false.</returns>
         [PublicAPI, Pure]
-        public static bool AreEqual<TRight>(in EitherRight<TRight> eitherRight1, in EitherRight<TRight> eitherRight2)
+        public static bool AreEqual<TRight>(EitherRight<TRight> eitherRight1, EitherRight<TRight> eitherRight2)
         {
             return eitherRight1.Equals(eitherRight2);
         }
@@ -52,7 +52,7 @@ namespace Here
         /// <param name="either2">Second <see cref="Either{TLeft,TRight}"/> to compare.</param>
         /// <returns>An integer that indicates the relative order of compared objects.</returns>
         [PublicAPI, Pure]
-        public static int Compare<TLeft, TRight>(in Either<TLeft, TRight> either1, in Either<TLeft, TRight> either2)
+        public static int Compare<TLeft, TRight>(Either<TLeft, TRight> either1, Either<TLeft, TRight> either2)
         {
             return Either<TLeft, TRight>.Compare(either1, either2);
         }
@@ -65,7 +65,7 @@ namespace Here
         /// <param name="eitherLeft2">Second <see cref="EitherLeft{TLeft}"/> to compare.</param>
         /// <returns>An integer that indicates the relative order of compared objects.</returns>
         [PublicAPI, Pure]
-        public static int Compare<TLeft>(in EitherLeft<TLeft> eitherLeft1, in EitherLeft<TLeft> eitherLeft2)
+        public static int Compare<TLeft>(EitherLeft<TLeft> eitherLeft1, EitherLeft<TLeft> eitherLeft2)
         {
             return eitherLeft1.CompareTo(eitherLeft2);
         }
@@ -78,7 +78,7 @@ namespace Here
         /// <param name="eitherRight2">Second <see cref="EitherRight{TRight}"/> to compare.</param>
         /// <returns>An integer that indicates the relative order of compared objects.</returns>
         [PublicAPI, Pure]
-        public static int Compare<TRight>(in EitherRight<TRight> eitherRight1, in EitherRight<TRight> eitherRight2)
+        public static int Compare<TRight>(EitherRight<TRight> eitherRight1, EitherRight<TRight> eitherRight2)
         {
             return eitherRight1.CompareTo(eitherRight2);
         }

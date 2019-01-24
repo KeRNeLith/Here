@@ -11,7 +11,7 @@ namespace Here
         /// </summary>
         /// <returns>A None option.</returns>
         [PublicAPI, Pure]
-        public static implicit operator Option<T>([CanBeNull] in Option.NoneClass none)
+        public static implicit operator Option<T>([CanBeNull] Option.NoneClass none)
         {
             return None;
         }
@@ -22,7 +22,7 @@ namespace Here
         /// <param name="value">Value to initialize the <see cref="Option{T}"/>.</param>
         /// <returns>An <see cref="Option{T}"/>.</returns>
         [PublicAPI, Pure]
-        public static implicit operator Option<T>([CanBeNull] in T value)
+        public static implicit operator Option<T>([CanBeNull] T value)
         {
             if (value == null)
                 return None;
@@ -36,7 +36,7 @@ namespace Here
         /// <param name="embeddedOption">A <see cref="Option{T}"/>.</param>
         /// <returns>An <see cref="Option{T}"/>.</returns>
         [PublicAPI, Pure]
-        public static implicit operator Option<T>(in Option<Option<T>> embeddedOption)
+        public static implicit operator Option<T>(Option<Option<T>> embeddedOption)
         {
             return embeddedOption.Flatten();
         }
@@ -47,7 +47,7 @@ namespace Here
         /// <param name="option"><see cref="Option{T}"/> to convert.</param>
         /// <returns>A corresponding boolean.</returns>
         [PublicAPI, Pure]
-        public static implicit operator bool(in Option<T> option)
+        public static implicit operator bool(Option<T> option)
         {
             return option.HasValue;
         }
@@ -58,7 +58,7 @@ namespace Here
         /// <param name="option">An <see cref="Option{T}"/> to convert.</param>
         /// <returns>The corresponding <see cref="Result"/>.</returns>
         [PublicAPI, Pure]
-        public static implicit operator Result(in Option<T> option)
+        public static implicit operator Result(Option<T> option)
         {
             return option.ToResult();
         }
@@ -69,7 +69,7 @@ namespace Here
         /// <param name="option">An <see cref="Option{T}"/> to convert.</param>
         /// <returns>The corresponding <see cref="Result{T}"/>.</returns>
         [PublicAPI, Pure]
-        public static implicit operator Result<T>(in Option<T> option)
+        public static implicit operator Result<T>(Option<T> option)
         {
             return option.ToValueResult();
         }

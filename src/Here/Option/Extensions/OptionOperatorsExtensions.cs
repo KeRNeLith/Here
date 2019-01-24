@@ -18,7 +18,7 @@ namespace Here.Extensions
         /// <param name="failureMessage">Failure message in case this <see cref="Option{T}"/> has no value.</param>
         /// <returns>The corresponding <see cref="Result"/>.</returns>
         [PublicAPI, Pure]
-        public static Result ToResult<T>(in this Option<T> option, [CanBeNull] in string failureMessage = null)
+        public static Result ToResult<T>(this Option<T> option, [CanBeNull] string failureMessage = null)
         {
             if (option.HasValue)
                 return Result.Ok();
@@ -33,7 +33,7 @@ namespace Here.Extensions
         /// <param name="failureMessage">Failure message in case the <see cref="Option{T}"/> has no value.</param>
         /// <returns>The corresponding <see cref="Result{T}"/>.</returns>
         [PublicAPI, Pure]
-        public static Result<T> ToValueResult<T>(in this Option<T> option, [CanBeNull] in string failureMessage = null)
+        public static Result<T> ToValueResult<T>(this Option<T> option, [CanBeNull] string failureMessage = null)
         {
             if (option.HasValue)
                 return Result.Ok(option._value);
@@ -51,9 +51,9 @@ namespace Here.Extensions
         /// <returns>The corresponding <see cref="CustomResult{TError}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI, Pure]
-        public static CustomResult<TError> ToCustomResult<T, TError>(in this Option<T> option, 
-            [NotNull, InstantHandle] in Func<TError> errorFactory, 
-            [CanBeNull] in string failureMessage = null)
+        public static CustomResult<TError> ToCustomResult<T, TError>(this Option<T> option, 
+            [NotNull, InstantHandle] Func<TError> errorFactory, 
+            [CanBeNull] string failureMessage = null)
         {
             Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
 
@@ -73,9 +73,9 @@ namespace Here.Extensions
         /// <returns>The corresponding <see cref="CustomResult{TError}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI, Pure]
-        public static CustomResult<TError> ToCustomResult<T, TError>(in this Option<T> option, 
-            [NotNull] in TError errorObject, 
-            [CanBeNull] in string failureMessage = null)
+        public static CustomResult<TError> ToCustomResult<T, TError>(this Option<T> option, 
+            [NotNull] TError errorObject, 
+            [CanBeNull] string failureMessage = null)
         {
             Throw.IfArgumentNull(errorObject, nameof(errorObject));
 
@@ -95,9 +95,9 @@ namespace Here.Extensions
         /// <returns>The corresponding <see cref="Result{T, TError}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI, Pure]
-        public static Result<T, TError> ToValueCustomResult<T, TError>(in this Option<T> option, 
-            [NotNull, InstantHandle] in Func<TError> errorFactory, 
-            [CanBeNull] in string failureMessage = null)
+        public static Result<T, TError> ToValueCustomResult<T, TError>(this Option<T> option, 
+            [NotNull, InstantHandle] Func<TError> errorFactory, 
+            [CanBeNull] string failureMessage = null)
         {
             Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
 
@@ -117,9 +117,9 @@ namespace Here.Extensions
         /// <returns>The corresponding <see cref="Result{T, TError}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI, Pure]
-        public static Result<T, TError> ToValueCustomResult<T, TError>(in this Option<T> option, 
-            [NotNull] in TError errorObject, 
-            [CanBeNull] in string failureMessage = null)
+        public static Result<T, TError> ToValueCustomResult<T, TError>(this Option<T> option, 
+            [NotNull] TError errorObject, 
+            [CanBeNull] string failureMessage = null)
         {
             Throw.IfArgumentNull(errorObject, nameof(errorObject));
 
@@ -142,7 +142,7 @@ namespace Here.Extensions
         /// <param name="defaultLeftValue">Default left value to use if the <see cref="Option{T}"/> has no value.</param>
         /// <returns>The corresponding <see cref="Either{TLeft,T}"/>.</returns>
         [PublicAPI, Pure]
-        public static Either<TLeft, T> ToEither<T, TLeft>(in this Option<T> option, [NotNull] in TLeft defaultLeftValue)
+        public static Either<TLeft, T> ToEither<T, TLeft>(this Option<T> option, [NotNull] TLeft defaultLeftValue)
         {
             Throw.IfArgumentNull(defaultLeftValue, nameof(defaultLeftValue));
 
@@ -162,7 +162,7 @@ namespace Here.Extensions
         /// <see cref="Option{T}"/> has no value.</param>
         /// <returns>The corresponding <see cref="Either{TLeft,T}"/>.</returns>
         [PublicAPI, Pure]
-        public static Either<TLeft, T> ToEither<T, TLeft>(in this Option<T> option, [NotNull, InstantHandle] in Func<TLeft> leftValueFactory)
+        public static Either<TLeft, T> ToEither<T, TLeft>(this Option<T> option, [NotNull, InstantHandle] Func<TLeft> leftValueFactory)
         {
             Throw.IfArgumentNull(leftValueFactory, nameof(leftValueFactory));
 

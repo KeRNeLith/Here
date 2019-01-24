@@ -15,7 +15,7 @@ namespace Here.Extensions
         /// </summary>
         /// <param name="either"><see cref="Either{TLeft,TRight}"/> to convert.</param>
         /// <returns>An <see cref="Option{TRight}"/>.</returns>
-        public static Option<TRight> ToOption<TLeft, TRight>(in this Either<TLeft, TRight> either)
+        public static Option<TRight> ToOption<TLeft, TRight>(this Either<TLeft, TRight> either)
         {
             if (either.IsRight)
                 return Option<TRight>.Some(either._right);
@@ -31,7 +31,7 @@ namespace Here.Extensions
         /// </summary>
         /// <param name="either"><see cref="Either{TLeft,TRight}"/> to convert.</param>
         /// <returns>A <see cref="Result"/>.</returns>
-        public static Result ToResult<TLeft, TRight>(in this Either<TLeft, TRight> either)
+        public static Result ToResult<TLeft, TRight>(this Either<TLeft, TRight> either)
         {
             if (either.IsRight)
                 return Result.Ok();
@@ -43,7 +43,7 @@ namespace Here.Extensions
         /// </summary>
         /// <param name="either"><see cref="Either{TLeft,TRight}"/> to convert.</param>
         /// <returns>A <see cref="Result"/>.</returns>
-        public static Result ToResult<TRight>(in this Either<string, TRight> either)
+        public static Result ToResult<TRight>(this Either<string, TRight> either)
         {
             if (either.IsRight)
                 return Result.Ok();
@@ -57,7 +57,7 @@ namespace Here.Extensions
         /// </summary>
         /// <param name="either"><see cref="Either{TLeft,TRight}"/> to convert.</param>
         /// <returns>A <see cref="Result{TRight}"/>.</returns>
-        public static Result<TRight> ToValueResult<TLeft, TRight>(in this Either<TLeft, TRight> either)
+        public static Result<TRight> ToValueResult<TLeft, TRight>(this Either<TLeft, TRight> either)
         {
             if (either.IsRight)
                 return Result.Ok(either._right);
@@ -69,7 +69,7 @@ namespace Here.Extensions
         /// </summary>
         /// <param name="either"><see cref="Either{TLeft,TRight}"/> to convert.</param>
         /// <returns>A <see cref="Result{TRight}"/>.</returns>
-        public static Result<TRight> ToValueResult<TRight>(in this Either<string, TRight> either)
+        public static Result<TRight> ToValueResult<TRight>(this Either<string, TRight> either)
         {
             if (either.IsRight)
                 return Result.Ok(either._right);
@@ -84,7 +84,7 @@ namespace Here.Extensions
         /// <param name="either"><see cref="Either{TLeft,TRight}"/> to convert.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         /// <exception cref="InvalidOperationException">If the either is in <see cref="EitherStates.None"/> state.</exception>
-        public static CustomResult<TLeft> ToCustomResult<TLeft, TRight>(in this Either<TLeft, TRight> either)
+        public static CustomResult<TLeft> ToCustomResult<TLeft, TRight>(this Either<TLeft, TRight> either)
         {
             if (either.IsRight)
                 return Result.CustomOk<TLeft>();
@@ -100,7 +100,7 @@ namespace Here.Extensions
         /// <param name="either"><see cref="Either{TLeft,TRight}"/> to convert.</param>
         /// <returns>A <see cref="Result{TRight, TLeft}"/>.</returns>
         /// <exception cref="InvalidOperationException">If the either is in <see cref="EitherStates.None"/> state.</exception>
-        public static Result<TRight, TLeft> ToValueCustomResult<TLeft, TRight>(in this Either<TLeft, TRight> either)
+        public static Result<TRight, TLeft> ToValueCustomResult<TLeft, TRight>(this Either<TLeft, TRight> either)
         {
             if (either.IsRight)
                 return Result.Ok<TRight, TLeft>(either._right);

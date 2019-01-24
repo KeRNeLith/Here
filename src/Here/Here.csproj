@@ -36,9 +36,9 @@ Supports Source Link</Description>
 
     <IsPackable>true</IsPackable>
     <PackageId>Here</PackageId>
-    <PackageReleaseNotes>➟ Release 0.8.1
+    <PackageReleaseNotes>➟ Release 0.8.0
 - General:
-    - Library use C# 7.2 features.
+    - Library use C# 7.0 features.
     - Change target NetStandard 1.1 to NetStandard 1.0.
     - Adjust some annotations of library methods.
     - Add early throw for parameters that should not be null.
@@ -60,7 +60,7 @@ Supports Source Link</Description>
     - Add an implementation of Unit type.
 
 - Either:
-    - Add a first implementation Either monad (readonly structure).
+    - Add a first implementation Either monad.
         - Operations methods (IfLeft/IfRight/Match/Map, etc.).
         - Linq extensions.
         - Comparison helpers.
@@ -76,7 +76,7 @@ Supports Source Link</Description>
 
   <!-- C# configuration -->
   <PropertyGroup>
-    <LangVersion>7.2</LangVersion>
+    <LangVersion>7.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
