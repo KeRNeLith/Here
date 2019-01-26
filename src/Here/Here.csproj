@@ -22,7 +22,7 @@
     <Copyright>Copyright © 2018</Copyright>
     <Description>.NET library that provide mainly functional features for C#.
 
-This means concept of Option (Monad), Result and ValueObject.
+This means concept of Option, Result, Either and ValueObject.
 
 Supported platforms:
 - .NET Standard 1.0+
@@ -70,6 +70,7 @@ Supports Source Link</Description>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/KeRNeLith/Here</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/KeRNeLith/Here/master/here_logo.png</PackageIconUrl>
     <RepositoryType>GitHub</RepositoryType>
     <RepositoryUrl>https://github.com/KeRNeLith/Here</RepositoryUrl>
   </PropertyGroup>
