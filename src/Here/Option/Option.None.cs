@@ -9,11 +9,11 @@ namespace Here
     public static class Option
     {
         /// <summary>
-        /// Represents empty Option (nothing).
+        /// Represents an empty <see cref="Option{T}"/> (nothing).
         /// </summary>
-        public class NoneClass
+        public class OptionNone
         {
-            internal NoneClass()
+            internal OptionNone()
             {
             }
         }
@@ -27,6 +27,6 @@ namespace Here
         /// Represents a non typed empty Option.
         /// </summary>
         [PublicAPI, NotNull]
-        public static NoneClass None { get; } = new NoneClass();
+        public static OptionNone None { get; } = new OptionNone();
     }
 }
