@@ -417,20 +417,83 @@ namespace Here.Extensions
             return Get<string, DateTimeOffset>(str, DateTimeOffset.TryParse);
         }
 
-#if SUPPORTS_PARSE_ENUM
+#if SUPPORTS_TRY_PARSE_ENUM
         /// <summary>
         /// Try to parse an enumeration value from the given string to its <see cref="Enum"/> equivalent.
         /// </summary>
         /// <typeparam name="TEnum">Enumeration type.</typeparam>
         /// <param name="str">String to parse.</param>
-        /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
+        /// <returns><see cref="Option{TEnum}"/> that wrap the result of the parse.</returns>
+        /// <exception cref="ArgumentException">If the <typeparamref name="TEnum"/> is not an enumeration type.</exception>
         [PublicAPI, Pure]
         public static Option<TEnum> TryParseEnum<TEnum>([CanBeNull] this string str)
             where TEnum : struct
         {
             return Get<string, TEnum>(str, Enum.TryParse);
         }
+#else
+        // Alternative version returning an Option<object> rather than Option<TEnum>
+        /// <summary>
+        /// Try to parse an enumeration value from the given string to its <see cref="Enum"/> equivalent.
+        /// </summary>
+        /// <typeparam name="TEnum">Enumeration type.</typeparam>
+        /// <param name="str">String to parse.</param>
+        /// <returns><see cref="Option{Object}"/> that wrap the result of the parse.</returns>
+        /// <exception cref="ArgumentException">If the <typeparamref name="TEnum"/> is not an enumeration type.</exception>
+        [PublicAPI, Pure]
+#if SUPPORTS_AGGRESSIVE_INLINING
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
+        public static Option<object> TryParseEnum<TEnum>([CanBeNull] this string str)
+            where TEnum : struct
+        {
+            return str.TryParseEnum(typeof(TEnum));
+        }
+#endif
+
+        /// <summary>
+        /// Try to parse an enumeration value from the given string to its <see cref="Enum"/> equivalent.
+        /// </summary>
+        /// <param name="str">String to parse.</param>
+        /// <param name="enumType">Type of the <see cref="Enum"/> to parse.</param>
+        /// <returns><see cref="Option{Object}"/> that wrap the result of the parse.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="enumType"/> is null.</exception>
+        /// <exception cref="ArgumentException">If the <paramref name="enumType"/> is not an enumeration type.</exception>
+        [PublicAPI, Pure]
+        public static Option<object> TryParseEnum([CanBeNull] this string str, [NotNull] Type enumType)
+        {
+            Throw.IfArgumentNull(enumType, nameof(enumType));
+#if SUPPORTS_SYSTEM_TYPE_IS_ENUM
+            Throw.IfArgument(!enumType.IsEnum, nameof(enumType));
+#else
+            if (string.IsNullOrWhiteSpace(str))
+                return Option<object>.None;
+#endif
+            try
+            {
+                return Enum.Parse(enumType, str);
+            }
+#if SUPPORTS_SYSTEM_TYPE_IS_ENUM
+            catch (Exception)
+#else
+            catch (Exception ex)
+#endif
+            {
+#if !SUPPORTS_SYSTEM_TYPE_IS_ENUM
+                // Because System.Type does not always provide IsEnum property
+                // Based on Enum.Parse documentation, to know if we should throw
+                // because the given enumType is not an enum the caught exception
+                // must be ArgumentException and concerning the enumType parameter.
+                // If it's because the input string is null (or spaces) then it's checked earlier
+                // and if it's a value out of the enum then the ParamName is not filled.
+                if (ex is ArgumentException argEx 
+                    && argEx.ParamName != null 
+                    && argEx.ParamName.Equals("enumType", StringComparison.Ordinal))
+                    throw;
+#endif
+                return Option<object>.None;
+            }
+        }
 
         #endregion
     }

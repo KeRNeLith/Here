@@ -30,6 +30,21 @@ namespace Here.Tests.Options
                 CheckEmptyOption(option);
         }
 
+        /// <summary>
+        /// Calls the <paramref name="tryParseFunc"/> and check if the result match expected value.
+        /// </summary>
+        private static void TryParseEnumTest<T>([NotNull, InstantHandle] Func<Option<object>> tryParseFunc, bool mustHaveValue, T expectedValue)
+        {
+            var option = tryParseFunc();
+            if (mustHaveValue)
+            {
+                Assert.IsTrue(option.HasValue);
+                Assert.AreEqual((T)option.Value, option.Value);
+            }
+            else
+                CheckEmptyOption(option);
+        }
+
         #region TryParse bool
 
         private static IEnumerable<TestCaseData> CreateTryParseBoolTestCases
@@ -580,7 +595,6 @@ namespace Here.Tests.Options
 
         #region TryParse Enumeration
 
-#if SUPPORTS_PARSE_ENUM
         public enum TestEnum
         {
             Value1,
@@ -606,9 +620,23 @@ namespace Here.Tests.Options
         [TestCaseSource(nameof(CreateTryParseEnumTestCases))]
         public void TryParseEnum(string input, bool mustHaveValue, TestEnum expectedValue)
         {
+#if SUPPORTS_TRY_PARSE_ENUM
             TryParseTest(input.TryParseEnum<TestEnum>, mustHaveValue, expectedValue);
-        }
+            TryParseEnumTest(() => input.TryParseEnum(typeof(TestEnum)), mustHaveValue, expectedValue);
+#else
+            TryParseEnumTest(input.TryParseEnum<TestEnum>, mustHaveValue, expectedValue);
+            TryParseEnumTest(() => input.TryParseEnum(typeof(TestEnum)), mustHaveValue, expectedValue);
 #endif
+        }
+
+        [Test]
+        public void TryParseEnumNotEnumType()
+        {
+            Assert.Throws<ArgumentException>(() => "Value1".TryParseEnum<TestStruct>());
+            Assert.Throws<ArgumentException>(() => "Value1".TryParseEnum(typeof(TestStruct)));
+            Assert.Throws<ArgumentNullException>(() => "Value1".TryParseEnum(null));
+        }
+
         #endregion
     }
 }
