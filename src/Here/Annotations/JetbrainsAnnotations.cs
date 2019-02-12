@@ -335,6 +335,7 @@ namespace JetBrains.Annotations
         [UsedImplicitly] public ImplicitUseTargetFlags TargetFlags { get; private set; }
     }
 
+#pragma warning disable S2344
     [Flags]
     internal enum ImplicitUseKindFlags
     {
@@ -366,7 +367,9 @@ namespace JetBrains.Annotations
         /// <summary>Entity marked with attribute and all its members considered used.</summary>
         WithMembers = Itself | Members
     }
+#pragma warning restore S2344
 
+#pragma warning disable S101
     /// <summary>
     /// This attribute is intended to mark publicly available API
     /// which should not be removed and so is treated as used.
@@ -384,6 +387,7 @@ namespace JetBrains.Annotations
 
         [CanBeNull] public string Comment { get; private set; }
     }
+#pragma warning restore S101
 
     /// <summary>
     /// Tells code analysis engine if the parameter is completely handled when the invoked method is on stack.
