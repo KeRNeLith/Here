@@ -598,8 +598,17 @@ namespace Here.Tests.Options
 
         public enum TestEnum
         {
-            Value1,
-            Value2
+            Value1 = 0,
+            Value2 = 1
+        }
+
+        [Flags]
+        public enum TestFlagsEnum
+        {
+            None = 0,
+            Value1 = 1 << 0,
+            Value2 = 1 << 1,
+            Value3 = 1 << 2
         }
 
         private static IEnumerable<TestCaseData> CreateTryParseEnumTestCases
@@ -610,7 +619,9 @@ namespace Here.Tests.Options
                 yield return new TestCaseData(null, false, null);
                 yield return new TestCaseData(string.Empty, false, null);
                 yield return new TestCaseData("Value1", true, TestEnum.Value1);
+                yield return new TestCaseData("0", true, TestEnum.Value1);
                 yield return new TestCaseData("Value2", true, TestEnum.Value2);
+                yield return new TestCaseData("1", true, TestEnum.Value2);
                 yield return new TestCaseData("value1", false, null);
                 yield return new TestCaseData("azerty", false, null);
                 yield return new TestCaseData("   ", false, null);
@@ -622,6 +633,32 @@ namespace Here.Tests.Options
         {
             TryParseTest(input.TryParseEnum<TestEnum>, mustHaveValue, expectedValue);
             TryParseEnumTest(() => input.TryParseEnum(typeof(TestEnum)), mustHaveValue, expectedValue);
+        }
+
+        private static IEnumerable<TestCaseData> CreateTryParseFlagsEnumTestCases
+        {
+            [UsedImplicitly]
+            get
+            {
+                yield return new TestCaseData(null, false, null);
+                yield return new TestCaseData(string.Empty, false, null);
+                yield return new TestCaseData("Value1", true, TestFlagsEnum.Value1);
+                yield return new TestCaseData("1", true, TestFlagsEnum.Value1);
+                yield return new TestCaseData("2", true, TestFlagsEnum.Value2);
+                yield return new TestCaseData("Value1, Value2", true, TestFlagsEnum.Value1 | TestFlagsEnum.Value2);
+                yield return new TestCaseData("Value1,Value2", true, TestFlagsEnum.Value1 | TestFlagsEnum.Value2);
+                yield return new TestCaseData("3", true, TestFlagsEnum.Value1 | TestFlagsEnum.Value2);
+                yield return new TestCaseData("value1", false, null);
+                yield return new TestCaseData("azerty", false, null);
+                yield return new TestCaseData("   ", false, null);
+            }
+        }
+
+        [TestCaseSource(nameof(CreateTryParseFlagsEnumTestCases))]
+        public void TryParseFlagsEnum(string input, bool mustHaveValue, TestFlagsEnum expectedValue)
+        {
+            TryParseTest(input.TryParseEnum<TestFlagsEnum>, mustHaveValue, expectedValue);
+            TryParseEnumTest(() => input.TryParseEnum(typeof(TestFlagsEnum)), mustHaveValue, expectedValue);
         }
 
         [Test]
