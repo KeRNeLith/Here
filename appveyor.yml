@@ -1,5 +1,5 @@
 version: '0.0.{build}'
-image: Visual Studio 2017
+image: Previous Visual Studio 2017
 
 # Setup environment
 pull_requests:
@@ -59,13 +59,13 @@ before_build:
 # Chocolatey SonarQube
   - cinst msbuild-sonarqube-runner
 # NuGet restore
-  - nuget restore
+  - nuget restore -verbosity detailed
 
 build:
   verbosity: normal
 
 build_script:
-  - ps: MSBuild.SonarQube.Runner.exe begin /k:"here" /d:sonar.organization="kernelith-github" /d:sonar.host.url="https://sonarcloud.io" /d:"sonar.branch.name=$env:APPVEYOR_REPO_BRANCH" /d:sonar.cs.opencover.reportsPaths="coverage.xml" /d:sonar.login="$env:SONARQUBE_TOKEN"
+  - ps: SonarScanner.MSBuild.exe begin /k:"here" /d:sonar.organization="kernelith-github" /d:sonar.host.url="https://sonarcloud.io" /d:"sonar.branch.name=$env:APPVEYOR_REPO_BRANCH" /d:sonar.cs.opencover.reportsPaths="coverage.xml" /d:sonar.login="$env:SONARQUBE_TOKEN"
   - msbuild
 
 before_test:
