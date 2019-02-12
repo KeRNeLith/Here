@@ -34,6 +34,7 @@ namespace Here.Tests.Options
         /// Calls the <paramref name="tryParseFunc"/> and check if the result match expected value.
         /// </summary>
         private static void TryParseEnumTest<T>([NotNull, InstantHandle] Func<Option<object>> tryParseFunc, bool mustHaveValue, T expectedValue)
+            where T : struct
         {
             var option = tryParseFunc();
             if (mustHaveValue)
@@ -616,17 +617,11 @@ namespace Here.Tests.Options
             }
         }
 
-
         [TestCaseSource(nameof(CreateTryParseEnumTestCases))]
         public void TryParseEnum(string input, bool mustHaveValue, TestEnum expectedValue)
         {
-#if SUPPORTS_TRY_PARSE_ENUM
             TryParseTest(input.TryParseEnum<TestEnum>, mustHaveValue, expectedValue);
             TryParseEnumTest(() => input.TryParseEnum(typeof(TestEnum)), mustHaveValue, expectedValue);
-#else
-            TryParseEnumTest(input.TryParseEnum<TestEnum>, mustHaveValue, expectedValue);
-            TryParseEnumTest(() => input.TryParseEnum(typeof(TestEnum)), mustHaveValue, expectedValue);
-#endif
         }
 
         [Test]
