@@ -68,7 +68,7 @@ Supports Source Link</Description>
     <PackageTags>Here Functional C# Option Maybe Result Either ValueObject Monad</PackageTags>
 
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/KeRNeLith/Here</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/KeRNeLith/Here/master/here_logo.png</PackageIconUrl>
     <RepositoryType>GitHub</RepositoryType>
