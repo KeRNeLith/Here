@@ -13,19 +13,117 @@ namespace Here.Tests.Results
         [Test]
         public void IsOnlySuccessResult()
         {
+            // Ok
             var ok = Result.Ok();
             Assert.IsTrue(ok.IsOnlySuccess());
 
+            var valueOk = Result.Ok(12);
+            Assert.IsTrue(valueOk.IsOnlySuccess());
+
+            var customOk = Result.CustomOk<CustomErrorTest>();
+            Assert.IsTrue(customOk.IsOnlySuccess());
+
+            var valueCustomOk = Result.Ok<int, CustomErrorTest>(12);
+            Assert.IsTrue(valueCustomOk.IsOnlySuccess());
+
+
+            // Warning
             var warning = Result.Warn("My warning");
             Assert.IsFalse(warning.IsOnlySuccess());
 
+            var valueWarning = Result.Warn(42, "My warning");
+            Assert.IsFalse(valueWarning.IsOnlySuccess());
+
+            var customWarning = Result.CustomWarn<CustomErrorTest>("My warning");
+            Assert.IsFalse(customWarning.IsOnlySuccess());
+
+            var valueCustomWarning = Result.Warn<int, CustomErrorTest>(12, "My warning");
+            Assert.IsFalse(valueCustomWarning.IsOnlySuccess());
+
+
+            // Failure
             var failure = Result.Fail("My failure");
             Assert.IsFalse(failure.IsOnlySuccess());
+
+            var valueFailure = Result.Fail<int>("My failure");
+            Assert.IsFalse(valueFailure.IsOnlySuccess());
+
+            var customFailure = Result.CustomFail("My failure", new CustomErrorTest());
+            Assert.IsFalse(customFailure.IsOnlySuccess());
+
+            var valueCustomFailure = Result.Fail<int, CustomErrorTest>("My failure", new CustomErrorTest());
+            Assert.IsFalse(valueCustomFailure.IsOnlySuccess());
+
 
             // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<NullReferenceException>(() => { var _ = ((IResult)null).IsOnlySuccess(); });
         }
-        
+
+        [Test]
+        public void Throws()
+        {
+            // Ok
+            var ok = Result.Ok();
+            Assert.DoesNotThrow(() => ok.Throws());
+
+            var valueOk = Result.Ok(12);
+            Assert.DoesNotThrow(() => valueOk.Throws());
+
+            var customOk = Result.CustomOk<CustomErrorTest>();
+            Assert.DoesNotThrow(() => customOk.Throws());
+
+            var valueCustomOk = Result.Ok<int, CustomErrorTest>(12);
+            Assert.DoesNotThrow(() => valueCustomOk.Throws());
+
+
+            // Warning
+            var warning1 = Result.Warn("My warning");
+            Assert.DoesNotThrow(() => warning1.Throws());
+            var warning2 = Result.Warn("My warning with exception", new InvalidOperationException("Warning will throw."));
+            Assert.Throws<InvalidOperationException>(() => warning2.Throws());
+
+            var valueWarning1 = Result.Warn(42, "My warning");
+            Assert.DoesNotThrow(() => valueWarning1.Throws());
+            var valueWarning2 = Result.Warn(12, "My warning with exception", new InvalidOperationException("Warning will throw."));
+            Assert.Throws<InvalidOperationException>(() => valueWarning2.Throws());
+
+            var customWarning1 = Result.CustomWarn<CustomErrorTest>("My warning");
+            Assert.DoesNotThrow(() => customWarning1.Throws());
+            var customWarning2 = Result.CustomWarn<CustomErrorTest>("My warning with exception", new InvalidOperationException("Warning will throw."));
+            Assert.Throws<InvalidOperationException>(() => customWarning2.Throws());
+
+            var valueCustomWarning1 = Result.Warn<int, CustomErrorTest>(12, "My warning");
+            Assert.DoesNotThrow(() => valueCustomWarning1.Throws());
+            var valueCustomWarning2 = Result.Warn<int, CustomErrorTest>(42, "My warning with exception", new InvalidOperationException("Warning will throw."));
+            Assert.Throws<InvalidOperationException>(() => valueCustomWarning2.Throws());
+
+
+            // Failure
+            var failure1 = Result.Fail("My failure");
+            Assert.DoesNotThrow(() => failure1.Throws());
+            var failure2 = Result.Fail(new InvalidOperationException("Failure will throw."));
+            Assert.Throws<InvalidOperationException>(() => failure2.Throws());
+
+            var valueFailure1 = Result.Fail<int>("My failure");
+            Assert.DoesNotThrow(() => valueFailure1.Throws());
+            var valueFailure2 = Result.Fail<int>(new InvalidOperationException("Failure will throw."));
+            Assert.Throws<InvalidOperationException>(() => valueFailure2.Throws());
+
+            var customFailure1 = Result.CustomFail("My failure", new CustomErrorTest());
+            Assert.DoesNotThrow(() => customFailure1.Throws());
+            var customFailure2 = Result.CustomFail(new CustomErrorTest(), new InvalidOperationException("Failure will throw."));
+            Assert.Throws<InvalidOperationException>(() => customFailure2.Throws());
+
+            var valueCustomFailure1 = Result.Fail<int, CustomErrorTest>("My failure", new CustomErrorTest());
+            Assert.DoesNotThrow(() => valueCustomFailure1.Throws());
+            var valueCustomFailure2 = Result.Fail<int, CustomErrorTest>(new CustomErrorTest(), new InvalidOperationException("Failure will throw."));
+            Assert.Throws<InvalidOperationException>(() => valueCustomFailure2.Throws());
+
+
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Assert.Throws<NullReferenceException>(() => ((IResult)null).Throws());
+        }
+
         #region Unwrapping
 
         [Test]
