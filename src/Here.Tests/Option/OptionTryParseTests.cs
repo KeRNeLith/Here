@@ -40,7 +40,7 @@ namespace Here.Tests.Options
             if (mustHaveValue)
             {
                 Assert.IsTrue(option.HasValue);
-                Assert.AreEqual((T)option.Value, option.Value);
+                Assert.AreEqual(expectedValue, (T)option.Value);
             }
             else
                 CheckEmptyOption(option);
@@ -664,9 +664,10 @@ namespace Here.Tests.Options
         [Test]
         public void TryParseEnumNotEnumType()
         {
-            Assert.Throws<ArgumentException>(() => "Value1".TryParseEnum<TestStruct>());
-            Assert.Throws<ArgumentException>(() => "Value1".TryParseEnum(typeof(TestStruct)));
-            Assert.Throws<ArgumentNullException>(() => "Value1".TryParseEnum(null));
+            Assert.Throws<ArgumentException>(() => { var _ = "Value1".TryParseEnum<TestStruct>(); });
+            Assert.Throws<ArgumentException>(() => { var _ = "Value1".TryParseEnum(typeof(TestStruct)); });
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => { var _ = "Value1".TryParseEnum(null); });
         }
 
         #endregion

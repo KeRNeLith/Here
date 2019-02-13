@@ -458,14 +458,15 @@ namespace Here.Extensions
             Throw.IfArgumentNull(enumType, nameof(enumType));
 #if SUPPORTS_SYSTEM_TYPE_IS_ENUM
             Throw.IfArgument(!enumType.IsEnum, nameof(enumType));
-#else
+#endif
+
 #if SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE
             if (string.IsNullOrWhiteSpace(str))
 #else
             if (IsNullOrWhiteSpace(str))
 #endif
                 return Option<object>.None;
-#endif
+
             try
             {
                 return Enum.Parse(enumType, str);
