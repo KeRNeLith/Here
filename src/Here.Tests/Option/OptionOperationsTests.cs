@@ -416,5 +416,27 @@ namespace Here.Tests.Options
 
             Assert.Throws<ArgumentNullException>(() => optionInt.Exists(null));
         }
+
+        [Test]
+        public void OptionNoneIf()
+        {
+            // Option with value
+            var optionInt = Option<int>.Some(12);
+            CheckOptionValue(optionInt.NoneIf(intValue => intValue > 12), 12);
+            CheckEmptyOption(optionInt.NoneIf(intValue => intValue >= 12));
+
+            CheckOptionValue(optionInt.NoneIf(intValue => intValue > 12, intValue => intValue + 0.5f), 12.5f);
+            CheckEmptyOption(optionInt.NoneIf(intValue => intValue >= 12, intValue => intValue + 0.5f));
+
+            // Empty option
+            Option<int> emptyOptionInt = Option.None;
+            CheckEmptyOption(emptyOptionInt.NoneIf(intValue => intValue == 42));
+            CheckEmptyOption(emptyOptionInt.NoneIf(intValue => intValue > 12, intValue => intValue + 0.5f));
+
+            Assert.Throws<ArgumentNullException>(() => optionInt.NoneIf(null));
+            Assert.Throws<ArgumentNullException>(() => optionInt.NoneIf(intValue => intValue > 12, (Func<int, float>)null));
+            Assert.Throws<ArgumentNullException>(() => optionInt.NoneIf(null, intValue => intValue + 0.5f));
+            Assert.Throws<ArgumentNullException>(() => optionInt.NoneIf(null, (Func<int, float>)null));
+        }
     }
 }

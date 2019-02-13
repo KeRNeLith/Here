@@ -408,5 +408,48 @@ namespace Here
                 return predicate(_value);
             return false;
         }
+
+        /// <summary>
+        /// Checks if this <see cref="Option{T}"/> has a value and matches the <paramref name="predicate"/>,
+        /// if yes returns <see cref="None"/>, otherwise this <see cref="Option{T}"/>.
+        /// </summary>
+        /// <param name="predicate">Condition to match.</param>
+        /// <returns>This <see cref="Option{T}"/> if it has a value and doesn't match the <paramref name="predicate"/>, otherwise <see cref="None"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
+        [PublicAPI, Pure]
+        public Option<T> NoneIf([NotNull, InstantHandle] in Predicate<T> predicate)
+        {
+            Throw.IfArgumentNull(predicate, nameof(predicate));
+
+            if (HasValue && predicate(_value))
+                return None; 
+            return this;
+        }
+
+        /// <summary>
+        /// Checks if this <see cref="Option{T}"/> has a value and matches the <paramref name="predicate"/>,
+        /// if yes returns <see cref="Option{TOut}.None"/>, otherwise an <see cref="Option{TOut}"/> initialized
+        /// with <paramref name="converter"/> based on this <see cref="Option{T}"/> value.
+        /// </summary>
+        /// <typeparam name="TOut">Type of the value embedded in the output <see cref="Option{TOut}"/>.</typeparam>
+        /// <param name="predicate">Condition to match.</param>
+        /// <param name="converter">Function called to convert this <see cref="Option{T}"/> value to <typeparamref name="TOut"/>.</param>
+        /// <returns>An <see cref="Option{TOut}"/> if it has value and doesn't match the <paramref name="predicate"/>, otherwise <see cref="Option{TOut}.None"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
+        [PublicAPI, Pure]
+        public Option<TOut> NoneIf<TOut>([NotNull, InstantHandle] in Predicate<T> predicate, [NotNull, InstantHandle] in Func<T, TOut> converter)
+        {
+            Throw.IfArgumentNull(predicate, nameof(predicate));
+            Throw.IfArgumentNull(converter, nameof(converter));
+
+            if (HasValue)
+            {
+                if (!predicate(_value))
+                    return converter(_value);
+            }
+
+            return Option<TOut>.None;
+        }
     }
 }
