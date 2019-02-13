@@ -1,5 +1,8 @@
 ﻿using System;
 using JetBrains.Annotations;
+#if !SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE
+using static Here.HereHelpers;
+#endif
 
 namespace Here.Extensions
 {
@@ -80,14 +83,24 @@ namespace Here.Extensions
         /// </summary>
         /// <param name="str">String to convert.</param>
         /// <returns>An <see cref="Option{T}"/>.</returns>
+#else
+        /// <summary>
+        /// Converts this string to an <see cref="Option{T}"/> after applying <see cref="IsNullOrWhiteSpace(string)"/>.
+        /// </summary>
+        /// <param name="str">String to convert.</param>
+        /// <returns>An <see cref="Option{T}"/>.</returns>
+#endif
         [PublicAPI, Pure]
         public static Option<string> NoneIfEmptyOrSpace([CanBeNull] this string str)
         {
+#if SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE
             return string.IsNullOrWhiteSpace(str)
+#else
+            return IsNullOrWhiteSpace(str)
+#endif
                 ? Option<string>.None
                 : Option<string>.Some(str);
         }
-#endif
 
         /// <summary>
         /// Converts this <see cref="Option{T}"/> to another <see cref="Option{T}"/> after applying <see cref="string.IsNullOrEmpty(string)"/>.
@@ -108,13 +121,25 @@ namespace Here.Extensions
         /// </summary>
         /// <param name="option"><see cref="Option{T}"/> on which applying the treatment.</param>
         /// <returns>An <see cref="Option{T}"/>.</returns>
+#else
+        /// <summary>
+        /// Converts this <see cref="Option{T}"/> to another <see cref="Option{T}"/> after applying <see cref="IsNullOrWhiteSpace(string)"/>.
+        /// </summary>
+        /// <param name="option"><see cref="Option{T}"/> on which applying the treatment.</param>
+        /// <returns>An <see cref="Option{T}"/>.</returns>
+#endif
         [PublicAPI, Pure]
         public static Option<string> NoneIfEmptyOrSpace(in this Option<string> option)
         {
             return option.IfElse(
-                str => string.IsNullOrWhiteSpace(str) ? Option<string>.None : Option<string>.Some(str),
+#if SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE
+                str => string.IsNullOrWhiteSpace(str)
+#else
+                str => IsNullOrWhiteSpace(str)
+#endif
+                    ? Option<string>.None 
+                    : Option<string>.Some(str),
                 () => Option<string>.None);
         }
-#endif
     }
 }

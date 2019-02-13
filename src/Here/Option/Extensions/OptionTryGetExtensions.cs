@@ -4,6 +4,9 @@ using System.Globalization;
 using System.Runtime.CompilerServices;
 #endif
 using JetBrains.Annotations;
+#if !SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE
+using static Here.HereHelpers;
+#endif
 
 namespace Here.Extensions
 {
@@ -456,7 +459,11 @@ namespace Here.Extensions
 #if SUPPORTS_SYSTEM_TYPE_IS_ENUM
             Throw.IfArgument(!enumType.IsEnum, nameof(enumType));
 #else
+#if SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE
             if (string.IsNullOrWhiteSpace(str))
+#else
+            if (IsNullOrWhiteSpace(str))
+#endif
                 return Option<object>.None;
 #endif
             try

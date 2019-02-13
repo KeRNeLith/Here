@@ -130,7 +130,6 @@ namespace Here.Tests.Options
             optionString = "test".NoneIfEmpty();
             CheckOptionValue(optionString, "test");
 
-#if SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE
             // Null or white space
             optionString = string.Empty.NoneIfEmptyOrSpace();
             CheckEmptyOption(optionString);
@@ -147,7 +146,6 @@ namespace Here.Tests.Options
 
             optionString = "test".NoneIfEmptyOrSpace();
             CheckOptionValue(optionString, "test");
-#endif
         }
 
         [Test]
@@ -174,7 +172,6 @@ namespace Here.Tests.Options
             optionString = inputOptionString.NoneIfEmpty();
             CheckOptionValue(optionString, "test");
 
-#if SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE
             // Null or white space
             inputOptionString = Option.None;
             optionString = inputOptionString.NoneIfEmptyOrSpace();
@@ -195,7 +192,6 @@ namespace Here.Tests.Options
             inputOptionString = Option<string>.Some("test");
             optionString = inputOptionString.NoneIfEmptyOrSpace();
             CheckOptionValue(optionString, "test");
-#endif
         }
     }
 }
