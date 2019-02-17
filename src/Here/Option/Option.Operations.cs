@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 #if SUPPORTS_AGGRESSIVE_INLINING
 using System.Runtime.CompilerServices;
 #endif
@@ -23,6 +23,22 @@ namespace Here
             if (HasValue)
                 then(_value);
             return this;
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="then"/> function if this <see cref="Option{T}"/> has a value.
+        /// </summary>
+        /// <typeparam name="TResult">Type of the output value.</typeparam>
+        /// <param name="then">Treatment to do.</param>
+        /// <returns>Output value of <paramref name="then"/> function, or the default value of <typeparamref name="TResult"/>.</returns>
+        [PublicAPI, Pure, CanBeNull]
+        public TResult If<TResult>([NotNull, InstantHandle] in Func<T, TResult> then)
+        {
+            Throw.IfArgumentNull(then, nameof(then));
+
+            if (HasValue)
+                return then(_value);
+            return default;
         }
 
         /// <summary>
@@ -72,7 +88,7 @@ namespace Here
         /// <returns>Result of the executed callback.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="then"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="else"/> is null.</exception>
-        [PublicAPI]
+        [PublicAPI, Pure]
         public TResult IfElse<TResult>([NotNull, InstantHandle] in Func<T, TResult> then, [NotNull, InstantHandle] in Func<TResult> @else)
         {
             Throw.IfArgumentNull(then, nameof(then));
@@ -92,14 +108,15 @@ namespace Here
         /// <returns>Result of the executed treatment, otherwise the <paramref name="orValue"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="then"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="orValue"/> is null.</exception>
-        [PublicAPI]
+        /// <exception cref="NullResultException">If this <see cref="Option{T}"/> has a value and <paramref name="then"/> returns null.</exception>
+        [PublicAPI, Pure, NotNull]
         public TResult IfOr<TResult>([NotNull, InstantHandle] in Func<T, TResult> then, [NotNull] in TResult orValue)
         {
             Throw.IfArgumentNull(then, nameof(then));
             Throw.IfArgumentNull(orValue, nameof(orValue));
 
             if (HasValue)
-                return then(_value);
+                return Throw.IfResultNull(then(_value));
             return orValue;
         }
 
@@ -112,14 +129,15 @@ namespace Here
         /// <returns>Result of the executed treatment, otherwise the <paramref name="orValue"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="else"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="orValue"/> is null.</exception>
-        [PublicAPI]
+        /// <exception cref="NullResultException">If this <see cref="Option{T}"/> has no value and <paramref name="else"/> returns null.</exception>
+        [PublicAPI, Pure, NotNull]
         public TResult ElseOr<TResult>([NotNull, InstantHandle] in Func<TResult> @else, [NotNull] in TResult orValue)
         {
             Throw.IfArgumentNull(@else, nameof(@else));
             Throw.IfArgumentNull(orValue, nameof(orValue));
 
             if (HasNoValue)
-                return @else();
+                return Throw.IfResultNull(@else());
             return orValue;
         }
 
@@ -443,11 +461,8 @@ namespace Here
             Throw.IfArgumentNull(predicate, nameof(predicate));
             Throw.IfArgumentNull(converter, nameof(converter));
 
-            if (HasValue)
-            {
-                if (!predicate(_value))
-                    return converter(_value);
-            }
+            if (HasValue && !predicate(_value))
+                return converter(_value);
 
             return Option<TOut>.None;
         }
