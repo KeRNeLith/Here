@@ -30,6 +30,22 @@ namespace Here.Tests.Options
                 CheckEmptyOption(option);
         }
 
+        /// <summary>
+        /// Calls the <paramref name="tryParseFunc"/> and check if the result match expected value.
+        /// </summary>
+        private static void TryParseEnumTest<T>([NotNull, InstantHandle] Func<Option<object>> tryParseFunc, bool mustHaveValue, T expectedValue)
+            where T : struct
+        {
+            var option = tryParseFunc();
+            if (mustHaveValue)
+            {
+                Assert.IsTrue(option.HasValue);
+                Assert.AreEqual(expectedValue, (T)option.Value);
+            }
+            else
+                CheckEmptyOption(option);
+        }
+
         #region TryParse bool
 
         private static IEnumerable<TestCaseData> CreateTryParseBoolTestCases
@@ -580,11 +596,19 @@ namespace Here.Tests.Options
 
         #region TryParse Enumeration
 
-#if SUPPORTS_PARSE_ENUM
         public enum TestEnum
         {
-            Value1,
-            Value2
+            Value1 = 0,
+            Value2 = 1
+        }
+
+        [Flags]
+        public enum TestFlagsEnum
+        {
+            None = 0,
+            Value1 = 1 << 0,
+            Value2 = 1 << 1,
+            Value3 = 1 << 2
         }
 
         private static IEnumerable<TestCaseData> CreateTryParseEnumTestCases
@@ -595,20 +619,57 @@ namespace Here.Tests.Options
                 yield return new TestCaseData(null, false, null);
                 yield return new TestCaseData(string.Empty, false, null);
                 yield return new TestCaseData("Value1", true, TestEnum.Value1);
+                yield return new TestCaseData("0", true, TestEnum.Value1);
                 yield return new TestCaseData("Value2", true, TestEnum.Value2);
+                yield return new TestCaseData("1", true, TestEnum.Value2);
                 yield return new TestCaseData("value1", false, null);
                 yield return new TestCaseData("azerty", false, null);
                 yield return new TestCaseData("   ", false, null);
             }
         }
 
-
         [TestCaseSource(nameof(CreateTryParseEnumTestCases))]
         public void TryParseEnum(string input, bool mustHaveValue, TestEnum expectedValue)
         {
             TryParseTest(input.TryParseEnum<TestEnum>, mustHaveValue, expectedValue);
+            TryParseEnumTest(() => input.TryParseEnum(typeof(TestEnum)), mustHaveValue, expectedValue);
         }
-#endif
+
+        private static IEnumerable<TestCaseData> CreateTryParseFlagsEnumTestCases
+        {
+            [UsedImplicitly]
+            get
+            {
+                yield return new TestCaseData(null, false, null);
+                yield return new TestCaseData(string.Empty, false, null);
+                yield return new TestCaseData("Value1", true, TestFlagsEnum.Value1);
+                yield return new TestCaseData("1", true, TestFlagsEnum.Value1);
+                yield return new TestCaseData("2", true, TestFlagsEnum.Value2);
+                yield return new TestCaseData("Value1, Value2", true, TestFlagsEnum.Value1 | TestFlagsEnum.Value2);
+                yield return new TestCaseData("Value1,Value2", true, TestFlagsEnum.Value1 | TestFlagsEnum.Value2);
+                yield return new TestCaseData("3", true, TestFlagsEnum.Value1 | TestFlagsEnum.Value2);
+                yield return new TestCaseData("value1", false, null);
+                yield return new TestCaseData("azerty", false, null);
+                yield return new TestCaseData("   ", false, null);
+            }
+        }
+
+        [TestCaseSource(nameof(CreateTryParseFlagsEnumTestCases))]
+        public void TryParseFlagsEnum(string input, bool mustHaveValue, TestFlagsEnum expectedValue)
+        {
+            TryParseTest(input.TryParseEnum<TestFlagsEnum>, mustHaveValue, expectedValue);
+            TryParseEnumTest(() => input.TryParseEnum(typeof(TestFlagsEnum)), mustHaveValue, expectedValue);
+        }
+
+        [Test]
+        public void TryParseEnumNotEnumType()
+        {
+            Assert.Throws<ArgumentException>(() => { var _ = "Value1".TryParseEnum<TestStruct>(); });
+            Assert.Throws<ArgumentException>(() => { var _ = "Value1".TryParseEnum(typeof(TestStruct)); });
+            // ReSharper disable once AssignNullToNotNullAttribute
+            Assert.Throws<ArgumentNullException>(() => { var _ = "Value1".TryParseEnum(null); });
+        }
+
         #endregion
     }
 }

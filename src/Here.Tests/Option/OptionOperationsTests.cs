@@ -14,14 +14,39 @@ namespace Here.Tests.Options
         {
             int counter = 0;
             var optionInt = Option<int>.Some(12);
-            optionInt.If(value => ++counter);
+            optionInt.If(value => { ++counter; });
             Assert.AreEqual(1, counter);
 
             var emptyOptionInt = Option<int>.None;
-            emptyOptionInt.If(value => ++counter);
+            emptyOptionInt.If(value => { ++counter; });
             Assert.AreEqual(1, counter);
 
             Assert.Throws<ArgumentNullException>(() => optionInt.If(null));
+        }
+
+        [Test]
+        public void OptionIfResult()
+        {
+            int counter = 0;
+            var optionInt = Option<int>.Some(12);
+            float res = optionInt.If(value =>
+            {
+                ++counter;
+                return 12.5f;
+            });
+            Assert.AreEqual(1, counter);
+            Assert.AreEqual(12.5f, res);
+
+            var emptyOptionInt = Option<int>.None;
+            res = emptyOptionInt.If(value =>
+            {
+                ++counter;
+                return 42.5f;
+            });
+            Assert.AreEqual(1, counter);
+            Assert.AreEqual(default(float), res);
+
+            Assert.Throws<ArgumentNullException>(() => optionInt.If<float>(null));
         }
 
         [Test]
@@ -135,6 +160,9 @@ namespace Here.Tests.Options
             var optionPerson = Option<Person>.Some(new Person("Test"));
             Assert.Throws<ArgumentNullException>(() => optionPerson.IfOr(person => person, null));
             Assert.Throws<ArgumentNullException>(() => optionPerson.IfOr(null, (Person)null));
+
+            Assert.Throws<NullResultException>(() => optionPerson.IfOr(person => null, new Person("Test")));
+            Assert.DoesNotThrow(() => Option<Person>.None.IfOr(person => null, new Person("Test")));
         }
 
         [Test]
@@ -165,6 +193,9 @@ namespace Here.Tests.Options
             var optionPerson = Option<Person>.Some(new Person("Test"));
             Assert.Throws<ArgumentNullException>(() => optionPerson.ElseOr(() => (Person)null, null));
             Assert.Throws<ArgumentNullException>(() => optionPerson.ElseOr(null, (Person)null));
+
+            Assert.DoesNotThrow(() => optionPerson.ElseOr(() => null, new Person("Test")));
+            Assert.Throws<NullResultException>(() => Option<Person>.None.ElseOr(() => null, new Person("Test")));
         }
 
         [Test]
@@ -415,6 +446,28 @@ namespace Here.Tests.Options
             Assert.IsFalse(emptyOptionInt.Exists(intValue => intValue == 12));
 
             Assert.Throws<ArgumentNullException>(() => optionInt.Exists(null));
+        }
+
+        [Test]
+        public void OptionNoneIf()
+        {
+            // Option with value
+            var optionInt = Option<int>.Some(12);
+            CheckOptionValue(optionInt.NoneIf(intValue => intValue > 12), 12);
+            CheckEmptyOption(optionInt.NoneIf(intValue => intValue >= 12));
+
+            CheckOptionValue(optionInt.NoneIf(intValue => intValue > 12, intValue => intValue + 0.5f), 12.5f);
+            CheckEmptyOption(optionInt.NoneIf(intValue => intValue >= 12, intValue => intValue + 0.5f));
+
+            // Empty option
+            Option<int> emptyOptionInt = Option.None;
+            CheckEmptyOption(emptyOptionInt.NoneIf(intValue => intValue == 42));
+            CheckEmptyOption(emptyOptionInt.NoneIf(intValue => intValue > 12, intValue => intValue + 0.5f));
+
+            Assert.Throws<ArgumentNullException>(() => optionInt.NoneIf(null));
+            Assert.Throws<ArgumentNullException>(() => optionInt.NoneIf(intValue => intValue > 12, (Func<int, float>)null));
+            Assert.Throws<ArgumentNullException>(() => optionInt.NoneIf(null, intValue => intValue + 0.5f));
+            Assert.Throws<ArgumentNullException>(() => optionInt.NoneIf(null, (Func<int, float>)null));
         }
     }
 }
