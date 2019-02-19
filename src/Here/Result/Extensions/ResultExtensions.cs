@@ -21,6 +21,18 @@ namespace Here.Extensions
             return result.IsSuccess && !result.IsWarning;
         }
 
+        /// <summary>
+        /// Throws this <see cref="IResult"/> exception if it has one, otherwise do nothing.
+        /// </summary>
+        /// <param name="result"><see cref="IResult"/> to check.</param>
+        [PublicAPI]
+        public static void Throws([NotNull] this IResult result)
+        {
+            if (result.Exception is null)
+                return;
+            throw result.Exception;
+        }
+
         #endregion
 
         #region IResult<T>
