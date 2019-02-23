@@ -79,11 +79,14 @@ namespace Here.Tests.Results
             await CheckOnFailureResult(failure, false, true);
             await CheckOnFailureResult(failure, true, true);
 
+            // ReSharper disable AssignNullToNotNullAttribute
             Assert.ThrowsAsync<ArgumentNullException>(() => ok.OnFailureAsync(null));
             Assert.ThrowsAsync<ArgumentNullException>(() => ok.OnFailureAsync(null, "Default"));
             Assert.ThrowsAsync<ArgumentNullException>(() => ok.OnFailureAsync(null, () => "Default"));
             Assert.ThrowsAsync<ArgumentNullException>(() => ok.OnFailureAsync(r => Task.FromResult("Never returned"), (Func<string>)null));
+            // ReSharper disable once RedundantCast
             Assert.ThrowsAsync<ArgumentNullException>(() => ok.OnFailureAsync((Func<Result, Task<string>>)null, (Func<string>)null));
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Test]
@@ -125,8 +128,12 @@ namespace Here.Tests.Results
             await CheckOnFailure(failure, true, true);
 
             var taskResult = Task.FromResult(ok);
+            // ReSharper disable AssignNullToNotNullAttribute
             Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnFailureAsync((Action)null));
+            Assert.ThrowsAsync<ArgumentNullException>(() => ((Task<Result>)null).OnFailureAsync(() => { }));
             Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnFailureAsync((Action<Result>)null));
+            Assert.ThrowsAsync<ArgumentNullException>(() => ((Task<Result>)null).OnFailureAsync(r => { }));
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Test]
@@ -179,10 +186,14 @@ namespace Here.Tests.Results
             await CheckOnFailure(failure, true, true);
 
             var taskResult = Task.FromResult(ok);
+            // ReSharper disable AssignNullToNotNullAttribute
             Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnFailureAsync((Func<Result, string>)null, "Default value"));
+            Assert.ThrowsAsync<ArgumentNullException>(() => ((Task<Result>)null).OnFailureAsync(r => "Never returned", "Never returned"));
             Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnFailureAsync((Func<Result, string>)null, () => "Default value"));
             Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnFailureAsync(r => "Never returned", (Func<string>)null));
             Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnFailureAsync((Func<Result, string>)null, (Func<string>)null));
+            Assert.ThrowsAsync<ArgumentNullException>(() => ((Task<Result>)null).OnFailureAsync(r => "Never returned", () => "Never returned"));
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         [Test]
@@ -255,11 +266,16 @@ namespace Here.Tests.Results
             await CheckOnFailureResult(failure, true, true);
 
             var taskResult = Task.FromResult(ok);
+            // ReSharper disable AssignNullToNotNullAttribute
             Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnFailureAsync(null));
+            Assert.ThrowsAsync<ArgumentNullException>(() => ((Task<Result>)null).OnFailureAsync(r => Task.Run(() => { })));
             Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnFailureAsync((Func<Result, Task<string>>)null, "Default value"));
+            Assert.ThrowsAsync<ArgumentNullException>(() => ((Task<Result>)null).OnFailureAsync(r => Task.FromResult("Never returned"), "Never returned"));
             Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnFailureAsync((Func<Result, Task<string>>)null, () => "Default value"));
             Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnFailureAsync(r => Task.FromResult("Never returned"), (Func<string>)null));
             Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnFailureAsync((Func<Result, Task<string>>)null, (Func<string>)null));
+            Assert.ThrowsAsync<ArgumentNullException>(() => ((Task<Result>)null).OnFailureAsync(r => Task.FromResult("Never returned"), () => "Never returned"));
+            // ReSharper restore AssignNullToNotNullAttribute
         }
     }
 }

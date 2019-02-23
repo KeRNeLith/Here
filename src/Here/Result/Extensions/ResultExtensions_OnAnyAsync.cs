@@ -65,12 +65,14 @@ namespace Here.Extensions
         /// <param name="onAny">Action to run.</param>
         /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
         /// <returns>A <see cref="Task"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
         public static async Task OnAnyAsync([NotNull] this Task<Result> resultTask,
             [NotNull, InstantHandle] Action onAny,
             bool continueOnCapturedContext = false)
         {
+            Throw.IfArgumentNull(resultTask, nameof(resultTask));
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
             Result result = await resultTask.ConfigureAwait(continueOnCapturedContext);
@@ -84,12 +86,14 @@ namespace Here.Extensions
         /// <param name="onAny">Action to run.</param>
         /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
         /// <returns>A <see cref="Task"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
         public static async Task OnAnyAsync([NotNull] this Task<Result> resultTask,
             [NotNull, InstantHandle] Action<Result> onAny,
             bool continueOnCapturedContext = false)
         {
+            Throw.IfArgumentNull(resultTask, nameof(resultTask));
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
             Result result = await resultTask.ConfigureAwait(continueOnCapturedContext);
@@ -104,12 +108,14 @@ namespace Here.Extensions
         /// <param name="onAny">Function to run.</param>
         /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
         /// <returns>A <see cref="Task{TOut}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
         public static async Task<TOut> OnAnyAsync<TOut>([NotNull] this Task<Result> resultTask,
             [NotNull, InstantHandle] Func<Result, TOut> onAny,
             bool continueOnCapturedContext = false)
         {
+            Throw.IfArgumentNull(resultTask, nameof(resultTask));
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
             Result result = await resultTask.ConfigureAwait(continueOnCapturedContext);
@@ -123,12 +129,14 @@ namespace Here.Extensions
         /// <param name="onAny">Function to run.</param>
         /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
         /// <returns>A <see cref="Task"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
         public static async Task OnAnyAsync([NotNull] this Task<Result> resultTask,
             [NotNull, InstantHandle] Func<Result, Task> onAny,
             bool continueOnCapturedContext = false)
         {
+            Throw.IfArgumentNull(resultTask, nameof(resultTask));
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
             Result result = await resultTask.ConfigureAwait(continueOnCapturedContext);
@@ -143,12 +151,14 @@ namespace Here.Extensions
         /// <param name="onAny">Function to run.</param>
         /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
         /// <returns>A <see cref="Task{TOut}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
         public static async Task<TOut> OnAnyAsync<TOut>([NotNull] this Task<Result> resultTask, 
             [NotNull, InstantHandle] Func<Result, Task<TOut>> onAny, 
             bool continueOnCapturedContext = false)
         {
+            Throw.IfArgumentNull(resultTask, nameof(resultTask));
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
             Result result = await resultTask.ConfigureAwait(continueOnCapturedContext);
@@ -212,12 +222,14 @@ namespace Here.Extensions
         /// <param name="onAny">Action to run.</param>
         /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
         /// <returns>A <see cref="Task"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
         public static async Task OnAnyAsync<T>([NotNull] this Task<Result<T>> resultTask,
             [NotNull, InstantHandle] Action onAny,
             bool continueOnCapturedContext = false)
         {
+            Throw.IfArgumentNull(resultTask, nameof(resultTask));
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
             Result<T> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
@@ -232,12 +244,14 @@ namespace Here.Extensions
         /// <param name="onAny">Action to run.</param>
         /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
         /// <returns>A <see cref="Task"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
         public static async Task OnAnyAsync<T>([NotNull] this Task<Result<T>> resultTask,
             [NotNull, InstantHandle] Action<Result<T>> onAny,
             bool continueOnCapturedContext = false)
         {
+            Throw.IfArgumentNull(resultTask, nameof(resultTask));
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
             Result<T> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
@@ -253,12 +267,14 @@ namespace Here.Extensions
         /// <param name="onAny">Function to run.</param>
         /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
         /// <returns>A <see cref="Task{TOut}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
         public static async Task<TOut> OnAnyAsync<TIn, TOut>([NotNull] this Task<Result<TIn>> resultTask,
             [NotNull, InstantHandle] Func<Result<TIn>, TOut> onAny,
             bool continueOnCapturedContext = false)
         {
+            Throw.IfArgumentNull(resultTask, nameof(resultTask));
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
             Result<TIn> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
@@ -273,12 +289,14 @@ namespace Here.Extensions
         /// <param name="onAny">Function to run.</param>
         /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
         /// <returns>A <see cref="Task"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
         public static async Task OnAnyAsync<T>([NotNull] this Task<Result<T>> resultTask,
             [NotNull, InstantHandle] Func<Result<T>, Task> onAny,
             bool continueOnCapturedContext = false)
         {
+            Throw.IfArgumentNull(resultTask, nameof(resultTask));
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
             Result<T> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
@@ -294,12 +312,14 @@ namespace Here.Extensions
         /// <param name="onAny">Function to run.</param>
         /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
         /// <returns>A <see cref="Task{TOut}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
         public static async Task<TOut> OnAnyAsync<TIn, TOut>([NotNull] this Task<Result<TIn>> resultTask,
             [NotNull, InstantHandle] Func<Result<TIn>, Task<TOut>> onAny,
             bool continueOnCapturedContext = false)
         {
+            Throw.IfArgumentNull(resultTask, nameof(resultTask));
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
             Result<TIn> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
@@ -363,12 +383,14 @@ namespace Here.Extensions
         /// <param name="onAny">Action to run.</param>
         /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
         /// <returns>A <see cref="Task"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
         public static async Task OnAnyAsync<TError>([NotNull] this Task<CustomResult<TError>> resultTask,
             [NotNull, InstantHandle] Action onAny,
             bool continueOnCapturedContext = false)
         {
+            Throw.IfArgumentNull(resultTask, nameof(resultTask));
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
             CustomResult<TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
@@ -383,12 +405,14 @@ namespace Here.Extensions
         /// <param name="onAny">Action to run.</param>
         /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
         /// <returns>A <see cref="Task"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
         public static async Task OnAnyAsync<TError>([NotNull] this Task<CustomResult<TError>> resultTask,
             [NotNull, InstantHandle] Action<CustomResult<TError>> onAny,
             bool continueOnCapturedContext = false)
         {
+            Throw.IfArgumentNull(resultTask, nameof(resultTask));
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
             CustomResult<TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
@@ -404,12 +428,14 @@ namespace Here.Extensions
         /// <param name="onAny">Function to run.</param>
         /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
         /// <returns>A <see cref="Task{TOut}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
         public static async Task<TOut> OnAnyAsync<TError, TOut>([NotNull] this Task<CustomResult<TError>> resultTask,
             [NotNull, InstantHandle] Func<CustomResult<TError>, TOut> onAny,
             bool continueOnCapturedContext = false)
         {
+            Throw.IfArgumentNull(resultTask, nameof(resultTask));
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
             CustomResult<TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
@@ -424,12 +450,14 @@ namespace Here.Extensions
         /// <param name="onAny">Function to run.</param>
         /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
         /// <returns>A <see cref="Task"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
         public static async Task OnAnyAsync<TError>([NotNull] this Task<CustomResult<TError>> resultTask,
             [NotNull, InstantHandle] Func<CustomResult<TError>, Task> onAny,
             bool continueOnCapturedContext = false)
         {
+            Throw.IfArgumentNull(resultTask, nameof(resultTask));
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
             CustomResult<TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
@@ -445,12 +473,14 @@ namespace Here.Extensions
         /// <param name="onAny">Function to run.</param>
         /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
         /// <returns>A <see cref="Task{TOut}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
         public static async Task<TOut> OnAnyAsync<TError, TOut>([NotNull] this Task<CustomResult<TError>> resultTask,
             [NotNull, InstantHandle] Func<CustomResult<TError>, Task<TOut>> onAny,
             bool continueOnCapturedContext = false)
         {
+            Throw.IfArgumentNull(resultTask, nameof(resultTask));
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
             CustomResult<TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
@@ -517,12 +547,14 @@ namespace Here.Extensions
         /// <param name="onAny">Action to run.</param>
         /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
         /// <returns>A <see cref="Task"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
         public static async Task OnAnyAsync<T, TError>([NotNull] this Task<Result<T, TError>> resultTask,
             [NotNull, InstantHandle] Action onAny,
             bool continueOnCapturedContext = false)
         {
+            Throw.IfArgumentNull(resultTask, nameof(resultTask));
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
             Result<T, TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
@@ -538,12 +570,14 @@ namespace Here.Extensions
         /// <param name="onAny">Action to run.</param>
         /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
         /// <returns>A <see cref="Task"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
         public static async Task OnAnyAsync<T, TError>([NotNull] this Task<Result<T, TError>> resultTask,
             [NotNull, InstantHandle] Action<Result<T, TError>> onAny,
             bool continueOnCapturedContext = false)
         {
+            Throw.IfArgumentNull(resultTask, nameof(resultTask));
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
             Result<T, TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
@@ -560,12 +594,14 @@ namespace Here.Extensions
         /// <param name="onAny">Function to run.</param>
         /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
         /// <returns>A <see cref="Task{TOut}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
         public static async Task<TOut> OnAnyAsync<TIn, TError, TOut>([NotNull] this Task<Result<TIn, TError>> resultTask,
             [NotNull, InstantHandle] Func<Result<TIn, TError>, TOut> onAny,
             bool continueOnCapturedContext = false)
         {
+            Throw.IfArgumentNull(resultTask, nameof(resultTask));
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
             Result<TIn, TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
@@ -581,12 +617,14 @@ namespace Here.Extensions
         /// <param name="onAny">Function to run.</param>
         /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
         /// <returns>A <see cref="Task"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
         public static async Task OnAnyAsync<T, TError>([NotNull] this Task<Result<T, TError>> resultTask,
             [NotNull, InstantHandle] Func<Result<T, TError>, Task> onAny,
             bool continueOnCapturedContext = false)
         {
+            Throw.IfArgumentNull(resultTask, nameof(resultTask));
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
             Result<T, TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
@@ -603,12 +641,14 @@ namespace Here.Extensions
         /// <param name="onAny">Function to run.</param>
         /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
         /// <returns>A <see cref="Task{TOut}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
         public static async Task<TOut> OnAnyAsync<TIn, TError, TOut>([NotNull] this Task<Result<TIn, TError>> resultTask,
             [NotNull, InstantHandle] Func<Result<TIn, TError>, Task<TOut>> onAny,
             bool continueOnCapturedContext = false)
         {
+            Throw.IfArgumentNull(resultTask, nameof(resultTask));
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
             Result<TIn, TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);

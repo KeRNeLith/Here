@@ -89,13 +89,20 @@ namespace Here.Tests.Results
             Assert.AreEqual(7, counter);
             Assert.AreEqual("Test Async 2", asyncRes);
 
+            // ReSharper disable AssignNullToNotNullAttribute
             Assert.ThrowsAsync<ArgumentNullException>(() => result.OnAnyAsync(null));
             Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnAnyAsync(null));
+            Assert.ThrowsAsync<ArgumentNullException>(() => ((Task<Result>)null).OnAnyAsync(r => Task.Run(() => {})));
             Assert.ThrowsAsync<ArgumentNullException>(() => result.OnAnyAsync((Func<Result, Task<int>>)null));
-            Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnAnyAsync((Func<Result, Task<int>>)null));
             Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnAnyAsync((Action)null));
+            Assert.ThrowsAsync<ArgumentNullException>(() => ((Task<Result>)null).OnAnyAsync(() => { }));
             Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnAnyAsync((Action<Result>)null));
+            Assert.ThrowsAsync<ArgumentNullException>(() => ((Task<Result>)null).OnAnyAsync(r => { }));
             Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnAnyAsync((Func<Result, int>)null));
+            Assert.ThrowsAsync<ArgumentNullException>(() => ((Task<Result>)null).OnAnyAsync(r => 12));
+            Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnAnyAsync((Func<Result, Task<int>>)null));
+            Assert.ThrowsAsync<ArgumentNullException>(() => ((Task<Result>)null).OnAnyAsync(r => Task.FromResult(42)));
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         private static IEnumerable<TestCaseData> CreateValueResultOnAnyTestCases
@@ -173,13 +180,20 @@ namespace Here.Tests.Results
             Assert.AreEqual(7, counter);
             Assert.AreEqual("Test Async 2", asyncRes);
 
+            // ReSharper disable AssignNullToNotNullAttribute
             Assert.ThrowsAsync<ArgumentNullException>(() => result.OnAnyAsync(null));
             Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnAnyAsync(null));
+            Assert.ThrowsAsync<ArgumentNullException>(() => ((Task<Result<T>>)null).OnAnyAsync(r => Task.Run(() => { })));
             Assert.ThrowsAsync<ArgumentNullException>(() => result.OnAnyAsync((Func<Result<T>, Task<int>>)null));
-            Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnAnyAsync((Func<Result<T>, Task<int>>)null));
             Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnAnyAsync((Action)null));
+            Assert.ThrowsAsync<ArgumentNullException>(() => ((Task<Result<T>>)null).OnAnyAsync(() => { }));
             Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnAnyAsync((Action<Result<T>>)null));
+            Assert.ThrowsAsync<ArgumentNullException>(() => ((Task<Result<T>>)null).OnAnyAsync(r => { }));
             Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnAnyAsync((Func<Result<T>, int>)null));
+            Assert.ThrowsAsync<ArgumentNullException>(() => ((Task<Result<T>>)null).OnAnyAsync(r => 12));
+            Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnAnyAsync((Func<Result<T>, Task<int>>)null));
+            Assert.ThrowsAsync<ArgumentNullException>(() => ((Task<Result<T>>)null).OnAnyAsync(r => Task.FromResult(42)));
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         private static IEnumerable<TestCaseData> CreateCustomResultOnAnyTestCases
@@ -257,13 +271,20 @@ namespace Here.Tests.Results
             Assert.AreEqual(7, counter);
             Assert.AreEqual("Test Async 2", asyncRes);
 
+            // ReSharper disable AssignNullToNotNullAttribute
             Assert.ThrowsAsync<ArgumentNullException>(() => result.OnAnyAsync(null));
             Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnAnyAsync(null));
+            Assert.ThrowsAsync<ArgumentNullException>(() => ((Task<CustomResult<TError>>)null).OnAnyAsync(r => Task.Run(() => { })));
             Assert.ThrowsAsync<ArgumentNullException>(() => result.OnAnyAsync((Func<CustomResult<TError>, Task<int>>)null));
-            Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnAnyAsync((Func<CustomResult<TError>, Task<int>>)null));
             Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnAnyAsync((Action)null));
+            Assert.ThrowsAsync<ArgumentNullException>(() => ((Task<CustomResult<TError>>)null).OnAnyAsync(() => { }));
             Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnAnyAsync((Action<CustomResult<TError>>)null));
+            Assert.ThrowsAsync<ArgumentNullException>(() => ((Task<CustomResult<TError>>)null).OnAnyAsync(r => { }));
             Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnAnyAsync((Func<CustomResult<TError>, int>)null));
+            Assert.ThrowsAsync<ArgumentNullException>(() => ((Task<CustomResult<TError>>)null).OnAnyAsync(r => 12));
+            Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnAnyAsync((Func<CustomResult<TError>, Task<int>>)null));
+            Assert.ThrowsAsync<ArgumentNullException>(() => ((Task<CustomResult<TError>>)null).OnAnyAsync(r => Task.FromResult(42)));
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         private static IEnumerable<TestCaseData> CreateValueCustomResultOnAnyTestCases
@@ -341,13 +362,20 @@ namespace Here.Tests.Results
             Assert.AreEqual(7, counter);
             Assert.AreEqual("Test Async 2", asyncRes);
 
+            // ReSharper disable AssignNullToNotNullAttribute
             Assert.ThrowsAsync<ArgumentNullException>(() => result.OnAnyAsync(null));
             Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnAnyAsync(null));
+            Assert.ThrowsAsync<ArgumentNullException>(() => ((Task<Result<T, TError>>)null).OnAnyAsync(r => Task.Run(() => { })));
             Assert.ThrowsAsync<ArgumentNullException>(() => result.OnAnyAsync((Func<Result<T, TError>, Task<int>>)null));
-            Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnAnyAsync((Func<Result<T, TError>, Task<int>>)null));
             Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnAnyAsync((Action)null));
+            Assert.ThrowsAsync<ArgumentNullException>(() => ((Task<Result<T, TError>>)null).OnAnyAsync(() => { }));
             Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnAnyAsync((Action<Result<T, TError>>)null));
+            Assert.ThrowsAsync<ArgumentNullException>(() => ((Task<Result<T, TError>>)null).OnAnyAsync(r => { }));
             Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnAnyAsync((Func<Result<T, TError>, int>)null));
+            Assert.ThrowsAsync<ArgumentNullException>(() => ((Task<Result<T, TError>>)null).OnAnyAsync(r => 12));
+            Assert.ThrowsAsync<ArgumentNullException>(() => taskResult.OnAnyAsync((Func<Result<T, TError>, Task<int>>)null));
+            Assert.ThrowsAsync<ArgumentNullException>(() => ((Task<Result<T, TError>>)null).OnAnyAsync(r => Task.FromResult(42)));
+            // ReSharper restore AssignNullToNotNullAttribute
         }
     }
 }
