@@ -3,6 +3,7 @@ using System;
 using System.Runtime.CompilerServices;
 #endif
 using JetBrains.Annotations;
+using static Here.ResultInternalHelpers;
 
 namespace Here.Extensions
 {
@@ -11,34 +12,6 @@ namespace Here.Extensions
     /// </summary>
     public static partial class ResultExtensions
     {
-        /// <summary>
-        /// Checks if the given result should be considered as a failure or not.
-        /// </summary>
-        /// <param name="result">Result to check.</param>
-        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>True if the result is considered as a failure, otherwise false.</returns>
-#if SUPPORTS_AGGRESSIVE_INLINING
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        private static bool IsConsideredFailure([NotNull] in IResult result, in bool treatWarningAsError)
-        {
-            return result.IsFailure || (treatWarningAsError && result.IsWarning);
-        }
-
-        /// <summary>
-        /// Checks if the given result should be considered as a success or not.
-        /// </summary>
-        /// <param name="result">Result to check.</param>
-        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
-        /// <returns>True if the result is considered as a success, otherwise false.</returns>
-#if SUPPORTS_AGGRESSIVE_INLINING
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        private static bool IsConsideredSuccess([NotNull] in IResult result, in bool treatWarningAsError)
-        {
-            return !IsConsideredFailure(result, treatWarningAsError);
-        }
-
         #region Result
 
         /// <summary>
