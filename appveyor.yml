@@ -66,7 +66,7 @@ build:
 
 build_script:
   - ps: $analysisFile = (Convert-Path SonarQube.Analysis.xml).ToString()
-  - ps: SonarScanner.MSBuild.exe begin /k:"here" /s:$analysisFile /d:sonar.organization="kernelith-github" /d:sonar.host.url="https://sonarcloud.io" /d:"sonar.branch.name=$env:APPVEYOR_REPO_BRANCH" /d:sonar.cs.opencover.reportsPaths="coverage.xml" /d:sonar.login="$env:SONARQUBE_TOKEN"
+  - ps: SonarScanner.MSBuild.exe begin /k:"here" /s:$analysisFile /o:"kernelith-github" /d:sonar.host.url="https://sonarcloud.io" /d:"sonar.branch.name=$env:APPVEYOR_REPO_BRANCH" /d:sonar.cs.opencover.reportsPaths="coverage.xml" /d:sonar.login="$env:SONARQUBE_TOKEN"
   - msbuild
 
 before_test:
