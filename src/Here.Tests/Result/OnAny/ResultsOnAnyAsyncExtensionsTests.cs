@@ -12,7 +12,7 @@ namespace Here.Tests.Results
     /// Tests for <see cref="Result"/>, <see cref="Result{T}"/>, <see cref="CustomResult{TError}"/> and <see cref="Result{T, TError}"/> asynchronous extensions (on any).
     /// </summary>
     [TestFixture]
-    internal class ResultOnAnyAsyncExtensionsTests : ResultTestsBase
+    internal class ResultsOnAnyAsyncExtensionsTests : ResultTestsBase
     {
         private static IEnumerable<TestCaseData> CreateResultOnAnyTestCases
         {
