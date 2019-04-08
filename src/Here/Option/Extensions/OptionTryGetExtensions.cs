@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Globalization;
+#if !SUPPORTS_SYSTEM_TYPE_IS_ENUM
+using System.Reflection;
+#endif
 #if SUPPORTS_AGGRESSIVE_INLINING
 using System.Runtime.CompilerServices;
 #endif
@@ -458,6 +461,8 @@ namespace Here.Extensions
             Throw.IfArgumentNull(enumType, nameof(enumType));
 #if SUPPORTS_SYSTEM_TYPE_IS_ENUM
             Throw.IfArgument(!enumType.IsEnum, nameof(enumType));
+#else
+            Throw.IfArgument(!enumType.GetTypeInfo().IsEnum, nameof(enumType));
 #endif
 
 #if SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE
@@ -471,24 +476,8 @@ namespace Here.Extensions
             {
                 return Enum.Parse(enumType, str);
             }
-#if SUPPORTS_SYSTEM_TYPE_IS_ENUM
             catch (Exception)
-#else
-            catch (Exception ex)
-#endif
             {
-#if !SUPPORTS_SYSTEM_TYPE_IS_ENUM
-                // Because System.Type does not always provide IsEnum property
-                // Based on Enum.Parse documentation, to know if we should throw
-                // because the given enumType is not an enum, the caught exception
-                // must be ArgumentException and concerning the enumType parameter.
-                // If it's because the input string is null (or spaces) then it's checked
-                // earlier and if it's a value out of the enum then the ParamName is not filled.
-                if (ex is ArgumentException argEx 
-                    && argEx.ParamName != null 
-                    && argEx.ParamName.Equals("enumType", StringComparison.Ordinal))
-                    throw;
-#endif
                 return Option<object>.None;
             }
         }
