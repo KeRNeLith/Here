@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net20;net30;net35;net40;net45;netstandard1.0;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net20;net35;net40;net45;netstandard1.0;netstandard2.0</TargetFrameworks>
 
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -106,10 +106,6 @@ Supports Source Link</Description>
     <AssemblyTitle>Here .NET 2.0</AssemblyTitle>
     <DefineConstants>$(DefineConstants);NET20;SUPPORTS_BINARY_EXCEPTION_SERIALIZATION;SUPPORTS_SYSTEM_TYPE_IS_ENUM;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(TargetFramework)'=='net30'">
-    <AssemblyTitle>Here .NET 3.0</AssemblyTitle>
-    <DefineConstants>$(DefineConstants);NET30;SUPPORTS_BINARY_EXCEPTION_SERIALIZATION;SUPPORTS_SYSTEM_TYPE_IS_ENUM;$(AdditionalConstants)</DefineConstants>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net35'">
     <AssemblyTitle>Here .NET 3.5</AssemblyTitle>
     <DefineConstants>$(DefineConstants);NET35;SUPPORTS_BINARY_EXCEPTION_SERIALIZATION;SUPPORTS_SYSTEM_TYPE_IS_ENUM;$(AdditionalConstants)</DefineConstants>
@@ -137,7 +133,7 @@ Supports Source Link</Description>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-63127-02" PrivateAssets="All" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net20' OR '$(TargetFramework)' == 'net30'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'net20'">
     <PackageReference Include="System.Core" Version="3.5.21022.801" />
   </ItemGroup>
 </Project>
