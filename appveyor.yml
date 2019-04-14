@@ -8,8 +8,8 @@ pull_requests:
 environment:
   SONARQUBE_TOKEN:
     secure: AcQvaWq+gT9KdC+7oE75vDwW9mizfTw6qYH3vtiZTjSh9jA8ouoMq1j/sk6zB0fI
-  NUnitConsoleVersion: 3.8.0
-  OpenCoverVersion: 4.6.519
+  NUnitConsoleVersion: 3.10.0
+  OpenCoverVersion: 4.7.922
   CoverallsVersion: 1.0.0
   COVERALLS_REPO_TOKEN:
     secure: MaVjwKULJGzSUnO0RzW40VNwTZ5AuTL4k5zN1FEkXLzrnoQNEMRlJzzA39D74W33
