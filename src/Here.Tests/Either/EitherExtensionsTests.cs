@@ -1157,7 +1157,7 @@ namespace Here.Tests.Eithers
             Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.Fold(null, (TestClass seed, string l) => seed); });
 
             // Cannot test this in NET20 and NET30 due to NUnit package
-#if !NET20 && !NET30
+#if SUPPORTS_SYSTEM_DELEGATES
             Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.Fold(testObject, (Func<TestClass, string, TestClass>)null); });
             Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.Fold(null, (Func<TestClass, string, TestClass>)null); });
             Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.Fold(testObject, (Func<TestClass, string, TestClass>)null); });
@@ -1246,7 +1246,7 @@ namespace Here.Tests.Eithers
             Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.Fold(null, (TestClass seed, int r) => seed); });
 
             // Cannot test this in NET20 and NET30 due to NUnit package
-#if !NET20 && !NET30
+#if SUPPORTS_SYSTEM_DELEGATES
             Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.Fold(testObject, (Func<TestClass, int, TestClass>)null); });
             Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.Fold(null, (Func<TestClass, int, TestClass>)null); });
             Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.Fold(testObject, (Func<TestClass, int, TestClass>)null); });

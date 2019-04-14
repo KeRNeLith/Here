@@ -307,7 +307,7 @@ namespace Here.Tests.Eithers
             // ReSharper restore AssignNullToNotNullAttribute
 
             // Cannot test this in NET20 and NET30 due to NUnit package
-#if !NET20 && !NET30
+#if SUPPORTS_SYSTEM_DELEGATES
             Assert.Throws<ArgumentNullException>(() => eitherLeft.Aggregate(testObject, null));
             Assert.Throws<ArgumentNullException>(() => eitherLeft.Aggregate(null, (Func<TestClass, int, TestClass>)null));
             Assert.Throws<ArgumentNullException>(() => eitherRight.Aggregate(testObject, null));
