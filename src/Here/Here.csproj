@@ -70,7 +70,7 @@ Supports Source Link</Description>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/KeRNeLith/Here</PackageProjectUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/KeRNeLith/Here/master/here_logo.png</PackageIconUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/KeRNeLith/Here/master/docs/images/here_logo.png</PackageIconUrl>
     <RepositoryType>GitHub</RepositoryType>
     <RepositoryUrl>https://github.com/KeRNeLith/Here</RepositoryUrl>
   </PropertyGroup>
