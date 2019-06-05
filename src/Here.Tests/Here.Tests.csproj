@@ -2,6 +2,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net20;net30;net35;net40;net45;net451;net452;net46;net461;netcoreapp1.0;netcoreapp2.0</TargetFrameworks>
+    <!-- Fix restore issue with multi target and netcoreapp1.0 which fail to restore packages due to faulty signed package --> 
+	<DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
 
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
