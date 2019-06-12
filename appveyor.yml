@@ -13,6 +13,10 @@ environment:
   CoverallsVersion: 1.0.0
   COVERALLS_REPO_TOKEN:
     secure: MaVjwKULJGzSUnO0RzW40VNwTZ5AuTL4k5zN1FEkXLzrnoQNEMRlJzzA39D74W33
+  GITHUB_ACCESS_TOKEN:
+    secure: fLTTmcGOM55kigJC4vErpObFmybCtzQtwb4QN55BTNq3GDGaOCoHDoIPxexzO59d
+  GITHUB_EMAIL:
+    secure: wcfqCHOmeRLZf/BX6u6qQSV89Q4jFs9fHNDgMpKAcqE=
 
 # Setup build version
 init:
@@ -58,11 +62,13 @@ matrix:
 before_build:
 # Chocolatey SonarQube
   - cinst msbuild-sonarqube-runner
+# Chocolatey DocFX
+  - cinst docfx
 # NuGet restore
   - nuget restore -verbosity detailed
 
 build:
-  verbosity: normal
+  verbosity: minimal
 
 build_script:
   - ps: $analysisFile = (Convert-Path SonarQube.Analysis.xml).ToString()
@@ -82,8 +88,7 @@ after_test:
   - ps: $opencover = (Resolve-Path "tools\OpenCover.*\tools\OpenCover.Console.exe").ToString()
   - ps: $nunitConsole = (Resolve-Path "tools\NUnit.ConsoleRunner.*\tools\nunit3-console.exe").ToString()
   - ps: $coveralls = (Resolve-Path "tools\csmacnz.Coveralls.exe").ToString()
-# Assemblies to test (only consider .NET Framework 4.5, because if taking those from target netcoreapp1.0 coverage fails)
-  - ps: $testAssemblies = (ls src\*.Tests\bin\$env:Configuration\net45\*Tests.dll | % FullName | sort-object -Unique)
+  - ps: $testAssemblies = (ls src\*.Tests\bin\$env:Configuration\*\*Tests.dll | Where-Object { $_ -Match "net*" -and $_ -NotMatch "netcoreapp*" } | % FullName | sort-object -Unique)
 # Generate coverage report
   - ps: >-
       & $opencover -register:user -filter:"+[*]* -[*.Test*]* -[*]JetBrains.Annotations*" -target:"$nunitConsole" -targetargs:"$testAssemblies" -log:Warn -output:coverage.xml
@@ -128,3 +133,7 @@ deploy:
       branch: master
       configuration: Release
       APPVEYOR_REPO_TAG: true
+
+# Documentation
+deploy_script:
+  - ps: ./releaseDoc.ps1
