@@ -1,0 +1,301 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Value Object </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Value Object ">
+    <meta name="generator" content="docfx 2.42.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="value-object">Value Object</h1>
+
+<p>The <code>ValueObject</code> is an object that represents something whose equality is not based on identity but on value.
+Meaning two objects are equal when they have the same value and not necessarily being the same object.
+The <code>ValueObject</code> provided by <strong>Here</strong> is the base class that encapsulates the boilerplate code required to compare objects on their values rather than their references.
+It gives a common logic to manage the comparison of <strong>immutable</strong> objects. It acts as an useful basis to create comparable/interchangeable objects.
+What you just have to do to use it is to put a using like this and inherits from this class:</p>
+<pre><code class="lang-csharp">using Here;
+</code></pre>
+<h2 id="why-value-object">Why Value object?</h2>
+<p>Because it offers an easy and simple manner to create immutable objects that are comparable/interchangeable in a elegant way.
+It factorizes the logic in a single point rather than duplicating this boilerplate code for all new classes you create.</p>
+<hr>
+<h2 id="create-a-valueobject">Create a ValueObject</h2>
+<p>You just have to inherit from <code>ValueObject</code> and implement the <code>GetEqualityElements</code> method and that's all!</p>
+<p>The <code>GetEqualityElements</code> is the method that yield all fields that should be taken into account while comparing 2 value objects.
+With this method you can also specify how objects are compared by using some custom behaviors.</p>
+<h2 id="examples">Examples</h2>
+<p>Because it's easier to understand how to create your <code>ValueObject</code> by looking at example, following are some dummy classes that help to demonstrate some features.</p>
+<p>Simple example:</p>
+<pre><code class="lang-csharp">class Address : ValueObject
+{
+    public string Street { get; }
+
+    public string City { get; }
+
+    public Address(string street, string city)
+    {
+        Street = street;
+        City = city;
+    }
+
+    protected override IEnumerable&lt;object&gt; GetEqualityElements()
+    {
+        // Compare these fields to check value equals
+        yield return Street;
+        yield return City;
+    }
+}
+
+// Check
+var address1 = new Address(&quot;Champs Elysées&quot;, &quot;Paris&quot;);
+var address2 = new Address(&quot;Champs Elysées&quot;, &quot;Paris&quot;);
+var address3 = new Address(&quot;Montmartre&quot;, &quot;Paris&quot;);
+
+address1.Equals(address2);    // True
+address1.Equals(address3);    // False
+</code></pre>
+<p>Example with inheritance:</p>
+<pre><code class="lang-csharp">class FullAddress : Address
+{
+    public string Country { get; }
+
+    public FullAddress(string street, string city, string country)
+        : base(street, city)
+    {
+        Country = country;
+    }
+
+    protected override IEnumerable&lt;object&gt; GetEqualityElements()
+    {
+        // For derived classes
+        foreach (object element in base.GetEqualityElements())
+            yield return element;
+
+        yield return Country;
+    }
+}
+
+// Check
+var address1 = new Address(&quot;Champs Elysées&quot;, &quot;Paris&quot;);
+var address2 = new FullAddress(&quot;Champs Elysées&quot;, &quot;Paris&quot;, &quot;France&quot;);
+var address3 = new FullAddress(&quot;Champs Elysées&quot;, &quot;Paris&quot;, &quot;France&quot;);
+var address4 = new FullAddress(&quot;Montmartre&quot;, &quot;Paris&quot;, &quot;France&quot;);
+
+address1.Equals(address2);    // False
+address2.Equals(address3);    // True
+address2.Equals(address4);    // False
+</code></pre>
+<p>Example with custom comparison:</p>
+<pre><code class="lang-csharp">class Wallet : ValueObject
+{
+    public string Currency { get; }
+
+    public double Amount { get; }
+
+    public Wallet(string currency, double amount)
+    {
+        Currency = currency;
+        Amount = amount;
+    }
+            
+    protected override IEnumerable&lt;object&gt; GetEqualityElements()
+    {
+        // To compare data stored in different formats
+        yield return Currency.ToLower();
+        yield return Math.Round(Amount);
+    }
+}
+
+// Check
+var wallet1 = new Wallet(&quot;Eur&quot;, 100.25111);
+var wallet2 = new Wallet(&quot;EUR&quot;, 100.25);
+var wallet3 = new Wallet(&quot;USD&quot;, 100.25);
+
+wallet1.Equals(wallet2);    // True
+wallet1.Equals(wallet3);    // False
+</code></pre>
+<p>Example with structure that contains a collection:</p>
+<pre><code class="lang-csharp">class Coin : ValueObject
+{
+    public enum Value
+    {
+        OneCent,
+        TwoCents,
+        FiveCents,
+        TenCents,
+        TwentyCents,
+        FiftyCents,
+        OneEuro,
+        TwoEuros
+    };
+    
+    public Value CoinValue { get; }
+
+    public Coin(Value value)
+    {
+        CoinValue = value;
+    }
+
+    protected override IEnumerable&lt;object&gt; GetEqualityElements()
+    {
+        yield return CoinValue;
+    }
+}
+
+class Wallet : ValueObject
+{
+    public List&lt;Coin&gt; Coins { get; }
+
+    public Wallet([NotNull] IEnumerable&lt;Coin&gt; coins)
+    {
+        Coins = coins.ToList();
+    }
+
+    protected override IEnumerable&lt;object&gt; GetEqualityElements()
+    {
+        // To compare lists
+        foreach (Coin coin in Coins)
+            yield return coin;
+    }
+}
+
+// Check
+var wallet1 = new CoinWallet(new []{ new Coin(Coin.Value.OneEuro), new Coin(Coin.Value.TenCents) });
+var wallet2 = new CoinWallet(new []{ new Coin(Coin.Value.OneEuro), new Coin(Coin.Value.TenCents) });
+var wallet3 = new CoinWallet(new []{ new Coin(Coin.Value.TwoEuros), new Coin(Coin.Value.TenCents) });
+
+wallet1.Equals(wallet2);    // True
+wallet1.Equals(wallet3);    // False
+</code></pre>
+<p>Example ignoring fields:</p>
+<pre><code class="lang-csharp">class SumObject : ValueObject
+{
+    public int Operand1 { get; }
+
+    public int Operand2 { get; }
+
+    public int Sum { get; }
+
+    public SumObject(int operand1, int operand2)
+    {
+        Operand1 = operand1;
+        Operand2 = operand2;
+        Sum = Operand1 + Operand2;
+    }
+
+    protected override IEnumerable&lt;object&gt; GetEqualityElements()
+    {
+        // Ignore &quot;Sum&quot; field
+        yield return Operand1;
+        yield return Operand2;
+    }
+}
+
+// Check
+var sumObject1 = new SumObject(1, 2);
+var sumObject2 = new SumObject(1, 2);
+var sumObject3 = new SumObject(10, 20);
+
+sumObject1.Equals(sumObject2);    // True
+sumObject1.Equals(sumObject3);    // False
+</code></pre>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/KeRNeLith/Here/blob/master/docs/documentation/value-object.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

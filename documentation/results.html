@@ -1,0 +1,350 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Result </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Result ">
+    <meta name="generator" content="docfx 2.42.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="result">Result</h1>
+
+<p>The <code>Result</code> is a structure that encapsulates treatments results.
+It provides an enhanced return state for methods that improves the code semantic and allows to react based on this state.
+This can be useful when trying to implement a clear and simple error handling.
+What you just have to do to use it is to put a using like this for basic implementation:</p>
+<pre><code class="lang-csharp">using Here;
+</code></pre>
+<p>And this one for extensions:</p>
+<pre><code class="lang-csharp">using Here.Extensions;
+</code></pre>
+<h2 id="why-result">Why Result?</h2>
+<p>Because it offers a better handling of methods returns. It can be a nice alternative to traditional booleans or return code.</p>
+<hr>
+<h2 id="create-a-result">Create a result</h2>
+<h3 id="construction">Construction</h3>
+<p>Result offers 3 different possibilities which are <code>Ok</code>, <code>Warn</code> and <code>Fail</code>.
+The <code>Ok</code> and <code>Warn</code> can be used as a result of an operation that succeed either without error or with a warning that is not critical.
+Whereas the <code>Fail</code> correspond to an operation failed. So when you asked to create a <code>Result</code> you have to determine which of these options match your case.
+All results can store an exception that may have been caught.</p>
+<p>There are 4 types of result:</p>
+<ul>
+<li>A simple <code>Result</code>: string message for error and no value.</li>
+<li><code>Result&lt;T&gt;</code>: string message for error and can has a value.</li>
+<li><code>CustomResult&lt;TError&gt;</code>: TError error object and no value.</li>
+<li><code>Result&lt;T, TError&gt;</code>: TError error object and can has a value.</li>
+</ul>
+<p>With these possibilities you should be able to handle all cases.
+Note that every time you use a warning or an error you will be asked to set a mandatory message because it gives feedback on what went wrong during a treatment.</p>
+<p>See below for some examples:</p>
+<pre><code class="lang-csharp">// Simple result
+Result simpleResult = Result.Ok();
+simpleResult = Result.Warn(&quot;Your Warning message.&quot;);
+simpleResult = Result.Fail(&quot;Your ERROR message.&quot;);
+simpleResult = Result.Fail(&quot;Your ERROR message.&quot;, new Exception(&quot;Embedded exception&quot;));	// Example with an embedded exception
+
+// Result with value
+Result&lt;int&gt; resultValue = Result.Ok(42);
+resultValue = Result.Warn(12, &quot;Your Warning message.&quot;);
+resultValue = Result.Fail&lt;int&gt;(&quot;Your ERROR message.&quot;);
+
+// Result without value but custom error object
+CustomResult&lt;Exception&gt; customResult = Result.CustomOk&lt;Exception&gt;();
+customResult = Result.CustomWarn&lt;Exception&gt;(&quot;Your Warning message.&quot;);
+customResult = Result.CustomFail(&quot;Your ERROR message.&quot;, new InvalidOperationException(&quot;Treatment leads to an error.&quot;));
+
+// Result with value and allows custom error object
+Result&lt;int, Exception&gt; customResultValue = Result.Ok&lt;int, Exception&gt;(42);
+customResultValue = Result.Warn&lt;int, Exception&gt;(12, &quot;Your Warning message.&quot;);
+customResultValue = Result.Fail&lt;int, Exception&gt;(&quot;Your ERROR message.&quot;, new InvalidOperationException(&quot;Treatment leads to an error.&quot;));
+</code></pre>
+<h3 id="implicit-conversion">Implicit conversion</h3>
+<p>When you have a result with additional data it is always possible to implicitly convert it to a result with less data.
+For example if you have a <code>Result&lt;T&gt;</code> (with a value), you can convert it to a simple <code>Result</code>.
+Note that implicit conversions work regardless of the kind of result (<code>Ok</code>, <code>Warn</code> or <code>Fail</code>).</p>
+<p>See below for allowed implicit conversions:</p>
+<pre><code class="lang-csharp">// All examples use an &quot;Ok&quot; result but it works the same for other &quot;Warn&quot; and &quot;Fail&quot;
+
+// Result&lt;T&gt; =&gt; Result
+Result&lt;int&gt; resultValue = Result.Ok(42);
+Result simpleResult = resultValue;
+
+
+// CustomResult&lt;TError&gt; =&gt; Result
+CustomResult&lt;Exception&gt; customResult = Result.CustomOk&lt;Exception&gt;();
+Result simpleResult = customResult;
+
+
+// Result&lt;T, TError&gt; =&gt; Result
+Result&lt;int, Exception&gt; customResultValue = Result.Ok&lt;int, Exception&gt;(42);
+Result simpleResult = customResultValue;
+
+// Result&lt;T, TError&gt; =&gt; CustomResult&lt;TError&gt;
+Result&lt;int, Exception&gt; customResultValue = Result.Ok&lt;int, Exception&gt;(42);
+CustomResult&lt;Exception&gt; customResult = customResultValue;
+
+// Result&lt;T, TError&gt; =&gt; Result&lt;T&gt;
+Result&lt;int, Exception&gt; customResultValue = Result.Ok&lt;int, Exception&gt;(42);
+Result&lt;int&gt; resultValue = customResultValue;
+</code></pre>
+<h2 id="working-with-a-result">Working with a Result</h2>
+<p>A result at least implements the <code>IResult</code> interface which corresponds to 3 flags (<code>IsSuccess</code>, <code>IsWarning</code> or <code>IsFailure</code>), a message, and an optional exception.</p>
+<p>If you create an <code>Ok</code> or a <code>Warn</code> result, both will end in a success result. The difference is that the <code>Ok</code> doesn't require a message while warning yes.
+So the only way to have a failed result is obviously to use the <code>Fail</code> construction, and in this case, it also requires a message.</p>
+<p>The necessity to have a message for warnings and errors is motivated by the need to force the developer of a treatment to explain error cases.</p>
+<p>Then you have <code>IResult&lt;T&gt;</code> and <code>IResultError&lt;TError&gt;</code> that respectively provide a <code>Value</code> and a custom <code>Error</code>.</p>
+<pre><code class="lang-csharp">Result&lt;int&gt; result = Result.Ok(42);
+if (result.IsSuccess)
+    Console.WriteLine(result.Value);
+</code></pre>
+<p>Results structures also implement the IEquatable interface to perform comparisons between result. Note that this one checks if both results are equal.
+To complete this, there are also SuccessEquals helpers to check that both results are equal and also are success!</p>
+<h3 id="equality--comparison">Equality / Comparison</h3>
+<h4 id="equality">Equality</h4>
+<pre><code class="lang-csharp">// Equality
+Result resultOk1 = Result.Ok();
+Result resultOk2 = Result.Ok();
+Result resultFail1 = Result.Fail(&quot;Error message&quot;);
+Result resultFail2 = Result.Fail(&quot;Error message&quot;);
+
+resultOk1.Equals(resultOk2);     // True
+resultOk1.Equals(resultFail1);   // False
+resultFail1.Equals(resultFail2); // **True!**
+
+// Success Equality
+Result&lt;int&gt; resultOk1 = Result.Ok(42);
+Result&lt;int&gt; resultOk2 = Result.Ok(42);
+Result&lt;int&gt; resultFail1 = Result.Fail&lt;int&gt;(&quot;Error message&quot;);
+Result&lt;int&gt; resultFail2 = Result.Fail&lt;int&gt;(&quot;Error message&quot;);
+
+resultOk1.SuccessEquals(resultOk2);     // True
+resultOk1.SuccessEquals(resultFail1);   // False
+resultFail1.SuccessEquals(resultFail2); // **False!**
+</code></pre>
+<p>Note that == and != operators are also implemented.</p>
+<h4 id="value-comparison">Value comparison</h4>
+<p>Results structures that wrap a value support == operator to directly check the wrapped value.
+This check is state safe, it means it will only check the value if available, and then return the result of the comparison.</p>
+<p>See the following example:</p>
+<pre><code class="lang-csharp">Result&lt;int&gt; resultOk = Result.Ok(42);
+Result&lt;int&gt; resultFail = Result.Fail&lt;int&gt;(&quot;Error message&quot;);
+
+resultOk == 42    // True
+resultOk == 12    // False
+resultFail == 42  // False
+</code></pre>
+<h3 id="safe-scopes">Safe Scopes</h3>
+<p>If you want to run code that should return a Result safely, you can use Result scopes to do this.</p>
+<p>There is at least one per Result type. Following is an example with the scope for <code>Result</code>.</p>
+<pre><code class="lang-csharp">// Example 1
+public Result MyFunction()
+{
+    return ResultScope.SafeResult(() =&gt;
+    {
+        // ...
+        // Your code
+
+        return Result.Ok();
+    });
+}
+
+// The call will give
+var result = MyFunction();   // Result.Ok()
+
+// Example 2
+public Result MyFunctionRaiseException()
+{
+    return ResultScope.SafeResult(() =&gt;
+    {
+        // ...
+        // Your code that trigger an exception
+
+        return Result.Ok();
+    });
+}
+
+// The call will give
+var result = MyFunctionRaiseException();   // Result.Fail()
+
+// The scope catches the exception and produces a Result that embed the thrown exception.
+// So you can keep focus on your code rather than exception that it can trigger.
+</code></pre>
+<h3 id="onsuccess--onfailure--onany">OnSuccess / OnFailure / OnAny</h3>
+<p>Results have extensions that allow branching code fluently. These extensions handle cases the result is success, failure or run regardless of the result state.
+These calls can be chained to easily produce complex treatments but keeping them readable and scalable.</p>
+<p>See following examples for a quick overview. Note that each result type offers similar extensions.</p>
+<pre><code class="lang-csharp">// In this example we call a method on a database that returns an Option&lt;string&gt;
+Database.GetUser(&quot;Jack&quot;)
+        .ToResult()
+        .OnAny(() =&gt; Console.WriteLine(&quot;Hello&quot;))
+        .OnSuccess(name =&gt; Console.WriteLine(name))
+        .OnFailure(() =&gt; Console.WriteLine(&quot;Anonymous&quot;))
+        .OnAny(() =&gt; Console.WriteLine(&quot;, how are you?&quot;));
+
+// Output &quot;Hello Jack, how are you?&quot; if the Database contains a user named Jack
+// Output &quot;Hello Anonymous, how are you?&quot; if the Database does not contain a user named Jack
+
+// Obviously you can chain calls and have nested calls
+Database.GetUser(&quot;Jack&quot;)
+        .ToResult()
+        .OnSuccess(name =&gt; Database.GetAppointmentsFor(name)
+                                   .OnSuccess(appointments =&gt; Console.WriteLine($&quot;Appointments for {name}: {appointments.ToString()}))
+                                   .OnFailure(() =&gt; Console.WriteLine($&quot;Not any appointment for {name}.&quot;)))
+        .OnFailure(() =&gt; Console.WriteLine(&quot;No user named Jack.&quot;))
+</code></pre>
+<h3 id="ensure">Ensure</h3>
+<p>With <code>Result</code> (and all results structures) you can run treatments, get the result value of it, and then ensure that it meets other requirements.</p>
+<p>Look at the following example (obviously this is a dummy example):</p>
+<pre><code class="lang-csharp">public void Result CheckCountOver(int N)
+{
+    Result&lt;int&gt; myCount = TreatmentThatCountSomething();
+
+    // Lets assume we only consider the final result success if the count is over N
+    // So the result will be converted to a failure if the predicate is not matched.
+    return myCount.Ensure(count =&gt; count &gt; N, $&quot;Count must be over {N}.&quot;);
+}
+
+</code></pre>
+<h3 id="cast">Cast</h3>
+<p>Results support &quot;downcast&quot; implicitly. For example a <code>Result&lt;int, ErrorType&gt;</code> can be implicitly converted to a <code>Result&lt;int&gt;</code>. But the opposite is not possible.
+To do this you can use <code>Cast</code> methods that each result types provide. For example if you want to create a <code>Result&lt;double&gt;</code> from a simple <code>Result</code> you can do like following:</p>
+<pre><code class="lang-csharp">Result res = Result.Ok();
+
+Result&lt;double&gt; resDouble = res.Cast&lt;double&gt;(12.5f);
+// Or
+Result&lt;double&gt; resDouble = res.Cast&lt;double&gt;(() =&gt; GetADouble() * 2.5);
+</code></pre>
+<p>Results with more data inside provide less Cast methods because as said before the implicit conversion is used when you specify the target type.</p>
+<h3 id="bridge-to-option">Bridge to Option</h3>
+<p>It is possible to convert a <code>Result</code>, <code>Result&lt;T&gt;</code>, <code>CustomResult&lt;TError&gt;</code> or <code>Result&lt;T, TError&gt;</code> to an <code>Option&lt;T&gt;</code>.</p>
+<p>Conversions from a <code>Result</code> or a <code>CustomResult&lt;TError&gt;</code> give an <code>Option&lt;bool&gt;</code>, the other give an <code>Option&lt;T&gt;</code>.
+Each conversion can be done implicitly too.</p>
+<pre><code class="lang-csharp">// Result without value
+Result resultOK = Result.Ok();
+
+Option&lt;bool&gt; optionBool = resultOK.ToOption(); // Explicit =&gt; Option.Some(true)
+Option&lt;bool&gt; optionBool = resultOK;           // Implicit =&gt; Option.Some(true)
+
+Result resultFail = Result.Fail(&quot;Failure&quot;);
+
+Option&lt;bool&gt; optionBool = resultFail.ToOption(); // Explicit =&gt; Option.Some(false)
+Option&lt;bool&gt; optionBool = resultFail;           // Implicit =&gt; Option.Some(false)
+
+// Result with value
+Result&lt;int&gt; resultOK = Result.Ok(12);
+
+Option&lt;bool&gt; optionBool = resultOK.ToOption(); // Explicit =&gt; Option.Some(12)
+Option&lt;bool&gt; optionBool = resultOK;           // Implicit =&gt; Option.Some(12)
+
+Result&lt;int&gt; resultFail = Result.Fail&lt;int&gt;(&quot;Failure&quot;);
+
+Option&lt;bool&gt; optionBool = resultFail.ToOption(); // Explicit =&gt; Option.None
+Option&lt;bool&gt; optionBool = resultFail;           // Implicit =&gt; Option.None
+</code></pre>
+<h3 id="bridge-to-either">Bridge to Either</h3>
+<p>It is possible to convert a <code>Result&lt;T&gt;</code> to an <code>Either&lt;string, T&gt;</code>, or <code>Result&lt;T, TError&gt;</code> to an <code>Either&lt;string, T&gt;</code> and <code>Either&lt;TError, T&gt;</code>.</p>
+<pre><code class="lang-csharp">Result&lt;int&gt; resultOK = Result.Ok(12);
+Either&lt;string, int&gt; eitherStrInt = resultOK.ToEither();    // eitherStrInt.IsRight
+
+Result&lt;int&gt; resultFail = Result.Fail&lt;int&gt;(&quot;Failure&quot;);
+Either&lt;string, int&gt; eitherStrInt = resultFail.ToEither();  // eitherStrInt.IsLeft
+</code></pre>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/KeRNeLith/Here/blob/master/docs/documentation/results.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

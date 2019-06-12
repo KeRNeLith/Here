@@ -1,0 +1,746 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ResultScope
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ResultScope
+   ">
+    <meta name="generator" content="docfx 2.42.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Here.ResultScope">
+  
+  
+  <h1 id="Here_ResultScope" data-uid="Here.ResultScope" class="text-break">Class ResultScope
+  </h1>
+  <div class="markdown level0 summary"><p>Scopes to safely return a <a class="xref" href="Here.Result.html">Result</a>, <a class="xref" href="Here.Result-1.html">Result&lt;T&gt;</a>, <a class="xref" href="Here.CustomResult-1.html">CustomResult&lt;TError&gt;</a> or <a class="xref" href="Here.Result-2.html">Result&lt;T, TError&gt;</a>.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">ResultScope</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Here.html">Here</a></h6>
+  <h6><strong>Assembly</strong>: Here.dll</h6>
+  <h5 id="Here_ResultScope_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class ResultScope</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_ResultScope_SafeCustomResult__1_System_Func_Here_CustomResult___0______0__.md&amp;value=---%0Auid%3A%20Here.ResultScope.SafeCustomResult%60%601(System.Func%7BHere.CustomResult%7B%60%600%7D%7D%40%2C%60%600%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/ResultScopes.cs/#L84">View Source</a>
+  </span>
+  <a id="Here_ResultScope_SafeCustomResult_" data-uid="Here.ResultScope.SafeCustomResult*"></a>
+  <h4 id="Here_ResultScope_SafeCustomResult__1_System_Func_Here_CustomResult___0______0__" data-uid="Here.ResultScope.SafeCustomResult``1(System.Func{Here.CustomResult{``0}}@,``0@)">SafeCustomResult&lt;TError&gt;(Func&lt;CustomResult&lt;TError&gt;&gt;, TError)</h4>
+  <div class="markdown level1 summary"><p>Runs the given <code data-dev-comment-type="paramref" class="paramref">action</code> in a safe scope that always returns a <a class="xref" href="Here.CustomResult-1.html">CustomResult&lt;TError&gt;</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; SafeCustomResult&lt;TError&gt;(in Func&lt;CustomResult&lt;TError&gt;&gt; action, in TError errorObject)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;<a class="xref" href="Here.CustomResult-1.html">CustomResult</a>&lt;TError&gt;&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Function to call.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TError</span></td>
+        <td><span class="parametername">errorObject</span></td>
+        <td><p>Error object to return in case an exception is thrown.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.CustomResult-1.html">CustomResult</a>&lt;TError&gt;</td>
+        <td><p>A <a class="xref" href="Here.CustomResult-1.html">CustomResult&lt;TError&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TError</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">action</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">errorObject</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_ResultScope_SafeCustomResult__1_System_Func_Here_CustomResult___0____System_Func___0___.md&amp;value=---%0Auid%3A%20Here.ResultScope.SafeCustomResult%60%601(System.Func%7BHere.CustomResult%7B%60%600%7D%7D%40%2CSystem.Func%7B%60%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/ResultScopes.cs/#L108">View Source</a>
+  </span>
+  <a id="Here_ResultScope_SafeCustomResult_" data-uid="Here.ResultScope.SafeCustomResult*"></a>
+  <h4 id="Here_ResultScope_SafeCustomResult__1_System_Func_Here_CustomResult___0____System_Func___0___" data-uid="Here.ResultScope.SafeCustomResult``1(System.Func{Here.CustomResult{``0}}@,System.Func{``0}@)">SafeCustomResult&lt;TError&gt;(Func&lt;CustomResult&lt;TError&gt;&gt;, Func&lt;TError&gt;)</h4>
+  <div class="markdown level1 summary"><p>Runs the given <code data-dev-comment-type="paramref" class="paramref">action</code> in a safe scope that always returns a <a class="xref" href="Here.CustomResult-1.html">CustomResult&lt;TError&gt;</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; SafeCustomResult&lt;TError&gt;(in Func&lt;CustomResult&lt;TError&gt;&gt; action, in Func&lt;TError&gt; errorFactory)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;<a class="xref" href="Here.CustomResult-1.html">CustomResult</a>&lt;TError&gt;&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Function to call.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;TError&gt;</td>
+        <td><span class="parametername">errorFactory</span></td>
+        <td><p>Function to create a custom error object in case an exception is thrown.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.CustomResult-1.html">CustomResult</a>&lt;TError&gt;</td>
+        <td><p>A <a class="xref" href="Here.CustomResult-1.html">CustomResult&lt;TError&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TError</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">action</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">errorFactory</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_ResultScope_SafeResult_System_Action__.md&amp;value=---%0Auid%3A%20Here.ResultScope.SafeResult(System.Action%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/ResultScopes.cs/#L18">View Source</a>
+  </span>
+  <a id="Here_ResultScope_SafeResult_" data-uid="Here.ResultScope.SafeResult*"></a>
+  <h4 id="Here_ResultScope_SafeResult_System_Action__" data-uid="Here.ResultScope.SafeResult(System.Action@)">SafeResult(Action)</h4>
+  <div class="markdown level1 summary"><p>Runs the given <code data-dev-comment-type="paramref" class="paramref">action</code> in a safe scope that always returns a <a class="xref" href="Here.Result.html">Result</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result SafeResult(in Action action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Action</span></td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Function to call.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Result.html">Result</a></td>
+        <td><p>A <a class="xref" href="Here.Result.html">Result</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">action</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_ResultScope_SafeResult_System_Func_Here_Result___.md&amp;value=---%0Auid%3A%20Here.ResultScope.SafeResult(System.Func%7BHere.Result%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/ResultScopes.cs/#L40">View Source</a>
+  </span>
+  <a id="Here_ResultScope_SafeResult_" data-uid="Here.ResultScope.SafeResult*"></a>
+  <h4 id="Here_ResultScope_SafeResult_System_Func_Here_Result___" data-uid="Here.ResultScope.SafeResult(System.Func{Here.Result}@)">SafeResult(Func&lt;Result&gt;)</h4>
+  <div class="markdown level1 summary"><p>Runs the given <code data-dev-comment-type="paramref" class="paramref">action</code> in a safe scope that always returns a <a class="xref" href="Here.Result.html">Result</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result SafeResult(in Func&lt;Result&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;<a class="xref" href="Here.Result.html">Result</a>&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Function to call.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Result.html">Result</a></td>
+        <td><p>A <a class="xref" href="Here.Result.html">Result</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">action</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_ResultScope_SafeValueCustomResult__2_System_Func_Here_Result___0___1______1__.md&amp;value=---%0Auid%3A%20Here.ResultScope.SafeValueCustomResult%60%602(System.Func%7BHere.Result%7B%60%600%2C%60%601%7D%7D%40%2C%60%601%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/ResultScopes.cs/#L132">View Source</a>
+  </span>
+  <a id="Here_ResultScope_SafeValueCustomResult_" data-uid="Here.ResultScope.SafeValueCustomResult*"></a>
+  <h4 id="Here_ResultScope_SafeValueCustomResult__2_System_Func_Here_Result___0___1______1__" data-uid="Here.ResultScope.SafeValueCustomResult``2(System.Func{Here.Result{``0,``1}}@,``1@)">SafeValueCustomResult&lt;T, TError&gt;(Func&lt;Result&lt;T, TError&gt;&gt;, TError)</h4>
+  <div class="markdown level1 summary"><p>Runs the given <code data-dev-comment-type="paramref" class="paramref">action</code> in a safe scope that always returns a <a class="xref" href="Here.Result-2.html">Result&lt;T, TError&gt;</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result&lt;T, TError&gt; SafeValueCustomResult&lt;T, TError&gt;(in Func&lt;Result&lt;T, TError&gt;&gt; action, in TError errorObject)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;<a class="xref" href="Here.Result-2.html">Result</a>&lt;T, TError&gt;&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Function to call.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TError</span></td>
+        <td><span class="parametername">errorObject</span></td>
+        <td><p>Error object to return in case an exception is thrown.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Result-2.html">Result</a>&lt;T, TError&gt;</td>
+        <td><p>A <a class="xref" href="Here.Result-2.html">Result&lt;T, TError&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TError</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">action</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">errorObject</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_ResultScope_SafeValueCustomResult__2_System_Func_Here_Result___0___1____System_Func___1___.md&amp;value=---%0Auid%3A%20Here.ResultScope.SafeValueCustomResult%60%602(System.Func%7BHere.Result%7B%60%600%2C%60%601%7D%7D%40%2CSystem.Func%7B%60%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/ResultScopes.cs/#L156">View Source</a>
+  </span>
+  <a id="Here_ResultScope_SafeValueCustomResult_" data-uid="Here.ResultScope.SafeValueCustomResult*"></a>
+  <h4 id="Here_ResultScope_SafeValueCustomResult__2_System_Func_Here_Result___0___1____System_Func___1___" data-uid="Here.ResultScope.SafeValueCustomResult``2(System.Func{Here.Result{``0,``1}}@,System.Func{``1}@)">SafeValueCustomResult&lt;T, TError&gt;(Func&lt;Result&lt;T, TError&gt;&gt;, Func&lt;TError&gt;)</h4>
+  <div class="markdown level1 summary"><p>Runs the given <code data-dev-comment-type="paramref" class="paramref">action</code> in a safe scope that always returns a <a class="xref" href="Here.Result-2.html">Result&lt;T, TError&gt;</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result&lt;T, TError&gt; SafeValueCustomResult&lt;T, TError&gt;(in Func&lt;Result&lt;T, TError&gt;&gt; action, in Func&lt;TError&gt; errorFactory)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;<a class="xref" href="Here.Result-2.html">Result</a>&lt;T, TError&gt;&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Function to call.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;TError&gt;</td>
+        <td><span class="parametername">errorFactory</span></td>
+        <td><p>Function to create a custom error object in case an exception is thrown.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Result-2.html">Result</a>&lt;T, TError&gt;</td>
+        <td><p>A <a class="xref" href="Here.Result-2.html">Result&lt;T, TError&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TError</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">action</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">errorFactory</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_ResultScope_SafeValueResult__1_System_Func_Here_Result___0____.md&amp;value=---%0Auid%3A%20Here.ResultScope.SafeValueResult%60%601(System.Func%7BHere.Result%7B%60%600%7D%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/ResultScopes.cs/#L61">View Source</a>
+  </span>
+  <a id="Here_ResultScope_SafeValueResult_" data-uid="Here.ResultScope.SafeValueResult*"></a>
+  <h4 id="Here_ResultScope_SafeValueResult__1_System_Func_Here_Result___0____" data-uid="Here.ResultScope.SafeValueResult``1(System.Func{Here.Result{``0}}@)">SafeValueResult&lt;T&gt;(Func&lt;Result&lt;T&gt;&gt;)</h4>
+  <div class="markdown level1 summary"><p>Runs the given <code data-dev-comment-type="paramref" class="paramref">action</code> in a safe scope that always returns a <a class="xref" href="Here.Result-1.html">Result&lt;T&gt;</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; SafeValueResult&lt;T&gt;(in Func&lt;Result&lt;T&gt;&gt; action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;<a class="xref" href="Here.Result-1.html">Result</a>&lt;T&gt;&gt;</td>
+        <td><span class="parametername">action</span></td>
+        <td><p>Function to call.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Result-1.html">Result</a>&lt;T&gt;</td>
+        <td><p>A <a class="xref" href="Here.Result-1.html">Result&lt;T&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">action</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_ResultScope.md&amp;value=---%0Auid%3A%20Here.ResultScope%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/ResultScopes.cs/#L9" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

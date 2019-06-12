@@ -1,0 +1,983 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Struct EitherRight&lt;TRight&gt;
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Struct EitherRight&lt;TRight&gt;
+   ">
+    <meta name="generator" content="docfx 2.42.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Here.EitherRight`1">
+  
+  
+  <h1 id="Here_EitherRight_1" data-uid="Here.EitherRight`1" class="text-break">Struct EitherRight&lt;TRight&gt;
+  </h1>
+  <div class="markdown level0 summary"><p><a class="xref" href="Here.EitherRight-1.html">EitherRight&lt;TRight&gt;</a> is an object that represents an <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> initialized in a &quot;Right&quot; state.
+Convention is that Right is used for success.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="Here.IEither.html">IEither</a></div>
+    <div><span class="xref">System.IEquatable</span>&lt;TRight&gt;</div>
+    <div><span class="xref">System.IEquatable</span>&lt;<a class="xref" href="Here.EitherRight-1.html">EitherRight</a>&lt;TRight&gt;&gt;</div>
+    <div><span class="xref">System.IComparable</span></div>
+    <div><span class="xref">System.IComparable</span>&lt;TRight&gt;</div>
+    <div><span class="xref">System.IComparable</span>&lt;<a class="xref" href="Here.EitherRight-1.html">EitherRight</a>&lt;TRight&gt;&gt;</div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Here.html">Here</a></h6>
+  <h6><strong>Assembly</strong>: Here.dll</h6>
+  <h5 id="Here_EitherRight_1_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public struct EitherRight&lt;TRight&gt; : IEither, IEquatable&lt;TRight&gt;, IEquatable&lt;EitherRight&lt;TRight&gt;&gt;, IComparable, IComparable&lt;TRight&gt;, IComparable&lt;EitherRight&lt;TRight&gt;&gt;</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TRight</span></td>
+        <td><p>Type of the value embedded as right value in the <a class="xref" href="Here.EitherRight-1.html">EitherRight&lt;TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_Value.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.Value%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L33">View Source</a>
+  </span>
+  <h4 id="Here_EitherRight_1_Value" data-uid="Here.EitherRight`1.Value">Value</h4>
+  <div class="markdown level1 summary"><p>Right value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public readonly TRight Value</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TRight</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_IsLeft.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.IsLeft%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L24">View Source</a>
+  </span>
+  <a id="Here_EitherRight_1_IsLeft_" data-uid="Here.EitherRight`1.IsLeft*"></a>
+  <h4 id="Here_EitherRight_1_IsLeft" data-uid="Here.EitherRight`1.IsLeft">IsLeft</h4>
+  <div class="markdown level1 summary"><p>Indicates if this <a class="xref" href="Here.IEither.html">IEither</a> is a left state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsLeft { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_IsRight.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.IsRight%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L27">View Source</a>
+  </span>
+  <a id="Here_EitherRight_1_IsRight_" data-uid="Here.EitherRight`1.IsRight*"></a>
+  <h4 id="Here_EitherRight_1_IsRight" data-uid="Here.EitherRight`1.IsRight">IsRight</h4>
+  <div class="markdown level1 summary"><p>Indicates if this <a class="xref" href="Here.IEither.html">IEither</a> is a right state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsRight { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_CompareTo__0_.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.CompareTo(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L116">View Source</a>
+  </span>
+  <a id="Here_EitherRight_1_CompareTo_" data-uid="Here.EitherRight`1.CompareTo*"></a>
+  <h4 id="Here_EitherRight_1_CompareTo__0_" data-uid="Here.EitherRight`1.CompareTo(`0)">CompareTo(TRight)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CompareTo(TRight other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TRight</span></td>
+        <td><span class="parametername">other</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_CompareTo_Here_EitherRight__0__.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.CompareTo(Here.EitherRight%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L122">View Source</a>
+  </span>
+  <a id="Here_EitherRight_1_CompareTo_" data-uid="Here.EitherRight`1.CompareTo*"></a>
+  <h4 id="Here_EitherRight_1_CompareTo_Here_EitherRight__0__" data-uid="Here.EitherRight`1.CompareTo(Here.EitherRight{`0})">CompareTo(EitherRight&lt;TRight&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CompareTo(EitherRight&lt;TRight&gt; other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.EitherRight-1.html">EitherRight</a>&lt;TRight&gt;</td>
+        <td><span class="parametername">other</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_CompareTo_System_Object_.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.CompareTo(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L105">View Source</a>
+  </span>
+  <a id="Here_EitherRight_1_CompareTo_" data-uid="Here.EitherRight`1.CompareTo*"></a>
+  <h4 id="Here_EitherRight_1_CompareTo_System_Object_" data-uid="Here.EitherRight`1.CompareTo(System.Object)">CompareTo(Object)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CompareTo(object obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_Equals__0_.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.Equals(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L51">View Source</a>
+  </span>
+  <a id="Here_EitherRight_1_Equals_" data-uid="Here.EitherRight`1.Equals*"></a>
+  <h4 id="Here_EitherRight_1_Equals__0_" data-uid="Here.EitherRight`1.Equals(`0)">Equals(TRight)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(TRight other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TRight</span></td>
+        <td><span class="parametername">other</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_Equals_Here_EitherRight__0__.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.Equals(Here.EitherRight%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L57">View Source</a>
+  </span>
+  <a id="Here_EitherRight_1_Equals_" data-uid="Here.EitherRight`1.Equals*"></a>
+  <h4 id="Here_EitherRight_1_Equals_Here_EitherRight__0__" data-uid="Here.EitherRight`1.Equals(Here.EitherRight{`0})">Equals(EitherRight&lt;TRight&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(EitherRight&lt;TRight&gt; other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.EitherRight-1.html">EitherRight</a>&lt;TRight&gt;</td>
+        <td><span class="parametername">other</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_Equals_System_Object_.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.Equals(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L63">View Source</a>
+  </span>
+  <a id="Here_EitherRight_1_Equals_" data-uid="Here.EitherRight`1.Equals*"></a>
+  <h4 id="Here_EitherRight_1_Equals_System_Object_" data-uid="Here.EitherRight`1.Equals(System.Object)">Equals(Object)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Object</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.ValueType.Equals(System.Object)</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_GetHashCode.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.GetHashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L95">View Source</a>
+  </span>
+  <a id="Here_EitherRight_1_GetHashCode_" data-uid="Here.EitherRight`1.GetHashCode*"></a>
+  <h4 id="Here_EitherRight_1_GetHashCode" data-uid="Here.EitherRight`1.GetHashCode">GetHashCode()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.ValueType.GetHashCode()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_ToString.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L174">View Source</a>
+  </span>
+  <a id="Here_EitherRight_1_ToString_" data-uid="Here.EitherRight`1.ToString*"></a>
+  <h4 id="Here_EitherRight_1_ToString" data-uid="Here.EitherRight`1.ToString">ToString()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.ValueType.ToString()</span></div>
+  <h3 id="operators">Operators
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_op_Equality_Here_EitherRight__0___Here_EitherRight__0___.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.op_Equality(Here.EitherRight%7B%600%7D%40%2CHere.EitherRight%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L78">View Source</a>
+  </span>
+  <a id="Here_EitherRight_1_op_Equality_" data-uid="Here.EitherRight`1.op_Equality*"></a>
+  <h4 id="Here_EitherRight_1_op_Equality_Here_EitherRight__0___Here_EitherRight__0___" data-uid="Here.EitherRight`1.op_Equality(Here.EitherRight{`0}@,Here.EitherRight{`0}@)">Equality(EitherRight&lt;TRight&gt;, EitherRight&lt;TRight&gt;)</h4>
+  <div class="markdown level1 summary"><p>Indicates whether both <a class="xref" href="Here.EitherRight-1.html">EitherRight&lt;TRight&gt;</a> are equal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(in EitherRight&lt;TRight&gt; either1, in EitherRight&lt;TRight&gt; either2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.EitherRight-1.html">EitherRight</a>&lt;TRight&gt;</td>
+        <td><span class="parametername">either1</span></td>
+        <td><p>First <a class="xref" href="Here.EitherRight-1.html">EitherRight&lt;TRight&gt;</a> to compare.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Here.EitherRight-1.html">EitherRight</a>&lt;TRight&gt;</td>
+        <td><span class="parametername">either2</span></td>
+        <td><p>Second <a class="xref" href="Here.EitherRight-1.html">EitherRight&lt;TRight&gt;</a> to compare.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True if both <a class="xref" href="Here.EitherRight-1.html">EitherRight&lt;TRight&gt;</a> are equal, otherwise false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_op_GreaterThan_Here_EitherRight__0___Here_EitherRight__0___.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.op_GreaterThan(Here.EitherRight%7B%600%7D%40%2CHere.EitherRight%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L155">View Source</a>
+  </span>
+  <a id="Here_EitherRight_1_op_GreaterThan_" data-uid="Here.EitherRight`1.op_GreaterThan*"></a>
+  <h4 id="Here_EitherRight_1_op_GreaterThan_Here_EitherRight__0___Here_EitherRight__0___" data-uid="Here.EitherRight`1.op_GreaterThan(Here.EitherRight{`0}@,Here.EitherRight{`0}@)">GreaterThan(EitherRight&lt;TRight&gt;, EitherRight&lt;TRight&gt;)</h4>
+  <div class="markdown level1 summary"><p>Determines if this <a class="xref" href="Here.EitherRight-1.html">EitherRight&lt;TRight&gt;</a> is &quot;greater&quot; than the other one.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator&gt;(in EitherRight&lt;TRight&gt; left, in EitherRight&lt;TRight&gt; right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.EitherRight-1.html">EitherRight</a>&lt;TRight&gt;</td>
+        <td><span class="parametername">left</span></td>
+        <td><p>The first <a class="xref" href="Here.EitherRight-1.html">EitherRight&lt;TRight&gt;</a> to compare.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Here.EitherRight-1.html">EitherRight</a>&lt;TRight&gt;</td>
+        <td><span class="parametername">right</span></td>
+        <td><p>The second <a class="xref" href="Here.EitherRight-1.html">EitherRight&lt;TRight&gt;</a> to compare.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>The comparison result.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_op_GreaterThanOrEqual_Here_EitherRight__0___Here_EitherRight__0___.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.op_GreaterThanOrEqual(Here.EitherRight%7B%600%7D%40%2CHere.EitherRight%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L166">View Source</a>
+  </span>
+  <a id="Here_EitherRight_1_op_GreaterThanOrEqual_" data-uid="Here.EitherRight`1.op_GreaterThanOrEqual*"></a>
+  <h4 id="Here_EitherRight_1_op_GreaterThanOrEqual_Here_EitherRight__0___Here_EitherRight__0___" data-uid="Here.EitherRight`1.op_GreaterThanOrEqual(Here.EitherRight{`0}@,Here.EitherRight{`0}@)">GreaterThanOrEqual(EitherRight&lt;TRight&gt;, EitherRight&lt;TRight&gt;)</h4>
+  <div class="markdown level1 summary"><p>Determines if this <a class="xref" href="Here.EitherRight-1.html">EitherRight&lt;TRight&gt;</a> is &quot;greater&quot; than or equal to the other one.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &gt;=(in EitherRight&lt;TRight&gt; left, in EitherRight&lt;TRight&gt; right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.EitherRight-1.html">EitherRight</a>&lt;TRight&gt;</td>
+        <td><span class="parametername">left</span></td>
+        <td><p>The first <a class="xref" href="Here.EitherRight-1.html">EitherRight&lt;TRight&gt;</a> to compare.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Here.EitherRight-1.html">EitherRight</a>&lt;TRight&gt;</td>
+        <td><span class="parametername">right</span></td>
+        <td><p>The second <a class="xref" href="Here.EitherRight-1.html">EitherRight&lt;TRight&gt;</a> to compare.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>The comparison result.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_op_Inequality_Here_EitherRight__0___Here_EitherRight__0___.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.op_Inequality(Here.EitherRight%7B%600%7D%40%2CHere.EitherRight%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L89">View Source</a>
+  </span>
+  <a id="Here_EitherRight_1_op_Inequality_" data-uid="Here.EitherRight`1.op_Inequality*"></a>
+  <h4 id="Here_EitherRight_1_op_Inequality_Here_EitherRight__0___Here_EitherRight__0___" data-uid="Here.EitherRight`1.op_Inequality(Here.EitherRight{`0}@,Here.EitherRight{`0}@)">Inequality(EitherRight&lt;TRight&gt;, EitherRight&lt;TRight&gt;)</h4>
+  <div class="markdown level1 summary"><p>Indicates whether both <a class="xref" href="Here.EitherRight-1.html">EitherRight&lt;TRight&gt;</a> are not equal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(in EitherRight&lt;TRight&gt; either1, in EitherRight&lt;TRight&gt; either2)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.EitherRight-1.html">EitherRight</a>&lt;TRight&gt;</td>
+        <td><span class="parametername">either1</span></td>
+        <td><p>First <a class="xref" href="Here.EitherRight-1.html">EitherRight&lt;TRight&gt;</a> to compare.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Here.EitherRight-1.html">EitherRight</a>&lt;TRight&gt;</td>
+        <td><span class="parametername">either2</span></td>
+        <td><p>Second <a class="xref" href="Here.EitherRight-1.html">EitherRight&lt;TRight&gt;</a> to compare.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True if both <a class="xref" href="Here.EitherRight-1.html">EitherRight&lt;TRight&gt;</a> are not equal, otherwise false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_op_LessThan_Here_EitherRight__0___Here_EitherRight__0___.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.op_LessThan(Here.EitherRight%7B%600%7D%40%2CHere.EitherRight%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L133">View Source</a>
+  </span>
+  <a id="Here_EitherRight_1_op_LessThan_" data-uid="Here.EitherRight`1.op_LessThan*"></a>
+  <h4 id="Here_EitherRight_1_op_LessThan_Here_EitherRight__0___Here_EitherRight__0___" data-uid="Here.EitherRight`1.op_LessThan(Here.EitherRight{`0}@,Here.EitherRight{`0}@)">LessThan(EitherRight&lt;TRight&gt;, EitherRight&lt;TRight&gt;)</h4>
+  <div class="markdown level1 summary"><p>Determines if this <a class="xref" href="Here.EitherRight-1.html">EitherRight&lt;TRight&gt;</a> is &quot;less&quot; than the other one.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;(in EitherRight&lt;TRight&gt; left, in EitherRight&lt;TRight&gt; right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.EitherRight-1.html">EitherRight</a>&lt;TRight&gt;</td>
+        <td><span class="parametername">left</span></td>
+        <td><p>The first <a class="xref" href="Here.EitherRight-1.html">EitherRight&lt;TRight&gt;</a> to compare.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Here.EitherRight-1.html">EitherRight</a>&lt;TRight&gt;</td>
+        <td><span class="parametername">right</span></td>
+        <td><p>The second <a class="xref" href="Here.EitherRight-1.html">EitherRight&lt;TRight&gt;</a> to compare.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>The comparison result.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_op_LessThanOrEqual_Here_EitherRight__0___Here_EitherRight__0___.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.op_LessThanOrEqual(Here.EitherRight%7B%600%7D%40%2CHere.EitherRight%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L144">View Source</a>
+  </span>
+  <a id="Here_EitherRight_1_op_LessThanOrEqual_" data-uid="Here.EitherRight`1.op_LessThanOrEqual*"></a>
+  <h4 id="Here_EitherRight_1_op_LessThanOrEqual_Here_EitherRight__0___Here_EitherRight__0___" data-uid="Here.EitherRight`1.op_LessThanOrEqual(Here.EitherRight{`0}@,Here.EitherRight{`0}@)">LessThanOrEqual(EitherRight&lt;TRight&gt;, EitherRight&lt;TRight&gt;)</h4>
+  <div class="markdown level1 summary"><p>Determines if this <a class="xref" href="Here.EitherRight-1.html">EitherRight&lt;TRight&gt;</a> is &quot;less&quot; than or equal to the other one.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator &lt;=(in EitherRight&lt;TRight&gt; left, in EitherRight&lt;TRight&gt; right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.EitherRight-1.html">EitherRight</a>&lt;TRight&gt;</td>
+        <td><span class="parametername">left</span></td>
+        <td><p>The first <a class="xref" href="Here.EitherRight-1.html">EitherRight&lt;TRight&gt;</a> to compare.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Here.EitherRight-1.html">EitherRight</a>&lt;TRight&gt;</td>
+        <td><span class="parametername">right</span></td>
+        <td><p>The second <a class="xref" href="Here.EitherRight-1.html">EitherRight&lt;TRight&gt;</a> to compare.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>The comparison result.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Here.IEither.html">IEither</a>
+  </div>
+  <div>
+      <span class="xref">System.IEquatable&lt;T&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.IEquatable&lt;T&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.IComparable</span>
+  </div>
+  <div>
+      <span class="xref">System.IComparable&lt;T&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.IComparable&lt;T&gt;</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Here.Either.html#Here_Either_ToEither__2___1_">Either.ToEither&lt;TLeft, TRight&gt;(TRight)</a>
+  </div>
+  <div>
+      <a class="xref" href="Here.Either.html#Here_Either_ToEither__2___1_">Either.ToEither&lt;TLeft, TRight&gt;(TRight)</a>
+  </div>
+  <div>
+      <a class="xref" href="Here.Extensions.EitherExtensions.html#Here_Extensions_EitherExtensions_IsSuccess_Here_IEither_">EitherExtensions.IsSuccess(IEither)</a>
+  </div>
+  <div>
+      <a class="xref" href="Here.Extensions.EitherExtensions.html#Here_Extensions_EitherExtensions_IsFailure_Here_IEither_">EitherExtensions.IsFailure(IEither)</a>
+  </div>
+  <div>
+      <a class="xref" href="Here.Extensions.OptionExtensions.html#Here_Extensions_OptionExtensions_ToOption__1___0_">OptionExtensions.ToOption&lt;T&gt;(T)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1.md&amp;value=---%0Auid%3A%20Here.EitherRight%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L13" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

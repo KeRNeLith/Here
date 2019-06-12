@@ -1,0 +1,260 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Either </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Either ">
+    <meta name="generator" content="docfx 2.42.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="either">Either</h1>
+
+<p>The <code>Either&lt;TLeft, TRight&gt;</code> is an object that represents a value that can be one of two possible types.
+It is composed of a &quot;Left&quot; or a &quot;Right&quot; value (either). Generally the left value is considered as the error state and the right as the good one.
+As a consequence <code>Either&lt;TLeft, TRight&gt;</code> in left state acts as an <code>Option&lt;T&gt;</code> in a None state, but the <code>Either&lt;TLeft, TRight&gt;</code> have an additional information on the error encountered.
+Where an <code>Option&lt;T&gt;</code> will only cancel operations being executed while in None state, the <code>Either&lt;TLeft, TRight&gt;</code> will help more by allowing to get more details on the error root cause.</p>
+<p>What you just have to do to use it is to put a using like this for basic implementation:</p>
+<pre><code class="lang-csharp">using Here;
+</code></pre>
+<p>And this one for extensions:</p>
+<pre><code class="lang-csharp">using Here.Extensions;
+</code></pre>
+<h2 id="why-either">Why Either?</h2>
+<p>Because it's a structure that will improve the error management by clearly making a distinction between normal and error cases.
+You will have to handle both cases in a more natural and simple way.</p>
+<hr>
+<h2 id="create-an-either">Create an Either</h2>
+<p>You can create an <code>Either&lt;TLeft, TRight&gt;</code> from any type via the extension <code>ToEither()</code> or the &quot;constructors&quot;.
+See examples below:</p>
+<pre><code class="lang-csharp">// Left &lt;=&gt; error state
+Either&lt;string, int&gt; eitherLeft = Either.Left&lt;string, int&gt;(&quot;Error message&quot;);
+Either&lt;string, int&gt; eitherLeft = Either.Left(&quot;Error message&quot;);
+Either&lt;string, int&gt; eitherLeft = &quot;Error message&quot;.ToEither&lt;string, int&gt;();
+
+// Right &lt;=&gt; good state
+Either&lt;string, int&gt; eitherRight = Either.Right&lt;string, int&gt;(12);
+Either&lt;string, int&gt; eitherRight = Either.Right(42);
+Either&lt;string, int&gt; eitherRight = 12.ToEither&lt;string, int&gt;();
+
+// Empty either
+Either&lt;string, int&gt; eitherNone = Either&lt;string, int&gt;.None;
+</code></pre>
+<p>Note that there are also EitherRight<tright> and EitherLeft<tleft> structures that can be intermediate structures to later create a full Either&lt;TLeft, TRight&gt; structure.<p>
+<h2 id="working-with-either">Working with Either</h2>
+<p>When you use an Either you can access to its right value (<code>RightValue</code> property), or its left value (<code>LeftValue</code> property) depending on the. You can check before that it has one or the other value (or neither) via the <code>IsRight</code> and/or <code>IsLeft</code> properties.
+But you can also simply use extensions that will really help you to keep a clean and functional code.</p>
+<pre><code class="lang-csharp">Either&lt;string, int&gt; either = Either.Left&lt;string, int&gt;(&quot;Error message&quot;);
+if (either.IsLeft &amp;&amp; !either.IsNone)
+    Console.WriteLine(either.LeftValue);
+
+Either&lt;string, int&gt; either = Either.Right&lt;string, int&gt;(42);
+if (either.IsRight &amp;&amp; !either.IsNone)
+    Console.WriteLine(either.RightValue);
+
+</code></pre>
+<h3 id="perform-a-treatment">Perform a treatment</h3>
+<p>// Following just a few quick examples:</p>
+<pre><code class="lang-csharp">&quot;Error message&quot;.ToEither&lt;string, int&gt;().IfLeft(leftValue =&gt;
+{
+    // Here 'leftValue' is guaranteed to be not null is left state.
+    Console.WriteLine(leftValue);
+});
+
+42.ToEither&lt;string, int&gt;().IfLeft(leftValue =&gt;
+{
+    // Not called
+    Console.WriteLine(leftValue);
+});
+
+42.ToEither&lt;string, int&gt;().OnSuccessOrFailure(
+    rightValue =&gt;
+    {
+        // Called
+        Console.WriteLine(rightValue);
+    },
+    leftValue =&gt;
+    {
+        // Not called
+        Console.WriteLine(leftValue);
+    });
+</code></pre>
+<p>Here are some examples with the <code>IfLeft</code>, <code>OnSuccessOrFailure</code>, but there are many others.</p>
+<h3 id="unwrapping-value">Unwrapping value</h3>
+<h4 id="extensions">Extensions</h4>
+<p>After having wrapped a value you can also safely unwrap it. For this you have multiple methods, for example by using the <code>RightOr</code> or <code>LeftOr</code> operators.
+You will be able unwrap with a default value or a factory method like:</p>
+<pre><code class="lang-csharp">// With a wrapped value
+Either&lt;string, int&gt; eitherStrInt = 42.ToEither&lt;string, int&gt;();
+
+int unwrappedValue = eitherStrInt.RightOr(15);        // 42
+int unwrappedValue2 = eitherStrInt.RightOr(() =&gt; 12); // 42
+int unwrappedValue3 = eitherStrInt.RightOrDefault();  // 42
+
+Either&lt;string, int&gt; eitherStrInt = &quot;Error&quot;.ToEither&lt;string, int&gt;();
+
+int unwrappedValue = eitherStrInt.RightOr(15);        // 15
+int unwrappedValue2 = eitherStrInt.RightOr(() =&gt; 12); // 12
+int unwrappedValue3 = eitherStrInt.RightOrDefault();  // 0
+
+// There are equivalent for Left.
+</code></pre>
+<h4 id="comparisons">Comparisons</h4>
+<p>It is also possible to perform equality comparison directly on the wrapped value through the <code>Option</code> like shown below:</p>
+<pre><code class="lang-csharp">Either&lt;string, int&gt; eitherStrInt = 12.ToEither&lt;string, int&gt;();
+if (eitherStrInt == 12)
+{
+    // Do something...
+}
+</code></pre>
+<h3 id="linq-extensions">Linq extensions</h3>
+<p>There is also a support of common Linq extensions like <code>Any</code>, <code>All</code>, <code>Contains</code>, <code>Select</code>, <code>Where</code>, <code>ForEach</code> and <code>Aggregate</code>.</p>
+<p>See example below:</p>
+<pre><code class="lang-csharp">// Dummy examples
+Either&lt;string, int&gt; eitherStrInt = 12.ToEither&lt;string, int&gt;();
+
+if (eitherStrInt.Any())
+{
+    // code
+}
+
+int result = eitherStrInt.Aggregate(10, (initial, value) =&gt; initial + value); // 22
+
+bool result = eitherStrInt.Where(intValue =&gt; intValue &gt; 10) // Is true
+                          .Contains(12);                    // Is true
+
+Either&lt;string, Type&gt; eitherStrType = typeof(string).ToEither&lt;string, Type&gt;();
+eitherStrType.Select(type =&gt; type.Name)
+             .ForEach(name =&gt; Console.WriteLine(name));
+</code></pre>
+<h3 id="bridge-to-option">Bridge to Option</h3>
+<p>It is possible to convert an <code>Either&lt;TLeft, TRight&gt;</code> to an <code>Option&lt;TRight&gt;</code>.</p>
+<pre><code class="lang-csharp">Either&lt;string, int&gt; eitherStrInt = Either.Right(12);
+Option&lt;int&gt; optionInt = eitherStrInt.ToOption();    // optionInt = 12
+
+Either&lt;string, int&gt; eitherStrInt = Either.Left(&quot;Error&quot;);
+Option&lt;int&gt; optionInt = eitherStrInt.ToOption();    // optionInt is empty
+
+Either&lt;string, int&gt; eitherStrInt = Either&lt;string, int&gt;.None;
+Option&lt;int&gt; optionInt = eitherStrInt.ToOption();    // optionInt is empty
+</code></pre>
+<h3 id="bridge-to-result">Bridge to Result</h3>
+<p>It is possible to convert an <code>Either&lt;TLeft, TRight&gt;</code> to a <code>Result</code>, <code>Result&lt;TRight&gt;</code>, <code>CustomResult&lt;TLeft&gt;</code> or <code>Result&lt;TRight, TLeft&gt;</code>.</p>
+<pre><code class="lang-csharp">// Result without custom error type
+Either&lt;string, int&gt; eitherStrInt = Either.Right(12);
+Result&lt;int&gt; resultInt = eitherStrInt.ToValueResult();    // resultInt = 12
+
+Either&lt;string, int&gt; eitherStrInt = Either.Left(&quot;Error&quot;);
+Result&lt;int&gt; resultInt = eitherStrInt.ToValueResult();    // resultInt.IsFailure
+
+Either&lt;string, int&gt; eitherStrInt = Either&lt;string, int&gt;.None;
+Result&lt;int&gt; resultInt = eitherStrInt.ToValueResult();    // resultInt.IsFailure
+
+// Result with custom error type
+Either&lt;string, int&gt; eitherStrInt = Either.Right(12);
+Result&lt;int, string&gt; resultInt = eitherStrInt.ToValueCustomResult();    // resultInt = 12
+
+Either&lt;string, int&gt; eitherStrInt = Either.Left(&quot;Error&quot;);
+Result&lt;int, string&gt; resultInt = eitherStrInt.ToValueCustomResult();    // resultInt.IsFailure
+
+Either&lt;string, int&gt; eitherStrInt = Either&lt;string, int&gt;.None;
+Result&lt;int, string&gt; resultInt = eitherStrInt.ToValueCustomResult();    // throw InvalidOperationException
+</code></pre>
+</tleft></tright></article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/KeRNeLith/Here/blob/master/docs/documentation/either.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

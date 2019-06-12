@@ -1,0 +1,358 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Option </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Option ">
+    <meta name="generator" content="docfx 2.42.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="option">Option</h1>
+
+<p>The <code>Option&lt;T&gt;</code> is a structure that encapsulates the concept of having a value or not.
+It safely handles this mechanic without you have to worry about having a null value somewhere. It does this for you.
+What you just have to do to use it is to put a using like this for basic implementation:</p>
+<pre><code class="lang-csharp">using Here;
+</code></pre>
+<p>And this one for extensions:</p>
+<pre><code class="lang-csharp">using Here.Extensions;
+</code></pre>
+<h2 id="why-option">Why Option?</h2>
+<p>Because it offers a safe handling of null values. It is also a nice alternative to <code>Nullable</code> that only works with value type while <code>Option</code> handle every types.</p>
+<hr>
+<h2 id="create-an-option">Create an option</h2>
+<p>You can create an <code>Option&lt;T&gt;</code> from any type via the extension <code>ToOption()</code> or the &quot;constructor&quot;.
+See examples below:</p>
+<pre><code class="lang-csharp">Option&lt;string&gt; optionStr = Option&lt;string&gt;.Some(&quot;My string&quot;);
+Option&lt;string&gt; optionStr2 = &quot;My string2&quot;.ToOption();
+Option&lt;string&gt; optionStr3 = &quot;My string2&quot;;     // Implicit conversion
+
+// Empty option
+Option&lt;string&gt; emptyOptionStr = Option&lt;string&gt;.None;
+Option&lt;string&gt; emptyOptionStr2 = Option.None;  // Implicit creation
+</code></pre>
+<p>It is also possible to use implicit conversion that will fit for calls to API code that your not the owner or simply code you don't want to update.</p>
+<pre><code class="lang-csharp">int GetAnInteger()
+{
+    return 42;
+}
+
+// Implicit creation
+Option&lt;int&gt; optionInt = GetAnInteger();
+</code></pre>
+<h2 id="working-with-option">Working with Option</h2>
+<p>When you use an Option you can access to its value if it has one via the <code>Value</code> property. You can check before that it has one via the <code>HasValue</code> and/or <code>HasNoValue</code> properties, or directly by checking the Option variable as it supports the true and false operators.
+But you can also simply use extensions that will really help you to keep a clean and functional code.</p>
+<pre><code class="lang-csharp">Option&lt;int&gt; optionInt = 42.ToOption();
+if (optionInt.HasValue)
+    Console.WriteLine(optionInt.Value);
+
+// Equivalent to
+if (optionInt)
+    Console.WriteLine(optionInt.Value);
+</code></pre>
+<h3 id="perform-a-treatment">Perform a treatment</h3>
+<pre><code class="lang-csharp">// Empty string
+string emptyString = null;
+
+emptyString.ToOption().If(str =&gt;
+{
+    // Here 'str' is guaranteed to be not null. In this case this statement will never be called.
+    Console.WriteLine(str);
+});
+
+// Not empty string
+&quot;Hello world!&quot;.ToOption().If(str =&gt;
+{
+    // In this case it will output &quot;Hello world!&quot;.
+    Console.WriteLine(str);
+});
+</code></pre>
+<p>Here is an example with the <code>If</code> (has value), but there is also the <code>IfElse</code> that allows you to handle the case the Option has no value, and many others.</p>
+<h3 id="unwrapping-value">Unwrapping value</h3>
+<h4 id="extensions">Extensions</h4>
+<p>After having wrapped a value you can also safely unwrap it. For this you have multiple methods, for example by using the <code>Or</code> operator.
+You will be able unwrap with a default value or a factory method like:</p>
+<pre><code class="lang-csharp">// With a wrapped value
+Option&lt;int&gt; optionInt = 42.ToOption();
+
+int unwrappedValue = optionInt.Or(12);        // 42
+int unwrappedValue2 = optionInt.Or(() =&gt; 12); // 42
+int unwrappedValue3 = optionInt.OrDefault();  // 42
+int unwrappedValue3 = optionInt.Unwrap();     // 42
+
+// With no wrapped value
+Option&lt;int&gt; emptyOptionInt = Option.None;
+
+int unwrappedValue = emptyOptionInt.Or(12);        // 12
+int unwrappedValue2 = emptyOptionInt.Or(() =&gt; 42); // 42
+int unwrappedValue3 = emptyOptionInt.OrDefault();  // 0
+</code></pre>
+<p>You can also consider the case when the option is 'None' as an error and use the <code>OrThrows</code>:</p>
+<pre><code class="lang-csharp">Option&lt;int&gt; emptyOptionInt = Option.None;
+
+int unwrappedValue = emptyOptionInt.OrThrows(new InvalidOperationException()); // Throws
+</code></pre>
+<h4 id="comparisons">Comparisons</h4>
+<p>It is also possible to perform equality comparison directly on the wrapped value through the <code>Option</code> like shown below:</p>
+<pre><code class="lang-csharp">Option&lt;int&gt; optionInt = Option&lt;int&gt;.Some(12);
+if (optionInt == 12)
+{
+    // Do something...
+}
+
+// Or with reference types
+var testClass = new TestClass();
+Option&lt;TestClass&gt; optionClass = Option&lt;TestClass&gt;.Some(new TestClass());
+if (optionClass == testClass)
+{
+    // Do something...
+}
+</code></pre>
+<h3 id="cast-value">Cast value</h3>
+<p>You can cast the value wrapped by the Option in a safe way by using a converter method or an 'as' cast like following:</p>
+<pre><code class="lang-csharp">// For basic types
+Option&lt;int&gt; optionInt = 42.ToOption();
+Option&lt;float&gt; optionFloat = optionInt.Cast(intValue =&gt; (float)intValue);
+
+// For reference types
+// Let assume that we have a type TestClass and a type SubTestClass that inherits from TestClass
+var testObject = new SubTestClass()
+Option&lt;TestClass&gt; optionTestClass = Option&lt;TestClass&gt;.Some(testObject);
+Option&lt;SubTestClass&gt; optionSubTestClass = optionTestClass.Cast&lt;SubTestClass&gt;();
+</code></pre>
+<h3 id="enumerable-extensions">Enumerable extensions</h3>
+<h4 id="basic-methods">Basic methods</h4>
+<p>Methods like <code>FirstOrDefault()</code> and <code>LastOrDefault</code> have their Option equivalent that are <code>FirstOrNone</code> and <code>LastOrNone</code> which respectively return an Option with the first or last enumerable element and None if there is not any.</p>
+<pre><code class="lang-csharp">var listInts = new List&lt;int&gt; { 1, 2, 3 };
+
+Option&lt;int&gt; optionInt = listInts.FirstOrNone(); // Option with value 1
+Option&lt;int&gt; optionInt2 = listInts.FirstOrNone(intValue =&gt; intValue == 3); // Option with value 3
+Option&lt;int&gt; optionInt3 = listInts.FirstOrNone(intValue =&gt; intValue == 4); // None Option
+
+// This is the same for LastOrNone
+</code></pre>
+<h4 id="wrapped-enumerables">Wrapped enumerables</h4>
+<p>There are also extensions that allow to perform treatments directly on a wrapped enumerable (or other derived collection).</p>
+<p>For example you can use ForEach or Where like this, all these methods are suffixed by &quot;Item&quot; or &quot;Items&quot;:</p>
+<pre><code class="lang-csharp">var listInts = new List&lt;int&gt; { 1, 2, 3 };
+
+Option&lt;IList&lt;int&gt;&gt; optionListInts = listInts;
+optionListInts.ForEachItems((int item) =&gt; Console.WriteLine(item));
+
+IEnumerable&lt;int&gt; enumerableInts = optionListInts.WhereItems((int item) =&gt; item &gt;= 2);	// 2 3
+</code></pre>
+<h4 id="enumerable-to-unwrapped-values">Enumerable to unwrapped values</h4>
+<p>If you have an enumerable of <code>Option&lt;T&gt;</code> then you may want to only keep data that really have a value.</p>
+<p>For this you can simply extract values via the <code>ExtractValues</code> extension. Note that you can also generate a List, Dictionary in the same way.</p>
+<pre><code class="lang-csharp">IEnumerable&lt;Option&lt;float&gt;&gt; GetData()
+{
+    // Do something and yield results
+}
+
+IEnumerable&lt;float&gt; relevantValues = GetData().ExtractValues();
+float[] relevantArray = GetData().ToArray();
+List&lt;float&gt; relevantList = GetData().ToList();
+Dictionary&lt;string, float&gt; relevantDictionary = GetData().ToDictionary((float val) =&gt; val.ToString());
+</code></pre>
+<h3 id="linq-extensions">Linq extensions</h3>
+<p>There is also a support of common Linq extensions like <code>Any</code>, <code>All</code>, <code>Contains</code>, <code>Select</code>, <code>Where</code>, <code>ForEach</code> and <code>Aggregate</code>.</p>
+<p>See example below:</p>
+<pre><code class="lang-csharp">// Dummy examples
+Option&lt;int&gt; optionInt = 12.ToOption();
+
+if (optionInt.Any())
+{
+    // code
+}
+
+int result = optionInt.Aggregate(10, (initial, value) =&gt; initial + value); // 22
+
+bool result = optionInt.Where(intValue =&gt; intValue &gt; 10) // Is true
+                       .Contains(12);                    // Is true
+
+Option&lt;Type&gt; optionType = typeof(string);
+optionType.Select(type =&gt; type.Name)
+          .ForEach(name =&gt; Console.WriteLine(name));
+</code></pre>
+<h3 id="lookup-and-parsing">Lookup and Parsing</h3>
+<p>Option also allows you to safely lookup in a dictionary or parsing of basic types from string. It provides an implementation that fit most common usages.</p>
+<pre><code class="lang-csharp">// Lookup in a dictionary
+var dictionary = new Dictionary&lt;int, string&gt;
+{
+    [11] = &quot;string 11&quot;,
+    [12] = &quot;string 12&quot;
+};
+
+Option&lt;string&gt; optionString = dictionary.TryGetValue(11);   // string 11
+Option&lt;string&gt; optionString2 = dictionary.TryGetValue(14);  // None option
+
+// Parsing
+Option&lt;int&gt; optionInt = &quot;12&quot;.parseInt();   // 12
+Option&lt;int&gt; optionInt2 = &quot;1.5&quot;.parseInt(); // None Option
+Option&lt;float&gt; optionFloat = &quot;1.5&quot;.parseFloat(); // 1.5
+</code></pre>
+<p>Lookup and parsing are features that can be completed easily if you have a method that match the following delegates:</p>
+<pre><code class="lang-csharp">// For TryGet
+public delegate bool TryGet&lt;in TInput, TValue&gt;([CanBeNull] TInput input, out TValue value);
+
+// For TryParse
+public delegate bool TryParse&lt;TValue&gt;([CanBeNull] string input, NumberStyles style, IFormatProvider culture, out TValue value);
+</code></pre>
+<p>The library provide a default implementation for them:</p>
+<pre><code class="lang-csharp">// Try Get
+public static Option&lt;TValue&gt; Get&lt;TInput, TValue&gt;([CanBeNull] TInput input, [NotNull] TryGet&lt;TInput, TValue&gt; tryGetFunc)
+{
+    return tryGetFunc(input, out TValue result)
+        ? result.ToOption()
+        : Option.None;
+}
+
+// TryParse
+public static Option&lt;TValue&gt; Parse&lt;TValue&gt;([CanBeNull] string input, [NotNull] TryParse&lt;TValue&gt; tryParseFunc, NumberStyles style, IFormatProvider culture)
+{
+    return tryParseFunc(input, NumberStyles.Any, culture, out TValue result)
+        ? result.ToOption()
+        : Option.None;
+}
+</code></pre>
+<p>And use them for each basic type, but you can also create you own implementation in the same way.</p>
+<h3 id="numeric-types-casts">Numeric Types casts</h3>
+<p>Each numeric type, which means <code>byte</code>, <code>sbyte</code>, <code>short</code>, <code>ushort</code>, <code>int</code>, <code>uint</code>, <code>long</code>, <code>ulong</code>, <code>decimal</code>, <code>float</code> and <code>double</code> have support of the conversion to another numeric type and also to <code>bool</code>.</p>
+<p>This means that you can easily convert <code>Option&lt;TNumeric&gt;</code> to an <code>Option&lt;TOtherNumeric&gt;</code> or <code>Option&lt;bool&gt;</code>. Each <code>Option&lt;TNumeric&gt;</code> have extensions to do this. Here are some examples:</p>
+<pre><code class="lang-csharp">Option&lt;double&gt; optionDouble = Option&lt;double&gt;.Some(42.2d);
+
+// Double to bool
+Option&lt;bool&gt; optionBool = optionDouble.ToBool();   // True
+
+// Double to int
+Option&lt;int&gt; optionInt = optionDouble.ToInt();      // 42
+
+// Etc.
+
+// As a consequence you can chain calls like this:
+string myString = &quot;51.52&quot;;
+Option&lt;double&gt; optionDouble = myString.TryParseInt().ToDouble();  // 51
+</code></pre>
+<h3 id="bridge-to-result">Bridge to Result</h3>
+<p>It is possible to convert an <code>Option&lt;T&gt;</code> to a <code>Result</code>, <code>Result&lt;T&gt;</code>, <code>CustomResult&lt;TError&gt;</code> or <code>Result&lt;T, TError&gt;</code>.</p>
+<p>For the first two conversions, both also support implicit conversion.</p>
+<pre><code class="lang-csharp">var optionInt = Option&lt;int&gt;.Some(42);
+
+Result result = optionInt.ToResult();    // Explicit =&gt; Result.OK
+Result result = optionInt;               // Implicit =&gt; Result.OK
+
+
+var emptyOptionInt = Option&lt;int&gt;.None;
+
+Result result = emptyOptionInt.ToResult();    // Explicit =&gt; Result.Fail
+Result result = emptyOptionInt.ToResult(&quot;Custom failure message&quot;);    // Explicit =&gt; Result.Fail
+Result result = emptyOptionInt;               // Implicit =&gt; Result.Fail
+</code></pre>
+<h3 id="bridge-to-either">Bridge to Either</h3>
+<p>It is possible to convert an <code>Option&lt;T&gt;</code> to an <code>Either&lt;TLeft, T&gt;</code>.</p>
+<pre><code class="lang-csharp">Option&lt;int&gt; optionInt = Option&lt;int&gt;.Some(12);
+Either&lt;string, int&gt; eitherStrInt = optionInt.ToEither(&quot;Error&quot;);         // eitherStrInt.IsRight
+
+Option&lt;int&gt; emptyOptionInt = Option&lt;int&gt;.None;
+Either&lt;string, int&gt; eitherStrInt = emptyOptionInt.ToEither(&quot;Error&quot;);    // eitherStrInt.IsLeft
+</code></pre>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/KeRNeLith/Here/blob/master/docs/documentation/option.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

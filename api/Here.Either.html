@@ -1,0 +1,1581 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Either
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Either
+   ">
+    <meta name="generator" content="docfx 2.42.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Here.Either">
+  
+  
+  <h1 id="Here_Either" data-uid="Here.Either" class="text-break">Class Either
+  </h1>
+  <div class="markdown level0 summary"><p>Either construction helpers.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">Either</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Here.html">Here</a></h6>
+  <h6><strong>Assembly</strong>: Here.dll</h6>
+  <h5 id="Here_Either_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class Either</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_Left__1___0__.md&amp;value=---%0Auid%3A%20Here.Either.Left%60%601(%60%600%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.Constructor.cs/#L81">View Source</a>
+  </span>
+  <a id="Here_Either_Left_" data-uid="Here.Either.Left*"></a>
+  <h4 id="Here_Either_Left__1___0__" data-uid="Here.Either.Left``1(``0@)">Left&lt;TLeft&gt;(TLeft)</h4>
+  <div class="markdown level1 summary"><p>Creates an instance of <a class="xref" href="Here.EitherLeft-1.html">EitherLeft&lt;TLeft&gt;</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static EitherLeft&lt;TLeft&gt; Left&lt;TLeft&gt;(in TLeft value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TLeft</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>A value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.EitherLeft-1.html">EitherLeft</a>&lt;TLeft&gt;</td>
+        <td><p>An <a class="xref" href="Here.EitherLeft-1.html">EitherLeft&lt;TLeft&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TLeft</span></td>
+        <td><p>Type of the value embedded as left value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">value</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_Left__1_System_Nullable___0___.md&amp;value=---%0Auid%3A%20Here.Either.Left%60%601(System.Nullable%7B%60%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.Constructor.cs/#L94">View Source</a>
+  </span>
+  <a id="Here_Either_Left_" data-uid="Here.Either.Left*"></a>
+  <h4 id="Here_Either_Left__1_System_Nullable___0___" data-uid="Here.Either.Left``1(System.Nullable{``0}@)">Left&lt;TLeft&gt;(Nullable&lt;TLeft&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates an instance of <a class="xref" href="Here.EitherLeft-1.html">EitherLeft&lt;TLeft&gt;</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static EitherLeft&lt;TLeft&gt; Left&lt;TLeft&gt;(in TLeft? nullable)
+    where TLeft : struct</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;TLeft&gt;</td>
+        <td><span class="parametername">nullable</span></td>
+        <td><p>A nullable value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.EitherLeft-1.html">EitherLeft</a>&lt;TLeft&gt;</td>
+        <td><p>An <a class="xref" href="Here.EitherLeft-1.html">EitherLeft&lt;TLeft&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TLeft</span></td>
+        <td><p>Type of the value embedded as left value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">nullable</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_Left__2___0__.md&amp;value=---%0Auid%3A%20Here.Either.Left%60%602(%60%600%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.Constructor.cs/#L22">View Source</a>
+  </span>
+  <a id="Here_Either_Left_" data-uid="Here.Either.Left*"></a>
+  <h4 id="Here_Either_Left__2___0__" data-uid="Here.Either.Left``2(``0@)">Left&lt;TLeft, TRight&gt;(TLeft)</h4>
+  <div class="markdown level1 summary"><p>Creates an instance of <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> in <span class="xref">Here.EitherStates.Left</span> state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRight&gt; Left&lt;TLeft, TRight&gt;(in TLeft value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TLeft</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>A value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Either-2.html">Either</a>&lt;TLeft, TRight&gt;</td>
+        <td><p>An <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TLeft</span></td>
+        <td><p>Type of the value embedded as left value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRight</span></td>
+        <td><p>Type of the value embedded as right value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">value</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_Left__2_System_Nullable___0___.md&amp;value=---%0Auid%3A%20Here.Either.Left%60%602(System.Nullable%7B%60%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.Constructor.cs/#L36">View Source</a>
+  </span>
+  <a id="Here_Either_Left_" data-uid="Here.Either.Left*"></a>
+  <h4 id="Here_Either_Left__2_System_Nullable___0___" data-uid="Here.Either.Left``2(System.Nullable{``0}@)">Left&lt;TLeft, TRight&gt;(Nullable&lt;TLeft&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates an instance of <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> in <span class="xref">Here.EitherStates.Left</span> state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRight&gt; Left&lt;TLeft, TRight&gt;(in TLeft? nullable)
+    where TLeft : struct</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;TLeft&gt;</td>
+        <td><span class="parametername">nullable</span></td>
+        <td><p>A nullable value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Either-2.html">Either</a>&lt;TLeft, TRight&gt;</td>
+        <td><p>An <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TLeft</span></td>
+        <td><p>Type of the value embedded as left value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRight</span></td>
+        <td><p>Type of the value embedded as right value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">nullable</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_Right__1___0__.md&amp;value=---%0Auid%3A%20Here.Either.Right%60%601(%60%600%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.Constructor.cs/#L174">View Source</a>
+  </span>
+  <a id="Here_Either_Right_" data-uid="Here.Either.Right*"></a>
+  <h4 id="Here_Either_Right__1___0__" data-uid="Here.Either.Right``1(``0@)">Right&lt;TRight&gt;(TRight)</h4>
+  <div class="markdown level1 summary"><p>Creates an instance of <a class="xref" href="Here.EitherRight-1.html">EitherRight&lt;TRight&gt;</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static EitherRight&lt;TRight&gt; Right&lt;TRight&gt;(in TRight value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TRight</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>A value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.EitherRight-1.html">EitherRight</a>&lt;TRight&gt;</td>
+        <td><p>An <a class="xref" href="Here.EitherRight-1.html">EitherRight&lt;TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TRight</span></td>
+        <td><p>Type of the value embedded as right value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">value</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_Right__1_System_Nullable___0___.md&amp;value=---%0Auid%3A%20Here.Either.Right%60%601(System.Nullable%7B%60%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.Constructor.cs/#L187">View Source</a>
+  </span>
+  <a id="Here_Either_Right_" data-uid="Here.Either.Right*"></a>
+  <h4 id="Here_Either_Right__1_System_Nullable___0___" data-uid="Here.Either.Right``1(System.Nullable{``0}@)">Right&lt;TRight&gt;(Nullable&lt;TRight&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates an instance of <a class="xref" href="Here.EitherRight-1.html">EitherRight&lt;TRight&gt;</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static EitherRight&lt;TRight&gt; Right&lt;TRight&gt;(in TRight? nullable)
+    where TRight : struct</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;TRight&gt;</td>
+        <td><span class="parametername">nullable</span></td>
+        <td><p>A nullable value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.EitherRight-1.html">EitherRight</a>&lt;TRight&gt;</td>
+        <td><p>An <a class="xref" href="Here.EitherRight-1.html">EitherRight&lt;TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TRight</span></td>
+        <td><p>Type of the value embedded as right value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">nullable</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_Right__2___1__.md&amp;value=---%0Auid%3A%20Here.Either.Right%60%602(%60%601%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.Constructor.cs/#L115">View Source</a>
+  </span>
+  <a id="Here_Either_Right_" data-uid="Here.Either.Right*"></a>
+  <h4 id="Here_Either_Right__2___1__" data-uid="Here.Either.Right``2(``1@)">Right&lt;TLeft, TRight&gt;(TRight)</h4>
+  <div class="markdown level1 summary"><p>Creates an instance of <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> in <span class="xref">Here.EitherStates.Right</span> state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRight&gt; Right&lt;TLeft, TRight&gt;(in TRight value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TRight</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>A value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Either-2.html">Either</a>&lt;TLeft, TRight&gt;</td>
+        <td><p>An <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TLeft</span></td>
+        <td><p>Type of the value embedded as left value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRight</span></td>
+        <td><p>Type of the value embedded as right value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">value</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_Right__2_System_Nullable___1___.md&amp;value=---%0Auid%3A%20Here.Either.Right%60%602(System.Nullable%7B%60%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.Constructor.cs/#L129">View Source</a>
+  </span>
+  <a id="Here_Either_Right_" data-uid="Here.Either.Right*"></a>
+  <h4 id="Here_Either_Right__2_System_Nullable___1___" data-uid="Here.Either.Right``2(System.Nullable{``1}@)">Right&lt;TLeft, TRight&gt;(Nullable&lt;TRight&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates an instance of <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> in <span class="xref">Here.EitherStates.Right</span> state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRight&gt; Right&lt;TLeft, TRight&gt;(in TRight? nullable)
+    where TRight : struct</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;TRight&gt;</td>
+        <td><span class="parametername">nullable</span></td>
+        <td><p>A nullable value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Either-2.html">Either</a>&lt;TLeft, TRight&gt;</td>
+        <td><p>An <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TLeft</span></td>
+        <td><p>Type of the value embedded as left value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRight</span></td>
+        <td><p>Type of the value embedded as right value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">nullable</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_ToEither__2___0_.md&amp;value=---%0Auid%3A%20Here.Either.ToEither%60%602(%60%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.Constructor.cs/#L53">View Source</a>
+  </span>
+  <a id="Here_Either_ToEither_" data-uid="Here.Either.ToEither*"></a>
+  <h4 id="Here_Either_ToEither__2___0_" data-uid="Here.Either.ToEither``2(``0)">ToEither&lt;TLeft, TRight&gt;(TLeft)</h4>
+  <div class="markdown level1 summary"><p>Creates an instance of <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> in <span class="xref">Here.EitherStates.Left</span> state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRight&gt; ToEither&lt;TLeft, TRight&gt;(this TLeft value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TLeft</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>A value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Either-2.html">Either</a>&lt;TLeft, TRight&gt;</td>
+        <td><p>An <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TLeft</span></td>
+        <td><p>Type of the value embedded as left value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRight</span></td>
+        <td><p>Type of the value embedded as right value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">value</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_ToEither__2___1_.md&amp;value=---%0Auid%3A%20Here.Either.ToEither%60%602(%60%601)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.Constructor.cs/#L146">View Source</a>
+  </span>
+  <a id="Here_Either_ToEither_" data-uid="Here.Either.ToEither*"></a>
+  <h4 id="Here_Either_ToEither__2___1_" data-uid="Here.Either.ToEither``2(``1)">ToEither&lt;TLeft, TRight&gt;(TRight)</h4>
+  <div class="markdown level1 summary"><p>Creates an instance of <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> in <span class="xref">Here.EitherStates.Right</span> state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRight&gt; ToEither&lt;TLeft, TRight&gt;(this TRight value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TRight</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>A value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Either-2.html">Either</a>&lt;TLeft, TRight&gt;</td>
+        <td><p>An <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TLeft</span></td>
+        <td><p>Type of the value embedded as left value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRight</span></td>
+        <td><p>Type of the value embedded as right value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">value</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_ToEither__2___1___0__.md&amp;value=---%0Auid%3A%20Here.Either.ToEither%60%602(%60%601%2C%60%600%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.Constructor.cs/#L211">View Source</a>
+  </span>
+  <a id="Here_Either_ToEither_" data-uid="Here.Either.ToEither*"></a>
+  <h4 id="Here_Either_ToEither__2___1___0__" data-uid="Here.Either.ToEither``2(``1,``0@)">ToEither&lt;TLeft, TRight&gt;(TRight, TLeft)</h4>
+  <div class="markdown level1 summary"><p>Creates an instance of <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> in <span class="xref">Here.EitherStates.Right</span> state
+if the provided value is not null, otherwise creates an <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> in
+<span class="xref">Here.EitherStates.Left</span> state with the <code data-dev-comment-type="paramref" class="paramref">defaultLeftValue</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRight&gt; ToEither&lt;TLeft, TRight&gt;(this TRight value, in TLeft defaultLeftValue)
+    where TRight : class</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TRight</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>A nullable value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TLeft</span></td>
+        <td><span class="parametername">defaultLeftValue</span></td>
+        <td><p>Default value to use if the provided value is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Either-2.html">Either</a>&lt;TLeft, TRight&gt;</td>
+        <td><p>An <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TLeft</span></td>
+        <td><p>Type of the value embedded as left value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRight</span></td>
+        <td><p>Type of the value embedded as right value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">defaultLeftValue</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_ToEither__2___1_System_Func___0___.md&amp;value=---%0Auid%3A%20Here.Either.ToEither%60%602(%60%601%2CSystem.Func%7B%60%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.Constructor.cs/#L234">View Source</a>
+  </span>
+  <a id="Here_Either_ToEither_" data-uid="Here.Either.ToEither*"></a>
+  <h4 id="Here_Either_ToEither__2___1_System_Func___0___" data-uid="Here.Either.ToEither``2(``1,System.Func{``0}@)">ToEither&lt;TLeft, TRight&gt;(TRight, Func&lt;TLeft&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates an instance of <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> in <span class="xref">Here.EitherStates.Right</span> state
+if the provided value is not null, otherwise creates an <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> in
+<span class="xref">Here.EitherStates.Left</span> state with the return from <code data-dev-comment-type="paramref" class="paramref">leftValueFactory</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRight&gt; ToEither&lt;TLeft, TRight&gt;(this TRight value, in Func&lt;TLeft&gt; leftValueFactory)
+    where TRight : class</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TRight</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>A nullable value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;TLeft&gt;</td>
+        <td><span class="parametername">leftValueFactory</span></td>
+        <td><p>Function to create a value to use if the provided value is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Either-2.html">Either</a>&lt;TLeft, TRight&gt;</td>
+        <td><p>An <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TLeft</span></td>
+        <td><p>Type of the value embedded as left value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRight</span></td>
+        <td><p>Type of the value embedded as right value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">leftValueFactory</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the value returned by the <code data-dev-comment-type="paramref" class="paramref">leftValueFactory</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_ToEither__2_System_Nullable___0___.md&amp;value=---%0Auid%3A%20Here.Either.ToEither%60%602(System.Nullable%7B%60%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.Constructor.cs/#L67">View Source</a>
+  </span>
+  <a id="Here_Either_ToEither_" data-uid="Here.Either.ToEither*"></a>
+  <h4 id="Here_Either_ToEither__2_System_Nullable___0___" data-uid="Here.Either.ToEither``2(System.Nullable{``0}@)">ToEither&lt;TLeft, TRight&gt;(Nullable&lt;TLeft&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates an instance of <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> in <span class="xref">Here.EitherStates.Left</span> state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRight&gt; ToEither&lt;TLeft, TRight&gt;(this in TLeft? nullable)
+    where TLeft : struct</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;TLeft&gt;</td>
+        <td><span class="parametername">nullable</span></td>
+        <td><p>A nullable value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Either-2.html">Either</a>&lt;TLeft, TRight&gt;</td>
+        <td><p>An <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TLeft</span></td>
+        <td><p>Type of the value embedded as left value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRight</span></td>
+        <td><p>Type of the value embedded as right value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">nullable</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_ToEither__2_System_Nullable___1___.md&amp;value=---%0Auid%3A%20Here.Either.ToEither%60%602(System.Nullable%7B%60%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.Constructor.cs/#L160">View Source</a>
+  </span>
+  <a id="Here_Either_ToEither_" data-uid="Here.Either.ToEither*"></a>
+  <h4 id="Here_Either_ToEither__2_System_Nullable___1___" data-uid="Here.Either.ToEither``2(System.Nullable{``1}@)">ToEither&lt;TLeft, TRight&gt;(Nullable&lt;TRight&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates an instance of <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> in <span class="xref">Here.EitherStates.Right</span> state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRight&gt; ToEither&lt;TLeft, TRight&gt;(this in TRight? nullable)
+    where TRight : struct</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;TRight&gt;</td>
+        <td><span class="parametername">nullable</span></td>
+        <td><p>A nullable value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Either-2.html">Either</a>&lt;TLeft, TRight&gt;</td>
+        <td><p>An <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TLeft</span></td>
+        <td><p>Type of the value embedded as left value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRight</span></td>
+        <td><p>Type of the value embedded as right value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">nullable</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_ToEither__2_System_Nullable___1_____0__.md&amp;value=---%0Auid%3A%20Here.Either.ToEither%60%602(System.Nullable%7B%60%601%7D%40%2C%60%600%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.Constructor.cs/#L256">View Source</a>
+  </span>
+  <a id="Here_Either_ToEither_" data-uid="Here.Either.ToEither*"></a>
+  <h4 id="Here_Either_ToEither__2_System_Nullable___1_____0__" data-uid="Here.Either.ToEither``2(System.Nullable{``1}@,``0@)">ToEither&lt;TLeft, TRight&gt;(Nullable&lt;TRight&gt;, TLeft)</h4>
+  <div class="markdown level1 summary"><p>Creates an instance of <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> in <span class="xref">Here.EitherStates.Right</span> state
+if the provided nullable is not null, otherwise creates an <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> in
+<span class="xref">Here.EitherStates.Left</span> state with the <code data-dev-comment-type="paramref" class="paramref">defaultLeftValue</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRight&gt; ToEither&lt;TLeft, TRight&gt;(this in TRight? nullable, in TLeft defaultLeftValue)
+    where TRight : struct</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;TRight&gt;</td>
+        <td><span class="parametername">nullable</span></td>
+        <td><p>A nullable value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TLeft</span></td>
+        <td><span class="parametername">defaultLeftValue</span></td>
+        <td><p>Default value to use if the provided value is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Either-2.html">Either</a>&lt;TLeft, TRight&gt;</td>
+        <td><p>An <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TLeft</span></td>
+        <td><p>Type of the value embedded as left value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRight</span></td>
+        <td><p>Type of the value embedded as right value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">defaultLeftValue</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_ToEither__2_System_Nullable___1___System_Func___0___.md&amp;value=---%0Auid%3A%20Here.Either.ToEither%60%602(System.Nullable%7B%60%601%7D%40%2CSystem.Func%7B%60%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.Constructor.cs/#L279">View Source</a>
+  </span>
+  <a id="Here_Either_ToEither_" data-uid="Here.Either.ToEither*"></a>
+  <h4 id="Here_Either_ToEither__2_System_Nullable___1___System_Func___0___" data-uid="Here.Either.ToEither``2(System.Nullable{``1}@,System.Func{``0}@)">ToEither&lt;TLeft, TRight&gt;(Nullable&lt;TRight&gt;, Func&lt;TLeft&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates an instance of <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> in <span class="xref">Here.EitherStates.Right</span> state
+if the provided nullable is not null, otherwise creates an <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> in
+<span class="xref">Here.EitherStates.Left</span> state with the return from <code data-dev-comment-type="paramref" class="paramref">leftValueFactory</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRight&gt; ToEither&lt;TLeft, TRight&gt;(this in TRight? nullable, in Func&lt;TLeft&gt; leftValueFactory)
+    where TRight : struct</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;TRight&gt;</td>
+        <td><span class="parametername">nullable</span></td>
+        <td><p>A nullable value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;TLeft&gt;</td>
+        <td><span class="parametername">leftValueFactory</span></td>
+        <td><p>Function to create a value to use if the provided value is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Either-2.html">Either</a>&lt;TLeft, TRight&gt;</td>
+        <td><p>An <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TLeft</span></td>
+        <td><p>Type of the value embedded as left value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRight</span></td>
+        <td><p>Type of the value embedded as right value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">leftValueFactory</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the value returned by the <code data-dev-comment-type="paramref" class="paramref">leftValueFactory</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either.md&amp;value=---%0Auid%3A%20Here.Either%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.Constructor.cs/#L9" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
