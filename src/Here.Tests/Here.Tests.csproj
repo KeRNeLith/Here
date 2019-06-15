@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net20;net30;net35;net40;net45;net451;net452;net46;net461;netcoreapp1.0;netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks>net20;net30;net35;net40;net45;net451;net452;net46;net461;net462;net47;net471;net472;netcoreapp1.0;netcoreapp2.0</TargetFrameworks>
     <!-- Fix restore issue with multi target and netcoreapp1.0 which fail to restore packages due to faulty signed package --> 
 	<DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
 
@@ -71,6 +71,18 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net461'">
     <DefineConstants>$(DefineConstants);NET461;SUPPORTS_BINARY_EXCEPTION_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_DELEGATES;$(AdditionalConstants)</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)'=='net462'">
+    <DefineConstants>$(DefineConstants);NET462;SUPPORTS_BINARY_EXCEPTION_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_DELEGATES;$(AdditionalConstants)</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)'=='net47'">
+    <DefineConstants>$(DefineConstants);NET47;SUPPORTS_BINARY_EXCEPTION_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_DELEGATES;$(AdditionalConstants)</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)'=='net471'">
+    <DefineConstants>$(DefineConstants);NET471;SUPPORTS_BINARY_EXCEPTION_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_DELEGATES;$(AdditionalConstants)</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)'=='net472'">
+    <DefineConstants>$(DefineConstants);NET472;SUPPORTS_BINARY_EXCEPTION_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_DELEGATES;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp1.0'">
     <DefineConstants>$(DefineConstants);NETCOREAPP1_0;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_DELEGATES;$(AdditionalConstants)</DefineConstants>
