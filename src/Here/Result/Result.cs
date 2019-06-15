@@ -32,9 +32,13 @@ namespace Here
         /// <inheritdoc />
         public Exception Exception => Logic.Exception;
 
+        [CanBeNull]
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private readonly ResultLogic _logic;
+
         [NotNull]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        internal readonly ResultLogic Logic;
+        internal ResultLogic Logic => _logic ?? new ResultLogic();  // To prevent NullReferenceException when not initializing a Result with factory methods
 
         /// <summary>
         /// <see cref="Result"/> constructor.
@@ -42,7 +46,7 @@ namespace Here
         /// <param name="logic">Result logic.</param>
         internal Result([NotNull] in ResultLogic logic)
         {
-            Logic = logic;
+            _logic = logic;
         }
 
         /// <summary>
@@ -53,7 +57,7 @@ namespace Here
         /// <param name="exception">Result embedded exception.</param>
         private Result(in bool isWarning, [NotNull] in string message, [CanBeNull] in Exception exception)
         {
-            Logic = new ResultLogic(isWarning, message, exception);
+            _logic = new ResultLogic(isWarning, message, exception);
         }
 
         #region Cast

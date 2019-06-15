@@ -18,6 +18,11 @@ namespace Here.Tests.Results
             var ok = Result.Ok();
             CheckResultOk(ok);
 
+            Result defaultOkResult;
+            CheckResultOk(defaultOkResult);
+
+            CheckResultOk(default);
+
             // Warning result
             var warning = Result.Warn("My warning");
             CheckResultWarn(warning, "My warning");
@@ -54,6 +59,11 @@ namespace Here.Tests.Results
             // Ok result
             var ok = Result.CustomOk<Exception>();
             CheckResultOk(ok);
+
+            CustomResult<Exception> defaultOkResult;
+            CheckResultOk(defaultOkResult);
+
+            CheckResultOk(default(CustomResult<Exception>));
 
             // Warning result
             var warning = Result.CustomWarn<Exception>("My warning");
@@ -96,6 +106,11 @@ namespace Here.Tests.Results
             var ok = Result.Ok(42);
             CheckResultOk(ok, 42);
 
+            var defaultOkResult = new Result<int>();
+            CheckResultOk(defaultOkResult, default);
+
+            CheckResultOk(default, default(int));
+
             // Warning result
             var warning = Result.Warn(12, "My warning");
             CheckResultWarn(warning, 12, "My warning");
@@ -132,6 +147,11 @@ namespace Here.Tests.Results
             // Ok result
             var ok = Result.Ok<int, Exception>(42);
             CheckResultOk(ok, 42);
+
+            var defaultOkResult = new Result<int, Exception>();
+            CheckResultOk(defaultOkResult, default);
+
+            CheckResultOk(default(Result<int, Exception>), default);
 
             // Warning result
             var warning = Result.Warn<int, CustomErrorTest>(12, "My warning");

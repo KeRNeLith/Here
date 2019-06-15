@@ -46,9 +46,13 @@ namespace Here
             }
         }
 
+        [CanBeNull]
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private readonly ResultLogic _logic;
+
         [NotNull]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        internal readonly ResultLogic Logic;
+        internal ResultLogic Logic => _logic ?? new ResultLogic();  // To prevent NullReferenceException when not initializing a Result<T> with factory methods
 
         /// <summary>
         /// <see cref="Result{T}"/> "Ok" constructor.
@@ -56,7 +60,7 @@ namespace Here
         /// <param name="value">Result value.</param>
         internal Result([CanBeNull] in T value)
         {
-            Logic = new ResultLogic();
+            _logic = new ResultLogic();
             _value = value;
         }
 
@@ -69,7 +73,7 @@ namespace Here
         /// <param name="exception">Result embedded exception.</param>
         internal Result(bool isWarning, [CanBeNull] in T value, [NotNull] in string message, [CanBeNull] in Exception exception)
         {
-            Logic = new ResultLogic(isWarning, message, exception);
+            _logic = new ResultLogic(isWarning, message, exception);
             _value = value;
         }
 
@@ -80,7 +84,7 @@ namespace Here
         /// <param name="logic">Result logic.</param>
         internal Result([CanBeNull] in T value, [NotNull] in ResultLogic logic)
         {
-            Logic = logic;
+            _logic = logic;
             _value = value;
         }
 

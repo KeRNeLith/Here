@@ -51,9 +51,13 @@ namespace Here
             }
         }
 
+        [CanBeNull]
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private readonly ResultLogic<TError> _logic;
+
         [NotNull]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        internal readonly ResultLogic<TError> Logic;
+        internal ResultLogic<TError> Logic => _logic ?? new ResultLogic<TError>();  // To prevent NullReferenceException when not initializing a Result<T, TError> with factory methods
 
         /// <summary>
         /// <see cref="Result{T, TError}"/> "Ok" constructor.
@@ -61,7 +65,7 @@ namespace Here
         /// <param name="value">Result value.</param>
         internal Result([CanBeNull] in T value)
         {
-            Logic = new ResultLogic<TError>();
+            _logic = new ResultLogic<TError>();
             _value = value;
         }
 
@@ -73,7 +77,7 @@ namespace Here
         /// <param name="exception">Result embedded exception.</param>
         internal Result([CanBeNull] in T value, [NotNull] in string message, [CanBeNull] in Exception exception)
         {
-            Logic = new ResultLogic<TError>(true, message, default, exception);
+            _logic = new ResultLogic<TError>(true, message, default, exception);
             _value = value;
         }
 
@@ -85,7 +89,7 @@ namespace Here
         /// <param name="exception">Result embedded exception.</param>
         internal Result([NotNull] in string message, [NotNull] in TError error, [CanBeNull] in Exception exception)
         {
-            Logic = new ResultLogic<TError>(false, message, error, exception);
+            _logic = new ResultLogic<TError>(false, message, error, exception);
             _value = default;
         }
 
@@ -96,7 +100,7 @@ namespace Here
         /// <param name="logic">Result logic.</param>
         internal Result([CanBeNull] in T value, [NotNull] in ResultLogic<TError> logic)
         {
-            Logic = logic;
+            _logic = logic;
             _value = value;
         }
 

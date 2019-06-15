@@ -37,9 +37,13 @@ namespace Here
         /// <exception cref="InvalidOperationException">If the result is not a failure.</exception>
         public TError Error => Logic.Error;
 
+        [CanBeNull]
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        private readonly ResultLogic<TError> _logic;
+
         [NotNull]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        internal readonly ResultLogic<TError> Logic;
+        internal ResultLogic<TError> Logic => _logic ?? new ResultLogic<TError>();  // To prevent NullReferenceException when not initializing a CustomResult<TError> with factory methods
 
         /// <summary>
         /// <see cref="CustomResult{TError}"/> constructor.
@@ -47,7 +51,7 @@ namespace Here
         /// <param name="logic">Result logic.</param>
         internal CustomResult([NotNull] in ResultLogic<TError> logic)
         {
-            Logic = logic;
+            _logic = logic;
         }
 
         /// <summary>
@@ -59,7 +63,7 @@ namespace Here
         /// <param name="exception">Result embedded exception.</param>
         internal CustomResult(in bool isWarning, [NotNull] in string message, [CanBeNull] in TError error, [CanBeNull] in Exception exception)
         {
-            Logic = new ResultLogic<TError>(isWarning, message, error, exception);
+            _logic = new ResultLogic<TError>(isWarning, message, error, exception);
         }
 
         #region Cast

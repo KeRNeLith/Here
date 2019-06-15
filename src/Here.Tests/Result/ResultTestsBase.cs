@@ -22,6 +22,7 @@ namespace Here.Tests.Results
         #endregion
 
         // Methods to check results
+        // ReSharper disable InconsistentNaming
 
         #region Check Result
 
