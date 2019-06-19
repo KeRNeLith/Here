@@ -1,0 +1,886 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class EitherLinqExtensions
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class EitherLinqExtensions
+   ">
+    <meta name="generator" content="docfx 2.42.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Here.Extensions.EitherLinqExtensions">
+  
+  
+  <h1 id="Here_Extensions_EitherLinqExtensions" data-uid="Here.Extensions.EitherLinqExtensions" class="text-break">Class EitherLinqExtensions
+  </h1>
+  <div class="markdown level0 summary"><p>Extensions related to <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> for Linq features.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">EitherLinqExtensions</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Here.Extensions.html">Here.Extensions</a></h6>
+  <h6><strong>Assembly</strong>: Here.dll</h6>
+  <h5 id="Here_Extensions_EitherLinqExtensions_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class EitherLinqExtensions</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Extensions_EitherLinqExtensions_Aggregate__3_Here_Either___0___1_____2__System_Func___2___1___2___.md&amp;value=---%0Auid%3A%20Here.Extensions.EitherLinqExtensions.Aggregate%60%603(Here.Either%7B%60%600%2C%60%601%7D%40%2C%60%602%40%2CSystem.Func%7B%60%602%2C%60%601%2C%60%602%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Extensions/EitherLinqExtensions.cs/#L145">View Source</a>
+  </span>
+  <a id="Here_Extensions_EitherLinqExtensions_Aggregate_" data-uid="Here.Extensions.EitherLinqExtensions.Aggregate*"></a>
+  <h4 id="Here_Extensions_EitherLinqExtensions_Aggregate__3_Here_Either___0___1_____2__System_Func___2___1___2___" data-uid="Here.Extensions.EitherLinqExtensions.Aggregate``3(Here.Either{``0,``1}@,``2@,System.Func{``2,``1,``2}@)">Aggregate&lt;TLeft, TRight, TAggregate&gt;(Either&lt;TLeft, TRight&gt;, TAggregate, Func&lt;TAggregate, TRight, TAggregate&gt;)</h4>
+  <div class="markdown level1 summary"><p>Computes the aggregation on this <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> right value.
+Use the <code data-dev-comment-type="paramref" class="paramref">initialValue</code> as the initial aggregation value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static TAggregate Aggregate&lt;TLeft, TRight, TAggregate&gt;(this in Either&lt;TLeft, TRight&gt; either, in TAggregate initialValue, in Func&lt;TAggregate, TRight, TAggregate&gt; aggregator)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Either-2.html">Either</a>&lt;TLeft, TRight&gt;</td>
+        <td><span class="parametername">either</span></td>
+        <td><p><a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> on which performing the aggregation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TAggregate</span></td>
+        <td><span class="parametername">initialValue</span></td>
+        <td><p>The initial aggregation value.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;TAggregate, TRight, TAggregate&gt;</td>
+        <td><span class="parametername">aggregator</span></td>
+        <td><p>The aggregator function called on this <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TAggregate</span></td>
+        <td><p>This <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> right value aggregated with <code data-dev-comment-type="paramref" class="paramref">initialValue</code>,
+otherwise <code data-dev-comment-type="paramref" class="paramref">initialValue</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TLeft</span></td>
+        <td><p>Type of the value embedded as left value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRight</span></td>
+        <td><p>Type of the value embedded as right value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TAggregate</span></td>
+        <td><p>Type of the aggregated value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">initialValue</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">aggregator</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Extensions_EitherLinqExtensions_All__2_Here_Either___0___1___System_Predicate___1___.md&amp;value=---%0Auid%3A%20Here.Extensions.EitherLinqExtensions.All%60%602(Here.Either%7B%60%600%2C%60%601%7D%40%2CSystem.Predicate%7B%60%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Extensions/EitherLinqExtensions.cs/#L54">View Source</a>
+  </span>
+  <a id="Here_Extensions_EitherLinqExtensions_All_" data-uid="Here.Extensions.EitherLinqExtensions.All*"></a>
+  <h4 id="Here_Extensions_EitherLinqExtensions_All__2_Here_Either___0___1___System_Predicate___1___" data-uid="Here.Extensions.EitherLinqExtensions.All``2(Here.Either{``0,``1}@,System.Predicate{``1}@)">All&lt;TLeft, TRight&gt;(Either&lt;TLeft, TRight&gt;, Predicate&lt;TRight&gt;)</h4>
+  <div class="markdown level1 summary"><p>Checks if this <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> has a right value and matches the given <code data-dev-comment-type="paramref" class="paramref">predicate</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool All&lt;TLeft, TRight&gt;(this in Either&lt;TLeft, TRight&gt; either, in Predicate&lt;TRight&gt; predicate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Either-2.html">Either</a>&lt;TLeft, TRight&gt;</td>
+        <td><span class="parametername">either</span></td>
+        <td><p><a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> on which performing the check.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Predicate</span>&lt;TRight&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>Predicate to check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True if this <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> has a right value and matches the predicate, otherwise false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TLeft</span></td>
+        <td><p>Type of the value embedded as left value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRight</span></td>
+        <td><p>Type of the value embedded as right value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">predicate</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Extensions_EitherLinqExtensions_Any__2_Here_Either___0___1___.md&amp;value=---%0Auid%3A%20Here.Extensions.EitherLinqExtensions.Any%60%602(Here.Either%7B%60%600%2C%60%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Extensions/EitherLinqExtensions.cs/#L22">View Source</a>
+  </span>
+  <a id="Here_Extensions_EitherLinqExtensions_Any_" data-uid="Here.Extensions.EitherLinqExtensions.Any*"></a>
+  <h4 id="Here_Extensions_EitherLinqExtensions_Any__2_Here_Either___0___1___" data-uid="Here.Extensions.EitherLinqExtensions.Any``2(Here.Either{``0,``1}@)">Any&lt;TLeft, TRight&gt;(Either&lt;TLeft, TRight&gt;)</h4>
+  <div class="markdown level1 summary"><p>Checks if this <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> has a right value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool Any&lt;TLeft, TRight&gt;(this in Either&lt;TLeft, TRight&gt; either)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Either-2.html">Either</a>&lt;TLeft, TRight&gt;</td>
+        <td><span class="parametername">either</span></td>
+        <td><p><a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> on which performing the check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True if this <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> has a right value, otherwise false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TLeft</span></td>
+        <td><p>Type of the value embedded as left value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRight</span></td>
+        <td><p>Type of the value embedded as right value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Extensions_EitherLinqExtensions_Any__2_Here_Either___0___1___System_Predicate___1___.md&amp;value=---%0Auid%3A%20Here.Extensions.EitherLinqExtensions.Any%60%602(Here.Either%7B%60%600%2C%60%601%7D%40%2CSystem.Predicate%7B%60%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Extensions/EitherLinqExtensions.cs/#L37">View Source</a>
+  </span>
+  <a id="Here_Extensions_EitherLinqExtensions_Any_" data-uid="Here.Extensions.EitherLinqExtensions.Any*"></a>
+  <h4 id="Here_Extensions_EitherLinqExtensions_Any__2_Here_Either___0___1___System_Predicate___1___" data-uid="Here.Extensions.EitherLinqExtensions.Any``2(Here.Either{``0,``1}@,System.Predicate{``1}@)">Any&lt;TLeft, TRight&gt;(Either&lt;TLeft, TRight&gt;, Predicate&lt;TRight&gt;)</h4>
+  <div class="markdown level1 summary"><p>Checks if this <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> has a right value and matches the given <code data-dev-comment-type="paramref" class="paramref">predicate</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool Any&lt;TLeft, TRight&gt;(this in Either&lt;TLeft, TRight&gt; either, in Predicate&lt;TRight&gt; predicate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Either-2.html">Either</a>&lt;TLeft, TRight&gt;</td>
+        <td><span class="parametername">either</span></td>
+        <td><p><a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> on which performing the check.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Predicate</span>&lt;TRight&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>Predicate to use.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True if this <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> has a right value and matches the predicate, otherwise false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TLeft</span></td>
+        <td><p>Type of the value embedded as left value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRight</span></td>
+        <td><p>Type of the value embedded as right value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">predicate</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Extensions_EitherLinqExtensions_Contains__2_Here_Either___0___1_____1__.md&amp;value=---%0Auid%3A%20Here.Extensions.EitherLinqExtensions.Contains%60%602(Here.Either%7B%60%600%2C%60%601%7D%40%2C%60%601%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Extensions/EitherLinqExtensions.cs/#L71">View Source</a>
+  </span>
+  <a id="Here_Extensions_EitherLinqExtensions_Contains_" data-uid="Here.Extensions.EitherLinqExtensions.Contains*"></a>
+  <h4 id="Here_Extensions_EitherLinqExtensions_Contains__2_Here_Either___0___1_____1__" data-uid="Here.Extensions.EitherLinqExtensions.Contains``2(Here.Either{``0,``1}@,``1@)">Contains&lt;TLeft, TRight&gt;(Either&lt;TLeft, TRight&gt;, TRight)</h4>
+  <div class="markdown level1 summary"><p>Checks if this <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> contains the given <code data-dev-comment-type="paramref" class="paramref">value</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool Contains&lt;TLeft, TRight&gt;(this in Either&lt;TLeft, TRight&gt; either, in TRight value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Either-2.html">Either</a>&lt;TLeft, TRight&gt;</td>
+        <td><span class="parametername">either</span></td>
+        <td><p><a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> on which performing the check.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">TRight</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>Value to check equality with <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> right value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><p>True if this <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> contains the given <code data-dev-comment-type="paramref" class="paramref">value</code> as right value, otherwise false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TLeft</span></td>
+        <td><p>Type of the value embedded as left value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRight</span></td>
+        <td><p>Type of the value embedded as right value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Extensions_EitherLinqExtensions_ForEach__2_Here_Either___0___1___System_Action___1___.md&amp;value=---%0Auid%3A%20Here.Extensions.EitherLinqExtensions.ForEach%60%602(Here.Either%7B%60%600%2C%60%601%7D%40%2CSystem.Action%7B%60%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Extensions/EitherLinqExtensions.cs/#L122">View Source</a>
+  </span>
+  <a id="Here_Extensions_EitherLinqExtensions_ForEach_" data-uid="Here.Extensions.EitherLinqExtensions.ForEach*"></a>
+  <h4 id="Here_Extensions_EitherLinqExtensions_ForEach__2_Here_Either___0___1___System_Action___1___" data-uid="Here.Extensions.EitherLinqExtensions.ForEach``2(Here.Either{``0,``1}@,System.Action{``1}@)">ForEach&lt;TLeft, TRight&gt;(Either&lt;TLeft, TRight&gt;, Action&lt;TRight&gt;)</h4>
+  <div class="markdown level1 summary"><p>Applies the given <code data-dev-comment-type="paramref" class="paramref">doAction</code> on this <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> right value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Unit ForEach&lt;TLeft, TRight&gt;(this in Either&lt;TLeft, TRight&gt; either, in Action&lt;TRight&gt; doAction)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Either-2.html">Either</a>&lt;TLeft, TRight&gt;</td>
+        <td><span class="parametername">either</span></td>
+        <td><p><a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> on which performing the treatment.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Action</span>&lt;TRight&gt;</td>
+        <td><span class="parametername">doAction</span></td>
+        <td><p>Action to perform on this <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> right value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Unit.html">Unit</a></td>
+        <td><p>A <a class="xref" href="Here.Unit.html">Unit</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TLeft</span></td>
+        <td><p>Type of the value embedded as left value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRight</span></td>
+        <td><p>Type of the value embedded as right value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">doAction</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Extensions_EitherLinqExtensions_Select__3_Here_Either___0___1___System_Func___1___2___.md&amp;value=---%0Auid%3A%20Here.Extensions.EitherLinqExtensions.Select%60%603(Here.Either%7B%60%600%2C%60%601%7D%40%2CSystem.Func%7B%60%601%2C%60%602%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Extensions/EitherLinqExtensions.cs/#L87">View Source</a>
+  </span>
+  <a id="Here_Extensions_EitherLinqExtensions_Select_" data-uid="Here.Extensions.EitherLinqExtensions.Select*"></a>
+  <h4 id="Here_Extensions_EitherLinqExtensions_Select__3_Here_Either___0___1___System_Func___1___2___" data-uid="Here.Extensions.EitherLinqExtensions.Select``3(Here.Either{``0,``1}@,System.Func{``1,``2}@)">Select&lt;TLeft, TRight, TRightOut&gt;(Either&lt;TLeft, TRight&gt;, Func&lt;TRight, TRightOut&gt;)</h4>
+  <div class="markdown level1 summary"><p>Selects via the <code data-dev-comment-type="paramref" class="paramref">selector</code> method something from this <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> if it has a right value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRightOut&gt; Select&lt;TLeft, TRight, TRightOut&gt;(this in Either&lt;TLeft, TRight&gt; either, in Func&lt;TRight, TRightOut&gt; selector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Either-2.html">Either</a>&lt;TLeft, TRight&gt;</td>
+        <td><span class="parametername">either</span></td>
+        <td><p><a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> on which performing the treatment.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;TRight, TRightOut&gt;</td>
+        <td><span class="parametername">selector</span></td>
+        <td><p>Method called to select the value from this <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Either-2.html">Either</a>&lt;TLeft, TRightOut&gt;</td>
+        <td><p>An <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> wrapping selected value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TLeft</span></td>
+        <td><p>Type of the value embedded as left value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRight</span></td>
+        <td><p>Type of the value embedded as right value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRightOut</span></td>
+        <td><p>Type of the value embedded as right value in the output <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">selector</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Extensions_EitherLinqExtensions_Where__2_Here_Either___0___1___System_Predicate___1___.md&amp;value=---%0Auid%3A%20Here.Extensions.EitherLinqExtensions.Where%60%602(Here.Either%7B%60%600%2C%60%601%7D%40%2CSystem.Predicate%7B%60%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Extensions/EitherLinqExtensions.cs/#L105">View Source</a>
+  </span>
+  <a id="Here_Extensions_EitherLinqExtensions_Where_" data-uid="Here.Extensions.EitherLinqExtensions.Where*"></a>
+  <h4 id="Here_Extensions_EitherLinqExtensions_Where__2_Here_Either___0___1___System_Predicate___1___" data-uid="Here.Extensions.EitherLinqExtensions.Where``2(Here.Either{``0,``1}@,System.Predicate{``1}@)">Where&lt;TLeft, TRight&gt;(Either&lt;TLeft, TRight&gt;, Predicate&lt;TRight&gt;)</h4>
+  <div class="markdown level1 summary"><p>Returns this <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> if it has a right value and matches the <code data-dev-comment-type="paramref" class="paramref">predicate</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRight&gt; Where&lt;TLeft, TRight&gt;(this in Either&lt;TLeft, TRight&gt; either, in Predicate&lt;TRight&gt; predicate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Either-2.html">Either</a>&lt;TLeft, TRight&gt;</td>
+        <td><span class="parametername">either</span></td>
+        <td><p><a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> on which performing the check.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Predicate</span>&lt;TRight&gt;</td>
+        <td><span class="parametername">predicate</span></td>
+        <td><p>Condition to match.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Either-2.html">Either</a>&lt;TLeft, TRight&gt;</td>
+        <td><p>This <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> if it matches the <code data-dev-comment-type="paramref" class="paramref">predicate</code>, otherwise an empty <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TLeft</span></td>
+        <td><p>Type of the value embedded as left value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">TRight</span></td>
+        <td><p>Type of the value embedded as right value in the <a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">predicate</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Extensions_EitherLinqExtensions.md&amp;value=---%0Auid%3A%20Here.Extensions.EitherLinqExtensions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Extensions/EitherLinqExtensions.cs/#L13" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
