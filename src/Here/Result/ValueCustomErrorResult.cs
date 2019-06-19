@@ -51,7 +51,6 @@ namespace Here
             }
         }
 
-        [NotNull]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal readonly ResultLogic<TError> Logic;
 
@@ -94,7 +93,7 @@ namespace Here
         /// </summary>
         /// <param name="value">Result value.</param>
         /// <param name="logic">Result logic.</param>
-        internal Result([CanBeNull] in T value, [NotNull] in ResultLogic<TError> logic)
+        internal Result([CanBeNull] in T value, in ResultLogic<TError> logic)
         {
             Logic = logic;
             _value = value;

@@ -11,12 +11,6 @@ namespace Here
     [DebuggerDisplay("{" + nameof(IsSuccess) + " ? \"IsSuccess\" + (" + nameof(IsWarning) + " ? \" with warning\" : System.String.Empty) : \"IsFailure\"}")]
     public readonly partial struct Result : IResult, IEquatable<Result>, IComparable, IComparable<Result>
     {
-        /// <summary>
-        /// A success <see cref="Result"/>.
-        /// </summary>
-        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
-        private static readonly Result ResultOk = new Result(new ResultLogic());
-
         /// <inheritdoc />
         public bool IsSuccess => Logic.IsSuccess;
 
@@ -32,7 +26,6 @@ namespace Here
         /// <inheritdoc />
         public Exception Exception => Logic.Exception;
 
-        [NotNull]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal readonly ResultLogic Logic;
 
@@ -40,7 +33,7 @@ namespace Here
         /// <see cref="Result"/> constructor.
         /// </summary>
         /// <param name="logic">Result logic.</param>
-        internal Result([NotNull] in ResultLogic logic)
+        internal Result(in ResultLogic logic)
         {
             Logic = logic;
         }
@@ -446,7 +439,7 @@ namespace Here
         [PublicAPI, Pure]
         public static Result Ok()
         {
-            return ResultOk;
+            return default;
         }
 
         /// <summary>

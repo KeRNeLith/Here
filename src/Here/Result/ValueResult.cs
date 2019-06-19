@@ -39,14 +39,13 @@ namespace Here
         {
             get
             {
-                if (!IsSuccess)
+                if (IsFailure)
                     throw new InvalidOperationException("Cannot get the value of a failed Result.");
 
                 return _value;
             }
         }
 
-        [NotNull]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal readonly ResultLogic Logic;
 
@@ -78,7 +77,7 @@ namespace Here
         /// </summary>
         /// <param name="value">Result value.</param>
         /// <param name="logic">Result logic.</param>
-        internal Result([CanBeNull] in T value, [NotNull] in ResultLogic logic)
+        internal Result([CanBeNull] in T value, in ResultLogic logic)
         {
             Logic = logic;
             _value = value;

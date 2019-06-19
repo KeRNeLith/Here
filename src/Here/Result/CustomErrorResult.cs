@@ -37,7 +37,6 @@ namespace Here
         /// <exception cref="InvalidOperationException">If the result is not a failure.</exception>
         public TError Error => Logic.Error;
 
-        [NotNull]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         internal readonly ResultLogic<TError> Logic;
 
@@ -45,7 +44,7 @@ namespace Here
         /// <see cref="CustomResult{TError}"/> constructor.
         /// </summary>
         /// <param name="logic">Result logic.</param>
-        internal CustomResult([NotNull] in ResultLogic<TError> logic)
+        internal CustomResult(in ResultLogic<TError> logic)
         {
             Logic = logic;
         }

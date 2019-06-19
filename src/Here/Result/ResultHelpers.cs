@@ -212,6 +212,51 @@ namespace Here
             return result1.CompareTo(result2);
         }
 
+        /// <summary>
+        /// Compares both results.
+        /// Order keeps failures first, then warning and finally successes.
+        /// </summary>
+        /// <param name="result1">First <see cref="IResult"/> to compare.</param>
+        /// <param name="result2">Second <see cref="IResult"/> to compare.</param>
+        /// <returns>The comparison result.</returns>
+        [Pure]
+        internal static int CompareResults([NotNull] IResult result1, [NotNull] IResult result2)
+        {
+            if (result1.IsSuccess && !result2.IsSuccess)
+                return 1;
+
+            if (!result1.IsSuccess && result2.IsSuccess)
+                return -1;
+
+            // Both success
+            if (result1.IsSuccess && result2.IsSuccess)
+            {
+                if (result1.IsWarning && !result2.IsWarning)
+                    return -1;
+                if (!result1.IsWarning && result2.IsWarning)
+                    return 1;
+            }
+
+            // Both success with or without warning or both failure
+            return 0;
+        }
+
         #endregion
+
+        /// <summary>
+        /// Converts the given <paramref name="result"/> into a <see cref="string"/>.
+        /// </summary>
+        /// <param name="result"><see cref="IResult"/> to convert.</param>
+        /// <returns>String representation.</returns>
+        [Pure]
+        [NotNull]
+        internal static string ResultToString([NotNull] IResult result)
+        {
+            if (result.IsFailure)
+                return "Failure";
+            if (result.IsWarning)
+                return "Warning";
+            return "Success";
+        }
     }
 }
