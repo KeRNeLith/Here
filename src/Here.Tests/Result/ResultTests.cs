@@ -18,6 +18,11 @@ namespace Here.Tests.Results
             var ok = Result.Ok();
             CheckResultOk(ok);
 
+            var defaultOkResult = new Result();
+            CheckResultOk(defaultOkResult);
+
+            CheckResultOk(default);
+
             // Warning result
             var warning = Result.Warn("My warning");
             CheckResultWarn(warning, "My warning");
@@ -29,7 +34,7 @@ namespace Here.Tests.Results
             // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => { var _ = Result.Warn(null); });
             Assert.Throws<ArgumentNullException>(() => { var _ = Result.Warn(""); });
-            
+
             // Failure result
             var failure = Result.Fail("My failure");
             CheckResultFail(failure, "My failure");
@@ -54,6 +59,11 @@ namespace Here.Tests.Results
             // Ok result
             var ok = Result.CustomOk<Exception>();
             CheckResultOk(ok);
+
+            var defaultOkResult = new CustomResult<Exception>();
+            CheckResultOk(defaultOkResult);
+
+            CheckResultOk(default(CustomResult<Exception>));
 
             // Warning result
             var warning = Result.CustomWarn<Exception>("My warning");
@@ -96,6 +106,11 @@ namespace Here.Tests.Results
             var ok = Result.Ok(42);
             CheckResultOk(ok, 42);
 
+            var defaultOkResult = new Result<int>();
+            CheckResultOk(defaultOkResult, default);
+
+            CheckResultOk(default, default(int));
+
             // Warning result
             var warning = Result.Warn(12, "My warning");
             CheckResultWarn(warning, 12, "My warning");
@@ -132,6 +147,11 @@ namespace Here.Tests.Results
             // Ok result
             var ok = Result.Ok<int, Exception>(42);
             CheckResultOk(ok, 42);
+
+            var defaultOkResult = new Result<int, Exception>();
+            CheckResultOk(defaultOkResult, default);
+
+            CheckResultOk(default(Result<int, Exception>), default);
 
             // Warning result
             var warning = Result.Warn<int, CustomErrorTest>(12, "My warning");
@@ -2033,7 +2053,7 @@ namespace Here.Tests.Results
             var customValueResult = Result.Ok<int, CustomErrorTest>(12);
             var valueResult = Result.Ok(42.2f);
             Assert.Throws<ArgumentException>(() => { var _ = resultOk1.CompareTo(testObject); });
-            
+
             Assert.AreEqual(0, resultOk1.CompareTo(customValueResult)); // Use implicit conversion to Result<T>
             Assert.Throws<ArgumentException>(() => { var _ = customValueResult.CompareTo(resultOk1); }); // Use CompareTo(object) as no conversion from Result<T> to Result<T, TError> exists
             Assert.Throws<ArgumentException>(() => { var _ = resultOk1.CompareTo(valueResult); });
