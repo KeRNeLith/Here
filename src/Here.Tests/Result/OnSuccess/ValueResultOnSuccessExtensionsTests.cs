@@ -76,11 +76,11 @@ namespace Here.Tests.Results
             CheckOnSuccessFunc(failure, false, false);
             CheckOnSuccessFunc(failure, true, false);
 
-            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<Result<int>, float>)null, 12.5f));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<int, float>)null, 12.5f));
 
-            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<Result<int>, float>)null, r => 12.5f));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<int, float>)null, r => 12.5f));
             Assert.Throws<ArgumentNullException>(() => ok.OnSuccess(val => 12.5f, null));
-            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<Result<int>, float>)null, null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<int, float>)null, null));
         }
 
         #endregion

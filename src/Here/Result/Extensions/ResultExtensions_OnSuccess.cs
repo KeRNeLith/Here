@@ -531,14 +531,14 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
         public static TOut OnSuccess<TIn, TOut>(in this Result<TIn> result,
-            [NotNull, InstantHandle] in Func<Result<TIn>, TOut> onSuccess,
+            [NotNull, InstantHandle] in Func<TIn, TOut> onSuccess,
             [CanBeNull] in TOut defaultValue,
             in bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
             if (IsConsideredSuccess(result, treatWarningAsError))
-                return onSuccess(result);
+                return onSuccess(result._value);
             return defaultValue;
         }
 
@@ -557,7 +557,7 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI]
         public static TOut OnSuccess<TIn, TOut>(in this Result<TIn> result,
-            [NotNull, InstantHandle] in Func<Result<TIn>, TOut> onSuccess,
+            [NotNull, InstantHandle] in Func<TIn, TOut> onSuccess,
             [NotNull, InstantHandle] in Func<Result<TIn>, TOut> valueFactory,
             in bool treatWarningAsError = false)
         {
@@ -565,7 +565,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
 
             if (IsConsideredSuccess(result, treatWarningAsError))
-                return onSuccess(result);
+                return onSuccess(result._value);
             return valueFactory(result);
         }
 
@@ -1183,14 +1183,14 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
         public static TOut OnSuccess<TIn, TOut, TError>(in this Result<TIn, TError> result,
-            [NotNull, InstantHandle] in Func<Result<TIn, TError>, TOut> onSuccess,
+            [NotNull, InstantHandle] in Func<TIn, TOut> onSuccess,
             [CanBeNull] in TOut defaultValue,
             in bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
             if (IsConsideredSuccess(result, treatWarningAsError))
-                return onSuccess(result);
+                return onSuccess(result._value);
             return defaultValue;
         }
 
@@ -1210,7 +1210,7 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI]
         public static TOut OnSuccess<TIn, TOut, TError>(in this Result<TIn, TError> result,
-            [NotNull, InstantHandle] in Func<Result<TIn, TError>, TOut> onSuccess,
+            [NotNull, InstantHandle] in Func<TIn, TOut> onSuccess,
             [NotNull, InstantHandle] in Func<Result<TIn, TError>, TOut> valueFactory,
             in bool treatWarningAsError = false)
         {
@@ -1218,7 +1218,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
 
             if (IsConsideredSuccess(result, treatWarningAsError))
-                return onSuccess(result);
+                return onSuccess(result._value);
             return valueFactory(result);
         }
 

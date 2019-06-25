@@ -80,7 +80,7 @@ namespace Here.Tests.Results
 
             Assert.Throws<ArgumentNullException>(() => ok.OnSuccess(null, r => 12.5f));
             Assert.Throws<ArgumentNullException>(() => ok.OnSuccess(r => 12.5f, (Func<Result<int, CustomErrorTest>, float>)null));
-            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<Result<int, CustomErrorTest>, float>)null, null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<int, float>)null, (Func<Result<int, CustomErrorTest>, float>)null));
         }
 
         #endregion
