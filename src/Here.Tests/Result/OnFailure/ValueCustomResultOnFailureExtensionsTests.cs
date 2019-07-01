@@ -79,6 +79,132 @@ namespace Here.Tests.Results
         }
 
         [Test]
+        public void ValueCustomResultOnFailureToResult()
+        {
+            #region Local function
+
+            void CheckOnFailure(Result<int, CustomErrorTest> result, bool treatWarningAsError, bool expectFailure)
+            {
+                int counterFailure = 0;
+                Result res = result.OnFailure(
+                    r =>
+                    {
+                        ++counterFailure;
+                        return Result.Ok();
+                    },
+                    treatWarningAsError);
+                Assert.AreEqual(expectFailure ? 1 : 0, counterFailure);
+                if (expectFailure)
+                    CheckResultOk(res);
+                else
+                    Assert.AreEqual((Result)result, res);
+            }
+
+            #endregion
+
+            // Ok result
+            var ok = Result.Ok<int, CustomErrorTest>(12);
+            CheckOnFailure(ok, false, false);
+            CheckOnFailure(ok, true, false);
+
+            // Warning result
+            var warning = Result.Warn<int, CustomErrorTest>(32, "My warning");
+            CheckOnFailure(warning, false, false);
+            CheckOnFailure(warning, true, true);
+
+            // Failure result
+            var failure = Result.Fail<int, CustomErrorTest>("My failure", new CustomErrorTest());
+            CheckOnFailure(failure, false, true);
+            CheckOnFailure(failure, true, true);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnFailure((Func<Result<int, CustomErrorTest>, Result>)null));
+        }
+
+        [Test]
+        public void ValueCustomResultOnFailureToValueResult()
+        {
+            #region Local function
+
+            void CheckOnFailure(Result<int, CustomErrorTest> result, bool treatWarningAsError, bool expectFailure)
+            {
+                int counterFailure = 0;
+                Result<int> res = result.OnFailure(
+                    r =>
+                    {
+                        ++counterFailure;
+                        return Result.Ok(42);
+                    },
+                    treatWarningAsError);
+                Assert.AreEqual(expectFailure ? 1 : 0, counterFailure);
+                if (expectFailure)
+                    CheckResultOk(res, 42);
+                else
+                    Assert.AreEqual((Result<int>)result, res);
+            }
+
+            #endregion
+
+            // Ok result
+            var ok = Result.Ok<int, CustomErrorTest>(12);
+            CheckOnFailure(ok, false, false);
+            CheckOnFailure(ok, true, false);
+
+            // Warning result
+            var warning = Result.Warn<int, CustomErrorTest>(32, "My warning");
+            CheckOnFailure(warning, false, false);
+            CheckOnFailure(warning, true, true);
+
+            // Failure result
+            var failure = Result.Fail<int, CustomErrorTest>("My failure", new CustomErrorTest());
+            CheckOnFailure(failure, false, true);
+            CheckOnFailure(failure, true, true);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnFailure((Func<Result<int, CustomErrorTest>, Result<int>>)null));
+        }
+
+        [Test]
+        public void ValueCustomResultOnFailureToCustomResult()
+        {
+            #region Local function
+
+            void CheckOnFailure(Result<int, CustomErrorTest> result, bool treatWarningAsError, bool expectFailure)
+            {
+                int counterFailure = 0;
+                CustomResult<CustomErrorTest> res = result.OnFailure(
+                    r =>
+                    {
+                        ++counterFailure;
+                        return Result.CustomOk<CustomErrorTest>();
+                    },
+                    treatWarningAsError);
+                Assert.AreEqual(expectFailure ? 1 : 0, counterFailure);
+                if (expectFailure)
+                    CheckResultOk(res);
+                else
+                    Assert.AreEqual((CustomResult<CustomErrorTest>)result, res);
+            }
+
+            #endregion
+
+            // Ok result
+            var ok = Result.Ok<int, CustomErrorTest>(12);
+            CheckOnFailure(ok, false, false);
+            CheckOnFailure(ok, true, false);
+
+            // Warning result
+            var warning = Result.Warn<int, CustomErrorTest>(32, "My warning");
+            CheckOnFailure(warning, false, false);
+            CheckOnFailure(warning, true, true);
+
+            // Failure result
+            var failure = Result.Fail<int, CustomErrorTest>("My failure", new CustomErrorTest());
+            CheckOnFailure(failure, false, true);
+            CheckOnFailure(failure, true, true);
+
+            Assert.Throws<ArgumentNullException>(() => ok.OnFailure((Func<Result<int, CustomErrorTest>, CustomResult<CustomErrorTest>>)null));
+        }
+
+        [Test]
         public void ValueCustomResultOnFailureToValueCustomResult()
         {
             #region Local function
@@ -125,25 +251,49 @@ namespace Here.Tests.Results
                 Assert.AreEqual(result, res);
             }
 
+            void CheckOnFailureFunc(Result<int, CustomErrorTest> result, bool treatWarningAsError, bool expectFailure)
+            {
+                int counterFailure = 0;
+                Result<int, CustomErrorTest> res = result.OnFailure(
+                    r =>
+                    {
+                        ++counterFailure;
+                        return Result.Ok<int, CustomErrorTest>(42);
+                    },
+                    treatWarningAsError);
+                Assert.AreEqual(expectFailure ? 1 : 0, counterFailure);
+                if (expectFailure)
+                    CheckResultOk(res, 42);
+                else
+                    Assert.AreEqual(result, res);
+            }
+
             #endregion
 
             // Ok result
             var ok = Result.Ok<int, CustomErrorTest>(66);
             CheckOnFailure(ok, false, false);
             CheckOnFailure(ok, true, false);
+            CheckOnFailureFunc(ok, false, false);
+            CheckOnFailureFunc(ok, true, false);
 
             // Warning result
             var warning = Result.Warn<int, CustomErrorTest>(55, "My warning");
             CheckOnFailure(warning, false, false);
             CheckOnFailure(warning, true, true);
+            CheckOnFailureFunc(warning, false, false);
+            CheckOnFailureFunc(warning, true, true);
 
             // Failure result
             var customErrorObject = new CustomErrorTest { ErrorCode = -2 };
             var failure = Result.Fail<int, CustomErrorTest>("My failure", customErrorObject);
             CheckOnFailure(failure, false, true);
             CheckOnFailure(failure, true, true);
+            CheckOnFailureFunc(failure, false, true);
+            CheckOnFailureFunc(failure, true, true);
 
             Assert.Throws<ArgumentNullException>(() => ok.OnFailure((Action<Result<int, CustomErrorTest>>)null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnFailure(null));
         }
     }
 }

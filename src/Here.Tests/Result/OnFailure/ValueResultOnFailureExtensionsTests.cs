@@ -112,16 +112,25 @@ namespace Here.Tests.Results
         }
 
         [Test]
-        public void ValueResultOnFailureToValueResultWithParam()
+        public void ValueResultOnFailureToResultWithParam()
         {
             #region Local function
 
             void CheckOnFailure(Result<int> result, bool treatWarningAsError, bool expectFailure)
             {
                 int counterFailure = 0;
-                Result<int> res = result.OnFailure(r => ++counterFailure, treatWarningAsError);
+                Result res = result.OnFailure(
+                    r =>
+                    {
+                        ++counterFailure;
+                        return Result.Ok();
+                    },
+                    treatWarningAsError);
                 Assert.AreEqual(expectFailure ? 1 : 0, counterFailure);
-                Assert.AreEqual(result, res);
+                if (expectFailure)
+                    CheckResultOk(res);
+                else
+                    Assert.AreEqual((Result)result, res);
             }
 
             #endregion
@@ -141,7 +150,64 @@ namespace Here.Tests.Results
             CheckOnFailure(failure, false, true);
             CheckOnFailure(failure, true, true);
 
+            Assert.Throws<ArgumentNullException>(() => ok.OnFailure((Func<Result<int>, Result>)null));
+        }
+
+        [Test]
+        public void ValueResultOnFailureToValueResultWithParam()
+        {
+            #region Local function
+
+            void CheckOnFailure(Result<int> result, bool treatWarningAsError, bool expectFailure)
+            {
+                int counterFailure = 0;
+                Result<int> res = result.OnFailure(r => ++counterFailure, treatWarningAsError);
+                Assert.AreEqual(expectFailure ? 1 : 0, counterFailure);
+                Assert.AreEqual(result, res);
+            }
+
+            void CheckOnFailureFunc(Result<int> result, bool treatWarningAsError, bool expectFailure)
+            {
+                int counterFailure = 0;
+                Result<int> res = result.OnFailure(
+                    r =>
+                    {
+                        ++counterFailure;
+                        return Result.Ok(42);
+                    },
+                    treatWarningAsError);
+                Assert.AreEqual(expectFailure ? 1 : 0, counterFailure);
+                if (expectFailure)
+                    CheckResultOk(res, 42);
+                else
+                    Assert.AreEqual(result, res);
+            }
+
+            #endregion
+
+            // Ok result
+            var ok = Result.Ok(12);
+            CheckOnFailure(ok, false, false);
+            CheckOnFailure(ok, true, false);
+            CheckOnFailureFunc(ok, false, false);
+            CheckOnFailureFunc(ok, true, false);
+
+            // Warning result
+            var warning = Result.Warn(32, "My warning");
+            CheckOnFailure(warning, false, false);
+            CheckOnFailure(warning, true, true);
+            CheckOnFailureFunc(warning, false, false);
+            CheckOnFailureFunc(warning, true, true);
+
+            // Failure result
+            var failure = Result.Fail<int>("My failure");
+            CheckOnFailure(failure, false, true);
+            CheckOnFailure(failure, true, true);
+            CheckOnFailureFunc(failure, false, true);
+            CheckOnFailureFunc(failure, true, true);
+
             Assert.Throws<ArgumentNullException>(() => ok.OnFailure((Action<Result<int>>)null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnFailure(null));
         }
     }
 }

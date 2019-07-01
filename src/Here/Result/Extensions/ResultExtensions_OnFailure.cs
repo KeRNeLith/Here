@@ -49,6 +49,25 @@ namespace Here.Extensions
         }
 
         /// <summary>
+        /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
+        /// </summary>
+        /// <param name="result"><see cref="Result"/> to check.</param>
+        /// <param name="onFailure">Function to run if the <see cref="Result"/> is failure.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <returns>A <see cref="Result"/> resulting of <paramref name="onFailure"/>, otherwise a success.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
+        [PublicAPI]
+        public static Result OnFailure(in this Result result, [NotNull, InstantHandle] in Func<Result, Result> onFailure, in bool treatWarningAsError = false)
+        {
+            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+
+            if (IsConsideredFailure(result, treatWarningAsError))
+                return onFailure(result);
+
+            return result;
+        }
+
+        /// <summary>
         /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure, otherwise return the <paramref name="defaultValue"/>.
         /// </summary>
         /// <typeparam name="TOut">Type of the output value.</typeparam>
@@ -137,6 +156,46 @@ namespace Here.Extensions
 
             if (IsConsideredFailure(result, treatWarningAsError))
                 onFailure(result);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
+        /// </summary>
+        /// <typeparam name="T">Result value type.</typeparam>
+        /// <param name="result"><see cref="Result{T}"/> to check.</param>
+        /// <param name="onFailure">Function to run if the <see cref="Result{T}"/> is failure.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <returns>A <see cref="Result"/> resulting of <paramref name="onFailure"/>, otherwise a success.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
+        [PublicAPI]
+        public static Result OnFailure<T>(in this Result<T> result, [NotNull, InstantHandle] in Func<Result<T>, Result> onFailure, in bool treatWarningAsError = false)
+        {
+            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+
+            if (IsConsideredFailure(result, treatWarningAsError))
+                return onFailure(result);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
+        /// </summary>
+        /// <typeparam name="T">Result value type.</typeparam>
+        /// <param name="result"><see cref="Result{T}"/> to check.</param>
+        /// <param name="onFailure">Function to run if the <see cref="Result{T}"/> is failure.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <returns>A <see cref="Result{T}"/> resulting of <paramref name="onFailure"/>, otherwise a success.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
+        [PublicAPI]
+        public static Result<T> OnFailure<T>(in this Result<T> result, [NotNull, InstantHandle] in Func<Result<T>, Result<T>> onFailure, in bool treatWarningAsError = false)
+        {
+            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+
+            if (IsConsideredFailure(result, treatWarningAsError))
+                return onFailure(result);
 
             return result;
         }
@@ -241,6 +300,46 @@ namespace Here.Extensions
         }
 
         /// <summary>
+        /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
+        /// </summary>
+        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
+        /// <param name="onFailure">Function to run if the <see cref="CustomResult{TError}"/> is failure.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <returns>A <see cref="Result"/> resulting of <paramref name="onFailure"/>, otherwise a success.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
+        [PublicAPI]
+        public static Result OnFailure<TError>(in this CustomResult<TError> result, [NotNull, InstantHandle] in Func<CustomResult<TError>, Result> onFailure, in bool treatWarningAsError = false)
+        {
+            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+
+            if (IsConsideredFailure(result, treatWarningAsError))
+                return onFailure(result);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
+        /// </summary>
+        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
+        /// <param name="onFailure">Function to run if the <see cref="CustomResult{TError}"/> is failure.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <returns>A <see cref="CustomResult{TError}"/> resulting of <paramref name="onFailure"/>, otherwise a success.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
+        [PublicAPI]
+        public static CustomResult<TError> OnFailure<TError>(in this CustomResult<TError> result, [NotNull, InstantHandle] in Func<CustomResult<TError>, CustomResult<TError>> onFailure, in bool treatWarningAsError = false)
+        {
+            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+
+            if (IsConsideredFailure(result, treatWarningAsError))
+                return onFailure(result);
+
+            return result;
+        }
+
+        /// <summary>
         /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure, otherwise return the <paramref name="defaultValue"/>.
         /// </summary>
         /// <typeparam name="TOut">Type of the output value.</typeparam>
@@ -337,6 +436,90 @@ namespace Here.Extensions
 
             if (IsConsideredFailure(result, treatWarningAsError))
                 onFailure(result);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
+        /// </summary>
+        /// <typeparam name="T">Result value type.</typeparam>
+        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <param name="result"><see cref="Result{T,TError}"/> to check.</param>
+        /// <param name="onFailure">Function to run if the <see cref="Result{T,TError}"/> is failure.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <returns>A <see cref="Result"/> resulting of <paramref name="onFailure"/>, otherwise a success.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
+        [PublicAPI]
+        public static Result OnFailure<T, TError>(in this Result<T, TError> result, [NotNull, InstantHandle] in Func<Result<T, TError>, Result> onFailure, in bool treatWarningAsError = false)
+        {
+            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+
+            if (IsConsideredFailure(result, treatWarningAsError))
+                return onFailure(result);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
+        /// </summary>
+        /// <typeparam name="T">Result value type.</typeparam>
+        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <param name="result"><see cref="Result{T,TError}"/> to check.</param>
+        /// <param name="onFailure">Function to run if the <see cref="Result{T,TError}"/> is failure.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <returns>A <see cref="Result{T}"/> resulting of <paramref name="onFailure"/>, otherwise a success.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
+        [PublicAPI]
+        public static Result<T> OnFailure<T, TError>(in this Result<T, TError> result, [NotNull, InstantHandle] in Func<Result<T, TError>, Result<T>> onFailure, in bool treatWarningAsError = false)
+        {
+            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+
+            if (IsConsideredFailure(result, treatWarningAsError))
+                return onFailure(result);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
+        /// </summary>
+        /// <typeparam name="T">Result value type.</typeparam>
+        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <param name="result"><see cref="Result{T,TError}"/> to check.</param>
+        /// <param name="onFailure">Function to run if the <see cref="Result{T,TError}"/> is failure.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <returns>A <see cref="CustomResult{TError}"/> resulting of <paramref name="onFailure"/>, otherwise a success.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
+        [PublicAPI]
+        public static CustomResult<TError> OnFailure<T, TError>(in this Result<T, TError> result, [NotNull, InstantHandle] in Func<Result<T, TError>, CustomResult<TError>> onFailure, in bool treatWarningAsError = false)
+        {
+            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+
+            if (IsConsideredFailure(result, treatWarningAsError))
+                return onFailure(result);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
+        /// </summary>
+        /// <typeparam name="T">Result value type.</typeparam>
+        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <param name="result"><see cref="Result{T,TError}"/> to check.</param>
+        /// <param name="onFailure">Function to run if the <see cref="Result{T,TError}"/> is failure.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <returns>A <see cref="Result{T,TError}"/> resulting of <paramref name="onFailure"/>, otherwise a success.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
+        [PublicAPI]
+        public static Result<T, TError> OnFailure<T, TError>(in this Result<T, TError> result, [NotNull, InstantHandle] in Func<Result<T, TError>, Result<T, TError>> onFailure, in bool treatWarningAsError = false)
+        {
+            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+
+            if (IsConsideredFailure(result, treatWarningAsError))
+                return onFailure(result);
 
             return result;
         }

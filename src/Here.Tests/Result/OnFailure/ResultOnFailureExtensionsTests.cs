@@ -92,7 +92,7 @@ namespace Here.Tests.Results
             }
 
             #endregion
-            
+
             // Ok result
             var ok = Result.Ok();
             CheckOnFailure(ok, false, false);
@@ -124,24 +124,48 @@ namespace Here.Tests.Results
                 Assert.AreEqual(result, res);
             }
 
+            void CheckOnFailureFunc(Result result, bool treatWarningAsError, bool expectFailure)
+            {
+                int counterFailure = 0;
+                Result res = result.OnFailure(
+                    r =>
+                    {
+                        ++counterFailure;
+                        return Result.Ok();
+                    },
+                    treatWarningAsError);
+                Assert.AreEqual(expectFailure ? 1 : 0, counterFailure);
+                if (expectFailure)
+                    CheckResultOk(res);
+                else
+                    Assert.AreEqual(result, res);
+            }
+
             #endregion
 
             // Ok result
             var ok = Result.Ok();
             CheckOnFailure(ok, false, false);
             CheckOnFailure(ok, true, false);
+            CheckOnFailureFunc(ok, false, false);
+            CheckOnFailureFunc(ok, true, false);
 
             // Warning result
             var warning = Result.Warn("My warning");
             CheckOnFailure(warning, false, false);
             CheckOnFailure(warning, true, true);
+            CheckOnFailureFunc(warning, false, false);
+            CheckOnFailureFunc(warning, true, true);
 
             // Failure result
             var failure = Result.Fail("My failure");
             CheckOnFailure(failure, false, true);
             CheckOnFailure(failure, true, true);
+            CheckOnFailureFunc(failure, false, true);
+            CheckOnFailureFunc(failure, true, true);
 
             Assert.Throws<ArgumentNullException>(() => ok.OnFailure((Action<Result>)null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnFailure(null));
         }
     }
 }
