@@ -7528,6 +7528,15 @@ references:
   isSpec: "True"
   fullName: Here.Result.Fail
   nameWithType: Result.Fail
+- uid: Here.Result.Fail``1(Here.Result@)
+  name: Fail<T>(Result)
+  href: api/Here.Result.html#Here_Result_Fail__1_Here_Result__
+  commentId: M:Here.Result.Fail``1(Here.Result@)
+  name.vb: Fail(Of T)(ByRef Result)
+  fullName: Here.Result.Fail<T>(Here.Result)
+  fullName.vb: Here.Result.Fail(Of T)(ByRef Here.Result)
+  nameWithType: Result.Fail<T>(Result)
+  nameWithType.vb: Result.Fail(Of T)(ByRef Result)
 - uid: Here.Result.Fail``1(System.Exception@)
   name: Fail<T>(Exception)
   href: api/Here.Result.html#Here_Result_Fail__1_System_Exception__
@@ -7555,6 +7564,24 @@ references:
   fullName.vb: Here.Result.Fail(Of T, TError)(ByRef TError, ByRef System.Exception)
   nameWithType: Result.Fail<T, TError>(TError, Exception)
   nameWithType.vb: Result.Fail(Of T, TError)(ByRef TError, ByRef Exception)
+- uid: Here.Result.Fail``2(Here.CustomResult{``1}@)
+  name: Fail<T, TError>(CustomResult<TError>)
+  href: api/Here.Result.html#Here_Result_Fail__2_Here_CustomResult___1___
+  commentId: M:Here.Result.Fail``2(Here.CustomResult{``1}@)
+  name.vb: Fail(Of T, TError)(ByRef CustomResult(Of TError))
+  fullName: Here.Result.Fail<T, TError>(Here.CustomResult<TError>)
+  fullName.vb: Here.Result.Fail(Of T, TError)(ByRef Here.CustomResult(Of TError))
+  nameWithType: Result.Fail<T, TError>(CustomResult<TError>)
+  nameWithType.vb: Result.Fail(Of T, TError)(ByRef CustomResult(Of TError))
+- uid: Here.Result.Fail``2(Here.Result{``0}@)
+  name: Fail<TIn, TOut>(Result<TIn>)
+  href: api/Here.Result.html#Here_Result_Fail__2_Here_Result___0___
+  commentId: M:Here.Result.Fail``2(Here.Result{``0}@)
+  name.vb: Fail(Of TIn, TOut)(ByRef Result(Of TIn))
+  fullName: Here.Result.Fail<TIn, TOut>(Here.Result<TIn>)
+  fullName.vb: Here.Result.Fail(Of TIn, TOut)(ByRef Here.Result(Of TIn))
+  nameWithType: Result.Fail<TIn, TOut>(Result<TIn>)
+  nameWithType.vb: Result.Fail(Of TIn, TOut)(ByRef Result(Of TIn))
 - uid: Here.Result.Fail``2(System.String@,``1@,System.Exception@)
   name: Fail<T, TError>(String, TError, Exception)
   href: api/Here.Result.html#Here_Result_Fail__2_System_String____1__System_Exception__
@@ -7564,6 +7591,15 @@ references:
   fullName.vb: Here.Result.Fail(Of T, TError)(ByRef System.String, ByRef TError, ByRef System.Exception)
   nameWithType: Result.Fail<T, TError>(String, TError, Exception)
   nameWithType.vb: Result.Fail(Of T, TError)(ByRef String, ByRef TError, ByRef Exception)
+- uid: Here.Result.Fail``3(Here.Result{``0,``2}@)
+  name: Fail<TIn, TOut, TError>(Result<TIn, TError>)
+  href: api/Here.Result.html#Here_Result_Fail__3_Here_Result___0___2___
+  commentId: M:Here.Result.Fail``3(Here.Result{``0,``2}@)
+  name.vb: Fail(Of TIn, TOut, TError)(ByRef Result(Of TIn, TError))
+  fullName: Here.Result.Fail<TIn, TOut, TError>(Here.Result<TIn, TError>)
+  fullName.vb: Here.Result.Fail(Of TIn, TOut, TError)(ByRef Here.Result(Of TIn, TError))
+  nameWithType: Result.Fail<TIn, TOut, TError>(Result<TIn, TError>)
+  nameWithType.vb: Result.Fail(Of TIn, TOut, TError)(ByRef Result(Of TIn, TError))
 - uid: Here.Result.GetHashCode
   name: GetHashCode()
   href: api/Here.Result.html#Here_Result_GetHashCode
