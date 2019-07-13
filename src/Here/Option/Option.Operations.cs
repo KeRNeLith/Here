@@ -121,6 +121,19 @@ namespace Here
         }
 
         /// <summary>
+        /// Calls the <paramref name="then"/> function if this <see cref="Option{T}"/> has a value, otherwise returns the default value of <typeparamref name="TResult"/>.
+        /// </summary>
+        /// <typeparam name="TResult">Type of the returned value.</typeparam>
+        /// <param name="then">Treatment to do with this <see cref="Option{T}"/> value.</param>
+        /// <returns>Result of the executed treatment, otherwise the default one.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="then"/> is null.</exception>
+        [PublicAPI, Pure, CanBeNull]
+        public TResult IfOrDefault<TResult>([NotNull, InstantHandle] in Func<T, TResult> then)
+        {
+            return Unwrap(then);
+        }
+
+        /// <summary>
         /// Calls the <paramref name="else"/> function if this <see cref="Option{T}"/> has no value, otherwise returns the <paramref name="orValue"/>.
         /// </summary>
         /// <typeparam name="TResult">Type of the returned value.</typeparam>
@@ -139,6 +152,23 @@ namespace Here
             if (HasNoValue)
                 return Throw.IfResultNull(@else());
             return orValue;
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="else"/> function if this <see cref="Option{T}"/> has no value, otherwise returns the default value of <typeparamref name="TResult"/>.
+        /// </summary>
+        /// <typeparam name="TResult">Type of the returned value.</typeparam>
+        /// <param name="else">Treatment to compute result value.</param>
+        /// <returns>Result of the executed treatment, otherwise the default one.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="else"/> is null.</exception>
+        [PublicAPI, Pure, CanBeNull]
+        public TResult ElseOrDefault<TResult>([NotNull, InstantHandle] in Func<TResult> @else)
+        {
+            Throw.IfArgumentNull(@else, nameof(@else));
+
+            if (HasNoValue)
+                return @else();
+            return default;
         }
 
         /// <summary>

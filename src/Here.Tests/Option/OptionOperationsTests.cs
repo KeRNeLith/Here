@@ -166,6 +166,37 @@ namespace Here.Tests.Options
         }
 
         [Test]
+        public void OptionIfOrDefault()
+        {
+            int counterIf = 0;
+            var optionInt = Option<int>.Some(12);
+            Assert.AreEqual(42.2f, optionInt.IfOrDefault(
+                value =>
+                {
+                    ++counterIf;
+                    return 42.2f;
+                }));
+            Assert.AreEqual(1, counterIf);
+
+            var emptyOptionInt = Option<int>.None;
+            Assert.AreEqual(default(float), emptyOptionInt.IfOrDefault(
+                value =>
+                {
+                    ++counterIf;
+                    return 42.2f;
+                }));
+            Assert.AreEqual(1, counterIf);
+
+            var person = new Person("Test");
+            var optionPerson = Option<Person>.Some(person);
+            Assert.IsNull(optionPerson.IfOrDefault<Person>(p => null));
+            Assert.AreSame(person, optionPerson.IfOrDefault(p => person));
+            Assert.IsNull(Option<Person>.None.IfOrDefault(p => person));
+
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrDefault<int>(null));
+        }
+
+        [Test]
         public void OptionElseOrReturnResult()
         {
             int counterElse = 0;
@@ -196,6 +227,37 @@ namespace Here.Tests.Options
 
             Assert.DoesNotThrow(() => optionPerson.ElseOr(() => null, new Person("Test")));
             Assert.Throws<NullResultException>(() => Option<Person>.None.ElseOr(() => null, new Person("Test")));
+        }
+
+        [Test]
+        public void OptionElseOrDefault()
+        {
+            int counterElse = 0;
+            var optionInt = Option<int>.Some(12);
+            Assert.AreEqual(0, optionInt.ElseOrDefault(
+                () =>
+                {
+                    ++counterElse;
+                    return 12.2f;
+                }));
+            Assert.AreEqual(0, counterElse);
+
+            var emptyOptionInt = Option<int>.None;
+            Assert.AreEqual(12.2f, emptyOptionInt.ElseOrDefault(
+                () =>
+                {
+                    ++counterElse;
+                    return 12.2f;
+                }));
+            Assert.AreEqual(1, counterElse);
+
+            var person = new Person("Test");
+            var optionPerson = Option<Person>.Some(person);
+            Assert.IsNull(optionPerson.ElseOrDefault(() => person));
+            Assert.IsNull(Option<Person>.None.ElseOrDefault<Person>(() => null));
+            Assert.AreSame(person, Option<Person>.None.ElseOrDefault(() => person));
+
+            Assert.Throws<ArgumentNullException>(() => optionInt.ElseOrDefault<int>(null));
         }
 
         [Test]
