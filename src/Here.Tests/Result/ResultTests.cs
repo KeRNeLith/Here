@@ -142,6 +142,32 @@ namespace Here.Tests.Results
         }
 
         [Test]
+        public void ValueResultConstructionFromOtherResult()
+        {
+            Result okResult = Result.Ok();
+            Result warnResult = Result.Warn("My warning");
+            Result failureResult = Result.Fail("My failure");
+
+            Result<int> okValueResult = Result.Ok(12);
+            Result<int> warnValueResult = Result.Warn(25, "My warning");
+            Result<int> failureValueResult = Result.Fail<int>("My failure");
+
+            // Ok result
+            Assert.Throws<InvalidOperationException>(() => { var _ = Result.Fail<int>(okResult); });
+            Assert.Throws<InvalidOperationException>(() => { var _ = Result.Fail<int, float>(okValueResult); });
+
+            // Warning result
+            Assert.Throws<InvalidOperationException>(() => { var _ = Result.Fail<int>(warnResult); });
+            Assert.Throws<InvalidOperationException>(() => { var _ = Result.Fail<int, float>(warnValueResult); });
+
+            // Failure result
+            Result<int> res = Result.Fail<int>(failureResult);
+            CheckResultFail(res, "My failure");
+            Result<float> res2 = Result.Fail<int, float>(failureValueResult);
+            CheckResultFail(res2, "My failure");
+        }
+
+        [Test]
         public void ValueCustomResultConstruction()
         {
             // Ok result
@@ -185,6 +211,33 @@ namespace Here.Tests.Results
             Assert.Throws<ArgumentNullException>(() => { var _ = Result.Fail<int, Exception>(null, failException); });
             Assert.Throws<ArgumentNullException>(() => { var _ = Result.Fail<int, Exception>(null, null); });
             // ReSharper restore AssignNullToNotNullAttribute
+        }
+
+        [Test]
+        public void ValueCustomResultConstructionFromOtherResult()
+        {
+            var errorObject = new CustomErrorTest { ErrorCode = 66 };
+            CustomResult<CustomErrorTest> okResult = Result.CustomOk<CustomErrorTest>();
+            CustomResult<CustomErrorTest> warnResult = Result.CustomWarn<CustomErrorTest>("My warning");
+            CustomResult<CustomErrorTest> failureResult = Result.CustomFail("My failure", errorObject);
+
+            Result<int, CustomErrorTest> okValueResult = Result.Ok<int, CustomErrorTest>(12);
+            Result<int, CustomErrorTest> warnValueResult = Result.Warn<int, CustomErrorTest>(25, "My warning");
+            Result<int, CustomErrorTest> failureValueResult = Result.Fail<int, CustomErrorTest>("My failure", errorObject);
+
+            // Ok result
+            Assert.Throws<InvalidOperationException>(() => { var _ = Result.Fail<int, CustomErrorTest>(okResult); });
+            Assert.Throws<InvalidOperationException>(() => { var _ = Result.Fail<int, float, CustomErrorTest>(okValueResult); });
+
+            // Warning result
+            Assert.Throws<InvalidOperationException>(() => { var _ = Result.Fail<int, CustomErrorTest>(warnResult); });
+            Assert.Throws<InvalidOperationException>(() => { var _ = Result.Fail<int, float, CustomErrorTest>(warnValueResult); });
+
+            // Failure result
+            Result<int, CustomErrorTest> res = Result.Fail<int, CustomErrorTest>(failureResult);
+            CheckResultFail(res, "My failure", errorObject);
+            Result<float, CustomErrorTest> res2 = Result.Fail<int, float, CustomErrorTest>(failureValueResult);
+            CheckResultFail(res2, "My failure", errorObject);
         }
 
         #endregion

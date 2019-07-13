@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using JetBrains.Annotations;
 
@@ -226,7 +226,7 @@ namespace Here
         [Pure]
         internal Result ToFailResult()
         {
-            Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result to a Result failure.");
+            Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result to a failure Result.");
             return Fail(Logic.Message, Logic.Exception);
         }
 
@@ -240,7 +240,7 @@ namespace Here
         [Pure]
         internal Result ToFailResult([NotNull] in string additionalMessage, [CanBeNull] in Exception exception = null)
         {
-            Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result to a Result failure.");
+            Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result to a failure Result.");
             return Fail(Logic.Message + additionalMessage, exception);
         }
 
@@ -252,7 +252,7 @@ namespace Here
         [Pure]
         internal Result<T> ToFailValueResult<T>()
         {
-            Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result to a Result<T> failure.");
+            Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result to a failure Result<T>.");
             return Fail<T>(Logic.Message, Logic.Exception);
         }
 
@@ -265,7 +265,7 @@ namespace Here
         [Pure]
         internal CustomResult<TError> ToFailCustomResult<TError>([NotNull] in TError errorObject)
         {
-            Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result to a CustomResult<TError> failure.");
+            Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result to a failure CustomResult<TError>.");
             return CustomFail(Logic.Message, errorObject, Logic.Exception);
         }
 
@@ -278,7 +278,7 @@ namespace Here
         [Pure]
         internal Result<T, TError> ToFailValueCustomResult<T, TError>([NotNull] in TError errorObject)
         {
-            Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result to a Result<T, TError> failure.");
+            Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result to a failure Result<T, TError>.");
             return Fail<T, TError>(Logic.Message, errorObject, Logic.Exception);
         }
 
@@ -292,7 +292,7 @@ namespace Here
         [Pure]
         internal Result ToWarnResult([NotNull] in string message, [CanBeNull] in Exception exception = null)
         {
-            Debug.Assert(ResultLogic.IsConvertibleToWarning(Logic), "Cannot convert a warning Result<T> to a Result<T> warning.");
+            Debug.Assert(ResultLogic.IsConvertibleToWarning(Logic), "Cannot convert a warning Result<T> to a warning Result<T>.");
             return Warn(message, exception);
         }
 
@@ -544,6 +544,34 @@ namespace Here
             return new Result<T>(false, default, exception.Message, exception);
         }
 
+        /// <summary>
+        /// Gets a failure <see cref="Result{T}"/> from a <see cref="Result"/>.
+        /// </summary>
+        /// <param name="result"><see cref="Result"/> from which initializing a <see cref="Result{T}"/>.</param>
+        /// <returns>A <see cref="Result{T}"/>.</returns>
+        /// <exception cref="InvalidOperationException">If the given <see cref="Result"/> is not convertible to a failure.</exception>
+        [PublicAPI, Pure]
+        public static Result<T> Fail<T>(in Result result)
+        {
+            if (result.IsFailure)
+                return result.ToFailValueResult<T>();
+            throw new InvalidOperationException("Cannot convert a success or warning Result to a failure Result<T>.");
+        }
+
+        /// <summary>
+        /// Gets a failure <see cref="Result{TOut}"/> from a <see cref="Result{TIn}"/>.
+        /// </summary>
+        /// <param name="result"><see cref="Result{TIn}"/> from which initializing a <see cref="Result{TOut}"/>.</param>
+        /// <returns>A <see cref="Result{TOut}"/>.</returns>
+        /// <exception cref="InvalidOperationException">If the given <see cref="Result{TIn}"/> is not convertible to a failure.</exception>
+        [PublicAPI, Pure]
+        public static Result<TOut> Fail<TIn, TOut>(in Result<TIn> result)
+        {
+            if (result.IsFailure)
+                return result.ToFailValueResult<TOut>();
+            throw new InvalidOperationException("Cannot convert a success or warning Result<TIn> to a failure Result<TOut>.");
+        }
+
         #endregion
 
         #region Result with Custom error
@@ -666,6 +694,34 @@ namespace Here
             Throw.IfArgumentNull(exception, nameof(exception));
 
             return new Result<T, TError>(exception.Message, error, exception);
+        }
+
+        /// <summary>
+        /// Gets a failure <see cref="Result{T, TError}"/> from a <see cref="CustomResult{TError}"/>.
+        /// </summary>
+        /// <param name="result"><see cref="CustomResult{TError}"/> from which initializing a <see cref="Result{T, TError}"/>.</param>
+        /// <returns>A <see cref="Result{T, TError}"/>.</returns>
+        /// <exception cref="InvalidOperationException">If the given <see cref="CustomResult{TError}"/> is not convertible to a failure.</exception>
+        [PublicAPI, Pure]
+        public static Result<T, TError> Fail<T, TError>(in CustomResult<TError> result)
+        {
+            if (result.IsFailure)
+                return result.ToFailValueCustomResult<T>();
+            throw new InvalidOperationException("Cannot convert a success or warning CustomResult<TError> to a failure Result<T, TError>.");
+        }
+
+        /// <summary>
+        /// Gets a failure <see cref="Result{TOut, TError}"/> from a <see cref="Result{TIn, TError}"/>.
+        /// </summary>
+        /// <param name="result"><see cref="Result{TIn, TError}"/> from which initializing a <see cref="Result{TOut, TError}"/>.</param>
+        /// <returns>A <see cref="Result{TOut}"/>.</returns>
+        /// <exception cref="InvalidOperationException">If the given <see cref="Result{TIn, TError}"/> is not convertible to a failure.</exception>
+        [PublicAPI, Pure]
+        public static Result<TOut, TError> Fail<TIn, TOut, TError>(in Result<TIn, TError> result)
+        {
+            if (result.IsFailure)
+                return result.ToFailValueCustomResult<TOut>();
+            throw new InvalidOperationException("Cannot convert a success or warning Result<TIn, TError> to a failure Result<TOut, TError>.");
         }
 
         #endregion

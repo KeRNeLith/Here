@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using JetBrains.Annotations;
@@ -148,7 +148,7 @@ namespace Here
         [Pure]
         internal Result ToFailResult()
         {
-            Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result<T, TError> to a Result failure.");
+            Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result<T, TError> to a failure Result.");
             return Result.Fail(Logic.Message, Logic.Exception);
         }
 
@@ -160,7 +160,7 @@ namespace Here
         [Pure]
         internal Result<TOut> ToFailValueResult<TOut>()
         {
-            Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result<TIn, TError> to a Result<TOut> failure.");
+            Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result<TIn, TError> to a failure Result<TOut>.");
             return Result.Fail<TOut>(Logic.Message, Logic.Exception);
         }
 
@@ -172,7 +172,7 @@ namespace Here
         [Pure]
         internal CustomResult<TError> ToFailCustomResult()
         {
-            Debug.Assert(Logic.IsFailure, "Cannot convert a success Result<T, TError> to a CustomResult<TError> failure.");
+            Debug.Assert(Logic.IsFailure, "Cannot convert a success Result<T, TError> to a failure CustomResult<TError>.");
             return this;
         }
 
@@ -185,7 +185,7 @@ namespace Here
         [Pure]
         internal CustomResult<TError> ToFailCustomResult([NotNull] in TError errorObject)
         {
-            Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result<T, TError> to a CustomResult<TError> failure.");
+            Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result<T, TError> to a failure CustomResult<TError>.");
             return Result.CustomFail(Logic.Message, errorObject, Logic.Exception);
         }
 
@@ -197,7 +197,7 @@ namespace Here
         [Pure]
         internal Result<TOut, TError> ToFailValueCustomResult<TOut>()
         {
-            Debug.Assert(Logic.IsFailure, "Cannot convert a success Result<TIn, TError> to a Result<TOut, TError> failure.");
+            Debug.Assert(Logic.IsFailure, "Cannot convert a success Result<TIn, TError> to a failure Result<TOut, TError>.");
             return Result.Fail<TOut, TError>(Logic.Message, Logic.Error, Logic.Exception);
         }
 
@@ -210,7 +210,7 @@ namespace Here
         [Pure]
         internal Result<TOut, TError> ToFailValueCustomResult<TOut>([NotNull] in TError errorObject)
         {
-            Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result<TIn, TError> to a Result<TOut, TError> failure.");
+            Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result<TIn, TError> to a failure Result<TOut, TError>.");
             return Result.Fail<TOut, TError>(Logic.Message, errorObject, Logic.Exception);
         }
 
@@ -224,7 +224,7 @@ namespace Here
         [Pure]
         internal Result<TOut, TError> ToFailValueCustomResult<TOut>([NotNull] in string additionalMessage, [CanBeNull] in Exception exception = null)
         {
-            Debug.Assert(Logic.IsFailure, "Cannot convert a success Result<TIn, TError> to a Result<TOut, TError> failure.");
+            Debug.Assert(Logic.IsFailure, "Cannot convert a success Result<TIn, TError> to a failure Result<TOut, TError>.");
             return Result.Fail<TOut, TError>(Logic.Message + additionalMessage, Logic.Error, exception);
         }
 
@@ -238,7 +238,7 @@ namespace Here
         [Pure]
         internal Result<T, TError> ToWarnValueCustomResult([NotNull] in string message, [CanBeNull] in Exception exception = null)
         {
-            Debug.Assert(ResultLogic.IsConvertibleToWarning(Logic), "Cannot convert a warning Result<T, TError> to a Result<T, TError> warning.");
+            Debug.Assert(ResultLogic.IsConvertibleToWarning(Logic), "Cannot convert a warning Result<T, TError> to a warning Result<T, TError>.");
             return Result.Warn<T, TError>(_value, message, exception);
         }
 

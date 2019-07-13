@@ -53,7 +53,7 @@ namespace Here
         [Pure]
         internal static bool IsConvertibleToFailure(in IResult logic)
         {
-            return !logic.IsSuccess || logic.IsWarning;
+            return logic.IsFailure || logic.IsWarning;
         }
 
         /// <summary>
@@ -61,6 +61,7 @@ namespace Here
         /// </summary>
         /// <param name="logic"><see cref="IResult"/> to check.</param>
         /// <returns>True if the <see cref="IResult"/> is convertible, otherwise false.</returns>
+        [Pure]
         internal static bool IsConvertibleToWarning(in IResult logic)
         {
             return !logic.IsFailure;
