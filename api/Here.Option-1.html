@@ -316,7 +316,7 @@
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_Cast__1_System_Func__0___0___.md&amp;value=---%0Auid%3A%20Here.Option%601.Cast%60%601(System.Func%7B%600%2C%60%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L404">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L434">View Source</a>
   </span>
   <a id="Here_Option_1_Cast_" data-uid="Here.Option`1.Cast*"></a>
   <h4 id="Here_Option_1_Cast__1_System_Func__0___0___" data-uid="Here.Option`1.Cast``1(System.Func{`0,``0}@)">Cast&lt;TTo&gt;(Func&lt;T, TTo&gt;)</h4>
@@ -561,7 +561,7 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_ElseOr__1_System_Func___0_____0__.md&amp;value=---%0Auid%3A%20Here.Option%601.ElseOr%60%601(System.Func%7B%60%600%7D%40%2C%60%600%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L133">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L146">View Source</a>
   </span>
   <a id="Here_Option_1_ElseOr_" data-uid="Here.Option`1.ElseOr*"></a>
   <h4 id="Here_Option_1_ElseOr__1_System_Func___0_____0__" data-uid="Here.Option`1.ElseOr``1(System.Func{``0}@,``0@)">ElseOr&lt;TResult&gt;(Func&lt;TResult&gt;, TResult)</h4>
@@ -650,6 +650,88 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
       <tr>
         <td><a class="xref" href="Here.NullResultException.html">NullResultException</a></td>
         <td><p>If this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> has no value and <code data-dev-comment-type="paramref" class="paramref">else</code> returns null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_ElseOrDefault__1_System_Func___0___.md&amp;value=---%0Auid%3A%20Here.Option%601.ElseOrDefault%60%601(System.Func%7B%60%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L164">View Source</a>
+  </span>
+  <a id="Here_Option_1_ElseOrDefault_" data-uid="Here.Option`1.ElseOrDefault*"></a>
+  <h4 id="Here_Option_1_ElseOrDefault__1_System_Func___0___" data-uid="Here.Option`1.ElseOrDefault``1(System.Func{``0}@)">ElseOrDefault&lt;TResult&gt;(Func&lt;TResult&gt;)</h4>
+  <div class="markdown level1 summary"><p>Calls the <code data-dev-comment-type="paramref" class="paramref">else</code> function if this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> has no value, otherwise returns the default value of <code data-dev-comment-type="typeparamref" class="typeparamref">TResult</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TResult ElseOrDefault&lt;TResult&gt;(in Func&lt;TResult&gt; else)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;TResult&gt;</td>
+        <td><span class="parametername">else</span></td>
+        <td><p>Treatment to compute result value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TResult</span></td>
+        <td><p>Result of the executed treatment, otherwise the default one.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TResult</span></td>
+        <td><p>Type of the returned value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">else</code> is null.</p>
 </td>
       </tr>
     </tbody>
@@ -802,7 +884,7 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_Exists_System_Predicate__0___.md&amp;value=---%0Auid%3A%20Here.Option%601.Exists(System.Predicate%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L420">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L450">View Source</a>
   </span>
   <a id="Here_Option_1_Exists_" data-uid="Here.Option`1.Exists*"></a>
   <h4 id="Here_Option_1_Exists_System_Predicate__0___" data-uid="Here.Option`1.Exists(System.Predicate{`0}@)">Exists(Predicate&lt;T&gt;)</h4>
@@ -1297,10 +1379,92 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_IfOrDefault__1_System_Func__0___0___.md&amp;value=---%0Auid%3A%20Here.Option%601.IfOrDefault%60%601(System.Func%7B%600%2C%60%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L130">View Source</a>
+  </span>
+  <a id="Here_Option_1_IfOrDefault_" data-uid="Here.Option`1.IfOrDefault*"></a>
+  <h4 id="Here_Option_1_IfOrDefault__1_System_Func__0___0___" data-uid="Here.Option`1.IfOrDefault``1(System.Func{`0,``0}@)">IfOrDefault&lt;TResult&gt;(Func&lt;T, TResult&gt;)</h4>
+  <div class="markdown level1 summary"><p>Calls the <code data-dev-comment-type="paramref" class="paramref">then</code> function if this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> has a value, otherwise returns the default value of <code data-dev-comment-type="typeparamref" class="typeparamref">TResult</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TResult IfOrDefault&lt;TResult&gt;(in Func&lt;T, TResult&gt; then)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func</span>&lt;T, TResult&gt;</td>
+        <td><span class="parametername">then</span></td>
+        <td><p>Treatment to do with this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TResult</span></td>
+        <td><p>Result of the executed treatment, otherwise the default one.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TResult</span></td>
+        <td><p>Type of the returned value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>If the <code data-dev-comment-type="paramref" class="paramref">then</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_IfOrThrows_System_Action__0___System_Exception__.md&amp;value=---%0Auid%3A%20Here.Option%601.IfOrThrows(System.Action%7B%600%7D%40%2CSystem.Exception%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L217">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L247">View Source</a>
   </span>
   <a id="Here_Option_1_IfOrThrows_" data-uid="Here.Option`1.IfOrThrows*"></a>
   <h4 id="Here_Option_1_IfOrThrows_System_Action__0___System_Exception__" data-uid="Here.Option`1.IfOrThrows(System.Action{`0}@,System.Exception@)">IfOrThrows(Action&lt;T&gt;, Exception)</h4>
@@ -1361,7 +1525,7 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_IfOrThrows_System_Action__0___System_Func_System_Exception___.md&amp;value=---%0Auid%3A%20Here.Option%601.IfOrThrows(System.Action%7B%600%7D%40%2CSystem.Func%7BSystem.Exception%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L236">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L266">View Source</a>
   </span>
   <a id="Here_Option_1_IfOrThrows_" data-uid="Here.Option`1.IfOrThrows*"></a>
   <h4 id="Here_Option_1_IfOrThrows_System_Action__0___System_Func_System_Exception___" data-uid="Here.Option`1.IfOrThrows(System.Action{`0}@,System.Func{System.Exception}@)">IfOrThrows(Action&lt;T&gt;, Func&lt;Exception&gt;)</h4>
@@ -1422,7 +1586,7 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_IfOrThrows__1_System_Func__0___0___System_Exception__.md&amp;value=---%0Auid%3A%20Here.Option%601.IfOrThrows%60%601(System.Func%7B%600%2C%60%600%7D%40%2CSystem.Exception%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L257">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L287">View Source</a>
   </span>
   <a id="Here_Option_1_IfOrThrows_" data-uid="Here.Option`1.IfOrThrows*"></a>
   <h4 id="Here_Option_1_IfOrThrows__1_System_Func__0___0___System_Exception__" data-uid="Here.Option`1.IfOrThrows``1(System.Func{`0,``0}@,System.Exception@)">IfOrThrows&lt;TResult&gt;(Func&lt;T, TResult&gt;, Exception)</h4>
@@ -1515,7 +1679,7 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_IfOrThrows__1_System_Func__0___0___System_Func_System_Exception___.md&amp;value=---%0Auid%3A%20Here.Option%601.IfOrThrows%60%601(System.Func%7B%600%2C%60%600%7D%40%2CSystem.Func%7BSystem.Exception%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L277">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L307">View Source</a>
   </span>
   <a id="Here_Option_1_IfOrThrows_" data-uid="Here.Option`1.IfOrThrows*"></a>
   <h4 id="Here_Option_1_IfOrThrows__1_System_Func__0___0___System_Func_System_Exception___" data-uid="Here.Option`1.IfOrThrows``1(System.Func{`0,``0}@,System.Func{System.Exception}@)">IfOrThrows&lt;TResult&gt;(Func&lt;T, TResult&gt;, Func&lt;Exception&gt;)</h4>
@@ -1608,7 +1772,7 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_NoneIf_System_Predicate__0___.md&amp;value=---%0Auid%3A%20Here.Option%601.NoneIf(System.Predicate%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L437">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L467">View Source</a>
   </span>
   <a id="Here_Option_1_NoneIf_" data-uid="Here.Option`1.NoneIf*"></a>
   <h4 id="Here_Option_1_NoneIf_System_Predicate__0___" data-uid="Here.Option`1.NoneIf(System.Predicate{`0}@)">NoneIf(Predicate&lt;T&gt;)</h4>
@@ -1675,7 +1839,7 @@ if yes returns <a class="xref" href="Here.Option-1.html#Here_Option_1_None">None
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_NoneIf__1_System_Predicate__0___System_Func__0___0___.md&amp;value=---%0Auid%3A%20Here.Option%601.NoneIf%60%601(System.Predicate%7B%600%7D%40%2CSystem.Func%7B%600%2C%60%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L458">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L488">View Source</a>
   </span>
   <a id="Here_Option_1_NoneIf_" data-uid="Here.Option`1.NoneIf*"></a>
   <h4 id="Here_Option_1_NoneIf__1_System_Predicate__0___System_Func__0___0___" data-uid="Here.Option`1.NoneIf``1(System.Predicate{`0}@,System.Func{`0,``0}@)">NoneIf&lt;TOut&gt;(Predicate&lt;T&gt;, Func&lt;T, TOut&gt;)</h4>
@@ -1819,7 +1983,7 @@ with <code data-dev-comment-type="paramref" class="paramref">converter</code> ba
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_Or__0__.md&amp;value=---%0Auid%3A%20Here.Option%601.Or(%600%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L150">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L180">View Source</a>
   </span>
   <a id="Here_Option_1_Or_" data-uid="Here.Option`1.Or*"></a>
   <h4 id="Here_Option_1_Or__0__" data-uid="Here.Option`1.Or(`0@)">Or(T)</h4>
@@ -1885,7 +2049,7 @@ with <code data-dev-comment-type="paramref" class="paramref">converter</code> ba
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_Or_System_Func__0___.md&amp;value=---%0Auid%3A%20Here.Option%601.Or(System.Func%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L168">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L198">View Source</a>
   </span>
   <a id="Here_Option_1_Or_" data-uid="Here.Option`1.Or*"></a>
   <h4 id="Here_Option_1_Or_System_Func__0___" data-uid="Here.Option`1.Or(System.Func{`0}@)">Or(Func&lt;T&gt;)</h4>
@@ -1956,7 +2120,7 @@ with <code data-dev-comment-type="paramref" class="paramref">converter</code> ba
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_Or_System_Func_Here_Option__0____.md&amp;value=---%0Auid%3A%20Here.Option%601.Or(System.Func%7BHere.Option%7B%600%7D%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L187">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L217">View Source</a>
   </span>
   <a id="Here_Option_1_Or_" data-uid="Here.Option`1.Or*"></a>
   <h4 id="Here_Option_1_Or_System_Func_Here_Option__0____" data-uid="Here.Option`1.Or(System.Func{Here.Option{`0}}@)">Or(Func&lt;Option&lt;T&gt;&gt;)</h4>
@@ -2022,7 +2186,7 @@ with <code data-dev-comment-type="paramref" class="paramref">converter</code> ba
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_OrDefault.md&amp;value=---%0Auid%3A%20Here.Option%601.OrDefault%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L201">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L231">View Source</a>
   </span>
   <a id="Here_Option_1_OrDefault_" data-uid="Here.Option`1.OrDefault*"></a>
   <h4 id="Here_Option_1_OrDefault" data-uid="Here.Option`1.OrDefault">OrDefault()</h4>
@@ -2054,7 +2218,7 @@ with <code data-dev-comment-type="paramref" class="paramref">converter</code> ba
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_OrThrows_System_Exception__.md&amp;value=---%0Auid%3A%20Here.Option%601.OrThrows(System.Exception%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L294">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L324">View Source</a>
   </span>
   <a id="Here_Option_1_OrThrows_" data-uid="Here.Option`1.OrThrows*"></a>
   <h4 id="Here_Option_1_OrThrows_System_Exception__" data-uid="Here.Option`1.OrThrows(System.Exception@)">OrThrows(Exception)</h4>
@@ -2120,7 +2284,7 @@ with <code data-dev-comment-type="paramref" class="paramref">converter</code> ba
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_OrThrows_System_Func_System_Exception___.md&amp;value=---%0Auid%3A%20Here.Option%601.OrThrows(System.Func%7BSystem.Exception%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L311">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L341">View Source</a>
   </span>
   <a id="Here_Option_1_OrThrows_" data-uid="Here.Option`1.OrThrows*"></a>
   <h4 id="Here_Option_1_OrThrows_System_Func_System_Exception___" data-uid="Here.Option`1.OrThrows(System.Func{System.Exception}@)">OrThrows(Func&lt;Exception&gt;)</h4>
@@ -2283,7 +2447,7 @@ with <code data-dev-comment-type="paramref" class="paramref">converter</code> ba
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_Unwrap__0__.md&amp;value=---%0Auid%3A%20Here.Option%601.Unwrap(%600%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L327">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L357">View Source</a>
   </span>
   <a id="Here_Option_1_Unwrap_" data-uid="Here.Option`1.Unwrap*"></a>
   <h4 id="Here_Option_1_Unwrap__0__" data-uid="Here.Option`1.Unwrap(`0@)">Unwrap(T)</h4>
@@ -2333,7 +2497,7 @@ with <code data-dev-comment-type="paramref" class="paramref">converter</code> ba
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_Unwrap_System_Func__0___.md&amp;value=---%0Auid%3A%20Here.Option%601.Unwrap(System.Func%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L341">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L371">View Source</a>
   </span>
   <a id="Here_Option_1_Unwrap_" data-uid="Here.Option`1.Unwrap*"></a>
   <h4 id="Here_Option_1_Unwrap_System_Func__0___" data-uid="Here.Option`1.Unwrap(System.Func{`0}@)">Unwrap(Func&lt;T&gt;)</h4>
@@ -2399,7 +2563,7 @@ with <code data-dev-comment-type="paramref" class="paramref">converter</code> ba
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_Unwrap__1_System_Func__0___0_____0__.md&amp;value=---%0Auid%3A%20Here.Option%601.Unwrap%60%601(System.Func%7B%600%2C%60%600%7D%40%2C%60%600%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L361">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L391">View Source</a>
   </span>
   <a id="Here_Option_1_Unwrap_" data-uid="Here.Option`1.Unwrap*"></a>
   <h4 id="Here_Option_1_Unwrap__1_System_Func__0___0_____0__" data-uid="Here.Option`1.Unwrap``1(System.Func{`0,``0}@,``0@)">Unwrap&lt;TOut&gt;(Func&lt;T, TOut&gt;, TOut)</h4>
@@ -2489,7 +2653,7 @@ otherwise returns the <code data-dev-comment-type="paramref" class="paramref">de
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_Unwrap__1_System_Func__0___0___System_Func___0___.md&amp;value=---%0Auid%3A%20Here.Option%601.Unwrap%60%601(System.Func%7B%600%2C%60%600%7D%40%2CSystem.Func%7B%60%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L384">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L414">View Source</a>
   </span>
   <a id="Here_Option_1_Unwrap_" data-uid="Here.Option`1.Unwrap*"></a>
   <h4 id="Here_Option_1_Unwrap__1_System_Func__0___0___System_Func___0___" data-uid="Here.Option`1.Unwrap``1(System.Func{`0,``0}@,System.Func{``0}@)">Unwrap&lt;TOut&gt;(Func&lt;T, TOut&gt;, Func&lt;TOut&gt;)</h4>

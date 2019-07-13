@@ -6580,6 +6580,24 @@ references:
   fullName.vb: Here.Option(Of T).ElseOr(Of TResult)(ByRef System.Func(Of TResult), ByRef TResult)
   nameWithType: Option<T>.ElseOr<TResult>(Func<TResult>, TResult)
   nameWithType.vb: Option(Of T).ElseOr(Of TResult)(ByRef Func(Of TResult), ByRef TResult)
+- uid: Here.Option`1.ElseOrDefault*
+  name: ElseOrDefault
+  href: api/Here.Option-1.html#Here_Option_1_ElseOrDefault_
+  commentId: Overload:Here.Option`1.ElseOrDefault
+  isSpec: "True"
+  fullName: Here.Option<T>.ElseOrDefault
+  fullName.vb: Here.Option(Of T).ElseOrDefault
+  nameWithType: Option<T>.ElseOrDefault
+  nameWithType.vb: Option(Of T).ElseOrDefault
+- uid: Here.Option`1.ElseOrDefault``1(System.Func{``0}@)
+  name: ElseOrDefault<TResult>(Func<TResult>)
+  href: api/Here.Option-1.html#Here_Option_1_ElseOrDefault__1_System_Func___0___
+  commentId: M:Here.Option`1.ElseOrDefault``1(System.Func{``0}@)
+  name.vb: ElseOrDefault(Of TResult)(ByRef Func(Of TResult))
+  fullName: Here.Option<T>.ElseOrDefault<TResult>(System.Func<TResult>)
+  fullName.vb: Here.Option(Of T).ElseOrDefault(Of TResult)(ByRef System.Func(Of TResult))
+  nameWithType: Option<T>.ElseOrDefault<TResult>(Func<TResult>)
+  nameWithType.vb: Option(Of T).ElseOrDefault(Of TResult)(ByRef Func(Of TResult))
 - uid: Here.Option`1.Equals(`0)
   name: Equals(T)
   href: api/Here.Option-1.html#Here_Option_1_Equals__0_
@@ -6755,6 +6773,24 @@ references:
   fullName.vb: Here.Option(Of T).IfOr(Of TResult)(ByRef System.Func(Of T, TResult), ByRef TResult)
   nameWithType: Option<T>.IfOr<TResult>(Func<T, TResult>, TResult)
   nameWithType.vb: Option(Of T).IfOr(Of TResult)(ByRef Func(Of T, TResult), ByRef TResult)
+- uid: Here.Option`1.IfOrDefault*
+  name: IfOrDefault
+  href: api/Here.Option-1.html#Here_Option_1_IfOrDefault_
+  commentId: Overload:Here.Option`1.IfOrDefault
+  isSpec: "True"
+  fullName: Here.Option<T>.IfOrDefault
+  fullName.vb: Here.Option(Of T).IfOrDefault
+  nameWithType: Option<T>.IfOrDefault
+  nameWithType.vb: Option(Of T).IfOrDefault
+- uid: Here.Option`1.IfOrDefault``1(System.Func{`0,``0}@)
+  name: IfOrDefault<TResult>(Func<T, TResult>)
+  href: api/Here.Option-1.html#Here_Option_1_IfOrDefault__1_System_Func__0___0___
+  commentId: M:Here.Option`1.IfOrDefault``1(System.Func{`0,``0}@)
+  name.vb: IfOrDefault(Of TResult)(ByRef Func(Of T, TResult))
+  fullName: Here.Option<T>.IfOrDefault<TResult>(System.Func<T, TResult>)
+  fullName.vb: Here.Option(Of T).IfOrDefault(Of TResult)(ByRef System.Func(Of T, TResult))
+  nameWithType: Option<T>.IfOrDefault<TResult>(Func<T, TResult>)
+  nameWithType.vb: Option(Of T).IfOrDefault(Of TResult)(ByRef Func(Of T, TResult))
 - uid: Here.Option`1.IfOrThrows(System.Action{`0}@,System.Exception@)
   name: IfOrThrows(Action<T>, Exception)
   href: api/Here.Option-1.html#Here_Option_1_IfOrThrows_System_Action__0___System_Exception__
