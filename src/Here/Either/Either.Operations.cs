@@ -221,7 +221,7 @@ namespace Here
 
             return Match(
                 right => Either<TLeftOut, TRight>.Right(right),
-                left => onLeft(left),
+                onLeft,
                 () => Either<TLeftOut, TRight>.None);
         }
 
@@ -239,7 +239,7 @@ namespace Here
             Throw.IfArgumentNull(onRight, nameof(onRight));
 
             return Match(
-                right => onRight(right),
+                onRight,
                 left => Either<TLeft, TRightOut>.Left(left),
                 () => Either<TLeft, TRightOut>.None);
         }
@@ -263,8 +263,8 @@ namespace Here
             Throw.IfArgumentNull(onLeft, nameof(onLeft));
 
             return Match(
-                right => onRight(right),
-                left => onLeft(left),
+                onRight,
+                onLeft,
                 () => Either<TLeft, TRightOut>.None);
         }
 
@@ -439,7 +439,7 @@ namespace Here
         {
             Throw.IfArgumentNull(onLeft, nameof(onLeft));
 
-            return Match(Identity, left => onLeft(left));
+            return Match(Identity, onLeft);
         }
 
         /// <summary>
@@ -463,7 +463,7 @@ namespace Here
             Throw.IfArgumentNull(onLeft, nameof(onLeft));
             Throw.IfArgumentNull(defaultValue, nameof(defaultValue));
 
-            return Match(_ => defaultValue, left => onLeft(left));
+            return Match(_ => defaultValue, onLeft);
         }
 
         /// <summary>
@@ -487,7 +487,7 @@ namespace Here
             Throw.IfArgumentNull(onLeft, nameof(onLeft));
             Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
 
-            return Match(_ => valueFactory(), left => onLeft(left));
+            return Match(_ => valueFactory(), onLeft);
         }
 
         #endregion
@@ -606,7 +606,7 @@ namespace Here
         {
             Throw.IfArgumentNull(onRight, nameof(onRight));
 
-            return Match(right => onRight(right), Identity);
+            return Match(onRight, Identity);
         }
 
         /// <summary>
@@ -630,7 +630,7 @@ namespace Here
             Throw.IfArgumentNull(onRight, nameof(onRight));
             Throw.IfArgumentNull(defaultValue, nameof(defaultValue));
 
-            return Match(right => onRight(right), _ => defaultValue);
+            return Match(onRight, _ => defaultValue);
         }
 
         /// <summary>
@@ -654,7 +654,7 @@ namespace Here
             Throw.IfArgumentNull(onRight, nameof(onRight));
             Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
 
-            return Match(right => onRight(right), _ => valueFactory());
+            return Match(onRight, _ => valueFactory());
         }
 
         #endregion
