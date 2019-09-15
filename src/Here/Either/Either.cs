@@ -165,7 +165,7 @@ namespace Here
         /// </summary>
         /// <param name="either"><see cref="Either{TLeft,TRight}"/> to convert.</param>
         /// <returns>The left value.</returns>
-        /// <exception cref="InvalidCastException">If the either is casted to a left value while not being in <see cref="EitherStates.Left"/> state.</exception>
+        /// <exception cref="InvalidCastException">If the either is cast to a left value while not being in <see cref="EitherStates.Left"/> state.</exception>
         [PublicAPI, Pure]
         public static explicit operator TLeft(in Either<TLeft, TRight> either)
         {
@@ -179,7 +179,7 @@ namespace Here
         /// </summary>
         /// <param name="either"><see cref="Either{TLeft,TRight}"/> to convert.</param>
         /// <returns>The right value.</returns>
-        /// <exception cref="InvalidCastException">If the either is casted to a left value while not being in <see cref="EitherStates.Right"/> state.</exception>
+        /// <exception cref="InvalidCastException">If the either is cast to a left value while not being in <see cref="EitherStates.Right"/> state.</exception>
         [PublicAPI, Pure]
         public static explicit operator TRight(in Either<TLeft, TRight> either)
         {
@@ -197,12 +197,16 @@ namespace Here
         /// <returns>True if both <see cref="Either{TLeft,TRight}"/> is equals to the value, otherwise false.</returns>
         public bool Equals(TLeft other)
         {
+            if (other == null)
+                return false;
             return AreEqual(this, Left(other));
         }
 
         /// <inheritdoc />
         public bool Equals(TRight other)
         {
+            if (other == null)
+                return false;
             return AreEqual(this, Right(other));
         }
 

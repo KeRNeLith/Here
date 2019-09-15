@@ -52,6 +52,9 @@ Supports Source Link</Description>
     - Add an OnFailure extensions for results.
     - Add factory methods to create results from other failed results.
 
+- Either:
+    - Fix a crash in the Equals for Either with direct comparison of a left or right value when null.
+
 - Misc:
     - Generate a documentation for the library via DocFX.
     - Make Option, results, eithers and Unit serializable types.</PackageReleaseNotes>

@@ -322,6 +322,19 @@ namespace Here.Tests.Eithers
             Assert.IsTrue(eitherLeftIntDouble1 != 12.0);
             Assert.IsTrue(12.0 != eitherLeftIntDouble1);
 
+            var testObject = new TestClass { TestInt = 12 };
+            Either<TestClass, int> eitherLeftTestClassInt = Either.Left(new TestClass { TestInt = 12 });
+            Assert.IsTrue(eitherLeftTestClassInt.Equals(testObject));
+            Assert.IsTrue(eitherLeftTestClassInt == testObject);
+            Assert.IsTrue(testObject == eitherLeftTestClassInt);
+            Assert.IsFalse(eitherLeftTestClassInt != testObject);
+            Assert.IsFalse(testObject != eitherLeftTestClassInt);
+
+            Assert.IsFalse(eitherLeftTestClassInt.Equals(null));
+            Assert.IsFalse(eitherLeftTestClassInt == null);
+            Assert.IsFalse(null == eitherLeftTestClassInt);
+            Assert.IsTrue(eitherLeftTestClassInt != null);
+            Assert.IsTrue(null != eitherLeftTestClassInt);
 
             // Mixed
             var eitherLeftInt1 = Either.Left(12);
@@ -554,6 +567,20 @@ namespace Here.Tests.Eithers
             Assert.IsFalse(12.0 == eitherRightDoubleInt1);
             Assert.IsTrue(eitherRightDoubleInt1 != 12.0);
             Assert.IsTrue(12.0 != eitherRightDoubleInt1);
+
+            var testObject = new TestClass { TestInt = 12 };
+            Either<int, TestClass> eitherRightIntTestClass = Either.Right(new TestClass { TestInt = 12 });
+            Assert.IsTrue(eitherRightIntTestClass.Equals(testObject));
+            Assert.IsTrue(eitherRightIntTestClass == testObject);
+            Assert.IsTrue(testObject == eitherRightIntTestClass);
+            Assert.IsFalse(eitherRightIntTestClass != testObject);
+            Assert.IsFalse(testObject != eitherRightIntTestClass);
+
+            Assert.IsFalse(eitherRightIntTestClass.Equals(null));
+            Assert.IsFalse(eitherRightIntTestClass == null);
+            Assert.IsFalse(null == eitherRightIntTestClass);
+            Assert.IsTrue(eitherRightIntTestClass != null);
+            Assert.IsTrue(null != eitherRightIntTestClass);
 
 
             // Mixed
