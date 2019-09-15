@@ -6476,12 +6476,12 @@ references:
   isSpec: "True"
   fullName: Here.Option.None
   nameWithType: Option.None
-- uid: Here.Option.OptionNone
-  name: Option.OptionNone
-  href: api/Here.Option.OptionNone.html
-  commentId: T:Here.Option.OptionNone
-  fullName: Here.Option.OptionNone
-  nameWithType: Option.OptionNone
+- uid: Here.Option.NoneOption
+  name: Option.NoneOption
+  href: api/Here.Option.NoneOption.html
+  commentId: T:Here.Option.NoneOption
+  fullName: Here.Option.NoneOption
+  nameWithType: Option.NoneOption
 - uid: Here.Option`1
   name: Option<T>
   href: api/Here.Option-1.html
@@ -6970,15 +6970,15 @@ references:
   fullName.vb: Here.Option(Of T).Widening(ByRef T to Here.Option(Of T))
   nameWithType: Option<T>.Implicit(T to Option<T>)
   nameWithType.vb: Option(Of T).Widening(ByRef T to Option(Of T))
-- uid: Here.Option`1.op_Implicit(Here.Option.OptionNone@)~Here.Option{`0}
-  name: Implicit(Option.OptionNone to Option<T>)
-  href: api/Here.Option-1.html#Here_Option_1_op_Implicit_Here_Option_OptionNone___Here_Option__0_
-  commentId: M:Here.Option`1.op_Implicit(Here.Option.OptionNone@)~Here.Option{`0}
-  name.vb: Widening(ByRef Option.OptionNone to Option(Of T))
-  fullName: Here.Option<T>.Implicit(Here.Option.OptionNone to Here.Option<T>)
-  fullName.vb: Here.Option(Of T).Widening(ByRef Here.Option.OptionNone to Here.Option(Of T))
-  nameWithType: Option<T>.Implicit(Option.OptionNone to Option<T>)
-  nameWithType.vb: Option(Of T).Widening(ByRef Option.OptionNone to Option(Of T))
+- uid: Here.Option`1.op_Implicit(Here.Option.NoneOption@)~Here.Option{`0}
+  name: Implicit(Option.NoneOption to Option<T>)
+  href: api/Here.Option-1.html#Here_Option_1_op_Implicit_Here_Option_NoneOption___Here_Option__0_
+  commentId: M:Here.Option`1.op_Implicit(Here.Option.NoneOption@)~Here.Option{`0}
+  name.vb: Widening(ByRef Option.NoneOption to Option(Of T))
+  fullName: Here.Option<T>.Implicit(Here.Option.NoneOption to Here.Option<T>)
+  fullName.vb: Here.Option(Of T).Widening(ByRef Here.Option.NoneOption to Here.Option(Of T))
+  nameWithType: Option<T>.Implicit(Option.NoneOption to Option<T>)
+  nameWithType.vb: Option(Of T).Widening(ByRef Option.NoneOption to Option(Of T))
 - uid: Here.Option`1.op_Implicit(Here.Option{`0}@)~Here.Result
   name: Implicit(Option<T> to Result)
   href: api/Here.Option-1.html#Here_Option_1_op_Implicit_Here_Option__0____Here_Result
