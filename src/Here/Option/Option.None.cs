@@ -11,9 +11,9 @@ namespace Here
         /// <summary>
         /// Represents an empty <see cref="Option{T}"/> (nothing).
         /// </summary>
-        public class OptionNone
+        public class NoneOption
         {
-            internal OptionNone()
+            internal NoneOption()
             {
             }
         }
@@ -27,6 +27,6 @@ namespace Here
         /// Represents a non typed empty Option.
         /// </summary>
         [PublicAPI, NotNull]
-        public static OptionNone None { get; } = new OptionNone();
+        public static NoneOption None { get; } = new NoneOption();
     }
 }
