@@ -7,6 +7,9 @@ namespace Here
     /// Type that only have a unique value.
     /// </summary>
     [PublicAPI]
+#if SUPPORTS_SERIALIZATION
+    [Serializable]
+#endif
     public readonly struct Unit : IEquatable<Unit>, IComparable, IComparable<Unit>
     {
         /// <summary>

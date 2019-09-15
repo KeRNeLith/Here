@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net20;net35;net40;net45;netstandard1.0;netstandard2.0</TargetFrameworks>
@@ -104,20 +104,20 @@ Supports Source Link</Description>
   <!-- Targets defines -->
   <PropertyGroup Condition="'$(TargetFramework)'=='net20'">
     <AssemblyTitle>Here .NET 2.0</AssemblyTitle>
-    <DefineConstants>$(DefineConstants);NET20;SUPPORTS_BINARY_EXCEPTION_SERIALIZATION;SUPPORTS_SYSTEM_TYPE_IS_ENUM;$(AdditionalConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET20;SUPPORTS_SERIALIZATION;SUPPORTS_SYSTEM_TYPE_IS_ENUM;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net35'">
     <AssemblyTitle>Here .NET 3.5</AssemblyTitle>
-    <DefineConstants>$(DefineConstants);NET35;SUPPORTS_BINARY_EXCEPTION_SERIALIZATION;SUPPORTS_SYSTEM_TYPE_IS_ENUM;$(AdditionalConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET35;SUPPORTS_SERIALIZATION;SUPPORTS_SYSTEM_TYPE_IS_ENUM;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net40'">
     <AssemblyTitle>Here .NET 4.0</AssemblyTitle>
-    <DefineConstants>$(DefineConstants);NET40;SUPPORTS_BINARY_EXCEPTION_SERIALIZATION;SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE;SUPPORTS_PARSE_GUID;SUPPORTS_TRY_PARSE_ENUM;SUPPORTS_SYSTEM_TYPE_IS_ENUM;$(AdditionalConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET40;SUPPORTS_SERIALIZATION;SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE;SUPPORTS_PARSE_GUID;SUPPORTS_TRY_PARSE_ENUM;SUPPORTS_SYSTEM_TYPE_IS_ENUM;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <!-- NET20, NET30 and NET35 do not provide Task, NET40 provides Task but no ConfigureAwait / Task.FromResult, etc. -->
   <PropertyGroup Condition="'$(TargetFramework)'=='net45'">
     <AssemblyTitle>Here .NET 4.5</AssemblyTitle>
-    <DefineConstants>$(DefineConstants);NET45;SUPPORTS_BINARY_EXCEPTION_SERIALIZATION;SUPPORTS_AGGRESSIVE_INLINING;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE;SUPPORTS_PARSE_GUID;SUPPORTS_TRY_PARSE_ENUM;SUPPORTS_SYSTEM_TYPE_IS_ENUM;SUPPORTS_ASYNC;$(AdditionalConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET45;SUPPORTS_SERIALIZATION;SUPPORTS_AGGRESSIVE_INLINING;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE;SUPPORTS_PARSE_GUID;SUPPORTS_TRY_PARSE_ENUM;SUPPORTS_SYSTEM_TYPE_IS_ENUM;SUPPORTS_ASYNC;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='netstandard1.0'">
     <AssemblyTitle>Here .NET Standard 1.0</AssemblyTitle>
@@ -125,7 +125,7 @@ Supports Source Link</Description>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
     <AssemblyTitle>Here .NET Standard 2.0</AssemblyTitle>
-    <DefineConstants>$(DefineConstants);NETSTANDARD2_0;SUPPORTS_BINARY_EXCEPTION_SERIALIZATION;SUPPORTS_AGGRESSIVE_INLINING;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE;SUPPORTS_PARSE_GUID;SUPPORTS_TRY_PARSE_ENUM;SUPPORTS_SYSTEM_TYPE_IS_ENUM;SUPPORTS_ASYNC;$(AdditionalConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);NETSTANDARD2_0;SUPPORTS_SERIALIZATION;SUPPORTS_AGGRESSIVE_INLINING;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE;SUPPORTS_PARSE_GUID;SUPPORTS_TRY_PARSE_ENUM;SUPPORTS_SYSTEM_TYPE_IS_ENUM;SUPPORTS_ASYNC;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
 
   <!-- Dependencies -->

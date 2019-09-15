@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+#if SUPPORTS_SERIALIZATION
+using System.Runtime.Serialization;
+#endif
 using JetBrains.Annotations;
 
 namespace Here
@@ -10,8 +13,19 @@ namespace Here
     /// This <see cref="Result{T}"/> embed a <see cref="Value"/> resulting of the treatment.
     /// </summary>
     [PublicAPI]
+#if SUPPORTS_SERIALIZATION
+    [Serializable]
+#endif
     [DebuggerDisplay("{" + nameof(IsSuccess) + " ? \"IsSuccess\" + (" + nameof(IsWarning) + " ? \" with warning\" : System.String.Empty) + \", Value = \" + " + nameof(_value) + " : \"IsFailure\"}")]
-    public readonly partial struct Result<T> : IResult<T>, IEquatable<T>, IEquatable<Result<T>>, IComparable, IComparable<Result<T>>
+    public readonly partial struct Result<T>
+        : IResult<T>
+        , IEquatable<T>
+        , IEquatable<Result<T>>
+        , IComparable
+        , IComparable<Result<T>>
+#if SUPPORTS_SERIALIZATION
+        , ISerializable
+#endif
     {
         /// <inheritdoc />
         public bool IsSuccess => Logic.IsSuccess;
@@ -554,6 +568,63 @@ namespace Here
         }
 
         #endregion
+
+#if SUPPORTS_SERIALIZATION
+        #region ISerializable
+
+        private Result(SerializationInfo info, StreamingContext context)
+        {
+            bool isSuccess = (bool)info.GetValue("IsSuccess", typeof(bool));
+            if (isSuccess)
+            {
+                bool isWarning = (bool)info.GetValue("IsWarning", typeof(bool));
+                Logic = isWarning
+                    ? new ResultLogic(
+                        true,
+                        (string)info.GetValue("Message", typeof(string)),
+                        (Exception)info.GetValue("Exception", typeof(Exception)))
+                    : new ResultLogic();
+                _value = (T)info.GetValue("Value", typeof(T));
+            }
+            else
+            {
+                Logic = new ResultLogic(
+                    false,
+                    (string)info.GetValue("Message", typeof(string)),
+                    (Exception)info.GetValue("Exception", typeof(Exception)));
+                _value = default;
+            }
+        }
+
+        /// <inheritdoc />
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            if (Logic.IsSuccess)
+            {
+                info.AddValue("IsSuccess", true);
+                if (Logic.IsWarning)
+                {
+                    info.AddValue("IsWarning", true);
+                    info.AddValue("Message", Logic.Message);
+                    info.AddValue("Exception", Logic.Exception);
+                }
+                else
+                {
+                    info.AddValue("IsWarning", false);
+                }
+
+                info.AddValue("Value", _value);
+            }
+            else
+            {
+                info.AddValue("IsSuccess", false);
+                info.AddValue("Message", Logic.Message);
+                info.AddValue("Exception", Logic.Exception);
+            }
+        }
+
+        #endregion
+#endif
 
         /// <inheritdoc />
         public override string ToString()

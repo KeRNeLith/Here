@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+#if SUPPORTS_SERIALIZATION
+using System.Runtime.Serialization;
+#endif
 using JetBrains.Annotations;
 
 namespace Here
@@ -11,14 +14,20 @@ namespace Here
     /// </summary>
     /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="EitherLeft{TLeft}"/>.</typeparam>
     [PublicAPI]
+#if SUPPORTS_SERIALIZATION
+    [Serializable]
+#endif
     [DebuggerDisplay("IsLeft, Value = {" + nameof(Left) + "}")]
-    public readonly struct EitherLeft<TLeft> :
-        IEither,
-        IEquatable<TLeft>,
-        IEquatable<EitherLeft<TLeft>>, 
-        IComparable,
-        IComparable<TLeft>,
-        IComparable<EitherLeft<TLeft>>
+    public readonly struct EitherLeft<TLeft> 
+        : IEither
+        , IEquatable<TLeft>
+        , IEquatable<EitherLeft<TLeft>>
+        , IComparable
+        , IComparable<TLeft>
+        , IComparable<EitherLeft<TLeft>>
+#if SUPPORTS_SERIALIZATION
+        , ISerializable
+#endif
     {
         /// <inheritdoc />
         public bool IsLeft => true;
@@ -166,6 +175,23 @@ namespace Here
         }
 
         #endregion
+
+#if SUPPORTS_SERIALIZATION
+        #region ISerializable
+
+        private EitherLeft(SerializationInfo info, StreamingContext context)
+        {
+            Left = (TLeft)info.GetValue("Value", typeof(TLeft));
+        }
+
+        /// <inheritdoc />
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("Value", Left);
+        }
+
+        #endregion
+#endif
 
         /// <inheritdoc />
         public override string ToString()

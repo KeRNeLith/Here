@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+#if SUPPORTS_SERIALIZATION
+using System.Runtime.Serialization;
+#endif
 using JetBrains.Annotations;
 
 namespace Here
@@ -10,8 +13,18 @@ namespace Here
     /// </summary>
     /// <typeparam name="T">Type of the value embedded in the <see cref="Option{T}"/>.</typeparam>
     [PublicAPI]
+#if SUPPORTS_SERIALIZATION
+    [Serializable]
+#endif
     [DebuggerDisplay("{" + nameof(HasValue) + " ? \"Value = \" + " + nameof(Value) + " : \"No value\"}")]
-    public readonly partial struct Option<T> : IEquatable<T>, IEquatable<Option<T>>, IComparable, IComparable<Option<T>>
+    public readonly partial struct Option<T>
+        : IEquatable<T>
+        , IEquatable<Option<T>>
+        , IComparable
+        , IComparable<Option<T>>
+#if SUPPORTS_SERIALIZATION
+        , ISerializable
+#endif
     {
         /// <summary>
         /// Nothing value.
@@ -299,6 +312,29 @@ namespace Here
         }
 
         #endregion
+
+
+#if SUPPORTS_SERIALIZATION
+        #region ISerializable
+
+        private Option(SerializationInfo info, StreamingContext context)
+        {
+            HasValue = (bool)info.GetValue("HasValue", typeof(bool));
+            _value = HasValue
+                ? (T)info.GetValue("Value", typeof(T))
+                : default;
+        }
+
+        /// <inheritdoc />
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("HasValue", HasValue);
+            if (HasValue)
+                info.AddValue("Value", _value);
+        }
+
+        #endregion
+#endif
 
         /// <inheritdoc />
         public override string ToString()

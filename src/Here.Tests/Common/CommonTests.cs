@@ -1,5 +1,5 @@
 ﻿using System;
-#if SUPPORTS_BINARY_EXCEPTION_SERIALIZATION
+#if SUPPORTS_SERIALIZATION
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 #endif
@@ -13,7 +13,7 @@ namespace Here.Tests.Units
     [TestFixture]
     internal class CommonTests : HereTestsBase
     {
-#if SUPPORTS_BINARY_EXCEPTION_SERIALIZATION
+#if SUPPORTS_SERIALIZATION
         [Test]
         public void NullResultExceptionSerialization()
         {

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+#if SUPPORTS_SERIALIZATION
+using System.Runtime.Serialization;
+#endif
 using JetBrains.Annotations;
 
 namespace Here
@@ -11,14 +14,20 @@ namespace Here
     /// </summary>
     /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="EitherRight{TRight}"/>.</typeparam>
     [PublicAPI]
+#if SUPPORTS_SERIALIZATION
+    [Serializable]
+#endif
     [DebuggerDisplay("IsRight, Value = {" + nameof(Value) + "}")]
-    public readonly struct EitherRight<TRight> :
-        IEither,
-        IEquatable<TRight>,
-        IEquatable<EitherRight<TRight>>, 
-        IComparable,
-        IComparable<TRight>,
-        IComparable<EitherRight<TRight>>
+    public readonly struct EitherRight<TRight>
+        : IEither
+        , IEquatable<TRight>
+        , IEquatable<EitherRight<TRight>>
+        , IComparable
+        , IComparable<TRight>
+        , IComparable<EitherRight<TRight>>
+#if SUPPORTS_SERIALIZATION
+        , ISerializable
+#endif
     {
         /// <inheritdoc />
         public bool IsLeft => false;
@@ -169,6 +178,23 @@ namespace Here
         }
 
         #endregion
+
+#if SUPPORTS_SERIALIZATION
+        #region ISerializable
+
+        private EitherRight(SerializationInfo info, StreamingContext context)
+        {
+            Value = (TRight)info.GetValue("Value", typeof(TRight));
+        }
+
+        /// <inheritdoc />
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("Value", Value);
+        }
+
+        #endregion
+#endif
 
         /// <inheritdoc />
         public override string ToString()

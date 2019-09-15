@@ -1,5 +1,5 @@
 using System;
-#if SUPPORTS_BINARY_EXCEPTION_SERIALIZATION
+#if SUPPORTS_SERIALIZATION
 using System.Runtime.Serialization;
 #endif
 
@@ -8,7 +8,7 @@ namespace Here
     /// <summary>
     /// Exception thrown when getting a null result where it's not authorized.
     /// </summary>
-#if SUPPORTS_BINARY_EXCEPTION_SERIALIZATION
+#if SUPPORTS_SERIALIZATION
     [Serializable]
 #endif
     public sealed class NullResultException : Exception
@@ -21,7 +21,7 @@ namespace Here
         {
         }
 
-#if SUPPORTS_BINARY_EXCEPTION_SERIALIZATION
+#if SUPPORTS_SERIALIZATION
         /// <summary>
         /// Serialization constructor.
         /// </summary>

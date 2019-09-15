@@ -1,5 +1,8 @@
 using System;
 using System.Diagnostics;
+#if SUPPORTS_SERIALIZATION
+using System.Runtime.Serialization;
+#endif
 using JetBrains.Annotations;
 
 namespace Here
@@ -8,8 +11,18 @@ namespace Here
     /// <see cref="Result"/> is an object that represents the result/state of a treatment.
     /// </summary>
     [PublicAPI]
+#if SUPPORTS_SERIALIZATION
+    [Serializable]
+#endif
     [DebuggerDisplay("{" + nameof(IsSuccess) + " ? \"IsSuccess\" + (" + nameof(IsWarning) + " ? \" with warning\" : System.String.Empty) : \"IsFailure\"}")]
-    public readonly partial struct Result : IResult, IEquatable<Result>, IComparable, IComparable<Result>
+    public readonly partial struct Result
+        : IResult
+        , IEquatable<Result>
+        , IComparable
+        , IComparable<Result>
+#if SUPPORTS_SERIALIZATION
+        , ISerializable
+#endif
     {
         /// <inheritdoc />
         public bool IsSuccess => Logic.IsSuccess;
@@ -425,6 +438,59 @@ namespace Here
         }
 
         #endregion
+
+#if SUPPORTS_SERIALIZATION
+        #region ISerializable
+
+        private Result(SerializationInfo info, StreamingContext context)
+        {
+            bool isSuccess = (bool)info.GetValue("IsSuccess", typeof(bool));
+            if (isSuccess)
+            {
+                bool isWarning = (bool)info.GetValue("IsWarning", typeof(bool));
+                Logic = isWarning 
+                    ? new ResultLogic(
+                        true,
+                        (string)info.GetValue("Message", typeof(string)),
+                        (Exception)info.GetValue("Exception", typeof(Exception)))
+                    : new ResultLogic();
+            }
+            else
+            {
+                Logic = new ResultLogic(
+                    false,
+                    (string) info.GetValue("Message", typeof(string)),
+                    (Exception) info.GetValue("Exception", typeof(Exception)));
+            }
+        }
+
+        /// <inheritdoc />
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            if (Logic.IsSuccess)
+            {
+                info.AddValue("IsSuccess", true);
+                if (Logic.IsWarning)
+                {
+                    info.AddValue("IsWarning", true);
+                    info.AddValue("Message", Logic.Message);
+                    info.AddValue("Exception", Logic.Exception);
+                }
+                else
+                {
+                    info.AddValue("IsWarning", false);
+                }
+            }
+            else
+            {
+                info.AddValue("IsSuccess", false);
+                info.AddValue("Message", Logic.Message);
+                info.AddValue("Exception", Logic.Exception);
+            }
+        }
+
+        #endregion
+#endif
 
         #region Factory methods
 

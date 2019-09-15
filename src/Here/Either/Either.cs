@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+#if SUPPORTS_SERIALIZATION
+using System.Runtime.Serialization;
+#endif
 using JetBrains.Annotations;
 
 namespace Here
@@ -15,16 +18,22 @@ namespace Here
     /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
     /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
     [PublicAPI]
+#if SUPPORTS_SERIALIZATION
+    [Serializable]
+#endif
     [DebuggerDisplay("{\"Is\" + " + nameof(_state) + " + (" + nameof(IsNone) + " ? System.String.Empty : \", Value = \" + (" + nameof(IsLeft) + " ?" + nameof(_left) + ".ToString() : " + nameof(_right) + ".ToString()))}")]
-    public readonly partial struct Either<TLeft, TRight> :
-        IEither,
-        IEquatable<TRight>,
-        IEquatable<EitherRight<TRight>>,
-        IEquatable<Either<TLeft, TRight>>, 
-        IComparable,
-        IComparable<TRight>,
-        IComparable<EitherRight<TRight>>,
-        IComparable<Either<TLeft, TRight>>
+    public readonly partial struct Either<TLeft, TRight> 
+        : IEither
+        , IEquatable<TRight>
+        , IEquatable<EitherRight<TRight>>
+        , IEquatable<Either<TLeft, TRight>>
+        , IComparable
+        , IComparable<TRight>
+        , IComparable<EitherRight<TRight>>
+        , IComparable<Either<TLeft, TRight>>
+#if SUPPORTS_SERIALIZATION
+        , ISerializable
+#endif
     {
         /// <summary>
         /// <see cref="Either{TLeft,TRight}"/> that is not in <see cref="EitherStates.Left"/> state neither in <see cref="EitherStates.Right"/> state.
@@ -784,6 +793,45 @@ namespace Here
         #endregion
 
         #endregion
+
+#if SUPPORTS_SERIALIZATION
+        #region ISerializable
+
+        private Either(SerializationInfo info, StreamingContext context)
+        {
+            _state = (EitherStates)info.GetValue("State", typeof(EitherStates));
+            if (_state == EitherStates.None)
+            {
+                _left = default;
+                _right = default;
+            }
+            else if (_state == EitherStates.Left)
+            {
+                _left = (TLeft)info.GetValue("Value", typeof(TLeft));
+                _right = default;
+            }
+            else
+            {
+                _left = default;
+                _right = (TRight)info.GetValue("Value", typeof(TRight));
+            }
+        }
+
+        /// <inheritdoc />
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("State", _state);
+            if (!IsNone)
+            {
+                if (IsLeft)
+                    info.AddValue("Value", _left);
+                else
+                    info.AddValue("Value", _right);
+            }
+        }
+
+        #endregion
+#endif
 
         /// <inheritdoc />
         public override string ToString()
