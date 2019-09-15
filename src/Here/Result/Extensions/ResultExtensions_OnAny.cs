@@ -24,7 +24,7 @@ namespace Here.Extensions
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static Result OnAny(in this Result result, [NotNull, InstantHandle] in Action onAny)
+        public static Result OnAny(this Result result, [NotNull, InstantHandle] Action onAny)
         {
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
@@ -43,7 +43,7 @@ namespace Here.Extensions
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static Result OnAny(in this Result result, [NotNull, InstantHandle] in Action<Result> onAny)
+        public static Result OnAny(this Result result, [NotNull, InstantHandle] Action<Result> onAny)
         {
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
@@ -63,7 +63,7 @@ namespace Here.Extensions
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static TOut OnAny<TOut>(in this Result result, [NotNull, InstantHandle] in Func<TOut> onAny)
+        public static TOut OnAny<TOut>(this Result result, [NotNull, InstantHandle] Func<TOut> onAny)
         {
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
@@ -82,7 +82,7 @@ namespace Here.Extensions
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static TOut OnAny<TOut>(in this Result result, [NotNull, InstantHandle] in Func<Result, TOut> onAny)
+        public static TOut OnAny<TOut>(this Result result, [NotNull, InstantHandle] Func<Result, TOut> onAny)
         {
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
@@ -105,7 +105,7 @@ namespace Here.Extensions
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static Result<T> OnAny<T>(in this Result<T> result, [NotNull, InstantHandle] in Action onAny)
+        public static Result<T> OnAny<T>(this Result<T> result, [NotNull, InstantHandle] Action onAny)
         {
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
@@ -125,7 +125,7 @@ namespace Here.Extensions
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static Result<T> OnAny<T>(in this Result<T> result, [NotNull, InstantHandle] in Action<Result<T>> onAny)
+        public static Result<T> OnAny<T>(this Result<T> result, [NotNull, InstantHandle] Action<Result<T>> onAny)
         {
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
@@ -146,7 +146,7 @@ namespace Here.Extensions
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static TOut OnAny<TIn, TOut>(in this Result<TIn> result, [NotNull, InstantHandle] in Func<TOut> onAny)
+        public static TOut OnAny<TIn, TOut>(this Result<TIn> result, [NotNull, InstantHandle] Func<TOut> onAny)
         {
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
@@ -166,7 +166,7 @@ namespace Here.Extensions
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static TOut OnAny<TIn, TOut>(in this Result<TIn> result, [NotNull, InstantHandle] in Func<Result<TIn>, TOut> onAny)
+        public static TOut OnAny<TIn, TOut>(this Result<TIn> result, [NotNull, InstantHandle] Func<Result<TIn>, TOut> onAny)
         {
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
@@ -189,7 +189,7 @@ namespace Here.Extensions
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static CustomResult<TError> OnAny<TError>(in this CustomResult<TError> result, [NotNull, InstantHandle] in Action onAny)
+        public static CustomResult<TError> OnAny<TError>(this CustomResult<TError> result, [NotNull, InstantHandle] Action onAny)
         {
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
@@ -209,7 +209,7 @@ namespace Here.Extensions
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static CustomResult<TError> OnAny<TError>(in this CustomResult<TError> result, [NotNull, InstantHandle] in Action<CustomResult<TError>> onAny)
+        public static CustomResult<TError> OnAny<TError>(this CustomResult<TError> result, [NotNull, InstantHandle] Action<CustomResult<TError>> onAny)
         {
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
@@ -230,7 +230,7 @@ namespace Here.Extensions
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static TOut OnAny<TOut, TError>(in this CustomResult<TError> result, [NotNull, InstantHandle] in Func<TOut> onAny)
+        public static TOut OnAny<TOut, TError>(this CustomResult<TError> result, [NotNull, InstantHandle] Func<TOut> onAny)
         {
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
@@ -250,7 +250,7 @@ namespace Here.Extensions
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static TOut OnAny<TOut, TError>(in this CustomResult<TError> result, [NotNull, InstantHandle] in Func<CustomResult<TError>, TOut> onAny)
+        public static TOut OnAny<TOut, TError>(this CustomResult<TError> result, [NotNull, InstantHandle] Func<CustomResult<TError>, TOut> onAny)
         {
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
@@ -274,7 +274,7 @@ namespace Here.Extensions
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static Result<T, TError> OnAny<T, TError>(in this Result<T, TError> result, [NotNull, InstantHandle] in Action onAny)
+        public static Result<T, TError> OnAny<T, TError>(this Result<T, TError> result, [NotNull, InstantHandle] Action onAny)
         {
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
@@ -295,7 +295,7 @@ namespace Here.Extensions
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static Result<T, TError> OnAny<T, TError>(in this Result<T, TError> result, [NotNull, InstantHandle] in Action<Result<T, TError>> onAny)
+        public static Result<T, TError> OnAny<T, TError>(this Result<T, TError> result, [NotNull, InstantHandle] Action<Result<T, TError>> onAny)
         {
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
@@ -317,7 +317,7 @@ namespace Here.Extensions
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static TOut OnAny<TIn, TOut, TError>(in this Result<TIn, TError> result, [NotNull, InstantHandle] in Func<TOut> onAny)
+        public static TOut OnAny<TIn, TOut, TError>(this Result<TIn, TError> result, [NotNull, InstantHandle] Func<TOut> onAny)
         {
             Throw.IfArgumentNull(onAny, nameof(onAny));
 
@@ -338,7 +338,7 @@ namespace Here.Extensions
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static TOut OnAny<TIn, TOut, TError>(in this Result<TIn, TError> result, [NotNull, InstantHandle] in Func<Result<TIn, TError>, TOut> onAny)
+        public static TOut OnAny<TIn, TOut, TError>(this Result<TIn, TError> result, [NotNull, InstantHandle] Func<Result<TIn, TError>, TOut> onAny)
         {
             Throw.IfArgumentNull(onAny, nameof(onAny));
 

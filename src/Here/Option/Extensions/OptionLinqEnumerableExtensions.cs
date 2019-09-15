@@ -18,7 +18,7 @@ namespace Here.Extensions
         /// <param name="option"><see cref="Option{T}"/> on which performing the check.</param>
         /// <returns>True if this <see cref="Option{T}"/> enumerable value has at least one value, otherwise false.</returns>
         [PublicAPI, Pure]
-        public static bool AnyItem<T>(in this Option<T> option)
+        public static bool AnyItem<T>(this Option<T> option)
             where T : IEnumerable
         {
             if (option.HasValue)
@@ -35,7 +35,7 @@ namespace Here.Extensions
         /// <returns>True if this <see cref="Option{T}"/> enumerable has at least one value that matches, otherwise false.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         [PublicAPI, Pure]
-        public static bool AnyItem<T>(in this Option<T> option, [NotNull, InstantHandle] in Predicate<object> predicate)
+        public static bool AnyItem<T>(this Option<T> option, [NotNull, InstantHandle] Predicate<object> predicate)
             where T : IEnumerable
         {
             Throw.IfArgumentNull(predicate, nameof(predicate));
@@ -62,7 +62,7 @@ namespace Here.Extensions
         /// <returns>True if this <see cref="Option{T}"/> enumerable has at least one value that match, otherwise false.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         [PublicAPI, Pure]
-        public static bool AnyItem<T, TItem>(in this Option<T> option, [NotNull, InstantHandle] Predicate<TItem> predicate)
+        public static bool AnyItem<T, TItem>(this Option<T> option, [NotNull, InstantHandle] Predicate<TItem> predicate)
             where T : IEnumerable<TItem>
         {
             Throw.IfArgumentNull(predicate, nameof(predicate));
@@ -81,7 +81,7 @@ namespace Here.Extensions
         /// <returns>True if this <see cref="Option{T}"/> enumerable items all match the <paramref name="predicate"/>, otherwise false.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         [PublicAPI, Pure]
-        public static bool AllItems<T>(in this Option<T> option, [NotNull, InstantHandle] in Predicate<object> predicate)
+        public static bool AllItems<T>(this Option<T> option, [NotNull, InstantHandle] Predicate<object> predicate)
             where T : IEnumerable
         {
             Throw.IfArgumentNull(predicate, nameof(predicate));
@@ -110,7 +110,7 @@ namespace Here.Extensions
         /// <returns>True if this <see cref="Option{T}"/> enumerable items all match the <paramref name="predicate"/>, otherwise false.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         [PublicAPI, Pure]
-        public static bool AllItems<T, TItem>(in this Option<T> option, [NotNull, InstantHandle] Predicate<TItem> predicate)
+        public static bool AllItems<T, TItem>(this Option<T> option, [NotNull, InstantHandle] Predicate<TItem> predicate)
             where T : IEnumerable<TItem>
         {
             Throw.IfArgumentNull(predicate, nameof(predicate));
@@ -128,7 +128,7 @@ namespace Here.Extensions
         /// <param name="value">Value to check equality with <see cref="Option{T}"/> value.</param>
         /// <returns>True if this <see cref="Option{T}"/> contains the <paramref name="value"/>, otherwise false.</returns>
         [PublicAPI, Pure]
-        public static bool ContainsItem<T>(in this Option<T> option, [CanBeNull] in object value)
+        public static bool ContainsItem<T>(this Option<T> option, [CanBeNull] object value)
             where T : IEnumerable
         {
             if (option.HasValue)
@@ -153,7 +153,7 @@ namespace Here.Extensions
         /// <returns>True if this <see cref="Option{T}"/> contains the <paramref name="value"/>, otherwise false.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="comparer"/> is null.</exception>
         [PublicAPI, Pure]
-        public static bool ContainsItem<T>(in this Option<T> option, [CanBeNull] in object value, [NotNull] in IEqualityComparer<object> comparer)
+        public static bool ContainsItem<T>(this Option<T> option, [CanBeNull] object value, [NotNull] IEqualityComparer<object> comparer)
             where T : IEnumerable
         {
             Throw.IfArgumentNull(comparer, nameof(comparer));
@@ -179,7 +179,7 @@ namespace Here.Extensions
         /// <param name="value">Value to check equality with <see cref="Option{T}"/> value.</param>
         /// <returns>True if this <see cref="Option{T}"/> contains the <paramref name="value"/>, otherwise false.</returns>
         [PublicAPI, Pure]
-        public static bool ContainsItem<T, TItem>(in this Option<T> option, [CanBeNull] in TItem value)
+        public static bool ContainsItem<T, TItem>(this Option<T> option, [CanBeNull] TItem value)
             where T : IEnumerable<TItem>
         {
             if (option.HasValue)
@@ -198,7 +198,7 @@ namespace Here.Extensions
         /// <returns>True if this <see cref="Option{T}"/> contains the <paramref name="value"/>, otherwise false.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="comparer"/> is null.</exception>
         [PublicAPI, Pure]
-        public static bool ContainsItem<T, TItem>(in this Option<T> option, [CanBeNull] in TItem value, [NotNull] in IEqualityComparer<TItem> comparer)
+        public static bool ContainsItem<T, TItem>(this Option<T> option, [CanBeNull] TItem value, [NotNull] IEqualityComparer<TItem> comparer)
             where T : IEnumerable<TItem>
         {
             Throw.IfArgumentNull(comparer, nameof(comparer));
@@ -218,7 +218,7 @@ namespace Here.Extensions
         /// <returns>A <see cref="Option{T}"/> with selected items.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="selector"/> is null.</exception>
         [PublicAPI, Pure]
-        public static Option<IEnumerable<TItemOut>> SelectItems<T, TItemOut>(in this Option<T> option, [NotNull, InstantHandle] in Func<object, TItemOut> selector)
+        public static Option<IEnumerable<TItemOut>> SelectItems<T, TItemOut>(this Option<T> option, [NotNull, InstantHandle] Func<object, TItemOut> selector)
             where T : IEnumerable
         {
             Throw.IfArgumentNull(selector, nameof(selector));
@@ -248,7 +248,7 @@ namespace Here.Extensions
         /// <returns>A <see cref="Option{T}"/> with selected items.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="selector"/> is null.</exception>
         [PublicAPI, Pure]
-        public static Option<IEnumerable<TItemOut>> SelectItems<T, TItemIn, TItemOut>(in this Option<T> option, [NotNull, InstantHandle] in Func<TItemIn, TItemOut> selector)
+        public static Option<IEnumerable<TItemOut>> SelectItems<T, TItemIn, TItemOut>(this Option<T> option, [NotNull, InstantHandle] Func<TItemIn, TItemOut> selector)
             where T : IEnumerable<TItemIn>
         {
             Throw.IfArgumentNull(selector, nameof(selector));
@@ -272,7 +272,7 @@ namespace Here.Extensions
         /// <returns>A <see cref="Option{T}"/> with matched items.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         [PublicAPI, Pure]
-        public static Option<IEnumerable> WhereItems<T>(in this Option<T> option, [NotNull, InstantHandle] in Predicate<object> predicate)
+        public static Option<IEnumerable> WhereItems<T>(this Option<T> option, [NotNull, InstantHandle] Predicate<object> predicate)
             where T : IEnumerable
         {
             Throw.IfArgumentNull(predicate, nameof(predicate));
@@ -304,7 +304,7 @@ namespace Here.Extensions
         /// <returns>A <see cref="Option{T}"/> with matched items.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         [PublicAPI, Pure]
-        public static Option<IEnumerable<TItem>> WhereItems<T, TItem>(in this Option<T> option, [NotNull, InstantHandle] Predicate<TItem> predicate)
+        public static Option<IEnumerable<TItem>> WhereItems<T, TItem>(this Option<T> option, [NotNull, InstantHandle] Predicate<TItem> predicate)
             where T : IEnumerable<TItem>
         {
             Throw.IfArgumentNull(predicate, nameof(predicate));
@@ -329,7 +329,7 @@ namespace Here.Extensions
         /// <returns>This <see cref="Option{T}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onItem"/> is null.</exception>
         [PublicAPI]
-        public static Option<T> ForEachItems<T>(in this Option<T> option, [NotNull, InstantHandle] in Action<object> onItem)
+        public static Option<T> ForEachItems<T>(this Option<T> option, [NotNull, InstantHandle] Action<object> onItem)
             where T : IEnumerable
         {
             Throw.IfArgumentNull(onItem, nameof(onItem));
@@ -353,7 +353,7 @@ namespace Here.Extensions
         /// <returns>This <see cref="Option{T}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onItem"/> is null.</exception>
         [PublicAPI]
-        public static Option<T> ForEachItems<T, TItem>(in this Option<T> option, [NotNull, InstantHandle] in Action<TItem> onItem)
+        public static Option<T> ForEachItems<T, TItem>(this Option<T> option, [NotNull, InstantHandle] Action<TItem> onItem)
             where T : IEnumerable<TItem>
         {
             Throw.IfArgumentNull(onItem, nameof(onItem));
@@ -381,9 +381,9 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="initialValue"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="aggregator"/> is null.</exception>
         [PublicAPI, NotNull, Pure]
-        public static TAggregate AggregateItems<T, TAggregate>(in this Option<T> option,
-            [NotNull] in TAggregate initialValue,
-            [NotNull, InstantHandle] in Func<TAggregate, object, TAggregate> aggregator)
+        public static TAggregate AggregateItems<T, TAggregate>(this Option<T> option,
+            [NotNull] TAggregate initialValue,
+            [NotNull, InstantHandle] Func<TAggregate, object, TAggregate> aggregator)
             where T : IEnumerable
         {
             Throw.IfArgumentNull(initialValue, nameof(initialValue));
@@ -416,9 +416,9 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="initialValue"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="aggregator"/> is null.</exception>
         [PublicAPI, NotNull, Pure]
-        public static TAggregate AggregateItems<T, TItem, TAggregate>(in this Option<T> option,
-            [NotNull] in TAggregate initialValue,
-            [NotNull, InstantHandle] in Func<TAggregate, TItem, TAggregate> aggregator)
+        public static TAggregate AggregateItems<T, TItem, TAggregate>(this Option<T> option,
+            [NotNull] TAggregate initialValue,
+            [NotNull, InstantHandle] Func<TAggregate, TItem, TAggregate> aggregator)
             where T : IEnumerable<TItem>
         {
             Throw.IfArgumentNull(initialValue, nameof(initialValue));

@@ -18,7 +18,7 @@ namespace Here
     [Serializable]
 #endif
     [DebuggerDisplay("{" + nameof(IsSuccess) + " ? \"IsSuccess\" + (" + nameof(IsWarning) + " ? \" with warning\" : System.String.Empty) + \", Value = \" + " + nameof(_value) + " : \"IsFailure\"}")]
-    public readonly partial struct Result<T, TError>
+    public partial struct Result<T, TError>
         : IResult<T>
         , IResultError<TError>
         , IEquatable<T>
@@ -73,7 +73,7 @@ namespace Here
         /// <see cref="Result{T, TError}"/> "Ok" constructor.
         /// </summary>
         /// <param name="value">Result value.</param>
-        internal Result([CanBeNull] in T value)
+        internal Result([CanBeNull] T value)
         {
             Logic = new ResultLogic<TError>();
             _value = value;
@@ -85,9 +85,9 @@ namespace Here
         /// <param name="value">Embedded value.</param>
         /// <param name="message">Result message.</param>
         /// <param name="exception">Result embedded exception.</param>
-        internal Result([CanBeNull] in T value, [NotNull] in string message, [CanBeNull] in Exception exception)
+        internal Result([CanBeNull] T value, [NotNull] string message, [CanBeNull] Exception exception)
         {
-            Logic = new ResultLogic<TError>(true, message, default, exception);
+            Logic = new ResultLogic<TError>(true, message, default(TError), exception);
             _value = value;
         }
 
@@ -97,10 +97,10 @@ namespace Here
         /// <param name="message">Result message.</param>
         /// <param name="error">Result error object.</param>
         /// <param name="exception">Result embedded exception.</param>
-        internal Result([NotNull] in string message, [NotNull] in TError error, [CanBeNull] in Exception exception)
+        internal Result([NotNull] string message, [NotNull] TError error, [CanBeNull] Exception exception)
         {
             Logic = new ResultLogic<TError>(false, message, error, exception);
-            _value = default;
+            _value = default(T);
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace Here
         /// </summary>
         /// <param name="value">Result value.</param>
         /// <param name="logic">Result logic.</param>
-        internal Result([CanBeNull] in T value, in ResultLogic<TError> logic)
+        internal Result([CanBeNull] T value, ResultLogic<TError> logic)
         {
             Logic = logic;
             _value = value;
@@ -140,7 +140,7 @@ namespace Here
         /// <returns>A <see cref="Result{TOut, TError}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
         [PublicAPI, Pure]
-        public Result<TOut, TError> Cast<TOut>([NotNull, InstantHandle] in Func<T, TOut> converter)
+        public Result<TOut, TError> Cast<TOut>([NotNull, InstantHandle] Func<T, TOut> converter)
         {
             Throw.IfArgumentNull(converter, nameof(converter));
 
@@ -198,7 +198,7 @@ namespace Here
         /// <param name="errorObject">Custom error object to use.</param>
         /// <returns>A failed <see cref="CustomResult{TError}"/>.</returns>
         [Pure]
-        internal CustomResult<TError> ToFailCustomResult([NotNull] in TError errorObject)
+        internal CustomResult<TError> ToFailCustomResult([NotNull] TError errorObject)
         {
             Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result<T, TError> to a failure CustomResult<TError>.");
             return Result.CustomFail(Logic.Message, errorObject, Logic.Exception);
@@ -223,7 +223,7 @@ namespace Here
         /// <param name="errorObject">Custom error object to use.</param>
         /// <returns>A failed <see cref="Result{TOut, TError}"/>.</returns>
         [Pure]
-        internal Result<TOut, TError> ToFailValueCustomResult<TOut>([NotNull] in TError errorObject)
+        internal Result<TOut, TError> ToFailValueCustomResult<TOut>([NotNull] TError errorObject)
         {
             Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result<TIn, TError> to a failure Result<TOut, TError>.");
             return Result.Fail<TOut, TError>(Logic.Message, errorObject, Logic.Exception);
@@ -237,7 +237,7 @@ namespace Here
         /// <param name="exception">Exception to set in the failure <see cref="Result{TOut, TError}"/>.</param>
         /// <returns>A failed <see cref="Result{TOut, TError}"/>.</returns>
         [Pure]
-        internal Result<TOut, TError> ToFailValueCustomResult<TOut>([NotNull] in string additionalMessage, [CanBeNull] in Exception exception = null)
+        internal Result<TOut, TError> ToFailValueCustomResult<TOut>([NotNull] string additionalMessage, [CanBeNull] Exception exception = null)
         {
             Debug.Assert(Logic.IsFailure, "Cannot convert a success Result<TIn, TError> to a failure Result<TOut, TError>.");
             return Result.Fail<TOut, TError>(Logic.Message + additionalMessage, Logic.Error, exception);
@@ -251,7 +251,7 @@ namespace Here
         /// <param name="exception">Exception to set in the warning <see cref="Result{T, TError}"/>.</param>
         /// <returns>A warning <see cref="Result{T, TError}"/>.</returns>
         [Pure]
-        internal Result<T, TError> ToWarnValueCustomResult([NotNull] in string message, [CanBeNull] in Exception exception = null)
+        internal Result<T, TError> ToWarnValueCustomResult([NotNull] string message, [CanBeNull] Exception exception = null)
         {
             Debug.Assert(ResultLogic.IsConvertibleToWarning(Logic), "Cannot convert a warning Result<T, TError> to a warning Result<T, TError>.");
             return Result.Warn<T, TError>(_value, message, exception);
@@ -267,7 +267,7 @@ namespace Here
         /// <param name="other"><see cref="Result{T, TError}"/> to compare.</param>
         /// <returns>True if both <see cref="Result{T, TError}"/> are equal and successful, otherwise false.</returns>
         [PublicAPI, Pure]
-        public bool SuccessEquals(in Result<T, TError> other)
+        public bool SuccessEquals(Result<T, TError> other)
         {
             return AreSuccessEqual(this, other);
         }
@@ -302,7 +302,7 @@ namespace Here
         /// <param name="equalityComparer">Equality comparer to use to compare values.</param>
         /// <returns>True if the <see cref="Result{T, TError}"/> value is equals to the given value, otherwise false.</returns>
         [PublicAPI, Pure]
-        internal static bool AreEqual(in Result<T, TError> result, [CanBeNull] in T value, [CanBeNull] in IEqualityComparer<T> equalityComparer = null)
+        internal static bool AreEqual(Result<T, TError> result, [CanBeNull] T value, [CanBeNull] IEqualityComparer<T> equalityComparer = null)
         {
             if (result.IsSuccess)
                 return (equalityComparer ?? EqualityComparer<T>.Default).Equals(result._value, value);
@@ -317,7 +317,7 @@ namespace Here
         /// <param name="equalityComparer">Equality comparer to use to compare values.</param>
         /// <returns>True if both <see cref="Result{T, TError}"/> are equal, otherwise false.</returns>
         [Pure]
-        internal static bool AreEqual(in Result<T, TError> result1, in Result<T, TError> result2, [CanBeNull] in IEqualityComparer<T> equalityComparer = null)
+        internal static bool AreEqual(Result<T, TError> result1, Result<T, TError> result2, [CanBeNull] IEqualityComparer<T> equalityComparer = null)
         {
             return result1.Logic.Equals(result2.Logic)
                    && (equalityComparer ?? EqualityComparer<T>.Default).Equals(result1._value, result2._value);
@@ -331,7 +331,7 @@ namespace Here
         /// <param name="equalityComparer">Equality comparer to use to compare values.</param>
         /// <returns>True if both <see cref="Result{T, TError}"/> are equal, otherwise false.</returns>
         [Pure]
-        internal static bool AreSuccessEqual(in Result<T, TError> result1, in Result<T, TError> result2, [CanBeNull] in IEqualityComparer<T> equalityComparer = null)
+        internal static bool AreSuccessEqual(Result<T, TError> result1, Result<T, TError> result2, [CanBeNull] IEqualityComparer<T> equalityComparer = null)
         {
             if (result1.IsSuccess && result2.IsSuccess)
                 return AreEqual(result1, result2);
@@ -344,7 +344,7 @@ namespace Here
         /// <param name="result1">First <see cref="Result{T, TError}"/> to compare.</param>
         /// <param name="result2">Second <see cref="Result{T, TError}"/> to compare.</param>
         /// <returns>True if both <see cref="Result{T, TError}"/> are equal, otherwise false.</returns>
-        public static bool operator ==(in Result<T, TError> result1, in Result<T, TError> result2)
+        public static bool operator ==(Result<T, TError> result1, Result<T, TError> result2)
         {
             return AreEqual(result1, result2);
         }
@@ -355,7 +355,7 @@ namespace Here
         /// <param name="result1">First <see cref="Result{T, TError}"/> to compare.</param>
         /// <param name="result2">Second <see cref="Result{T, TError}"/> to compare.</param>
         /// <returns>True if both <see cref="Result{T, TError}"/> are not equal, otherwise false.</returns>
-        public static bool operator !=(in Result<T, TError> result1, in Result<T, TError> result2)
+        public static bool operator !=(Result<T, TError> result1, Result<T, TError> result2)
         {
             return !(result1 == result2);
         }
@@ -372,7 +372,7 @@ namespace Here
         /// <param name="result"><see cref="Result{T, TError}"/> that may embed a value to compare.</param>
         /// <param name="value">Value to compare.</param>
         /// <returns>True if the <see cref="Result{T, TError}"/> value is equals to the given value, otherwise false.</returns>
-        public static bool operator ==(in Result<T, TError> result, in T value)
+        public static bool operator ==(Result<T, TError> result, T value)
         {
             return AreEqual(result, value);
         }
@@ -383,7 +383,7 @@ namespace Here
         /// <param name="result"><see cref="Result{T, TError}"/> that may embed a value to compare.</param>
         /// <param name="value">Value to compare.</param>
         /// <returns>True if the <see cref="Result{T, TError}"/> value is not equals to the given value, otherwise false.</returns>
-        public static bool operator !=(in Result<T, TError> result, in T value)
+        public static bool operator !=(Result<T, TError> result, T value)
         {
             return !(result == value);
         }
@@ -394,7 +394,7 @@ namespace Here
         /// <param name="value">Value to compare.</param>
         /// <param name="result"><see cref="Result{T, TError}"/> that may embed a value to compare.</param>
         /// <returns>True if the <see cref="Result{T, TError}"/> value is equals to the given value, otherwise false.</returns>
-        public static bool operator ==(in T value, in Result<T, TError> result)
+        public static bool operator ==(T value, Result<T, TError> result)
         {
             return result == value;
         }
@@ -405,7 +405,7 @@ namespace Here
         /// <param name="value">Value to compare.</param>
         /// <param name="result"><see cref="Result{T, TError}"/> that may embed a value to compare.</param>
         /// <returns>True if the <see cref="Result{T, TError}"/> value is not equals to the given value, otherwise false.</returns>
-        public static bool operator !=(in T value, in Result<T, TError> result)
+        public static bool operator !=(T value, Result<T, TError> result)
         {
             return !(result == value);
         }
@@ -450,7 +450,7 @@ namespace Here
         /// <param name="left">The first <see cref="Result{T, TError}"/> to compare.</param>
         /// <param name="right">The second <see cref="Result{T, TError}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator <(in Result<T, TError> left, in Result<T, TError> right)
+        public static bool operator <(Result<T, TError> left, Result<T, TError> right)
         {
             return left.CompareTo(right) < 0;
         }
@@ -461,7 +461,7 @@ namespace Here
         /// <param name="left">The first <see cref="Result{T, TError}"/> to compare.</param>
         /// <param name="right">The second <see cref="Result{T, TError}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator <=(in Result<T, TError> left, in Result<T, TError> right)
+        public static bool operator <=(Result<T, TError> left, Result<T, TError> right)
         {
             return left.CompareTo(right) <= 0;
         }
@@ -472,7 +472,7 @@ namespace Here
         /// <param name="left">The first <see cref="Result{T, TError}"/> to compare.</param>
         /// <param name="right">The second <see cref="Result{T, TError}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator >(in Result<T, TError> left, in Result<T, TError> right)
+        public static bool operator >(Result<T, TError> left, Result<T, TError> right)
         {
             return left.CompareTo(right) > 0;
         }
@@ -483,7 +483,7 @@ namespace Here
         /// <param name="left">The first <see cref="Result{T, TError}"/> to compare.</param>
         /// <param name="right">The second <see cref="Result{T, TError}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator >=(in Result<T, TError> left, in Result<T, TError> right)
+        public static bool operator >=(Result<T, TError> left, Result<T, TError> right)
         {
             return left.CompareTo(right) >= 0;
         }
@@ -503,7 +503,7 @@ namespace Here
                     ? new ResultLogic<TError>(
                         true,
                         (string)info.GetValue("Message", typeof(string)),
-                        default,
+                        default(TError),
                         (Exception)info.GetValue("Exception", typeof(Exception)))
                     : new ResultLogic<TError>();
                 _value = (T)info.GetValue("Value", typeof(T));
@@ -515,7 +515,7 @@ namespace Here
                     (string)info.GetValue("Message", typeof(string)),
                     (TError)info.GetValue("Error", typeof(TError)),
                     (Exception)info.GetValue("Exception", typeof(Exception)));
-                _value = default;
+                _value = default(T);
             }
         }
 

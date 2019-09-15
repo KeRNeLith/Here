@@ -16,7 +16,7 @@ namespace Here
     [Serializable]
 #endif
     [DebuggerDisplay("{" + nameof(IsSuccess) + " ? \"IsSuccess\" + (" + nameof(IsWarning) + " ? \" with warning\" : System.String.Empty) : \"IsFailure\"}")]
-    public readonly partial struct CustomResult<TError>
+    public partial struct CustomResult<TError>
         : IResultError<TError>
         , IEquatable<CustomResult<TError>>
         , IComparable
@@ -57,7 +57,7 @@ namespace Here
         /// <see cref="CustomResult{TError}"/> constructor.
         /// </summary>
         /// <param name="logic">Result logic.</param>
-        internal CustomResult(in ResultLogic<TError> logic)
+        internal CustomResult(ResultLogic<TError> logic)
         {
             Logic = logic;
         }
@@ -69,7 +69,7 @@ namespace Here
         /// <param name="message">Result message.</param>
         /// <param name="error">Result error.</param>
         /// <param name="exception">Result embedded exception.</param>
-        internal CustomResult(in bool isWarning, [NotNull] in string message, [CanBeNull] in TError error, [CanBeNull] in Exception exception)
+        internal CustomResult(bool isWarning, [NotNull] string message, [CanBeNull] TError error, [CanBeNull] Exception exception)
         {
             Logic = new ResultLogic<TError>(isWarning, message, error, exception);
         }
@@ -83,7 +83,7 @@ namespace Here
         /// <param name="value">Value.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI, Pure]
-        public Result<T> Cast<T>([CanBeNull] in T value)
+        public Result<T> Cast<T>([CanBeNull] T value)
         {
             if (IsFailure)
                 return ToFailValueResult<T>();
@@ -98,7 +98,7 @@ namespace Here
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI, Pure]
-        public Result<T> Cast<T>([NotNull, InstantHandle] in Func<T> valueFactory)
+        public Result<T> Cast<T>([NotNull, InstantHandle] Func<T> valueFactory)
         {
             Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
 
@@ -114,7 +114,7 @@ namespace Here
         /// <param name="value">Value.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI, Pure]
-        public Result<T, TError> CustomCast<T>([CanBeNull] in T value)
+        public Result<T, TError> CustomCast<T>([CanBeNull] T value)
         {
             if (IsFailure)
                 return ToFailValueCustomResult<T>();
@@ -131,7 +131,7 @@ namespace Here
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI, Pure]
-        public Result<T, TError> CustomCast<T>([NotNull, InstantHandle] in Func<T> valueFactory)
+        public Result<T, TError> CustomCast<T>([NotNull, InstantHandle] Func<T> valueFactory)
         {
             Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
 
@@ -177,7 +177,7 @@ namespace Here
         /// <param name="errorObject">Custom error object to use.</param>
         /// <returns>A failed <see cref="CustomResult{TError}"/>.</returns>
         [Pure]
-        internal CustomResult<TError> ToFailCustomResult([NotNull] in TError errorObject)
+        internal CustomResult<TError> ToFailCustomResult([NotNull] TError errorObject)
         {
             Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success CustomResult<TError> to a failure CustomResult<TError>.");
             return Result.CustomFail(Logic.Message, errorObject, Logic.Exception);
@@ -191,7 +191,7 @@ namespace Here
         /// <param name="exception">Exception to set in the failure <see cref="CustomResult{TError}"/>.</param>
         /// <returns>A failed <see cref="CustomResult{TError}"/>.</returns>
         [Pure]
-        internal CustomResult<TError> ToFailCustomResult([NotNull] in string additionalMessage, [CanBeNull] in Exception exception = null)
+        internal CustomResult<TError> ToFailCustomResult([NotNull] string additionalMessage, [CanBeNull] Exception exception = null)
         {
             Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success Result<T, TError> to a failure CustomResult<TError>.");
             return Result.CustomFail(Logic.Message + additionalMessage, Logic.Error, exception);
@@ -216,7 +216,7 @@ namespace Here
         /// <param name="errorObject">Custom error object to use.</param>
         /// <returns>A failed <see cref="Result{T, TError}"/>.</returns>
         [Pure]
-        internal Result<T, TError> ToFailValueCustomResult<T>([NotNull] in TError errorObject)
+        internal Result<T, TError> ToFailValueCustomResult<T>([NotNull] TError errorObject)
         {
             Debug.Assert(ResultLogic.IsConvertibleToFailure(Logic), "Cannot convert a success CustomResult<TError> to a failure Result<T, TError>.");
             return Result.Fail<T, TError>(Logic.Message, errorObject, Logic.Exception);
@@ -230,7 +230,7 @@ namespace Here
         /// <param name="exception">Exception to set in the warning <see cref="CustomResult{TError}"/>.</param>
         /// <returns>A warning <see cref="CustomResult{TError}"/>.</returns>
         [Pure]
-        internal CustomResult<TError> ToWarnValueCustomResult([NotNull] in string message, [CanBeNull] in Exception exception = null)
+        internal CustomResult<TError> ToWarnValueCustomResult([NotNull] string message, [CanBeNull] Exception exception = null)
         {
             Debug.Assert(ResultLogic.IsConvertibleToWarning(Logic), "Cannot convert a warning CustomResult<TError> to a warning CustomResult<TError>.");
             return Result.CustomWarn<TError>(message, exception);
@@ -246,7 +246,7 @@ namespace Here
         /// <param name="other"><see cref="CustomResult{TError}"/> to compare.</param>
         /// <returns>True if both <see cref="CustomResult{TError}"/> are equal and successful, otherwise false.</returns>
         [PublicAPI, Pure]
-        public bool SuccessEquals(in CustomResult<TError> other)
+        public bool SuccessEquals(CustomResult<TError> other)
         {
             if (IsSuccess && other.IsSuccess)
                 return Equals(other);
@@ -273,7 +273,7 @@ namespace Here
         /// <param name="result1">First <see cref="CustomResult{TError}"/> to compare.</param>
         /// <param name="result2">Second <see cref="CustomResult{TError}"/> to compare.</param>
         /// <returns>True if both <see cref="CustomResult{TError}"/> are equal, otherwise false.</returns>
-        public static bool operator ==(in CustomResult<TError> result1, in CustomResult<TError> result2)
+        public static bool operator ==(CustomResult<TError> result1, CustomResult<TError> result2)
         {
             return result1.Equals(result2);
         }
@@ -284,7 +284,7 @@ namespace Here
         /// <param name="result1">First <see cref="CustomResult{TError}"/> to compare.</param>
         /// <param name="result2">Second <see cref="CustomResult{TError}"/> to compare.</param>
         /// <returns>True if both <see cref="CustomResult{TError}"/> are not equal, otherwise false.</returns>
-        public static bool operator !=(in CustomResult<TError> result1, in CustomResult<TError> result2)
+        public static bool operator !=(CustomResult<TError> result1, CustomResult<TError> result2)
         {
             return !(result1 == result2);
         }
@@ -326,7 +326,7 @@ namespace Here
         /// <param name="left">The first <see cref="CustomResult{TError}"/> to compare.</param>
         /// <param name="right">The second <see cref="CustomResult{TError}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator <(in CustomResult<TError> left, in CustomResult<TError> right)
+        public static bool operator <(CustomResult<TError> left, CustomResult<TError> right)
         {
             return left.CompareTo(right) < 0;
         }
@@ -337,7 +337,7 @@ namespace Here
         /// <param name="left">The first <see cref="CustomResult{TError}"/> to compare.</param>
         /// <param name="right">The second <see cref="CustomResult{TError}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator <=(in CustomResult<TError> left, in CustomResult<TError> right)
+        public static bool operator <=(CustomResult<TError> left, CustomResult<TError> right)
         {
             return left.CompareTo(right) <= 0;
         }
@@ -348,7 +348,7 @@ namespace Here
         /// <param name="left">The first <see cref="CustomResult{TError}"/> to compare.</param>
         /// <param name="right">The second <see cref="CustomResult{TError}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator >(in CustomResult<TError> left, in CustomResult<TError> right)
+        public static bool operator >(CustomResult<TError> left, CustomResult<TError> right)
         {
             return left.CompareTo(right) > 0;
         }
@@ -359,7 +359,7 @@ namespace Here
         /// <param name="left">The first <see cref="CustomResult{TError}"/> to compare.</param>
         /// <param name="right">The second <see cref="CustomResult{TError}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator >=(in CustomResult<TError> left, in CustomResult<TError> right)
+        public static bool operator >=(CustomResult<TError> left, CustomResult<TError> right)
         {
             return left.CompareTo(right) >= 0;
         }
@@ -379,7 +379,7 @@ namespace Here
                     ? new ResultLogic<TError>(
                         true,
                         (string)info.GetValue("Message", typeof(string)),
-                        default,
+                        default(TError),
                         (Exception)info.GetValue("Exception", typeof(Exception)))
                     : new ResultLogic<TError>();
             }

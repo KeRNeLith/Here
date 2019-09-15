@@ -46,7 +46,7 @@ namespace Here.Extensions
         /// <param name="defaultValue">Default value to use.</param>
         /// <returns>The unwrapped value from this <see cref="IResult{T}"/> if it has a value, otherwise the default value.</returns>
         [PublicAPI, Pure]
-        public static T Unwrap<T>([NotNull]this IResult<T> result, [CanBeNull] in T defaultValue = default)
+        public static T Unwrap<T>([NotNull]this IResult<T> result, [CanBeNull] T defaultValue = default(T))
         {
             if (result.IsSuccess)
                 return result.Value;
@@ -63,7 +63,7 @@ namespace Here.Extensions
         /// <returns>The unwrapped value from this <see cref="IResult{T}"/> if it has a value, otherwise the default value.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="orFunc"/> is null.</exception>
         [PublicAPI, Pure]
-        public static T Unwrap<T>([NotNull] this IResult<T> result, [NotNull, InstantHandle] in Func<T> orFunc)
+        public static T Unwrap<T>([NotNull] this IResult<T> result, [NotNull, InstantHandle] Func<T> orFunc)
         {
             Throw.IfArgumentNull(orFunc, nameof(orFunc));
 
@@ -86,8 +86,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
         [PublicAPI, Pure]
         public static TOut Unwrap<T, TOut>([NotNull] this IResult<T> result,
-            [NotNull, InstantHandle] in Func<T, TOut> converter,
-            [CanBeNull] in TOut defaultValue = default)
+            [NotNull, InstantHandle] Func<T, TOut> converter,
+            [CanBeNull] TOut defaultValue = default(TOut))
         {
             Throw.IfArgumentNull(converter, nameof(converter));
 
@@ -111,8 +111,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="orFunc"/> is null.</exception>
         [PublicAPI, Pure]
         public static TOut Unwrap<T, TOut>([NotNull] this IResult<T> result,
-            [NotNull, InstantHandle] in Func<T, TOut> converter,
-            [NotNull, InstantHandle] in Func<TOut> orFunc)
+            [NotNull, InstantHandle] Func<T, TOut> converter,
+            [NotNull, InstantHandle] Func<TOut> orFunc)
         {
             Throw.IfArgumentNull(converter, nameof(converter));
             Throw.IfArgumentNull(orFunc, nameof(orFunc));
@@ -136,7 +136,7 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
         [PublicAPI, Pure]
-        public static Result Ensure(in this Result result, [NotNull, InstantHandle] in Func<bool> predicate, [NotNull] in string errorMessage)
+        public static Result Ensure(this Result result, [NotNull, InstantHandle] Func<bool> predicate, [NotNull] string errorMessage)
         {
             Throw.IfArgumentNull(predicate, nameof(predicate));
             Throw.IfArgumentNull(errorMessage, nameof(errorMessage));
@@ -165,7 +165,7 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
         [PublicAPI, Pure]
-        public static Result<T> Ensure<T>(in this Result<T> result, [NotNull, InstantHandle] in Predicate<T> predicate, [NotNull] in string errorMessage)
+        public static Result<T> Ensure<T>(this Result<T> result, [NotNull, InstantHandle] Predicate<T> predicate, [NotNull] string errorMessage)
         {
             Throw.IfArgumentNull(predicate, nameof(predicate));
             Throw.IfArgumentNull(errorMessage, nameof(errorMessage));
@@ -185,7 +185,7 @@ namespace Here.Extensions
         /// <param name="embeddedResult">A <see cref="Result{Result}"/>.</param>
         /// <returns>Flattened <see cref="Result"/>.</returns>
         [PublicAPI, Pure]
-        public static Result Flatten(in this Result<Result> embeddedResult)
+        public static Result Flatten(this Result<Result> embeddedResult)
         {
             if (embeddedResult.IsFailure)
             {
@@ -222,7 +222,7 @@ namespace Here.Extensions
         /// <param name="embeddedResult">A <see cref="Result{Result}"/>.</param>
         /// <returns>Flattened <see cref="Result{T}"/>.</returns>
         [PublicAPI, Pure]
-        public static Result<T> Flatten<T>(in this Result<Result<T>> embeddedResult)
+        public static Result<T> Flatten<T>(this Result<Result<T>> embeddedResult)
         {
             if (embeddedResult.IsFailure)
             {
@@ -270,10 +270,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null or empty.</exception>
         [PublicAPI, Pure]
-        public static CustomResult<TError> Ensure<TError>(in this CustomResult<TError> result, 
-            [NotNull, InstantHandle] in Func<bool> predicate, 
-            [NotNull] in string errorMessage, 
-            [NotNull] in TError errorObject)
+        public static CustomResult<TError> Ensure<TError>(this CustomResult<TError> result, 
+            [NotNull, InstantHandle] Func<bool> predicate, 
+            [NotNull] string errorMessage, 
+            [NotNull] TError errorObject)
         {
             Throw.IfArgumentNull(predicate, nameof(predicate));
             Throw.IfArgumentNull(errorMessage, nameof(errorMessage));
@@ -301,10 +301,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null or empty.</exception>
         [PublicAPI, Pure]
-        public static CustomResult<TError> Ensure<TError>(in this CustomResult<TError> result,
-            [NotNull, InstantHandle] in Func<bool> predicate,
-            [NotNull] in string errorMessage,
-            [NotNull, InstantHandle] in Func<TError> errorFactory)
+        public static CustomResult<TError> Ensure<TError>(this CustomResult<TError> result,
+            [NotNull, InstantHandle] Func<bool> predicate,
+            [NotNull] string errorMessage,
+            [NotNull, InstantHandle] Func<TError> errorFactory)
         {
             Throw.IfArgumentNull(predicate, nameof(predicate));
             Throw.IfArgumentNull(errorMessage, nameof(errorMessage));
@@ -337,10 +337,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null or empty.</exception>
         [PublicAPI, Pure]
-        public static Result<T, TError> Ensure<T, TError>(in this Result<T, TError> result,
-            [NotNull, InstantHandle] in Predicate<T> predicate,
-            [NotNull] in string errorMessage,
-            [NotNull] in TError errorObject)
+        public static Result<T, TError> Ensure<T, TError>(this Result<T, TError> result,
+            [NotNull, InstantHandle] Predicate<T> predicate,
+            [NotNull] string errorMessage,
+            [NotNull] TError errorObject)
         {
             Throw.IfArgumentNull(predicate, nameof(predicate));
             Throw.IfArgumentNull(errorMessage, nameof(errorMessage));
@@ -369,10 +369,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null or empty.</exception>
         [PublicAPI, Pure]
-        public static Result<T, TError> Ensure<T, TError>(in this Result<T, TError> result,
-            [NotNull, InstantHandle] in Predicate<T> predicate,
-            [NotNull] in string errorMessage,
-            [NotNull, InstantHandle] in Func<TError> errorFactory)
+        public static Result<T, TError> Ensure<T, TError>(this Result<T, TError> result,
+            [NotNull, InstantHandle] Predicate<T> predicate,
+            [NotNull] string errorMessage,
+            [NotNull, InstantHandle] Func<TError> errorFactory)
         {
             Throw.IfArgumentNull(predicate, nameof(predicate));
             Throw.IfArgumentNull(errorMessage, nameof(errorMessage));
@@ -393,7 +393,7 @@ namespace Here.Extensions
         /// <param name="embeddedResult">A <see cref="Result{Result, TError}"/>.</param>
         /// <returns>Flattened <see cref="Result"/>.</returns>
         [PublicAPI, Pure]
-        public static Result Flatten<TError>(in this Result<Result, TError> embeddedResult)
+        public static Result Flatten<TError>(this Result<Result, TError> embeddedResult)
         {
             Result<Result> tmpResult = embeddedResult;
             return tmpResult.Flatten();
@@ -405,7 +405,7 @@ namespace Here.Extensions
         /// <param name="embeddedResult">A <see cref="Result{Result, TError}"/>.</param>
         /// <returns>Flattened <see cref="Result{T}"/>.</returns>
         [PublicAPI, Pure]
-        public static Result<T> Flatten<T, TError>(in this Result<Result<T>, TError> embeddedResult)
+        public static Result<T> Flatten<T, TError>(this Result<Result<T>, TError> embeddedResult)
         {
             Result<Result<T>> tmpResult = embeddedResult;
             return tmpResult.Flatten();
@@ -417,7 +417,7 @@ namespace Here.Extensions
         /// <param name="embeddedResult">A <see cref="Result{Result, TError}"/>.</param>
         /// <returns>Flattened <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI, Pure]
-        public static CustomResult<TError> Flatten<TError>(in this Result<CustomResult<TError>, TError> embeddedResult)
+        public static CustomResult<TError> Flatten<TError>(this Result<CustomResult<TError>, TError> embeddedResult)
         {
             if (embeddedResult.IsFailure)
             {
@@ -454,7 +454,7 @@ namespace Here.Extensions
         /// <param name="embeddedResult">A <see cref="Result{Result, TError}"/>.</param>
         /// <returns>Flattened <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI, Pure]
-        public static Result<T, TError> Flatten<T, TError>(in this Result<Result<T, TError>, TError> embeddedResult)
+        public static Result<T, TError> Flatten<T, TError>(this Result<Result<T, TError>, TError> embeddedResult)
         {
             if (embeddedResult.IsFailure)
             {

@@ -25,9 +25,9 @@ namespace Here
         /// <exception cref="InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state without providing a <paramref name="none"/> action.</exception>
         [PublicAPI, Pure]
         public Unit Match(
-            [NotNull, InstantHandle] in Action<TRight> onRight,
-            [NotNull, InstantHandle] in Action<TLeft> onLeft,
-            [CanBeNull, InstantHandle] in Action none = null)
+            [NotNull, InstantHandle] Action<TRight> onRight,
+            [NotNull, InstantHandle] Action<TLeft> onLeft,
+            [CanBeNull, InstantHandle] Action none = null)
         {
             Throw.IfArgumentNull(onRight, nameof(onRight));
             Throw.IfArgumentNull(onLeft, nameof(onLeft));
@@ -64,9 +64,9 @@ namespace Here
         /// <exception cref="InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state without providing a <paramref name="none"/> action.</exception>
         [PublicAPI, CanBeNull, Pure]
         public TOut MatchNullable<TOut>(
-            [NotNull, InstantHandle] in Func<TRight, TOut> onRight,
-            [NotNull, InstantHandle] in Func<TLeft, TOut> onLeft,
-            [CanBeNull, InstantHandle] in Func<TOut> none = null)
+            [NotNull, InstantHandle] Func<TRight, TOut> onRight,
+            [NotNull, InstantHandle] Func<TLeft, TOut> onLeft,
+            [CanBeNull, InstantHandle] Func<TOut> none = null)
         {
             Throw.IfArgumentNull(onRight, nameof(onRight));
             Throw.IfArgumentNull(onLeft, nameof(onLeft));
@@ -99,9 +99,9 @@ namespace Here
         /// <exception cref="NullResultException">If the result of the match is null.</exception>
         [PublicAPI, NotNull, Pure]
         public TOut Match<TOut>(
-            [NotNull, InstantHandle] in Func<TRight, TOut> onRight,
-            [NotNull, InstantHandle] in Func<TLeft, TOut> onLeft,
-            [CanBeNull, InstantHandle] in Func<TOut> none = null)
+            [NotNull, InstantHandle] Func<TRight, TOut> onRight,
+            [NotNull, InstantHandle] Func<TLeft, TOut> onLeft,
+            [CanBeNull, InstantHandle] Func<TOut> none = null)
         {
             TOut result = MatchNullable(onRight, onLeft, none);
             return Throw.IfResultNull(result);
@@ -369,7 +369,7 @@ namespace Here
         /// <returns>The result of the applied treatment.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
         [PublicAPI]
-        public Unit IfLeft([NotNull, InstantHandle] in Action<TLeft> onLeft)
+        public Unit IfLeft([NotNull, InstantHandle] Action<TLeft> onLeft)
         {
             return Match(DoNothing, onLeft, DoNothing);
         }
@@ -384,7 +384,7 @@ namespace Here
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public Unit IfFailure([NotNull, InstantHandle] in Action<TLeft> onFailure)
+        public Unit IfFailure([NotNull, InstantHandle] Action<TLeft> onFailure)
         {
             return IfLeft(onFailure);
         }
@@ -501,7 +501,7 @@ namespace Here
         /// <returns>This <see cref="Either{TLeft,TRight}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
         [PublicAPI]
-        public Either<TLeft, TRight> OnLeft([NotNull, InstantHandle] in Action<TLeft> onLeft)
+        public Either<TLeft, TRight> OnLeft([NotNull, InstantHandle] Action<TLeft> onLeft)
         {
             Throw.IfArgumentNull(onLeft, nameof(onLeft));
 
@@ -520,7 +520,7 @@ namespace Here
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public Either<TLeft, TRight> OnFailure([NotNull, InstantHandle] in Action<TLeft> onFailure)
+        public Either<TLeft, TRight> OnFailure([NotNull, InstantHandle] Action<TLeft> onFailure)
         {
             return OnLeft(onFailure);
         }
@@ -536,7 +536,7 @@ namespace Here
         /// <returns>A <see cref="Unit"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
         [PublicAPI]
-        public Unit IfRight([NotNull, InstantHandle] in Action<TRight> onRight)
+        public Unit IfRight([NotNull, InstantHandle] Action<TRight> onRight)
         {
             return Match(onRight, DoNothing, DoNothing);
         }
@@ -551,7 +551,7 @@ namespace Here
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public Unit IfSuccess([NotNull, InstantHandle] in Action<TRight> onSuccess)
+        public Unit IfSuccess([NotNull, InstantHandle] Action<TRight> onSuccess)
         {
             return IfRight(onSuccess);
         }
@@ -668,7 +668,7 @@ namespace Here
         /// <returns>This <see cref="Either{TLeft,TRight}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
         [PublicAPI]
-        public Either<TLeft, TRight> OnRight([NotNull, InstantHandle] in Action<TRight> onRight)
+        public Either<TLeft, TRight> OnRight([NotNull, InstantHandle] Action<TRight> onRight)
         {
             Throw.IfArgumentNull(onRight, nameof(onRight));
 
@@ -687,7 +687,7 @@ namespace Here
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public Either<TLeft, TRight> OnSuccess([NotNull, InstantHandle] in Action<TRight> onSuccess)
+        public Either<TLeft, TRight> OnSuccess([NotNull, InstantHandle] Action<TRight> onSuccess)
         {
             return OnRight(onSuccess);
         }
@@ -707,8 +707,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
         [PublicAPI]
         public Either<TLeft, TRight> OnRightOrLeft(
-            [NotNull, InstantHandle] in Action<TRight> onRight,
-            [NotNull, InstantHandle] in Action<TLeft> onLeft)
+            [NotNull, InstantHandle] Action<TRight> onRight,
+            [NotNull, InstantHandle] Action<TLeft> onLeft)
         {
             Throw.IfArgumentNull(onRight, nameof(onRight));
             Throw.IfArgumentNull(onLeft, nameof(onLeft));
@@ -739,8 +739,8 @@ namespace Here
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
         public Either<TLeft, TRight> OnSuccessOrFailure(
-            [NotNull, InstantHandle] in Action<TRight> onSuccess,
-            [NotNull, InstantHandle] in Action<TLeft> onFailure)
+            [NotNull, InstantHandle] Action<TRight> onSuccess,
+            [NotNull, InstantHandle] Action<TLeft> onFailure)
         {
             return OnRightOrLeft(onSuccess, onFailure);
         }
@@ -768,7 +768,7 @@ namespace Here
         /// <returns>The either right value, otherwise the provided default value.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="defaultValue"/> is null.</exception>
         [PublicAPI, Pure, NotNull]
-        public TRight RightOr([NotNull] in TRight defaultValue)
+        public TRight RightOr([NotNull] TRight defaultValue)
         {
             Throw.IfArgumentNull(defaultValue, nameof(defaultValue));
 
@@ -790,7 +790,7 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         /// <exception cref="NullResultException">If the result of the <paramref name="valueFactory"/> function is null.</exception>
         [PublicAPI, Pure, NotNull]
-        public TRight RightOr([NotNull, InstantHandle] in Func<TRight> valueFactory)
+        public TRight RightOr([NotNull, InstantHandle] Func<TRight> valueFactory)
         {
             Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
 
@@ -823,7 +823,7 @@ namespace Here
         /// <returns>The either left value, otherwise the provided default value.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="defaultValue"/> is null.</exception>
         [PublicAPI, Pure, NotNull]
-        public TLeft LeftOr([NotNull] in TLeft defaultValue)
+        public TLeft LeftOr([NotNull] TLeft defaultValue)
         {
             Throw.IfArgumentNull(defaultValue, nameof(defaultValue));
 
@@ -845,7 +845,7 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         /// <exception cref="NullResultException">If the result of the <paramref name="valueFactory"/> function is null.</exception>
         [PublicAPI, Pure, NotNull]
-        public TLeft LeftOr([NotNull, InstantHandle] in Func<TLeft> valueFactory)
+        public TLeft LeftOr([NotNull, InstantHandle] Func<TLeft> valueFactory)
         {
             Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
 

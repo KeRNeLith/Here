@@ -20,7 +20,7 @@ namespace Here.Extensions
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static bool IsConsideredFailure([NotNull] in IResult result, in bool treatWarningAsError)
+        private static bool IsConsideredFailure([NotNull] IResult result, bool treatWarningAsError)
         {
             return result.IsFailure || (treatWarningAsError && result.IsWarning);
         }
@@ -34,7 +34,7 @@ namespace Here.Extensions
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static bool IsConsideredSuccess([NotNull] in IResult result, in bool treatWarningAsError)
+        private static bool IsConsideredSuccess([NotNull] IResult result, bool treatWarningAsError)
         {
             return !IsConsideredFailure(result, treatWarningAsError);
         }
@@ -50,7 +50,7 @@ namespace Here.Extensions
         /// <returns>This <see cref="Result"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
-        public static Result OnSuccess(in this Result result, [NotNull, InstantHandle] in Action onSuccess, in bool treatWarningAsError = false)
+        public static Result OnSuccess(this Result result, [NotNull, InstantHandle] Action onSuccess, bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
@@ -69,7 +69,7 @@ namespace Here.Extensions
         /// <returns>This <see cref="Result"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
-        public static Result OnSuccess(in this Result result, [NotNull, InstantHandle] in Action<Result> onSuccess, in bool treatWarningAsError = false)
+        public static Result OnSuccess(this Result result, [NotNull, InstantHandle] Action<Result> onSuccess, bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
@@ -88,7 +88,7 @@ namespace Here.Extensions
         /// <returns>A <see cref="Result"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
-        public static Result OnSuccess(in this Result result, [NotNull, InstantHandle] in Func<Result, Result> onSuccess, in bool treatWarningAsError = false)
+        public static Result OnSuccess(this Result result, [NotNull, InstantHandle] Func<Result, Result> onSuccess, bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
@@ -110,7 +110,7 @@ namespace Here.Extensions
         /// <returns>A <see cref="Result{T}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
-        public static Result<T> OnSuccess<T>(in this Result result, [NotNull, InstantHandle] in Func<Result, T> onSuccess, in bool treatWarningAsError = false)
+        public static Result<T> OnSuccess<T>(this Result result, [NotNull, InstantHandle] Func<Result, T> onSuccess, bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
@@ -130,7 +130,7 @@ namespace Here.Extensions
         /// <returns>A <see cref="Result{T}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
-        public static Result<T> OnSuccess<T>(in this Result result, [NotNull, InstantHandle] in Func<Result, Result<T>> onSuccess, in bool treatWarningAsError = false)
+        public static Result<T> OnSuccess<T>(this Result result, [NotNull, InstantHandle] Func<Result, Result<T>> onSuccess, bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
@@ -154,10 +154,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI]
-        public static CustomResult<TError> OnSuccess<TError>(in this Result result,
-            [NotNull, InstantHandle] in Func<Result, CustomResult<TError>> onSuccess,
-            [NotNull] in TError errorObject,
-            in bool treatWarningAsError = false)
+        public static CustomResult<TError> OnSuccess<TError>(this Result result,
+            [NotNull, InstantHandle] Func<Result, CustomResult<TError>> onSuccess,
+            [NotNull] TError errorObject,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorObject, nameof(errorObject));
@@ -182,10 +182,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI]
-        public static CustomResult<TError> OnSuccess<TError>(in this Result result,
-            [NotNull, InstantHandle] in Func<Result, CustomResult<TError>> onSuccess,
-            [NotNull, InstantHandle] in Func<Result, TError> errorFactory,
-            in bool treatWarningAsError = false)
+        public static CustomResult<TError> OnSuccess<TError>(this Result result,
+            [NotNull, InstantHandle] Func<Result, CustomResult<TError>> onSuccess,
+            [NotNull, InstantHandle] Func<Result, TError> errorFactory,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
@@ -211,10 +211,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI]
-        public static Result<T, TError> OnSuccess<T, TError>(in this Result result,
-            [NotNull, InstantHandle] in Func<Result, Result<T, TError>> onSuccess,
-            [NotNull] in TError errorObject,
-            in bool treatWarningAsError = false)
+        public static Result<T, TError> OnSuccess<T, TError>(this Result result,
+            [NotNull, InstantHandle] Func<Result, Result<T, TError>> onSuccess,
+            [NotNull] TError errorObject,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorObject, nameof(errorObject));
@@ -240,10 +240,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI]
-        public static Result<T, TError> OnSuccess<T, TError>(in this Result result, 
-            [NotNull, InstantHandle] in Func<Result, Result<T, TError>> onSuccess, 
-            [NotNull, InstantHandle] in Func<Result, TError> errorFactory,
-            in bool treatWarningAsError = false)
+        public static Result<T, TError> OnSuccess<T, TError>(this Result result, 
+            [NotNull, InstantHandle] Func<Result, Result<T, TError>> onSuccess, 
+            [NotNull, InstantHandle] Func<Result, TError> errorFactory,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
@@ -265,10 +265,10 @@ namespace Here.Extensions
         /// <returns>An output value.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
-        public static TOut OnSuccess<TOut>(in this Result result,
-            [NotNull, InstantHandle] in Func<Result, TOut> onSuccess,
-            [CanBeNull] in TOut defaultValue,
-            in bool treatWarningAsError = false)
+        public static TOut OnSuccess<TOut>(this Result result,
+            [NotNull, InstantHandle] Func<Result, TOut> onSuccess,
+            [CanBeNull] TOut defaultValue,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
@@ -290,10 +290,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI]
-        public static TOut OnSuccess<TOut>(in this Result result,
-            [NotNull, InstantHandle] in Func<Result, TOut> onSuccess,
-            [NotNull, InstantHandle] in Func<Result, TOut> valueFactory,
-            in bool treatWarningAsError = false)
+        public static TOut OnSuccess<TOut>(this Result result,
+            [NotNull, InstantHandle] Func<Result, TOut> onSuccess,
+            [NotNull, InstantHandle] Func<Result, TOut> valueFactory,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
@@ -317,9 +317,9 @@ namespace Here.Extensions
         /// <returns>This <see cref="Result{T}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
-        public static Result<T> OnSuccess<T>(in this Result<T> result,
-            [NotNull, InstantHandle] in Action<T> onSuccess,
-            in bool treatWarningAsError = false)
+        public static Result<T> OnSuccess<T>(this Result<T> result,
+            [NotNull, InstantHandle] Action<T> onSuccess,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
@@ -340,9 +340,9 @@ namespace Here.Extensions
         /// <returns>A <see cref="Result{TOut}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
         [PublicAPI]
-        public static Result<TOut> OnSuccess<TIn, TOut>(in this Result<TIn> result,
-            [NotNull, InstantHandle] in Func<TIn, TOut> converter,
-            in bool treatWarningAsError = false)
+        public static Result<TOut> OnSuccess<TIn, TOut>(this Result<TIn> result,
+            [NotNull, InstantHandle] Func<TIn, TOut> converter,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(converter, nameof(converter));
 
@@ -362,9 +362,9 @@ namespace Here.Extensions
         /// <returns>A <see cref="Result"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
-        public static Result OnSuccess<T>(in this Result<T> result,
-            [NotNull, InstantHandle] in Func<T, Result> onSuccess,
-            in bool treatWarningAsError = false)
+        public static Result OnSuccess<T>(this Result<T> result,
+            [NotNull, InstantHandle] Func<T, Result> onSuccess,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
@@ -388,9 +388,9 @@ namespace Here.Extensions
         /// <returns>A <see cref="Result{TOut}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
-        public static Result<TOut> OnSuccess<TIn, TOut>(in this Result<TIn> result,
-            [NotNull, InstantHandle] in Func<TIn, Result<TOut>> onSuccess,
-            in bool treatWarningAsError = false)
+        public static Result<TOut> OnSuccess<TIn, TOut>(this Result<TIn> result,
+            [NotNull, InstantHandle] Func<TIn, Result<TOut>> onSuccess,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
@@ -415,10 +415,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI]
-        public static CustomResult<TError> OnSuccess<T, TError>(in this Result<T> result,
-            [NotNull, InstantHandle] in Func<T, CustomResult<TError>> onSuccess,
-            [NotNull] in TError errorObject,
-            in bool treatWarningAsError = false)
+        public static CustomResult<TError> OnSuccess<T, TError>(this Result<T> result,
+            [NotNull, InstantHandle] Func<T, CustomResult<TError>> onSuccess,
+            [NotNull] TError errorObject,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorObject, nameof(errorObject));
@@ -444,10 +444,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI]
-        public static CustomResult<TError> OnSuccess<T, TError>(in this Result<T> result,
-            [NotNull, InstantHandle] in Func<T, CustomResult<TError>> onSuccess,
-            [NotNull, InstantHandle] in Func<Result<T>, TError> errorFactory,
-            in bool treatWarningAsError = false)
+        public static CustomResult<TError> OnSuccess<T, TError>(this Result<T> result,
+            [NotNull, InstantHandle] Func<T, CustomResult<TError>> onSuccess,
+            [NotNull, InstantHandle] Func<Result<T>, TError> errorFactory,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
@@ -474,10 +474,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI]
-        public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(in this Result<TIn> result,
-            [NotNull, InstantHandle] in Func<TIn, Result<TOut, TError>> onSuccess,
-            [NotNull] in TError errorObject,
-            in bool treatWarningAsError = false)
+        public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(this Result<TIn> result,
+            [NotNull, InstantHandle] Func<TIn, Result<TOut, TError>> onSuccess,
+            [NotNull] TError errorObject,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorObject, nameof(errorObject));
@@ -504,10 +504,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI]
-        public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(in this Result<TIn> result,
-            [NotNull, InstantHandle] in Func<TIn, Result<TOut, TError>> onSuccess,
-            [NotNull, InstantHandle] in Func<Result<TIn>, TError> errorFactory,
-            in bool treatWarningAsError = false)
+        public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(this Result<TIn> result,
+            [NotNull, InstantHandle] Func<TIn, Result<TOut, TError>> onSuccess,
+            [NotNull, InstantHandle] Func<Result<TIn>, TError> errorFactory,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
@@ -530,10 +530,10 @@ namespace Here.Extensions
         /// <returns>An output value.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
-        public static TOut OnSuccess<TIn, TOut>(in this Result<TIn> result,
-            [NotNull, InstantHandle] in Func<TIn, TOut> onSuccess,
-            [CanBeNull] in TOut defaultValue,
-            in bool treatWarningAsError = false)
+        public static TOut OnSuccess<TIn, TOut>(this Result<TIn> result,
+            [NotNull, InstantHandle] Func<TIn, TOut> onSuccess,
+            [CanBeNull] TOut defaultValue,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
@@ -556,10 +556,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI]
-        public static TOut OnSuccess<TIn, TOut>(in this Result<TIn> result,
-            [NotNull, InstantHandle] in Func<TIn, TOut> onSuccess,
-            [NotNull, InstantHandle] in Func<Result<TIn>, TOut> valueFactory,
-            in bool treatWarningAsError = false)
+        public static TOut OnSuccess<TIn, TOut>(this Result<TIn> result,
+            [NotNull, InstantHandle] Func<TIn, TOut> onSuccess,
+            [NotNull, InstantHandle] Func<Result<TIn>, TOut> valueFactory,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
@@ -583,9 +583,9 @@ namespace Here.Extensions
         /// <returns>This <see cref="CustomResult{TError}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
-        public static CustomResult<TError> OnSuccess<TError>(in this CustomResult<TError> result,
-            [NotNull, InstantHandle] in Action onSuccess,
-            in bool treatWarningAsError = false)
+        public static CustomResult<TError> OnSuccess<TError>(this CustomResult<TError> result,
+            [NotNull, InstantHandle] Action onSuccess,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
@@ -605,9 +605,9 @@ namespace Here.Extensions
         /// <returns>This <see cref="CustomResult{TError}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
-        public static CustomResult<TError> OnSuccess<TError>(in this CustomResult<TError> result,
-            [NotNull, InstantHandle] in Action<CustomResult<TError>> onSuccess,
-            in bool treatWarningAsError = false)
+        public static CustomResult<TError> OnSuccess<TError>(this CustomResult<TError> result,
+            [NotNull, InstantHandle] Action<CustomResult<TError>> onSuccess,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
@@ -630,10 +630,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI]
-        public static Result<T, TError> OnSuccess<T, TError>(in this CustomResult<TError> result,
-            [NotNull, InstantHandle] in Func<CustomResult<TError>, T> onSuccess,
-            [NotNull] in TError errorObject,
-            in bool treatWarningAsError = false)
+        public static Result<T, TError> OnSuccess<T, TError>(this CustomResult<TError> result,
+            [NotNull, InstantHandle] Func<CustomResult<TError>, T> onSuccess,
+            [NotNull] TError errorObject,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorObject, nameof(errorObject));
@@ -662,10 +662,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI]
-        public static Result<T, TError> OnSuccess<T, TError>(in this CustomResult<TError> result,
-            [NotNull, InstantHandle] in Func<CustomResult<TError>, T> onSuccess,
-            [NotNull, InstantHandle] in Func<CustomResult<TError>, TError> errorFactory,
-            in bool treatWarningAsError = false)
+        public static Result<T, TError> OnSuccess<T, TError>(this CustomResult<TError> result,
+            [NotNull, InstantHandle] Func<CustomResult<TError>, T> onSuccess,
+            [NotNull, InstantHandle] Func<CustomResult<TError>, TError> errorFactory,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
@@ -691,9 +691,9 @@ namespace Here.Extensions
         /// <returns>A <see cref="Result"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
-        public static Result OnSuccess<TError>(in this CustomResult<TError> result,
-            [NotNull, InstantHandle] in Func<CustomResult<TError>, Result> onSuccess,
-            in bool treatWarningAsError = false)
+        public static Result OnSuccess<TError>(this CustomResult<TError> result,
+            [NotNull, InstantHandle] Func<CustomResult<TError>, Result> onSuccess,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
@@ -717,9 +717,9 @@ namespace Here.Extensions
         /// <returns>A <see cref="Result{T}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
-        public static Result<T> OnSuccess<T, TError>(in this CustomResult<TError> result,
-            [NotNull, InstantHandle] in Func<CustomResult<TError>, Result<T>> onSuccess,
-            in bool treatWarningAsError = false)
+        public static Result<T> OnSuccess<T, TError>(this CustomResult<TError> result,
+            [NotNull, InstantHandle] Func<CustomResult<TError>, Result<T>> onSuccess,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
@@ -741,10 +741,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI]
-        public static CustomResult<TError> OnSuccess<TError>(in this CustomResult<TError> result,
-            [NotNull, InstantHandle] in Func<CustomResult<TError>, CustomResult<TError>> onSuccess,
-            [NotNull] in TError errorObject,
-            in bool treatWarningAsError = false)
+        public static CustomResult<TError> OnSuccess<TError>(this CustomResult<TError> result,
+            [NotNull, InstantHandle] Func<CustomResult<TError>, CustomResult<TError>> onSuccess,
+            [NotNull] TError errorObject,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorObject, nameof(errorObject));
@@ -770,10 +770,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI]
-        public static CustomResult<TError> OnSuccess<TError>(in this CustomResult<TError> result,
-            [NotNull, InstantHandle] in Func<CustomResult<TError>, CustomResult<TError>> onSuccess,
-            [NotNull, InstantHandle] in Func<CustomResult<TError>, TError> errorFactory,
-            in bool treatWarningAsError = false)
+        public static CustomResult<TError> OnSuccess<TError>(this CustomResult<TError> result,
+            [NotNull, InstantHandle] Func<CustomResult<TError>, CustomResult<TError>> onSuccess,
+            [NotNull, InstantHandle] Func<CustomResult<TError>, TError> errorFactory,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
@@ -800,10 +800,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI]
-        public static Result<T, TError> OnSuccess<T, TError>(in this CustomResult<TError> result,
-            [NotNull, InstantHandle] in Func<CustomResult<TError>, Result<T, TError>> onSuccess,
-            [NotNull] in TError errorObject,
-            in bool treatWarningAsError = false)
+        public static Result<T, TError> OnSuccess<T, TError>(this CustomResult<TError> result,
+            [NotNull, InstantHandle] Func<CustomResult<TError>, Result<T, TError>> onSuccess,
+            [NotNull] TError errorObject,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorObject, nameof(errorObject));
@@ -832,10 +832,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI]
-        public static Result<T, TError> OnSuccess<T, TError>(in this CustomResult<TError> result,
-            [NotNull, InstantHandle] in Func<CustomResult<TError>, Result<T, TError>> onSuccess,
-            [NotNull, InstantHandle] in Func<CustomResult<TError>, TError> errorFactory,
-            in bool treatWarningAsError = false)
+        public static Result<T, TError> OnSuccess<T, TError>(this CustomResult<TError> result,
+            [NotNull, InstantHandle] Func<CustomResult<TError>, Result<T, TError>> onSuccess,
+            [NotNull, InstantHandle] Func<CustomResult<TError>, TError> errorFactory,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
@@ -863,10 +863,10 @@ namespace Here.Extensions
         /// <returns>An output value.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
-        public static TOut OnSuccess<TOut, TError>(in this CustomResult<TError> result,
-            [NotNull, InstantHandle] in Func<CustomResult<TError>, TOut> onSuccess,
-            [CanBeNull] in TOut defaultValue,
-            in bool treatWarningAsError = false)
+        public static TOut OnSuccess<TOut, TError>(this CustomResult<TError> result,
+            [NotNull, InstantHandle] Func<CustomResult<TError>, TOut> onSuccess,
+            [CanBeNull] TOut defaultValue,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
@@ -889,10 +889,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI]
-        public static TOut OnSuccess<TOut, TError>(in this CustomResult<TError> result,
-            [NotNull, InstantHandle] in Func<CustomResult<TError>, TOut> onSuccess,
-            [NotNull, InstantHandle] in Func<CustomResult<TError>, TOut> valueFactory,
-            in bool treatWarningAsError = false)
+        public static TOut OnSuccess<TOut, TError>(this CustomResult<TError> result,
+            [NotNull, InstantHandle] Func<CustomResult<TError>, TOut> onSuccess,
+            [NotNull, InstantHandle] Func<CustomResult<TError>, TOut> valueFactory,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
@@ -917,9 +917,9 @@ namespace Here.Extensions
         /// <returns>This <see cref="Result{T, TError}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
-        public static Result<T, TError> OnSuccess<T, TError>(in this Result<T, TError> result,
-            [NotNull, InstantHandle] in Action<T> onSuccess,
-            in bool treatWarningAsError = false)
+        public static Result<T, TError> OnSuccess<T, TError>(this Result<T, TError> result,
+            [NotNull, InstantHandle] Action<T> onSuccess,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
@@ -943,10 +943,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI]
-        public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(in this Result<TIn, TError> result,
-            [NotNull, InstantHandle] in Func<TIn, TOut> converter, 
-            [NotNull] in TError errorObject,
-            in bool treatWarningAsError = false)
+        public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(this Result<TIn, TError> result,
+            [NotNull, InstantHandle] Func<TIn, TOut> converter, 
+            [NotNull] TError errorObject,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(converter, nameof(converter));
             Throw.IfArgumentNull(errorObject, nameof(errorObject));
@@ -975,10 +975,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI]
-        public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(in this Result<TIn, TError> result,
-            [NotNull, InstantHandle] in Func<TIn, TOut> converter,
-            [NotNull, InstantHandle] in Func<Result<TIn, TError>, TError> errorFactory,
-            in bool treatWarningAsError = false)
+        public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(this Result<TIn, TError> result,
+            [NotNull, InstantHandle] Func<TIn, TOut> converter,
+            [NotNull, InstantHandle] Func<Result<TIn, TError>, TError> errorFactory,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(converter, nameof(converter));
             Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
@@ -1004,9 +1004,9 @@ namespace Here.Extensions
         /// <returns>A <see cref="Result"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
-        public static Result OnSuccess<T, TError>(in this Result<T, TError> result,
-            [NotNull, InstantHandle] in Func<T, Result> onSuccess,
-            in bool treatWarningAsError = false)
+        public static Result OnSuccess<T, TError>(this Result<T, TError> result,
+            [NotNull, InstantHandle] Func<T, Result> onSuccess,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
@@ -1031,9 +1031,9 @@ namespace Here.Extensions
         /// <returns>A <see cref="Result{TOut}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
-        public static Result<TOut> OnSuccess<TIn, TOut, TError>(in this Result<TIn, TError> result,
-            [NotNull, InstantHandle] in Func<TIn, Result<TOut>> onSuccess,
-            in bool treatWarningAsError = false)
+        public static Result<TOut> OnSuccess<TIn, TOut, TError>(this Result<TIn, TError> result,
+            [NotNull, InstantHandle] Func<TIn, Result<TOut>> onSuccess,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
@@ -1056,10 +1056,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI]
-        public static CustomResult<TError> OnSuccess<T, TError>(in this Result<T, TError> result,
-            [NotNull, InstantHandle] in Func<T, CustomResult<TError>> onSuccess,
-            [NotNull] in TError errorObject,
-            in bool treatWarningAsError = false)
+        public static CustomResult<TError> OnSuccess<T, TError>(this Result<T, TError> result,
+            [NotNull, InstantHandle] Func<T, CustomResult<TError>> onSuccess,
+            [NotNull] TError errorObject,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorObject, nameof(errorObject));
@@ -1086,10 +1086,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI]
-        public static CustomResult<TError> OnSuccess<T, TError>(in this Result<T, TError> result,
-            [NotNull, InstantHandle] in Func<T, CustomResult<TError>> onSuccess,
-            [NotNull, InstantHandle] in Func<Result<T, TError>, TError> errorFactory,
-            in bool treatWarningAsError = false)
+        public static CustomResult<TError> OnSuccess<T, TError>(this Result<T, TError> result,
+            [NotNull, InstantHandle] Func<T, CustomResult<TError>> onSuccess,
+            [NotNull, InstantHandle] Func<Result<T, TError>, TError> errorFactory,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
@@ -1117,10 +1117,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI]
-        public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(in this Result<TIn, TError> result,
-            [NotNull, InstantHandle] in Func<TIn, Result<TOut, TError>> onSuccess,
-            [NotNull] in TError errorObject,
-            in bool treatWarningAsError = false)
+        public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(this Result<TIn, TError> result,
+            [NotNull, InstantHandle] Func<TIn, Result<TOut, TError>> onSuccess,
+            [NotNull] TError errorObject,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorObject, nameof(errorObject));
@@ -1150,10 +1150,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI]
-        public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(in this Result<TIn, TError> result,
-            [NotNull, InstantHandle] in Func<TIn, Result<TOut, TError>> onSuccess,
-            [NotNull, InstantHandle] in Func<Result<TIn, TError>, TError> errorFactory,
-            in bool treatWarningAsError = false)
+        public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(this Result<TIn, TError> result,
+            [NotNull, InstantHandle] Func<TIn, Result<TOut, TError>> onSuccess,
+            [NotNull, InstantHandle] Func<Result<TIn, TError>, TError> errorFactory,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
@@ -1182,10 +1182,10 @@ namespace Here.Extensions
         /// <returns>An output value.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
-        public static TOut OnSuccess<TIn, TOut, TError>(in this Result<TIn, TError> result,
-            [NotNull, InstantHandle] in Func<TIn, TOut> onSuccess,
-            [CanBeNull] in TOut defaultValue,
-            in bool treatWarningAsError = false)
+        public static TOut OnSuccess<TIn, TOut, TError>(this Result<TIn, TError> result,
+            [NotNull, InstantHandle] Func<TIn, TOut> onSuccess,
+            [CanBeNull] TOut defaultValue,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
@@ -1209,10 +1209,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI]
-        public static TOut OnSuccess<TIn, TOut, TError>(in this Result<TIn, TError> result,
-            [NotNull, InstantHandle] in Func<TIn, TOut> onSuccess,
-            [NotNull, InstantHandle] in Func<Result<TIn, TError>, TOut> valueFactory,
-            in bool treatWarningAsError = false)
+        public static TOut OnSuccess<TIn, TOut, TError>(this Result<TIn, TError> result,
+            [NotNull, InstantHandle] Func<TIn, TOut> onSuccess,
+            [NotNull, InstantHandle] Func<Result<TIn, TError>, TOut> valueFactory,
+            bool treatWarningAsError = false)
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(valueFactory, nameof(valueFactory));

@@ -20,7 +20,7 @@ namespace Here
         /// <returns>An <see cref="Either{TLeft, TRight}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="value"/> is null.</exception>
         [PublicAPI, Pure]
-        public static Either<TLeft, TRight> Left<TLeft, TRight>([NotNull] in TLeft value)
+        public static Either<TLeft, TRight> Left<TLeft, TRight>([NotNull] TLeft value)
         {
             return Either<TLeft, TRight>.Left(value);
         }
@@ -34,7 +34,7 @@ namespace Here
         /// <returns>An <see cref="Either{TLeft, TRight}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="nullable"/> is null.</exception>
         [PublicAPI, Pure]
-        public static Either<TLeft, TRight> Left<TLeft, TRight>([NotNull] in TLeft? nullable)
+        public static Either<TLeft, TRight> Left<TLeft, TRight>([NotNull] TLeft? nullable)
             where TLeft : struct
         {
             if (nullable == null)
@@ -65,7 +65,7 @@ namespace Here
         /// <returns>An <see cref="Either{TLeft, TRight}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="nullable"/> is null.</exception>
         [PublicAPI, Pure]
-        public static Either<TLeft, TRight> ToEither<TLeft, TRight>([NotNull] in this TLeft? nullable)
+        public static Either<TLeft, TRight> ToEither<TLeft, TRight>([NotNull] this TLeft? nullable)
             where TLeft : struct
         {
             return Left<TLeft, TRight>(nullable);
@@ -79,7 +79,7 @@ namespace Here
         /// <returns>An <see cref="EitherLeft{TLeft}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="value"/> is null.</exception>
         [PublicAPI, Pure]
-        public static EitherLeft<TLeft> Left<TLeft>([NotNull] in TLeft value)
+        public static EitherLeft<TLeft> Left<TLeft>([NotNull] TLeft value)
         {
             return new EitherLeft<TLeft>(value);
         }
@@ -92,7 +92,7 @@ namespace Here
         /// <returns>An <see cref="EitherLeft{TLeft}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="nullable"/> is null.</exception>
         [PublicAPI, Pure]
-        public static EitherLeft<TLeft> Left<TLeft>([NotNull] in TLeft? nullable)
+        public static EitherLeft<TLeft> Left<TLeft>([NotNull] TLeft? nullable)
             where TLeft : struct
         {
             if (nullable == null)
@@ -113,7 +113,7 @@ namespace Here
         /// <returns>An <see cref="Either{TLeft, TRight}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="value"/> is null.</exception>
         [PublicAPI, Pure]
-        public static Either<TLeft, TRight> Right<TLeft, TRight>([NotNull] in TRight value)
+        public static Either<TLeft, TRight> Right<TLeft, TRight>([NotNull] TRight value)
         {
             return Either<TLeft, TRight>.Right(value);
         }
@@ -127,7 +127,7 @@ namespace Here
         /// <returns>An <see cref="Either{TLeft, TRight}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="nullable"/> is null.</exception>
         [PublicAPI, Pure]
-        public static Either<TLeft, TRight> Right<TLeft, TRight>([NotNull] in TRight? nullable)
+        public static Either<TLeft, TRight> Right<TLeft, TRight>([NotNull] TRight? nullable)
             where TRight : struct
         {
             if (nullable == null)
@@ -158,7 +158,7 @@ namespace Here
         /// <returns>An <see cref="Either{TLeft, TRight}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="nullable"/> is null.</exception>
         [PublicAPI, Pure]
-        public static Either<TLeft, TRight> ToEither<TLeft, TRight>([NotNull] in this TRight? nullable)
+        public static Either<TLeft, TRight> ToEither<TLeft, TRight>([NotNull] this TRight? nullable)
             where TRight : struct
         {
             return Right<TLeft, TRight>(nullable);
@@ -172,7 +172,7 @@ namespace Here
         /// <returns>An <see cref="EitherRight{TRight}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="value"/> is null.</exception>
         [PublicAPI, Pure]
-        public static EitherRight<TRight> Right<TRight>([NotNull] in TRight value)
+        public static EitherRight<TRight> Right<TRight>([NotNull] TRight value)
         {
             return new EitherRight<TRight>(value);
         }
@@ -185,7 +185,7 @@ namespace Here
         /// <returns>An <see cref="EitherRight{TRight}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="nullable"/> is null.</exception>
         [PublicAPI, Pure]
-        public static EitherRight<TRight> Right<TRight>([NotNull] in TRight? nullable)
+        public static EitherRight<TRight> Right<TRight>([NotNull] TRight? nullable)
             where TRight : struct
         {
             if (nullable == null)
@@ -209,7 +209,7 @@ namespace Here
         /// <returns>An <see cref="Either{TLeft, TRight}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="defaultLeftValue"/> is null.</exception>
         [PublicAPI, Pure]
-        public static Either<TLeft, TRight> ToEither<TLeft, TRight>([CanBeNull] this TRight value, [NotNull] in TLeft defaultLeftValue)
+        public static Either<TLeft, TRight> ToEither<TLeft, TRight>([CanBeNull] this TRight value, [NotNull] TLeft defaultLeftValue)
             where TRight : class
         {
             Throw.IfArgumentNull(defaultLeftValue, nameof(defaultLeftValue));
@@ -232,7 +232,7 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="leftValueFactory"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the value returned by the <paramref name="leftValueFactory"/> is null.</exception>
         [PublicAPI, Pure]
-        public static Either<TLeft, TRight> ToEither<TLeft, TRight>([CanBeNull] this TRight value, [NotNull, InstantHandle] in Func<TLeft> leftValueFactory)
+        public static Either<TLeft, TRight> ToEither<TLeft, TRight>([CanBeNull] this TRight value, [NotNull, InstantHandle] Func<TLeft> leftValueFactory)
             where TRight : class
         {
             Throw.IfArgumentNull(leftValueFactory, nameof(leftValueFactory));
@@ -254,7 +254,7 @@ namespace Here
         /// <returns>An <see cref="Either{TLeft, TRight}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="defaultLeftValue"/> is null.</exception>
         [PublicAPI, Pure]
-        public static Either<TLeft, TRight> ToEither<TLeft, TRight>([CanBeNull] in this TRight? nullable, [NotNull] in TLeft defaultLeftValue)
+        public static Either<TLeft, TRight> ToEither<TLeft, TRight>([CanBeNull] this TRight? nullable, [NotNull] TLeft defaultLeftValue)
             where TRight : struct
         {
             Throw.IfArgumentNull(defaultLeftValue, nameof(defaultLeftValue));
@@ -277,7 +277,7 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="leftValueFactory"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the value returned by the <paramref name="leftValueFactory"/> is null.</exception>
         [PublicAPI, Pure]
-        public static Either<TLeft, TRight> ToEither<TLeft, TRight>([CanBeNull] in this TRight? nullable, [NotNull, InstantHandle] in Func<TLeft> leftValueFactory)
+        public static Either<TLeft, TRight> ToEither<TLeft, TRight>([CanBeNull] this TRight? nullable, [NotNull, InstantHandle] Func<TLeft> leftValueFactory)
             where TRight : struct
         {
             Throw.IfArgumentNull(leftValueFactory, nameof(leftValueFactory));

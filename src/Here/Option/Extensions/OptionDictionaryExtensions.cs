@@ -11,7 +11,7 @@ namespace Here.Extensions
     {
         // Helper method to try get a value
         [Pure]
-        private static Option<TValue> TryGetValue<TKey, TValue>([NotNull] in OptionTryGetExtensions.TryGet<TKey, TValue> tryGetFunc, [CanBeNull] in TKey key)
+        private static Option<TValue> TryGetValue<TKey, TValue>([NotNull] OptionTryGetExtensions.TryGet<TKey, TValue> tryGetFunc, [CanBeNull] TKey key)
         {
             if (key == null)
                 return Option<TValue>.None;
@@ -29,7 +29,7 @@ namespace Here.Extensions
         /// <returns><see cref="Option{T}"/> that wrap the result of the get.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="dictionary"/> is null.</exception>
         [PublicAPI, Pure]
-        public static Option<TValue> TryGetValue<TKey, TValue>([NotNull] this IDictionary<TKey, TValue> dictionary, [CanBeNull] in TKey key)
+        public static Option<TValue> TryGetValue<TKey, TValue>([NotNull] this IDictionary<TKey, TValue> dictionary, [CanBeNull] TKey key)
         {
             Throw.IfArgumentNull(dictionary, nameof(dictionary));
 
@@ -46,7 +46,7 @@ namespace Here.Extensions
         /// <returns><see cref="Option{T}"/> that wrap the result of the get.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="dictionary"/> is null.</exception>
         [PublicAPI, Pure]
-        public static Option<TValue> TryGetValue<TKey, TValue>([NotNull] this IDictionary<TKey, object> dictionary, [CanBeNull] in TKey key)
+        public static Option<TValue> TryGetValue<TKey, TValue>([NotNull] this IDictionary<TKey, object> dictionary, [CanBeNull] TKey key)
         {
             Throw.IfArgumentNull(dictionary, nameof(dictionary));
 
@@ -67,7 +67,7 @@ namespace Here.Extensions
         /// <returns><see cref="Option{T}"/> that wrap the result of the get.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="dictionary"/> is null.</exception>
         [PublicAPI, Pure]
-        public static Option<TValue> TryGetReadonlyValue<TKey, TValue>([NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary, [CanBeNull] in TKey key)
+        public static Option<TValue> TryGetReadonlyValue<TKey, TValue>([NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary, [CanBeNull] TKey key)
         {
             Throw.IfArgumentNull(dictionary, nameof(dictionary));
 
@@ -84,7 +84,7 @@ namespace Here.Extensions
         /// <returns><see cref="Option{T}"/> that wrap the result of the get.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="dictionary"/> is null.</exception>
         [PublicAPI, Pure]
-        public static Option<TValue> TryGetReadonlyValue<TKey, TValue>([NotNull] this IReadOnlyDictionary<TKey, object> dictionary, [CanBeNull] in TKey key)
+        public static Option<TValue> TryGetReadonlyValue<TKey, TValue>([NotNull] this IReadOnlyDictionary<TKey, object> dictionary, [CanBeNull] TKey key)
         {
             Throw.IfArgumentNull(dictionary, nameof(dictionary));
 

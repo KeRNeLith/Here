@@ -15,7 +15,7 @@ namespace Here.Extensions
         /// </summary>
         /// <param name="result"><see cref="Result"/> to convert.</param>
         /// <returns>An <see cref="Option{Boolean}"/>.</returns>
-        public static Option<bool> ToOption(in this Result result)
+        public static Option<bool> ToOption(this Result result)
         {
             return Option<bool>.Some(result.Logic.IsSuccess);
         }
@@ -26,7 +26,7 @@ namespace Here.Extensions
         /// <typeparam name="T">Type of the result value.</typeparam>
         /// <param name="result"><see cref="Result{T}"/> to convert.</param>
         /// <returns>An <see cref="Option{T}"/>.</returns>
-        public static Option<T> ToOption<T>(in this Result<T> result)
+        public static Option<T> ToOption<T>(this Result<T> result)
         {
             if (result.Logic.IsSuccess)
                 return result._value;
@@ -39,7 +39,7 @@ namespace Here.Extensions
         /// <typeparam name="TError">Error type of the result.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to convert.</param>
         /// <returns>An <see cref="Option{Boolean}"/>.</returns>
-        public static Option<bool> ToOption<TError>(in this CustomResult<TError> result)
+        public static Option<bool> ToOption<TError>(this CustomResult<TError> result)
         {
             return Option<bool>.Some(result.Logic.IsSuccess);
         }
@@ -51,7 +51,7 @@ namespace Here.Extensions
         /// <typeparam name="TError">Error type of the result.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/> to convert.</param>
         /// <returns>An <see cref="Option{T}"/>.</returns>
-        public static Option<T> ToOption<T, TError>(in this Result<T, TError> result)
+        public static Option<T> ToOption<T, TError>(this Result<T, TError> result)
         {
             if (result.Logic.IsSuccess)
                 return result._value;
@@ -68,7 +68,7 @@ namespace Here.Extensions
         /// <typeparam name="T">Type of the result value.</typeparam>
         /// <param name="result"><see cref="Result{T}"/> to convert.</param>
         /// <returns>An <see cref="Either{String, T}"/>.</returns>
-        public static Either<string, T> ToEither<T>(in this Result<T> result)
+        public static Either<string, T> ToEither<T>(this Result<T> result)
         {
             if (result.IsSuccess)
             {
@@ -87,7 +87,7 @@ namespace Here.Extensions
         /// <typeparam name="TError">Error type of the result.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/> to convert.</param>
         /// <returns>An <see cref="Either{String,T}"/>.</returns>
-        public static Either<string, T> ToMessageEither<T, TError>(in this Result<T, TError> result)
+        public static Either<string, T> ToMessageEither<T, TError>(this Result<T, TError> result)
         {
             if (result.IsSuccess)
             {
@@ -106,7 +106,7 @@ namespace Here.Extensions
         /// <typeparam name="TError">Error type of the result.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/> to convert.</param>
         /// <returns>An <see cref="Either{TError,T}"/>.</returns>
-        public static Either<TError, T> ToEither<T, TError>(in this Result<T, TError> result)
+        public static Either<TError, T> ToEither<T, TError>(this Result<T, TError> result)
         {
             if (result.IsSuccess)
             {

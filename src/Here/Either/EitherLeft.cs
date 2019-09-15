@@ -18,7 +18,7 @@ namespace Here
     [Serializable]
 #endif
     [DebuggerDisplay("IsLeft, Value = {" + nameof(Left) + "}")]
-    public readonly struct EitherLeft<TLeft> 
+    public struct EitherLeft<TLeft> 
         : IEither
         , IEquatable<TLeft>
         , IEquatable<EitherLeft<TLeft>>
@@ -81,7 +81,7 @@ namespace Here
         /// <param name="either1">First <see cref="EitherLeft{TLeft}"/> to compare.</param>
         /// <param name="either2">Second <see cref="EitherLeft{TLeft}"/> to compare.</param>
         /// <returns>True if both <see cref="EitherLeft{TLeft}"/> are equal, otherwise false.</returns>
-        public static bool operator ==(in EitherLeft<TLeft> either1, in EitherLeft<TLeft> either2)
+        public static bool operator ==(EitherLeft<TLeft> either1, EitherLeft<TLeft> either2)
         {
             return either1.Equals(either2);
         }
@@ -92,7 +92,7 @@ namespace Here
         /// <param name="either1">First <see cref="EitherLeft{TLeft}"/> to compare.</param>
         /// <param name="either2">Second <see cref="EitherLeft{TLeft}"/> to compare.</param>
         /// <returns>True if both <see cref="EitherLeft{TLeft}"/> are not equal, otherwise false.</returns>
-        public static bool operator !=(in EitherLeft<TLeft> either1, in EitherLeft<TLeft> either2)
+        public static bool operator !=(EitherLeft<TLeft> either1, EitherLeft<TLeft> either2)
         {
             return !(either1 == either2);
         }
@@ -136,7 +136,7 @@ namespace Here
         /// <param name="left">The first <see cref="EitherLeft{TLeft}"/> to compare.</param>
         /// <param name="right">The second <see cref="EitherLeft{TLeft}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator <(in EitherLeft<TLeft> left, in EitherLeft<TLeft> right)
+        public static bool operator <(EitherLeft<TLeft> left, EitherLeft<TLeft> right)
         {
             return left.CompareTo(right) < 0;
         }
@@ -147,7 +147,7 @@ namespace Here
         /// <param name="left">The first <see cref="EitherLeft{TLeft}"/> to compare.</param>
         /// <param name="right">The second <see cref="EitherLeft{TLeft}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator <=(in EitherLeft<TLeft> left, in EitherLeft<TLeft> right)
+        public static bool operator <=(EitherLeft<TLeft> left, EitherLeft<TLeft> right)
         {
             return left.CompareTo(right) <= 0;
         }
@@ -158,7 +158,7 @@ namespace Here
         /// <param name="left">The first <see cref="EitherLeft{TLeft}"/> to compare.</param>
         /// <param name="right">The second <see cref="EitherLeft{TLeft}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator >(in EitherLeft<TLeft> left, in EitherLeft<TLeft> right)
+        public static bool operator >(EitherLeft<TLeft> left, EitherLeft<TLeft> right)
         {
             return left.CompareTo(right) > 0;
         }
@@ -169,7 +169,7 @@ namespace Here
         /// <param name="left">The first <see cref="EitherLeft{TLeft}"/> to compare.</param>
         /// <param name="right">The second <see cref="EitherLeft{TLeft}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator >=(in EitherLeft<TLeft> left, in EitherLeft<TLeft> right)
+        public static bool operator >=(EitherLeft<TLeft> left, EitherLeft<TLeft> right)
         {
             return left.CompareTo(right) >= 0;
         }

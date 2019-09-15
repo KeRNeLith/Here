@@ -22,7 +22,7 @@ namespace Here
     [Serializable]
 #endif
     [DebuggerDisplay("{\"Is\" + " + nameof(_state) + " + (" + nameof(IsNone) + " ? System.String.Empty : \", Value = \" + (" + nameof(IsLeft) + " ?" + nameof(_left) + ".ToString() : " + nameof(_right) + ".ToString()))}")]
-    public readonly partial struct Either<TLeft, TRight> 
+    public partial struct Either<TLeft, TRight> 
         : IEither
         , IEquatable<TRight>
         , IEquatable<EitherRight<TRight>>
@@ -111,14 +111,14 @@ namespace Here
         /// </summary>
         /// <param name="value">Left value.</param>
         /// <exception cref="ArgumentNullException">If the <paramref name="value"/> is null.</exception>
-        private Either([NotNull] in TLeft value)
+        private Either([NotNull] TLeft value)
         {
             if (value == null)
                 throw new ArgumentNullException(nameof(value), "Cannot initialize an Either<TLeft, TRight> in Left state with a null value.");
 
             _state = EitherStates.Left;
             _left = value;
-            _right = default;
+            _right = default(TRight);
         }
 
         /// <summary>
@@ -126,13 +126,13 @@ namespace Here
         /// </summary>
         /// <param name="value">Right value.</param>
         /// <exception cref="ArgumentNullException">If the <paramref name="value"/> is null.</exception>
-        private Either([NotNull] in TRight value)
+        private Either([NotNull] TRight value)
         {
             if (value == null)
                 throw new ArgumentNullException(nameof(value), "Cannot initialize an Either<TLeft, TRight> in Right with a null value.");
 
             _state = EitherStates.Right;
-            _left = default;
+            _left = default(TLeft);
             _right = value;
         }
 
@@ -143,7 +143,7 @@ namespace Here
         /// <returns>An <see cref="Either{TLeft,TRight}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="value"/> is null.</exception>
         [Pure]
-        internal static Either<TLeft, TRight> Left([NotNull] in TLeft value)
+        internal static Either<TLeft, TRight> Left([NotNull] TLeft value)
         {
             return new Either<TLeft, TRight>(value);
         }
@@ -155,7 +155,7 @@ namespace Here
         /// <returns>An <see cref="Either{TLeft,TRight}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="value"/> is null.</exception>
         [Pure]
-        internal static Either<TLeft, TRight> Right([NotNull] in TRight value)
+        internal static Either<TLeft, TRight> Right([NotNull] TRight value)
         {
             return new Either<TLeft, TRight>(value);
         }
@@ -167,7 +167,7 @@ namespace Here
         /// <returns>The left value.</returns>
         /// <exception cref="InvalidCastException">If the either is cast to a left value while not being in <see cref="EitherStates.Left"/> state.</exception>
         [PublicAPI, Pure]
-        public static explicit operator TLeft(in Either<TLeft, TRight> either)
+        public static explicit operator TLeft(Either<TLeft, TRight> either)
         {
             return either.IsLeft
                 ? either._left
@@ -181,7 +181,7 @@ namespace Here
         /// <returns>The right value.</returns>
         /// <exception cref="InvalidCastException">If the either is cast to a left value while not being in <see cref="EitherStates.Right"/> state.</exception>
         [PublicAPI, Pure]
-        public static explicit operator TRight(in Either<TLeft, TRight> either)
+        public static explicit operator TRight(Either<TLeft, TRight> either)
         {
             return either.IsRight
                 ? either._right
@@ -249,7 +249,7 @@ namespace Here
         /// <param name="either2">Second <see cref="Either{TLeft,TRight}"/> to compare.</param>
         /// <returns>True if both <see cref="Either{TLeft,TRight}"/> are equal, otherwise false.</returns>
         [Pure]
-        internal static bool AreEqual(in Either<TLeft, TRight> either1, in Either<TLeft, TRight> either2)
+        internal static bool AreEqual(Either<TLeft, TRight> either1, Either<TLeft, TRight> either2)
         {
             if (either1.IsLeft && either2.IsLeft)
                 return EqualityComparer<TLeft>.Default.Equals(either1._left, either2._left);
@@ -269,7 +269,7 @@ namespace Here
         /// <param name="either1">First <see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <param name="either2">Second <see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <returns>True if both <see cref="Either{TLeft, TRight}"/> are equal, otherwise false.</returns>
-        public static bool operator ==(in Either<TLeft, TRight> either1, in Either<TLeft, TRight> either2)
+        public static bool operator ==(Either<TLeft, TRight> either1, Either<TLeft, TRight> either2)
         {
             return AreEqual(either1, either2);
         }
@@ -280,7 +280,7 @@ namespace Here
         /// <param name="either1">First <see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <param name="either2">Second <see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <returns>True if both <see cref="Either{TLeft, TRight}"/> are not equal, otherwise false.</returns>
-        public static bool operator !=(in Either<TLeft, TRight> either1, in Either<TLeft, TRight> either2)
+        public static bool operator !=(Either<TLeft, TRight> either1, Either<TLeft, TRight> either2)
         {
             return !(either1 == either2);
         }
@@ -291,7 +291,7 @@ namespace Here
         /// <param name="either"><see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <param name="eitherLeft"><see cref="EitherLeft{TLeft}"/> to compare.</param>
         /// <returns>True if <see cref="Either{TLeft, TRight}"/> and <see cref="EitherLeft{TLeft}"/> are equal, otherwise false.</returns>
-        public static bool operator ==(in Either<TLeft, TRight> either, in EitherLeft<TLeft> eitherLeft)
+        public static bool operator ==(Either<TLeft, TRight> either, EitherLeft<TLeft> eitherLeft)
         {
             return either.Equals(eitherLeft);
         }
@@ -302,7 +302,7 @@ namespace Here
         /// <param name="either"><see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <param name="eitherLeft"><see cref="EitherLeft{TLeft}"/> to compare.</param>
         /// <returns>True if <see cref="Either{TLeft, TRight}"/> and <see cref="EitherLeft{TLeft}"/> are not equal, otherwise false.</returns>
-        public static bool operator !=(in Either<TLeft, TRight> either, in EitherLeft<TLeft> eitherLeft)
+        public static bool operator !=(Either<TLeft, TRight> either, EitherLeft<TLeft> eitherLeft)
         {
             return !(either == eitherLeft);
         }
@@ -313,7 +313,7 @@ namespace Here
         /// <param name="eitherLeft"><see cref="EitherLeft{TLeft}"/> to compare.</param>
         /// <param name="either"><see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <returns>True if <see cref="Either{TLeft, TRight}"/> and <see cref="EitherLeft{TLeft}"/> are equal, otherwise false.</returns>
-        public static bool operator ==(in EitherLeft<TLeft> eitherLeft, in Either<TLeft, TRight> either)
+        public static bool operator ==(EitherLeft<TLeft> eitherLeft, Either<TLeft, TRight> either)
         {
             return either == eitherLeft;
         }
@@ -324,7 +324,7 @@ namespace Here
         /// <param name="eitherLeft"><see cref="EitherLeft{TLeft}"/> to compare.</param>
         /// <param name="either"><see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <returns>True if <see cref="Either{TLeft, TRight}"/> and <see cref="EitherLeft{TLeft}"/> are not equal, otherwise false.</returns>
-        public static bool operator !=(in EitherLeft<TLeft> eitherLeft, in Either<TLeft, TRight> either)
+        public static bool operator !=(EitherLeft<TLeft> eitherLeft, Either<TLeft, TRight> either)
         {
             return !(either == eitherLeft);
         }
@@ -335,7 +335,7 @@ namespace Here
         /// <param name="either"><see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <param name="eitherRight"><see cref="EitherRight{TRight}"/> to compare.</param>
         /// <returns>True if <see cref="Either{TLeft, TRight}"/> and <see cref="EitherRight{TRight}"/> are equal, otherwise false.</returns>
-        public static bool operator ==(in Either<TLeft, TRight> either, in EitherRight<TRight> eitherRight)
+        public static bool operator ==(Either<TLeft, TRight> either, EitherRight<TRight> eitherRight)
         {
             return either.Equals(eitherRight);
         }
@@ -346,7 +346,7 @@ namespace Here
         /// <param name="either"><see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <param name="eitherRight"><see cref="EitherRight{TRight}"/> to compare.</param>
         /// <returns>True if <see cref="Either{TLeft, TRight}"/> and <see cref="EitherRight{TRight}"/> are not equal, otherwise false.</returns>
-        public static bool operator !=(in Either<TLeft, TRight> either, in EitherRight<TRight> eitherRight)
+        public static bool operator !=(Either<TLeft, TRight> either, EitherRight<TRight> eitherRight)
         {
             return !(either == eitherRight);
         }
@@ -357,7 +357,7 @@ namespace Here
         /// <param name="eitherRight"><see cref="EitherRight{TRight}"/> to compare.</param>
         /// <param name="either"><see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <returns>True if <see cref="Either{TLeft, TRight}"/> and <see cref="EitherRight{TRight}"/> are equal, otherwise false.</returns>
-        public static bool operator ==(in EitherRight<TRight> eitherRight, in Either<TLeft, TRight> either)
+        public static bool operator ==(EitherRight<TRight> eitherRight, Either<TLeft, TRight> either)
         {
             return either == eitherRight;
         }
@@ -368,7 +368,7 @@ namespace Here
         /// <param name="eitherRight"><see cref="EitherRight{TRight}"/> to compare.</param>
         /// <param name="either"><see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <returns>True if <see cref="Either{TLeft, TRight}"/> and <see cref="EitherRight{TRight}"/> are not equal, otherwise false.</returns>
-        public static bool operator !=(in EitherRight<TRight> eitherRight, in Either<TLeft, TRight> either)
+        public static bool operator !=(EitherRight<TRight> eitherRight, Either<TLeft, TRight> either)
         {
             return !(either == eitherRight);
         }
@@ -380,7 +380,7 @@ namespace Here
         /// <param name="rightValue">Value to compare.</param>
         /// <returns>True if the <see cref="Either{TLeft, TRight}"/> is in <see cref="EitherStates.Right"/> state
         /// and its value is equals to the <paramref name="rightValue"/>, otherwise false.</returns>
-        public static bool operator ==(in Either<TLeft, TRight> either, in TRight rightValue)
+        public static bool operator ==(Either<TLeft, TRight> either, TRight rightValue)
         {
             return either.Equals(rightValue);
         }
@@ -392,7 +392,7 @@ namespace Here
         /// <param name="rightValue">Value to compare.</param>
         /// <returns>True if the <see cref="Either{TLeft, TRight}"/> is not in <see cref="EitherStates.Right"/> state
         /// with its value equals to the <paramref name="rightValue"/>, otherwise false.</returns>
-        public static bool operator !=(in Either<TLeft, TRight> either, in TRight rightValue)
+        public static bool operator !=(Either<TLeft, TRight> either, TRight rightValue)
         {
             return !(either == rightValue);
         }
@@ -404,7 +404,7 @@ namespace Here
         /// <param name="either">First <see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <returns>True if the <see cref="Either{TLeft, TRight}"/> is in <see cref="EitherStates.Right"/> state
         /// and its value is equals to the <paramref name="rightValue"/>, otherwise false.</returns>
-        public static bool operator ==(in TRight rightValue, in Either<TLeft, TRight> either)
+        public static bool operator ==(TRight rightValue, Either<TLeft, TRight> either)
         {
             return either == rightValue;
         }
@@ -416,7 +416,7 @@ namespace Here
         /// <param name="either">First <see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <returns>True if the <see cref="Either{TLeft, TRight}"/> is not in <see cref="EitherStates.Right"/> state
         /// with its value equals to the <paramref name="rightValue"/>, otherwise false.</returns>
-        public static bool operator !=(in TRight rightValue, in Either<TLeft, TRight> either)
+        public static bool operator !=(TRight rightValue, Either<TLeft, TRight> either)
         {
             return !(either == rightValue);
         }
@@ -428,7 +428,7 @@ namespace Here
         /// <param name="leftValue">Value to compare.</param>
         /// <returns>True if the <see cref="Either{TLeft, TRight}"/> is in <see cref="EitherStates.Left"/> state
         /// and its value is equals to the <paramref name="leftValue"/>, otherwise false.</returns>
-        public static bool operator ==(in Either<TLeft, TRight> either, in TLeft leftValue)
+        public static bool operator ==(Either<TLeft, TRight> either, TLeft leftValue)
         {
             return either.Equals(leftValue);
         }
@@ -440,7 +440,7 @@ namespace Here
         /// <param name="leftValue">Value to compare.</param>
         /// <returns>True if the <see cref="Either{TLeft, TRight}"/> is not in <see cref="EitherStates.Left"/> state
         /// with its value equals to the <paramref name="leftValue"/>, otherwise false.</returns>
-        public static bool operator !=(in Either<TLeft, TRight> either, in TLeft leftValue)
+        public static bool operator !=(Either<TLeft, TRight> either, TLeft leftValue)
         {
             return !(either == leftValue);
         }
@@ -452,7 +452,7 @@ namespace Here
         /// <param name="either">First <see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <returns>True if the <see cref="Either{TLeft, TRight}"/> is in <see cref="EitherStates.Left"/> state
         /// and its value is equals to the <paramref name="leftValue"/>, otherwise false.</returns>
-        public static bool operator ==(in TLeft leftValue, in Either<TLeft, TRight> either)
+        public static bool operator ==(TLeft leftValue, Either<TLeft, TRight> either)
         {
             return either == leftValue;
         }
@@ -464,7 +464,7 @@ namespace Here
         /// <param name="either">First <see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <returns>True if the <see cref="Either{TLeft, TRight}"/> is not in <see cref="EitherStates.Left"/> state
         /// with its value equals to the <paramref name="leftValue"/>, otherwise false.</returns>
-        public static bool operator !=(in TLeft leftValue, in Either<TLeft, TRight> either)
+        public static bool operator !=(TLeft leftValue, Either<TLeft, TRight> either)
         {
             return !(either == leftValue);
         }
@@ -546,7 +546,7 @@ namespace Here
         /// <param name="either2">Second <see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <returns>An integer that indicates the relative order of compared objects.</returns>
         [Pure]
-        internal static int Compare(in Either<TLeft, TRight> either1, in Either<TLeft, TRight> either2)
+        internal static int Compare(Either<TLeft, TRight> either1, Either<TLeft, TRight> either2)
         {
             if (either1.IsNone)
                 return either2.IsNone ? 0 : -1;
@@ -572,7 +572,7 @@ namespace Here
         /// <param name="either1">The first <see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <param name="either2">The second <see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator <(in Either<TLeft, TRight> either1, in Either<TLeft, TRight> either2)
+        public static bool operator <(Either<TLeft, TRight> either1, Either<TLeft, TRight> either2)
         {
             return either1.CompareTo(either2) < 0;
         }
@@ -583,7 +583,7 @@ namespace Here
         /// <param name="either1">The first <see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <param name="either2">The second <see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator <=(in Either<TLeft, TRight> either1, in Either<TLeft, TRight> either2)
+        public static bool operator <=(Either<TLeft, TRight> either1, Either<TLeft, TRight> either2)
         {
             return either1.CompareTo(either2) <= 0;
         }
@@ -594,7 +594,7 @@ namespace Here
         /// <param name="either1">The first <see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <param name="either2">The second <see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator >(in Either<TLeft, TRight> either1, in Either<TLeft, TRight> either2)
+        public static bool operator >(Either<TLeft, TRight> either1, Either<TLeft, TRight> either2)
         {
             return either1.CompareTo(either2) > 0;
         }
@@ -605,7 +605,7 @@ namespace Here
         /// <param name="either1">The first <see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <param name="either2">The second <see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator >=(in Either<TLeft, TRight> either1, in Either<TLeft, TRight> either2)
+        public static bool operator >=(Either<TLeft, TRight> either1, Either<TLeft, TRight> either2)
         {
             return either1.CompareTo(either2) >= 0;
         }
@@ -620,7 +620,7 @@ namespace Here
         /// <param name="either"><see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <param name="eitherLeft"><see cref="EitherLeft{TLeft}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator <(in Either<TLeft, TRight> either, in EitherLeft<TLeft> eitherLeft)
+        public static bool operator <(Either<TLeft, TRight> either, EitherLeft<TLeft> eitherLeft)
         {
             return Compare(either, eitherLeft) < 0;
         }
@@ -631,7 +631,7 @@ namespace Here
         /// <param name="either"><see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <param name="eitherLeft"><see cref="EitherLeft{TLeft}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator <=(in Either<TLeft, TRight> either, in EitherLeft<TLeft> eitherLeft)
+        public static bool operator <=(Either<TLeft, TRight> either, EitherLeft<TLeft> eitherLeft)
         {
             return Compare(either, eitherLeft) <= 0;
         }
@@ -642,7 +642,7 @@ namespace Here
         /// <param name="either"><see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <param name="eitherLeft"><see cref="EitherLeft{TLeft}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator >(in Either<TLeft, TRight> either, in EitherLeft<TLeft> eitherLeft)
+        public static bool operator >(Either<TLeft, TRight> either, EitherLeft<TLeft> eitherLeft)
         {
             return Compare(either, eitherLeft) > 0;
         }
@@ -653,7 +653,7 @@ namespace Here
         /// <param name="either"><see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <param name="eitherLeft"><see cref="EitherLeft{TLeft}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator >=(in Either<TLeft, TRight> either, in EitherLeft<TLeft> eitherLeft)
+        public static bool operator >=(Either<TLeft, TRight> either, EitherLeft<TLeft> eitherLeft)
         {
             return Compare(either, eitherLeft) >= 0;
         }
@@ -664,7 +664,7 @@ namespace Here
         /// <param name="eitherLeft"><see cref="EitherLeft{TLeft}"/> to compare.</param>
         /// <param name="either"><see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator <(in EitherLeft<TLeft> eitherLeft, in Either<TLeft, TRight> either)
+        public static bool operator <(EitherLeft<TLeft> eitherLeft, Either<TLeft, TRight> either)
         {
             return Compare(eitherLeft, either) < 0;
         }
@@ -675,7 +675,7 @@ namespace Here
         /// <param name="eitherLeft"><see cref="EitherLeft{TLeft}"/> to compare.</param>
         /// <param name="either"><see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator <=(in EitherLeft<TLeft> eitherLeft, in Either<TLeft, TRight> either)
+        public static bool operator <=(EitherLeft<TLeft> eitherLeft, Either<TLeft, TRight> either)
         {
             return Compare(eitherLeft, either) <= 0;
         }
@@ -686,7 +686,7 @@ namespace Here
         /// <param name="eitherLeft"><see cref="EitherLeft{TLeft}"/> to compare.</param>
         /// <param name="either"><see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator >(in EitherLeft<TLeft> eitherLeft, in Either<TLeft, TRight> either)
+        public static bool operator >(EitherLeft<TLeft> eitherLeft, Either<TLeft, TRight> either)
         {
             return Compare(eitherLeft, either) > 0;
         }
@@ -697,7 +697,7 @@ namespace Here
         /// <param name="eitherLeft"><see cref="EitherLeft{TLeft}"/> to compare.</param>
         /// <param name="either"><see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator >=(in EitherLeft<TLeft> eitherLeft, in Either<TLeft, TRight> either)
+        public static bool operator >=(EitherLeft<TLeft> eitherLeft, Either<TLeft, TRight> either)
         {
             return Compare(eitherLeft, either) >= 0;
         }
@@ -712,7 +712,7 @@ namespace Here
         /// <param name="either"><see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <param name="eitherRight"><see cref="EitherRight{TRight}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator <(in Either<TLeft, TRight> either, in EitherRight<TRight> eitherRight)
+        public static bool operator <(Either<TLeft, TRight> either, EitherRight<TRight> eitherRight)
         {
             return Compare(either, eitherRight) < 0;
         }
@@ -723,7 +723,7 @@ namespace Here
         /// <param name="either"><see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <param name="eitherRight"><see cref="EitherRight{TRight}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator <=(in Either<TLeft, TRight> either, in EitherRight<TRight> eitherRight)
+        public static bool operator <=(Either<TLeft, TRight> either, EitherRight<TRight> eitherRight)
         {
             return Compare(either, eitherRight) <= 0;
         }
@@ -734,7 +734,7 @@ namespace Here
         /// <param name="either"><see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <param name="eitherRight"><see cref="EitherRight{TRight}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator >(in Either<TLeft, TRight> either, in EitherRight<TRight> eitherRight)
+        public static bool operator >(Either<TLeft, TRight> either, EitherRight<TRight> eitherRight)
         {
             return Compare(either, eitherRight) > 0;
         }
@@ -745,7 +745,7 @@ namespace Here
         /// <param name="either"><see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <param name="eitherRight"><see cref="EitherRight{TRight}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator >=(in Either<TLeft, TRight> either, in EitherRight<TRight> eitherRight)
+        public static bool operator >=(Either<TLeft, TRight> either, EitherRight<TRight> eitherRight)
         {
             return Compare(either, eitherRight) >= 0;
         }
@@ -756,7 +756,7 @@ namespace Here
         /// <param name="eitherRight"><see cref="EitherRight{TRight}"/> to compare.</param>
         /// <param name="either"><see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator <(in EitherRight<TRight> eitherRight, in Either<TLeft, TRight> either)
+        public static bool operator <(EitherRight<TRight> eitherRight, Either<TLeft, TRight> either)
         {
             return Compare(eitherRight, either) < 0;
         }
@@ -767,7 +767,7 @@ namespace Here
         /// <param name="eitherRight"><see cref="EitherRight{TRight}"/> to compare.</param>
         /// <param name="either"><see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator <=(in EitherRight<TRight> eitherRight, in Either<TLeft, TRight> either)
+        public static bool operator <=(EitherRight<TRight> eitherRight, Either<TLeft, TRight> either)
         {
             return Compare(eitherRight, either) <= 0;
         }
@@ -778,7 +778,7 @@ namespace Here
         /// <param name="eitherRight"><see cref="EitherRight{TRight}"/> to compare.</param>
         /// <param name="either"><see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator >(in EitherRight<TRight> eitherRight, in Either<TLeft, TRight> either)
+        public static bool operator >(EitherRight<TRight> eitherRight, Either<TLeft, TRight> either)
         {
             return Compare(eitherRight, either) > 0;
         }
@@ -789,7 +789,7 @@ namespace Here
         /// <param name="eitherRight"><see cref="EitherRight{TRight}"/> to compare.</param>
         /// <param name="either"><see cref="Either{TLeft, TRight}"/> to compare.</param>
         /// <returns>The comparison result.</returns>
-        public static bool operator >=(in EitherRight<TRight> eitherRight, in Either<TLeft, TRight> either)
+        public static bool operator >=(EitherRight<TRight> eitherRight, Either<TLeft, TRight> either)
         {
             return Compare(eitherRight, either) >= 0;
         }
@@ -806,17 +806,17 @@ namespace Here
             _state = (EitherStates)info.GetValue("State", typeof(EitherStates));
             if (_state == EitherStates.None)
             {
-                _left = default;
-                _right = default;
+                _left = default(TLeft);
+                _right = default(TRight);
             }
             else if (_state == EitherStates.Left)
             {
                 _left = (TLeft)info.GetValue("Value", typeof(TLeft));
-                _right = default;
+                _right = default(TRight);
             }
             else
             {
-                _left = default;
+                _left = default(TLeft);
                 _right = (TRight)info.GetValue("Value", typeof(TRight));
             }
         }

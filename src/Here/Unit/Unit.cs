@@ -10,7 +10,7 @@ namespace Here
 #if SUPPORTS_SERIALIZATION
     [Serializable]
 #endif
-    public readonly struct Unit : IEquatable<Unit>, IComparable, IComparable<Unit>
+    public struct Unit : IEquatable<Unit>, IComparable, IComparable<Unit>
     {
         /// <summary>
         /// Unique <see cref="Unit"/> value.

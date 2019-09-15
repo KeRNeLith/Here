@@ -70,7 +70,7 @@ Supports Source Link</Description>
 
   <!-- C# configuration -->
   <PropertyGroup>
-    <LangVersion>7.2</LangVersion>
+    <LangVersion>7</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

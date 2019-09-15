@@ -52,7 +52,7 @@ namespace Here.Extensions
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static Option<TValue> Get<TInput, TValue>([CanBeNull] in TInput input, [NotNull, InstantHandle] in TryGet<TInput, TValue> tryGetFunc)
+        public static Option<TValue> Get<TInput, TValue>([CanBeNull] TInput input, [NotNull, InstantHandle] TryGet<TInput, TValue> tryGetFunc)
         {
             return tryGetFunc(input, out TValue result)
                 ? result
@@ -74,7 +74,7 @@ namespace Here.Extensions
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static Option<TValue> DefaultParse<TValue>([CanBeNull] in string input, [NotNull, InstantHandle] in TryParse<TValue> tryParseFunc)
+        public static Option<TValue> DefaultParse<TValue>([CanBeNull] string input, [NotNull, InstantHandle] TryParse<TValue> tryParseFunc)
         {
             return Parse(input, tryParseFunc, NumberStyles.Any, DefaultParseCultureInfo);
         }
@@ -93,7 +93,7 @@ namespace Here.Extensions
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static Option<TValue> Parse<TValue>([CanBeNull] in string input, [NotNull, InstantHandle] in TryParse<TValue> tryParseFunc, in NumberStyles style, in IFormatProvider culture)
+        public static Option<TValue> Parse<TValue>([CanBeNull] string input, [NotNull, InstantHandle] TryParse<TValue> tryParseFunc, NumberStyles style, IFormatProvider culture)
         {
             return tryParseFunc(input, style, culture, out TValue result)
                 ? result
@@ -143,7 +143,7 @@ namespace Here.Extensions
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
         [PublicAPI, Pure]
-        public static Option<byte> TryParseByte([CanBeNull] this string str, in NumberStyles style, in IFormatProvider culture)
+        public static Option<byte> TryParseByte([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
         {
             return Parse<byte>(str, byte.TryParse, style, culture);
         }
@@ -167,7 +167,7 @@ namespace Here.Extensions
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
         [PublicAPI, Pure]
-        public static Option<sbyte> TryParseSByte([CanBeNull] this string str, in NumberStyles style, in IFormatProvider culture)
+        public static Option<sbyte> TryParseSByte([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
         {
             return Parse<sbyte>(str, sbyte.TryParse, style, culture);
         }
@@ -191,7 +191,7 @@ namespace Here.Extensions
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
         [PublicAPI, Pure]
-        public static Option<short> TryParseShort([CanBeNull] this string str, in NumberStyles style, in IFormatProvider culture)
+        public static Option<short> TryParseShort([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
         {
             return Parse<short>(str, short.TryParse, style, culture);
         }
@@ -215,7 +215,7 @@ namespace Here.Extensions
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
         [PublicAPI, Pure]
-        public static Option<ushort> TryParseUShort([CanBeNull] this string str, in NumberStyles style, in IFormatProvider culture)
+        public static Option<ushort> TryParseUShort([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
         {
             return Parse<ushort>(str, ushort.TryParse, style, culture);
         }
@@ -239,7 +239,7 @@ namespace Here.Extensions
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
         [PublicAPI, Pure]
-        public static Option<int> TryParseInt([CanBeNull] this string str, in NumberStyles style, in IFormatProvider culture)
+        public static Option<int> TryParseInt([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
         {
             return Parse<int>(str, int.TryParse, style, culture);
         }
@@ -263,7 +263,7 @@ namespace Here.Extensions
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
         [PublicAPI, Pure]
-        public static Option<uint> TryParseUInt([CanBeNull] this string str, in NumberStyles style, in IFormatProvider culture)
+        public static Option<uint> TryParseUInt([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
         {
             return Parse<uint>(str, uint.TryParse, style, culture);
         }
@@ -287,7 +287,7 @@ namespace Here.Extensions
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
         [PublicAPI, Pure]
-        public static Option<long> TryParseLong([CanBeNull] this string str, in NumberStyles style, in IFormatProvider culture)
+        public static Option<long> TryParseLong([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
         {
             return Parse<long>(str, long.TryParse, style, culture);
         }
@@ -311,7 +311,7 @@ namespace Here.Extensions
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
         [PublicAPI, Pure]
-        public static Option<ulong> TryParseULong([CanBeNull] this string str, in NumberStyles style, in IFormatProvider culture)
+        public static Option<ulong> TryParseULong([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
         {
             return Parse<ulong>(str, ulong.TryParse, style, culture);
         }
@@ -335,7 +335,7 @@ namespace Here.Extensions
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
         [PublicAPI, Pure]
-        public static Option<decimal> TryParseDecimal([CanBeNull] this string str, in NumberStyles style, in IFormatProvider culture)
+        public static Option<decimal> TryParseDecimal([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
         {
             return Parse<decimal>(str, decimal.TryParse, style, culture);
         }
@@ -359,7 +359,7 @@ namespace Here.Extensions
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
         [PublicAPI, Pure]
-        public static Option<float> TryParseFloat([CanBeNull] this string str, in NumberStyles style, in IFormatProvider culture)
+        public static Option<float> TryParseFloat([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
         {
             return Parse<float>(str, float.TryParse, style, culture);
         }
@@ -383,7 +383,7 @@ namespace Here.Extensions
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
         [PublicAPI, Pure]
-        public static Option<double> TryParseDouble([CanBeNull] this string str, in NumberStyles style, in IFormatProvider culture)
+        public static Option<double> TryParseDouble([CanBeNull] this string str, NumberStyles style, IFormatProvider culture)
         {
             return Parse<double>(str, double.TryParse, style, culture);
         }

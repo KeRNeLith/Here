@@ -32,7 +32,7 @@ namespace Here.Extensions
         /// <param name="nullable">Nullable to convert.</param>
         /// <returns>An <see cref="Option{T}"/>.</returns>
         [PublicAPI, Pure]
-        public static Option<T> ToOption<T>([CanBeNull] in this T? nullable)
+        public static Option<T> ToOption<T>([CanBeNull] this T? nullable)
             where T : struct
         {
             return nullable?.ToOption() ?? Option<T>.None;
@@ -45,7 +45,7 @@ namespace Here.Extensions
         /// <param name="option"><see cref="Option{T}"/> to convert.</param>
         /// <returns>An <see cref="Nullable{T}"/>.</returns>
         [PublicAPI, Pure]
-        public static T? ToNullable<T>(in this Option<T> option)
+        public static T? ToNullable<T>(this Option<T> option)
             where T : struct
         {
             return option.HasValue
@@ -59,7 +59,7 @@ namespace Here.Extensions
         /// <param name="embeddedOption">An <see cref="Option{T}"/>.</param>
         /// <returns>Flattened <see cref="Option{T}"/>.</returns>
         [PublicAPI, Pure]
-        public static Option<T> Flatten<T>(in this Option<Option<T>> embeddedOption)
+        public static Option<T> Flatten<T>(this Option<Option<T>> embeddedOption)
         {
             return embeddedOption.HasValue ? embeddedOption.Value : Option<T>.None;
         }
@@ -108,7 +108,7 @@ namespace Here.Extensions
         /// <param name="option"><see cref="Option{T}"/> on which applying the treatment.</param>
         /// <returns>An <see cref="Option{T}"/>.</returns>
         [PublicAPI, Pure]
-        public static Option<string> NoneIfEmpty(in this Option<string> option)
+        public static Option<string> NoneIfEmpty(this Option<string> option)
         {
             return option.IfElse(
                 str => string.IsNullOrEmpty(str) ? Option<string>.None : Option<string>.Some(str), 
@@ -129,7 +129,7 @@ namespace Here.Extensions
         /// <returns>An <see cref="Option{T}"/>.</returns>
 #endif
         [PublicAPI, Pure]
-        public static Option<string> NoneIfEmptyOrSpace(in this Option<string> option)
+        public static Option<string> NoneIfEmptyOrSpace(this Option<string> option)
         {
             return option.IfElse(
 #if SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE

@@ -16,7 +16,7 @@ namespace Here.Extensions
         /// <param name="option"><see cref="Option{T}"/> on which performing the check.</param>
         /// <returns>True if this <see cref="Option{T}"/> has a value, otherwise false.</returns>
         [PublicAPI, Pure]
-        public static bool Any<T>(in this Option<T> option)
+        public static bool Any<T>(this Option<T> option)
         {
             return option.HasValue;
         }
@@ -30,7 +30,7 @@ namespace Here.Extensions
         /// <returns>True if this <see cref="Option{T}"/> matches the predicate, otherwise false.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         [PublicAPI, Pure]
-        public static bool Any<T>(in this Option<T> option, [NotNull, InstantHandle] in Predicate<T> predicate)
+        public static bool Any<T>(this Option<T> option, [NotNull, InstantHandle] Predicate<T> predicate)
         {
             return option.Exists(predicate);
         }
@@ -44,7 +44,7 @@ namespace Here.Extensions
         /// <returns>True if this <see cref="Option{T}"/> value matches the predicate, otherwise false.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         [PublicAPI, Pure]
-        public static bool All<T>(in this Option<T> option, [NotNull, InstantHandle] in Predicate<T> predicate)
+        public static bool All<T>(this Option<T> option, [NotNull, InstantHandle] Predicate<T> predicate)
         {
             return option.Exists(predicate);
         }
@@ -57,7 +57,7 @@ namespace Here.Extensions
         /// <param name="value">Value to check equality with <see cref="Option{T}"/> value.</param>
         /// <returns>True if this <see cref="Option{T}"/> contains the given <paramref name="value"/>, otherwise false.</returns>
         [PublicAPI, Pure]
-        public static bool Contains<T>(in this Option<T> option, [CanBeNull] in T value)
+        public static bool Contains<T>(this Option<T> option, [CanBeNull] T value)
         {
             if (option.HasValue)
                 return EqualityComparer<T>.Default.Equals(option.Value, value);
@@ -74,7 +74,7 @@ namespace Here.Extensions
         /// <returns>An <see cref="Option{T}"/> wrapping selected value.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="selector"/> is null.</exception>
         [PublicAPI, Pure]
-        public static Option<TOut> Select<TIn, TOut>(in this Option<TIn> option, [NotNull, InstantHandle] in Func<TIn, TOut> selector)
+        public static Option<TOut> Select<TIn, TOut>(this Option<TIn> option, [NotNull, InstantHandle] Func<TIn, TOut> selector)
         {
             Throw.IfArgumentNull(selector, nameof(selector));
 
@@ -92,7 +92,7 @@ namespace Here.Extensions
         /// <returns>This <see cref="Option{T}"/> if it matches the <paramref name="predicate"/>, otherwise an empty <see cref="Option{T}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         [PublicAPI, Pure]
-        public static Option<T> Where<T>(in this Option<T> option, [NotNull, InstantHandle] in Predicate<T> predicate)
+        public static Option<T> Where<T>(this Option<T> option, [NotNull, InstantHandle] Predicate<T> predicate)
         {
             if (option.Exists(predicate))
                 return option;
@@ -108,7 +108,7 @@ namespace Here.Extensions
         /// <returns>A <see cref="Unit"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="doAction"/> is null.</exception>
         [PublicAPI]
-        public static Unit ForEach<T>(in this Option<T> option, [NotNull, InstantHandle] in Action<T> doAction)
+        public static Unit ForEach<T>(this Option<T> option, [NotNull, InstantHandle] Action<T> doAction)
         {
             Throw.IfArgumentNull(doAction, nameof(doAction));
 
@@ -131,9 +131,9 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="initialValue"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="aggregator"/> is null.</exception>
         [PublicAPI, NotNull, Pure]
-        public static TAggregate Aggregate<T, TAggregate>(in this Option<T> option, 
-            [NotNull] in TAggregate initialValue, 
-            [NotNull, InstantHandle] in Func<TAggregate, T, TAggregate> aggregator)
+        public static TAggregate Aggregate<T, TAggregate>(this Option<T> option, 
+            [NotNull] TAggregate initialValue, 
+            [NotNull, InstantHandle] Func<TAggregate, T, TAggregate> aggregator)
         {
             Throw.IfArgumentNull(initialValue, nameof(initialValue));
             Throw.IfArgumentNull(aggregator, nameof(aggregator));
