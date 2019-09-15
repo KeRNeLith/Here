@@ -173,6 +173,23 @@ references:
   fullName.vb: Here.CustomResult(Of TError).GetHashCode
   nameWithType: CustomResult<TError>.GetHashCode
   nameWithType.vb: CustomResult(Of TError).GetHashCode
+- uid: Here.CustomResult`1.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  name: GetObjectData(SerializationInfo, StreamingContext)
+  href: api/Here.CustomResult-1.html#Here_CustomResult_1_GetObjectData_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
+  commentId: M:Here.CustomResult`1.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  fullName: Here.CustomResult<TError>.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  fullName.vb: Here.CustomResult(Of TError).GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  nameWithType: CustomResult<TError>.GetObjectData(SerializationInfo, StreamingContext)
+  nameWithType.vb: CustomResult(Of TError).GetObjectData(SerializationInfo, StreamingContext)
+- uid: Here.CustomResult`1.GetObjectData*
+  name: GetObjectData
+  href: api/Here.CustomResult-1.html#Here_CustomResult_1_GetObjectData_
+  commentId: Overload:Here.CustomResult`1.GetObjectData
+  isSpec: "True"
+  fullName: Here.CustomResult<TError>.GetObjectData
+  fullName.vb: Here.CustomResult(Of TError).GetObjectData
+  nameWithType: CustomResult<TError>.GetObjectData
+  nameWithType.vb: CustomResult(Of TError).GetObjectData
 - uid: Here.CustomResult`1.IsFailure
   name: IsFailure
   href: api/Here.CustomResult-1.html#Here_CustomResult_1_IsFailure
@@ -846,6 +863,23 @@ references:
   fullName.vb: Here.Either(Of TLeft, TRight).GetHashCode
   nameWithType: Either<TLeft, TRight>.GetHashCode
   nameWithType.vb: Either(Of TLeft, TRight).GetHashCode
+- uid: Here.Either`2.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  name: GetObjectData(SerializationInfo, StreamingContext)
+  href: api/Here.Either-2.html#Here_Either_2_GetObjectData_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
+  commentId: M:Here.Either`2.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  fullName: Here.Either<TLeft, TRight>.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  fullName.vb: Here.Either(Of TLeft, TRight).GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  nameWithType: Either<TLeft, TRight>.GetObjectData(SerializationInfo, StreamingContext)
+  nameWithType.vb: Either(Of TLeft, TRight).GetObjectData(SerializationInfo, StreamingContext)
+- uid: Here.Either`2.GetObjectData*
+  name: GetObjectData
+  href: api/Here.Either-2.html#Here_Either_2_GetObjectData_
+  commentId: Overload:Here.Either`2.GetObjectData
+  isSpec: "True"
+  fullName: Here.Either<TLeft, TRight>.GetObjectData
+  fullName.vb: Here.Either(Of TLeft, TRight).GetObjectData
+  nameWithType: Either<TLeft, TRight>.GetObjectData
+  nameWithType.vb: Either(Of TLeft, TRight).GetObjectData
 - uid: Here.Either`2.IfFailure(System.Action{`0}@)
   name: IfFailure(Action<TLeft>)
   href: api/Here.Either-2.html#Here_Either_2_IfFailure_System_Action__0___
@@ -2004,6 +2038,23 @@ references:
   fullName.vb: Here.EitherLeft(Of TLeft).GetHashCode
   nameWithType: EitherLeft<TLeft>.GetHashCode
   nameWithType.vb: EitherLeft(Of TLeft).GetHashCode
+- uid: Here.EitherLeft`1.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  name: GetObjectData(SerializationInfo, StreamingContext)
+  href: api/Here.EitherLeft-1.html#Here_EitherLeft_1_GetObjectData_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
+  commentId: M:Here.EitherLeft`1.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  fullName: Here.EitherLeft<TLeft>.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  fullName.vb: Here.EitherLeft(Of TLeft).GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  nameWithType: EitherLeft<TLeft>.GetObjectData(SerializationInfo, StreamingContext)
+  nameWithType.vb: EitherLeft(Of TLeft).GetObjectData(SerializationInfo, StreamingContext)
+- uid: Here.EitherLeft`1.GetObjectData*
+  name: GetObjectData
+  href: api/Here.EitherLeft-1.html#Here_EitherLeft_1_GetObjectData_
+  commentId: Overload:Here.EitherLeft`1.GetObjectData
+  isSpec: "True"
+  fullName: Here.EitherLeft<TLeft>.GetObjectData
+  fullName.vb: Here.EitherLeft(Of TLeft).GetObjectData
+  nameWithType: EitherLeft<TLeft>.GetObjectData
+  nameWithType.vb: EitherLeft(Of TLeft).GetObjectData
 - uid: Here.EitherLeft`1.IsLeft
   name: IsLeft
   href: api/Here.EitherLeft-1.html#Here_EitherLeft_1_IsLeft
@@ -2257,6 +2308,23 @@ references:
   fullName.vb: Here.EitherRight(Of TRight).GetHashCode
   nameWithType: EitherRight<TRight>.GetHashCode
   nameWithType.vb: EitherRight(Of TRight).GetHashCode
+- uid: Here.EitherRight`1.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  name: GetObjectData(SerializationInfo, StreamingContext)
+  href: api/Here.EitherRight-1.html#Here_EitherRight_1_GetObjectData_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
+  commentId: M:Here.EitherRight`1.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  fullName: Here.EitherRight<TRight>.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  fullName.vb: Here.EitherRight(Of TRight).GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  nameWithType: EitherRight<TRight>.GetObjectData(SerializationInfo, StreamingContext)
+  nameWithType.vb: EitherRight(Of TRight).GetObjectData(SerializationInfo, StreamingContext)
+- uid: Here.EitherRight`1.GetObjectData*
+  name: GetObjectData
+  href: api/Here.EitherRight-1.html#Here_EitherRight_1_GetObjectData_
+  commentId: Overload:Here.EitherRight`1.GetObjectData
+  isSpec: "True"
+  fullName: Here.EitherRight<TRight>.GetObjectData
+  fullName.vb: Here.EitherRight(Of TRight).GetObjectData
+  nameWithType: EitherRight<TRight>.GetObjectData
+  nameWithType.vb: EitherRight(Of TRight).GetObjectData
 - uid: Here.EitherRight`1.IsLeft
   name: IsLeft
   href: api/Here.EitherRight-1.html#Here_EitherRight_1_IsLeft
@@ -6667,6 +6735,23 @@ references:
   fullName.vb: Here.Option(Of T).GetHashCode
   nameWithType: Option<T>.GetHashCode
   nameWithType.vb: Option(Of T).GetHashCode
+- uid: Here.Option`1.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  name: GetObjectData(SerializationInfo, StreamingContext)
+  href: api/Here.Option-1.html#Here_Option_1_GetObjectData_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
+  commentId: M:Here.Option`1.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  fullName: Here.Option<T>.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  fullName.vb: Here.Option(Of T).GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  nameWithType: Option<T>.GetObjectData(SerializationInfo, StreamingContext)
+  nameWithType.vb: Option(Of T).GetObjectData(SerializationInfo, StreamingContext)
+- uid: Here.Option`1.GetObjectData*
+  name: GetObjectData
+  href: api/Here.Option-1.html#Here_Option_1_GetObjectData_
+  commentId: Overload:Here.Option`1.GetObjectData
+  isSpec: "True"
+  fullName: Here.Option<T>.GetObjectData
+  fullName.vb: Here.Option(Of T).GetObjectData
+  nameWithType: Option<T>.GetObjectData
+  nameWithType.vb: Option(Of T).GetObjectData
 - uid: Here.Option`1.HasNoValue
   name: HasNoValue
   href: api/Here.Option-1.html#Here_Option_1_HasNoValue
@@ -7649,6 +7734,19 @@ references:
   isSpec: "True"
   fullName: Here.Result.GetHashCode
   nameWithType: Result.GetHashCode
+- uid: Here.Result.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  name: GetObjectData(SerializationInfo, StreamingContext)
+  href: api/Here.Result.html#Here_Result_GetObjectData_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
+  commentId: M:Here.Result.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  fullName: Here.Result.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  nameWithType: Result.GetObjectData(SerializationInfo, StreamingContext)
+- uid: Here.Result.GetObjectData*
+  name: GetObjectData
+  href: api/Here.Result.html#Here_Result_GetObjectData_
+  commentId: Overload:Here.Result.GetObjectData
+  isSpec: "True"
+  fullName: Here.Result.GetObjectData
+  nameWithType: Result.GetObjectData
 - uid: Here.Result.IsFailure
   name: IsFailure
   href: api/Here.Result.html#Here_Result_IsFailure
@@ -8103,6 +8201,23 @@ references:
   fullName.vb: Here.Result(Of T).GetHashCode
   nameWithType: Result<T>.GetHashCode
   nameWithType.vb: Result(Of T).GetHashCode
+- uid: Here.Result`1.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  name: GetObjectData(SerializationInfo, StreamingContext)
+  href: api/Here.Result-1.html#Here_Result_1_GetObjectData_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
+  commentId: M:Here.Result`1.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  fullName: Here.Result<T>.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  fullName.vb: Here.Result(Of T).GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  nameWithType: Result<T>.GetObjectData(SerializationInfo, StreamingContext)
+  nameWithType.vb: Result(Of T).GetObjectData(SerializationInfo, StreamingContext)
+- uid: Here.Result`1.GetObjectData*
+  name: GetObjectData
+  href: api/Here.Result-1.html#Here_Result_1_GetObjectData_
+  commentId: Overload:Here.Result`1.GetObjectData
+  isSpec: "True"
+  fullName: Here.Result<T>.GetObjectData
+  fullName.vb: Here.Result(Of T).GetObjectData
+  nameWithType: Result<T>.GetObjectData
+  nameWithType.vb: Result(Of T).GetObjectData
 - uid: Here.Result`1.IsFailure
   name: IsFailure
   href: api/Here.Result-1.html#Here_Result_1_IsFailure
@@ -8542,6 +8657,23 @@ references:
   fullName.vb: Here.Result(Of T, TError).GetHashCode
   nameWithType: Result<T, TError>.GetHashCode
   nameWithType.vb: Result(Of T, TError).GetHashCode
+- uid: Here.Result`2.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  name: GetObjectData(SerializationInfo, StreamingContext)
+  href: api/Here.Result-2.html#Here_Result_2_GetObjectData_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
+  commentId: M:Here.Result`2.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  fullName: Here.Result<T, TError>.GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  fullName.vb: Here.Result(Of T, TError).GetObjectData(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  nameWithType: Result<T, TError>.GetObjectData(SerializationInfo, StreamingContext)
+  nameWithType.vb: Result(Of T, TError).GetObjectData(SerializationInfo, StreamingContext)
+- uid: Here.Result`2.GetObjectData*
+  name: GetObjectData
+  href: api/Here.Result-2.html#Here_Result_2_GetObjectData_
+  commentId: Overload:Here.Result`2.GetObjectData
+  isSpec: "True"
+  fullName: Here.Result<T, TError>.GetObjectData
+  fullName.vb: Here.Result(Of T, TError).GetObjectData
+  nameWithType: Result<T, TError>.GetObjectData
+  nameWithType.vb: Result(Of T, TError).GetObjectData
 - uid: Here.Result`2.IsFailure
   name: IsFailure
   href: api/Here.Result-2.html#Here_Result_2_IsFailure

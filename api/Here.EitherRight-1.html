@@ -85,6 +85,7 @@ Convention is that Right is used for success.</p>
     <div><span class="xref">System.IComparable</span></div>
     <div><span class="xref">System.IComparable</span>&lt;TRight&gt;</div>
     <div><span class="xref">System.IComparable</span>&lt;<a class="xref" href="Here.EitherRight-1.html">EitherRight</a>&lt;TRight&gt;&gt;</div>
+    <div><span class="xref">System.Runtime.Serialization.ISerializable</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -102,7 +103,8 @@ Convention is that Right is used for success.</p>
   <h6><strong>Assembly</strong>: Here.dll</h6>
   <h5 id="Here_EitherRight_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public struct EitherRight&lt;TRight&gt; : IEither, IEquatable&lt;TRight&gt;, IEquatable&lt;EitherRight&lt;TRight&gt;&gt;, IComparable, IComparable&lt;TRight&gt;, IComparable&lt;EitherRight&lt;TRight&gt;&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">[Serializable]
+public struct EitherRight&lt;TRight&gt; : IEither, IEquatable&lt;TRight&gt;, IEquatable&lt;EitherRight&lt;TRight&gt;&gt;, IComparable, IComparable&lt;TRight&gt;, IComparable&lt;EitherRight&lt;TRight&gt;&gt;, ISerializable</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -127,7 +129,7 @@ Convention is that Right is used for success.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_Value.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.Value%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L33">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L42">View Source</a>
   </span>
   <h4 id="Here_EitherRight_1_Value" data-uid="Here.EitherRight`1.Value">Value</h4>
   <div class="markdown level1 summary"><p>Right value.</p>
@@ -159,7 +161,7 @@ Convention is that Right is used for success.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_IsLeft.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.IsLeft%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L24">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L33">View Source</a>
   </span>
   <a id="Here_EitherRight_1_IsLeft_" data-uid="Here.EitherRight`1.IsLeft*"></a>
   <h4 id="Here_EitherRight_1_IsLeft" data-uid="Here.EitherRight`1.IsLeft">IsLeft</h4>
@@ -190,7 +192,7 @@ Convention is that Right is used for success.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_IsRight.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.IsRight%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L27">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L36">View Source</a>
   </span>
   <a id="Here_EitherRight_1_IsRight_" data-uid="Here.EitherRight`1.IsRight*"></a>
   <h4 id="Here_EitherRight_1_IsRight" data-uid="Here.EitherRight`1.IsRight">IsRight</h4>
@@ -223,7 +225,7 @@ Convention is that Right is used for success.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_CompareTo__0_.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.CompareTo(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L116">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L125">View Source</a>
   </span>
   <a id="Here_EitherRight_1_CompareTo_" data-uid="Here.EitherRight`1.CompareTo*"></a>
   <h4 id="Here_EitherRight_1_CompareTo__0_" data-uid="Here.EitherRight`1.CompareTo(`0)">CompareTo(TRight)</h4>
@@ -270,7 +272,7 @@ Convention is that Right is used for success.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_CompareTo_Here_EitherRight__0__.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.CompareTo(Here.EitherRight%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L122">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L131">View Source</a>
   </span>
   <a id="Here_EitherRight_1_CompareTo_" data-uid="Here.EitherRight`1.CompareTo*"></a>
   <h4 id="Here_EitherRight_1_CompareTo_Here_EitherRight__0__" data-uid="Here.EitherRight`1.CompareTo(Here.EitherRight{`0})">CompareTo(EitherRight&lt;TRight&gt;)</h4>
@@ -317,7 +319,7 @@ Convention is that Right is used for success.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_CompareTo_System_Object_.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.CompareTo(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L105">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L114">View Source</a>
   </span>
   <a id="Here_EitherRight_1_CompareTo_" data-uid="Here.EitherRight`1.CompareTo*"></a>
   <h4 id="Here_EitherRight_1_CompareTo_System_Object_" data-uid="Here.EitherRight`1.CompareTo(System.Object)">CompareTo(Object)</h4>
@@ -364,7 +366,7 @@ Convention is that Right is used for success.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_Equals__0_.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.Equals(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L51">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L60">View Source</a>
   </span>
   <a id="Here_EitherRight_1_Equals_" data-uid="Here.EitherRight`1.Equals*"></a>
   <h4 id="Here_EitherRight_1_Equals__0_" data-uid="Here.EitherRight`1.Equals(`0)">Equals(TRight)</h4>
@@ -411,7 +413,7 @@ Convention is that Right is used for success.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_Equals_Here_EitherRight__0__.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.Equals(Here.EitherRight%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L57">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L66">View Source</a>
   </span>
   <a id="Here_EitherRight_1_Equals_" data-uid="Here.EitherRight`1.Equals*"></a>
   <h4 id="Here_EitherRight_1_Equals_Here_EitherRight__0__" data-uid="Here.EitherRight`1.Equals(Here.EitherRight{`0})">Equals(EitherRight&lt;TRight&gt;)</h4>
@@ -458,7 +460,7 @@ Convention is that Right is used for success.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_Equals_System_Object_.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.Equals(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L63">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L72">View Source</a>
   </span>
   <a id="Here_EitherRight_1_Equals_" data-uid="Here.EitherRight`1.Equals*"></a>
   <h4 id="Here_EitherRight_1_Equals_System_Object_" data-uid="Here.EitherRight`1.Equals(System.Object)">Equals(Object)</h4>
@@ -507,7 +509,7 @@ Convention is that Right is used for success.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_GetHashCode.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.GetHashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L95">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L104">View Source</a>
   </span>
   <a id="Here_EitherRight_1_GetHashCode_" data-uid="Here.EitherRight`1.GetHashCode*"></a>
   <h4 id="Here_EitherRight_1_GetHashCode" data-uid="Here.EitherRight`1.GetHashCode">GetHashCode()</h4>
@@ -536,10 +538,47 @@ Convention is that Right is used for success.</p>
   <div><span class="xref">System.ValueType.GetHashCode()</span></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_GetObjectData_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.GetObjectData(System.Runtime.Serialization.SerializationInfo%2CSystem.Runtime.Serialization.StreamingContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L191">View Source</a>
+  </span>
+  <a id="Here_EitherRight_1_GetObjectData_" data-uid="Here.EitherRight`1.GetObjectData*"></a>
+  <h4 id="Here_EitherRight_1_GetObjectData_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_" data-uid="Here.EitherRight`1.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">GetObjectData(SerializationInfo, StreamingContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GetObjectData(SerializationInfo info, StreamingContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Runtime.Serialization.SerializationInfo</span></td>
+        <td><span class="parametername">info</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Runtime.Serialization.StreamingContext</span></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_ToString.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L174">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L200">View Source</a>
   </span>
   <a id="Here_EitherRight_1_ToString_" data-uid="Here.EitherRight`1.ToString*"></a>
   <h4 id="Here_EitherRight_1_ToString" data-uid="Here.EitherRight`1.ToString">ToString()</h4>
@@ -573,7 +612,7 @@ Convention is that Right is used for success.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_op_Equality_Here_EitherRight__0___Here_EitherRight__0___.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.op_Equality(Here.EitherRight%7B%600%7D%40%2CHere.EitherRight%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L78">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L87">View Source</a>
   </span>
   <a id="Here_EitherRight_1_op_Equality_" data-uid="Here.EitherRight`1.op_Equality*"></a>
   <h4 id="Here_EitherRight_1_op_Equality_Here_EitherRight__0___Here_EitherRight__0___" data-uid="Here.EitherRight`1.op_Equality(Here.EitherRight{`0}@,Here.EitherRight{`0}@)">Equality(EitherRight&lt;TRight&gt;, EitherRight&lt;TRight&gt;)</h4>
@@ -629,7 +668,7 @@ Convention is that Right is used for success.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_op_GreaterThan_Here_EitherRight__0___Here_EitherRight__0___.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.op_GreaterThan(Here.EitherRight%7B%600%7D%40%2CHere.EitherRight%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L155">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L164">View Source</a>
   </span>
   <a id="Here_EitherRight_1_op_GreaterThan_" data-uid="Here.EitherRight`1.op_GreaterThan*"></a>
   <h4 id="Here_EitherRight_1_op_GreaterThan_Here_EitherRight__0___Here_EitherRight__0___" data-uid="Here.EitherRight`1.op_GreaterThan(Here.EitherRight{`0}@,Here.EitherRight{`0}@)">GreaterThan(EitherRight&lt;TRight&gt;, EitherRight&lt;TRight&gt;)</h4>
@@ -685,7 +724,7 @@ Convention is that Right is used for success.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_op_GreaterThanOrEqual_Here_EitherRight__0___Here_EitherRight__0___.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.op_GreaterThanOrEqual(Here.EitherRight%7B%600%7D%40%2CHere.EitherRight%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L166">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L175">View Source</a>
   </span>
   <a id="Here_EitherRight_1_op_GreaterThanOrEqual_" data-uid="Here.EitherRight`1.op_GreaterThanOrEqual*"></a>
   <h4 id="Here_EitherRight_1_op_GreaterThanOrEqual_Here_EitherRight__0___Here_EitherRight__0___" data-uid="Here.EitherRight`1.op_GreaterThanOrEqual(Here.EitherRight{`0}@,Here.EitherRight{`0}@)">GreaterThanOrEqual(EitherRight&lt;TRight&gt;, EitherRight&lt;TRight&gt;)</h4>
@@ -741,7 +780,7 @@ Convention is that Right is used for success.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_op_Inequality_Here_EitherRight__0___Here_EitherRight__0___.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.op_Inequality(Here.EitherRight%7B%600%7D%40%2CHere.EitherRight%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L89">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L98">View Source</a>
   </span>
   <a id="Here_EitherRight_1_op_Inequality_" data-uid="Here.EitherRight`1.op_Inequality*"></a>
   <h4 id="Here_EitherRight_1_op_Inequality_Here_EitherRight__0___Here_EitherRight__0___" data-uid="Here.EitherRight`1.op_Inequality(Here.EitherRight{`0}@,Here.EitherRight{`0}@)">Inequality(EitherRight&lt;TRight&gt;, EitherRight&lt;TRight&gt;)</h4>
@@ -797,7 +836,7 @@ Convention is that Right is used for success.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_op_LessThan_Here_EitherRight__0___Here_EitherRight__0___.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.op_LessThan(Here.EitherRight%7B%600%7D%40%2CHere.EitherRight%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L133">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L142">View Source</a>
   </span>
   <a id="Here_EitherRight_1_op_LessThan_" data-uid="Here.EitherRight`1.op_LessThan*"></a>
   <h4 id="Here_EitherRight_1_op_LessThan_Here_EitherRight__0___Here_EitherRight__0___" data-uid="Here.EitherRight`1.op_LessThan(Here.EitherRight{`0}@,Here.EitherRight{`0}@)">LessThan(EitherRight&lt;TRight&gt;, EitherRight&lt;TRight&gt;)</h4>
@@ -853,7 +892,7 @@ Convention is that Right is used for success.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1_op_LessThanOrEqual_Here_EitherRight__0___Here_EitherRight__0___.md&amp;value=---%0Auid%3A%20Here.EitherRight%601.op_LessThanOrEqual(Here.EitherRight%7B%600%7D%40%2CHere.EitherRight%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L144">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L153">View Source</a>
   </span>
   <a id="Here_EitherRight_1_op_LessThanOrEqual_" data-uid="Here.EitherRight`1.op_LessThanOrEqual*"></a>
   <h4 id="Here_EitherRight_1_op_LessThanOrEqual_Here_EitherRight__0___Here_EitherRight__0___" data-uid="Here.EitherRight`1.op_LessThanOrEqual(Here.EitherRight{`0}@,Here.EitherRight{`0}@)">LessThanOrEqual(EitherRight&lt;TRight&gt;, EitherRight&lt;TRight&gt;)</h4>
@@ -923,6 +962,9 @@ Convention is that Right is used for success.</p>
   <div>
       <span class="xref">System.IComparable&lt;T&gt;</span>
   </div>
+  <div>
+      <span class="xref">System.Runtime.Serialization.ISerializable</span>
+  </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
       <a class="xref" href="Here.Either.html#Here_Either_ToEither__2___1_">Either.ToEither&lt;TLeft, TRight&gt;(TRight)</a>
@@ -950,7 +992,7 @@ Convention is that Right is used for success.</p>
                     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_EitherRight_1.md&amp;value=---%0Auid%3A%20Here.EitherRight%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L13" class="contribution-link">View Source</a>
+                    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherRight.cs/#L16" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

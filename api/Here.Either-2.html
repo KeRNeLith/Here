@@ -90,6 +90,7 @@ Convention is that Left is used for failure and Right is used for success.</p>
     <div><span class="xref">System.IComparable</span>&lt;TRight&gt;</div>
     <div><span class="xref">System.IComparable</span>&lt;<a class="xref" href="Here.EitherRight-1.html">EitherRight</a>&lt;TRight&gt;&gt;</div>
     <div><span class="xref">System.IComparable</span>&lt;<a class="xref" href="Here.Either-2.html">Either</a>&lt;TLeft, TRight&gt;&gt;</div>
+    <div><span class="xref">System.Runtime.Serialization.ISerializable</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -107,7 +108,8 @@ Convention is that Left is used for failure and Right is used for success.</p>
   <h6><strong>Assembly</strong>: Here.dll</h6>
   <h5 id="Here_Either_2_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public struct Either&lt;TLeft, TRight&gt; : IEither, IEquatable&lt;TRight&gt;, IEquatable&lt;EitherRight&lt;TRight&gt;&gt;, IEquatable&lt;Either&lt;TLeft, TRight&gt;&gt;, IComparable, IComparable&lt;TRight&gt;, IComparable&lt;EitherRight&lt;TRight&gt;&gt;, IComparable&lt;Either&lt;TLeft, TRight&gt;&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">[Serializable]
+public struct Either&lt;TLeft, TRight&gt; : IEither, IEquatable&lt;TRight&gt;, IEquatable&lt;EitherRight&lt;TRight&gt;&gt;, IEquatable&lt;Either&lt;TLeft, TRight&gt;&gt;, IComparable, IComparable&lt;TRight&gt;, IComparable&lt;EitherRight&lt;TRight&gt;&gt;, IComparable&lt;Either&lt;TLeft, TRight&gt;&gt;, ISerializable</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -137,7 +139,7 @@ Convention is that Left is used for failure and Right is used for success.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_None.md&amp;value=---%0Auid%3A%20Here.Either%602.None%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L33">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L42">View Source</a>
   </span>
   <h4 id="Here_Either_2_None" data-uid="Here.Either`2.None">None</h4>
   <div class="markdown level1 summary"><p><a class="xref" href="Here.Either-2.html">Either&lt;TLeft, TRight&gt;</a> that is not in <span class="xref">Here.EitherStates.Left</span> state neither in <span class="xref">Here.EitherStates.Right</span> state.</p>
@@ -169,7 +171,7 @@ Convention is that Left is used for failure and Right is used for success.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_IsLeft.md&amp;value=---%0Auid%3A%20Here.Either%602.IsLeft%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L51">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L60">View Source</a>
   </span>
   <a id="Here_Either_2_IsLeft_" data-uid="Here.Either`2.IsLeft*"></a>
   <h4 id="Here_Either_2_IsLeft" data-uid="Here.Either`2.IsLeft">IsLeft</h4>
@@ -200,7 +202,7 @@ Convention is that Left is used for failure and Right is used for success.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_IsNone.md&amp;value=---%0Auid%3A%20Here.Either%602.IsNone%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L47">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L56">View Source</a>
   </span>
   <a id="Here_Either_2_IsNone_" data-uid="Here.Either`2.IsNone*"></a>
   <h4 id="Here_Either_2_IsNone" data-uid="Here.Either`2.IsNone">IsNone</h4>
@@ -233,7 +235,7 @@ returns false, this put it in a state that is neither left nor right.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_IsRight.md&amp;value=---%0Auid%3A%20Here.Either%602.IsRight%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L54">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L63">View Source</a>
   </span>
   <a id="Here_Either_2_IsRight_" data-uid="Here.Either`2.IsRight*"></a>
   <h4 id="Here_Either_2_IsRight" data-uid="Here.Either`2.IsRight">IsRight</h4>
@@ -264,7 +266,7 @@ returns false, this put it in a state that is neither left nor right.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_LeftValue.md&amp;value=---%0Auid%3A%20Here.Either%602.LeftValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L65">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L74">View Source</a>
   </span>
   <a id="Here_Either_2_LeftValue_" data-uid="Here.Either`2.LeftValue*"></a>
   <h4 id="Here_Either_2_LeftValue" data-uid="Here.Either`2.LeftValue">LeftValue</h4>
@@ -311,7 +313,7 @@ returns false, this put it in a state that is neither left nor right.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_RightValue.md&amp;value=---%0Auid%3A%20Here.Either%602.RightValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L87">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L96">View Source</a>
   </span>
   <a id="Here_Either_2_RightValue_" data-uid="Here.Either`2.RightValue*"></a>
   <h4 id="Here_Either_2_RightValue" data-uid="Here.Either`2.RightValue">RightValue</h4>
@@ -932,7 +934,7 @@ or the <code data-dev-comment-type="paramref" class="paramref">onLeft</code> fun
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_CompareTo__0_.md&amp;value=---%0Auid%3A%20Here.Either%602.CompareTo(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L494">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L503">View Source</a>
   </span>
   <a id="Here_Either_2_CompareTo_" data-uid="Here.Either`2.CompareTo*"></a>
   <h4 id="Here_Either_2_CompareTo__0_" data-uid="Here.Either`2.CompareTo(`0)">CompareTo(TLeft)</h4>
@@ -983,7 +985,7 @@ Order keeps None first, then Left and finally Right either.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_CompareTo__1_.md&amp;value=---%0Auid%3A%20Here.Either%602.CompareTo(%601)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L511">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L520">View Source</a>
   </span>
   <a id="Here_Either_2_CompareTo_" data-uid="Here.Either`2.CompareTo*"></a>
   <h4 id="Here_Either_2_CompareTo__1_" data-uid="Here.Either`2.CompareTo(`1)">CompareTo(TRight)</h4>
@@ -1030,7 +1032,7 @@ Order keeps None first, then Left and finally Right either.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_CompareTo_Here_Either__0__1__.md&amp;value=---%0Auid%3A%20Here.Either%602.CompareTo(Here.Either%7B%600%2C%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L523">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L532">View Source</a>
   </span>
   <a id="Here_Either_2_CompareTo_" data-uid="Here.Either`2.CompareTo*"></a>
   <h4 id="Here_Either_2_CompareTo_Here_Either__0__1__" data-uid="Here.Either`2.CompareTo(Here.Either{`0,`1})">CompareTo(Either&lt;TLeft, TRight&gt;)</h4>
@@ -1077,7 +1079,7 @@ Order keeps None first, then Left and finally Right either.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_CompareTo_Here_EitherLeft__0__.md&amp;value=---%0Auid%3A%20Here.Either%602.CompareTo(Here.EitherLeft%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L505">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L514">View Source</a>
   </span>
   <a id="Here_Either_2_CompareTo_" data-uid="Here.Either`2.CompareTo*"></a>
   <h4 id="Here_Either_2_CompareTo_Here_EitherLeft__0__" data-uid="Here.Either`2.CompareTo(Here.EitherLeft{`0})">CompareTo(EitherLeft&lt;TLeft&gt;)</h4>
@@ -1128,7 +1130,7 @@ Order keeps None first, then Left and finally Right either.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_CompareTo_Here_EitherRight__1__.md&amp;value=---%0Auid%3A%20Here.Either%602.CompareTo(Here.EitherRight%7B%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L517">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L526">View Source</a>
   </span>
   <a id="Here_Either_2_CompareTo_" data-uid="Here.Either`2.CompareTo*"></a>
   <h4 id="Here_Either_2_CompareTo_Here_EitherRight__1__" data-uid="Here.Either`2.CompareTo(Here.EitherRight{`1})">CompareTo(EitherRight&lt;TRight&gt;)</h4>
@@ -1175,7 +1177,7 @@ Order keeps None first, then Left and finally Right either.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_CompareTo_System_Object_.md&amp;value=---%0Auid%3A%20Here.Either%602.CompareTo(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L478">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L487">View Source</a>
   </span>
   <a id="Here_Either_2_CompareTo_" data-uid="Here.Either`2.CompareTo*"></a>
   <h4 id="Here_Either_2_CompareTo_System_Object_" data-uid="Here.Either`2.CompareTo(System.Object)">CompareTo(Object)</h4>
@@ -1222,7 +1224,7 @@ Order keeps None first, then Left and finally Right either.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_Equals__0_.md&amp;value=---%0Auid%3A%20Here.Either%602.Equals(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L189">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L198">View Source</a>
   </span>
   <a id="Here_Either_2_Equals_" data-uid="Here.Either`2.Equals*"></a>
   <h4 id="Here_Either_2_Equals__0_" data-uid="Here.Either`2.Equals(`0)">Equals(TLeft)</h4>
@@ -1272,7 +1274,7 @@ Order keeps None first, then Left and finally Right either.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_Equals__1_.md&amp;value=---%0Auid%3A%20Here.Either%602.Equals(%601)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L195">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L204">View Source</a>
   </span>
   <a id="Here_Either_2_Equals_" data-uid="Here.Either`2.Equals*"></a>
   <h4 id="Here_Either_2_Equals__1_" data-uid="Here.Either`2.Equals(`1)">Equals(TRight)</h4>
@@ -1319,7 +1321,7 @@ Order keeps None first, then Left and finally Right either.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_Equals_Here_Either__0__1__.md&amp;value=---%0Auid%3A%20Here.Either%602.Equals(Here.Either%7B%600%2C%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L217">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L226">View Source</a>
   </span>
   <a id="Here_Either_2_Equals_" data-uid="Here.Either`2.Equals*"></a>
   <h4 id="Here_Either_2_Equals_Here_Either__0__1__" data-uid="Here.Either`2.Equals(Here.Either{`0,`1})">Equals(Either&lt;TLeft, TRight&gt;)</h4>
@@ -1366,7 +1368,7 @@ Order keeps None first, then Left and finally Right either.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_Equals_Here_EitherLeft__0__.md&amp;value=---%0Auid%3A%20Here.Either%602.Equals(Here.EitherLeft%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L205">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L214">View Source</a>
   </span>
   <a id="Here_Either_2_Equals_" data-uid="Here.Either`2.Equals*"></a>
   <h4 id="Here_Either_2_Equals_Here_EitherLeft__0__" data-uid="Here.Either`2.Equals(Here.EitherLeft{`0})">Equals(EitherLeft&lt;TLeft&gt;)</h4>
@@ -1416,7 +1418,7 @@ Order keeps None first, then Left and finally Right either.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_Equals_Here_EitherRight__1__.md&amp;value=---%0Auid%3A%20Here.Either%602.Equals(Here.EitherRight%7B%601%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L211">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L220">View Source</a>
   </span>
   <a id="Here_Either_2_Equals_" data-uid="Here.Either`2.Equals*"></a>
   <h4 id="Here_Either_2_Equals_Here_EitherRight__1__" data-uid="Here.Either`2.Equals(Here.EitherRight{`1})">Equals(EitherRight&lt;TRight&gt;)</h4>
@@ -1463,7 +1465,7 @@ Order keeps None first, then Left and finally Right either.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_Equals_System_Object_.md&amp;value=---%0Auid%3A%20Here.Either%602.Equals(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L223">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L232">View Source</a>
   </span>
   <a id="Here_Either_2_Equals_" data-uid="Here.Either`2.Equals*"></a>
   <h4 id="Here_Either_2_Equals_System_Object_" data-uid="Here.Either`2.Equals(System.Object)">Equals(Object)</h4>
@@ -1710,7 +1712,7 @@ to combine the initial state with, otherwise returns the initial state.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_GetHashCode.md&amp;value=---%0Auid%3A%20Here.Either%602.GetHashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L460">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L469">View Source</a>
   </span>
   <a id="Here_Either_2_GetHashCode_" data-uid="Here.Either`2.GetHashCode*"></a>
   <h4 id="Here_Either_2_GetHashCode" data-uid="Here.Either`2.GetHashCode">GetHashCode()</h4>
@@ -1737,6 +1739,43 @@ to combine the initial state with, otherwise returns the initial state.</p>
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><span class="xref">System.ValueType.GetHashCode()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_GetObjectData_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_.md&amp;value=---%0Auid%3A%20Here.Either%602.GetObjectData(System.Runtime.Serialization.SerializationInfo%2CSystem.Runtime.Serialization.StreamingContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L821">View Source</a>
+  </span>
+  <a id="Here_Either_2_GetObjectData_" data-uid="Here.Either`2.GetObjectData*"></a>
+  <h4 id="Here_Either_2_GetObjectData_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_" data-uid="Here.Either`2.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">GetObjectData(SerializationInfo, StreamingContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GetObjectData(SerializationInfo info, StreamingContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Runtime.Serialization.SerializationInfo</span></td>
+        <td><span class="parametername">info</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Runtime.Serialization.StreamingContext</span></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_IfFailure_System_Action__0___.md&amp;value=---%0Auid%3A%20Here.Either%602.IfFailure(System.Action%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -4126,7 +4165,7 @@ or the <code data-dev-comment-type="paramref" class="paramref">onFailure</code> 
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_ToString.md&amp;value=---%0Auid%3A%20Here.Either%602.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L789">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L837">View Source</a>
   </span>
   <a id="Here_Either_2_ToString_" data-uid="Here.Either`2.ToString*"></a>
   <h4 id="Here_Either_2_ToString" data-uid="Here.Either`2.ToString">ToString()</h4>
@@ -4160,7 +4199,7 @@ or the <code data-dev-comment-type="paramref" class="paramref">onFailure</code> 
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_Equality__0__Here_Either__0__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_Equality(%600%40%2CHere.Either%7B%600%2C%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L442">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L451">View Source</a>
   </span>
   <a id="Here_Either_2_op_Equality_" data-uid="Here.Either`2.op_Equality*"></a>
   <h4 id="Here_Either_2_op_Equality__0__Here_Either__0__1___" data-uid="Here.Either`2.op_Equality(`0@,Here.Either{`0,`1}@)">Equality(TLeft, Either&lt;TLeft, TRight&gt;)</h4>
@@ -4217,7 +4256,7 @@ and its value is equals to the <code data-dev-comment-type="paramref" class="par
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_Equality__1__Here_Either__0__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_Equality(%601%40%2CHere.Either%7B%600%2C%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L394">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L403">View Source</a>
   </span>
   <a id="Here_Either_2_op_Equality_" data-uid="Here.Either`2.op_Equality*"></a>
   <h4 id="Here_Either_2_op_Equality__1__Here_Either__0__1___" data-uid="Here.Either`2.op_Equality(`1@,Here.Either{`0,`1}@)">Equality(TRight, Either&lt;TLeft, TRight&gt;)</h4>
@@ -4274,7 +4313,7 @@ and its value is equals to the <code data-dev-comment-type="paramref" class="par
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_Equality_Here_Either__0__1____0__.md&amp;value=---%0Auid%3A%20Here.Either%602.op_Equality(Here.Either%7B%600%2C%601%7D%40%2C%600%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L418">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L427">View Source</a>
   </span>
   <a id="Here_Either_2_op_Equality_" data-uid="Here.Either`2.op_Equality*"></a>
   <h4 id="Here_Either_2_op_Equality_Here_Either__0__1____0__" data-uid="Here.Either`2.op_Equality(Here.Either{`0,`1}@,`0@)">Equality(Either&lt;TLeft, TRight&gt;, TLeft)</h4>
@@ -4331,7 +4370,7 @@ and its value is equals to the <code data-dev-comment-type="paramref" class="par
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_Equality_Here_Either__0__1____1__.md&amp;value=---%0Auid%3A%20Here.Either%602.op_Equality(Here.Either%7B%600%2C%601%7D%40%2C%601%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L370">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L379">View Source</a>
   </span>
   <a id="Here_Either_2_op_Equality_" data-uid="Here.Either`2.op_Equality*"></a>
   <h4 id="Here_Either_2_op_Equality_Here_Either__0__1____1__" data-uid="Here.Either`2.op_Equality(Here.Either{`0,`1}@,`1@)">Equality(Either&lt;TLeft, TRight&gt;, TRight)</h4>
@@ -4388,7 +4427,7 @@ and its value is equals to the <code data-dev-comment-type="paramref" class="par
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_Equality_Here_Either__0__1___Here_Either__0__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_Equality(Here.Either%7B%600%2C%601%7D%40%2CHere.Either%7B%600%2C%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L259">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L268">View Source</a>
   </span>
   <a id="Here_Either_2_op_Equality_" data-uid="Here.Either`2.op_Equality*"></a>
   <h4 id="Here_Either_2_op_Equality_Here_Either__0__1___Here_Either__0__1___" data-uid="Here.Either`2.op_Equality(Here.Either{`0,`1}@,Here.Either{`0,`1}@)">Equality(Either&lt;TLeft, TRight&gt;, Either&lt;TLeft, TRight&gt;)</h4>
@@ -4444,7 +4483,7 @@ and its value is equals to the <code data-dev-comment-type="paramref" class="par
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_Equality_Here_Either__0__1___Here_EitherLeft__0___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_Equality(Here.Either%7B%600%2C%601%7D%40%2CHere.EitherLeft%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L281">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L290">View Source</a>
   </span>
   <a id="Here_Either_2_op_Equality_" data-uid="Here.Either`2.op_Equality*"></a>
   <h4 id="Here_Either_2_op_Equality_Here_Either__0__1___Here_EitherLeft__0___" data-uid="Here.Either`2.op_Equality(Here.Either{`0,`1}@,Here.EitherLeft{`0}@)">Equality(Either&lt;TLeft, TRight&gt;, EitherLeft&lt;TLeft&gt;)</h4>
@@ -4500,7 +4539,7 @@ and its value is equals to the <code data-dev-comment-type="paramref" class="par
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_Equality_Here_Either__0__1___Here_EitherRight__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_Equality(Here.Either%7B%600%2C%601%7D%40%2CHere.EitherRight%7B%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L325">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L334">View Source</a>
   </span>
   <a id="Here_Either_2_op_Equality_" data-uid="Here.Either`2.op_Equality*"></a>
   <h4 id="Here_Either_2_op_Equality_Here_Either__0__1___Here_EitherRight__1___" data-uid="Here.Either`2.op_Equality(Here.Either{`0,`1}@,Here.EitherRight{`1}@)">Equality(Either&lt;TLeft, TRight&gt;, EitherRight&lt;TRight&gt;)</h4>
@@ -4556,7 +4595,7 @@ and its value is equals to the <code data-dev-comment-type="paramref" class="par
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_Equality_Here_EitherLeft__0___Here_Either__0__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_Equality(Here.EitherLeft%7B%600%7D%40%2CHere.Either%7B%600%2C%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L303">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L312">View Source</a>
   </span>
   <a id="Here_Either_2_op_Equality_" data-uid="Here.Either`2.op_Equality*"></a>
   <h4 id="Here_Either_2_op_Equality_Here_EitherLeft__0___Here_Either__0__1___" data-uid="Here.Either`2.op_Equality(Here.EitherLeft{`0}@,Here.Either{`0,`1}@)">Equality(EitherLeft&lt;TLeft&gt;, Either&lt;TLeft, TRight&gt;)</h4>
@@ -4612,7 +4651,7 @@ and its value is equals to the <code data-dev-comment-type="paramref" class="par
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_Equality_Here_EitherRight__1___Here_Either__0__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_Equality(Here.EitherRight%7B%601%7D%40%2CHere.Either%7B%600%2C%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L347">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L356">View Source</a>
   </span>
   <a id="Here_Either_2_op_Equality_" data-uid="Here.Either`2.op_Equality*"></a>
   <h4 id="Here_Either_2_op_Equality_Here_EitherRight__1___Here_Either__0__1___" data-uid="Here.Either`2.op_Equality(Here.EitherRight{`1}@,Here.Either{`0,`1}@)">Equality(EitherRight&lt;TRight&gt;, Either&lt;TLeft, TRight&gt;)</h4>
@@ -4668,7 +4707,7 @@ and its value is equals to the <code data-dev-comment-type="paramref" class="par
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_Explicit_Here_Either__0__1_____0.md&amp;value=---%0Auid%3A%20Here.Either%602.op_Explicit(Here.Either%7B%600%2C%601%7D%40)~%600%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L160">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L169">View Source</a>
   </span>
   <a id="Here_Either_2_op_Explicit_" data-uid="Here.Either`2.op_Explicit*"></a>
   <h4 id="Here_Either_2_op_Explicit_Here_Either__0__1_____0" data-uid="Here.Either`2.op_Explicit(Here.Either{`0,`1}@)~`0">Explicit(Either&lt;TLeft, TRight&gt; to TLeft)</h4>
@@ -4734,7 +4773,7 @@ and its value is equals to the <code data-dev-comment-type="paramref" class="par
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_Explicit_Here_Either__0__1_____1.md&amp;value=---%0Auid%3A%20Here.Either%602.op_Explicit(Here.Either%7B%600%2C%601%7D%40)~%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L174">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L183">View Source</a>
   </span>
   <a id="Here_Either_2_op_Explicit_" data-uid="Here.Either`2.op_Explicit*"></a>
   <h4 id="Here_Either_2_op_Explicit_Here_Either__0__1_____1" data-uid="Here.Either`2.op_Explicit(Here.Either{`0,`1}@)~`1">Explicit(Either&lt;TLeft, TRight&gt; to TRight)</h4>
@@ -4800,7 +4839,7 @@ and its value is equals to the <code data-dev-comment-type="paramref" class="par
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_GreaterThan_Here_Either__0__1___Here_Either__0__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_GreaterThan(Here.Either%7B%600%2C%601%7D%40%2CHere.Either%7B%600%2C%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L584">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L593">View Source</a>
   </span>
   <a id="Here_Either_2_op_GreaterThan_" data-uid="Here.Either`2.op_GreaterThan*"></a>
   <h4 id="Here_Either_2_op_GreaterThan_Here_Either__0__1___Here_Either__0__1___" data-uid="Here.Either`2.op_GreaterThan(Here.Either{`0,`1}@,Here.Either{`0,`1}@)">GreaterThan(Either&lt;TLeft, TRight&gt;, Either&lt;TLeft, TRight&gt;)</h4>
@@ -4856,7 +4895,7 @@ and its value is equals to the <code data-dev-comment-type="paramref" class="par
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_GreaterThan_Here_Either__0__1___Here_EitherLeft__0___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_GreaterThan(Here.Either%7B%600%2C%601%7D%40%2CHere.EitherLeft%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L632">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L641">View Source</a>
   </span>
   <a id="Here_Either_2_op_GreaterThan_" data-uid="Here.Either`2.op_GreaterThan*"></a>
   <h4 id="Here_Either_2_op_GreaterThan_Here_Either__0__1___Here_EitherLeft__0___" data-uid="Here.Either`2.op_GreaterThan(Here.Either{`0,`1}@,Here.EitherLeft{`0}@)">GreaterThan(Either&lt;TLeft, TRight&gt;, EitherLeft&lt;TLeft&gt;)</h4>
@@ -4912,7 +4951,7 @@ and its value is equals to the <code data-dev-comment-type="paramref" class="par
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_GreaterThan_Here_Either__0__1___Here_EitherRight__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_GreaterThan(Here.Either%7B%600%2C%601%7D%40%2CHere.EitherRight%7B%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L724">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L733">View Source</a>
   </span>
   <a id="Here_Either_2_op_GreaterThan_" data-uid="Here.Either`2.op_GreaterThan*"></a>
   <h4 id="Here_Either_2_op_GreaterThan_Here_Either__0__1___Here_EitherRight__1___" data-uid="Here.Either`2.op_GreaterThan(Here.Either{`0,`1}@,Here.EitherRight{`1}@)">GreaterThan(Either&lt;TLeft, TRight&gt;, EitherRight&lt;TRight&gt;)</h4>
@@ -4968,7 +5007,7 @@ and its value is equals to the <code data-dev-comment-type="paramref" class="par
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_GreaterThan_Here_EitherLeft__0___Here_Either__0__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_GreaterThan(Here.EitherLeft%7B%600%7D%40%2CHere.Either%7B%600%2C%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L676">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L685">View Source</a>
   </span>
   <a id="Here_Either_2_op_GreaterThan_" data-uid="Here.Either`2.op_GreaterThan*"></a>
   <h4 id="Here_Either_2_op_GreaterThan_Here_EitherLeft__0___Here_Either__0__1___" data-uid="Here.Either`2.op_GreaterThan(Here.EitherLeft{`0}@,Here.Either{`0,`1}@)">GreaterThan(EitherLeft&lt;TLeft&gt;, Either&lt;TLeft, TRight&gt;)</h4>
@@ -5024,7 +5063,7 @@ and its value is equals to the <code data-dev-comment-type="paramref" class="par
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_GreaterThan_Here_EitherRight__1___Here_Either__0__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_GreaterThan(Here.EitherRight%7B%601%7D%40%2CHere.Either%7B%600%2C%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L768">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L777">View Source</a>
   </span>
   <a id="Here_Either_2_op_GreaterThan_" data-uid="Here.Either`2.op_GreaterThan*"></a>
   <h4 id="Here_Either_2_op_GreaterThan_Here_EitherRight__1___Here_Either__0__1___" data-uid="Here.Either`2.op_GreaterThan(Here.EitherRight{`1}@,Here.Either{`0,`1}@)">GreaterThan(EitherRight&lt;TRight&gt;, Either&lt;TLeft, TRight&gt;)</h4>
@@ -5080,7 +5119,7 @@ and its value is equals to the <code data-dev-comment-type="paramref" class="par
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_GreaterThanOrEqual_Here_Either__0__1___Here_Either__0__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_GreaterThanOrEqual(Here.Either%7B%600%2C%601%7D%40%2CHere.Either%7B%600%2C%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L595">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L604">View Source</a>
   </span>
   <a id="Here_Either_2_op_GreaterThanOrEqual_" data-uid="Here.Either`2.op_GreaterThanOrEqual*"></a>
   <h4 id="Here_Either_2_op_GreaterThanOrEqual_Here_Either__0__1___Here_Either__0__1___" data-uid="Here.Either`2.op_GreaterThanOrEqual(Here.Either{`0,`1}@,Here.Either{`0,`1}@)">GreaterThanOrEqual(Either&lt;TLeft, TRight&gt;, Either&lt;TLeft, TRight&gt;)</h4>
@@ -5136,7 +5175,7 @@ and its value is equals to the <code data-dev-comment-type="paramref" class="par
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_GreaterThanOrEqual_Here_Either__0__1___Here_EitherLeft__0___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_GreaterThanOrEqual(Here.Either%7B%600%2C%601%7D%40%2CHere.EitherLeft%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L643">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L652">View Source</a>
   </span>
   <a id="Here_Either_2_op_GreaterThanOrEqual_" data-uid="Here.Either`2.op_GreaterThanOrEqual*"></a>
   <h4 id="Here_Either_2_op_GreaterThanOrEqual_Here_Either__0__1___Here_EitherLeft__0___" data-uid="Here.Either`2.op_GreaterThanOrEqual(Here.Either{`0,`1}@,Here.EitherLeft{`0}@)">GreaterThanOrEqual(Either&lt;TLeft, TRight&gt;, EitherLeft&lt;TLeft&gt;)</h4>
@@ -5192,7 +5231,7 @@ and its value is equals to the <code data-dev-comment-type="paramref" class="par
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_GreaterThanOrEqual_Here_Either__0__1___Here_EitherRight__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_GreaterThanOrEqual(Here.Either%7B%600%2C%601%7D%40%2CHere.EitherRight%7B%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L735">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L744">View Source</a>
   </span>
   <a id="Here_Either_2_op_GreaterThanOrEqual_" data-uid="Here.Either`2.op_GreaterThanOrEqual*"></a>
   <h4 id="Here_Either_2_op_GreaterThanOrEqual_Here_Either__0__1___Here_EitherRight__1___" data-uid="Here.Either`2.op_GreaterThanOrEqual(Here.Either{`0,`1}@,Here.EitherRight{`1}@)">GreaterThanOrEqual(Either&lt;TLeft, TRight&gt;, EitherRight&lt;TRight&gt;)</h4>
@@ -5248,7 +5287,7 @@ and its value is equals to the <code data-dev-comment-type="paramref" class="par
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_GreaterThanOrEqual_Here_EitherLeft__0___Here_Either__0__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_GreaterThanOrEqual(Here.EitherLeft%7B%600%7D%40%2CHere.Either%7B%600%2C%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L687">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L696">View Source</a>
   </span>
   <a id="Here_Either_2_op_GreaterThanOrEqual_" data-uid="Here.Either`2.op_GreaterThanOrEqual*"></a>
   <h4 id="Here_Either_2_op_GreaterThanOrEqual_Here_EitherLeft__0___Here_Either__0__1___" data-uid="Here.Either`2.op_GreaterThanOrEqual(Here.EitherLeft{`0}@,Here.Either{`0,`1}@)">GreaterThanOrEqual(EitherLeft&lt;TLeft&gt;, Either&lt;TLeft, TRight&gt;)</h4>
@@ -5304,7 +5343,7 @@ and its value is equals to the <code data-dev-comment-type="paramref" class="par
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_GreaterThanOrEqual_Here_EitherRight__1___Here_Either__0__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_GreaterThanOrEqual(Here.EitherRight%7B%601%7D%40%2CHere.Either%7B%600%2C%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L779">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L788">View Source</a>
   </span>
   <a id="Here_Either_2_op_GreaterThanOrEqual_" data-uid="Here.Either`2.op_GreaterThanOrEqual*"></a>
   <h4 id="Here_Either_2_op_GreaterThanOrEqual_Here_EitherRight__1___Here_Either__0__1___" data-uid="Here.Either`2.op_GreaterThanOrEqual(Here.EitherRight{`1}@,Here.Either{`0,`1}@)">GreaterThanOrEqual(EitherRight&lt;TRight&gt;, Either&lt;TLeft, TRight&gt;)</h4>
@@ -5460,7 +5499,7 @@ and its value is equals to the <code data-dev-comment-type="paramref" class="par
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_Inequality__0__Here_Either__0__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_Inequality(%600%40%2CHere.Either%7B%600%2C%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L454">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L463">View Source</a>
   </span>
   <a id="Here_Either_2_op_Inequality_" data-uid="Here.Either`2.op_Inequality*"></a>
   <h4 id="Here_Either_2_op_Inequality__0__Here_Either__0__1___" data-uid="Here.Either`2.op_Inequality(`0@,Here.Either{`0,`1}@)">Inequality(TLeft, Either&lt;TLeft, TRight&gt;)</h4>
@@ -5517,7 +5556,7 @@ with its value equals to the <code data-dev-comment-type="paramref" class="param
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_Inequality__1__Here_Either__0__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_Inequality(%601%40%2CHere.Either%7B%600%2C%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L406">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L415">View Source</a>
   </span>
   <a id="Here_Either_2_op_Inequality_" data-uid="Here.Either`2.op_Inequality*"></a>
   <h4 id="Here_Either_2_op_Inequality__1__Here_Either__0__1___" data-uid="Here.Either`2.op_Inequality(`1@,Here.Either{`0,`1}@)">Inequality(TRight, Either&lt;TLeft, TRight&gt;)</h4>
@@ -5574,7 +5613,7 @@ with its value equals to the <code data-dev-comment-type="paramref" class="param
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_Inequality_Here_Either__0__1____0__.md&amp;value=---%0Auid%3A%20Here.Either%602.op_Inequality(Here.Either%7B%600%2C%601%7D%40%2C%600%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L430">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L439">View Source</a>
   </span>
   <a id="Here_Either_2_op_Inequality_" data-uid="Here.Either`2.op_Inequality*"></a>
   <h4 id="Here_Either_2_op_Inequality_Here_Either__0__1____0__" data-uid="Here.Either`2.op_Inequality(Here.Either{`0,`1}@,`0@)">Inequality(Either&lt;TLeft, TRight&gt;, TLeft)</h4>
@@ -5631,7 +5670,7 @@ with its value equals to the <code data-dev-comment-type="paramref" class="param
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_Inequality_Here_Either__0__1____1__.md&amp;value=---%0Auid%3A%20Here.Either%602.op_Inequality(Here.Either%7B%600%2C%601%7D%40%2C%601%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L382">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L391">View Source</a>
   </span>
   <a id="Here_Either_2_op_Inequality_" data-uid="Here.Either`2.op_Inequality*"></a>
   <h4 id="Here_Either_2_op_Inequality_Here_Either__0__1____1__" data-uid="Here.Either`2.op_Inequality(Here.Either{`0,`1}@,`1@)">Inequality(Either&lt;TLeft, TRight&gt;, TRight)</h4>
@@ -5688,7 +5727,7 @@ with its value equals to the <code data-dev-comment-type="paramref" class="param
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_Inequality_Here_Either__0__1___Here_Either__0__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_Inequality(Here.Either%7B%600%2C%601%7D%40%2CHere.Either%7B%600%2C%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L270">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L279">View Source</a>
   </span>
   <a id="Here_Either_2_op_Inequality_" data-uid="Here.Either`2.op_Inequality*"></a>
   <h4 id="Here_Either_2_op_Inequality_Here_Either__0__1___Here_Either__0__1___" data-uid="Here.Either`2.op_Inequality(Here.Either{`0,`1}@,Here.Either{`0,`1}@)">Inequality(Either&lt;TLeft, TRight&gt;, Either&lt;TLeft, TRight&gt;)</h4>
@@ -5744,7 +5783,7 @@ with its value equals to the <code data-dev-comment-type="paramref" class="param
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_Inequality_Here_Either__0__1___Here_EitherLeft__0___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_Inequality(Here.Either%7B%600%2C%601%7D%40%2CHere.EitherLeft%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L292">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L301">View Source</a>
   </span>
   <a id="Here_Either_2_op_Inequality_" data-uid="Here.Either`2.op_Inequality*"></a>
   <h4 id="Here_Either_2_op_Inequality_Here_Either__0__1___Here_EitherLeft__0___" data-uid="Here.Either`2.op_Inequality(Here.Either{`0,`1}@,Here.EitherLeft{`0}@)">Inequality(Either&lt;TLeft, TRight&gt;, EitherLeft&lt;TLeft&gt;)</h4>
@@ -5800,7 +5839,7 @@ with its value equals to the <code data-dev-comment-type="paramref" class="param
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_Inequality_Here_Either__0__1___Here_EitherRight__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_Inequality(Here.Either%7B%600%2C%601%7D%40%2CHere.EitherRight%7B%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L336">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L345">View Source</a>
   </span>
   <a id="Here_Either_2_op_Inequality_" data-uid="Here.Either`2.op_Inequality*"></a>
   <h4 id="Here_Either_2_op_Inequality_Here_Either__0__1___Here_EitherRight__1___" data-uid="Here.Either`2.op_Inequality(Here.Either{`0,`1}@,Here.EitherRight{`1}@)">Inequality(Either&lt;TLeft, TRight&gt;, EitherRight&lt;TRight&gt;)</h4>
@@ -5856,7 +5895,7 @@ with its value equals to the <code data-dev-comment-type="paramref" class="param
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_Inequality_Here_EitherLeft__0___Here_Either__0__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_Inequality(Here.EitherLeft%7B%600%7D%40%2CHere.Either%7B%600%2C%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L314">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L323">View Source</a>
   </span>
   <a id="Here_Either_2_op_Inequality_" data-uid="Here.Either`2.op_Inequality*"></a>
   <h4 id="Here_Either_2_op_Inequality_Here_EitherLeft__0___Here_Either__0__1___" data-uid="Here.Either`2.op_Inequality(Here.EitherLeft{`0}@,Here.Either{`0,`1}@)">Inequality(EitherLeft&lt;TLeft&gt;, Either&lt;TLeft, TRight&gt;)</h4>
@@ -5912,7 +5951,7 @@ with its value equals to the <code data-dev-comment-type="paramref" class="param
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_Inequality_Here_EitherRight__1___Here_Either__0__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_Inequality(Here.EitherRight%7B%601%7D%40%2CHere.Either%7B%600%2C%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L358">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L367">View Source</a>
   </span>
   <a id="Here_Either_2_op_Inequality_" data-uid="Here.Either`2.op_Inequality*"></a>
   <h4 id="Here_Either_2_op_Inequality_Here_EitherRight__1___Here_Either__0__1___" data-uid="Here.Either`2.op_Inequality(Here.EitherRight{`1}@,Here.Either{`0,`1}@)">Inequality(EitherRight&lt;TRight&gt;, Either&lt;TLeft, TRight&gt;)</h4>
@@ -5968,7 +6007,7 @@ with its value equals to the <code data-dev-comment-type="paramref" class="param
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_LessThan_Here_Either__0__1___Here_Either__0__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_LessThan(Here.Either%7B%600%2C%601%7D%40%2CHere.Either%7B%600%2C%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L562">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L571">View Source</a>
   </span>
   <a id="Here_Either_2_op_LessThan_" data-uid="Here.Either`2.op_LessThan*"></a>
   <h4 id="Here_Either_2_op_LessThan_Here_Either__0__1___Here_Either__0__1___" data-uid="Here.Either`2.op_LessThan(Here.Either{`0,`1}@,Here.Either{`0,`1}@)">LessThan(Either&lt;TLeft, TRight&gt;, Either&lt;TLeft, TRight&gt;)</h4>
@@ -6024,7 +6063,7 @@ with its value equals to the <code data-dev-comment-type="paramref" class="param
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_LessThan_Here_Either__0__1___Here_EitherLeft__0___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_LessThan(Here.Either%7B%600%2C%601%7D%40%2CHere.EitherLeft%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L610">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L619">View Source</a>
   </span>
   <a id="Here_Either_2_op_LessThan_" data-uid="Here.Either`2.op_LessThan*"></a>
   <h4 id="Here_Either_2_op_LessThan_Here_Either__0__1___Here_EitherLeft__0___" data-uid="Here.Either`2.op_LessThan(Here.Either{`0,`1}@,Here.EitherLeft{`0}@)">LessThan(Either&lt;TLeft, TRight&gt;, EitherLeft&lt;TLeft&gt;)</h4>
@@ -6080,7 +6119,7 @@ with its value equals to the <code data-dev-comment-type="paramref" class="param
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_LessThan_Here_Either__0__1___Here_EitherRight__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_LessThan(Here.Either%7B%600%2C%601%7D%40%2CHere.EitherRight%7B%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L702">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L711">View Source</a>
   </span>
   <a id="Here_Either_2_op_LessThan_" data-uid="Here.Either`2.op_LessThan*"></a>
   <h4 id="Here_Either_2_op_LessThan_Here_Either__0__1___Here_EitherRight__1___" data-uid="Here.Either`2.op_LessThan(Here.Either{`0,`1}@,Here.EitherRight{`1}@)">LessThan(Either&lt;TLeft, TRight&gt;, EitherRight&lt;TRight&gt;)</h4>
@@ -6136,7 +6175,7 @@ with its value equals to the <code data-dev-comment-type="paramref" class="param
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_LessThan_Here_EitherLeft__0___Here_Either__0__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_LessThan(Here.EitherLeft%7B%600%7D%40%2CHere.Either%7B%600%2C%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L654">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L663">View Source</a>
   </span>
   <a id="Here_Either_2_op_LessThan_" data-uid="Here.Either`2.op_LessThan*"></a>
   <h4 id="Here_Either_2_op_LessThan_Here_EitherLeft__0___Here_Either__0__1___" data-uid="Here.Either`2.op_LessThan(Here.EitherLeft{`0}@,Here.Either{`0,`1}@)">LessThan(EitherLeft&lt;TLeft&gt;, Either&lt;TLeft, TRight&gt;)</h4>
@@ -6192,7 +6231,7 @@ with its value equals to the <code data-dev-comment-type="paramref" class="param
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_LessThan_Here_EitherRight__1___Here_Either__0__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_LessThan(Here.EitherRight%7B%601%7D%40%2CHere.Either%7B%600%2C%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L746">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L755">View Source</a>
   </span>
   <a id="Here_Either_2_op_LessThan_" data-uid="Here.Either`2.op_LessThan*"></a>
   <h4 id="Here_Either_2_op_LessThan_Here_EitherRight__1___Here_Either__0__1___" data-uid="Here.Either`2.op_LessThan(Here.EitherRight{`1}@,Here.Either{`0,`1}@)">LessThan(EitherRight&lt;TRight&gt;, Either&lt;TLeft, TRight&gt;)</h4>
@@ -6248,7 +6287,7 @@ with its value equals to the <code data-dev-comment-type="paramref" class="param
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_LessThanOrEqual_Here_Either__0__1___Here_Either__0__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_LessThanOrEqual(Here.Either%7B%600%2C%601%7D%40%2CHere.Either%7B%600%2C%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L573">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L582">View Source</a>
   </span>
   <a id="Here_Either_2_op_LessThanOrEqual_" data-uid="Here.Either`2.op_LessThanOrEqual*"></a>
   <h4 id="Here_Either_2_op_LessThanOrEqual_Here_Either__0__1___Here_Either__0__1___" data-uid="Here.Either`2.op_LessThanOrEqual(Here.Either{`0,`1}@,Here.Either{`0,`1}@)">LessThanOrEqual(Either&lt;TLeft, TRight&gt;, Either&lt;TLeft, TRight&gt;)</h4>
@@ -6304,7 +6343,7 @@ with its value equals to the <code data-dev-comment-type="paramref" class="param
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_LessThanOrEqual_Here_Either__0__1___Here_EitherLeft__0___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_LessThanOrEqual(Here.Either%7B%600%2C%601%7D%40%2CHere.EitherLeft%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L621">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L630">View Source</a>
   </span>
   <a id="Here_Either_2_op_LessThanOrEqual_" data-uid="Here.Either`2.op_LessThanOrEqual*"></a>
   <h4 id="Here_Either_2_op_LessThanOrEqual_Here_Either__0__1___Here_EitherLeft__0___" data-uid="Here.Either`2.op_LessThanOrEqual(Here.Either{`0,`1}@,Here.EitherLeft{`0}@)">LessThanOrEqual(Either&lt;TLeft, TRight&gt;, EitherLeft&lt;TLeft&gt;)</h4>
@@ -6360,7 +6399,7 @@ with its value equals to the <code data-dev-comment-type="paramref" class="param
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_LessThanOrEqual_Here_Either__0__1___Here_EitherRight__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_LessThanOrEqual(Here.Either%7B%600%2C%601%7D%40%2CHere.EitherRight%7B%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L713">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L722">View Source</a>
   </span>
   <a id="Here_Either_2_op_LessThanOrEqual_" data-uid="Here.Either`2.op_LessThanOrEqual*"></a>
   <h4 id="Here_Either_2_op_LessThanOrEqual_Here_Either__0__1___Here_EitherRight__1___" data-uid="Here.Either`2.op_LessThanOrEqual(Here.Either{`0,`1}@,Here.EitherRight{`1}@)">LessThanOrEqual(Either&lt;TLeft, TRight&gt;, EitherRight&lt;TRight&gt;)</h4>
@@ -6416,7 +6455,7 @@ with its value equals to the <code data-dev-comment-type="paramref" class="param
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_LessThanOrEqual_Here_EitherLeft__0___Here_Either__0__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_LessThanOrEqual(Here.EitherLeft%7B%600%7D%40%2CHere.Either%7B%600%2C%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L665">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L674">View Source</a>
   </span>
   <a id="Here_Either_2_op_LessThanOrEqual_" data-uid="Here.Either`2.op_LessThanOrEqual*"></a>
   <h4 id="Here_Either_2_op_LessThanOrEqual_Here_EitherLeft__0___Here_Either__0__1___" data-uid="Here.Either`2.op_LessThanOrEqual(Here.EitherLeft{`0}@,Here.Either{`0,`1}@)">LessThanOrEqual(EitherLeft&lt;TLeft&gt;, Either&lt;TLeft, TRight&gt;)</h4>
@@ -6472,7 +6511,7 @@ with its value equals to the <code data-dev-comment-type="paramref" class="param
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Either_2_op_LessThanOrEqual_Here_EitherRight__1___Here_Either__0__1___.md&amp;value=---%0Auid%3A%20Here.Either%602.op_LessThanOrEqual(Here.EitherRight%7B%601%7D%40%2CHere.Either%7B%600%2C%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L757">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/Either.cs/#L766">View Source</a>
   </span>
   <a id="Here_Either_2_op_LessThanOrEqual_" data-uid="Here.Either`2.op_LessThanOrEqual*"></a>
   <h4 id="Here_Either_2_op_LessThanOrEqual_Here_EitherRight__1___Here_Either__0__1___" data-uid="Here.Either`2.op_LessThanOrEqual(Here.EitherRight{`1}@,Here.Either{`0,`1}@)">LessThanOrEqual(EitherRight&lt;TRight&gt;, Either&lt;TLeft, TRight&gt;)</h4>
@@ -6547,6 +6586,9 @@ with its value equals to the <code data-dev-comment-type="paramref" class="param
   </div>
   <div>
       <span class="xref">System.IComparable&lt;T&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.Runtime.Serialization.ISerializable</span>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>

@@ -82,6 +82,7 @@
     <div><span class="xref">System.IEquatable</span>&lt;<a class="xref" href="Here.Result.html">Result</a>&gt;</div>
     <div><span class="xref">System.IComparable</span></div>
     <div><span class="xref">System.IComparable</span>&lt;<a class="xref" href="Here.Result.html">Result</a>&gt;</div>
+    <div><span class="xref">System.Runtime.Serialization.ISerializable</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -99,7 +100,8 @@
   <h6><strong>Assembly</strong>: Here.dll</h6>
   <h5 id="Here_Result_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public struct Result : IResult, IEquatable&lt;Result&gt;, IComparable, IComparable&lt;Result&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">[Serializable]
+public struct Result : IResult, IEquatable&lt;Result&gt;, IComparable, IComparable&lt;Result&gt;, ISerializable</code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>
@@ -108,7 +110,7 @@
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_Exception.md&amp;value=---%0Auid%3A%20Here.Result.Exception%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L27">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L40">View Source</a>
   </span>
   <a id="Here_Result_Exception_" data-uid="Here.Result.Exception*"></a>
   <h4 id="Here_Result_Exception" data-uid="Here.Result.Exception">Exception</h4>
@@ -139,7 +141,7 @@
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_IsFailure.md&amp;value=---%0Auid%3A%20Here.Result.IsFailure%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L21">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L34">View Source</a>
   </span>
   <a id="Here_Result_IsFailure_" data-uid="Here.Result.IsFailure*"></a>
   <h4 id="Here_Result_IsFailure" data-uid="Here.Result.IsFailure">IsFailure</h4>
@@ -170,7 +172,7 @@
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_IsSuccess.md&amp;value=---%0Auid%3A%20Here.Result.IsSuccess%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L15">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L28">View Source</a>
   </span>
   <a id="Here_Result_IsSuccess_" data-uid="Here.Result.IsSuccess*"></a>
   <h4 id="Here_Result_IsSuccess" data-uid="Here.Result.IsSuccess">IsSuccess</h4>
@@ -201,7 +203,7 @@
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_IsWarning.md&amp;value=---%0Auid%3A%20Here.Result.IsWarning%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L18">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L31">View Source</a>
   </span>
   <a id="Here_Result_IsWarning_" data-uid="Here.Result.IsWarning*"></a>
   <h4 id="Here_Result_IsWarning" data-uid="Here.Result.IsWarning">IsWarning</h4>
@@ -232,7 +234,7 @@
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_Message.md&amp;value=---%0Auid%3A%20Here.Result.Message%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L24">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L37">View Source</a>
   </span>
   <a id="Here_Result_Message_" data-uid="Here.Result.Message*"></a>
   <h4 id="Here_Result_Message" data-uid="Here.Result.Message">Message</h4>
@@ -265,7 +267,7 @@
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_Cast__1___0__.md&amp;value=---%0Auid%3A%20Here.Result.Cast%60%601(%60%600%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L60">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L73">View Source</a>
   </span>
   <a id="Here_Result_Cast_" data-uid="Here.Result.Cast*"></a>
   <h4 id="Here_Result_Cast__1___0__" data-uid="Here.Result.Cast``1(``0@)">Cast&lt;T&gt;(T)</h4>
@@ -331,7 +333,7 @@
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_Cast__1_System_Func___0___.md&amp;value=---%0Auid%3A%20Here.Result.Cast%60%601(System.Func%7B%60%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L75">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L88">View Source</a>
   </span>
   <a id="Here_Result_Cast_" data-uid="Here.Result.Cast*"></a>
   <h4 id="Here_Result_Cast__1_System_Func___0___" data-uid="Here.Result.Cast``1(System.Func{``0}@)">Cast&lt;T&gt;(Func&lt;T&gt;)</h4>
@@ -413,7 +415,7 @@
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_Cast__2___0____1__.md&amp;value=---%0Auid%3A%20Here.Result.Cast%60%602(%60%600%40%2C%60%601%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L132">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L145">View Source</a>
   </span>
   <a id="Here_Result_Cast_" data-uid="Here.Result.Cast*"></a>
   <h4 id="Here_Result_Cast__2___0____1__" data-uid="Here.Result.Cast``2(``0@,``1@)">Cast&lt;T, TError&gt;(T, TError)</h4>
@@ -506,7 +508,7 @@
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_Cast__2___0__System_Func___1___.md&amp;value=---%0Auid%3A%20Here.Result.Cast%60%602(%60%600%40%2CSystem.Func%7B%60%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L153">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L166">View Source</a>
   </span>
   <a id="Here_Result_Cast_" data-uid="Here.Result.Cast*"></a>
   <h4 id="Here_Result_Cast__2___0__System_Func___1___" data-uid="Here.Result.Cast``2(``0@,System.Func{``1}@)">Cast&lt;T, TError&gt;(T, Func&lt;TError&gt;)</h4>
@@ -599,7 +601,7 @@
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_Cast__2_System_Func___0_____1__.md&amp;value=---%0Auid%3A%20Here.Result.Cast%60%602(System.Func%7B%60%600%7D%40%2C%60%601%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L175">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L188">View Source</a>
   </span>
   <a id="Here_Result_Cast_" data-uid="Here.Result.Cast*"></a>
   <h4 id="Here_Result_Cast__2_System_Func___0_____1__" data-uid="Here.Result.Cast``2(System.Func{``0}@,``1@)">Cast&lt;T, TError&gt;(Func&lt;T&gt;, TError)</h4>
@@ -697,7 +699,7 @@
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_Cast__2_System_Func___0___System_Func___1___.md&amp;value=---%0Auid%3A%20Here.Result.Cast%60%602(System.Func%7B%60%600%7D%40%2CSystem.Func%7B%60%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L198">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L211">View Source</a>
   </span>
   <a id="Here_Result_Cast_" data-uid="Here.Result.Cast*"></a>
   <h4 id="Here_Result_Cast__2_System_Func___0___System_Func___1___" data-uid="Here.Result.Cast``2(System.Func{``0}@,System.Func{``1}@)">Cast&lt;T, TError&gt;(Func&lt;T&gt;, Func&lt;TError&gt;)</h4>
@@ -795,7 +797,7 @@
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_CompareTo_Here_Result_.md&amp;value=---%0Auid%3A%20Here.Result.CompareTo(Here.Result)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L378">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L391">View Source</a>
   </span>
   <a id="Here_Result_CompareTo_" data-uid="Here.Result.CompareTo*"></a>
   <h4 id="Here_Result_CompareTo_Here_Result_" data-uid="Here.Result.CompareTo(Here.Result)">CompareTo(Result)</h4>
@@ -844,7 +846,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_CompareTo_System_Object_.md&amp;value=---%0Auid%3A%20Here.Result.CompareTo(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L363">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L376">View Source</a>
   </span>
   <a id="Here_Result_CompareTo_" data-uid="Here.Result.CompareTo*"></a>
   <h4 id="Here_Result_CompareTo_System_Object_" data-uid="Here.Result.CompareTo(System.Object)">CompareTo(Object)</h4>
@@ -891,7 +893,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_CustomCast__1___0__.md&amp;value=---%0Auid%3A%20Here.Result.CustomCast%60%601(%60%600%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L92">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L105">View Source</a>
   </span>
   <a id="Here_Result_CustomCast_" data-uid="Here.Result.CustomCast*"></a>
   <h4 id="Here_Result_CustomCast__1___0__" data-uid="Here.Result.CustomCast``1(``0@)">CustomCast&lt;TError&gt;(TError)</h4>
@@ -973,7 +975,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_CustomCast__1_System_Func___0___.md&amp;value=---%0Auid%3A%20Here.Result.CustomCast%60%601(System.Func%7B%60%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L111">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L124">View Source</a>
   </span>
   <a id="Here_Result_CustomCast_" data-uid="Here.Result.CustomCast*"></a>
   <h4 id="Here_Result_CustomCast__1_System_Func___0___" data-uid="Here.Result.CustomCast``1(System.Func{``0}@)">CustomCast&lt;TError&gt;(Func&lt;TError&gt;)</h4>
@@ -1055,7 +1057,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_CustomFail__1___0__System_Exception__.md&amp;value=---%0Auid%3A%20Here.Result.CustomFail%60%601(%60%600%40%2CSystem.Exception%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L627">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L693">View Source</a>
   </span>
   <a id="Here_Result_CustomFail_" data-uid="Here.Result.CustomFail*"></a>
   <h4 id="Here_Result_CustomFail__1___0__System_Exception__" data-uid="Here.Result.CustomFail``1(``0@,System.Exception@)">CustomFail&lt;TError&gt;(TError, Exception)</h4>
@@ -1147,7 +1149,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_CustomFail__1_System_String____0__System_Exception__.md&amp;value=---%0Auid%3A%20Here.Result.CustomFail%60%601(System.String%40%2C%60%600%40%2CSystem.Exception%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L612">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L678">View Source</a>
   </span>
   <a id="Here_Result_CustomFail_" data-uid="Here.Result.CustomFail*"></a>
   <h4 id="Here_Result_CustomFail__1_System_String____0__System_Exception__" data-uid="Here.Result.CustomFail``1(System.String@,``0@,System.Exception@)">CustomFail&lt;TError&gt;(String, TError, Exception)</h4>
@@ -1245,7 +1247,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_CustomOk__1.md&amp;value=---%0Auid%3A%20Here.Result.CustomOk%60%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L583">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L649">View Source</a>
   </span>
   <a id="Here_Result_CustomOk_" data-uid="Here.Result.CustomOk*"></a>
   <h4 id="Here_Result_CustomOk__1" data-uid="Here.Result.CustomOk``1">CustomOk&lt;TError&gt;()</h4>
@@ -1292,7 +1294,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_CustomWarn__1_System_String__System_Exception__.md&amp;value=---%0Auid%3A%20Here.Result.CustomWarn%60%601(System.String%40%2CSystem.Exception%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L596">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L662">View Source</a>
   </span>
   <a id="Here_Result_CustomWarn_" data-uid="Here.Result.CustomWarn*"></a>
   <h4 id="Here_Result_CustomWarn__1_System_String__System_Exception__" data-uid="Here.Result.CustomWarn``1(System.String@,System.Exception@)">CustomWarn&lt;TError&gt;(String, Exception)</h4>
@@ -1379,7 +1381,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_Equals_Here_Result_.md&amp;value=---%0Auid%3A%20Here.Result.Equals(Here.Result)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L317">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L330">View Source</a>
   </span>
   <a id="Here_Result_Equals_" data-uid="Here.Result.Equals*"></a>
   <h4 id="Here_Result_Equals_Here_Result_" data-uid="Here.Result.Equals(Here.Result)">Equals(Result)</h4>
@@ -1426,7 +1428,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_Equals_System_Object_.md&amp;value=---%0Auid%3A%20Here.Result.Equals(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L323">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L336">View Source</a>
   </span>
   <a id="Here_Result_Equals_" data-uid="Here.Result.Equals*"></a>
   <h4 id="Here_Result_Equals_System_Object_" data-uid="Here.Result.Equals(System.Object)">Equals(Object)</h4>
@@ -1475,7 +1477,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_Fail_System_Exception__.md&amp;value=---%0Auid%3A%20Here.Result.Fail(System.Exception%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L479">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L545">View Source</a>
   </span>
   <a id="Here_Result_Fail_" data-uid="Here.Result.Fail*"></a>
   <h4 id="Here_Result_Fail_System_Exception__" data-uid="Here.Result.Fail(System.Exception@)">Fail(Exception)</h4>
@@ -1541,7 +1543,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_Fail_System_String__System_Exception__.md&amp;value=---%0Auid%3A%20Here.Result.Fail(System.String%40%2CSystem.Exception%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L466">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L532">View Source</a>
   </span>
   <a id="Here_Result_Fail_" data-uid="Here.Result.Fail*"></a>
   <h4 id="Here_Result_Fail_System_String__System_Exception__" data-uid="Here.Result.Fail(System.String@,System.Exception@)">Fail(String, Exception)</h4>
@@ -1613,7 +1615,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_Fail__1_Here_Result__.md&amp;value=---%0Auid%3A%20Here.Result.Fail%60%601(Here.Result%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L553">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L619">View Source</a>
   </span>
   <a id="Here_Result_Fail_" data-uid="Here.Result.Fail*"></a>
   <h4 id="Here_Result_Fail__1_Here_Result__" data-uid="Here.Result.Fail``1(Here.Result@)">Fail&lt;T&gt;(Result)</h4>
@@ -1694,7 +1696,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_Fail__1_System_Exception__.md&amp;value=---%0Auid%3A%20Here.Result.Fail%60%601(System.Exception%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L538">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L604">View Source</a>
   </span>
   <a id="Here_Result_Fail_" data-uid="Here.Result.Fail*"></a>
   <h4 id="Here_Result_Fail__1_System_Exception__" data-uid="Here.Result.Fail``1(System.Exception@)">Fail&lt;T&gt;(Exception)</h4>
@@ -1775,7 +1777,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_Fail__1_System_String__System_Exception__.md&amp;value=---%0Auid%3A%20Here.Result.Fail%60%601(System.String%40%2CSystem.Exception%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L525">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L591">View Source</a>
   </span>
   <a id="Here_Result_Fail_" data-uid="Here.Result.Fail*"></a>
   <h4 id="Here_Result_Fail__1_System_String__System_Exception__" data-uid="Here.Result.Fail``1(System.String@,System.Exception@)">Fail&lt;T&gt;(String, Exception)</h4>
@@ -1862,7 +1864,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_Fail__2___1__System_Exception__.md&amp;value=---%0Auid%3A%20Here.Result.Fail%60%602(%60%601%40%2CSystem.Exception%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L690">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L756">View Source</a>
   </span>
   <a id="Here_Result_Fail_" data-uid="Here.Result.Fail*"></a>
   <h4 id="Here_Result_Fail__2___1__System_Exception__" data-uid="Here.Result.Fail``2(``1@,System.Exception@)">Fail&lt;T, TError&gt;(TError, Exception)</h4>
@@ -1958,7 +1960,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_Fail__2_Here_CustomResult___1___.md&amp;value=---%0Auid%3A%20Here.Result.Fail%60%602(Here.CustomResult%7B%60%601%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L705">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L771">View Source</a>
   </span>
   <a id="Here_Result_Fail_" data-uid="Here.Result.Fail*"></a>
   <h4 id="Here_Result_Fail__2_Here_CustomResult___1___" data-uid="Here.Result.Fail``2(Here.CustomResult{``1}@)">Fail&lt;T, TError&gt;(CustomResult&lt;TError&gt;)</h4>
@@ -2043,7 +2045,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_Fail__2_Here_Result___0___.md&amp;value=---%0Auid%3A%20Here.Result.Fail%60%602(Here.Result%7B%60%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L567">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L633">View Source</a>
   </span>
   <a id="Here_Result_Fail_" data-uid="Here.Result.Fail*"></a>
   <h4 id="Here_Result_Fail__2_Here_Result___0___" data-uid="Here.Result.Fail``2(Here.Result{``0}@)">Fail&lt;TIn, TOut&gt;(Result&lt;TIn&gt;)</h4>
@@ -2128,7 +2130,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_Fail__2_System_String____1__System_Exception__.md&amp;value=---%0Auid%3A%20Here.Result.Fail%60%602(System.String%40%2C%60%601%40%2CSystem.Exception%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L675">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L741">View Source</a>
   </span>
   <a id="Here_Result_Fail_" data-uid="Here.Result.Fail*"></a>
   <h4 id="Here_Result_Fail__2_System_String____1__System_Exception__" data-uid="Here.Result.Fail``2(System.String@,``1@,System.Exception@)">Fail&lt;T, TError&gt;(String, TError, Exception)</h4>
@@ -2230,7 +2232,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_Fail__3_Here_Result___0___2___.md&amp;value=---%0Auid%3A%20Here.Result.Fail%60%603(Here.Result%7B%60%600%2C%60%602%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L719">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L785">View Source</a>
   </span>
   <a id="Here_Result_Fail_" data-uid="Here.Result.Fail*"></a>
   <h4 id="Here_Result_Fail__3_Here_Result___0___2___" data-uid="Here.Result.Fail``3(Here.Result{``0,``2}@)">Fail&lt;TIn, TOut, TError&gt;(Result&lt;TIn, TError&gt;)</h4>
@@ -2319,7 +2321,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_GetHashCode.md&amp;value=---%0Auid%3A%20Here.Result.GetHashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L353">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L366">View Source</a>
   </span>
   <a id="Here_Result_GetHashCode_" data-uid="Here.Result.GetHashCode*"></a>
   <h4 id="Here_Result_GetHashCode" data-uid="Here.Result.GetHashCode">GetHashCode()</h4>
@@ -2348,10 +2350,47 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div><span class="xref">System.ValueType.GetHashCode()</span></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_GetObjectData_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_.md&amp;value=---%0Auid%3A%20Here.Result.GetObjectData(System.Runtime.Serialization.SerializationInfo%2CSystem.Runtime.Serialization.StreamingContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L468">View Source</a>
+  </span>
+  <a id="Here_Result_GetObjectData_" data-uid="Here.Result.GetObjectData*"></a>
+  <h4 id="Here_Result_GetObjectData_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_" data-uid="Here.Result.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">GetObjectData(SerializationInfo, StreamingContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GetObjectData(SerializationInfo info, StreamingContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Runtime.Serialization.SerializationInfo</span></td>
+        <td><span class="parametername">info</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Runtime.Serialization.StreamingContext</span></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_Ok.md&amp;value=---%0Auid%3A%20Here.Result.Ok%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L439">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L505">View Source</a>
   </span>
   <a id="Here_Result_Ok_" data-uid="Here.Result.Ok*"></a>
   <h4 id="Here_Result_Ok" data-uid="Here.Result.Ok">Ok()</h4>
@@ -2383,7 +2422,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_Ok__1___0__.md&amp;value=---%0Auid%3A%20Here.Result.Ok%60%601(%60%600%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L497">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L563">View Source</a>
   </span>
   <a id="Here_Result_Ok_" data-uid="Here.Result.Ok*"></a>
   <h4 id="Here_Result_Ok__1___0__" data-uid="Here.Result.Ok``1(``0@)">Ok&lt;T&gt;(T)</h4>
@@ -2448,7 +2487,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_Ok__2___0__.md&amp;value=---%0Auid%3A%20Here.Result.Ok%60%602(%60%600%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L645">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L711">View Source</a>
   </span>
   <a id="Here_Result_Ok_" data-uid="Here.Result.Ok*"></a>
   <h4 id="Here_Result_Ok__2___0__" data-uid="Here.Result.Ok``2(``0@)">Ok&lt;T, TError&gt;(T)</h4>
@@ -2517,7 +2556,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_SuccessEquals_Here_Result__.md&amp;value=---%0Auid%3A%20Here.Result.SuccessEquals(Here.Result%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L308">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L321">View Source</a>
   </span>
   <a id="Here_Result_SuccessEquals_" data-uid="Here.Result.SuccessEquals*"></a>
   <h4 id="Here_Result_SuccessEquals_Here_Result__" data-uid="Here.Result.SuccessEquals(Here.Result@)">SuccessEquals(Result)</h4>
@@ -2567,7 +2606,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_ToString.md&amp;value=---%0Auid%3A%20Here.Result.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L214">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L227">View Source</a>
   </span>
   <a id="Here_Result_ToString_" data-uid="Here.Result.ToString*"></a>
   <h4 id="Here_Result_ToString" data-uid="Here.Result.ToString">ToString()</h4>
@@ -2599,7 +2638,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_Warn_System_String__System_Exception__.md&amp;value=---%0Auid%3A%20Here.Result.Warn(System.String%40%2CSystem.Exception%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L452">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L518">View Source</a>
   </span>
   <a id="Here_Result_Warn_" data-uid="Here.Result.Warn*"></a>
   <h4 id="Here_Result_Warn_System_String__System_Exception__" data-uid="Here.Result.Warn(System.String@,System.Exception@)">Warn(String, Exception)</h4>
@@ -2671,7 +2710,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_Warn__1___0__System_String__System_Exception__.md&amp;value=---%0Auid%3A%20Here.Result.Warn%60%601(%60%600%40%2CSystem.String%40%2CSystem.Exception%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L511">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L577">View Source</a>
   </span>
   <a id="Here_Result_Warn_" data-uid="Here.Result.Warn*"></a>
   <h4 id="Here_Result_Warn__1___0__System_String__System_Exception__" data-uid="Here.Result.Warn``1(``0@,System.String@,System.Exception@)">Warn&lt;T&gt;(T, String, Exception)</h4>
@@ -2764,7 +2803,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_Warn__2___0__System_String__System_Exception__.md&amp;value=---%0Auid%3A%20Here.Result.Warn%60%602(%60%600%40%2CSystem.String%40%2CSystem.Exception%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L659">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L725">View Source</a>
   </span>
   <a id="Here_Result_Warn_" data-uid="Here.Result.Warn*"></a>
   <h4 id="Here_Result_Warn__2___0__System_String__System_Exception__" data-uid="Here.Result.Warn``2(``0@,System.String@,System.Exception@)">Warn&lt;T, TError&gt;(T, String, Exception)</h4>
@@ -2863,7 +2902,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_op_Equality_Here_Result__Here_Result__.md&amp;value=---%0Auid%3A%20Here.Result.op_Equality(Here.Result%40%2CHere.Result%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L336">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L349">View Source</a>
   </span>
   <a id="Here_Result_op_Equality_" data-uid="Here.Result.op_Equality*"></a>
   <h4 id="Here_Result_op_Equality_Here_Result__Here_Result__" data-uid="Here.Result.op_Equality(Here.Result@,Here.Result@)">Equality(Result, Result)</h4>
@@ -2919,7 +2958,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_op_GreaterThan_Here_Result__Here_Result__.md&amp;value=---%0Auid%3A%20Here.Result.op_GreaterThan(Here.Result%40%2CHere.Result%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L411">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L424">View Source</a>
   </span>
   <a id="Here_Result_op_GreaterThan_" data-uid="Here.Result.op_GreaterThan*"></a>
   <h4 id="Here_Result_op_GreaterThan_Here_Result__Here_Result__" data-uid="Here.Result.op_GreaterThan(Here.Result@,Here.Result@)">GreaterThan(Result, Result)</h4>
@@ -2975,7 +3014,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_op_GreaterThanOrEqual_Here_Result__Here_Result__.md&amp;value=---%0Auid%3A%20Here.Result.op_GreaterThanOrEqual(Here.Result%40%2CHere.Result%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L422">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L435">View Source</a>
   </span>
   <a id="Here_Result_op_GreaterThanOrEqual_" data-uid="Here.Result.op_GreaterThanOrEqual*"></a>
   <h4 id="Here_Result_op_GreaterThanOrEqual_Here_Result__Here_Result__" data-uid="Here.Result.op_GreaterThanOrEqual(Here.Result@,Here.Result@)">GreaterThanOrEqual(Result, Result)</h4>
@@ -3081,7 +3120,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_op_Inequality_Here_Result__Here_Result__.md&amp;value=---%0Auid%3A%20Here.Result.op_Inequality(Here.Result%40%2CHere.Result%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L347">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L360">View Source</a>
   </span>
   <a id="Here_Result_op_Inequality_" data-uid="Here.Result.op_Inequality*"></a>
   <h4 id="Here_Result_op_Inequality_Here_Result__Here_Result__" data-uid="Here.Result.op_Inequality(Here.Result@,Here.Result@)">Inequality(Result, Result)</h4>
@@ -3137,7 +3176,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_op_LessThan_Here_Result__Here_Result__.md&amp;value=---%0Auid%3A%20Here.Result.op_LessThan(Here.Result%40%2CHere.Result%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L389">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L402">View Source</a>
   </span>
   <a id="Here_Result_op_LessThan_" data-uid="Here.Result.op_LessThan*"></a>
   <h4 id="Here_Result_op_LessThan_Here_Result__Here_Result__" data-uid="Here.Result.op_LessThan(Here.Result@,Here.Result@)">LessThan(Result, Result)</h4>
@@ -3193,7 +3232,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Result_op_LessThanOrEqual_Here_Result__Here_Result__.md&amp;value=---%0Auid%3A%20Here.Result.op_LessThanOrEqual(Here.Result%40%2CHere.Result%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L400">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L413">View Source</a>
   </span>
   <a id="Here_Result_op_LessThanOrEqual_" data-uid="Here.Result.op_LessThanOrEqual*"></a>
   <h4 id="Here_Result_op_LessThanOrEqual_Here_Result__Here_Result__" data-uid="Here.Result.op_LessThanOrEqual(Here.Result@,Here.Result@)">LessThanOrEqual(Result, Result)</h4>
@@ -3256,6 +3295,9 @@ Order keeps failures first, then warnings and finally successes.</p>
   </div>
   <div>
       <span class="xref">System.IComparable&lt;T&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.Runtime.Serialization.ISerializable</span>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>

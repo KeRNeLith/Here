@@ -82,6 +82,7 @@
     <div><span class="xref">System.IEquatable</span>&lt;<a class="xref" href="Here.Option-1.html">Option</a>&lt;T&gt;&gt;</div>
     <div><span class="xref">System.IComparable</span></div>
     <div><span class="xref">System.IComparable</span>&lt;<a class="xref" href="Here.Option-1.html">Option</a>&lt;T&gt;&gt;</div>
+    <div><span class="xref">System.Runtime.Serialization.ISerializable</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
@@ -99,7 +100,8 @@
   <h6><strong>Assembly</strong>: Here.dll</h6>
   <h5 id="Here_Option_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public struct Option&lt;T&gt; : IEquatable&lt;T&gt;, IEquatable&lt;Option&lt;T&gt;&gt;, IComparable, IComparable&lt;Option&lt;T&gt;&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">[Serializable]
+public struct Option&lt;T&gt; : IEquatable&lt;T&gt;, IEquatable&lt;Option&lt;T&gt;&gt;, IComparable, IComparable&lt;Option&lt;T&gt;&gt;, ISerializable</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -124,7 +126,7 @@
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_None.md&amp;value=---%0Auid%3A%20Here.Option%601.None%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L20">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L33">View Source</a>
   </span>
   <h4 id="Here_Option_1_None" data-uid="Here.Option`1.None">None</h4>
   <div class="markdown level1 summary"><p>Nothing value.</p>
@@ -156,7 +158,7 @@
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_HasNoValue.md&amp;value=---%0Auid%3A%20Here.Option%601.HasNoValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L31">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L44">View Source</a>
   </span>
   <a id="Here_Option_1_HasNoValue_" data-uid="Here.Option`1.HasNoValue*"></a>
   <h4 id="Here_Option_1_HasNoValue" data-uid="Here.Option`1.HasNoValue">HasNoValue</h4>
@@ -187,7 +189,7 @@
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_HasValue.md&amp;value=---%0Auid%3A%20Here.Option%601.HasValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L25">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L38">View Source</a>
   </span>
   <a id="Here_Option_1_HasValue_" data-uid="Here.Option`1.HasValue*"></a>
   <h4 id="Here_Option_1_HasValue" data-uid="Here.Option`1.HasValue">HasValue</h4>
@@ -218,7 +220,7 @@
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_Value.md&amp;value=---%0Auid%3A%20Here.Option%601.Value%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L46">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L59">View Source</a>
   </span>
   <a id="Here_Option_1_Value_" data-uid="Here.Option`1.Value*"></a>
   <h4 id="Here_Option_1_Value" data-uid="Here.Option`1.Value">Value</h4>
@@ -398,7 +400,7 @@
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_CompareTo_Here_Option__0__.md&amp;value=---%0Auid%3A%20Here.Option%601.CompareTo(Here.Option%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L233">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L246">View Source</a>
   </span>
   <a id="Here_Option_1_CompareTo_" data-uid="Here.Option`1.CompareTo*"></a>
   <h4 id="Here_Option_1_CompareTo_Here_Option__0__" data-uid="Here.Option`1.CompareTo(Here.Option{`0})">CompareTo(Option&lt;T&gt;)</h4>
@@ -448,7 +450,7 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_CompareTo_System_Object_.md&amp;value=---%0Auid%3A%20Here.Option%601.CompareTo(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L217">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L230">View Source</a>
   </span>
   <a id="Here_Option_1_CompareTo_" data-uid="Here.Option`1.CompareTo*"></a>
   <h4 id="Here_Option_1_CompareTo_System_Object_" data-uid="Here.Option`1.CompareTo(System.Object)">CompareTo(Object)</h4>
@@ -741,7 +743,7 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_Equals__0_.md&amp;value=---%0Auid%3A%20Here.Option%601.Equals(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L85">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L98">View Source</a>
   </span>
   <a id="Here_Option_1_Equals_" data-uid="Here.Option`1.Equals*"></a>
   <h4 id="Here_Option_1_Equals__0_" data-uid="Here.Option`1.Equals(`0)">Equals(T)</h4>
@@ -788,7 +790,7 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_Equals_Here_Option__0__.md&amp;value=---%0Auid%3A%20Here.Option%601.Equals(Here.Option%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L91">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L104">View Source</a>
   </span>
   <a id="Here_Option_1_Equals_" data-uid="Here.Option`1.Equals*"></a>
   <h4 id="Here_Option_1_Equals_Here_Option__0__" data-uid="Here.Option`1.Equals(Here.Option{`0})">Equals(Option&lt;T&gt;)</h4>
@@ -835,7 +837,7 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_Equals_System_Object_.md&amp;value=---%0Auid%3A%20Here.Option%601.Equals(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L97">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L110">View Source</a>
   </span>
   <a id="Here_Option_1_Equals_" data-uid="Here.Option`1.Equals*"></a>
   <h4 id="Here_Option_1_Equals_System_Object_" data-uid="Here.Option`1.Equals(System.Object)">Equals(Object)</h4>
@@ -950,7 +952,7 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_GetHashCode.md&amp;value=---%0Auid%3A%20Here.Option%601.GetHashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L141">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L154">View Source</a>
   </span>
   <a id="Here_Option_1_GetHashCode_" data-uid="Here.Option`1.GetHashCode*"></a>
   <h4 id="Here_Option_1_GetHashCode" data-uid="Here.Option`1.GetHashCode">GetHashCode()</h4>
@@ -977,6 +979,43 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><span class="xref">System.ValueType.GetHashCode()</span></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_GetObjectData_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_.md&amp;value=---%0Auid%3A%20Here.Option%601.GetObjectData(System.Runtime.Serialization.SerializationInfo%2CSystem.Runtime.Serialization.StreamingContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L329">View Source</a>
+  </span>
+  <a id="Here_Option_1_GetObjectData_" data-uid="Here.Option`1.GetObjectData*"></a>
+  <h4 id="Here_Option_1_GetObjectData_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_" data-uid="Here.Option`1.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">GetObjectData(SerializationInfo, StreamingContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GetObjectData(SerializationInfo info, StreamingContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Runtime.Serialization.SerializationInfo</span></td>
+        <td><span class="parametername">info</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Runtime.Serialization.StreamingContext</span></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_If_System_Action__0___.md&amp;value=---%0Auid%3A%20Here.Option%601.If(System.Action%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -2350,7 +2389,7 @@ with <code data-dev-comment-type="paramref" class="paramref">converter</code> ba
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_Some__0__.md&amp;value=---%0Auid%3A%20Here.Option%601.Some(%600%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L73">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L86">View Source</a>
   </span>
   <a id="Here_Option_1_Some_" data-uid="Here.Option`1.Some*"></a>
   <h4 id="Here_Option_1_Some__0__" data-uid="Here.Option`1.Some(`0@)">Some(T)</h4>
@@ -2415,7 +2454,7 @@ with <code data-dev-comment-type="paramref" class="paramref">converter</code> ba
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_ToString.md&amp;value=---%0Auid%3A%20Here.Option%601.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L304">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L340">View Source</a>
   </span>
   <a id="Here_Option_1_ToString_" data-uid="Here.Option`1.ToString*"></a>
   <h4 id="Here_Option_1_ToString" data-uid="Here.Option`1.ToString">ToString()</h4>
@@ -2750,7 +2789,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_op_Equality__0__Here_Option__0___.md&amp;value=---%0Auid%3A%20Here.Option%601.op_Equality(%600%40%2CHere.Option%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L196">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L209">View Source</a>
   </span>
   <a id="Here_Option_1_op_Equality_" data-uid="Here.Option`1.op_Equality*"></a>
   <h4 id="Here_Option_1_op_Equality__0__Here_Option__0___" data-uid="Here.Option`1.op_Equality(`0@,Here.Option{`0}@)">Equality(T, Option&lt;T&gt;)</h4>
@@ -2806,7 +2845,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_op_Equality_Here_Option__0____0__.md&amp;value=---%0Auid%3A%20Here.Option%601.op_Equality(Here.Option%7B%600%7D%40%2C%600%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L174">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L187">View Source</a>
   </span>
   <a id="Here_Option_1_op_Equality_" data-uid="Here.Option`1.op_Equality*"></a>
   <h4 id="Here_Option_1_op_Equality_Here_Option__0____0__" data-uid="Here.Option`1.op_Equality(Here.Option{`0}@,`0@)">Equality(Option&lt;T&gt;, T)</h4>
@@ -2862,7 +2901,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_op_Equality_Here_Option__0___Here_Option__0___.md&amp;value=---%0Auid%3A%20Here.Option%601.op_Equality(Here.Option%7B%600%7D%40%2CHere.Option%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L152">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L165">View Source</a>
   </span>
   <a id="Here_Option_1_op_Equality_" data-uid="Here.Option`1.op_Equality*"></a>
   <h4 id="Here_Option_1_op_Equality_Here_Option__0___Here_Option__0___" data-uid="Here.Option`1.op_Equality(Here.Option{`0}@,Here.Option{`0}@)">Equality(Option&lt;T&gt;, Option&lt;T&gt;)</h4>
@@ -2918,7 +2957,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_op_GreaterThan_Here_Option__0___Here_Option__0___.md&amp;value=---%0Auid%3A%20Here.Option%601.op_GreaterThan(Here.Option%7B%600%7D%40%2CHere.Option%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L285">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L298">View Source</a>
   </span>
   <a id="Here_Option_1_op_GreaterThan_" data-uid="Here.Option`1.op_GreaterThan*"></a>
   <h4 id="Here_Option_1_op_GreaterThan_Here_Option__0___Here_Option__0___" data-uid="Here.Option`1.op_GreaterThan(Here.Option{`0}@,Here.Option{`0}@)">GreaterThan(Option&lt;T&gt;, Option&lt;T&gt;)</h4>
@@ -2974,7 +3013,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_op_GreaterThanOrEqual_Here_Option__0___Here_Option__0___.md&amp;value=---%0Auid%3A%20Here.Option%601.op_GreaterThanOrEqual(Here.Option%7B%600%7D%40%2CHere.Option%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L296">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L309">View Source</a>
   </span>
   <a id="Here_Option_1_op_GreaterThanOrEqual_" data-uid="Here.Option`1.op_GreaterThanOrEqual*"></a>
   <h4 id="Here_Option_1_op_GreaterThanOrEqual_Here_Option__0___Here_Option__0___" data-uid="Here.Option`1.op_GreaterThanOrEqual(Here.Option{`0}@,Here.Option{`0}@)">GreaterThanOrEqual(Option&lt;T&gt;, Option&lt;T&gt;)</h4>
@@ -3329,7 +3368,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_op_Inequality__0__Here_Option__0___.md&amp;value=---%0Auid%3A%20Here.Option%601.op_Inequality(%600%40%2CHere.Option%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L207">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L220">View Source</a>
   </span>
   <a id="Here_Option_1_op_Inequality_" data-uid="Here.Option`1.op_Inequality*"></a>
   <h4 id="Here_Option_1_op_Inequality__0__Here_Option__0___" data-uid="Here.Option`1.op_Inequality(`0@,Here.Option{`0}@)">Inequality(T, Option&lt;T&gt;)</h4>
@@ -3385,7 +3424,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_op_Inequality_Here_Option__0____0__.md&amp;value=---%0Auid%3A%20Here.Option%601.op_Inequality(Here.Option%7B%600%7D%40%2C%600%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L185">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L198">View Source</a>
   </span>
   <a id="Here_Option_1_op_Inequality_" data-uid="Here.Option`1.op_Inequality*"></a>
   <h4 id="Here_Option_1_op_Inequality_Here_Option__0____0__" data-uid="Here.Option`1.op_Inequality(Here.Option{`0}@,`0@)">Inequality(Option&lt;T&gt;, T)</h4>
@@ -3441,7 +3480,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_op_Inequality_Here_Option__0___Here_Option__0___.md&amp;value=---%0Auid%3A%20Here.Option%601.op_Inequality(Here.Option%7B%600%7D%40%2CHere.Option%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L163">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L176">View Source</a>
   </span>
   <a id="Here_Option_1_op_Inequality_" data-uid="Here.Option`1.op_Inequality*"></a>
   <h4 id="Here_Option_1_op_Inequality_Here_Option__0___Here_Option__0___" data-uid="Here.Option`1.op_Inequality(Here.Option{`0}@,Here.Option{`0}@)">Inequality(Option&lt;T&gt;, Option&lt;T&gt;)</h4>
@@ -3497,7 +3536,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_op_LessThan_Here_Option__0___Here_Option__0___.md&amp;value=---%0Auid%3A%20Here.Option%601.op_LessThan(Here.Option%7B%600%7D%40%2CHere.Option%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L263">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L276">View Source</a>
   </span>
   <a id="Here_Option_1_op_LessThan_" data-uid="Here.Option`1.op_LessThan*"></a>
   <h4 id="Here_Option_1_op_LessThan_Here_Option__0___Here_Option__0___" data-uid="Here.Option`1.op_LessThan(Here.Option{`0}@,Here.Option{`0}@)">LessThan(Option&lt;T&gt;, Option&lt;T&gt;)</h4>
@@ -3553,7 +3592,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_1_op_LessThanOrEqual_Here_Option__0___Here_Option__0___.md&amp;value=---%0Auid%3A%20Here.Option%601.op_LessThanOrEqual(Here.Option%7B%600%7D%40%2CHere.Option%7B%600%7D%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L274">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L287">View Source</a>
   </span>
   <a id="Here_Option_1_op_LessThanOrEqual_" data-uid="Here.Option`1.op_LessThanOrEqual*"></a>
   <h4 id="Here_Option_1_op_LessThanOrEqual_Here_Option__0___Here_Option__0___" data-uid="Here.Option`1.op_LessThanOrEqual(Here.Option{`0}@,Here.Option{`0}@)">LessThanOrEqual(Option&lt;T&gt;, Option&lt;T&gt;)</h4>
@@ -3667,6 +3706,9 @@ It means that it <a class="xref" href="Here.Option-1.html#Here_Option_1_HasNoVal
   </div>
   <div>
       <span class="xref">System.IComparable&lt;T&gt;</span>
+  </div>
+  <div>
+      <span class="xref">System.Runtime.Serialization.ISerializable</span>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
