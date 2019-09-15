@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using Here.Extensions;
+using static Here.Tests.Options.OptionTestHelpers;
 
 namespace Here.Tests.Options
 {
@@ -8,7 +9,7 @@ namespace Here.Tests.Options
     /// Tests for <see cref="Option{T}"/> Linq implementation.
     /// </summary>
     [TestFixture]
-    internal class OptionLinqExtensionsTests : OptionTestsBase
+    internal class OptionLinqExtensionsTests : HereTestsBase
     {
         [Test]
         public void OptionAny()

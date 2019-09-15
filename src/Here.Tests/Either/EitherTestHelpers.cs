@@ -5,15 +5,15 @@ using NUnit.Framework;
 namespace Here.Tests.Eithers
 {
     /// <summary>
-    /// Base class for <see cref="Either{TLeft,TRight}"/>, <see cref="EitherLeft{TLeft}"/>, <see cref="EitherRight{TRight}"/> tests.
+    /// Helpers to test <see cref="Either{TLeft,TRight}"/>, <see cref="EitherLeft{TLeft}"/>, <see cref="EitherRight{TRight}"/>.
     /// </summary>
-    internal class EitherTestsBase : HereTestsBase
+    internal class EitherTestHelpers
     {
         // Methods to check either
 
         #region Check Either<TLeft, TRight>
 
-        protected static void CheckLeftEither<TLeft, TRight>(Either<TLeft, TRight> either, [NotNull] TLeft expectedValue)
+        public static void CheckLeftEither<TLeft, TRight>(Either<TLeft, TRight> either, [NotNull] TLeft expectedValue)
         {
             Assert.IsFalse(either.IsNone);
             Assert.IsTrue(either.IsLeft);
@@ -22,7 +22,7 @@ namespace Here.Tests.Eithers
             Assert.Throws<InvalidOperationException>(() => { var _ = either.RightValue; });
         }
 
-        protected static void CheckRightEither<TLeft, TRight>(Either<TLeft, TRight> either, [NotNull] TRight expectedValue)
+        public static void CheckRightEither<TLeft, TRight>(Either<TLeft, TRight> either, [NotNull] TRight expectedValue)
         {
             Assert.IsFalse(either.IsNone);
             Assert.IsFalse(either.IsLeft);
@@ -31,7 +31,7 @@ namespace Here.Tests.Eithers
             Assert.AreEqual(expectedValue, either.RightValue);
         }
 
-        protected static void CheckNoneEither<TLeft, TRight>(Either<TLeft, TRight> either)
+        public static void CheckNoneEither<TLeft, TRight>(Either<TLeft, TRight> either)
         {
             Assert.IsTrue(either.IsNone);
             Assert.IsFalse(either.IsLeft);
@@ -44,7 +44,7 @@ namespace Here.Tests.Eithers
 
         #region Check EitherLeft
 
-        protected static void CheckEitherLeft<TLeft>(EitherLeft<TLeft> either, [NotNull] TLeft expectedValue)
+        public static void CheckEitherLeft<TLeft>(EitherLeft<TLeft> either, [NotNull] TLeft expectedValue)
         {
             Assert.IsTrue(either.IsLeft);
             Assert.IsFalse(either.IsRight);
@@ -56,7 +56,7 @@ namespace Here.Tests.Eithers
 
         #region Check EitherRight
 
-        protected static void CheckEitherRight<TRight>(EitherRight<TRight> either, [NotNull] TRight expectedValue)
+        public static void CheckEitherRight<TRight>(EitherRight<TRight> either, [NotNull] TRight expectedValue)
         {
             Assert.IsFalse(either.IsLeft);
             Assert.IsTrue(either.IsRight);

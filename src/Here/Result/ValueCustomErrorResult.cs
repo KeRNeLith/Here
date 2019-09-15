@@ -543,6 +543,7 @@ namespace Here
                 info.AddValue("IsSuccess", false);
                 info.AddValue("Message", Logic.Message);
                 info.AddValue("Exception", Logic.Exception);
+                info.AddValue("Error", Logic.Error);
             }
         }
 

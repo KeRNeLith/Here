@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using NUnit.Framework;
 using Here.Extensions;
+using static Here.Tests.Options.OptionTestHelpers;
 
 namespace Here.Tests.Options
 {
@@ -10,7 +11,7 @@ namespace Here.Tests.Options
     /// Tests for <see cref="Option{T}"/> numeric casts extensions.
     /// </summary>
     [TestFixture]
-    internal class OptionNumericCastsExtensionsTests : OptionTestsBase
+    internal class OptionNumericCastsExtensionsTests : HereTestsBase
     {
         /// <summary>
         /// Call the <paramref name="castFunc"/> and check if the result match expected value.

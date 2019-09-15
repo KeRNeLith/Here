@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Here.Extensions;
+using static Here.Tests.Options.OptionTestHelpers;
 
 namespace Here.Tests.Options
 {
@@ -7,7 +8,7 @@ namespace Here.Tests.Options
     /// Tests for <see cref="Either{TLeft,TRight}"/> conversions to <see cref="Option{T}"/>.
     /// </summary>
     [TestFixture]
-    internal class EitherConversionsTests : OptionTestsBase
+    internal class EitherConversionsTests : HereTestsBase
     {
         [Test]
         public void EitherToOption()

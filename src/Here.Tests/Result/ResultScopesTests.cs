@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using static Here.Tests.Results.ResultTestHelpers;
 
 namespace Here.Tests.Results
 {

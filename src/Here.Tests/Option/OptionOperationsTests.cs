@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using static Here.Tests.Options.OptionTestHelpers;
 
 namespace Here.Tests.Options
 {
@@ -7,7 +8,7 @@ namespace Here.Tests.Options
     /// Tests for <see cref="Option{T}"/> operations.
     /// </summary>
     [TestFixture]
-    internal class OptionOperationsTests : OptionTestsBase
+    internal class OptionOperationsTests : HereTestsBase
     {
         [Test]
         public void OptionIf()

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using NUnit.Framework;
 using Here.Extensions;
+using static Here.Tests.Options.OptionTestHelpers;
 
 namespace Here.Tests.Options
 {
@@ -11,7 +12,7 @@ namespace Here.Tests.Options
     /// Tests for <see cref="Option{T}"/> extensions related to <see cref="IEnumerable{T}"/>.
     /// </summary>
     [TestFixture]
-    internal class OptionEnumerableExtensionsTests : OptionTestsBase
+    internal class OptionEnumerableExtensionsTests : HereTestsBase
     {
         #region Test property
 

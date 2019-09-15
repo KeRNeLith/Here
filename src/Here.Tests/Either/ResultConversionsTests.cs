@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using Here.Extensions;
+using static Here.Tests.Eithers.EitherTestHelpers;
 
 namespace Here.Tests.Eithers
 {
@@ -8,7 +9,7 @@ namespace Here.Tests.Eithers
     /// Tests for <see cref="Result"/>, <see cref="Result{T}"/>, <see cref="CustomResult{TError}"/> and <see cref="Result{T, TError}"/> conversions to <see cref="Either{TLeft,TRight}"/>.
     /// </summary>
     [TestFixture]
-    internal class ResultConversionsTests : EitherTestsBase
+    internal class ResultConversionsTests : HereTestsBase
     {
         #region Test class
 

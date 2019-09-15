@@ -7,28 +7,28 @@ using NUnit.Framework;
 namespace Here.Tests.Options
 {
     /// <summary>
-    /// Base class for<see cref="Option{T}"/> tests.
+    /// Helpers to test <see cref="Option{T}"/>.
     /// </summary>
-    internal class OptionTestsBase : HereTestsBase
+    internal class OptionTestHelpers
     {
         // Methods to check Option
-        private static double Epslion = 0.00001;
+        private const double Epsilon = 0.00001;
 
-        protected static void CheckOptionNearValue(Option<double> option, double value)
+        public static void CheckOptionNearValue(Option<double> option, double value)
         {
             Assert.IsTrue(option.HasValue);
             Assert.IsFalse(option.HasNoValue);
-            Assert.AreEqual(value, option.Value, Epslion);
-    }
+            Assert.AreEqual(value, option.Value, Epsilon);
+        }
 
-        protected static void CheckOptionValue<T>(Option<T> option, [NotNull] T value)
+        public static void CheckOptionValue<T>(Option<T> option, [NotNull] T value)
         {
             Assert.IsTrue(option.HasValue);
             Assert.IsFalse(option.HasNoValue);
             Assert.AreEqual(value, option.Value);
         }
 
-        protected static void CheckOptionSameValue<T>(Option<T> option, [NotNull] T value)
+        public static void CheckOptionSameValue<T>(Option<T> option, [NotNull] T value)
             where T : class
         {
             Assert.IsTrue(option.HasValue);
@@ -36,7 +36,7 @@ namespace Here.Tests.Options
             Assert.AreSame(value, option.Value);
         }
 
-        protected static void CheckOptionCollectionValue<T>(Option<T> option, [NotNull] IEnumerable value)
+        public static void CheckOptionCollectionValue<T>(Option<T> option, [NotNull] IEnumerable value)
             where T : IEnumerable
         {
             Assert.IsTrue(option.HasValue);
@@ -44,7 +44,7 @@ namespace Here.Tests.Options
             CollectionAssert.AreEqual(value, option.Value);
         }
 
-        protected static void CheckOptionDictionaryValue<T, TKey, TValue>(Option<T> option, [NotNull] IDictionary<TKey, TValue> value)
+        public static void CheckOptionDictionaryValue<T, TKey, TValue>(Option<T> option, [NotNull] IDictionary<TKey, TValue> value)
             where T : IEnumerable
         {
             Assert.IsTrue(option.HasValue);
@@ -52,7 +52,7 @@ namespace Here.Tests.Options
             CollectionAssert.AreEquivalent(value, option.Value);
         }
 
-        protected static void CheckEmptyOption<T>(Option<T> option)
+        public static void CheckEmptyOption<T>(Option<T> option)
         {
             Assert.IsFalse(option.HasValue);
             Assert.IsTrue(option.HasNoValue);

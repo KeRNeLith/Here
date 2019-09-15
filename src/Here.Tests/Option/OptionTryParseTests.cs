@@ -4,6 +4,7 @@ using System.Globalization;
 using JetBrains.Annotations;
 using NUnit.Framework;
 using Here.Extensions;
+using static Here.Tests.Options.OptionTestHelpers;
 
 namespace Here.Tests.Options
 {
@@ -11,7 +12,7 @@ namespace Here.Tests.Options
     /// Tests for <see cref="Option{T}"/> try parse.
     /// </summary>
     [TestFixture]
-    internal class OptionTryParseTests : OptionTestsBase
+    internal class OptionTryParseTests : HereTestsBase
     {
         private static readonly CultureInfo TestParseUSCultureInfo = new CultureInfo("en-US");
         private static readonly CultureInfo TestParseFRCultureInfo = new CultureInfo("fr-FR");

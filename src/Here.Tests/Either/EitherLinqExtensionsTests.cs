@@ -1,6 +1,7 @@
 ﻿using System;
 using Here.Extensions;
 using NUnit.Framework;
+using static Here.Tests.Eithers.EitherTestHelpers;
 
 namespace Here.Tests.Eithers
 {
@@ -8,7 +9,7 @@ namespace Here.Tests.Eithers
     /// Tests for <see cref="Either{TLeft,TRight}"/> Linq extensions.
     /// </summary>
     [TestFixture]
-    internal class EitherLinqExtensionsTests : EitherTestsBase
+    internal class EitherLinqExtensionsTests : HereTestsBase
     {
         [Test]
         public void EitherAny()

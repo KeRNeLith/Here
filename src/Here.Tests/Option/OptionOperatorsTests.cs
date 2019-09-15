@@ -6,7 +6,7 @@ namespace Here.Tests.Options
     /// Tests for <see cref="Option{T}"/> operators.
     /// </summary>
     [TestFixture]
-    internal class OptionOperatorsTests : OptionTestsBase
+    internal class OptionOperatorsTests : HereTestsBase
     {
         [Test]
         public void OptionBoolOpertors()

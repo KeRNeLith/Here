@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using static Here.Tests.Eithers.EitherTestHelpers;
 
 namespace Here.Tests.Eithers
 {
@@ -7,7 +8,7 @@ namespace Here.Tests.Eithers
     /// Tests for <see cref="Either{TLeft,TRight}"/> extensions.
     /// </summary>
     [TestFixture]
-    internal class EitherExtensionsTests : EitherTestsBase
+    internal class EitherExtensionsTests : HereTestsBase
     {
         #region Match
 
