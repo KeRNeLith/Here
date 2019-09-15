@@ -39,8 +39,8 @@ namespace Here
                     throw new InvalidOperationException(
                         $"Trying to run a Match operation on an Either in \"{EitherStates.None}\" state without specifying a \"{nameof(none)}\" action.");
                 }
-                else
-                    none();
+
+                none();
             }
             else if (IsRight)
                 onRight(_right);

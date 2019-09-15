@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net20;net35;net40;net45;netstandard1.0;netstandard2.0</TargetFrameworks>
@@ -36,35 +36,25 @@ Supports Source Link</Description>
 
     <IsPackable>true</IsPackable>
     <PackageId>Here</PackageId>
-    <PackageReleaseNotes>➟ Release 0.8.1
-- General:
-    - Library use C# 7.2 features.
-    - Change target NetStandard 1.1 to NetStandard 1.0.
-    - Adjust some annotations of library methods.
-    - Add early throw for parameters that should not be null.
-    - Add exception documentation on library functions.
-
+    <PackageReleaseNotes>➟ Release 0.9.0
 - Option:
-    - Add extensions to Enum, DateTime, DateTimeOffset and Guid.
-    - Replace methods returning void by Unit.
-    - Transform conversions from Option to other library types to extensions.
-    - Transform operations available for Option as extensions into instance methods.
+    - Extend support of TryParseEnum to every targets.
+    - Extend support of NoneIfNullOrSpaces to every targets.
+    - Add an If treatment with templated result.
+    - Add NoneIf treatments.
+    - WARNING: Rename NoneClass to NoneOption.
+    - Add IfOfDefault and ElseOrDefault extensions.
 
 - Results:
-    - Add extensions OnSuccessOrFailure.
-    - Update some OnSuccess/OnFailure extensions to return the input result to make possible to chain them.
-    - Add inputs parameters to lambda of some OnSuccess extensions.
-    - Transform conversions from Results to other library types to extensions.
+    - Add an extension to throw the wrapped exception of a Result if there is one.
+    - Results structure no longer throw NullPointerException when initialized by default rather than with factory methods.
+    - Change some OnSuccess parameter to the wrapped value rather than result itself (for consistency).
+    - Add an OnFailure extensions for results.
+    - Add factory methods to create results from other failed results.
 
-- Unit:
-    - Add an implementation of Unit type.
-
-- Either:
-    - Add a first implementation Either monad (readonly structure).
-        - Operations methods (IfLeft/IfRight/Match/Map, etc.).
-        - Linq extensions.
-        - Comparison helpers.
-        - Conversions to other library types.</PackageReleaseNotes>
+- Misc:
+    - Generate a documentation for the library via DocFX.
+    - Make Option, results, eithers and Unit serializable types.</PackageReleaseNotes>
     <PackageTags>Here Functional C# Option Maybe Result Either ValueObject Monad</PackageTags>
 
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -130,7 +120,7 @@ Supports Source Link</Description>
 
   <!-- Dependencies -->
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-63127-02" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta2-19367-01" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net20'">
