@@ -242,9 +242,9 @@ Option<string> optionString = dictionary.TryGetValue(11);   // string 11
 Option<string> optionString2 = dictionary.TryGetValue(14);  // None option
 
 // Parsing
-Option<int> optionInt = "12".parseInt();   // 12
-Option<int> optionInt2 = "1.5".parseInt(); // None Option
-Option<float> optionFloat = "1.5".parseFloat(); // 1.5
+Option<int> optionInt = "12".TryParseInt();   // 12
+Option<int> optionInt2 = "1.5".TryParseInt(); // None Option
+Option<float> optionFloat = "1.5".TryParseFloat(); // 1.5
 ```
 
 Lookup and parsing are features that can be completed easily if you have a method that match the following delegates:

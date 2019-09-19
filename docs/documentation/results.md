@@ -213,10 +213,10 @@ See following examples for a quick overview. Note that each result type offers s
 ```csharp
 // In this example we call a method on a database that returns an Option<string>
 Database.GetUser("Jack")
-        .ToResult()
-        .OnAny(() => Console.WriteLine("Hello"))
-        .OnSuccess(name => Console.WriteLine(name))
-        .OnFailure(() => Console.WriteLine("Anonymous"))
+        .ToValueResult()
+        .OnAny(() => Console.Write("Hello"))
+        .OnSuccess(name => Console.Write(name))
+        .OnFailure(() => Console.Write("Anonymous"))
         .OnAny(() => Console.WriteLine(", how are you?"));
 
 // Output "Hello Jack, how are you?" if the Database contains a user named Jack
@@ -224,10 +224,13 @@ Database.GetUser("Jack")
 
 // Obviously you can chain calls and have nested calls
 Database.GetUser("Jack")
-        .ToResult()
-        .OnSuccess(name => Database.GetAppointmentsFor(name)
-                                   .OnSuccess(appointments => Console.WriteLine($"Appointments for {name}: {appointments.ToString()}))
-                                   .OnFailure(() => Console.WriteLine($"Not any appointment for {name}.")))
+        .ToValueResult()
+        .OnSuccess(name => 
+        {
+            Database.GetAppointmentsFor(name)
+                    .OnSuccess(appointments => Console.WriteLine($"Appointments for {name}: {appointments.ToString()}"))
+                    .OnFailure(() => Console.WriteLine($"Not any appointment for {name}."))
+        })
         .OnFailure(() => Console.WriteLine("No user named Jack."))
 ```
 
