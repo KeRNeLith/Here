@@ -235,10 +235,10 @@ These calls can be chained to easily produce complex treatments but keeping them
 <p>See following examples for a quick overview. Note that each result type offers similar extensions.</p>
 <pre><code class="lang-csharp">// In this example we call a method on a database that returns an Option&lt;string&gt;
 Database.GetUser(&quot;Jack&quot;)
-        .ToResult()
-        .OnAny(() =&gt; Console.WriteLine(&quot;Hello&quot;))
-        .OnSuccess(name =&gt; Console.WriteLine(name))
-        .OnFailure(() =&gt; Console.WriteLine(&quot;Anonymous&quot;))
+        .ToValueResult()
+        .OnAny(() =&gt; Console.Write(&quot;Hello&quot;))
+        .OnSuccess(name =&gt; Console.Write(name))
+        .OnFailure(() =&gt; Console.Write(&quot;Anonymous&quot;))
         .OnAny(() =&gt; Console.WriteLine(&quot;, how are you?&quot;));
 
 // Output &quot;Hello Jack, how are you?&quot; if the Database contains a user named Jack
@@ -246,10 +246,13 @@ Database.GetUser(&quot;Jack&quot;)
 
 // Obviously you can chain calls and have nested calls
 Database.GetUser(&quot;Jack&quot;)
-        .ToResult()
-        .OnSuccess(name =&gt; Database.GetAppointmentsFor(name)
-                                   .OnSuccess(appointments =&gt; Console.WriteLine($&quot;Appointments for {name}: {appointments.ToString()}))
-                                   .OnFailure(() =&gt; Console.WriteLine($&quot;Not any appointment for {name}.&quot;)))
+        .ToValueResult()
+        .OnSuccess(name =&gt; 
+        {
+            Database.GetAppointmentsFor(name)
+                    .OnSuccess(appointments =&gt; Console.WriteLine($&quot;Appointments for {name}: {appointments.ToString()}&quot;))
+                    .OnFailure(() =&gt; Console.WriteLine($&quot;Not any appointment for {name}.&quot;))
+        })
         .OnFailure(() =&gt; Console.WriteLine(&quot;No user named Jack.&quot;))
 </code></pre>
 <h3 id="ensure">Ensure</h3>

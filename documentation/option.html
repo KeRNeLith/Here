@@ -248,9 +248,9 @@ Option&lt;string&gt; optionString = dictionary.TryGetValue(11);   // string 11
 Option&lt;string&gt; optionString2 = dictionary.TryGetValue(14);  // None option
 
 // Parsing
-Option&lt;int&gt; optionInt = &quot;12&quot;.parseInt();   // 12
-Option&lt;int&gt; optionInt2 = &quot;1.5&quot;.parseInt(); // None Option
-Option&lt;float&gt; optionFloat = &quot;1.5&quot;.parseFloat(); // 1.5
+Option&lt;int&gt; optionInt = &quot;12&quot;.TryParseInt();   // 12
+Option&lt;int&gt; optionInt2 = &quot;1.5&quot;.TryParseInt(); // None Option
+Option&lt;float&gt; optionFloat = &quot;1.5&quot;.TryParseFloat(); // 1.5
 </code></pre>
 <p>Lookup and parsing are features that can be completed easily if you have a method that match the following delegates:</p>
 <pre><code class="lang-csharp">// For TryGet
