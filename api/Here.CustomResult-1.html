@@ -102,7 +102,8 @@ It provides a custom error object in case of failure.</p>
   <h6><strong>Assembly</strong>: Here.dll</h6>
   <h5 id="Here_CustomResult_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Serializable]
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Serializable]
 public struct CustomResult&lt;TError&gt; : IResultError&lt;TError&gt;, IResult, IEquatable&lt;CustomResult&lt;TError&gt;&gt;, IComparable, IComparable&lt;CustomResult&lt;TError&gt;&gt;, ISerializable</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
@@ -339,7 +340,9 @@ public struct CustomResult&lt;TError&gt; : IResultError&lt;TError&gt;, IResult, 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Result&lt;T&gt; Cast&lt;T&gt;(in T value)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public Result&lt;T&gt; Cast&lt;T&gt;([CanBeNull] in T value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -405,7 +408,9 @@ public struct CustomResult&lt;TError&gt; : IResultError&lt;TError&gt;, IResult, 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Result&lt;T&gt; Cast&lt;T&gt;(in Func&lt;T&gt; valueFactory)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public Result&lt;T&gt; Cast&lt;T&gt;([NotNull, InstantHandle] in Func&lt;T&gt; valueFactory)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -583,7 +588,9 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Result&lt;T, TError&gt; CustomCast&lt;T&gt;(in T value)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public Result&lt;T, TError&gt; CustomCast&lt;T&gt;([CanBeNull] in T value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -649,7 +656,9 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Result&lt;T, TError&gt; CustomCast&lt;T&gt;(in Func&lt;T&gt; valueFactory)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public Result&lt;T, TError&gt; CustomCast&lt;T&gt;([NotNull, InstantHandle] in Func&lt;T&gt; valueFactory)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -896,7 +905,9 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool SuccessEquals(in CustomResult&lt;TError&gt; other)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public bool SuccessEquals(in CustomResult&lt;TError&gt; other)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1148,7 +1159,9 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static implicit operator Option&lt;bool&gt;(in CustomResult&lt;TError&gt; result)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public static implicit operator Option&lt;bool&gt;(in CustomResult&lt;TError&gt; result)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1198,7 +1211,9 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static implicit operator Result(in CustomResult&lt;TError&gt; result)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public static implicit operator Result(in CustomResult&lt;TError&gt; result)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">

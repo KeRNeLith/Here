@@ -105,7 +105,8 @@ This object should be immutable.</p>
   <h6><strong>Assembly</strong>: Here.dll</h6>
   <h5 id="Here_ValueObject_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class ValueObject</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+public abstract class ValueObject</code></pre>
   </div>
   <h3 id="methods">Methods
   </h3>
@@ -228,7 +229,9 @@ This object should be immutable.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected abstract IEnumerable&lt;object&gt; GetEqualityElements()</code></pre>
+    <pre><code class="lang-csharp hljs">[Pure]
+[NotNull]
+protected abstract IEnumerable&lt;object&gt; GetEqualityElements()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">

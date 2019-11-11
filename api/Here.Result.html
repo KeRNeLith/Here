@@ -100,7 +100,8 @@
   <h6><strong>Assembly</strong>: Here.dll</h6>
   <h5 id="Here_Result_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Serializable]
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Serializable]
 public struct Result : IResult, IEquatable&lt;Result&gt;, IComparable, IComparable&lt;Result&gt;, ISerializable</code></pre>
   </div>
   <h3 id="properties">Properties
@@ -276,7 +277,9 @@ public struct Result : IResult, IEquatable&lt;Result&gt;, IComparable, IComparab
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Result&lt;T&gt; Cast&lt;T&gt;(in T value)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public Result&lt;T&gt; Cast&lt;T&gt;([CanBeNull] in T value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -342,7 +345,9 @@ public struct Result : IResult, IEquatable&lt;Result&gt;, IComparable, IComparab
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Result&lt;T&gt; Cast&lt;T&gt;(in Func&lt;T&gt; valueFactory)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public Result&lt;T&gt; Cast&lt;T&gt;([NotNull, InstantHandle] in Func&lt;T&gt; valueFactory)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -424,7 +429,9 @@ public struct Result : IResult, IEquatable&lt;Result&gt;, IComparable, IComparab
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Result&lt;T, TError&gt; Cast&lt;T, TError&gt;(in T value, in TError errorObject)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public Result&lt;T, TError&gt; Cast&lt;T, TError&gt;([CanBeNull] in T value, [NotNull] in TError errorObject)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -517,7 +524,9 @@ public struct Result : IResult, IEquatable&lt;Result&gt;, IComparable, IComparab
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Result&lt;T, TError&gt; Cast&lt;T, TError&gt;(in T value, in Func&lt;TError&gt; errorFactory)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public Result&lt;T, TError&gt; Cast&lt;T, TError&gt;([CanBeNull] in T value, [NotNull, InstantHandle] in Func&lt;TError&gt; errorFactory)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -610,7 +619,9 @@ public struct Result : IResult, IEquatable&lt;Result&gt;, IComparable, IComparab
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Result&lt;T, TError&gt; Cast&lt;T, TError&gt;(in Func&lt;T&gt; valueFactory, in TError errorObject)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public Result&lt;T, TError&gt; Cast&lt;T, TError&gt;([NotNull, InstantHandle] in Func&lt;T&gt; valueFactory, [NotNull] in TError errorObject)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -708,7 +719,9 @@ public struct Result : IResult, IEquatable&lt;Result&gt;, IComparable, IComparab
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Result&lt;T, TError&gt; Cast&lt;T, TError&gt;(in Func&lt;T&gt; valueFactory, in Func&lt;TError&gt; errorFactory)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public Result&lt;T, TError&gt; Cast&lt;T, TError&gt;([NotNull, InstantHandle] in Func&lt;T&gt; valueFactory, [NotNull, InstantHandle] in Func&lt;TError&gt; errorFactory)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -902,7 +915,9 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public CustomResult&lt;TError&gt; CustomCast&lt;TError&gt;(in TError errorObject)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public CustomResult&lt;TError&gt; CustomCast&lt;TError&gt;([NotNull] in TError errorObject)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -984,7 +999,9 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public CustomResult&lt;TError&gt; CustomCast&lt;TError&gt;(in Func&lt;TError&gt; errorFactory)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public CustomResult&lt;TError&gt; CustomCast&lt;TError&gt;([NotNull, InstantHandle] in Func&lt;TError&gt; errorFactory)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1066,7 +1083,10 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; CustomFail&lt;TError&gt;(in TError error, in Exception exception)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+[ContractAnnotation(&quot;error:null =&gt; halt; exception:null =&gt; halt&quot;)]
+public static CustomResult&lt;TError&gt; CustomFail&lt;TError&gt;([NotNull] in TError error, [NotNull] in Exception exception)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1158,7 +1178,10 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; CustomFail&lt;TError&gt;(in string message, in TError error, in Exception exception = null)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+[ContractAnnotation(&quot;message:null =&gt; halt; error:null =&gt; halt&quot;)]
+public static CustomResult&lt;TError&gt; CustomFail&lt;TError&gt;([NotNull] in string message, [NotNull] in TError error, [CanBeNull] in Exception exception = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1256,7 +1279,9 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; CustomOk&lt;TError&gt;()</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public static CustomResult&lt;TError&gt; CustomOk&lt;TError&gt;()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1303,7 +1328,10 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; CustomWarn&lt;TError&gt;(in string message, in Exception exception = null)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+[ContractAnnotation(&quot;message:null =&gt; halt&quot;)]
+public static CustomResult&lt;TError&gt; CustomWarn&lt;TError&gt;([NotNull] in string message, [CanBeNull] in Exception exception = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1486,7 +1514,10 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result Fail(in Exception exception)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+[ContractAnnotation(&quot;exception:null =&gt; halt&quot;)]
+public static Result Fail([NotNull] in Exception exception)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1552,7 +1583,10 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result Fail(in string error, in Exception exception = null)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+[ContractAnnotation(&quot;error:null =&gt; halt&quot;)]
+public static Result Fail([NotNull] in string error, [CanBeNull] in Exception exception = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1624,7 +1658,9 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; Fail&lt;T&gt;(in Result result)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public static Result&lt;T&gt; Fail&lt;T&gt;(in Result result)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1705,7 +1741,10 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; Fail&lt;T&gt;(in Exception exception)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+[ContractAnnotation(&quot;exception:null =&gt; halt&quot;)]
+public static Result&lt;T&gt; Fail&lt;T&gt;([NotNull] in Exception exception)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1786,7 +1825,10 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; Fail&lt;T&gt;(in string error, in Exception exception = null)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+[ContractAnnotation(&quot;error:null =&gt; halt&quot;)]
+public static Result&lt;T&gt; Fail&lt;T&gt;([NotNull] in string error, [CanBeNull] in Exception exception = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1873,7 +1915,10 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result&lt;T, TError&gt; Fail&lt;T, TError&gt;(in TError error, in Exception exception)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+[ContractAnnotation(&quot;error:null =&gt; halt; exception:null =&gt; halt&quot;)]
+public static Result&lt;T, TError&gt; Fail&lt;T, TError&gt;([NotNull] in TError error, [NotNull] in Exception exception)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1969,7 +2014,9 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result&lt;T, TError&gt; Fail&lt;T, TError&gt;(in CustomResult&lt;TError&gt; result)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public static Result&lt;T, TError&gt; Fail&lt;T, TError&gt;(in CustomResult&lt;TError&gt; result)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2054,7 +2101,9 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result&lt;TOut&gt; Fail&lt;TIn, TOut&gt;(in Result&lt;TIn&gt; result)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public static Result&lt;TOut&gt; Fail&lt;TIn, TOut&gt;(in Result&lt;TIn&gt; result)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2139,7 +2188,10 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result&lt;T, TError&gt; Fail&lt;T, TError&gt;(in string message, in TError error, in Exception exception = null)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+[ContractAnnotation(&quot;message:null =&gt; halt; error:null =&gt; halt&quot;)]
+public static Result&lt;T, TError&gt; Fail&lt;T, TError&gt;([NotNull] in string message, [NotNull] in TError error, [CanBeNull] in Exception exception = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2241,7 +2293,9 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result&lt;TOut, TError&gt; Fail&lt;TIn, TOut, TError&gt;(in Result&lt;TIn, TError&gt; result)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public static Result&lt;TOut, TError&gt; Fail&lt;TIn, TOut, TError&gt;(in Result&lt;TIn, TError&gt; result)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2399,7 +2453,9 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result Ok()</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public static Result Ok()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2431,7 +2487,9 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; Ok&lt;T&gt;(in T value)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public static Result&lt;T&gt; Ok&lt;T&gt;([CanBeNull] in T value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2496,7 +2554,9 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result&lt;T, TError&gt; Ok&lt;T, TError&gt;(in T value)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public static Result&lt;T, TError&gt; Ok&lt;T, TError&gt;([CanBeNull] in T value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2565,7 +2625,9 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool SuccessEquals(in Result other)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public bool SuccessEquals(in Result other)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2647,7 +2709,10 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result Warn(in string message, in Exception exception = null)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+[ContractAnnotation(&quot;message:null =&gt; halt&quot;)]
+public static Result Warn([NotNull] in string message, [CanBeNull] in Exception exception = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2719,7 +2784,10 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; Warn&lt;T&gt;(in T value, in string message, in Exception exception = null)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+[ContractAnnotation(&quot;message:null =&gt; halt&quot;)]
+public static Result&lt;T&gt; Warn&lt;T&gt;([CanBeNull] in T value, [NotNull] in string message, [CanBeNull] in Exception exception = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2812,7 +2880,10 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result&lt;T, TError&gt; Warn&lt;T, TError&gt;(in T value, in string message, in Exception exception = null)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+[ContractAnnotation(&quot;message:null =&gt; halt&quot;)]
+public static Result&lt;T, TError&gt; Warn&lt;T, TError&gt;([CanBeNull] in T value, [NotNull] in string message, [CanBeNull] in Exception exception = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3079,7 +3150,9 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static implicit operator Option&lt;bool&gt;(in Result result)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public static implicit operator Option&lt;bool&gt;(in Result result)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">

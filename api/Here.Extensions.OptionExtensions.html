@@ -127,7 +127,9 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Option&lt;T&gt; Flatten&lt;T&gt;(this in Option&lt;Option&lt;T&gt;&gt; embeddedOption)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public static Option&lt;T&gt; Flatten&lt;T&gt;(this in Option&lt;Option&lt;T&gt;&gt; embeddedOption)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -192,7 +194,9 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Option&lt;string&gt; NoneIfEmpty(this in Option&lt;string&gt; option)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public static Option&lt;string&gt; NoneIfEmpty(this in Option&lt;string&gt; option)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -242,7 +246,9 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Option&lt;string&gt; NoneIfEmpty(this string str)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public static Option&lt;string&gt; NoneIfEmpty([CanBeNull] this string str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -292,7 +298,9 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Option&lt;string&gt; NoneIfEmptyOrSpace(this in Option&lt;string&gt; option)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public static Option&lt;string&gt; NoneIfEmptyOrSpace(this in Option&lt;string&gt; option)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -342,7 +350,9 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Option&lt;string&gt; NoneIfEmptyOrSpace(this string str)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public static Option&lt;string&gt; NoneIfEmptyOrSpace([CanBeNull] this string str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -392,7 +402,9 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T? ToNullable&lt;T&gt;(this in Option&lt;T&gt; option)
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public static T? ToNullable&lt;T&gt;(this in Option&lt;T&gt; option)
     where T : struct</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -459,7 +471,9 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Option&lt;T&gt; ToOption&lt;T&gt;(this T value)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public static Option&lt;T&gt; ToOption&lt;T&gt;([CanBeNull] this T value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -525,7 +539,9 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Option&lt;T&gt; ToOption&lt;T&gt;(this in T? nullable)
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public static Option&lt;T&gt; ToOption&lt;T&gt;([CanBeNull] this in T? nullable)
     where T : struct</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>

@@ -81,7 +81,8 @@ Convention is that Left is used for failure and Right is used for success.</p>
   <h6><strong>Assembly</strong>: Here.dll</h6>
   <h5 id="Here_IEither_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IEither</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+public interface IEither</code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>
@@ -99,7 +100,8 @@ Convention is that Left is used for failure and Right is used for success.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool IsLeft { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+bool IsLeft { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -130,7 +132,8 @@ Convention is that Left is used for failure and Right is used for success.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool IsRight { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+bool IsRight { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">

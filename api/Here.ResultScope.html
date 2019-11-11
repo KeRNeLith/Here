@@ -109,7 +109,8 @@
   <h6><strong>Assembly</strong>: Here.dll</h6>
   <h5 id="Here_ResultScope_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class ResultScope</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+public static class ResultScope</code></pre>
   </div>
   <h3 id="methods">Methods
   </h3>
@@ -127,7 +128,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; SafeCustomResult&lt;TError&gt;(in Func&lt;CustomResult&lt;TError&gt;&gt; action, in TError errorObject)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+public static CustomResult&lt;TError&gt; SafeCustomResult&lt;TError&gt;([NotNull, InstantHandle] in Func&lt;CustomResult&lt;TError&gt;&gt; action, [NotNull] in TError errorObject)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -219,7 +221,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; SafeCustomResult&lt;TError&gt;(in Func&lt;CustomResult&lt;TError&gt;&gt; action, in Func&lt;TError&gt; errorFactory)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+public static CustomResult&lt;TError&gt; SafeCustomResult&lt;TError&gt;([NotNull, InstantHandle] in Func&lt;CustomResult&lt;TError&gt;&gt; action, [NotNull] in Func&lt;TError&gt; errorFactory)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -311,7 +314,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result SafeResult(in Action action)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+public static Result SafeResult([NotNull, InstantHandle] in Action action)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -377,7 +381,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result SafeResult(in Func&lt;Result&gt; action)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+public static Result SafeResult([NotNull, InstantHandle] in Func&lt;Result&gt; action)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -443,7 +448,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result&lt;T, TError&gt; SafeValueCustomResult&lt;T, TError&gt;(in Func&lt;Result&lt;T, TError&gt;&gt; action, in TError errorObject)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+public static Result&lt;T, TError&gt; SafeValueCustomResult&lt;T, TError&gt;([NotNull, InstantHandle] in Func&lt;Result&lt;T, TError&gt;&gt; action, [NotNull] in TError errorObject)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -539,7 +545,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result&lt;T, TError&gt; SafeValueCustomResult&lt;T, TError&gt;(in Func&lt;Result&lt;T, TError&gt;&gt; action, in Func&lt;TError&gt; errorFactory)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+public static Result&lt;T, TError&gt; SafeValueCustomResult&lt;T, TError&gt;([NotNull, InstantHandle] in Func&lt;Result&lt;T, TError&gt;&gt; action, [NotNull] in Func&lt;TError&gt; errorFactory)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -635,7 +642,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; SafeValueResult&lt;T&gt;(in Func&lt;Result&lt;T&gt;&gt; action)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+public static Result&lt;T&gt; SafeValueResult&lt;T&gt;([NotNull, InstantHandle] in Func&lt;Result&lt;T&gt;&gt; action)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">

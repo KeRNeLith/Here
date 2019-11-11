@@ -103,7 +103,8 @@ Convention is that Right is used for success.</p>
   <h6><strong>Assembly</strong>: Here.dll</h6>
   <h5 id="Here_EitherRight_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Serializable]
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Serializable]
 public struct EitherRight&lt;TRight&gt; : IEither, IEquatable&lt;TRight&gt;, IEquatable&lt;EitherRight&lt;TRight&gt;&gt;, IComparable, IComparable&lt;TRight&gt;, IComparable&lt;EitherRight&lt;TRight&gt;&gt;, ISerializable</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
@@ -137,7 +138,9 @@ public struct EitherRight&lt;TRight&gt; : IEither, IEquatable&lt;TRight&gt;, IEq
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public readonly TRight Value</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[NotNull]
+public readonly TRight Value</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">

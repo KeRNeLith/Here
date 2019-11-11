@@ -109,7 +109,8 @@
   <h6><strong>Assembly</strong>: Here.dll</h6>
   <h5 id="Here_EitherHelpers_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class EitherHelpers</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+public static class EitherHelpers</code></pre>
   </div>
   <h3 id="methods">Methods
   </h3>
@@ -127,7 +128,9 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool AreEqual&lt;TLeft&gt;(in EitherLeft&lt;TLeft&gt; eitherLeft1, in EitherLeft&lt;TLeft&gt; eitherLeft2)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public static bool AreEqual&lt;TLeft&gt;(in EitherLeft&lt;TLeft&gt; eitherLeft1, in EitherLeft&lt;TLeft&gt; eitherLeft2)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -198,7 +201,9 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool AreEqual&lt;TRight&gt;(in EitherRight&lt;TRight&gt; eitherRight1, in EitherRight&lt;TRight&gt; eitherRight2)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public static bool AreEqual&lt;TRight&gt;(in EitherRight&lt;TRight&gt; eitherRight1, in EitherRight&lt;TRight&gt; eitherRight2)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -269,7 +274,9 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool AreEqual&lt;TLeft, TRight&gt;(in Either&lt;TLeft, TRight&gt; either1, in Either&lt;TLeft, TRight&gt; either2)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public static bool AreEqual&lt;TLeft, TRight&gt;(in Either&lt;TLeft, TRight&gt; either1, in Either&lt;TLeft, TRight&gt; either2)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -345,7 +352,9 @@ Order is based on wrapped value.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int Compare&lt;TLeft&gt;(in EitherLeft&lt;TLeft&gt; eitherLeft1, in EitherLeft&lt;TLeft&gt; eitherLeft2)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public static int Compare&lt;TLeft&gt;(in EitherLeft&lt;TLeft&gt; eitherLeft1, in EitherLeft&lt;TLeft&gt; eitherLeft2)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -417,7 +426,9 @@ Order is based on wrapped value.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int Compare&lt;TRight&gt;(in EitherRight&lt;TRight&gt; eitherRight1, in EitherRight&lt;TRight&gt; eitherRight2)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public static int Compare&lt;TRight&gt;(in EitherRight&lt;TRight&gt; eitherRight1, in EitherRight&lt;TRight&gt; eitherRight2)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -489,7 +500,9 @@ Order keeps None first, then Left and finally Right either.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int Compare&lt;TLeft, TRight&gt;(in Either&lt;TLeft, TRight&gt; either1, in Either&lt;TLeft, TRight&gt; either2)</code></pre>
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+[Pure]
+public static int Compare&lt;TLeft, TRight&gt;(in Either&lt;TLeft, TRight&gt; either1, in Either&lt;TLeft, TRight&gt; either2)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
