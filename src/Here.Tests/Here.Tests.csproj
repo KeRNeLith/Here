@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net20;net30;net35;net40;net45;net451;net452;net46;net461;net462;net47;net471;net472;netcoreapp1.0;netcoreapp2.0</TargetFrameworks>
     <!-- Fix restore issue with multi target and netcoreapp1.0 which fail to restore packages due to faulty signed package --> 
-	<DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
+    <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
 
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -96,9 +96,13 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="2019.1.3" PrivateAssets="All" />
+  </ItemGroup>
+
   <ItemGroup Condition="'$(TargetFramework)' != 'net20' AND '$(TargetFramework)' != 'net30'">
     <PackageReference Include="NUnit" Version="3.11.0" />
-	<PackageReference Include="NUnit3TestAdapter" Version="3.11.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.11.0" />
   </ItemGroup>
 
   <!-- In later releases NUnit target net30 was removed, so it use the net20 build.
@@ -106,7 +110,7 @@
        is incompatible with System.Core. -->
   <ItemGroup Condition="'$(TargetFramework)' == 'net20' OR '$(TargetFramework)' == 'net30'">
     <PackageReference Include="NUnit" Version="3.2.1" />
-	<PackageReference Include="NUnit3TestAdapter" Version="3.4.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.4.0" />
   </ItemGroup>
 
   <ItemGroup>
