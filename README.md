@@ -29,7 +29,7 @@ See the library [documentation](https://kernelith.github.io/Here/).
 
 ---
 
-## Target
+## Targets
 
 - [![.NET Standard](https://img.shields.io/badge/.NET%20Standard-%3E%3D%201.0-blue.svg)](#)
 - [![.NET Core](https://img.shields.io/badge/.NET%20Core-%3E%3D%201.0-blue.svg)](#)
@@ -47,7 +47,7 @@ Supports Source Link
 
 - It uses NUnit3 for unit testing (not published).
 
-- The library code is published annotated with JetBrains annotations that are embedded in the library. But they will **not conflict** with any of your referenced packages or project defined attributes as they are **internal** to Here.
+- The library code is published annotated with JetBrains annotations.
 
 ---
 
@@ -55,6 +55,6 @@ Supports Source Link
 
 Here is available on [NuGet](https://www.nuget.org/packages/Here)
 
-	PM> Install-Package Here
+    PM> Install-Package Here
 
 ---

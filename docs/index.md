@@ -29,7 +29,7 @@ For more details on `ValueObject` usage see the following [tips](documentation/v
 
 You can find library sources on [GitHub](https://github.com/KeRNeLith/Here).
 
-## Target
+## Targets
 
 - .NET Standard 1.0+
 - .NET Core 1.0+
