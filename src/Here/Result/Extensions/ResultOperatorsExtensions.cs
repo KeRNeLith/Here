@@ -81,25 +81,6 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Converts this <see cref="Result{T, TError}"/> to an <see cref="Either{String,T}"/>.
-        /// </summary>
-        /// <typeparam name="T">Type of the result value.</typeparam>
-        /// <typeparam name="TError">Error type of the result.</typeparam>
-        /// <param name="result"><see cref="Result{T, TError}"/> to convert.</param>
-        /// <returns>An <see cref="Either{String,T}"/>.</returns>
-        public static Either<string, T> ToMessageEither<T, TError>(in this Result<T, TError> result)
-        {
-            if (result.IsSuccess)
-            {
-                if (result._value == null)
-                    return Either<string, T>.Left(ValueCustomResultToEitherNullValue);
-                return Either<string, T>.Right(result._value);
-            }
-
-            return Either<string, T>.Left(result.Message);
-        }
-
-        /// <summary>
         /// Converts this <see cref="Result{T, TError}"/> to an <see cref="Either{TError,T}"/>.
         /// </summary>
         /// <typeparam name="T">Type of the result value.</typeparam>
@@ -120,6 +101,25 @@ namespace Here.Extensions
             }
 
             return Either<TError, T>.Left(result.Error);
+        }
+
+        /// <summary>
+        /// Converts this <see cref="Result{T, TError}"/> to an <see cref="Either{String,T}"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the result value.</typeparam>
+        /// <typeparam name="TError">Error type of the result.</typeparam>
+        /// <param name="result"><see cref="Result{T, TError}"/> to convert.</param>
+        /// <returns>An <see cref="Either{String,T}"/>.</returns>
+        public static Either<string, T> ToMessageEither<T, TError>(in this Result<T, TError> result)
+        {
+            if (result.IsSuccess)
+            {
+                if (result._value == null)
+                    return Either<string, T>.Left(ValueCustomResultToEitherNullValue);
+                return Either<string, T>.Right(result._value);
+            }
+
+            return Either<string, T>.Left(result.Message);
         }
 
         #endregion

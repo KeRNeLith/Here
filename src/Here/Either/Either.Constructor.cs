@@ -43,35 +43,6 @@ namespace Here
         }
 
         /// <summary>
-        /// Creates an instance of <see cref="Either{TLeft, TRight}"/> in <see cref="EitherStates.Left"/> state.
-        /// </summary>
-        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
-        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
-        /// <param name="value">A value.</param>
-        /// <returns>An <see cref="Either{TLeft, TRight}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="value"/> is null.</exception>
-        [PublicAPI, Pure]
-        public static Either<TLeft, TRight> ToEither<TLeft, TRight>([NotNull] this TLeft value)
-        {
-            return Left<TLeft, TRight>(value);
-        }
-
-        /// <summary>
-        /// Creates an instance of <see cref="Either{TLeft, TRight}"/> in <see cref="EitherStates.Left"/> state.
-        /// </summary>
-        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
-        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
-        /// <param name="nullable">A nullable value.</param>
-        /// <returns>An <see cref="Either{TLeft, TRight}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="nullable"/> is null.</exception>
-        [PublicAPI, Pure]
-        public static Either<TLeft, TRight> ToEither<TLeft, TRight>([NotNull] in this TLeft? nullable)
-            where TLeft : struct
-        {
-            return Left<TLeft, TRight>(nullable);
-        }
-
-        /// <summary>
         /// Creates an instance of <see cref="EitherLeft{TLeft}"/>.
         /// </summary>
         /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
@@ -136,35 +107,6 @@ namespace Here
         }
 
         /// <summary>
-        /// Creates an instance of <see cref="Either{TLeft, TRight}"/> in <see cref="EitherStates.Right"/> state.
-        /// </summary>
-        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
-        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
-        /// <param name="value">A value.</param>
-        /// <returns>An <see cref="Either{TLeft, TRight}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="value"/> is null.</exception>
-        [PublicAPI, Pure]
-        public static Either<TLeft, TRight> ToEither<TLeft, TRight>([NotNull] this TRight value)
-        {
-            return Right<TLeft, TRight>(value);
-        }
-
-        /// <summary>
-        /// Creates an instance of <see cref="Either{TLeft, TRight}"/> in <see cref="EitherStates.Right"/> state.
-        /// </summary>
-        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
-        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
-        /// <param name="nullable">A nullable value.</param>
-        /// <returns>An <see cref="Either{TLeft, TRight}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="nullable"/> is null.</exception>
-        [PublicAPI, Pure]
-        public static Either<TLeft, TRight> ToEither<TLeft, TRight>([NotNull] in this TRight? nullable)
-            where TRight : struct
-        {
-            return Right<TLeft, TRight>(nullable);
-        }
-
-        /// <summary>
         /// Creates an instance of <see cref="EitherRight{TRight}"/>.
         /// </summary>
         /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
@@ -191,6 +133,72 @@ namespace Here
             if (nullable == null)
                 throw new ArgumentNullException(nameof(nullable), "Cannot initialize an EitherRight with a null nullable value.");
             return new EitherRight<TRight>(nullable.Value);
+        }
+
+        #endregion
+
+        #region Left construction
+
+        /// <summary>
+        /// Creates an instance of <see cref="Either{TLeft, TRight}"/> in <see cref="EitherStates.Left"/> state.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <param name="value">A value.</param>
+        /// <returns>An <see cref="Either{TLeft, TRight}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="value"/> is null.</exception>
+        [PublicAPI, Pure]
+        public static Either<TLeft, TRight> ToEither<TLeft, TRight>([NotNull] this TLeft value)
+        {
+            return Left<TLeft, TRight>(value);
+        }
+
+        /// <summary>
+        /// Creates an instance of <see cref="Either{TLeft, TRight}"/> in <see cref="EitherStates.Left"/> state.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <param name="nullable">A nullable value.</param>
+        /// <returns>An <see cref="Either{TLeft, TRight}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="nullable"/> is null.</exception>
+        [PublicAPI, Pure]
+        public static Either<TLeft, TRight> ToEither<TLeft, TRight>([NotNull] in this TLeft? nullable)
+            where TLeft : struct
+        {
+            return Left<TLeft, TRight>(nullable);
+        }
+
+        #endregion
+
+        #region Right construction
+
+        /// <summary>
+        /// Creates an instance of <see cref="Either{TLeft, TRight}"/> in <see cref="EitherStates.Right"/> state.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <param name="value">A value.</param>
+        /// <returns>An <see cref="Either{TLeft, TRight}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="value"/> is null.</exception>
+        [PublicAPI, Pure]
+        public static Either<TLeft, TRight> ToEither<TLeft, TRight>([NotNull] this TRight value)
+        {
+            return Right<TLeft, TRight>(value);
+        }
+
+        /// <summary>
+        /// Creates an instance of <see cref="Either{TLeft, TRight}"/> in <see cref="EitherStates.Right"/> state.
+        /// </summary>
+        /// <typeparam name="TLeft">Type of the value embedded as left value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <typeparam name="TRight">Type of the value embedded as right value in the <see cref="Either{TLeft, TRight}"/>.</typeparam>
+        /// <param name="nullable">A nullable value.</param>
+        /// <returns>An <see cref="Either{TLeft, TRight}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="nullable"/> is null.</exception>
+        [PublicAPI, Pure]
+        public static Either<TLeft, TRight> ToEither<TLeft, TRight>([NotNull] in this TRight? nullable)
+            where TRight : struct
+        {
+            return Right<TLeft, TRight>(nullable);
         }
 
         #endregion

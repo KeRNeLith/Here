@@ -77,6 +77,19 @@ namespace Here.Extensions
                 : Option<string>.Some(str);
         }
 
+        /// <summary>
+        /// Converts this <see cref="Option{T}"/> to another <see cref="Option{T}"/> after applying <see cref="string.IsNullOrEmpty(string)"/>.
+        /// </summary>
+        /// <param name="option"><see cref="Option{T}"/> on which applying the treatment.</param>
+        /// <returns>An <see cref="Option{T}"/>.</returns>
+        [PublicAPI, Pure]
+        public static Option<string> NoneIfEmpty(in this Option<string> option)
+        {
+            return option.IfElse(
+                str => string.IsNullOrEmpty(str) ? Option<string>.None : Option<string>.Some(str),
+                () => Option<string>.None);
+        }
+
 #if SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE
         /// <summary>
         /// Converts this string to an <see cref="Option{T}"/> after applying <see cref="string.IsNullOrWhiteSpace(string)"/>.
@@ -100,19 +113,6 @@ namespace Here.Extensions
 #endif
                 ? Option<string>.None
                 : Option<string>.Some(str);
-        }
-
-        /// <summary>
-        /// Converts this <see cref="Option{T}"/> to another <see cref="Option{T}"/> after applying <see cref="string.IsNullOrEmpty(string)"/>.
-        /// </summary>
-        /// <param name="option"><see cref="Option{T}"/> on which applying the treatment.</param>
-        /// <returns>An <see cref="Option{T}"/>.</returns>
-        [PublicAPI, Pure]
-        public static Option<string> NoneIfEmpty(in this Option<string> option)
-        {
-            return option.IfElse(
-                str => string.IsNullOrEmpty(str) ? Option<string>.None : Option<string>.Some(str), 
-                () => Option<string>.None);
         }
 
 #if SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE

@@ -13,6 +13,40 @@ namespace Here
         #region Match
 
         /// <summary>
+        /// Calls the <paramref name="onRight"/> function when this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state,
+        /// the <paramref name="onLeft"/> function if it is in <see cref="EitherStates.Left"/> state, otherwise calls the <paramref name="none"/> function.
+        /// </summary>
+        /// <typeparam name="TOut">Type of the output value.</typeparam>
+        /// <param name="onRight">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
+        /// <param name="onLeft">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
+        /// <param name="none">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/>.</param>
+        /// <returns>The result of the applied treatment.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state without providing a <paramref name="none"/> action.</exception>
+        [PublicAPI, CanBeNull, Pure]
+        public TOut MatchNullable<TOut>(
+            [NotNull, InstantHandle] in Func<TRight, TOut> onRight,
+            [NotNull, InstantHandle] in Func<TLeft, TOut> onLeft,
+            [CanBeNull, InstantHandle] in Func<TOut> none = null)
+        {
+            Throw.IfArgumentNull(onRight, nameof(onRight));
+            Throw.IfArgumentNull(onLeft, nameof(onLeft));
+
+            if (IsNone)
+            {
+                return none is null
+                    ? throw new InvalidOperationException(
+                        $"Trying to run a Match operation on an Either in \"{EitherStates.None}\" state without specifying a \"{nameof(none)}\" action.")
+                    : none();
+            }
+
+            if (IsRight)
+                return onRight(_right);
+            return onLeft(_left);
+        }
+
+        /// <summary>
         /// Calls the <paramref name="onRight"/> action when this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state,
         /// the <paramref name="onLeft"/> if it is in <see cref="EitherStates.Left"/> state, otherwise calls the <paramref name="none"/> action.
         /// </summary>
@@ -48,40 +82,6 @@ namespace Here
                 onLeft(_left);
 
             return Unit.Default;
-        }
-
-        /// <summary>
-        /// Calls the <paramref name="onRight"/> function when this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state,
-        /// the <paramref name="onLeft"/> function if it is in <see cref="EitherStates.Left"/> state, otherwise calls the <paramref name="none"/> function.
-        /// </summary>
-        /// <typeparam name="TOut">Type of the output value.</typeparam>
-        /// <param name="onRight">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
-        /// <param name="onLeft">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
-        /// <param name="none">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/>.</param>
-        /// <returns>The result of the applied treatment.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
-        /// <exception cref="InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state without providing a <paramref name="none"/> action.</exception>
-        [PublicAPI, CanBeNull, Pure]
-        public TOut MatchNullable<TOut>(
-            [NotNull, InstantHandle] in Func<TRight, TOut> onRight,
-            [NotNull, InstantHandle] in Func<TLeft, TOut> onLeft,
-            [CanBeNull, InstantHandle] in Func<TOut> none = null)
-        {
-            Throw.IfArgumentNull(onRight, nameof(onRight));
-            Throw.IfArgumentNull(onLeft, nameof(onLeft));
-
-            if (IsNone)
-            {
-                return none is null
-                    ? throw new InvalidOperationException(
-                        $"Trying to run a Match operation on an Either in \"{EitherStates.None}\" state without specifying a \"{nameof(none)}\" action.")
-                    : none();
-            }
-
-            if (IsRight)
-                return onRight(_right);
-            return onLeft(_left);
         }
 
         /// <summary>
@@ -375,21 +375,6 @@ namespace Here
         }
 
         /// <summary>
-        /// Calls the <paramref name="onFailure"/> action when this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.
-        /// </summary>
-        /// <param name="onFailure">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
-        /// <returns>The result of the applied treatment.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
-        [PublicAPI]
-#if SUPPORTS_AGGRESSIVE_INLINING
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public Unit IfFailure([NotNull, InstantHandle] in Action<TLeft> onFailure)
-        {
-            return IfLeft(onFailure);
-        }
-
-        /// <summary>
         /// Returns the <paramref name="defaultValue"/> when this <see cref="Either{TLeft,TRight}"/> is in
         /// <see cref="EitherStates.Left"/> state, otherwise returns the
         /// right value if it is in <see cref="EitherStates.Right"/> state.
@@ -490,6 +475,21 @@ namespace Here
             return Match(_ => valueFactory(), onLeft);
         }
 
+        /// <summary>
+        /// Calls the <paramref name="onFailure"/> action when this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.
+        /// </summary>
+        /// <param name="onFailure">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
+        /// <returns>The result of the applied treatment.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
+        [PublicAPI]
+#if SUPPORTS_AGGRESSIVE_INLINING
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public Unit IfFailure([NotNull, InstantHandle] in Action<TLeft> onFailure)
+        {
+            return IfLeft(onFailure);
+        }
+
         #endregion
 
         #region OnLeft/OnFailure
@@ -539,21 +539,6 @@ namespace Here
         public Unit IfRight([NotNull, InstantHandle] in Action<TRight> onRight)
         {
             return Match(onRight, DoNothing, DoNothing);
-        }
-
-        /// <summary>
-        /// Calls the <paramref name="onSuccess"/> action when this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.
-        /// </summary>
-        /// <param name="onSuccess">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
-        /// <returns>A <see cref="Unit"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
-        [PublicAPI]
-#if SUPPORTS_AGGRESSIVE_INLINING
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-        public Unit IfSuccess([NotNull, InstantHandle] in Action<TRight> onSuccess)
-        {
-            return IfRight(onSuccess);
         }
 
         /// <summary>
@@ -655,6 +640,21 @@ namespace Here
             Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
 
             return Match(onRight, _ => valueFactory());
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onSuccess"/> action when this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.
+        /// </summary>
+        /// <param name="onSuccess">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
+        /// <returns>A <see cref="Unit"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        [PublicAPI]
+#if SUPPORTS_AGGRESSIVE_INLINING
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        public Unit IfSuccess([NotNull, InstantHandle] in Action<TRight> onSuccess)
+        {
+            return IfRight(onSuccess);
         }
 
         #endregion
