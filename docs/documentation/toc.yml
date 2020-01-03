@@ -1,8 +1,5 @@
-- name: Option<T>
-  href: option.md
-- name: Either<TLeft, TRight>
-  href: either.md
-- name: Results
-  href: results.md
-- name: ValueObject
-  href: value-object.md
+- name: Getting started
+  href: tutorials/toc.yml
+  topicHref: getting-started.md
+- name: Release Notes
+  href: ~/../RELEASE_NOTES.md
