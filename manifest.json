@@ -4,6 +4,18 @@
   "xrefmap": "xrefmap.yml",
   "files": [
     {
+      "type": "Conceptual",
+      "source_relative_path": "../RELEASE_NOTES.md",
+      "output": {
+        ".html": {
+          "relative_path": "RELEASE_NOTES.html",
+          "hash": "GuXFzHXPNBA7qwnvgpv1IA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
       "log_codes": [
         "ReferencedXrefPropertyNotString"
       ],
@@ -551,35 +563,11 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "documentation/either.md",
+      "source_relative_path": "documentation/getting-started.md",
       "output": {
         ".html": {
-          "relative_path": "documentation/either.html",
-          "hash": "kLFe8wR9/2o7kpmvY8SWKg=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "documentation/option.md",
-      "output": {
-        ".html": {
-          "relative_path": "documentation/option.html",
-          "hash": "DCg6EEX3zNNS7GRUWsxG5g=="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "documentation/results.md",
-      "output": {
-        ".html": {
-          "relative_path": "documentation/results.html",
-          "hash": "bJLxx1A5v6o0e48+6ps/AQ=="
+          "relative_path": "documentation/getting-started.html",
+          "hash": "IOTr859vMf5GG9jj8UdPCA=="
         }
       },
       "is_incremental": false,
@@ -591,7 +579,7 @@
       "output": {
         ".html": {
           "relative_path": "documentation/toc.html",
-          "hash": "znglwUfPC/n/42AWw3kL+A=="
+          "hash": "R+cAkH72fw4WlH/ypRSz4g=="
         }
       },
       "is_incremental": false,
@@ -599,11 +587,47 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "documentation/value-object.md",
+      "source_relative_path": "documentation/tutorials/either.md",
       "output": {
         ".html": {
-          "relative_path": "documentation/value-object.html",
-          "hash": "gPfo6Cp2B6oy4bnFxAjyRA=="
+          "relative_path": "documentation/tutorials/either.html",
+          "hash": "nJ+nHQ0cm4x5d18EqFJCAw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "documentation/tutorials/option.md",
+      "output": {
+        ".html": {
+          "relative_path": "documentation/tutorials/option.html",
+          "hash": "UPwXIJIC55jYUqNdpeQ0dA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "documentation/tutorials/results.md",
+      "output": {
+        ".html": {
+          "relative_path": "documentation/tutorials/results.html",
+          "hash": "bGXlp16RvhFVl88WE2rUnw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "documentation/tutorials/value-object.md",
+      "output": {
+        ".html": {
+          "relative_path": "documentation/tutorials/value-object.html",
+          "hash": "1LTP6HF1tiELnrvjB99cpA=="
         }
       },
       "is_incremental": false,
@@ -621,12 +645,15 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "index.md",
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "1zm4MtjmMozlf3W08+vSSQ=="
+          "hash": "PnH1q9MW2iY+223uKFM9IQ=="
         }
       },
       "is_incremental": false,
@@ -638,7 +665,7 @@
       "output": {
         ".html": {
           "relative_path": "toc.html",
-          "hash": "9vlOyTG3kZSyP+b3GUOL/A=="
+          "hash": "Fn/Cky4+Fe6qgTqZgpPNCw=="
         }
       },
       "is_incremental": false,
@@ -659,7 +686,7 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 6,
+          "total_file_count": 8,
           "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {

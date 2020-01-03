@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Release notes </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Release notes ">
+    <meta name="generator" content="docfx 2.42.4.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="toc.html">
+    <meta property="docfx:tocrel" content="documentation/toc.html">
+    
+    
+    
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="release-notes">Release notes</h1>
+
+<h2 id="whats-new-in-090-september-15-2019">What's new in 0.9.0 September 15 2019</h2>
+<h3 id="option">Option:</h3>
+<ul>
+<li>Extend support of TryParseEnum to every targets.</li>
+<li>Extend support of NoneIfNullOrSpaces to every targets.</li>
+<li>Add an If treatment with templated result.</li>
+<li>Add NoneIf treatments.</li>
+<li>WARNING: Rename NoneClass to NoneOption.</li>
+<li>Add IfOfDefault and ElseOrDefault extensions.</li>
+</ul>
+<h3 id="results">Results:</h3>
+<ul>
+<li>Add an extension to throw the wrapped exception of a Result if there is one.</li>
+<li>Results structure no longer throw NullPointerException when initialized by default rather than with factory methods.</li>
+<li>Change some OnSuccess parameter to the wrapped value rather than result itself (for consistency).</li>
+<li>Add an OnFailure extensions for results.</li>
+<li>Add factory methods to create results from other failed results.</li>
+</ul>
+<h3 id="either">Either:</h3>
+<ul>
+<li>Fix a crash in the Equals for Either with direct comparison of a left or right value when null.</li>
+</ul>
+<h3 id="misc">Misc:</h3>
+<ul>
+<li>Generate a documentation for the library via DocFX.</li>
+<li>Make Option, results, eithers and Unit serializable types.</li>
+</ul>
+<h2 id="whats-new-in-080-january-25-2019">What's new in 0.8.0 January 25 2019</h2>
+<h3 id="general">General:</h3>
+<ul>
+<li>Library use C# 7.0 features.</li>
+<li>Change target NetStandard 1.1 to NetStandard 1.0.</li>
+<li>Adjust some annotations of library methods.</li>
+<li>Add early throw for parameters that should not be null.</li>
+<li>Add exception documentation on library functions.</li>
+</ul>
+<h3 id="option-1">Option:</h3>
+<ul>
+<li>Add extensions to Enum, DateTime, DateTimeOffset and Guid.</li>
+<li>Replace methods returning void by Unit.</li>
+<li>Transform conversions from Option to other library types to extensions.</li>
+<li>Transform operations available for Option as extensions into instance methods.</li>
+</ul>
+<h3 id="results-1">Results:</h3>
+<ul>
+<li>Add extensions OnSuccessOrFailure.</li>
+<li>Update some OnSuccess/OnFailure extensions to return the input result to make possible to chain them.</li>
+<li>Add inputs parameters to lambda of some OnSuccess extensions.</li>
+<li>Transform conversions from Results to other library types to extensions.</li>
+</ul>
+<h3 id="unit">Unit:</h3>
+<ul>
+<li>Add an implementation of Unit type.</li>
+</ul>
+<h3 id="either-1">Either:</h3>
+<ul>
+<li>Add a first implementation Either monad.
+<ul>
+<li>Operations methods (IfLeft/IfRight/Match/Map, etc.).</li>
+<li>Linq extensions.</li>
+<li>Comparison helpers.</li>
+<li>Conversions to other library types.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="whats-new-in-070-november-29-2018">What's new in 0.7.0 November 29 2018</h2>
+<h3 id="general-1">General:</h3>
+<ul>
+<li>Clean the library documentation.</li>
+<li>Documentation of the library is now packaged.</li>
+<li>Add support of Source Link.</li>
+<li>Remove dependency to Jetbrains.Annotations, embed the code of some attributes internally.</li>
+<li>The library is ReSharper compliant (use internal annotations recognized by ReSharper).</li>
+<li>Remove target .NET Framework 4.5.2.</li>
+<li>Annotate with &quot;in&quot; all functions parameters that support it.</li>
+<li>WARNING: All existing classes/structs have been moved from their own namespaces to the Here namespace, and extensions to the Here.Extensions namespace.</li>
+</ul>
+<h3 id="maybe--option">Maybe =&gt; Option:</h3>
+<ul>
+<li>Add extensions to unwrap the value embedded by Maybe&lt;T&gt;.</li>
+<li>Add static helpers to check equality and compare Maybe&lt;T&gt; (allows custom comparer).</li>
+<li>Maybe&lt;T&gt; is equatable with object of the wrapped type (also add a static helper for this).</li>
+<li>Make structure readonly.</li>
+<li>Rename Maybe&lt;T&gt; to Option&lt;T&gt;.</li>
+</ul>
+<h3 id="results-2">Results:</h3>
+<ul>
+<li>Add extensions to unwrap the value embedded by results structures.</li>
+<li>Add extensions to Flatten results structures.</li>
+<li>Rename SuccessEquals static helpers to SuccessEqual.</li>
+<li>Add static helpers to check equality and compare results structures (allows custom comparer).</li>
+<li>Result structures with value are equatable with object of the wrapped type (also add a static helper for this).</li>
+<li>Add cast methods on Result with value that perform a cast with the &quot;as&quot; operator.</li>
+<li>Add extensions OnSuccess/OnFailure allowing to return an output value other than a result structure.</li>
+<li>Make structures readonly.</li>
+<li>Add factory method to create a result from an exception.</li>
+</ul>
+<h3 id="valueobject">ValueObject:</h3>
+<ul>
+<li>Add a first implementation of a base class for value objects.</li>
+</ul>
+<hr>
+<h2 id="whats-new-in-061-september-21-2018">What's new in 0.6.1 September 21 2018</h2>
+<h3 id="maybe">Maybe:</h3>
+<ul>
+<li>Add == and != operators to compare a value directly with the wrapped one.</li>
+<li>Add extensions to unwrap the Maybe value.</li>
+<li>Add Exists extension which is equivalent to Any with a predicate.</li>
+<li>Add extension to extract values from an enumerable of Maybe.</li>
+<li>Add extensions to convert a Maybe to Enumerable/Enumerator.</li>
+<li>Add extensions SingleOrNone and ElementAt on IEnumerable.</li>
+<li>Add an explicit Flatten extension.</li>
+<li>Add extensions to perform treatments on Maybe that wrap an IEnumerable (for each, any, where, etc).</li>
+<li>Make Maybe IComparable and IComparable<maybe>.</maybe></li>
+</ul>
+<h3 id="results-3">Results:</h3>
+<ul>
+<li>Add == and != operators to compare a value directly with the wrapped one.</li>
+<li>Implement equals, == and != operators to compare results with a result of same type.</li>
+<li>WARNING: Remove implicit conversions to boolean that produce unwanted behaviors when trying to compare results.</li>
+<li>Add a Result scope to run a simple action.</li>
+<li>Add a SuccessEquals method for each result type and associated static helpers.</li>
+<li>Make result structures IComparable and IComparable.</li>
+</ul>
+<hr>
+<h2 id="whats-new-in-050-september-2-2018">What's new in 0.5.0 September 2 2018</h2>
+<h3 id="general-2">General:</h3>
+<ul>
+<li>Extend library compatibility until .NET Framework 2.0.</li>
+</ul>
+<h3 id="maybe-1">Maybe:</h3>
+<ul>
+<li>Add implicit conversion to boolean to handle test like a simple boolean.</li>
+<li>Remove true/false operators (replaced by the implicit conversion to boolean).</li>
+<li>Add extension on string: NoneIfNullOrSpace.</li>
+<li>Add extensions on Maybe<string>: NoneIfEmpty and NoneIfNullOrSpace.</string></li>
+</ul>
+<h3 id="results-4">Results:</h3>
+<ul>
+<li>Add implicit conversion to boolean to handle test like a simple boolean.</li>
+<li>Add &quot;Ensure&quot; extensions that allow to check a predicate on each Result type.</li>
+<li>Add cast methods on each Result type to create a Result of another type or with a different value type.</li>
+</ul>
+<hr>
+<h2 id="whats-new-in-040-august-16-2018">What's new in 0.4.0 August 16 2018</h2>
+<h3 id="general-3">General:</h3>
+<ul>
+<li>Update to latest JetBrains annotations package.</li>
+</ul>
+<h3 id="results-5">Results:</h3>
+<ul>
+<li>Add extensions OnSuccess.</li>
+<li>Add extensions OnFailure.</li>
+<li>Add extensions OnAny.</li>
+</ul>
+<hr>
+<h2 id="whats-new-in-030-august-2-2018">What's new in 0.3.0 August 2 2018</h2>
+<h3 id="general-4">General:</h3>
+<ul>
+<li>Add missing JetBrains annotations.</li>
+</ul>
+<h3 id="maybe-2">Maybe:</h3>
+<ul>
+<li>Add explicit and implicit converters to Result/Result<t>/CustomResult<terror>/Result&lt;T, TError&gt;.</terror></t></li>
+</ul>
+<h3 id="results-6">Results:</h3>
+<ul>
+<li>Result can now always embed an Exception (for Warning and Failure).</li>
+<li>Add scopes to safely return a Result of any type.</li>
+<li>Add explicit and implicit converters to Maybe.</li>
+</ul>
+<hr>
+<h2 id="whats-new-in-020-july-29-2018">What's new in 0.2.0 July 29 2018</h2>
+<h3 id="maybe-3">Maybe:</h3>
+<ul>
+<li>Little optimizations</li>
+<li>New IfOr and ElseOr extensions.</li>
+<li>Easy conversions between numeric Maybe (ToInt(), ToLong(), ToDouble(), etc.)</li>
+<li>Conversion from numeric Maybe to Maybe<bool>.</bool></li>
+<li>Try Get Value for dictionaries supports null key queries.</li>
+<li>Try Get Value for dictionary&lt;TKey, object&gt; supports value cast to an expected type.</li>
+</ul>
+<hr>
+<h2 id="whats-new-in-010-july-13-2018">What's new in 0.1.0 July 13 2018</h2>
+<h3 id="general-5">General:</h3>
+<ul>
+<li>Add JetBrains annotations on many methods of the library to clarify them.</li>
+</ul>
+<h3 id="maybe-4">Maybe:</h3>
+<ul>
+<li>Supports bitwise and logical AND and OR operators.</li>
+<li>New IfElse extensions.</li>
+<li>New Linq extension (OfType) and simplify usage of Cast too.</li>
+<li>Try parse now are available with custom arguments like those available in .NET Framework.</li>
+</ul>
+<h3 id="result">Result:</h3>
+<ul>
+<li>First implementation of Result.</li>
+</ul>
+<hr>
+<h2 id="whats-new-in-001-june-29-2018">What's new in 0.0.1 June 29 2018</h2>
+<ul>
+<li>First implementation of Maybe (Monad):
+<ul>
+<li>Parse string to Maybe</li>
+<li>Maybe Linq implementation like</li>
+<li>Some useful extensions</li>
+</ul>
+</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/KeRNeLith/Here/blob/master/RELEASE_NOTES.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>
