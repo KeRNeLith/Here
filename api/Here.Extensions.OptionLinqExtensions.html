@@ -128,10 +128,7 @@ Use the <code data-dev-comment-type="paramref" class="paramref">initialValue</co
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[NotNull]
-[Pure]
-public static TAggregate Aggregate&lt;T, TAggregate&gt;(this in Option&lt;T&gt; option, [NotNull] in TAggregate initialValue, [NotNull, InstantHandle] in Func&lt;TAggregate, T, TAggregate&gt; aggregator)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TAggregate Aggregate&lt;T, TAggregate&gt;(this in Option&lt;T&gt; option, in TAggregate initialValue, in Func&lt;TAggregate, T, TAggregate&gt; aggregator)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -236,9 +233,7 @@ otherwise <code data-dev-comment-type="paramref" class="paramref">initialValue</
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool All&lt;T&gt;(this in Option&lt;T&gt; option, [NotNull, InstantHandle] in Predicate&lt;T&gt; predicate)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool All&lt;T&gt;(this in Option&lt;T&gt; option, in Predicate&lt;T&gt; predicate)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -326,9 +321,7 @@ public static bool All&lt;T&gt;(this in Option&lt;T&gt; option, [NotNull, Instan
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool Any&lt;T&gt;(this in Option&lt;T&gt; option)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool Any&lt;T&gt;(this in Option&lt;T&gt; option)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -394,9 +387,7 @@ public static bool Any&lt;T&gt;(this in Option&lt;T&gt; option)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool Any&lt;T&gt;(this in Option&lt;T&gt; option, [NotNull, InstantHandle] in Predicate&lt;T&gt; predicate)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool Any&lt;T&gt;(this in Option&lt;T&gt; option, in Predicate&lt;T&gt; predicate)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -484,9 +475,7 @@ public static bool Any&lt;T&gt;(this in Option&lt;T&gt; option, [NotNull, Instan
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool Contains&lt;T&gt;(this in Option&lt;T&gt; option, [CanBeNull] in T value)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool Contains&lt;T&gt;(this in Option&lt;T&gt; option, in T value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -558,8 +547,7 @@ public static bool Contains&lt;T&gt;(this in Option&lt;T&gt; option, [CanBeNull]
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Unit ForEach&lt;T&gt;(this in Option&lt;T&gt; option, [NotNull, InstantHandle] in Action&lt;T&gt; doAction)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unit ForEach&lt;T&gt;(this in Option&lt;T&gt; option, in Action&lt;T&gt; doAction)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -647,9 +635,7 @@ public static Unit ForEach&lt;T&gt;(this in Option&lt;T&gt; option, [NotNull, In
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;TOut&gt; Select&lt;TIn, TOut&gt;(this in Option&lt;TIn&gt; option, [NotNull, InstantHandle] in Func&lt;TIn, TOut&gt; selector)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;TOut&gt; Select&lt;TIn, TOut&gt;(this in Option&lt;TIn&gt; option, in Func&lt;TIn, TOut&gt; selector)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -742,9 +728,7 @@ public static Option&lt;TOut&gt; Select&lt;TIn, TOut&gt;(this in Option&lt;TIn&g
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;T&gt; Where&lt;T&gt;(this in Option&lt;T&gt; option, [NotNull, InstantHandle] in Predicate&lt;T&gt; predicate)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;T&gt; Where&lt;T&gt;(this in Option&lt;T&gt; option, in Predicate&lt;T&gt; predicate)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">

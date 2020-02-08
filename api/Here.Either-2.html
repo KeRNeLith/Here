@@ -108,8 +108,7 @@ Convention is that Left is used for failure and Right is used for success.</p>
   <h6><strong>Assembly</strong>: Here.dll</h6>
   <h5 id="Here_Either_2_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Serializable]
+    <pre><code class="lang-csharp hljs">[Serializable]
 public struct Either&lt;TLeft, TRight&gt; : IEither, IEquatable&lt;TRight&gt;, IEquatable&lt;EitherRight&lt;TRight&gt;&gt;, IEquatable&lt;Either&lt;TLeft, TRight&gt;&gt;, IComparable, IComparable&lt;TRight&gt;, IComparable&lt;EitherRight&lt;TRight&gt;&gt;, IComparable&lt;Either&lt;TLeft, TRight&gt;&gt;, ISerializable</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
@@ -148,8 +147,7 @@ public struct Either&lt;TLeft, TRight&gt; : IEither, IEquatable&lt;TRight&gt;, I
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static readonly Either&lt;TLeft, TRight&gt; None</code></pre>
+    <pre><code class="lang-csharp hljs">public static readonly Either&lt;TLeft, TRight&gt; None</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -215,8 +213,7 @@ returns false, this put it in a state that is neither left nor right.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public bool IsNone { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool IsNone { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -278,9 +275,7 @@ public bool IsNone { get; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[NotNull]
-public TLeft LeftValue { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public TLeft LeftValue { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -327,9 +322,7 @@ public TLeft LeftValue { get; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[NotNull]
-public TRight RightValue { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public TRight RightValue { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -379,9 +372,7 @@ or the <code data-dev-comment-type="paramref" class="paramref">onLeft</code> fun
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public Either&lt;TLeft, TRightOut&gt; BiBind&lt;TRightOut&gt;([NotNull, InstantHandle] Func&lt;TRight, Either&lt;TLeft, TRightOut&gt;&gt; onRight, [NotNull, InstantHandle] Func&lt;TLeft, Either&lt;TLeft, TRightOut&gt;&gt; onLeft)</code></pre>
+    <pre><code class="lang-csharp hljs">public Either&lt;TLeft, TRightOut&gt; BiBind&lt;TRightOut&gt;(Func&lt;TRight, Either&lt;TLeft, TRightOut&gt;&gt; onRight, Func&lt;TLeft, Either&lt;TLeft, TRightOut&gt;&gt; onLeft)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -476,9 +467,7 @@ otherwise returns the initial state.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public TState BiFold&lt;TState&gt;([NotNull] TState state, [NotNull, InstantHandle] Func&lt;TState, TRight, TState&gt; onRight, [NotNull, InstantHandle] Func&lt;TState, TLeft, TState&gt; onLeft)</code></pre>
+    <pre><code class="lang-csharp hljs">public TState BiFold&lt;TState&gt;(TState state, Func&lt;TState, TRight, TState&gt; onRight, Func&lt;TState, TLeft, TState&gt; onLeft)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -588,9 +577,7 @@ or the <code data-dev-comment-type="paramref" class="paramref">onLeft</code> fun
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public Either&lt;TLeft, TRightOut&gt; BiMap&lt;TRightOut&gt;([NotNull, InstantHandle] Func&lt;TRight, TRightOut&gt; onRight, [NotNull, InstantHandle] Func&lt;TLeft, TRightOut&gt; onLeft)</code></pre>
+    <pre><code class="lang-csharp hljs">public Either&lt;TLeft, TRightOut&gt; BiMap&lt;TRightOut&gt;(Func&lt;TRight, TRightOut&gt; onRight, Func&lt;TLeft, TRightOut&gt; onLeft)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -689,9 +676,7 @@ or the <code data-dev-comment-type="paramref" class="paramref">onLeft</code> fun
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public Either&lt;TLeftOut, TRightOut&gt; BiMap&lt;TLeftOut, TRightOut&gt;([NotNull, InstantHandle] Func&lt;TRight, TRightOut&gt; onRight, [NotNull, InstantHandle] Func&lt;TLeft, TLeftOut&gt; onLeft)</code></pre>
+    <pre><code class="lang-csharp hljs">public Either&lt;TLeftOut, TRightOut&gt; BiMap&lt;TLeftOut, TRightOut&gt;(Func&lt;TRight, TRightOut&gt; onRight, Func&lt;TLeft, TLeftOut&gt; onLeft)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -794,9 +779,7 @@ public Either&lt;TLeftOut, TRightOut&gt; BiMap&lt;TLeftOut, TRightOut&gt;([NotNu
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public Either&lt;TLeftOut, TRight&gt; Bind&lt;TLeftOut&gt;([NotNull, InstantHandle] Func&lt;TLeft, Either&lt;TLeftOut, TRight&gt;&gt; onLeft)</code></pre>
+    <pre><code class="lang-csharp hljs">public Either&lt;TLeftOut, TRight&gt; Bind&lt;TLeftOut&gt;(Func&lt;TLeft, Either&lt;TLeftOut, TRight&gt;&gt; onLeft)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -878,9 +861,7 @@ public Either&lt;TLeftOut, TRight&gt; Bind&lt;TLeftOut&gt;([NotNull, InstantHand
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public Either&lt;TLeft, TRightOut&gt; Bind&lt;TRightOut&gt;([NotNull, InstantHandle] Func&lt;TRight, Either&lt;TLeft, TRightOut&gt;&gt; onRight)</code></pre>
+    <pre><code class="lang-csharp hljs">public Either&lt;TLeft, TRightOut&gt; Bind&lt;TRightOut&gt;(Func&lt;TRight, Either&lt;TLeft, TRightOut&gt;&gt; onRight)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1543,9 +1524,7 @@ to combine the initial state with, otherwise returns the initial state.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public TState Fold&lt;TState&gt;([NotNull] TState state, [NotNull, InstantHandle] Func&lt;TState, TLeft, TState&gt; onLeft)</code></pre>
+    <pre><code class="lang-csharp hljs">public TState Fold&lt;TState&gt;(TState state, Func&lt;TState, TLeft, TState&gt; onLeft)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1644,9 +1623,7 @@ to combine the initial state with, otherwise returns the initial state.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public TState Fold&lt;TState&gt;([NotNull] TState state, [NotNull, InstantHandle] Func&lt;TState, TRight, TState&gt; onRight)</code></pre>
+    <pre><code class="lang-csharp hljs">public TState Fold&lt;TState&gt;(TState state, Func&lt;TState, TRight, TState&gt; onRight)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1813,8 +1790,7 @@ public TState Fold&lt;TState&gt;([NotNull] TState state, [NotNull, InstantHandle
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public Unit IfFailure([NotNull, InstantHandle] in Action&lt;TLeft&gt; onFailure)</code></pre>
+    <pre><code class="lang-csharp hljs">public Unit IfFailure(in Action&lt;TLeft&gt; onFailure)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1882,9 +1858,7 @@ right value if it is in <span class="xref">Here.EitherStates.Right</span> state.
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[NotNull]
-public TRight IfLeft([NotNull] TRight defaultValue)</code></pre>
+    <pre><code class="lang-csharp hljs">public TRight IfLeft(TRight defaultValue)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1955,8 +1929,7 @@ public TRight IfLeft([NotNull] TRight defaultValue)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public Unit IfLeft([NotNull, InstantHandle] in Action&lt;TLeft&gt; onLeft)</code></pre>
+    <pre><code class="lang-csharp hljs">public Unit IfLeft(in Action&lt;TLeft&gt; onLeft)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2024,9 +1997,7 @@ right value if it is in <span class="xref">Here.EitherStates.Right</span> state.
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[NotNull]
-public TRight IfLeft([NotNull, InstantHandle] Func&lt;TLeft, TRight&gt; onLeft)</code></pre>
+    <pre><code class="lang-csharp hljs">public TRight IfLeft(Func&lt;TLeft, TRight&gt; onLeft)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2104,9 +2075,7 @@ right value if it is in <span class="xref">Here.EitherStates.Right</span> state.
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[NotNull]
-public TRight IfLeft([NotNull, InstantHandle] Func&lt;TRight&gt; onLeft)</code></pre>
+    <pre><code class="lang-csharp hljs">public TRight IfLeft(Func&lt;TRight&gt; onLeft)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2184,9 +2153,7 @@ default value if it is in <span class="xref">Here.EitherStates.Right</span> stat
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[NotNull]
-public TOut IfLeft&lt;TOut&gt;([NotNull, InstantHandle] Func&lt;TLeft, TOut&gt; onLeft, [NotNull] TOut defaultValue)</code></pre>
+    <pre><code class="lang-csharp hljs">public TOut IfLeft&lt;TOut&gt;(Func&lt;TLeft, TOut&gt; onLeft, TOut defaultValue)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2291,9 +2258,7 @@ result of <code data-dev-comment-type="paramref" class="paramref">valueFactory</
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[NotNull]
-public TOut IfLeft&lt;TOut&gt;([NotNull, InstantHandle] Func&lt;TLeft, TOut&gt; onLeft, [NotNull, InstantHandle] Func&lt;TOut&gt; valueFactory)</code></pre>
+    <pre><code class="lang-csharp hljs">public TOut IfLeft&lt;TOut&gt;(Func&lt;TLeft, TOut&gt; onLeft, Func&lt;TOut&gt; valueFactory)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2398,9 +2363,7 @@ left value if it is in <span class="xref">Here.EitherStates.Left</span> state.</
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[NotNull]
-public TLeft IfRight([NotNull] TLeft defaultValue)</code></pre>
+    <pre><code class="lang-csharp hljs">public TLeft IfRight(TLeft defaultValue)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2471,8 +2434,7 @@ public TLeft IfRight([NotNull] TLeft defaultValue)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public Unit IfRight([NotNull, InstantHandle] in Action&lt;TRight&gt; onRight)</code></pre>
+    <pre><code class="lang-csharp hljs">public Unit IfRight(in Action&lt;TRight&gt; onRight)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2540,9 +2502,7 @@ left value if it is in <span class="xref">Here.EitherStates.Left</span> state.</
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[NotNull]
-public TLeft IfRight([NotNull, InstantHandle] Func&lt;TLeft&gt; onRight)</code></pre>
+    <pre><code class="lang-csharp hljs">public TLeft IfRight(Func&lt;TLeft&gt; onRight)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2620,9 +2580,7 @@ left value if it is in <span class="xref">Here.EitherStates.Left</span> state.</
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[NotNull]
-public TLeft IfRight([NotNull, InstantHandle] Func&lt;TRight, TLeft&gt; onRight)</code></pre>
+    <pre><code class="lang-csharp hljs">public TLeft IfRight(Func&lt;TRight, TLeft&gt; onRight)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2700,9 +2658,7 @@ default value if it is in <span class="xref">Here.EitherStates.Left</span> state
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[NotNull]
-public TOut IfRight&lt;TOut&gt;([NotNull, InstantHandle] Func&lt;TRight, TOut&gt; onRight, [NotNull] TOut defaultValue)</code></pre>
+    <pre><code class="lang-csharp hljs">public TOut IfRight&lt;TOut&gt;(Func&lt;TRight, TOut&gt; onRight, TOut defaultValue)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2807,9 +2763,7 @@ result of <code data-dev-comment-type="paramref" class="paramref">valueFactory</
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[NotNull]
-public TOut IfRight&lt;TOut&gt;([NotNull, InstantHandle] Func&lt;TRight, TOut&gt; onRight, [NotNull, InstantHandle] Func&lt;TOut&gt; valueFactory)</code></pre>
+    <pre><code class="lang-csharp hljs">public TOut IfRight&lt;TOut&gt;(Func&lt;TRight, TOut&gt; onRight, Func&lt;TOut&gt; valueFactory)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2912,8 +2866,7 @@ public TOut IfRight&lt;TOut&gt;([NotNull, InstantHandle] Func&lt;TRight, TOut&gt
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public Unit IfSuccess([NotNull, InstantHandle] in Action&lt;TRight&gt; onSuccess)</code></pre>
+    <pre><code class="lang-csharp hljs">public Unit IfSuccess(in Action&lt;TRight&gt; onSuccess)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2980,10 +2933,7 @@ public Unit IfSuccess([NotNull, InstantHandle] in Action&lt;TRight&gt; onSuccess
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-[NotNull]
-public TLeft LeftOr([NotNull] in TLeft defaultValue)</code></pre>
+    <pre><code class="lang-csharp hljs">public TLeft LeftOr(in TLeft defaultValue)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3050,10 +3000,7 @@ public TLeft LeftOr([NotNull] in TLeft defaultValue)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-[NotNull]
-public TLeft LeftOr([NotNull, InstantHandle] in Func&lt;TLeft&gt; valueFactory)</code></pre>
+    <pre><code class="lang-csharp hljs">public TLeft LeftOr(in Func&lt;TLeft&gt; valueFactory)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3125,10 +3072,7 @@ public TLeft LeftOr([NotNull, InstantHandle] in Func&lt;TLeft&gt; valueFactory)<
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-[CanBeNull]
-public TLeft LeftOrDefault()</code></pre>
+    <pre><code class="lang-csharp hljs">public TLeft LeftOrDefault()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3160,9 +3104,7 @@ public TLeft LeftOrDefault()</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public Either&lt;TLeftOut, TRight&gt; Map&lt;TLeftOut&gt;([NotNull, InstantHandle] Func&lt;TLeft, TLeftOut&gt; onLeft)</code></pre>
+    <pre><code class="lang-csharp hljs">public Either&lt;TLeftOut, TRight&gt; Map&lt;TLeftOut&gt;(Func&lt;TLeft, TLeftOut&gt; onLeft)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3249,9 +3191,7 @@ public Either&lt;TLeftOut, TRight&gt; Map&lt;TLeftOut&gt;([NotNull, InstantHandl
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public Either&lt;TLeft, TRightOut&gt; Map&lt;TRightOut&gt;([NotNull, InstantHandle] Func&lt;TRight, TRightOut&gt; onRight)</code></pre>
+    <pre><code class="lang-csharp hljs">public Either&lt;TLeft, TRightOut&gt; Map&lt;TRightOut&gt;(Func&lt;TRight, TRightOut&gt; onRight)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3339,9 +3279,7 @@ the <code data-dev-comment-type="paramref" class="paramref">onLeft</code> if it 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public Unit Match([NotNull, InstantHandle] in Action&lt;TRight&gt; onRight, [NotNull, InstantHandle] in Action&lt;TLeft&gt; onLeft, [CanBeNull, InstantHandle] in Action none = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public Unit Match(in Action&lt;TRight&gt; onRight, in Action&lt;TLeft&gt; onLeft, in Action none = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3430,10 +3368,7 @@ the <code data-dev-comment-type="paramref" class="paramref">onLeft</code> functi
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[NotNull]
-[Pure]
-public TOut Match&lt;TOut&gt;([NotNull, InstantHandle] in Func&lt;TRight, TOut&gt; onRight, [NotNull, InstantHandle] in Func&lt;TLeft, TOut&gt; onLeft, [CanBeNull, InstantHandle] in Func&lt;TOut&gt; none = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public TOut Match&lt;TOut&gt;(in Func&lt;TRight, TOut&gt; onRight, in Func&lt;TLeft, TOut&gt; onLeft, in Func&lt;TOut&gt; none = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3543,10 +3478,7 @@ the <code data-dev-comment-type="paramref" class="paramref">onLeft</code> functi
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[CanBeNull]
-[Pure]
-public TOut MatchNullable&lt;TOut&gt;([NotNull, InstantHandle] in Func&lt;TRight, TOut&gt; onRight, [NotNull, InstantHandle] in Func&lt;TLeft, TOut&gt; onLeft, [CanBeNull, InstantHandle] in Func&lt;TOut&gt; none = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public TOut MatchNullable&lt;TOut&gt;(in Func&lt;TRight, TOut&gt; onRight, in Func&lt;TLeft, TOut&gt; onLeft, in Func&lt;TOut&gt; none = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3650,8 +3582,7 @@ public TOut MatchNullable&lt;TOut&gt;([NotNull, InstantHandle] in Func&lt;TRight
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public Either&lt;TLeft, TRight&gt; OnFailure([NotNull, InstantHandle] in Action&lt;TLeft&gt; onFailure)</code></pre>
+    <pre><code class="lang-csharp hljs">public Either&lt;TLeft, TRight&gt; OnFailure(in Action&lt;TLeft&gt; onFailure)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3717,8 +3648,7 @@ public Either&lt;TLeft, TRight&gt; OnFailure([NotNull, InstantHandle] in Action&
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public Either&lt;TLeft, TRight&gt; OnLeft([NotNull, InstantHandle] in Action&lt;TLeft&gt; onLeft)</code></pre>
+    <pre><code class="lang-csharp hljs">public Either&lt;TLeft, TRight&gt; OnLeft(in Action&lt;TLeft&gt; onLeft)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3784,8 +3714,7 @@ public Either&lt;TLeft, TRight&gt; OnLeft([NotNull, InstantHandle] in Action&lt;
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public Either&lt;TLeft, TRight&gt; OnRight([NotNull, InstantHandle] in Action&lt;TRight&gt; onRight)</code></pre>
+    <pre><code class="lang-csharp hljs">public Either&lt;TLeft, TRight&gt; OnRight(in Action&lt;TRight&gt; onRight)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3852,8 +3781,7 @@ or the <code data-dev-comment-type="paramref" class="paramref">onLeft</code> act
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public Either&lt;TLeft, TRight&gt; OnRightOrLeft([NotNull, InstantHandle] in Action&lt;TRight&gt; onRight, [NotNull, InstantHandle] in Action&lt;TLeft&gt; onLeft)</code></pre>
+    <pre><code class="lang-csharp hljs">public Either&lt;TLeft, TRight&gt; OnRightOrLeft(in Action&lt;TRight&gt; onRight, in Action&lt;TLeft&gt; onLeft)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3930,8 +3858,7 @@ public Either&lt;TLeft, TRight&gt; OnRightOrLeft([NotNull, InstantHandle] in Act
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public Either&lt;TLeft, TRight&gt; OnSuccess([NotNull, InstantHandle] in Action&lt;TRight&gt; onSuccess)</code></pre>
+    <pre><code class="lang-csharp hljs">public Either&lt;TLeft, TRight&gt; OnSuccess(in Action&lt;TRight&gt; onSuccess)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3998,8 +3925,7 @@ or the <code data-dev-comment-type="paramref" class="paramref">onFailure</code> 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public Either&lt;TLeft, TRight&gt; OnSuccessOrFailure([NotNull, InstantHandle] in Action&lt;TRight&gt; onSuccess, [NotNull, InstantHandle] in Action&lt;TLeft&gt; onFailure)</code></pre>
+    <pre><code class="lang-csharp hljs">public Either&lt;TLeft, TRight&gt; OnSuccessOrFailure(in Action&lt;TRight&gt; onSuccess, in Action&lt;TLeft&gt; onFailure)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -4077,10 +4003,7 @@ public Either&lt;TLeft, TRight&gt; OnSuccessOrFailure([NotNull, InstantHandle] i
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-[NotNull]
-public TRight RightOr([NotNull] in TRight defaultValue)</code></pre>
+    <pre><code class="lang-csharp hljs">public TRight RightOr(in TRight defaultValue)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -4147,10 +4070,7 @@ public TRight RightOr([NotNull] in TRight defaultValue)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-[NotNull]
-public TRight RightOr([NotNull, InstantHandle] in Func&lt;TRight&gt; valueFactory)</code></pre>
+    <pre><code class="lang-csharp hljs">public TRight RightOr(in Func&lt;TRight&gt; valueFactory)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -4222,10 +4142,7 @@ public TRight RightOr([NotNull, InstantHandle] in Func&lt;TRight&gt; valueFactor
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-[CanBeNull]
-public TRight RightOrDefault()</code></pre>
+    <pre><code class="lang-csharp hljs">public TRight RightOrDefault()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -4799,9 +4716,7 @@ and its value is equals to the <code data-dev-comment-type="paramref" class="par
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static explicit operator TLeft(in Either&lt;TLeft, TRight&gt; either)</code></pre>
+    <pre><code class="lang-csharp hljs">public static explicit operator TLeft(in Either&lt;TLeft, TRight&gt; either)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -4867,9 +4782,7 @@ public static explicit operator TLeft(in Either&lt;TLeft, TRight&gt; either)</co
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static explicit operator TRight(in Either&lt;TLeft, TRight&gt; either)</code></pre>
+    <pre><code class="lang-csharp hljs">public static explicit operator TRight(in Either&lt;TLeft, TRight&gt; either)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -5495,9 +5408,7 @@ public static explicit operator TRight(in Either&lt;TLeft, TRight&gt; either)</c
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static implicit operator Either&lt;TLeft, TRight&gt;(EitherLeft&lt;TLeft&gt; eitherLeft)</code></pre>
+    <pre><code class="lang-csharp hljs">public static implicit operator Either&lt;TLeft, TRight&gt;(EitherLeft&lt;TLeft&gt; eitherLeft)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -5547,9 +5458,7 @@ public static implicit operator Either&lt;TLeft, TRight&gt;(EitherLeft&lt;TLeft&
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static implicit operator Either&lt;TLeft, TRight&gt;(EitherRight&lt;TRight&gt; eitherRight)</code></pre>
+    <pre><code class="lang-csharp hljs">public static implicit operator Either&lt;TLeft, TRight&gt;(EitherRight&lt;TRight&gt; eitherRight)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">

@@ -109,8 +109,7 @@
   <h6><strong>Assembly</strong>: Here.dll</h6>
   <h5 id="Here_ResultHelpers_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static class ResultHelpers</code></pre>
+    <pre><code class="lang-csharp hljs">public static class ResultHelpers</code></pre>
   </div>
   <h3 id="methods">Methods
   </h3>
@@ -128,9 +127,7 @@ public static class ResultHelpers</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool AreEqual(in Result result1, in Result result2)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool AreEqual(in Result result1, in Result result2)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -186,9 +183,7 @@ public static bool AreEqual(in Result result1, in Result result2)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool AreEqual&lt;TError&gt;(in CustomResult&lt;TError&gt; result1, in CustomResult&lt;TError&gt; result2)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool AreEqual&lt;TError&gt;(in CustomResult&lt;TError&gt; result1, in CustomResult&lt;TError&gt; result2)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -260,9 +255,7 @@ public static bool AreEqual&lt;TError&gt;(in CustomResult&lt;TError&gt; result1,
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool AreEqual&lt;T&gt;(in Result&lt;T&gt; result, [CanBeNull] in T value, [CanBeNull] in IEqualityComparer&lt;T&gt; equalityComparer = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool AreEqual&lt;T&gt;(in Result&lt;T&gt; result, in T value, in IEqualityComparer&lt;T&gt; equalityComparer = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -340,9 +333,7 @@ public static bool AreEqual&lt;T&gt;(in Result&lt;T&gt; result, [CanBeNull] in T
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool AreEqual&lt;T&gt;(in Result&lt;T&gt; result1, in Result&lt;T&gt; result2, [CanBeNull] in IEqualityComparer&lt;T&gt; equalityComparer = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool AreEqual&lt;T&gt;(in Result&lt;T&gt; result1, in Result&lt;T&gt; result2, in IEqualityComparer&lt;T&gt; equalityComparer = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -420,9 +411,7 @@ public static bool AreEqual&lt;T&gt;(in Result&lt;T&gt; result1, in Result&lt;T&
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool AreEqual&lt;T, TError&gt;(in Result&lt;T, TError&gt; result, [CanBeNull] in T value, [CanBeNull] in IEqualityComparer&lt;T&gt; equalityComparer = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool AreEqual&lt;T, TError&gt;(in Result&lt;T, TError&gt; result, in T value, in IEqualityComparer&lt;T&gt; equalityComparer = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -505,9 +494,7 @@ public static bool AreEqual&lt;T, TError&gt;(in Result&lt;T, TError&gt; result, 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool AreEqual&lt;T, TError&gt;(in Result&lt;T, TError&gt; result1, in Result&lt;T, TError&gt; result2, [CanBeNull] in IEqualityComparer&lt;T&gt; equalityComparer = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool AreEqual&lt;T, TError&gt;(in Result&lt;T, TError&gt; result1, in Result&lt;T, TError&gt; result2, in IEqualityComparer&lt;T&gt; equalityComparer = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -591,9 +578,7 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static int Compare(in Result result1, in Result result2)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int Compare(in Result result1, in Result result2)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -650,9 +635,7 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static int Compare&lt;TError&gt;(in CustomResult&lt;TError&gt; result1, in CustomResult&lt;TError&gt; result2)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int Compare&lt;TError&gt;(in CustomResult&lt;TError&gt; result1, in CustomResult&lt;TError&gt; result2)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -725,9 +708,7 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static int Compare&lt;T&gt;(in Result&lt;T&gt; result1, in Result&lt;T&gt; result2)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int Compare&lt;T&gt;(in Result&lt;T&gt; result1, in Result&lt;T&gt; result2)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -800,9 +781,7 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static int Compare&lt;T, TError&gt;(in Result&lt;T, TError&gt; result1, in Result&lt;T, TError&gt; result2)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int Compare&lt;T, TError&gt;(in Result&lt;T, TError&gt; result1, in Result&lt;T, TError&gt; result2)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -879,9 +858,7 @@ public static int Compare&lt;T, TError&gt;(in Result&lt;T, TError&gt; result1, i
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool SuccessEqual(in Result result1, in Result result2)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool SuccessEqual(in Result result1, in Result result2)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -937,9 +914,7 @@ public static bool SuccessEqual(in Result result1, in Result result2)</code></pr
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool SuccessEqual&lt;TError&gt;(in CustomResult&lt;TError&gt; result1, in CustomResult&lt;TError&gt; result2)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool SuccessEqual&lt;TError&gt;(in CustomResult&lt;TError&gt; result1, in CustomResult&lt;TError&gt; result2)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1011,9 +986,7 @@ public static bool SuccessEqual&lt;TError&gt;(in CustomResult&lt;TError&gt; resu
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool SuccessEqual&lt;T&gt;(in Result&lt;T&gt; result1, in Result&lt;T&gt; result2, [CanBeNull] in IEqualityComparer&lt;T&gt; equalityComparer = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool SuccessEqual&lt;T&gt;(in Result&lt;T&gt; result1, in Result&lt;T&gt; result2, in IEqualityComparer&lt;T&gt; equalityComparer = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1091,9 +1064,7 @@ public static bool SuccessEqual&lt;T&gt;(in Result&lt;T&gt; result1, in Result&l
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool SuccessEqual&lt;T, TError&gt;(in Result&lt;T, TError&gt; result1, in Result&lt;T, TError&gt; result2, [CanBeNull] in IEqualityComparer&lt;T&gt; equalityComparer = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool SuccessEqual&lt;T, TError&gt;(in Result&lt;T, TError&gt; result1, in Result&lt;T, TError&gt; result2, in IEqualityComparer&lt;T&gt; equalityComparer = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">

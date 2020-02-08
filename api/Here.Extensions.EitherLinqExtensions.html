@@ -128,10 +128,7 @@ Use the <code data-dev-comment-type="paramref" class="paramref">initialValue</co
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[NotNull]
-[Pure]
-public static TAggregate Aggregate&lt;TLeft, TRight, TAggregate&gt;(this in Either&lt;TLeft, TRight&gt; either, [NotNull] in TAggregate initialValue, [NotNull, InstantHandle] in Func&lt;TAggregate, TRight, TAggregate&gt; aggregator)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TAggregate Aggregate&lt;TLeft, TRight, TAggregate&gt;(this in Either&lt;TLeft, TRight&gt; either, in TAggregate initialValue, in Func&lt;TAggregate, TRight, TAggregate&gt; aggregator)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -241,9 +238,7 @@ otherwise <code data-dev-comment-type="paramref" class="paramref">initialValue</
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool All&lt;TLeft, TRight&gt;(this in Either&lt;TLeft, TRight&gt; either, [NotNull, InstantHandle] in Predicate&lt;TRight&gt; predicate)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool All&lt;TLeft, TRight&gt;(this in Either&lt;TLeft, TRight&gt; either, in Predicate&lt;TRight&gt; predicate)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -336,9 +331,7 @@ public static bool All&lt;TLeft, TRight&gt;(this in Either&lt;TLeft, TRight&gt; 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool Any&lt;TLeft, TRight&gt;(this in Either&lt;TLeft, TRight&gt; either)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool Any&lt;TLeft, TRight&gt;(this in Either&lt;TLeft, TRight&gt; either)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -409,9 +402,7 @@ public static bool Any&lt;TLeft, TRight&gt;(this in Either&lt;TLeft, TRight&gt; 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool Any&lt;TLeft, TRight&gt;(this in Either&lt;TLeft, TRight&gt; either, [NotNull, InstantHandle] in Predicate&lt;TRight&gt; predicate)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool Any&lt;TLeft, TRight&gt;(this in Either&lt;TLeft, TRight&gt; either, in Predicate&lt;TRight&gt; predicate)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -504,9 +495,7 @@ public static bool Any&lt;TLeft, TRight&gt;(this in Either&lt;TLeft, TRight&gt; 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool Contains&lt;TLeft, TRight&gt;(this in Either&lt;TLeft, TRight&gt; either, [CanBeNull] in TRight value)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool Contains&lt;TLeft, TRight&gt;(this in Either&lt;TLeft, TRight&gt; either, in TRight value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -583,8 +572,7 @@ public static bool Contains&lt;TLeft, TRight&gt;(this in Either&lt;TLeft, TRight
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Unit ForEach&lt;TLeft, TRight&gt;(this in Either&lt;TLeft, TRight&gt; either, [NotNull, InstantHandle] in Action&lt;TRight&gt; doAction)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Unit ForEach&lt;TLeft, TRight&gt;(this in Either&lt;TLeft, TRight&gt; either, in Action&lt;TRight&gt; doAction)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -677,9 +665,7 @@ public static Unit ForEach&lt;TLeft, TRight&gt;(this in Either&lt;TLeft, TRight&
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Either&lt;TLeft, TRightOut&gt; Select&lt;TLeft, TRight, TRightOut&gt;(this in Either&lt;TLeft, TRight&gt; either, [NotNull, InstantHandle] in Func&lt;TRight, TRightOut&gt; selector)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRightOut&gt; Select&lt;TLeft, TRight, TRightOut&gt;(this in Either&lt;TLeft, TRight&gt; either, in Func&lt;TRight, TRightOut&gt; selector)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -777,9 +763,7 @@ public static Either&lt;TLeft, TRightOut&gt; Select&lt;TLeft, TRight, TRightOut&
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Either&lt;TLeft, TRight&gt; Where&lt;TLeft, TRight&gt;(this in Either&lt;TLeft, TRight&gt; either, [NotNull, InstantHandle] in Predicate&lt;TRight&gt; predicate)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRight&gt; Where&lt;TLeft, TRight&gt;(this in Either&lt;TLeft, TRight&gt; either, in Predicate&lt;TRight&gt; predicate)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">

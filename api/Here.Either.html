@@ -109,8 +109,7 @@
   <h6><strong>Assembly</strong>: Here.dll</h6>
   <h5 id="Here_Either_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static class Either</code></pre>
+    <pre><code class="lang-csharp hljs">public static class Either</code></pre>
   </div>
   <h3 id="methods">Methods
   </h3>
@@ -128,9 +127,7 @@ public static class Either</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static EitherLeft&lt;TLeft&gt; Left&lt;TLeft&gt;([NotNull] in TLeft value)</code></pre>
+    <pre><code class="lang-csharp hljs">public static EitherLeft&lt;TLeft&gt; Left&lt;TLeft&gt;(in TLeft value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -212,9 +209,7 @@ public static EitherLeft&lt;TLeft&gt; Left&lt;TLeft&gt;([NotNull] in TLeft value
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static EitherLeft&lt;TLeft&gt; Left&lt;TLeft&gt;([NotNull] in TLeft? nullable)
+    <pre><code class="lang-csharp hljs">public static EitherLeft&lt;TLeft&gt; Left&lt;TLeft&gt;(in TLeft? nullable)
     where TLeft : struct</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -297,9 +292,7 @@ public static EitherLeft&lt;TLeft&gt; Left&lt;TLeft&gt;([NotNull] in TLeft? null
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Either&lt;TLeft, TRight&gt; Left&lt;TLeft, TRight&gt;([NotNull] in TLeft value)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRight&gt; Left&lt;TLeft, TRight&gt;(in TLeft value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -386,9 +379,7 @@ public static Either&lt;TLeft, TRight&gt; Left&lt;TLeft, TRight&gt;([NotNull] in
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Either&lt;TLeft, TRight&gt; Left&lt;TLeft, TRight&gt;([NotNull] in TLeft? nullable)
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRight&gt; Left&lt;TLeft, TRight&gt;(in TLeft? nullable)
     where TLeft : struct</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -476,9 +467,7 @@ public static Either&lt;TLeft, TRight&gt; Left&lt;TLeft, TRight&gt;([NotNull] in
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static EitherRight&lt;TRight&gt; Right&lt;TRight&gt;([NotNull] in TRight value)</code></pre>
+    <pre><code class="lang-csharp hljs">public static EitherRight&lt;TRight&gt; Right&lt;TRight&gt;(in TRight value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -560,9 +549,7 @@ public static EitherRight&lt;TRight&gt; Right&lt;TRight&gt;([NotNull] in TRight 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static EitherRight&lt;TRight&gt; Right&lt;TRight&gt;([NotNull] in TRight? nullable)
+    <pre><code class="lang-csharp hljs">public static EitherRight&lt;TRight&gt; Right&lt;TRight&gt;(in TRight? nullable)
     where TRight : struct</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -645,9 +632,7 @@ public static EitherRight&lt;TRight&gt; Right&lt;TRight&gt;([NotNull] in TRight?
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Either&lt;TLeft, TRight&gt; Right&lt;TLeft, TRight&gt;([NotNull] in TRight value)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRight&gt; Right&lt;TLeft, TRight&gt;(in TRight value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -734,9 +719,7 @@ public static Either&lt;TLeft, TRight&gt; Right&lt;TLeft, TRight&gt;([NotNull] i
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Either&lt;TLeft, TRight&gt; Right&lt;TLeft, TRight&gt;([NotNull] in TRight? nullable)
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRight&gt; Right&lt;TLeft, TRight&gt;(in TRight? nullable)
     where TRight : struct</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -824,9 +807,7 @@ public static Either&lt;TLeft, TRight&gt; Right&lt;TLeft, TRight&gt;([NotNull] i
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Either&lt;TLeft, TRight&gt; ToEither&lt;TLeft, TRight&gt;([NotNull] this TLeft value)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRight&gt; ToEither&lt;TLeft, TRight&gt;(this TLeft value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -913,9 +894,7 @@ public static Either&lt;TLeft, TRight&gt; ToEither&lt;TLeft, TRight&gt;([NotNull
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Either&lt;TLeft, TRight&gt; ToEither&lt;TLeft, TRight&gt;([NotNull] this TRight value)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRight&gt; ToEither&lt;TLeft, TRight&gt;(this TRight value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1004,9 +983,7 @@ if the provided value is not null, otherwise creates an <a class="xref" href="He
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Either&lt;TLeft, TRight&gt; ToEither&lt;TLeft, TRight&gt;([CanBeNull] this TRight value, [NotNull] in TLeft defaultLeftValue)
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRight&gt; ToEither&lt;TLeft, TRight&gt;(this TRight value, in TLeft defaultLeftValue)
     where TRight : class</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1102,9 +1079,7 @@ if the provided value is not null, otherwise creates an <a class="xref" href="He
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Either&lt;TLeft, TRight&gt; ToEither&lt;TLeft, TRight&gt;([CanBeNull] this TRight value, [NotNull, InstantHandle] in Func&lt;TLeft&gt; leftValueFactory)
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRight&gt; ToEither&lt;TLeft, TRight&gt;(this TRight value, in Func&lt;TLeft&gt; leftValueFactory)
     where TRight : class</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1203,9 +1178,7 @@ public static Either&lt;TLeft, TRight&gt; ToEither&lt;TLeft, TRight&gt;([CanBeNu
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Either&lt;TLeft, TRight&gt; ToEither&lt;TLeft, TRight&gt;([NotNull] this in TLeft? nullable)
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRight&gt; ToEither&lt;TLeft, TRight&gt;(this in TLeft? nullable)
     where TLeft : struct</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1293,9 +1266,7 @@ public static Either&lt;TLeft, TRight&gt; ToEither&lt;TLeft, TRight&gt;([NotNull
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Either&lt;TLeft, TRight&gt; ToEither&lt;TLeft, TRight&gt;([NotNull] this in TRight? nullable)
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRight&gt; ToEither&lt;TLeft, TRight&gt;(this in TRight? nullable)
     where TRight : struct</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1385,9 +1356,7 @@ if the provided nullable is not null, otherwise creates an <a class="xref" href=
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Either&lt;TLeft, TRight&gt; ToEither&lt;TLeft, TRight&gt;([CanBeNull] this in TRight? nullable, [NotNull] in TLeft defaultLeftValue)
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRight&gt; ToEither&lt;TLeft, TRight&gt;(this in TRight? nullable, in TLeft defaultLeftValue)
     where TRight : struct</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1483,9 +1452,7 @@ if the provided nullable is not null, otherwise creates an <a class="xref" href=
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Either&lt;TLeft, TRight&gt; ToEither&lt;TLeft, TRight&gt;([CanBeNull] this in TRight? nullable, [NotNull, InstantHandle] in Func&lt;TLeft&gt; leftValueFactory)
+    <pre><code class="lang-csharp hljs">public static Either&lt;TLeft, TRight&gt; ToEither&lt;TLeft, TRight&gt;(this in TRight? nullable, in Func&lt;TLeft&gt; leftValueFactory)
     where TRight : struct</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>

@@ -100,8 +100,7 @@
   <h6><strong>Assembly</strong>: Here.dll</h6>
   <h5 id="Here_Option_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Serializable]
+    <pre><code class="lang-csharp hljs">[Serializable]
 public struct Option&lt;T&gt; : IEquatable&lt;T&gt;, IEquatable&lt;Option&lt;T&gt;&gt;, IComparable, IComparable&lt;Option&lt;T&gt;&gt;, ISerializable</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
@@ -135,8 +134,7 @@ public struct Option&lt;T&gt; : IEquatable&lt;T&gt;, IEquatable&lt;Option&lt;T&g
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static readonly Option&lt;T&gt; None</code></pre>
+    <pre><code class="lang-csharp hljs">public static readonly Option&lt;T&gt; None</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -169,8 +167,7 @@ public static readonly Option&lt;T&gt; None</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public bool HasNoValue { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool HasNoValue { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -201,8 +198,7 @@ public bool HasNoValue { get; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public bool HasValue { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool HasValue { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -233,9 +229,7 @@ public bool HasValue { get; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[NotNull]
-public T Value { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public T Value { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -284,9 +278,7 @@ public T Value { get; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public Option&lt;TOut&gt; Cast&lt;TOut&gt;()
+    <pre><code class="lang-csharp hljs">public Option&lt;TOut&gt; Cast&lt;TOut&gt;()
     where TOut : class</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
@@ -335,9 +327,7 @@ public Option&lt;TOut&gt; Cast&lt;TOut&gt;()
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public Option&lt;TTo&gt; Cast&lt;TTo&gt;([NotNull, InstantHandle] in Func&lt;T, TTo&gt; converter)</code></pre>
+    <pre><code class="lang-csharp hljs">public Option&lt;TTo&gt; Cast&lt;TTo&gt;(in Func&lt;T, TTo&gt; converter)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -516,8 +506,7 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public Option&lt;T&gt; Else([NotNull, InstantHandle] in Action else)</code></pre>
+    <pre><code class="lang-csharp hljs">public Option&lt;T&gt; Else(in Action else)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -583,10 +572,7 @@ public Option&lt;T&gt; Else([NotNull, InstantHandle] in Action else)</code></pre
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-[NotNull]
-public TResult ElseOr&lt;TResult&gt;([NotNull, InstantHandle] in Func&lt;TResult&gt; else, [NotNull] in TResult orValue)</code></pre>
+    <pre><code class="lang-csharp hljs">public TResult ElseOr&lt;TResult&gt;(in Func&lt;TResult&gt; else, in TResult orValue)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -684,10 +670,7 @@ public TResult ElseOr&lt;TResult&gt;([NotNull, InstantHandle] in Func&lt;TResult
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-[CanBeNull]
-public TResult ElseOrDefault&lt;TResult&gt;([NotNull, InstantHandle] in Func&lt;TResult&gt; else)</code></pre>
+    <pre><code class="lang-csharp hljs">public TResult ElseOrDefault&lt;TResult&gt;(in Func&lt;TResult&gt; else)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -912,9 +895,7 @@ public TResult ElseOrDefault&lt;TResult&gt;([NotNull, InstantHandle] in Func&lt;
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public bool Exists([NotNull, InstantHandle] in Predicate&lt;T&gt; predicate)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool Exists(in Predicate&lt;T&gt; predicate)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1049,8 +1030,7 @@ public bool Exists([NotNull, InstantHandle] in Predicate&lt;T&gt; predicate)</co
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public Option&lt;T&gt; If([NotNull, InstantHandle] in Action&lt;T&gt; then)</code></pre>
+    <pre><code class="lang-csharp hljs">public Option&lt;T&gt; If(in Action&lt;T&gt; then)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1116,10 +1096,7 @@ public Option&lt;T&gt; If([NotNull, InstantHandle] in Action&lt;T&gt; then)</cod
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-[CanBeNull]
-public TResult If&lt;TResult&gt;([NotNull, InstantHandle] in Func&lt;T, TResult&gt; then)</code></pre>
+    <pre><code class="lang-csharp hljs">public TResult If&lt;TResult&gt;(in Func&lt;T, TResult&gt; then)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1185,8 +1162,7 @@ public TResult If&lt;TResult&gt;([NotNull, InstantHandle] in Func&lt;T, TResult&
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public Option&lt;T&gt; IfElse([NotNull, InstantHandle] in Action&lt;T&gt; then, [NotNull, InstantHandle] in Action else)</code></pre>
+    <pre><code class="lang-csharp hljs">public Option&lt;T&gt; IfElse(in Action&lt;T&gt; then, in Action else)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1263,9 +1239,7 @@ public Option&lt;T&gt; IfElse([NotNull, InstantHandle] in Action&lt;T&gt; then, 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public TResult IfElse&lt;TResult&gt;([NotNull, InstantHandle] in Func&lt;T, TResult&gt; then, [NotNull, InstantHandle] in Func&lt;TResult&gt; else)</code></pre>
+    <pre><code class="lang-csharp hljs">public TResult IfElse&lt;TResult&gt;(in Func&lt;T, TResult&gt; then, in Func&lt;TResult&gt; else)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1358,10 +1332,7 @@ public TResult IfElse&lt;TResult&gt;([NotNull, InstantHandle] in Func&lt;T, TRes
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-[NotNull]
-public TResult IfOr&lt;TResult&gt;([NotNull, InstantHandle] in Func&lt;T, TResult&gt; then, [NotNull] in TResult orValue)</code></pre>
+    <pre><code class="lang-csharp hljs">public TResult IfOr&lt;TResult&gt;(in Func&lt;T, TResult&gt; then, in TResult orValue)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1459,10 +1430,7 @@ public TResult IfOr&lt;TResult&gt;([NotNull, InstantHandle] in Func&lt;T, TResul
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-[CanBeNull]
-public TResult IfOrDefault&lt;TResult&gt;([NotNull, InstantHandle] in Func&lt;T, TResult&gt; then)</code></pre>
+    <pre><code class="lang-csharp hljs">public TResult IfOrDefault&lt;TResult&gt;(in Func&lt;T, TResult&gt; then)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1544,8 +1512,7 @@ public TResult IfOrDefault&lt;TResult&gt;([NotNull, InstantHandle] in Func&lt;T,
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public void IfOrThrows([NotNull, InstantHandle] in Action&lt;T&gt; then, [NotNull] in Exception exception)</code></pre>
+    <pre><code class="lang-csharp hljs">public void IfOrThrows(in Action&lt;T&gt; then, in Exception exception)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1606,8 +1573,7 @@ public void IfOrThrows([NotNull, InstantHandle] in Action&lt;T&gt; then, [NotNul
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public void IfOrThrows([NotNull, InstantHandle] in Action&lt;T&gt; then, [NotNull, InstantHandle] in Func&lt;Exception&gt; exceptionFunc)</code></pre>
+    <pre><code class="lang-csharp hljs">public void IfOrThrows(in Action&lt;T&gt; then, in Func&lt;Exception&gt; exceptionFunc)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1668,8 +1634,7 @@ public void IfOrThrows([NotNull, InstantHandle] in Action&lt;T&gt; then, [NotNul
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public TResult IfOrThrows&lt;TResult&gt;([NotNull, InstantHandle] in Func&lt;T, TResult&gt; then, [NotNull] in Exception exception)</code></pre>
+    <pre><code class="lang-csharp hljs">public TResult IfOrThrows&lt;TResult&gt;(in Func&lt;T, TResult&gt; then, in Exception exception)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1762,8 +1727,7 @@ public TResult IfOrThrows&lt;TResult&gt;([NotNull, InstantHandle] in Func&lt;T, 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public TResult IfOrThrows&lt;TResult&gt;([NotNull, InstantHandle] in Func&lt;T, TResult&gt; then, [NotNull, InstantHandle] in Func&lt;Exception&gt; exceptionFunc)</code></pre>
+    <pre><code class="lang-csharp hljs">public TResult IfOrThrows&lt;TResult&gt;(in Func&lt;T, TResult&gt; then, in Func&lt;Exception&gt; exceptionFunc)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1857,9 +1821,7 @@ if yes returns <a class="xref" href="Here.Option-1.html#Here_Option_1_None">None
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public Option&lt;T&gt; NoneIf([NotNull, InstantHandle] in Predicate&lt;T&gt; predicate)</code></pre>
+    <pre><code class="lang-csharp hljs">public Option&lt;T&gt; NoneIf(in Predicate&lt;T&gt; predicate)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1927,9 +1889,7 @@ with <code data-dev-comment-type="paramref" class="paramref">converter</code> ba
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public Option&lt;TOut&gt; NoneIf&lt;TOut&gt;([NotNull, InstantHandle] in Predicate&lt;T&gt; predicate, [NotNull, InstantHandle] in Func&lt;T, TOut&gt; converter)</code></pre>
+    <pre><code class="lang-csharp hljs">public Option&lt;TOut&gt; NoneIf&lt;TOut&gt;(in Predicate&lt;T&gt; predicate, in Func&lt;T, TOut&gt; converter)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2022,9 +1982,7 @@ public Option&lt;TOut&gt; NoneIf&lt;TOut&gt;([NotNull, InstantHandle] in Predica
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public Option&lt;TOut&gt; OfType&lt;TOut&gt;()
+    <pre><code class="lang-csharp hljs">public Option&lt;TOut&gt; OfType&lt;TOut&gt;()
     where TOut : class</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
@@ -2073,10 +2031,7 @@ public Option&lt;TOut&gt; OfType&lt;TOut&gt;()
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-[NotNull]
-public T Or([NotNull] in T orValue)</code></pre>
+    <pre><code class="lang-csharp hljs">public T Or(in T orValue)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2142,10 +2097,7 @@ public T Or([NotNull] in T orValue)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-[NotNull]
-public T Or([NotNull, InstantHandle] in Func&lt;T&gt; orFunc)</code></pre>
+    <pre><code class="lang-csharp hljs">public T Or(in Func&lt;T&gt; orFunc)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2216,9 +2168,7 @@ public T Or([NotNull, InstantHandle] in Func&lt;T&gt; orFunc)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public Option&lt;T&gt; Or([NotNull, InstantHandle] in Func&lt;Option&lt;T&gt;&gt; orFunc)</code></pre>
+    <pre><code class="lang-csharp hljs">public Option&lt;T&gt; Or(in Func&lt;Option&lt;T&gt;&gt; orFunc)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2284,10 +2234,7 @@ public Option&lt;T&gt; Or([NotNull, InstantHandle] in Func&lt;Option&lt;T&gt;&gt
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-[CanBeNull]
-public T OrDefault()</code></pre>
+    <pre><code class="lang-csharp hljs">public T OrDefault()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2319,9 +2266,7 @@ public T OrDefault()</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[NotNull]
-public T OrThrows([NotNull] in Exception exception)</code></pre>
+    <pre><code class="lang-csharp hljs">public T OrThrows(in Exception exception)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2387,9 +2332,7 @@ public T OrThrows([NotNull] in Exception exception)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[NotNull]
-public T OrThrows([NotNull, InstantHandle] in Func&lt;Exception&gt; exceptionFunc)</code></pre>
+    <pre><code class="lang-csharp hljs">public T OrThrows(in Func&lt;Exception&gt; exceptionFunc)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2455,8 +2398,7 @@ public T OrThrows([NotNull, InstantHandle] in Func&lt;Exception&gt; exceptionFun
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Option&lt;T&gt; Some([NotNull] in T value)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;T&gt; Some(in T value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2553,10 +2495,7 @@ public static Option&lt;T&gt; Some([NotNull] in T value)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-[CanBeNull]
-public T Unwrap([CanBeNull] in T defaultValue = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public T Unwrap(in T defaultValue = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2606,10 +2545,7 @@ public T Unwrap([CanBeNull] in T defaultValue = null)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-[CanBeNull]
-public T Unwrap([NotNull, InstantHandle] in Func&lt;T&gt; orFunc)</code></pre>
+    <pre><code class="lang-csharp hljs">public T Unwrap(in Func&lt;T&gt; orFunc)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2677,10 +2613,7 @@ otherwise returns the <code data-dev-comment-type="paramref" class="paramref">de
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-[CanBeNull]
-public TOut Unwrap&lt;TOut&gt;([NotNull, InstantHandle] in Func&lt;T, TOut&gt; converter, [CanBeNull] in TOut defaultValue = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public TOut Unwrap&lt;TOut&gt;(in Func&lt;T, TOut&gt; converter, in TOut defaultValue = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2770,10 +2703,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-[CanBeNull]
-public TOut Unwrap&lt;TOut&gt;([NotNull, InstantHandle] in Func&lt;T, TOut&gt; converter, [NotNull, InstantHandle] in Func&lt;TOut&gt; orFunc)</code></pre>
+    <pre><code class="lang-csharp hljs">public TOut Unwrap&lt;TOut&gt;(in Func&lt;T, TOut&gt; converter, in Func&lt;TOut&gt; orFunc)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3148,9 +3078,7 @@ public TOut Unwrap&lt;TOut&gt;([NotNull, InstantHandle] in Func&lt;T, TOut&gt; c
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static implicit operator Option&lt;T&gt;([CanBeNull] in T value)</code></pre>
+    <pre><code class="lang-csharp hljs">public static implicit operator Option&lt;T&gt;(in T value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3200,9 +3128,7 @@ public static implicit operator Option&lt;T&gt;([CanBeNull] in T value)</code></
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static implicit operator Option&lt;T&gt;([CanBeNull] in Option.NoneOption none)</code></pre>
+    <pre><code class="lang-csharp hljs">public static implicit operator Option&lt;T&gt;(in Option.NoneOption none)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3251,9 +3177,7 @@ public static implicit operator Option&lt;T&gt;([CanBeNull] in Option.NoneOption
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static implicit operator Result(in Option&lt;T&gt; option)</code></pre>
+    <pre><code class="lang-csharp hljs">public static implicit operator Result(in Option&lt;T&gt; option)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3303,9 +3227,7 @@ public static implicit operator Result(in Option&lt;T&gt; option)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static implicit operator Result&lt;T&gt;(in Option&lt;T&gt; option)</code></pre>
+    <pre><code class="lang-csharp hljs">public static implicit operator Result&lt;T&gt;(in Option&lt;T&gt; option)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3355,9 +3277,7 @@ public static implicit operator Result&lt;T&gt;(in Option&lt;T&gt; option)</code
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static implicit operator bool (in Option&lt;T&gt; option)</code></pre>
+    <pre><code class="lang-csharp hljs">public static implicit operator bool (in Option&lt;T&gt; option)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3407,9 +3327,7 @@ public static implicit operator bool (in Option&lt;T&gt; option)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static implicit operator Option&lt;T&gt;(in Option&lt;Option&lt;T&gt;&gt; embeddedOption)</code></pre>
+    <pre><code class="lang-csharp hljs">public static implicit operator Option&lt;T&gt;(in Option&lt;Option&lt;T&gt;&gt; embeddedOption)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3740,9 +3658,7 @@ It means that it <a class="xref" href="Here.Option-1.html#Here_Option_1_HasNoVal
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool operator !(in Option&lt;T&gt; option)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool operator !(in Option&lt;T&gt; option)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">

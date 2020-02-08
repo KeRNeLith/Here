@@ -128,10 +128,7 @@ Use the <code data-dev-comment-type="paramref" class="paramref">initialValue</co
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[NotNull]
-[Pure]
-public static TAggregate AggregateItems&lt;T, TAggregate&gt;(this in Option&lt;T&gt; option, [NotNull] in TAggregate initialValue, [NotNull, InstantHandle] in Func&lt;TAggregate, object, TAggregate&gt; aggregator)
+    <pre><code class="lang-csharp hljs">public static TAggregate AggregateItems&lt;T, TAggregate&gt;(this in Option&lt;T&gt; option, in TAggregate initialValue, in Func&lt;TAggregate, object, TAggregate&gt; aggregator)
     where T : IEnumerable</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -238,10 +235,7 @@ Use the <code data-dev-comment-type="paramref" class="paramref">initialValue</co
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[NotNull]
-[Pure]
-public static TAggregate AggregateItems&lt;T, TItem, TAggregate&gt;(this in Option&lt;T&gt; option, [NotNull] in TAggregate initialValue, [NotNull, InstantHandle] in Func&lt;TAggregate, TItem, TAggregate&gt; aggregator)
+    <pre><code class="lang-csharp hljs">public static TAggregate AggregateItems&lt;T, TItem, TAggregate&gt;(this in Option&lt;T&gt; option, in TAggregate initialValue, in Func&lt;TAggregate, TItem, TAggregate&gt; aggregator)
     where T : IEnumerable&lt;TItem&gt;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -352,9 +346,7 @@ public static TAggregate AggregateItems&lt;T, TItem, TAggregate&gt;(this in Opti
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool AllItems&lt;T&gt;(this in Option&lt;T&gt; option, [NotNull, InstantHandle] in Predicate&lt;object&gt; predicate)
+    <pre><code class="lang-csharp hljs">public static bool AllItems&lt;T&gt;(this in Option&lt;T&gt; option, in Predicate&lt;object&gt; predicate)
     where T : IEnumerable</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -443,9 +435,7 @@ public static bool AllItems&lt;T&gt;(this in Option&lt;T&gt; option, [NotNull, I
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool AllItems&lt;T, TItem&gt;(this in Option&lt;T&gt; option, [NotNull, InstantHandle] Predicate&lt;TItem&gt; predicate)
+    <pre><code class="lang-csharp hljs">public static bool AllItems&lt;T, TItem&gt;(this in Option&lt;T&gt; option, Predicate&lt;TItem&gt; predicate)
     where T : IEnumerable&lt;TItem&gt;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -539,9 +529,7 @@ public static bool AllItems&lt;T, TItem&gt;(this in Option&lt;T&gt; option, [Not
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool AnyItem&lt;T&gt;(this in Option&lt;T&gt; option)
+    <pre><code class="lang-csharp hljs">public static bool AnyItem&lt;T&gt;(this in Option&lt;T&gt; option)
     where T : IEnumerable</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -608,9 +596,7 @@ public static bool AnyItem&lt;T&gt;(this in Option&lt;T&gt; option)
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool AnyItem&lt;T&gt;(this in Option&lt;T&gt; option, [NotNull, InstantHandle] in Predicate&lt;object&gt; predicate)
+    <pre><code class="lang-csharp hljs">public static bool AnyItem&lt;T&gt;(this in Option&lt;T&gt; option, in Predicate&lt;object&gt; predicate)
     where T : IEnumerable</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -699,9 +685,7 @@ public static bool AnyItem&lt;T&gt;(this in Option&lt;T&gt; option, [NotNull, In
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool AnyItem&lt;T, TItem&gt;(this in Option&lt;T&gt; option, [NotNull, InstantHandle] Predicate&lt;TItem&gt; predicate)
+    <pre><code class="lang-csharp hljs">public static bool AnyItem&lt;T, TItem&gt;(this in Option&lt;T&gt; option, Predicate&lt;TItem&gt; predicate)
     where T : IEnumerable&lt;TItem&gt;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -795,9 +779,7 @@ public static bool AnyItem&lt;T, TItem&gt;(this in Option&lt;T&gt; option, [NotN
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool ContainsItem&lt;T&gt;(this in Option&lt;T&gt; option, [CanBeNull] in object value)
+    <pre><code class="lang-csharp hljs">public static bool ContainsItem&lt;T&gt;(this in Option&lt;T&gt; option, in object value)
     where T : IEnumerable</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -870,9 +852,7 @@ public static bool ContainsItem&lt;T&gt;(this in Option&lt;T&gt; option, [CanBeN
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool ContainsItem&lt;T&gt;(this in Option&lt;T&gt; option, [CanBeNull] in object value, [NotNull] in IEqualityComparer&lt;object&gt; comparer)
+    <pre><code class="lang-csharp hljs">public static bool ContainsItem&lt;T&gt;(this in Option&lt;T&gt; option, in object value, in IEqualityComparer&lt;object&gt; comparer)
     where T : IEnumerable</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -967,9 +947,7 @@ public static bool ContainsItem&lt;T&gt;(this in Option&lt;T&gt; option, [CanBeN
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool ContainsItem&lt;T, TItem&gt;(this in Option&lt;T&gt; option, [CanBeNull] in TItem value)
+    <pre><code class="lang-csharp hljs">public static bool ContainsItem&lt;T, TItem&gt;(this in Option&lt;T&gt; option, in TItem value)
     where T : IEnumerable&lt;TItem&gt;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1047,9 +1025,7 @@ public static bool ContainsItem&lt;T, TItem&gt;(this in Option&lt;T&gt; option, 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool ContainsItem&lt;T, TItem&gt;(this in Option&lt;T&gt; option, [CanBeNull] in TItem value, [NotNull] in IEqualityComparer&lt;TItem&gt; comparer)
+    <pre><code class="lang-csharp hljs">public static bool ContainsItem&lt;T, TItem&gt;(this in Option&lt;T&gt; option, in TItem value, in IEqualityComparer&lt;TItem&gt; comparer)
     where T : IEnumerable&lt;TItem&gt;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1149,8 +1125,7 @@ public static bool ContainsItem&lt;T, TItem&gt;(this in Option&lt;T&gt; option, 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Option&lt;T&gt; ForEachItems&lt;T&gt;(this in Option&lt;T&gt; option, [NotNull, InstantHandle] in Action&lt;object&gt; onItem)
+    <pre><code class="lang-csharp hljs">public static Option&lt;T&gt; ForEachItems&lt;T&gt;(this in Option&lt;T&gt; option, in Action&lt;object&gt; onItem)
     where T : IEnumerable</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1239,8 +1214,7 @@ public static Option&lt;T&gt; ForEachItems&lt;T&gt;(this in Option&lt;T&gt; opti
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Option&lt;T&gt; ForEachItems&lt;T, TItem&gt;(this in Option&lt;T&gt; option, [NotNull, InstantHandle] in Action&lt;TItem&gt; onItem)
+    <pre><code class="lang-csharp hljs">public static Option&lt;T&gt; ForEachItems&lt;T, TItem&gt;(this in Option&lt;T&gt; option, in Action&lt;TItem&gt; onItem)
     where T : IEnumerable&lt;TItem&gt;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1334,9 +1308,7 @@ public static Option&lt;T&gt; ForEachItems&lt;T, TItem&gt;(this in Option&lt;T&g
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;IEnumerable&lt;TItemOut&gt;&gt; SelectItems&lt;T, TItemOut&gt;(this in Option&lt;T&gt; option, [NotNull, InstantHandle] in Func&lt;object, TItemOut&gt; selector)
+    <pre><code class="lang-csharp hljs">public static Option&lt;IEnumerable&lt;TItemOut&gt;&gt; SelectItems&lt;T, TItemOut&gt;(this in Option&lt;T&gt; option, in Func&lt;object, TItemOut&gt; selector)
     where T : IEnumerable</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1430,9 +1402,7 @@ public static Option&lt;IEnumerable&lt;TItemOut&gt;&gt; SelectItems&lt;T, TItemO
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;IEnumerable&lt;TItemOut&gt;&gt; SelectItems&lt;T, TItemIn, TItemOut&gt;(this in Option&lt;T&gt; option, [NotNull, InstantHandle] in Func&lt;TItemIn, TItemOut&gt; selector)
+    <pre><code class="lang-csharp hljs">public static Option&lt;IEnumerable&lt;TItemOut&gt;&gt; SelectItems&lt;T, TItemIn, TItemOut&gt;(this in Option&lt;T&gt; option, in Func&lt;TItemIn, TItemOut&gt; selector)
     where T : IEnumerable&lt;TItemIn&gt;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1531,9 +1501,7 @@ public static Option&lt;IEnumerable&lt;TItemOut&gt;&gt; SelectItems&lt;T, TItemI
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;IEnumerable&gt; WhereItems&lt;T&gt;(this in Option&lt;T&gt; option, [NotNull, InstantHandle] in Predicate&lt;object&gt; predicate)
+    <pre><code class="lang-csharp hljs">public static Option&lt;IEnumerable&gt; WhereItems&lt;T&gt;(this in Option&lt;T&gt; option, in Predicate&lt;object&gt; predicate)
     where T : IEnumerable</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1622,9 +1590,7 @@ public static Option&lt;IEnumerable&gt; WhereItems&lt;T&gt;(this in Option&lt;T&
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;IEnumerable&lt;TItem&gt;&gt; WhereItems&lt;T, TItem&gt;(this in Option&lt;T&gt; option, [NotNull, InstantHandle] Predicate&lt;TItem&gt; predicate)
+    <pre><code class="lang-csharp hljs">public static Option&lt;IEnumerable&lt;TItem&gt;&gt; WhereItems&lt;T, TItem&gt;(this in Option&lt;T&gt; option, Predicate&lt;TItem&gt; predicate)
     where T : IEnumerable&lt;TItem&gt;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>

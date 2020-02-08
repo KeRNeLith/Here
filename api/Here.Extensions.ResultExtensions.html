@@ -127,9 +127,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Result Ensure(this in Result result, [NotNull, InstantHandle] in Func&lt;bool&gt; predicate, [NotNull] in string errorMessage)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result Ensure(this in Result result, in Func&lt;bool&gt; predicate, in string errorMessage)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -212,9 +210,7 @@ public static Result Ensure(this in Result result, [NotNull, InstantHandle] in F
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static CustomResult&lt;TError&gt; Ensure&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Func&lt;bool&gt; predicate, [NotNull] in string errorMessage, [NotNull] in TError errorObject)</code></pre>
+    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; Ensure&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, in Func&lt;bool&gt; predicate, in string errorMessage, in TError errorObject)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -324,9 +320,7 @@ public static CustomResult&lt;TError&gt; Ensure&lt;TError&gt;(this in CustomResu
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static CustomResult&lt;TError&gt; Ensure&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Func&lt;bool&gt; predicate, [NotNull] in string errorMessage, [NotNull, InstantHandle] in Func&lt;TError&gt; errorFactory)</code></pre>
+    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; Ensure&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, in Func&lt;bool&gt; predicate, in string errorMessage, in Func&lt;TError&gt; errorFactory)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -436,9 +430,7 @@ public static CustomResult&lt;TError&gt; Ensure&lt;TError&gt;(this in CustomResu
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Result&lt;T&gt; Ensure&lt;T&gt;(this in Result&lt;T&gt; result, [NotNull, InstantHandle] in Predicate&lt;T&gt; predicate, [NotNull] in string errorMessage)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; Ensure&lt;T&gt;(this in Result&lt;T&gt; result, in Predicate&lt;T&gt; predicate, in string errorMessage)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -537,9 +529,7 @@ public static Result&lt;T&gt; Ensure&lt;T&gt;(this in Result&lt;T&gt; result, [N
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Result&lt;T, TError&gt; Ensure&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, [NotNull, InstantHandle] in Predicate&lt;T&gt; predicate, [NotNull] in string errorMessage, [NotNull] in TError errorObject)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T, TError&gt; Ensure&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, in Predicate&lt;T&gt; predicate, in string errorMessage, in TError errorObject)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -654,9 +644,7 @@ public static Result&lt;T, TError&gt; Ensure&lt;T, TError&gt;(this in Result&lt;
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Result&lt;T, TError&gt; Ensure&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, [NotNull, InstantHandle] in Predicate&lt;T&gt; predicate, [NotNull] in string errorMessage, [NotNull, InstantHandle] in Func&lt;TError&gt; errorFactory)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T, TError&gt; Ensure&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, in Predicate&lt;T&gt; predicate, in string errorMessage, in Func&lt;TError&gt; errorFactory)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -771,9 +759,7 @@ public static Result&lt;T, TError&gt; Ensure&lt;T, TError&gt;(this in Result&lt;
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Result Flatten(this in Result&lt;Result&gt; embeddedResult)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result Flatten(this in Result&lt;Result&gt; embeddedResult)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -823,9 +809,7 @@ public static Result Flatten(this in Result&lt;Result&gt; embeddedResult)</code>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static CustomResult&lt;TError&gt; Flatten&lt;TError&gt;(this in Result&lt;CustomResult&lt;TError&gt;, TError&gt; embeddedResult)</code></pre>
+    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; Flatten&lt;TError&gt;(this in Result&lt;CustomResult&lt;TError&gt;, TError&gt; embeddedResult)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -890,9 +874,7 @@ public static CustomResult&lt;TError&gt; Flatten&lt;TError&gt;(this in Result&lt
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Result Flatten&lt;TError&gt;(this in Result&lt;Result, TError&gt; embeddedResult)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result Flatten&lt;TError&gt;(this in Result&lt;Result, TError&gt; embeddedResult)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -957,9 +939,7 @@ public static Result Flatten&lt;TError&gt;(this in Result&lt;Result, TError&gt; 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Result&lt;T&gt; Flatten&lt;T&gt;(this in Result&lt;Result&lt;T&gt;&gt; embeddedResult)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; Flatten&lt;T&gt;(this in Result&lt;Result&lt;T&gt;&gt; embeddedResult)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1024,9 +1004,7 @@ public static Result&lt;T&gt; Flatten&lt;T&gt;(this in Result&lt;Result&lt;T&gt;
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Result&lt;T, TError&gt; Flatten&lt;T, TError&gt;(this in Result&lt;Result&lt;T, TError&gt;, TError&gt; embeddedResult)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T, TError&gt; Flatten&lt;T, TError&gt;(this in Result&lt;Result&lt;T, TError&gt;, TError&gt; embeddedResult)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1095,9 +1073,7 @@ public static Result&lt;T, TError&gt; Flatten&lt;T, TError&gt;(this in Result&lt
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Result&lt;T&gt; Flatten&lt;T, TError&gt;(this in Result&lt;Result&lt;T&gt;, TError&gt; embeddedResult)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; Flatten&lt;T, TError&gt;(this in Result&lt;Result&lt;T&gt;, TError&gt; embeddedResult)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1166,9 +1142,7 @@ public static Result&lt;T&gt; Flatten&lt;T, TError&gt;(this in Result&lt;Result&
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static bool IsOnlySuccess([NotNull] this IResult result)</code></pre>
+    <pre><code class="lang-csharp hljs">public static bool IsOnlySuccess(this IResult result)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1218,8 +1192,7 @@ public static bool IsOnlySuccess([NotNull] this IResult result)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result OnAny(this in Result result, [NotNull, InstantHandle] in Action onAny)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result OnAny(this in Result result, in Action onAny)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1291,8 +1264,7 @@ public static Result OnAny(this in Result result, [NotNull, InstantHandle] in Ac
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result OnAny(this in Result result, [NotNull, InstantHandle] in Action&lt;Result&gt; onAny)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result OnAny(this in Result result, in Action&lt;Result&gt; onAny)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1364,8 +1336,7 @@ public static Result OnAny(this in Result result, [NotNull, InstantHandle] in Ac
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static CustomResult&lt;TError&gt; OnAny&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Action onAny)</code></pre>
+    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; OnAny&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, in Action onAny)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1453,8 +1424,7 @@ public static CustomResult&lt;TError&gt; OnAny&lt;TError&gt;(this in CustomResul
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static CustomResult&lt;TError&gt; OnAny&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Action&lt;CustomResult&lt;TError&gt;&gt; onAny)</code></pre>
+    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; OnAny&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, in Action&lt;CustomResult&lt;TError&gt;&gt; onAny)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1542,8 +1512,7 @@ public static CustomResult&lt;TError&gt; OnAny&lt;TError&gt;(this in CustomResul
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnAny&lt;TOut&gt;(this in Result result, [NotNull, InstantHandle] in Func&lt;TOut&gt; onAny)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnAny&lt;TOut&gt;(this in Result result, in Func&lt;TOut&gt; onAny)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1631,8 +1600,7 @@ public static TOut OnAny&lt;TOut&gt;(this in Result result, [NotNull, InstantHan
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnAny&lt;TOut&gt;(this in Result result, [NotNull, InstantHandle] in Func&lt;Result, TOut&gt; onAny)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnAny&lt;TOut&gt;(this in Result result, in Func&lt;Result, TOut&gt; onAny)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1720,8 +1688,7 @@ public static TOut OnAny&lt;TOut&gt;(this in Result result, [NotNull, InstantHan
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;T&gt; OnAny&lt;T&gt;(this in Result&lt;T&gt; result, [NotNull, InstantHandle] in Action onAny)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; OnAny&lt;T&gt;(this in Result&lt;T&gt; result, in Action onAny)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1809,8 +1776,7 @@ public static Result&lt;T&gt; OnAny&lt;T&gt;(this in Result&lt;T&gt; result, [No
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;T&gt; OnAny&lt;T&gt;(this in Result&lt;T&gt; result, [NotNull, InstantHandle] in Action&lt;Result&lt;T&gt;&gt; onAny)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; OnAny&lt;T&gt;(this in Result&lt;T&gt; result, in Action&lt;Result&lt;T&gt;&gt; onAny)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1898,8 +1864,7 @@ public static Result&lt;T&gt; OnAny&lt;T&gt;(this in Result&lt;T&gt; result, [No
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnAny&lt;TOut, TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Func&lt;TOut&gt; onAny)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnAny&lt;TOut, TError&gt;(this in CustomResult&lt;TError&gt; result, in Func&lt;TOut&gt; onAny)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1992,8 +1957,7 @@ public static TOut OnAny&lt;TOut, TError&gt;(this in CustomResult&lt;TError&gt; 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnAny&lt;TOut, TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Func&lt;CustomResult&lt;TError&gt;, TOut&gt; onAny)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnAny&lt;TOut, TError&gt;(this in CustomResult&lt;TError&gt; result, in Func&lt;CustomResult&lt;TError&gt;, TOut&gt; onAny)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2086,8 +2050,7 @@ public static TOut OnAny&lt;TOut, TError&gt;(this in CustomResult&lt;TError&gt; 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;T, TError&gt; OnAny&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, [NotNull, InstantHandle] in Action onAny)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T, TError&gt; OnAny&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, in Action onAny)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2180,8 +2143,7 @@ public static Result&lt;T, TError&gt; OnAny&lt;T, TError&gt;(this in Result&lt;T
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;T, TError&gt; OnAny&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, [NotNull, InstantHandle] in Action&lt;Result&lt;T, TError&gt;&gt; onAny)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T, TError&gt; OnAny&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, in Action&lt;Result&lt;T, TError&gt;&gt; onAny)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2274,8 +2236,7 @@ public static Result&lt;T, TError&gt; OnAny&lt;T, TError&gt;(this in Result&lt;T
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnAny&lt;TIn, TOut&gt;(this in Result&lt;TIn&gt; result, [NotNull, InstantHandle] in Func&lt;TOut&gt; onAny)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnAny&lt;TIn, TOut&gt;(this in Result&lt;TIn&gt; result, in Func&lt;TOut&gt; onAny)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2368,8 +2329,7 @@ public static TOut OnAny&lt;TIn, TOut&gt;(this in Result&lt;TIn&gt; result, [Not
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnAny&lt;TIn, TOut&gt;(this in Result&lt;TIn&gt; result, [NotNull, InstantHandle] in Func&lt;Result&lt;TIn&gt;, TOut&gt; onAny)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnAny&lt;TIn, TOut&gt;(this in Result&lt;TIn&gt; result, in Func&lt;Result&lt;TIn&gt;, TOut&gt; onAny)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2462,8 +2422,7 @@ public static TOut OnAny&lt;TIn, TOut&gt;(this in Result&lt;TIn&gt; result, [Not
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnAny&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TError&gt; result, [NotNull, InstantHandle] in Func&lt;TOut&gt; onAny)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnAny&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TError&gt; result, in Func&lt;TOut&gt; onAny)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2561,8 +2520,7 @@ public static TOut OnAny&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TError&
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnAny&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TError&gt; result, [NotNull, InstantHandle] in Func&lt;Result&lt;TIn, TError&gt;, TOut&gt; onAny)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnAny&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TError&gt; result, in Func&lt;Result&lt;TIn, TError&gt;, TOut&gt; onAny)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2660,8 +2618,7 @@ public static TOut OnAny&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TError&
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result OnFailure(this in Result result, [NotNull, InstantHandle] in Action onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result OnFailure(this in Result result, in Action onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2739,8 +2696,7 @@ public static Result OnFailure(this in Result result, [NotNull, InstantHandle] i
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result OnFailure(this in Result result, [NotNull, InstantHandle] in Action&lt;Result&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result OnFailure(this in Result result, in Action&lt;Result&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2818,8 +2774,7 @@ public static Result OnFailure(this in Result result, [NotNull, InstantHandle] i
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result OnFailure(this in Result result, [NotNull, InstantHandle] in Func&lt;Result, Result&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result OnFailure(this in Result result, in Func&lt;Result, Result&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2897,8 +2852,7 @@ public static Result OnFailure(this in Result result, [NotNull, InstantHandle] i
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static CustomResult&lt;TError&gt; OnFailure&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Action onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; OnFailure&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, in Action onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2992,8 +2946,7 @@ public static CustomResult&lt;TError&gt; OnFailure&lt;TError&gt;(this in CustomR
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static CustomResult&lt;TError&gt; OnFailure&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Action&lt;CustomResult&lt;TError&gt;&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; OnFailure&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, in Action&lt;CustomResult&lt;TError&gt;&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3087,8 +3040,7 @@ public static CustomResult&lt;TError&gt; OnFailure&lt;TError&gt;(this in CustomR
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static CustomResult&lt;TError&gt; OnFailure&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Func&lt;CustomResult&lt;TError&gt;, CustomResult&lt;TError&gt;&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; OnFailure&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, in Func&lt;CustomResult&lt;TError&gt;, CustomResult&lt;TError&gt;&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3182,8 +3134,7 @@ public static CustomResult&lt;TError&gt; OnFailure&lt;TError&gt;(this in CustomR
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result OnFailure&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Func&lt;CustomResult&lt;TError&gt;, Result&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result OnFailure&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, in Func&lt;CustomResult&lt;TError&gt;, Result&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3277,8 +3228,7 @@ public static Result OnFailure&lt;TError&gt;(this in CustomResult&lt;TError&gt; 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnFailure&lt;TOut&gt;(this in Result result, [NotNull, InstantHandle] in Func&lt;Result, TOut&gt; onFailure, [CanBeNull] in TOut defaultValue, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnFailure&lt;TOut&gt;(this in Result result, in Func&lt;Result, TOut&gt; onFailure, in TOut defaultValue, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3379,8 +3329,7 @@ otherwise return the <code data-dev-comment-type="paramref" class="paramref">val
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnFailure&lt;TOut&gt;(this in Result result, [NotNull, InstantHandle] in Func&lt;Result, TOut&gt; onFailure, [NotNull, InstantHandle] in Func&lt;TOut&gt; valueFactory, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnFailure&lt;TOut&gt;(this in Result result, in Func&lt;Result, TOut&gt; onFailure, in Func&lt;TOut&gt; valueFactory, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3485,8 +3434,7 @@ public static TOut OnFailure&lt;TOut&gt;(this in Result result, [NotNull, Instan
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;T&gt; OnFailure&lt;T&gt;(this in Result&lt;T&gt; result, [NotNull, InstantHandle] in Action onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; OnFailure&lt;T&gt;(this in Result&lt;T&gt; result, in Action onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3580,8 +3528,7 @@ public static Result&lt;T&gt; OnFailure&lt;T&gt;(this in Result&lt;T&gt; result,
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;T&gt; OnFailure&lt;T&gt;(this in Result&lt;T&gt; result, [NotNull, InstantHandle] in Action&lt;Result&lt;T&gt;&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; OnFailure&lt;T&gt;(this in Result&lt;T&gt; result, in Action&lt;Result&lt;T&gt;&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3675,8 +3622,7 @@ public static Result&lt;T&gt; OnFailure&lt;T&gt;(this in Result&lt;T&gt; result,
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;T&gt; OnFailure&lt;T&gt;(this in Result&lt;T&gt; result, [NotNull, InstantHandle] in Func&lt;Result&lt;T&gt;, Result&lt;T&gt;&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; OnFailure&lt;T&gt;(this in Result&lt;T&gt; result, in Func&lt;Result&lt;T&gt;, Result&lt;T&gt;&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3770,8 +3716,7 @@ public static Result&lt;T&gt; OnFailure&lt;T&gt;(this in Result&lt;T&gt; result,
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result OnFailure&lt;T&gt;(this in Result&lt;T&gt; result, [NotNull, InstantHandle] in Func&lt;Result&lt;T&gt;, Result&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result OnFailure&lt;T&gt;(this in Result&lt;T&gt; result, in Func&lt;Result&lt;T&gt;, Result&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3865,8 +3810,7 @@ public static Result OnFailure&lt;T&gt;(this in Result&lt;T&gt; result, [NotNull
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnFailure&lt;TOut, TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Func&lt;CustomResult&lt;TError&gt;, TOut&gt; onFailure, [CanBeNull] in TOut defaultValue, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnFailure&lt;TOut, TError&gt;(this in CustomResult&lt;TError&gt; result, in Func&lt;CustomResult&lt;TError&gt;, TOut&gt; onFailure, in TOut defaultValue, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -3972,8 +3916,7 @@ otherwise return the <code data-dev-comment-type="paramref" class="paramref">val
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnFailure&lt;TOut, TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Func&lt;CustomResult&lt;TError&gt;, TOut&gt; onFailure, [NotNull, InstantHandle] in Func&lt;TOut&gt; valueFactory, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnFailure&lt;TOut, TError&gt;(this in CustomResult&lt;TError&gt; result, in Func&lt;CustomResult&lt;TError&gt;, TOut&gt; onFailure, in Func&lt;TOut&gt; valueFactory, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -4083,8 +4026,7 @@ public static TOut OnFailure&lt;TOut, TError&gt;(this in CustomResult&lt;TError&
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;T, TError&gt; OnFailure&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, [NotNull, InstantHandle] in Action onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T, TError&gt; OnFailure&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, in Action onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -4183,8 +4125,7 @@ public static Result&lt;T, TError&gt; OnFailure&lt;T, TError&gt;(this in Result&
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;T, TError&gt; OnFailure&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, [NotNull, InstantHandle] in Action&lt;Result&lt;T, TError&gt;&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T, TError&gt; OnFailure&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, in Action&lt;Result&lt;T, TError&gt;&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -4283,8 +4224,7 @@ public static Result&lt;T, TError&gt; OnFailure&lt;T, TError&gt;(this in Result&
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static CustomResult&lt;TError&gt; OnFailure&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, [NotNull, InstantHandle] in Func&lt;Result&lt;T, TError&gt;, CustomResult&lt;TError&gt;&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; OnFailure&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, in Func&lt;Result&lt;T, TError&gt;, CustomResult&lt;TError&gt;&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -4383,8 +4323,7 @@ public static CustomResult&lt;TError&gt; OnFailure&lt;T, TError&gt;(this in Resu
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;T, TError&gt; OnFailure&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, [NotNull, InstantHandle] in Func&lt;Result&lt;T, TError&gt;, Result&lt;T, TError&gt;&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T, TError&gt; OnFailure&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, in Func&lt;Result&lt;T, TError&gt;, Result&lt;T, TError&gt;&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -4483,8 +4422,7 @@ public static Result&lt;T, TError&gt; OnFailure&lt;T, TError&gt;(this in Result&
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;T&gt; OnFailure&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, [NotNull, InstantHandle] in Func&lt;Result&lt;T, TError&gt;, Result&lt;T&gt;&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; OnFailure&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, in Func&lt;Result&lt;T, TError&gt;, Result&lt;T&gt;&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -4583,8 +4521,7 @@ public static Result&lt;T&gt; OnFailure&lt;T, TError&gt;(this in Result&lt;T, TE
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result OnFailure&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, [NotNull, InstantHandle] in Func&lt;Result&lt;T, TError&gt;, Result&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result OnFailure&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, in Func&lt;Result&lt;T, TError&gt;, Result&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -4683,8 +4620,7 @@ public static Result OnFailure&lt;T, TError&gt;(this in Result&lt;T, TError&gt; 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnFailure&lt;TIn, TOut&gt;(this in Result&lt;TIn&gt; result, [NotNull, InstantHandle] in Func&lt;Result&lt;TIn&gt;, TOut&gt; onFailure, [CanBeNull] in TOut defaultValue, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnFailure&lt;TIn, TOut&gt;(this in Result&lt;TIn&gt; result, in Func&lt;Result&lt;TIn&gt;, TOut&gt; onFailure, in TOut defaultValue, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -4790,8 +4726,7 @@ otherwise return the <code data-dev-comment-type="paramref" class="paramref">val
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnFailure&lt;TIn, TOut&gt;(this in Result&lt;TIn&gt; result, [NotNull, InstantHandle] in Func&lt;Result&lt;TIn&gt;, TOut&gt; onFailure, [NotNull, InstantHandle] in Func&lt;TIn, TOut&gt; valueFactory, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnFailure&lt;TIn, TOut&gt;(this in Result&lt;TIn&gt; result, in Func&lt;Result&lt;TIn&gt;, TOut&gt; onFailure, in Func&lt;TIn, TOut&gt; valueFactory, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -4901,8 +4836,7 @@ public static TOut OnFailure&lt;TIn, TOut&gt;(this in Result&lt;TIn&gt; result, 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnFailure&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TError&gt; result, [NotNull, InstantHandle] in Func&lt;Result&lt;TIn, TError&gt;, TOut&gt; onFailure, [CanBeNull] in TOut defaultValue, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnFailure&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TError&gt; result, in Func&lt;Result&lt;TIn, TError&gt;, TOut&gt; onFailure, in TOut defaultValue, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -5013,8 +4947,7 @@ otherwise return the <code data-dev-comment-type="paramref" class="paramref">val
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnFailure&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TError&gt; result, [NotNull, InstantHandle] in Func&lt;Result&lt;TIn, TError&gt;, TOut&gt; onFailure, [NotNull, InstantHandle] in Func&lt;TIn, TOut&gt; valueFactory, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnFailure&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TError&gt; result, in Func&lt;Result&lt;TIn, TError&gt;, TOut&gt; onFailure, in Func&lt;TIn, TOut&gt; valueFactory, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -5129,8 +5062,7 @@ public static TOut OnFailure&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TEr
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result OnSuccess(this in Result result, [NotNull, InstantHandle] in Action onSuccess, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result OnSuccess(this in Result result, in Action onSuccess, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -5208,8 +5140,7 @@ public static Result OnSuccess(this in Result result, [NotNull, InstantHandle] i
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result OnSuccess(this in Result result, [NotNull, InstantHandle] in Action&lt;Result&gt; onSuccess, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result OnSuccess(this in Result result, in Action&lt;Result&gt; onSuccess, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -5287,8 +5218,7 @@ public static Result OnSuccess(this in Result result, [NotNull, InstantHandle] i
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result OnSuccess(this in Result result, [NotNull, InstantHandle] in Func&lt;Result, Result&gt; onSuccess, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result OnSuccess(this in Result result, in Func&lt;Result, Result&gt; onSuccess, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -5366,8 +5296,7 @@ public static Result OnSuccess(this in Result result, [NotNull, InstantHandle] i
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static CustomResult&lt;TError&gt; OnSuccess&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Action onSuccess, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; OnSuccess&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, in Action onSuccess, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -5461,8 +5390,7 @@ public static CustomResult&lt;TError&gt; OnSuccess&lt;TError&gt;(this in CustomR
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static CustomResult&lt;TError&gt; OnSuccess&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Action&lt;CustomResult&lt;TError&gt;&gt; onSuccess, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; OnSuccess&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, in Action&lt;CustomResult&lt;TError&gt;&gt; onSuccess, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -5556,8 +5484,7 @@ public static CustomResult&lt;TError&gt; OnSuccess&lt;TError&gt;(this in CustomR
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static CustomResult&lt;TError&gt; OnSuccess&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Func&lt;CustomResult&lt;TError&gt;, CustomResult&lt;TError&gt;&gt; onSuccess, [NotNull] in TError errorObject, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; OnSuccess&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, in Func&lt;CustomResult&lt;TError&gt;, CustomResult&lt;TError&gt;&gt; onSuccess, in TError errorObject, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -5662,8 +5589,7 @@ public static CustomResult&lt;TError&gt; OnSuccess&lt;TError&gt;(this in CustomR
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static CustomResult&lt;TError&gt; OnSuccess&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Func&lt;CustomResult&lt;TError&gt;, CustomResult&lt;TError&gt;&gt; onSuccess, [NotNull, InstantHandle] in Func&lt;CustomResult&lt;TError&gt;, TError&gt; errorFactory, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; OnSuccess&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, in Func&lt;CustomResult&lt;TError&gt;, CustomResult&lt;TError&gt;&gt; onSuccess, in Func&lt;CustomResult&lt;TError&gt;, TError&gt; errorFactory, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -5768,8 +5694,7 @@ public static CustomResult&lt;TError&gt; OnSuccess&lt;TError&gt;(this in CustomR
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result OnSuccess&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Func&lt;CustomResult&lt;TError&gt;, Result&gt; onSuccess, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result OnSuccess&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, in Func&lt;CustomResult&lt;TError&gt;, Result&gt; onSuccess, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -5863,8 +5788,7 @@ public static Result OnSuccess&lt;TError&gt;(this in CustomResult&lt;TError&gt; 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnSuccess&lt;TOut&gt;(this in Result result, [NotNull, InstantHandle] in Func&lt;Result, TOut&gt; onSuccess, [CanBeNull] in TOut defaultValue, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnSuccess&lt;TOut&gt;(this in Result result, in Func&lt;Result, TOut&gt; onSuccess, in TOut defaultValue, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -5964,8 +5888,7 @@ public static TOut OnSuccess&lt;TOut&gt;(this in Result result, [NotNull, Instan
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;T&gt; OnSuccess&lt;T&gt;(this in Result result, [NotNull, InstantHandle] in Func&lt;Result, T&gt; onSuccess, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; OnSuccess&lt;T&gt;(this in Result result, in Func&lt;Result, T&gt; onSuccess, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -6060,8 +5983,7 @@ otherwise return the <code data-dev-comment-type="paramref" class="paramref">val
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnSuccess&lt;TOut&gt;(this in Result result, [NotNull, InstantHandle] in Func&lt;Result, TOut&gt; onSuccess, [NotNull, InstantHandle] in Func&lt;Result, TOut&gt; valueFactory, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnSuccess&lt;TOut&gt;(this in Result result, in Func&lt;Result, TOut&gt; onSuccess, in Func&lt;Result, TOut&gt; valueFactory, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -6168,8 +6090,7 @@ the <a class="xref" href="Here.Result.html">Result</a> is a failure or a warning
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static CustomResult&lt;TError&gt; OnSuccess&lt;TError&gt;(this in Result result, [NotNull, InstantHandle] in Func&lt;Result, CustomResult&lt;TError&gt;&gt; onSuccess, [NotNull] in TError errorObject, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; OnSuccess&lt;TError&gt;(this in Result result, in Func&lt;Result, CustomResult&lt;TError&gt;&gt; onSuccess, in TError errorObject, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -6276,8 +6197,7 @@ the <a class="xref" href="Here.Result.html">Result</a> is a failure or a warning
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static CustomResult&lt;TError&gt; OnSuccess&lt;TError&gt;(this in Result result, [NotNull, InstantHandle] in Func&lt;Result, CustomResult&lt;TError&gt;&gt; onSuccess, [NotNull, InstantHandle] in Func&lt;Result, TError&gt; errorFactory, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; OnSuccess&lt;TError&gt;(this in Result result, in Func&lt;Result, CustomResult&lt;TError&gt;&gt; onSuccess, in Func&lt;Result, TError&gt; errorFactory, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -6382,8 +6302,7 @@ public static CustomResult&lt;TError&gt; OnSuccess&lt;TError&gt;(this in Result 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;T&gt; OnSuccess&lt;T&gt;(this in Result result, [NotNull, InstantHandle] in Func&lt;Result, Result&lt;T&gt;&gt; onSuccess, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; OnSuccess&lt;T&gt;(this in Result result, in Func&lt;Result, Result&lt;T&gt;&gt; onSuccess, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -6477,8 +6396,7 @@ public static Result&lt;T&gt; OnSuccess&lt;T&gt;(this in Result result, [NotNull
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;T&gt; OnSuccess&lt;T&gt;(this in Result&lt;T&gt; result, [NotNull, InstantHandle] in Action&lt;T&gt; onSuccess, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; OnSuccess&lt;T&gt;(this in Result&lt;T&gt; result, in Action&lt;T&gt; onSuccess, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -6572,8 +6490,7 @@ public static Result&lt;T&gt; OnSuccess&lt;T&gt;(this in Result&lt;T&gt; result,
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result OnSuccess&lt;T&gt;(this in Result&lt;T&gt; result, [NotNull, InstantHandle] in Func&lt;T, Result&gt; onSuccess, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result OnSuccess&lt;T&gt;(this in Result&lt;T&gt; result, in Func&lt;T, Result&gt; onSuccess, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -6667,8 +6584,7 @@ public static Result OnSuccess&lt;T&gt;(this in Result&lt;T&gt; result, [NotNull
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnSuccess&lt;TOut, TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Func&lt;CustomResult&lt;TError&gt;, TOut&gt; onSuccess, [CanBeNull] in TOut defaultValue, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnSuccess&lt;TOut, TError&gt;(this in CustomResult&lt;TError&gt; result, in Func&lt;CustomResult&lt;TError&gt;, TOut&gt; onSuccess, in TOut defaultValue, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -6773,8 +6689,7 @@ public static TOut OnSuccess&lt;TOut, TError&gt;(this in CustomResult&lt;TError&
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;T, TError&gt; OnSuccess&lt;T, TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Func&lt;CustomResult&lt;TError&gt;, T&gt; onSuccess, [NotNull] in TError errorObject, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T, TError&gt; OnSuccess&lt;T, TError&gt;(this in CustomResult&lt;TError&gt; result, in Func&lt;CustomResult&lt;TError&gt;, T&gt; onSuccess, in TError errorObject, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -6885,8 +6800,7 @@ otherwise return the <code data-dev-comment-type="paramref" class="paramref">val
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnSuccess&lt;TOut, TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Func&lt;CustomResult&lt;TError&gt;, TOut&gt; onSuccess, [NotNull, InstantHandle] in Func&lt;CustomResult&lt;TError&gt;, TOut&gt; valueFactory, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnSuccess&lt;TOut, TError&gt;(this in CustomResult&lt;TError&gt; result, in Func&lt;CustomResult&lt;TError&gt;, TOut&gt; onSuccess, in Func&lt;CustomResult&lt;TError&gt;, TOut&gt; valueFactory, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -6996,8 +6910,7 @@ public static TOut OnSuccess&lt;TOut, TError&gt;(this in CustomResult&lt;TError&
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;T, TError&gt; OnSuccess&lt;T, TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Func&lt;CustomResult&lt;TError&gt;, T&gt; onSuccess, [NotNull, InstantHandle] in Func&lt;CustomResult&lt;TError&gt;, TError&gt; errorFactory, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T, TError&gt; OnSuccess&lt;T, TError&gt;(this in CustomResult&lt;TError&gt; result, in Func&lt;CustomResult&lt;TError&gt;, T&gt; onSuccess, in Func&lt;CustomResult&lt;TError&gt;, TError&gt; errorFactory, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -7107,8 +7020,7 @@ public static Result&lt;T, TError&gt; OnSuccess&lt;T, TError&gt;(this in CustomR
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;T, TError&gt; OnSuccess&lt;T, TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Func&lt;CustomResult&lt;TError&gt;, Result&lt;T, TError&gt;&gt; onSuccess, [NotNull] in TError errorObject, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T, TError&gt; OnSuccess&lt;T, TError&gt;(this in CustomResult&lt;TError&gt; result, in Func&lt;CustomResult&lt;TError&gt;, Result&lt;T, TError&gt;&gt; onSuccess, in TError errorObject, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -7218,8 +7130,7 @@ public static Result&lt;T, TError&gt; OnSuccess&lt;T, TError&gt;(this in CustomR
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;T, TError&gt; OnSuccess&lt;T, TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Func&lt;CustomResult&lt;TError&gt;, Result&lt;T, TError&gt;&gt; onSuccess, [NotNull, InstantHandle] in Func&lt;CustomResult&lt;TError&gt;, TError&gt; errorFactory, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T, TError&gt; OnSuccess&lt;T, TError&gt;(this in CustomResult&lt;TError&gt; result, in Func&lt;CustomResult&lt;TError&gt;, Result&lt;T, TError&gt;&gt; onSuccess, in Func&lt;CustomResult&lt;TError&gt;, TError&gt; errorFactory, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -7329,8 +7240,7 @@ public static Result&lt;T, TError&gt; OnSuccess&lt;T, TError&gt;(this in CustomR
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;T&gt; OnSuccess&lt;T, TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Func&lt;CustomResult&lt;TError&gt;, Result&lt;T&gt;&gt; onSuccess, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; OnSuccess&lt;T, TError&gt;(this in CustomResult&lt;TError&gt; result, in Func&lt;CustomResult&lt;TError&gt;, Result&lt;T&gt;&gt; onSuccess, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -7431,8 +7341,7 @@ the <a class="xref" href="Here.Result.html">Result</a> is a failure or a warning
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;T, TError&gt; OnSuccess&lt;T, TError&gt;(this in Result result, [NotNull, InstantHandle] in Func&lt;Result, Result&lt;T, TError&gt;&gt; onSuccess, [NotNull] in TError errorObject, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T, TError&gt; OnSuccess&lt;T, TError&gt;(this in Result result, in Func&lt;Result, Result&lt;T, TError&gt;&gt; onSuccess, in TError errorObject, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -7544,8 +7453,7 @@ the <a class="xref" href="Here.Result.html">Result</a> is a failure or a warning
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;T, TError&gt; OnSuccess&lt;T, TError&gt;(this in Result result, [NotNull, InstantHandle] in Func&lt;Result, Result&lt;T, TError&gt;&gt; onSuccess, [NotNull, InstantHandle] in Func&lt;Result, TError&gt; errorFactory, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T, TError&gt; OnSuccess&lt;T, TError&gt;(this in Result result, in Func&lt;Result, Result&lt;T, TError&gt;&gt; onSuccess, in Func&lt;Result, TError&gt; errorFactory, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -7655,8 +7563,7 @@ public static Result&lt;T, TError&gt; OnSuccess&lt;T, TError&gt;(this in Result 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;T, TError&gt; OnSuccess&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, [NotNull, InstantHandle] in Action&lt;T&gt; onSuccess, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T, TError&gt; OnSuccess&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, in Action&lt;T&gt; onSuccess, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -7755,8 +7662,7 @@ public static Result&lt;T, TError&gt; OnSuccess&lt;T, TError&gt;(this in Result&
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static CustomResult&lt;TError&gt; OnSuccess&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, [NotNull, InstantHandle] in Func&lt;T, CustomResult&lt;TError&gt;&gt; onSuccess, [NotNull] in TError errorObject, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; OnSuccess&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, in Func&lt;T, CustomResult&lt;TError&gt;&gt; onSuccess, in TError errorObject, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -7866,8 +7772,7 @@ public static CustomResult&lt;TError&gt; OnSuccess&lt;T, TError&gt;(this in Resu
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static CustomResult&lt;TError&gt; OnSuccess&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, [NotNull, InstantHandle] in Func&lt;T, CustomResult&lt;TError&gt;&gt; onSuccess, [NotNull, InstantHandle] in Func&lt;Result&lt;T, TError&gt;, TError&gt; errorFactory, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; OnSuccess&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, in Func&lt;T, CustomResult&lt;TError&gt;&gt; onSuccess, in Func&lt;Result&lt;T, TError&gt;, TError&gt; errorFactory, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -7977,8 +7882,7 @@ public static CustomResult&lt;TError&gt; OnSuccess&lt;T, TError&gt;(this in Resu
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result OnSuccess&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, [NotNull, InstantHandle] in Func&lt;T, Result&gt; onSuccess, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result OnSuccess&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, in Func&lt;T, Result&gt; onSuccess, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -8077,8 +7981,7 @@ public static Result OnSuccess&lt;T, TError&gt;(this in Result&lt;T, TError&gt; 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnSuccess&lt;TIn, TOut&gt;(this in Result&lt;TIn&gt; result, [NotNull, InstantHandle] in Func&lt;TIn, TOut&gt; onSuccess, [CanBeNull] in TOut defaultValue, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnSuccess&lt;TIn, TOut&gt;(this in Result&lt;TIn&gt; result, in Func&lt;TIn, TOut&gt; onSuccess, in TOut defaultValue, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -8183,8 +8086,7 @@ public static TOut OnSuccess&lt;TIn, TOut&gt;(this in Result&lt;TIn&gt; result, 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;TOut&gt; OnSuccess&lt;TIn, TOut&gt;(this in Result&lt;TIn&gt; result, [NotNull, InstantHandle] in Func&lt;TIn, TOut&gt; converter, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;TOut&gt; OnSuccess&lt;TIn, TOut&gt;(this in Result&lt;TIn&gt; result, in Func&lt;TIn, TOut&gt; converter, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -8284,8 +8186,7 @@ otherwise return the <code data-dev-comment-type="paramref" class="paramref">val
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnSuccess&lt;TIn, TOut&gt;(this in Result&lt;TIn&gt; result, [NotNull, InstantHandle] in Func&lt;TIn, TOut&gt; onSuccess, [NotNull, InstantHandle] in Func&lt;Result&lt;TIn&gt;, TOut&gt; valueFactory, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnSuccess&lt;TIn, TOut&gt;(this in Result&lt;TIn&gt; result, in Func&lt;TIn, TOut&gt; onSuccess, in Func&lt;Result&lt;TIn&gt;, TOut&gt; valueFactory, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -8397,8 +8298,7 @@ the <a class="xref" href="Here.Result-1.html">Result&lt;T&gt;</a> is a failure o
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static CustomResult&lt;TError&gt; OnSuccess&lt;T, TError&gt;(this in Result&lt;T&gt; result, [NotNull, InstantHandle] in Func&lt;T, CustomResult&lt;TError&gt;&gt; onSuccess, [NotNull] in TError errorObject, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; OnSuccess&lt;T, TError&gt;(this in Result&lt;T&gt; result, in Func&lt;T, CustomResult&lt;TError&gt;&gt; onSuccess, in TError errorObject, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -8510,8 +8410,7 @@ the <a class="xref" href="Here.Result-1.html">Result&lt;T&gt;</a> is a failure o
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static CustomResult&lt;TError&gt; OnSuccess&lt;T, TError&gt;(this in Result&lt;T&gt; result, [NotNull, InstantHandle] in Func&lt;T, CustomResult&lt;TError&gt;&gt; onSuccess, [NotNull, InstantHandle] in Func&lt;Result&lt;T&gt;, TError&gt; errorFactory, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; OnSuccess&lt;T, TError&gt;(this in Result&lt;T&gt; result, in Func&lt;T, CustomResult&lt;TError&gt;&gt; onSuccess, in Func&lt;Result&lt;T&gt;, TError&gt; errorFactory, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -8621,8 +8520,7 @@ public static CustomResult&lt;TError&gt; OnSuccess&lt;T, TError&gt;(this in Resu
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;TOut&gt; OnSuccess&lt;TIn, TOut&gt;(this in Result&lt;TIn&gt; result, [NotNull, InstantHandle] in Func&lt;TIn, Result&lt;TOut&gt;&gt; onSuccess, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;TOut&gt; OnSuccess&lt;TIn, TOut&gt;(this in Result&lt;TIn&gt; result, in Func&lt;TIn, Result&lt;TOut&gt;&gt; onSuccess, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -8721,8 +8619,7 @@ public static Result&lt;TOut&gt; OnSuccess&lt;TIn, TOut&gt;(this in Result&lt;TI
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnSuccess&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TError&gt; result, [NotNull, InstantHandle] in Func&lt;TIn, TOut&gt; onSuccess, [CanBeNull] in TOut defaultValue, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnSuccess&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TError&gt; result, in Func&lt;TIn, TOut&gt; onSuccess, in TOut defaultValue, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -8832,8 +8729,7 @@ public static TOut OnSuccess&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TEr
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;TOut, TError&gt; OnSuccess&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TError&gt; result, [NotNull, InstantHandle] in Func&lt;TIn, TOut&gt; converter, [NotNull] in TError errorObject, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;TOut, TError&gt; OnSuccess&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TError&gt; result, in Func&lt;TIn, TOut&gt; converter, in TError errorObject, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -8949,8 +8845,7 @@ otherwise return the <code data-dev-comment-type="paramref" class="paramref">val
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnSuccess&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TError&gt; result, [NotNull, InstantHandle] in Func&lt;TIn, TOut&gt; onSuccess, [NotNull, InstantHandle] in Func&lt;Result&lt;TIn, TError&gt;, TOut&gt; valueFactory, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnSuccess&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TError&gt; result, in Func&lt;TIn, TOut&gt; onSuccess, in Func&lt;Result&lt;TIn, TError&gt;, TOut&gt; valueFactory, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -9065,8 +8960,7 @@ public static TOut OnSuccess&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TEr
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;TOut, TError&gt; OnSuccess&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TError&gt; result, [NotNull, InstantHandle] in Func&lt;TIn, TOut&gt; converter, [NotNull, InstantHandle] in Func&lt;Result&lt;TIn, TError&gt;, TError&gt; errorFactory, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;TOut, TError&gt; OnSuccess&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TError&gt; result, in Func&lt;TIn, TOut&gt; converter, in Func&lt;Result&lt;TIn, TError&gt;, TError&gt; errorFactory, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -9181,8 +9075,7 @@ public static Result&lt;TOut, TError&gt; OnSuccess&lt;TIn, TOut, TError&gt;(this
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;TOut, TError&gt; OnSuccess&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TError&gt; result, [NotNull, InstantHandle] in Func&lt;TIn, Result&lt;TOut, TError&gt;&gt; onSuccess, [NotNull] in TError errorObject, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;TOut, TError&gt; OnSuccess&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TError&gt; result, in Func&lt;TIn, Result&lt;TOut, TError&gt;&gt; onSuccess, in TError errorObject, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -9297,8 +9190,7 @@ public static Result&lt;TOut, TError&gt; OnSuccess&lt;TIn, TOut, TError&gt;(this
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;TOut, TError&gt; OnSuccess&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TError&gt; result, [NotNull, InstantHandle] in Func&lt;TIn, Result&lt;TOut, TError&gt;&gt; onSuccess, [NotNull, InstantHandle] in Func&lt;Result&lt;TIn, TError&gt;, TError&gt; errorFactory, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;TOut, TError&gt; OnSuccess&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TError&gt; result, in Func&lt;TIn, Result&lt;TOut, TError&gt;&gt; onSuccess, in Func&lt;Result&lt;TIn, TError&gt;, TError&gt; errorFactory, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -9413,8 +9305,7 @@ public static Result&lt;TOut, TError&gt; OnSuccess&lt;TIn, TOut, TError&gt;(this
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;TOut&gt; OnSuccess&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TError&gt; result, [NotNull, InstantHandle] in Func&lt;TIn, Result&lt;TOut&gt;&gt; onSuccess, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;TOut&gt; OnSuccess&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TError&gt; result, in Func&lt;TIn, Result&lt;TOut&gt;&gt; onSuccess, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -9520,8 +9411,7 @@ the <a class="xref" href="Here.Result-1.html">Result&lt;T&gt;</a> is a failure o
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;TOut, TError&gt; OnSuccess&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn&gt; result, [NotNull, InstantHandle] in Func&lt;TIn, Result&lt;TOut, TError&gt;&gt; onSuccess, [NotNull] in TError errorObject, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;TOut, TError&gt; OnSuccess&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn&gt; result, in Func&lt;TIn, Result&lt;TOut, TError&gt;&gt; onSuccess, in TError errorObject, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -9638,8 +9528,7 @@ the <a class="xref" href="Here.Result-1.html">Result&lt;T&gt;</a> is a failure o
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;TOut, TError&gt; OnSuccess&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn&gt; result, [NotNull, InstantHandle] in Func&lt;TIn, Result&lt;TOut, TError&gt;&gt; onSuccess, [NotNull, InstantHandle] in Func&lt;Result&lt;TIn&gt;, TError&gt; errorFactory, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;TOut, TError&gt; OnSuccess&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn&gt; result, in Func&lt;TIn, Result&lt;TOut, TError&gt;&gt; onSuccess, in Func&lt;Result&lt;TIn&gt;, TError&gt; errorFactory, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -9755,8 +9644,7 @@ otherwise the <code data-dev-comment-type="paramref" class="paramref">onFailure<
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result OnSuccessOrFailure(this in Result result, [NotNull, InstantHandle] in Action onSuccess, [NotNull, InstantHandle] in Action onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result OnSuccessOrFailure(this in Result result, in Action onSuccess, in Action onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -9846,8 +9734,7 @@ otherwise the <code data-dev-comment-type="paramref" class="paramref">onFailure<
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result OnSuccessOrFailure(this in Result result, [NotNull, InstantHandle] in Action onSuccess, [NotNull, InstantHandle] in Action&lt;Result&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result OnSuccessOrFailure(this in Result result, in Action onSuccess, in Action&lt;Result&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -9937,8 +9824,7 @@ otherwise the <code data-dev-comment-type="paramref" class="paramref">onFailure<
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result OnSuccessOrFailure(this in Result result, [NotNull, InstantHandle] in Action&lt;Result&gt; onSuccess, [NotNull, InstantHandle] in Action&lt;Result&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result OnSuccessOrFailure(this in Result result, in Action&lt;Result&gt; onSuccess, in Action&lt;Result&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -10028,8 +9914,7 @@ otherwise the <code data-dev-comment-type="paramref" class="paramref">onFailure<
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static CustomResult&lt;TError&gt; OnSuccessOrFailure&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Action onSuccess, [NotNull, InstantHandle] in Action onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; OnSuccessOrFailure&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, in Action onSuccess, in Action onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -10135,8 +10020,7 @@ otherwise the <code data-dev-comment-type="paramref" class="paramref">onFailure<
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static CustomResult&lt;TError&gt; OnSuccessOrFailure&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Action onSuccess, [NotNull, InstantHandle] in Action&lt;CustomResult&lt;TError&gt;&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; OnSuccessOrFailure&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, in Action onSuccess, in Action&lt;CustomResult&lt;TError&gt;&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -10242,8 +10126,7 @@ otherwise the <code data-dev-comment-type="paramref" class="paramref">onFailure<
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static CustomResult&lt;TError&gt; OnSuccessOrFailure&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Action&lt;CustomResult&lt;TError&gt;&gt; onSuccess, [NotNull, InstantHandle] in Action&lt;CustomResult&lt;TError&gt;&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static CustomResult&lt;TError&gt; OnSuccessOrFailure&lt;TError&gt;(this in CustomResult&lt;TError&gt; result, in Action&lt;CustomResult&lt;TError&gt;&gt; onSuccess, in Action&lt;CustomResult&lt;TError&gt;&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -10349,8 +10232,7 @@ otherwise the <code data-dev-comment-type="paramref" class="paramref">onFailure<
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnSuccessOrFailure&lt;TOut&gt;(this in Result result, [NotNull, InstantHandle] in Func&lt;Result, TOut&gt; onSuccess, [NotNull, InstantHandle] in Func&lt;Result, TOut&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnSuccessOrFailure&lt;TOut&gt;(this in Result result, in Func&lt;Result, TOut&gt; onSuccess, in Func&lt;Result, TOut&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -10456,8 +10338,7 @@ otherwise the <code data-dev-comment-type="paramref" class="paramref">onFailure<
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;T&gt; OnSuccessOrFailure&lt;T&gt;(this in Result&lt;T&gt; result, [NotNull, InstantHandle] in Action onSuccess, [NotNull, InstantHandle] in Action onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; OnSuccessOrFailure&lt;T&gt;(this in Result&lt;T&gt; result, in Action onSuccess, in Action onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -10563,8 +10444,7 @@ otherwise the <code data-dev-comment-type="paramref" class="paramref">onFailure<
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;T&gt; OnSuccessOrFailure&lt;T&gt;(this in Result&lt;T&gt; result, [NotNull, InstantHandle] in Action&lt;Result&lt;T&gt;&gt; onSuccess, [NotNull, InstantHandle] in Action&lt;Result&lt;T&gt;&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T&gt; OnSuccessOrFailure&lt;T&gt;(this in Result&lt;T&gt; result, in Action&lt;Result&lt;T&gt;&gt; onSuccess, in Action&lt;Result&lt;T&gt;&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -10670,8 +10550,7 @@ otherwise the <code data-dev-comment-type="paramref" class="paramref">onFailure<
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnSuccessOrFailure&lt;TOut, TError&gt;(this in CustomResult&lt;TError&gt; result, [NotNull, InstantHandle] in Func&lt;CustomResult&lt;TError&gt;, TOut&gt; onSuccess, [NotNull, InstantHandle] in Func&lt;CustomResult&lt;TError&gt;, TOut&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnSuccessOrFailure&lt;TOut, TError&gt;(this in CustomResult&lt;TError&gt; result, in Func&lt;CustomResult&lt;TError&gt;, TOut&gt; onSuccess, in Func&lt;CustomResult&lt;TError&gt;, TOut&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -10782,8 +10661,7 @@ otherwise the <code data-dev-comment-type="paramref" class="paramref">onFailure<
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;T, TError&gt; OnSuccessOrFailure&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, [NotNull, InstantHandle] in Action onSuccess, [NotNull, InstantHandle] in Action onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T, TError&gt; OnSuccessOrFailure&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, in Action onSuccess, in Action onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -10894,8 +10772,7 @@ otherwise the <code data-dev-comment-type="paramref" class="paramref">onFailure<
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static Result&lt;T, TError&gt; OnSuccessOrFailure&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, [NotNull, InstantHandle] in Action&lt;Result&lt;T, TError&gt;&gt; onSuccess, [NotNull, InstantHandle] in Action&lt;Result&lt;T, TError&gt;&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Result&lt;T, TError&gt; OnSuccessOrFailure&lt;T, TError&gt;(this in Result&lt;T, TError&gt; result, in Action&lt;Result&lt;T, TError&gt;&gt; onSuccess, in Action&lt;Result&lt;T, TError&gt;&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -11006,8 +10883,7 @@ otherwise the <code data-dev-comment-type="paramref" class="paramref">onFailure<
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnSuccessOrFailure&lt;TIn, TOut&gt;(this in Result&lt;TIn&gt; result, [NotNull, InstantHandle] in Func&lt;Result&lt;TIn&gt;, TOut&gt; onSuccess, [NotNull, InstantHandle] in Func&lt;Result&lt;TIn&gt;, TOut&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnSuccessOrFailure&lt;TIn, TOut&gt;(this in Result&lt;TIn&gt; result, in Func&lt;Result&lt;TIn&gt;, TOut&gt; onSuccess, in Func&lt;Result&lt;TIn&gt;, TOut&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -11118,8 +10994,7 @@ otherwise the <code data-dev-comment-type="paramref" class="paramref">onFailure<
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static TOut OnSuccessOrFailure&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TError&gt; result, [NotNull, InstantHandle] in Func&lt;Result&lt;TIn, TError&gt;, TOut&gt; onSuccess, [NotNull, InstantHandle] in Func&lt;Result&lt;TIn, TError&gt;, TOut&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut OnSuccessOrFailure&lt;TIn, TOut, TError&gt;(this in Result&lt;TIn, TError&gt; result, in Func&lt;Result&lt;TIn, TError&gt;, TOut&gt; onSuccess, in Func&lt;Result&lt;TIn, TError&gt;, TOut&gt; onFailure, in bool treatWarningAsError = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -11234,8 +11109,7 @@ public static TOut OnSuccessOrFailure&lt;TIn, TOut, TError&gt;(this in Result&lt
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-public static void Throws([NotNull] this IResult result)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void Throws(this IResult result)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -11270,9 +11144,7 @@ otherwise returns the <code data-dev-comment-type="paramref" class="paramref">de
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static T Unwrap&lt;T&gt;([NotNull] this IResult&lt;T&gt; result, [CanBeNull] in T defaultValue = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static T Unwrap&lt;T&gt;(this IResult&lt;T&gt; result, in T defaultValue = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -11345,9 +11217,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static T Unwrap&lt;T&gt;([NotNull] this IResult&lt;T&gt; result, [NotNull, InstantHandle] in Func&lt;T&gt; orFunc)</code></pre>
+    <pre><code class="lang-csharp hljs">public static T Unwrap&lt;T&gt;(this IResult&lt;T&gt; result, in Func&lt;T&gt; orFunc)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -11437,9 +11307,7 @@ otherwise returns the <code data-dev-comment-type="paramref" class="paramref">de
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static TOut Unwrap&lt;T, TOut&gt;([NotNull] this IResult&lt;T&gt; result, [NotNull, InstantHandle] in Func&lt;T, TOut&gt; converter, [CanBeNull] in TOut defaultValue = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut Unwrap&lt;T, TOut&gt;(this IResult&lt;T&gt; result, in Func&lt;T, TOut&gt; converter, in TOut defaultValue = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -11540,9 +11408,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static TOut Unwrap&lt;T, TOut&gt;([NotNull] this IResult&lt;T&gt; result, [NotNull, InstantHandle] in Func&lt;T, TOut&gt; converter, [NotNull, InstantHandle] in Func&lt;TOut&gt; orFunc)</code></pre>
+    <pre><code class="lang-csharp hljs">public static TOut Unwrap&lt;T, TOut&gt;(this IResult&lt;T&gt; result, in Func&lt;T, TOut&gt; converter, in Func&lt;TOut&gt; orFunc)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">

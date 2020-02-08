@@ -128,9 +128,7 @@ and create an <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> with
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;TValue&gt; DefaultParse&lt;TValue&gt;([CanBeNull] in string input, [NotNull, InstantHandle] in OptionTryGetExtensions.TryParse&lt;TValue&gt; tryParseFunc)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;TValue&gt; DefaultParse&lt;TValue&gt;(in string input, in OptionTryGetExtensions.TryParse&lt;TValue&gt; tryParseFunc)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -203,9 +201,7 @@ and create an <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> with
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;TValue&gt; Get&lt;TInput, TValue&gt;([CanBeNull] in TInput input, [NotNull, InstantHandle] in OptionTryGetExtensions.TryGet&lt;TInput, TValue&gt; tryGetFunc)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;TValue&gt; Get&lt;TInput, TValue&gt;(in TInput input, in OptionTryGetExtensions.TryGet&lt;TInput, TValue&gt; tryGetFunc)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -283,9 +279,7 @@ and create an <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> with
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;TValue&gt; Parse&lt;TValue&gt;([CanBeNull] in string input, [NotNull, InstantHandle] in OptionTryGetExtensions.TryParse&lt;TValue&gt; tryParseFunc, in NumberStyles style, in IFormatProvider culture)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;TValue&gt; Parse&lt;TValue&gt;(in string input, in OptionTryGetExtensions.TryParse&lt;TValue&gt; tryParseFunc, in NumberStyles style, in IFormatProvider culture)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -369,9 +363,7 @@ public static Option&lt;TValue&gt; Parse&lt;TValue&gt;([CanBeNull] in string inp
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;bool&gt; TryParseBool([CanBeNull] this string str)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;bool&gt; TryParseBool(this string str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -421,9 +413,7 @@ public static Option&lt;bool&gt; TryParseBool([CanBeNull] this string str)</code
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;byte&gt; TryParseByte([CanBeNull] this string str)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;byte&gt; TryParseByte(this string str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -473,9 +463,7 @@ public static Option&lt;byte&gt; TryParseByte([CanBeNull] this string str)</code
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;byte&gt; TryParseByte([CanBeNull] this string str, in NumberStyles style, in IFormatProvider culture)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;byte&gt; TryParseByte(this string str, in NumberStyles style, in IFormatProvider culture)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -537,9 +525,7 @@ public static Option&lt;byte&gt; TryParseByte([CanBeNull] this string str, in Nu
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;char&gt; TryParseChar([CanBeNull] this string str)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;char&gt; TryParseChar(this string str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -589,9 +575,7 @@ public static Option&lt;char&gt; TryParseChar([CanBeNull] this string str)</code
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;DateTime&gt; TryParseDateTime([CanBeNull] this string str)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;DateTime&gt; TryParseDateTime(this string str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -641,9 +625,7 @@ public static Option&lt;DateTime&gt; TryParseDateTime([CanBeNull] this string st
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;DateTimeOffset&gt; TryParseDateTimeOffset([CanBeNull] this string str)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;DateTimeOffset&gt; TryParseDateTimeOffset(this string str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -693,9 +675,7 @@ public static Option&lt;DateTimeOffset&gt; TryParseDateTimeOffset([CanBeNull] th
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;decimal&gt; TryParseDecimal([CanBeNull] this string str)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;decimal&gt; TryParseDecimal(this string str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -745,9 +725,7 @@ public static Option&lt;decimal&gt; TryParseDecimal([CanBeNull] this string str)
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;decimal&gt; TryParseDecimal([CanBeNull] this string str, in NumberStyles style, in IFormatProvider culture)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;decimal&gt; TryParseDecimal(this string str, in NumberStyles style, in IFormatProvider culture)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -809,9 +787,7 @@ public static Option&lt;decimal&gt; TryParseDecimal([CanBeNull] this string str,
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;double&gt; TryParseDouble([CanBeNull] this string str)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;double&gt; TryParseDouble(this string str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -861,9 +837,7 @@ public static Option&lt;double&gt; TryParseDouble([CanBeNull] this string str)</
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;double&gt; TryParseDouble([CanBeNull] this string str, in NumberStyles style, in IFormatProvider culture)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;double&gt; TryParseDouble(this string str, in NumberStyles style, in IFormatProvider culture)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -925,9 +899,7 @@ public static Option&lt;double&gt; TryParseDouble([CanBeNull] this string str, i
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;object&gt; TryParseEnum([CanBeNull] this string str, [NotNull] Type enumType)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;object&gt; TryParseEnum(this string str, Type enumType)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1004,9 +976,7 @@ public static Option&lt;object&gt; TryParseEnum([CanBeNull] this string str, [No
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;TEnum&gt; TryParseEnum&lt;TEnum&gt;([CanBeNull] this string str)
+    <pre><code class="lang-csharp hljs">public static Option&lt;TEnum&gt; TryParseEnum&lt;TEnum&gt;(this string str)
     where TEnum : struct</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -1089,9 +1059,7 @@ public static Option&lt;TEnum&gt; TryParseEnum&lt;TEnum&gt;([CanBeNull] this str
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;float&gt; TryParseFloat([CanBeNull] this string str)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;float&gt; TryParseFloat(this string str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1141,9 +1109,7 @@ public static Option&lt;float&gt; TryParseFloat([CanBeNull] this string str)</co
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;float&gt; TryParseFloat([CanBeNull] this string str, in NumberStyles style, in IFormatProvider culture)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;float&gt; TryParseFloat(this string str, in NumberStyles style, in IFormatProvider culture)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1205,9 +1171,7 @@ public static Option&lt;float&gt; TryParseFloat([CanBeNull] this string str, in 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;Guid&gt; TryParseGuid([CanBeNull] this string str)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;Guid&gt; TryParseGuid(this string str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1257,9 +1221,7 @@ public static Option&lt;Guid&gt; TryParseGuid([CanBeNull] this string str)</code
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;int&gt; TryParseInt([CanBeNull] this string str)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;int&gt; TryParseInt(this string str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1309,9 +1271,7 @@ public static Option&lt;int&gt; TryParseInt([CanBeNull] this string str)</code><
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;int&gt; TryParseInt([CanBeNull] this string str, in NumberStyles style, in IFormatProvider culture)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;int&gt; TryParseInt(this string str, in NumberStyles style, in IFormatProvider culture)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1373,9 +1333,7 @@ public static Option&lt;int&gt; TryParseInt([CanBeNull] this string str, in Numb
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;long&gt; TryParseLong([CanBeNull] this string str)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;long&gt; TryParseLong(this string str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1425,9 +1383,7 @@ public static Option&lt;long&gt; TryParseLong([CanBeNull] this string str)</code
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;long&gt; TryParseLong([CanBeNull] this string str, in NumberStyles style, in IFormatProvider culture)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;long&gt; TryParseLong(this string str, in NumberStyles style, in IFormatProvider culture)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1489,9 +1445,7 @@ public static Option&lt;long&gt; TryParseLong([CanBeNull] this string str, in Nu
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;sbyte&gt; TryParseSByte([CanBeNull] this string str)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;sbyte&gt; TryParseSByte(this string str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1541,9 +1495,7 @@ public static Option&lt;sbyte&gt; TryParseSByte([CanBeNull] this string str)</co
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;sbyte&gt; TryParseSByte([CanBeNull] this string str, in NumberStyles style, in IFormatProvider culture)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;sbyte&gt; TryParseSByte(this string str, in NumberStyles style, in IFormatProvider culture)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1605,9 +1557,7 @@ public static Option&lt;sbyte&gt; TryParseSByte([CanBeNull] this string str, in 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;short&gt; TryParseShort([CanBeNull] this string str)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;short&gt; TryParseShort(this string str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1657,9 +1607,7 @@ public static Option&lt;short&gt; TryParseShort([CanBeNull] this string str)</co
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;short&gt; TryParseShort([CanBeNull] this string str, in NumberStyles style, in IFormatProvider culture)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;short&gt; TryParseShort(this string str, in NumberStyles style, in IFormatProvider culture)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1721,9 +1669,7 @@ public static Option&lt;short&gt; TryParseShort([CanBeNull] this string str, in 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;uint&gt; TryParseUInt([CanBeNull] this string str)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;uint&gt; TryParseUInt(this string str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1773,9 +1719,7 @@ public static Option&lt;uint&gt; TryParseUInt([CanBeNull] this string str)</code
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;uint&gt; TryParseUInt([CanBeNull] this string str, in NumberStyles style, in IFormatProvider culture)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;uint&gt; TryParseUInt(this string str, in NumberStyles style, in IFormatProvider culture)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1837,9 +1781,7 @@ public static Option&lt;uint&gt; TryParseUInt([CanBeNull] this string str, in Nu
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;ulong&gt; TryParseULong([CanBeNull] this string str)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;ulong&gt; TryParseULong(this string str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1889,9 +1831,7 @@ public static Option&lt;ulong&gt; TryParseULong([CanBeNull] this string str)</co
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;ulong&gt; TryParseULong([CanBeNull] this string str, in NumberStyles style, in IFormatProvider culture)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;ulong&gt; TryParseULong(this string str, in NumberStyles style, in IFormatProvider culture)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1953,9 +1893,7 @@ public static Option&lt;ulong&gt; TryParseULong([CanBeNull] this string str, in 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;ushort&gt; TryParseUShort([CanBeNull] this string str)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;ushort&gt; TryParseUShort(this string str)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2005,9 +1943,7 @@ public static Option&lt;ushort&gt; TryParseUShort([CanBeNull] this string str)</
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static Option&lt;ushort&gt; TryParseUShort([CanBeNull] this string str, in NumberStyles style, in IFormatProvider culture)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Option&lt;ushort&gt; TryParseUShort(this string str, in NumberStyles style, in IFormatProvider culture)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">

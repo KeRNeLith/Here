@@ -105,8 +105,7 @@ or a custom error object in case of failed.</p>
   <h6><strong>Assembly</strong>: Here.dll</h6>
   <h5 id="Here_Result_2_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Serializable]
+    <pre><code class="lang-csharp hljs">[Serializable]
 public struct Result&lt;T, TError&gt; : IResult&lt;T&gt;, IResultError&lt;TError&gt;, IResult, IEquatable&lt;T&gt;, IEquatable&lt;Result&lt;T, TError&gt;&gt;, IComparable, IComparable&lt;Result&lt;T, TError&gt;&gt;, ISerializable</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
@@ -393,9 +392,7 @@ public struct Result&lt;T, TError&gt; : IResult&lt;T&gt;, IResultError&lt;TError
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public Result&lt;TOut, TError&gt; Cast&lt;TOut&gt;()
+    <pre><code class="lang-csharp hljs">public Result&lt;TOut, TError&gt; Cast&lt;TOut&gt;()
     where TOut : class</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
@@ -444,9 +441,7 @@ public Result&lt;TOut, TError&gt; Cast&lt;TOut&gt;()
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public Result&lt;TOut, TError&gt; Cast&lt;TOut&gt;([NotNull, InstantHandle] in Func&lt;T, TOut&gt; converter)</code></pre>
+    <pre><code class="lang-csharp hljs">public Result&lt;TOut, TError&gt; Cast&lt;TOut&gt;(in Func&lt;T, TOut&gt; converter)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -836,9 +831,7 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public bool SuccessEquals(in Result&lt;T, TError&gt; other)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool SuccessEquals(in Result&lt;T, TError&gt; other)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1202,9 +1195,7 @@ public bool SuccessEquals(in Result&lt;T, TError&gt; other)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static implicit operator CustomResult&lt;TError&gt;(in Result&lt;T, TError&gt; result)</code></pre>
+    <pre><code class="lang-csharp hljs">public static implicit operator CustomResult&lt;TError&gt;(in Result&lt;T, TError&gt; result)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1254,9 +1245,7 @@ public static implicit operator CustomResult&lt;TError&gt;(in Result&lt;T, TErro
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static implicit operator Option&lt;T&gt;(in Result&lt;T, TError&gt; result)</code></pre>
+    <pre><code class="lang-csharp hljs">public static implicit operator Option&lt;T&gt;(in Result&lt;T, TError&gt; result)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1306,9 +1295,7 @@ public static implicit operator Option&lt;T&gt;(in Result&lt;T, TError&gt; resul
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static implicit operator Result(in Result&lt;T, TError&gt; result)</code></pre>
+    <pre><code class="lang-csharp hljs">public static implicit operator Result(in Result&lt;T, TError&gt; result)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1358,9 +1345,7 @@ public static implicit operator Result(in Result&lt;T, TError&gt; result)</code>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static implicit operator Result&lt;T&gt;(in Result&lt;T, TError&gt; result)</code></pre>
+    <pre><code class="lang-csharp hljs">public static implicit operator Result&lt;T&gt;(in Result&lt;T, TError&gt; result)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">

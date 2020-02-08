@@ -103,8 +103,7 @@ Convention is that Left is used for failure.</p>
   <h6><strong>Assembly</strong>: Here.dll</h6>
   <h5 id="Here_EitherLeft_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Serializable]
+    <pre><code class="lang-csharp hljs">[Serializable]
 public struct EitherLeft&lt;TLeft&gt; : IEither, IEquatable&lt;TLeft&gt;, IEquatable&lt;EitherLeft&lt;TLeft&gt;&gt;, IComparable, IComparable&lt;TLeft&gt;, IComparable&lt;EitherLeft&lt;TLeft&gt;&gt;, ISerializable</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>

@@ -103,8 +103,7 @@ This <a class="xref" href="Here.Result-1.html">Result&lt;T&gt;</a> embed a <a cl
   <h6><strong>Assembly</strong>: Here.dll</h6>
   <h5 id="Here_Result_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Serializable]
+    <pre><code class="lang-csharp hljs">[Serializable]
 public struct Result&lt;T&gt; : IResult&lt;T&gt;, IResult, IEquatable&lt;T&gt;, IEquatable&lt;Result&lt;T&gt;&gt;, IComparable, IComparable&lt;Result&lt;T&gt;&gt;, ISerializable</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
@@ -341,9 +340,7 @@ public struct Result&lt;T&gt; : IResult&lt;T&gt;, IResult, IEquatable&lt;T&gt;, 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public Result&lt;TOut&gt; Cast&lt;TOut&gt;()
+    <pre><code class="lang-csharp hljs">public Result&lt;TOut&gt; Cast&lt;TOut&gt;()
     where TOut : class</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
@@ -392,9 +389,7 @@ public Result&lt;TOut&gt; Cast&lt;TOut&gt;()
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public Result&lt;TOut&gt; Cast&lt;TOut&gt;([NotNull, InstantHandle] in Func&lt;T, TOut&gt; converter)</code></pre>
+    <pre><code class="lang-csharp hljs">public Result&lt;TOut&gt; Cast&lt;TOut&gt;(in Func&lt;T, TOut&gt; converter)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -476,9 +471,7 @@ public Result&lt;TOut&gt; Cast&lt;TOut&gt;([NotNull, InstantHandle] in Func&lt;T
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public Result&lt;TOut, TError&gt; Cast&lt;TOut, TError&gt;([NotNull] in TError errorObject)
+    <pre><code class="lang-csharp hljs">public Result&lt;TOut, TError&gt; Cast&lt;TOut, TError&gt;(in TError errorObject)
     where TOut : class</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -566,9 +559,7 @@ public Result&lt;TOut, TError&gt; Cast&lt;TOut, TError&gt;([NotNull] in TError e
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public Result&lt;TOut, TError&gt; Cast&lt;TOut, TError&gt;([NotNull, InstantHandle] in Func&lt;TError&gt; errorFactory)
+    <pre><code class="lang-csharp hljs">public Result&lt;TOut, TError&gt; Cast&lt;TOut, TError&gt;(in Func&lt;TError&gt; errorFactory)
     where TOut : class</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -656,9 +647,7 @@ public Result&lt;TOut, TError&gt; Cast&lt;TOut, TError&gt;([NotNull, InstantHand
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public Result&lt;TOut, TError&gt; Cast&lt;TOut, TError&gt;([NotNull, InstantHandle] in Func&lt;T, TOut&gt; converter, [NotNull] in TError errorObject)</code></pre>
+    <pre><code class="lang-csharp hljs">public Result&lt;TOut, TError&gt; Cast&lt;TOut, TError&gt;(in Func&lt;T, TOut&gt; converter, in TError errorObject)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -756,9 +745,7 @@ public Result&lt;TOut, TError&gt; Cast&lt;TOut, TError&gt;([NotNull, InstantHand
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public Result&lt;TOut, TError&gt; Cast&lt;TOut, TError&gt;([NotNull, InstantHandle] in Func&lt;T, TOut&gt; converter, [NotNull, InstantHandle] in Func&lt;TError&gt; errorFactory)</code></pre>
+    <pre><code class="lang-csharp hljs">public Result&lt;TOut, TError&gt; Cast&lt;TOut, TError&gt;(in Func&lt;T, TOut&gt; converter, in Func&lt;TError&gt; errorFactory)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -952,9 +939,7 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public CustomResult&lt;TError&gt; CustomCast&lt;TError&gt;([NotNull] in TError errorObject)</code></pre>
+    <pre><code class="lang-csharp hljs">public CustomResult&lt;TError&gt; CustomCast&lt;TError&gt;(in TError errorObject)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1036,9 +1021,7 @@ public CustomResult&lt;TError&gt; CustomCast&lt;TError&gt;([NotNull] in TError e
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public CustomResult&lt;TError&gt; CustomCast&lt;TError&gt;([NotNull, InstantHandle] in Func&lt;TError&gt; errorFactory)</code></pre>
+    <pre><code class="lang-csharp hljs">public CustomResult&lt;TError&gt; CustomCast&lt;TError&gt;(in Func&lt;TError&gt; errorFactory)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1332,9 +1315,7 @@ public CustomResult&lt;TError&gt; CustomCast&lt;TError&gt;([NotNull, InstantHand
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public bool SuccessEquals(in Result&lt;T&gt; other)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool SuccessEquals(in Result&lt;T&gt; other)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1698,9 +1679,7 @@ public bool SuccessEquals(in Result&lt;T&gt; other)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static implicit operator Option&lt;T&gt;(in Result&lt;T&gt; result)</code></pre>
+    <pre><code class="lang-csharp hljs">public static implicit operator Option&lt;T&gt;(in Result&lt;T&gt; result)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1750,9 +1729,7 @@ public static implicit operator Option&lt;T&gt;(in Result&lt;T&gt; result)</code
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[PublicAPI]
-[Pure]
-public static implicit operator Result(in Result&lt;T&gt; result)</code></pre>
+    <pre><code class="lang-csharp hljs">public static implicit operator Result(in Result&lt;T&gt; result)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
