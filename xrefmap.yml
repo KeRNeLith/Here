@@ -6718,6 +6718,23 @@ references:
   fullName.vb: Here.Option(Of T).Exists
   nameWithType: Option<T>.Exists
   nameWithType.vb: Option(Of T).Exists
+- uid: Here.Option`1.GetEnumerator
+  name: GetEnumerator()
+  href: api/Here.Option-1.html#Here_Option_1_GetEnumerator
+  commentId: M:Here.Option`1.GetEnumerator
+  fullName: Here.Option<T>.GetEnumerator()
+  fullName.vb: Here.Option(Of T).GetEnumerator()
+  nameWithType: Option<T>.GetEnumerator()
+  nameWithType.vb: Option(Of T).GetEnumerator()
+- uid: Here.Option`1.GetEnumerator*
+  name: GetEnumerator
+  href: api/Here.Option-1.html#Here_Option_1_GetEnumerator_
+  commentId: Overload:Here.Option`1.GetEnumerator
+  isSpec: "True"
+  fullName: Here.Option<T>.GetEnumerator
+  fullName.vb: Here.Option(Of T).GetEnumerator
+  nameWithType: Option<T>.GetEnumerator
+  nameWithType.vb: Option(Of T).GetEnumerator
 - uid: Here.Option`1.GetHashCode
   name: GetHashCode()
   href: api/Here.Option-1.html#Here_Option_1_GetHashCode
@@ -8184,6 +8201,23 @@ references:
   fullName.vb: Here.Result(Of T).Exception
   nameWithType: Result<T>.Exception
   nameWithType.vb: Result(Of T).Exception
+- uid: Here.Result`1.GetEnumerator
+  name: GetEnumerator()
+  href: api/Here.Result-1.html#Here_Result_1_GetEnumerator
+  commentId: M:Here.Result`1.GetEnumerator
+  fullName: Here.Result<T>.GetEnumerator()
+  fullName.vb: Here.Result(Of T).GetEnumerator()
+  nameWithType: Result<T>.GetEnumerator()
+  nameWithType.vb: Result(Of T).GetEnumerator()
+- uid: Here.Result`1.GetEnumerator*
+  name: GetEnumerator
+  href: api/Here.Result-1.html#Here_Result_1_GetEnumerator_
+  commentId: Overload:Here.Result`1.GetEnumerator
+  isSpec: "True"
+  fullName: Here.Result<T>.GetEnumerator
+  fullName.vb: Here.Result(Of T).GetEnumerator
+  nameWithType: Result<T>.GetEnumerator
+  nameWithType.vb: Result(Of T).GetEnumerator
 - uid: Here.Result`1.GetHashCode
   name: GetHashCode()
   href: api/Here.Result-1.html#Here_Result_1_GetHashCode
@@ -8640,6 +8674,23 @@ references:
   fullName.vb: Here.Result(Of T, TError).Exception
   nameWithType: Result<T, TError>.Exception
   nameWithType.vb: Result(Of T, TError).Exception
+- uid: Here.Result`2.GetEnumerator
+  name: GetEnumerator()
+  href: api/Here.Result-2.html#Here_Result_2_GetEnumerator
+  commentId: M:Here.Result`2.GetEnumerator
+  fullName: Here.Result<T, TError>.GetEnumerator()
+  fullName.vb: Here.Result(Of T, TError).GetEnumerator()
+  nameWithType: Result<T, TError>.GetEnumerator()
+  nameWithType.vb: Result(Of T, TError).GetEnumerator()
+- uid: Here.Result`2.GetEnumerator*
+  name: GetEnumerator
+  href: api/Here.Result-2.html#Here_Result_2_GetEnumerator_
+  commentId: Overload:Here.Result`2.GetEnumerator
+  isSpec: "True"
+  fullName: Here.Result<T, TError>.GetEnumerator
+  fullName.vb: Here.Result(Of T, TError).GetEnumerator
+  nameWithType: Result<T, TError>.GetEnumerator
+  nameWithType.vb: Result(Of T, TError).GetEnumerator
 - uid: Here.Result`2.GetHashCode
   name: GetHashCode()
   href: api/Here.Result-2.html#Here_Result_2_GetHashCode
