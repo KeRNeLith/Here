@@ -118,6 +118,31 @@ if (result.IsSuccess)
 Results structures also implement the IEquatable interface to perform comparisons between result. Note that this one checks if both results are equal.
 To complete this, there are also SuccessEquals helpers to check that both results are equal and also are success!
 
+### Result enumerator
+
+Results embedding a value are also implementing the `GetEnumerator` method which allows to use it in a foreach statement.
+
+This allows to run foreach content only if the result has a value.
+
+```csharp
+foreach (int value in Result.Ok(42))
+{
+    Console.WriteLine($"Result has value {value}."); // Result has value 42.
+}
+
+foreach (int value in Result.Warn(12, "My warning message."))
+{
+    Console.WriteLine($"Result has value {value}."); // Result has value 12.
+}
+
+foreach (int value in Result.Fail<int>("My ERROR message."))
+{
+    Console.WriteLine($"Result has value {value}."); // Not executed
+}
+```
+
+This is working the same way for `Result<T, TError>`.
+
 ### Equality / Comparison
 
 #### Equality

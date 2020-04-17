@@ -2569,6 +2569,103 @@ namespace Here.Tests.Results
         #endregion
 
         [Test]
+        public void ValueResultIterator()
+        {
+            // Ok result
+            bool enumerated = false;
+            var ok = Result.Ok(12);
+            foreach (int value in ok)
+            {
+                enumerated = true;
+                Assert.AreEqual(12, value);
+            }
+            Assert.IsTrue(enumerated);
+
+            // Warning result
+            enumerated = false;
+            var warning = Result.Warn(42, "My warning");
+            foreach (int value in warning)
+            {
+                enumerated = true;
+                Assert.AreEqual(42, value);
+            }
+            Assert.IsTrue(enumerated);
+
+            enumerated = false;
+            var warnException = new Exception("Warning exception");
+            warning = Result.Warn(51, "My warning", warnException);
+            foreach (int value in warning)
+            {
+                enumerated = true;
+                Assert.AreEqual(51, value);
+            }
+            Assert.IsTrue(enumerated);
+
+            // Failure result
+            var failure = Result.Fail<int>("My failure");
+            foreach (int _ in failure)
+            {
+                Assert.Fail("Must not enumerate anything.");
+            }
+
+            var failException = new Exception("Failure exception");
+            failure = Result.Fail<int>("My failure", failException);
+            foreach (int _ in failure)
+            {
+                Assert.Fail("Must not enumerate anything.");
+            }
+        }
+
+        [Test]
+        public void ValueCustomResultIterator()
+        {
+            // Ok result
+            bool enumerated = false;
+            var ok = Result.Ok<int, CustomErrorTest>(12);
+            foreach (int value in ok)
+            {
+                enumerated = true;
+                Assert.AreEqual(12, value);
+            }
+            Assert.IsTrue(enumerated);
+
+            // Warning result
+            enumerated = false;
+            var warning = Result.Warn<int, CustomErrorTest>(42, "My warning");
+            foreach (int value in warning)
+            {
+                enumerated = true;
+                Assert.AreEqual(42, value);
+            }
+            Assert.IsTrue(enumerated);
+
+            enumerated = false;
+            var warnException = new Exception("Warning exception");
+            warning = Result.Warn<int, CustomErrorTest>(51, "My warning", warnException);
+            foreach (int value in warning)
+            {
+                enumerated = true;
+                Assert.AreEqual(51, value);
+            }
+            Assert.IsTrue(enumerated);
+
+            // Failure result
+            var errorObject = new CustomErrorTest { ErrorCode = 45 };
+            var failure = Result.Fail<int, CustomErrorTest>("My failure", errorObject);
+            foreach (int _ in failure)
+            {
+                Assert.Fail("Must not enumerate anything.");
+            }
+
+            var failException = new Exception("Failure exception");
+            failure = Result.Fail<int, CustomErrorTest>("My failure", errorObject, failException);
+            foreach (int _ in failure)
+            {
+                Assert.Fail("Must not enumerate anything.");
+            }
+        }
+
+        [Test]
         public void ResultToString()
         {
             // Result without value

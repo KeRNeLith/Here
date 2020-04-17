@@ -569,6 +569,19 @@ namespace Here
 
         #endregion
 
+        // Do not implement IEnumerator interface to avoid eventual unwanted boxing
+        // This is sufficient to be able to iterate on a Result
+        /// <summary>
+        /// Gets an enumerator of this <see cref="Result{T}"/> giving the wrapped <see cref="Value"/> if there is one.
+        /// </summary>
+        /// <returns>An <see cref="IEnumerator{T}"/> for this <see cref="Result{T}"/>.</returns>
+        [Pure]
+        public IEnumerator<T> GetEnumerator()
+        {
+            if (IsSuccess)
+                yield return _value;
+        }
+
 #if SUPPORTS_SERIALIZATION
         #region ISerializable
 

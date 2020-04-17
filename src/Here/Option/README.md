@@ -201,6 +201,24 @@ List<float> relevantList = GetData().ToList();
 Dictionary<string, float> relevantDictionary = GetData().ToDictionary((float val) => val.ToString());
 ```
 
+#### Option enumerator
+
+`Option<T>` is implementing the `GetEnumerator` method which allows to use it in a foreach statement.
+
+This allows to run foreach content only if the `Option<T>` has a value.
+
+```csharp
+foreach (int value in Option<int>.Some(42))
+{
+    Console.WriteLine($"Option has value {value}."); // Option has value 42.
+}
+
+foreach (int value in Option<int>.None)
+{
+    Console.WriteLine($"Option has value {value}."); // Not executed
+}
+```
+
 ### Linq extensions
 
 There is also a support of common Linq extensions like `Any`, `All`, `Contains`, `Select`, `Where`, `ForEach` and `Aggregate`.

@@ -313,6 +313,19 @@ namespace Here
 
         #endregion
 
+        // Do not implement IEnumerator interface to avoid eventual unwanted boxing
+        // This is sufficient to be able to iterate on an Option
+        /// <summary>
+        /// Gets an enumerator of this <see cref="Option{T}"/> giving the wrapped <see cref="Value"/> if there is one.
+        /// </summary>
+        /// <returns>An <see cref="IEnumerator{T}"/> for this <see cref="Option{T}"/>.</returns>
+        [Pure]
+        [NotNull]
+        public IEnumerator<T> GetEnumerator()
+        {
+            if (HasValue)
+                yield return _value;
+        }
 
 #if SUPPORTS_SERIALIZATION
         #region ISerializable

@@ -478,6 +478,47 @@ namespace Here.Tests.Options
         }
 
         [Test]
+        public void OptionEnumerator()
+        {
+            // Option value type
+            // With value
+            bool enumerated = false;
+            var optionInt = Option<int>.Some(12);
+            foreach (int value in optionInt)
+            {
+                enumerated = true;
+                Assert.AreEqual(12, value);
+            }
+            Assert.IsTrue(enumerated);
+
+            // No value
+            var emptyOptionInt = Option<int>.None;
+            foreach (int _ in emptyOptionInt)
+            {
+                Assert.Fail("Must not enumerate anything.");
+            }
+
+            // Option reference type
+            // With value
+            enumerated = false;
+            var testValue = new TestClass { TestInt = 12 };
+            var optionClass = Option<TestClass>.Some(testValue);
+            foreach (TestClass value in optionClass)
+            {
+                enumerated = true;
+                Assert.AreSame(testValue, value);
+            }
+            Assert.IsTrue(enumerated);
+
+            // No value
+            var emptyOptionClass = Option<TestClass>.None;
+            foreach (TestClass _ in emptyOptionClass)
+            {
+                Assert.Fail("Must not enumerate anything.");
+            }
+        }
+
+        [Test]
         public void OptionHashCode()
         {
             // Equals values

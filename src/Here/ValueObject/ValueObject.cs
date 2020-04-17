@@ -16,7 +16,8 @@ namespace Here
         /// Gets elements to take into account when comparing this <see cref="ValueObject"/>.
         /// </summary>
         /// <returns>Elements to compare.</returns>
-        [Pure, NotNull]
+        [Pure]
+        [NotNull, ItemCanBeNull]
         protected abstract IEnumerable<object> GetEqualityElements();
 
         /// <summary>
@@ -25,7 +26,8 @@ namespace Here
         /// <param name="object1">First <see cref="ValueObject"/> to compare.</param>
         /// <param name="object2">Second <see cref="ValueObject"/> to compare.</param>
         /// <returns>True if both <see cref="ValueObject"/> are equal, otherwise false.</returns>
-        protected static bool EqualOperator(in ValueObject object1, in ValueObject object2)
+        [Pure]
+        protected static bool EqualOperator([CanBeNull] in ValueObject object1, [CanBeNull] in ValueObject object2)
         {
             if (object1 is null)
                 return object2 is null;
@@ -40,7 +42,8 @@ namespace Here
         /// <param name="object1">First <see cref="ValueObject"/> to compare.</param>
         /// <param name="object2">Second <see cref="ValueObject"/> to compare.</param>
         /// <returns>True if both <see cref="ValueObject"/> are not equal, otherwise false.</returns>
-        protected static bool NotEqualOperator(in ValueObject object1, in ValueObject object2)
+        [Pure]
+        protected static bool NotEqualOperator([CanBeNull] in ValueObject object1, [CanBeNull] in ValueObject object2)
         {
             return !EqualOperator(object1, object2);
         }
