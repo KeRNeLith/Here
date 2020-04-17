@@ -16,16 +16,16 @@
 It handles and encapsulates the logic of functional based objects including the following ones.
 
 - The `Option<T>`. This structure encapsulates the concept of having a value or not. This mechanic safely handles a traditional null return.
-For more details on `Option<T>` usage see the following [tips](documentation/option.md).
+For more details on `Option<T>` usage see the following [tips](documentation/tutorials/option.md).
 
 - The `Either<TLeft, TRight>`. This structure encapsulates the concept of having a success value (right) or a failure (left). This provides a better management of method returns that can generate error by clarifying the error case.
-For more details on `Either<TLeft, TRight>` usage see the following [tips](documentation/either.md).
+For more details on `Either<TLeft, TRight>` usage see the following [tips](documentation/tutorials/either.md).
 
 - The `Result`. This structure encapsulates treatments results. This provides an improved return state, and also a better error management.
-For more details on `Result` usage see the following [tips](documentation/results.md).
+For more details on `Result` usage see the following [tips](documentation/tutorials/results.md).
 
 - The `ValueObject`. This structure encapsulates boilerplate code required to compare objects on their values rather than their references. This allows an easy creation of comparable/interchangeable objects.
-For more details on `ValueObject` usage see the following [tips](documentation/value-object.md).
+For more details on `ValueObject` usage see the following [tips](documentation/tutorials/value-object.md).
 
 You can find library sources on [GitHub](https://github.com/KeRNeLith/Here).
 
