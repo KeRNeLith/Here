@@ -19,8 +19,17 @@ namespace Here.Tests.Options
             var optionInt = Option<int>.Some(12);
             CheckOptionValue(optionInt, 12);
 
+            optionInt = Option.From(42);
+            CheckOptionValue(optionInt, 42);
+
+            optionInt = Option.From((int?)45);
+            CheckOptionValue(optionInt, 45);
+
             // No value
             var emptyOptionInt = Option<int>.None;
+            CheckEmptyOption(emptyOptionInt);
+
+            emptyOptionInt = Option.From((int?)null);
             CheckEmptyOption(emptyOptionInt);
 
             // Implicit none
@@ -33,8 +42,15 @@ namespace Here.Tests.Options
             var optionClass = Option<TestClass>.Some(testValue);
             CheckOptionSameValue(optionClass, testValue);
 
+            var testValue2 = new TestClass { TestInt = 42 };
+            optionClass = Option.From(testValue2);
+            CheckOptionSameValue(optionClass, testValue2);
+
             // No value
             var emptyOptionClass = Option<TestClass>.None;
+            CheckEmptyOption(emptyOptionClass);
+
+            emptyOptionClass = Option.From((TestClass)null);
             CheckEmptyOption(emptyOptionClass);
 
             // Implicit none
@@ -42,6 +58,7 @@ namespace Here.Tests.Options
             CheckEmptyOption(emptyOptionClass2);
 
             // Null value
+            // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => Option<TestClass>.Some(null));
         }

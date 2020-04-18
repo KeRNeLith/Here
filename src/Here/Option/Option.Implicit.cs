@@ -24,10 +24,7 @@ namespace Here
         [PublicAPI, Pure]
         public static implicit operator Option<T>([CanBeNull] in T value)
         {
-            if (value == null)
-                return None;
-
-            return Some(value);
+            return Option.From(value);
         }
 
         /// <summary>

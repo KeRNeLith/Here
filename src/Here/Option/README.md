@@ -29,10 +29,12 @@ See examples below:
 Option<string> optionStr = Option<string>.Some("My string");
 Option<string> optionStr2 = "My string2".ToOption();
 Option<string> optionStr3 = "My string2";     // Implicit conversion
+Option<string> optionStr4 = Option.From("My string2");
 
 // Empty option
 Option<string> emptyOptionStr = Option<string>.None;
 Option<string> emptyOptionStr2 = Option.None;  // Implicit creation
+Option<string> emptyOptionStr3 = Option.From(null);
 ```
 
 It is also possible to use implicit conversion that will fit for calls to API code that your not the owner or simply code you don't want to update.

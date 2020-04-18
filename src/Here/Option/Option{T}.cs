@@ -72,7 +72,7 @@ namespace Here
         /// Constructor.
         /// </summary>
         /// <param name="value">A value.</param>
-        private Option([NotNull] in T value)
+        internal Option([NotNull] in T value)
         {
             HasValue = true;
             _value = value;
@@ -83,7 +83,7 @@ namespace Here
         /// </summary>
         /// <param name="value">A value.</param>
         /// <exception cref="ArgumentNullException">If the <paramref name="value"/> is null.</exception>
-        [PublicAPI]
+        [PublicAPI, Pure]
         public static Option<T> Some([NotNull] in T value)
         {
             if (value == null)
