@@ -8,7 +8,7 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 
-    <Title>Here</Title>
+    <Title>Here.Tests</Title>
 
     <Version>1.0.0</Version>
     <AssemblyVersion>1.0.0</AssemblyVersion>
@@ -16,32 +16,6 @@
 
     <Copyright>Copyright © 2018</Copyright>
     <Description>Tests for Here library.</Description>
-
-    <Authors>Alexandre Rabérin</Authors>
-    <Owners>Alexandre Rabérin</Owners>
-    <Company>Alexandre Rabérin</Company>
-
-    <IsPackable>false</IsPackable>
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/KeRNeLith/Here</PackageProjectUrl>
-    <RepositoryType>GitHub</RepositoryType>
-    <RepositoryUrl>https://github.com/KeRNeLith/Here</RepositoryUrl>
-  </PropertyGroup>
-
-  <!-- C# configuration -->
-  <PropertyGroup>
-    <LangVersion>latest</LangVersion>
-  </PropertyGroup>
-
-  <!-- Optimization configurations -->
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
 
   <!-- Targets defines -->
@@ -92,10 +66,6 @@
   </PropertyGroup>
 
   <!-- Dependencies -->
-  <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
-  </ItemGroup>
-
   <ItemGroup Condition="'$(TargetFramework)' != 'net20' AND '$(TargetFramework)' != 'net30'">
     <PackageReference Include="NUnit" Version="3.11.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.11.0" />
@@ -110,10 +80,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Here\Here.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
+    <ProjectReference Include="..\..\src\Here\Here.csproj" />
   </ItemGroup>
 </Project>
