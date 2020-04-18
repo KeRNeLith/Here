@@ -1,5 +1,5 @@
 version: '0.0.{build}'
-image: Visual Studio 2017
+image: Visual Studio 2019
 
 # Setup environment
 nuget:
@@ -27,7 +27,7 @@ skip_commits:
 environment:
   SONARQUBE_TOKEN:
     secure: AcQvaWq+gT9KdC+7oE75vDwW9mizfTw6qYH3vtiZTjSh9jA8ouoMq1j/sk6zB0fI
-  DocFXVersion: 2.42.4
+  DocFXVersion: 2.51
   OpenCoverVersion: 4.7.922
   CoverallsVersion: 1.0.0
   COVERALLS_REPO_TOKEN:
@@ -165,7 +165,7 @@ artifacts:
 # Documentation
 before_deploy:
 # Release documentation
-  - ps: ./releaseDoc.ps1
+  - ps: ./build/releaseDoc.ps1
 
 # Deploy
 deploy:

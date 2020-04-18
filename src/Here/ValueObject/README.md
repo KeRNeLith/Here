@@ -52,8 +52,8 @@ class Address : ValueObject
 }
 
 // Check
-var address1 = new Address("Champs Elysées", "Paris");
-var address2 = new Address("Champs Elysées", "Paris");
+var address1 = new Address("Champs ElysÃ©es", "Paris");
+var address2 = new Address("Champs ElysÃ©es", "Paris");
 var address3 = new Address("Montmartre", "Paris");
 
 address1.Equals(address2);    // True
@@ -84,9 +84,9 @@ class FullAddress : Address
 }
 
 // Check
-var address1 = new Address("Champs Elysées", "Paris");
-var address2 = new FullAddress("Champs Elysées", "Paris", "France");
-var address3 = new FullAddress("Champs Elysées", "Paris", "France");
+var address1 = new Address("Champs ElysÃ©es", "Paris");
+var address2 = new FullAddress("Champs ElysÃ©es", "Paris", "France");
+var address3 = new FullAddress("Champs ElysÃ©es", "Paris", "France");
 var address4 = new FullAddress("Montmartre", "Paris", "France");
 
 address1.Equals(address2);    // False
