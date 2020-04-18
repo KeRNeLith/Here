@@ -8,7 +8,7 @@
     <title>Result </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Result ">
-    <meta name="generator" content="docfx 2.42.4.0">
+    <meta name="generator" content="docfx 2.51.0.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -159,6 +159,25 @@ if (result.IsSuccess)
 </code></pre>
 <p>Results structures also implement the IEquatable interface to perform comparisons between result. Note that this one checks if both results are equal.
 To complete this, there are also SuccessEquals helpers to check that both results are equal and also are success!</p>
+<h3 id="result-enumerator">Result enumerator</h3>
+<p>Results embedding a value are also implementing the <code>GetEnumerator</code> method which allows to use it in a foreach statement.</p>
+<p>This allows to run foreach content only if the result has a value.</p>
+<pre><code class="lang-csharp">foreach (int value in Result.Ok(42))
+{
+    Console.WriteLine($&quot;Result has value {value}.&quot;); // Result has value 42.
+}
+
+foreach (int value in Result.Warn(12, &quot;My warning message.&quot;))
+{
+    Console.WriteLine($&quot;Result has value {value}.&quot;); // Result has value 12.
+}
+
+foreach (int value in Result.Fail&lt;int&gt;(&quot;My ERROR message.&quot;))
+{
+    Console.WriteLine($&quot;Result has value {value}.&quot;); // Not executed
+}
+</code></pre>
+<p>This is working the same way for <code>Result&lt;T, TError&gt;</code>.</p>
 <h3 id="equality--comparison">Equality / Comparison</h3>
 <h4 id="equality">Equality</h4>
 <pre><code class="lang-csharp">// Equality

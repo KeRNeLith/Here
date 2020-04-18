@@ -6531,17 +6531,35 @@ references:
   commentId: T:Here.Option
   fullName: Here.Option
   nameWithType: Option
+- uid: Here.Option.From*
+  name: From
+  href: api/Here.Option.html#Here_Option_From_
+  commentId: Overload:Here.Option.From
+  isSpec: "True"
+  fullName: Here.Option.From
+  nameWithType: Option.From
+- uid: Here.Option.From``1(``0@)
+  name: From<T>(T)
+  href: api/Here.Option.html#Here_Option_From__1___0__
+  commentId: M:Here.Option.From``1(``0@)
+  name.vb: From(Of T)(ByRef T)
+  fullName: Here.Option.From<T>(T)
+  fullName.vb: Here.Option.From(Of T)(ByRef T)
+  nameWithType: Option.From<T>(T)
+  nameWithType.vb: Option.From(Of T)(ByRef T)
+- uid: Here.Option.From``1(System.Nullable{``0})
+  name: From<T>(Nullable<T>)
+  href: api/Here.Option.html#Here_Option_From__1_System_Nullable___0__
+  commentId: M:Here.Option.From``1(System.Nullable{``0})
+  name.vb: From(Of T)(Nullable(Of T))
+  fullName: Here.Option.From<T>(System.Nullable<T>)
+  fullName.vb: Here.Option.From(Of T)(System.Nullable(Of T))
+  nameWithType: Option.From<T>(Nullable<T>)
+  nameWithType.vb: Option.From(Of T)(Nullable(Of T))
 - uid: Here.Option.None
   name: None
   href: api/Here.Option.html#Here_Option_None
-  commentId: P:Here.Option.None
-  fullName: Here.Option.None
-  nameWithType: Option.None
-- uid: Here.Option.None*
-  name: None
-  href: api/Here.Option.html#Here_Option_None_
-  commentId: Overload:Here.Option.None
-  isSpec: "True"
+  commentId: F:Here.Option.None
   fullName: Here.Option.None
   nameWithType: Option.None
 - uid: Here.Option.NoneOption

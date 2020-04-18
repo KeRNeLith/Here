@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Option
    ">
-    <meta name="generator" content="docfx 2.42.4.0">
+    <meta name="generator" content="docfx 2.51.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -73,7 +73,7 @@
   
   <h1 id="Here_Option" data-uid="Here.Option" class="text-break">Class Option
   </h1>
-  <div class="markdown level0 summary"><p>Empty Option construction helper. Used by implicit construction.</p>
+  <div class="markdown level0 summary"><p>Construction helpers for <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a>.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -111,25 +111,24 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static class Option</code></pre>
   </div>
-  <h3 id="properties">Properties
+  <h3 id="fields">Fields
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_None.md&amp;value=---%0Auid%3A%20Here.Option.None%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.None.cs/#L29">View Source</a>
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L30">View Source</a>
   </span>
-  <a id="Here_Option_None_" data-uid="Here.Option.None*"></a>
   <h4 id="Here_Option_None" data-uid="Here.Option.None">None</h4>
   <div class="markdown level1 summary"><p>Represents a non typed empty Option.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Option.NoneOption None { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static readonly Option.NoneOption None</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -140,6 +139,141 @@
     <tbody>
       <tr>
         <td><a class="xref" href="Here.Option.NoneOption.html">Option.NoneOption</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_From__1___0__.md&amp;value=---%0Auid%3A%20Here.Option.From%60%601(%60%600%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L40">View Source</a>
+  </span>
+  <a id="Here_Option_From_" data-uid="Here.Option.From*"></a>
+  <h4 id="Here_Option_From__1___0__" data-uid="Here.Option.From``1(``0@)">From&lt;T&gt;(T)</h4>
+  <div class="markdown level1 summary"><p>Constructs an <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> with a value, or in <a class="xref" href="Here.Option.html#Here_Option_None">None</a> state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Option&lt;T&gt; From&lt;T&gt;(in T value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>A value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Option-1.html">Option</a>&lt;T&gt;</td>
+        <td><p>An <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> in the <a class="xref" href="Here.Option.html#Here_Option_None">None</a> state if <code data-dev-comment-type="paramref" class="paramref">value</code>
+is null, and in some state with <code data-dev-comment-type="paramref" class="paramref">value</code> otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option_From__1_System_Nullable___0__.md&amp;value=---%0Auid%3A%20Here.Option.From%60%601(System.Nullable%7B%60%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L57">View Source</a>
+  </span>
+  <a id="Here_Option_From_" data-uid="Here.Option.From*"></a>
+  <h4 id="Here_Option_From__1_System_Nullable___0__" data-uid="Here.Option.From``1(System.Nullable{``0})">From&lt;T&gt;(Nullable&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Constructs an <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> with a value, or in <a class="xref" href="Here.Option.html#Here_Option_None">None</a> state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Option&lt;T&gt; From&lt;T&gt;(T? value)
+    where T : struct</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;T&gt;</td>
+        <td><span class="parametername">value</span></td>
+        <td><p>A value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Here.Option-1.html">Option</a>&lt;T&gt;</td>
+        <td><p>An <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> in the <a class="xref" href="Here.Option.html#Here_Option_None">None</a> state if <code data-dev-comment-type="paramref" class="paramref">value</code>
+is null, and in some state with <code data-dev-comment-type="paramref" class="paramref">value</code> otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -155,7 +289,7 @@
                     <a href="https://github.com/KeRNeLith/Here/new/master/apiSpec/new?filename=Here_Option.md&amp;value=---%0Auid%3A%20Here.Option%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.None.cs/#L8" class="contribution-link">View Source</a>
+                    <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.cs/#L8" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

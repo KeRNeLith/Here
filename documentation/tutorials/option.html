@@ -8,7 +8,7 @@
     <title>Option </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Option ">
-    <meta name="generator" content="docfx 2.42.4.0">
+    <meta name="generator" content="docfx 2.51.0.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -86,10 +86,12 @@ See examples below:</p>
 <pre><code class="lang-csharp">Option&lt;string&gt; optionStr = Option&lt;string&gt;.Some(&quot;My string&quot;);
 Option&lt;string&gt; optionStr2 = &quot;My string2&quot;.ToOption();
 Option&lt;string&gt; optionStr3 = &quot;My string2&quot;;     // Implicit conversion
+Option&lt;string&gt; optionStr4 = Option.From(&quot;My string2&quot;);
 
 // Empty option
 Option&lt;string&gt; emptyOptionStr = Option&lt;string&gt;.None;
 Option&lt;string&gt; emptyOptionStr2 = Option.None;  // Implicit creation
+Option&lt;string&gt; emptyOptionStr3 = Option.From(null);
 </code></pre>
 <p>It is also possible to use implicit conversion that will fit for calls to API code that your not the owner or simply code you don't want to update.</p>
 <pre><code class="lang-csharp">int GetAnInteger()
@@ -214,6 +216,19 @@ IEnumerable&lt;float&gt; relevantValues = GetData().ExtractValues();
 float[] relevantArray = GetData().ToArray();
 List&lt;float&gt; relevantList = GetData().ToList();
 Dictionary&lt;string, float&gt; relevantDictionary = GetData().ToDictionary((float val) =&gt; val.ToString());
+</code></pre>
+<h4 id="option-enumerator">Option enumerator</h4>
+<p><code>Option&lt;T&gt;</code> is implementing the <code>GetEnumerator</code> method which allows to use it in a foreach statement.</p>
+<p>This allows to run foreach content only if the <code>Option&lt;T&gt;</code> has a value.</p>
+<pre><code class="lang-csharp">foreach (int value in Option&lt;int&gt;.Some(42))
+{
+    Console.WriteLine($&quot;Option has value {value}.&quot;); // Option has value 42.
+}
+
+foreach (int value in Option&lt;int&gt;.None)
+{
+    Console.WriteLine($&quot;Option has value {value}.&quot;); // Not executed
+}
 </code></pre>
 <h3 id="linq-extensions">Linq extensions</h3>
 <p>There is also a support of common Linq extensions like <code>Any</code>, <code>All</code>, <code>Contains</code>, <code>Select</code>, <code>Where</code>, <code>ForEach</code> and <code>Aggregate</code>.</p>
