@@ -37,6 +37,7 @@ namespace Here
         /// </summary>
         /// <param name="str">String to check.</param>
         /// <returns>True if the string is null or only composed of spaces.</returns>
+        [ContractAnnotation("str:null => true")]
         internal static bool IsNullOrWhiteSpace([CanBeNull] string str)
         {
             return str is null || str.All(char.IsWhiteSpace);

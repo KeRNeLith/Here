@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using static Here.Tests.Eithers.EitherTestHelpers;
 
@@ -218,6 +219,7 @@ namespace Here.Tests.Eithers
 
             // Either none
             var eitherNone = Either<string, int>.None;
+            // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<InvalidOperationException>(
                 () => eitherNone.MatchNullable(
                     r =>
@@ -296,6 +298,7 @@ namespace Here.Tests.Eithers
                 }));
             CheckCounters(3, 3, 2);
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => eitherLeft.MatchNullable(r => 12.5f, null));
             Assert.Throws<ArgumentNullException>(() => eitherLeft.MatchNullable(null, l => 12.5f));
             Assert.Throws<ArgumentNullException>(() => eitherLeft.MatchNullable((Func<int, float>)null, null));
@@ -307,6 +310,7 @@ namespace Here.Tests.Eithers
             Assert.Throws<ArgumentNullException>(() => eitherNone.MatchNullable(r => 12.5f, null));
             Assert.Throws<ArgumentNullException>(() => eitherNone.MatchNullable(null, l => 12.5f));
             Assert.Throws<ArgumentNullException>(() => eitherNone.MatchNullable((Func<int, float>)null, null));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
 
         [Test]
@@ -399,6 +403,7 @@ namespace Here.Tests.Eithers
 
             // Either none
             var eitherNone = Either<string, int>.None;
+            // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<InvalidOperationException>(
                 () => eitherNone.Match(
                     r =>
@@ -433,6 +438,7 @@ namespace Here.Tests.Eithers
             Assert.AreEqual(-4, result);
 
             // Null return
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<NullResultException>(
                 () => Either.Left<string, int>("str").Match(
                     r =>
@@ -494,6 +500,7 @@ namespace Here.Tests.Eithers
             Assert.Throws<ArgumentNullException>(() => eitherNone.Match(null, l => 12.5f));
             Assert.Throws<ArgumentNullException>(() => eitherNone.Match((Func<int, float>)null, null));
             Assert.Throws<NullResultException>(() => eitherNone.Match(r => "never executed", l => "never executed", () => null));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
 
         #endregion
@@ -2281,6 +2288,7 @@ namespace Here.Tests.Eithers
         }
 
         [Test]
+        [SuppressMessage("ReSharper", "ReturnValueOfPureMethodIsNotUsed")]
         public void LeftOr()
         {
             // Either left
@@ -2325,6 +2333,7 @@ namespace Here.Tests.Eithers
         }
 
         [Test]
+        [SuppressMessage("ReSharper", "ReturnValueOfPureMethodIsNotUsed")]
         public void RightOr()
         {
             // Either left

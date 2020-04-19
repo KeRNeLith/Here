@@ -30,9 +30,11 @@ namespace Here.Tests.Eithers
             Assert.IsFalse(eitherNone.Any());
             Assert.IsFalse(eitherNone.Any(r => r == 1));
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => eitherLeft.Any(null));
             Assert.Throws<ArgumentNullException>(() => eitherRight.Any(null));
             Assert.Throws<ArgumentNullException>(() => eitherNone.Any(null));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
 
         [Test]
@@ -51,9 +53,11 @@ namespace Here.Tests.Eithers
             var eitherNone = Either<string, int>.None;
             Assert.IsFalse(eitherNone.All(r => r == 1));
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => eitherLeft.All(null));
             Assert.Throws<ArgumentNullException>(() => eitherRight.All(null));
             Assert.Throws<ArgumentNullException>(() => eitherNone.All(null));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
 
         [Test]
@@ -121,6 +125,7 @@ namespace Here.Tests.Eithers
             Assert.AreEqual(1, counterRight);
             CheckLeftEither(result2, "str");
 
+            // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<NullResultException>(() => Either.Right<string, int>(42).Select(
                 r =>
                 {
@@ -138,9 +143,11 @@ namespace Here.Tests.Eithers
             Assert.AreEqual(2, counterRight);
             CheckNoneEither(result2);
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => eitherLeft.Select((Func<int, float>)null));
             Assert.Throws<ArgumentNullException>(() => eitherRight.Select((Func<int, float>)null));
             Assert.Throws<ArgumentNullException>(() => eitherNone.Select((Func<int, float>)null));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
 
         [Test]
@@ -190,9 +197,11 @@ namespace Here.Tests.Eithers
             Assert.AreEqual(2, counterRight);
             CheckNoneEither(result);
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => eitherLeft.Where(null));
             Assert.Throws<ArgumentNullException>(() => eitherRight.Where(null));
             Assert.Throws<ArgumentNullException>(() => eitherNone.Where(null));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
 
         [Test]
@@ -258,6 +267,7 @@ namespace Here.Tests.Eithers
                 int counter = 0;
                 if (expectThrow)
                 {
+                    // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
                     Assert.Throws<NullResultException>(
                         () => either.Aggregate(
                             testObject,
@@ -309,12 +319,14 @@ namespace Here.Tests.Eithers
 
             // Cannot test this in NET20 and NET30 due to NUnit package
 #if SUPPORTS_SYSTEM_DELEGATES
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => eitherLeft.Aggregate(testObject, null));
             Assert.Throws<ArgumentNullException>(() => eitherLeft.Aggregate(null, (Func<TestClass, int, TestClass>)null));
             Assert.Throws<ArgumentNullException>(() => eitherRight.Aggregate(testObject, null));
             Assert.Throws<ArgumentNullException>(() => eitherRight.Aggregate(null, (Func<TestClass, int, TestClass>)null));
             Assert.Throws<ArgumentNullException>(() => eitherNone.Aggregate(testObject, null));
             Assert.Throws<ArgumentNullException>(() => eitherNone.Aggregate(null, (Func<TestClass, int, TestClass>)null));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
 #endif
         }
     }

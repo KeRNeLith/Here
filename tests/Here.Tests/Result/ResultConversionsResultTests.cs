@@ -62,6 +62,7 @@ namespace Here.Tests.Results
             Assert.AreEqual(2, counterValueFactory);
             CheckResultFail(valueResult, "My failure");
 
+            // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => ok.Cast((Func<int>)null));
         }
 
@@ -116,8 +117,10 @@ namespace Here.Tests.Results
             Assert.AreEqual(1, counterErrorFactory);
             CheckResultFail(customResult, "My failure", customErrorObjectFactory);
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => ok.CustomCast((CustomErrorTest)null));
             Assert.Throws<ArgumentNullException>(() => ok.CustomCast((Func<CustomErrorTest>)null));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
 
         [Test]
@@ -245,12 +248,14 @@ namespace Here.Tests.Results
             Assert.AreEqual(2, counterErrorFactory);
             CheckResultFail(result, "My failure", customErrorObjectFactory);
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => ok.Cast(12.5f, (CustomErrorTest)null));
             Assert.Throws<ArgumentNullException>(() => ok.Cast(12.5f, (Func<CustomErrorTest>)null));
             Assert.Throws<ArgumentNullException>(() => ok.Cast(() => 12.5f, (CustomErrorTest)null));
             Assert.Throws<ArgumentNullException>(() => ok.Cast(() => 12.5f, (Func<CustomErrorTest>)null));
             Assert.Throws<ArgumentNullException>(() => ok.Cast((Func<float>)null, (CustomErrorTest)null));
             Assert.Throws<ArgumentNullException>(() => ok.Cast((Func<float>)null, (Func<CustomErrorTest>)null));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
 
         #endregion

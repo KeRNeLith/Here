@@ -22,6 +22,7 @@ namespace Here.Tests.Eithers
             Either<double, int> eitherLeft2 = Either.Left<double, int>((double?)2.0);
             CheckLeftEither(eitherLeft2, 2.0);
 
+            // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => Either.Left<double, int>(null));
 
             Either<double, int> eitherLeft3 = Either.Left(6.0);
@@ -60,6 +61,7 @@ namespace Here.Tests.Eithers
             Either<double, int> eitherRight2 = Either.Right<double, int>((int?)6);
             CheckRightEither(eitherRight2, 6);
 
+            // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => Either.Right<double, int>(null));
 
             Either<double, int> eitherRight3 = Either.Right(7);
@@ -1070,8 +1072,10 @@ namespace Here.Tests.Eithers
             EitherLeft<int> eitherLeft2 = Either.Left((int?)12);
             CheckEitherLeft(eitherLeft2, 12);
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => Either.Left((int?)null));
             Assert.Throws<ArgumentNullException>(() => Either.Left((Person)null));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
 
         [Test]
@@ -1243,8 +1247,10 @@ namespace Here.Tests.Eithers
             EitherRight<int> eitherLeft2 = Either.Right((int?)12);
             CheckEitherRight(eitherLeft2, 12);
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => Either.Right((Person)null));
             Assert.Throws<ArgumentNullException>(() => Either.Right((int?)null));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
 
         [Test]

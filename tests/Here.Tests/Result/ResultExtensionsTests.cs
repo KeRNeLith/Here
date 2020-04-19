@@ -183,7 +183,7 @@ namespace Here.Tests.Results
             Assert.AreEqual(789f, customValueResultFail.Unwrap(val => val + 0.5f, 789f));
             Assert.AreEqual(101112f, customValueResultFail.Unwrap(val => val + 0.5f, () => 101112f));
 
-
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             // ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<NullReferenceException>(() => ((IResult<int>) null).Unwrap());
             Assert.Throws<ArgumentNullException>(() => ((IResult<int>) null).Unwrap(null));
@@ -202,6 +202,7 @@ namespace Here.Tests.Results
             Assert.Throws<ArgumentNullException>(() => ((IResult<int>)null).Unwrap((Func<int, TestClass>)null, (Func<TestClass>)null));
             Assert.Throws<ArgumentNullException>(() => valueResultOk.Unwrap((Func<int, TestClass>)null, (Func<TestClass>)null));
             // ReSharper restore AssignNullToNotNullAttribute
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
 
         #endregion
@@ -282,9 +283,11 @@ namespace Here.Tests.Results
             Assert.AreEqual(4, counter);
             CheckResultFail(result, "My failure");
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>((() => result.Ensure(null, "Error")));
             Assert.Throws<ArgumentNullException>((() => result.Ensure(() => true, null)));
             Assert.Throws<ArgumentNullException>((() => result.Ensure(null, null)));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
 
         [Test]
@@ -361,9 +364,11 @@ namespace Here.Tests.Results
             Assert.AreEqual(4, counter);
             CheckResultFail(result, "My failure");
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>((() => result.Ensure(null, "Error")));
             Assert.Throws<ArgumentNullException>((() => result.Ensure(val => true, null)));
             Assert.Throws<ArgumentNullException>((() => result.Ensure(null, null)));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
 
         [Test]
@@ -546,6 +551,7 @@ namespace Here.Tests.Results
             CheckResultFail(result, "My failure", customErrorObject);
 
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>((() => result.Ensure(null, "Error", customErrorObject)));
             Assert.Throws<ArgumentNullException>((() => result.Ensure(() => true, null, customErrorObject)));
             Assert.Throws<ArgumentNullException>((() => result.Ensure(() => true, "Error", (CustomErrorTest)null)));
@@ -561,6 +567,7 @@ namespace Here.Tests.Results
             Assert.Throws<ArgumentNullException>((() => result.Ensure(() => true, null, (Func<CustomErrorTest>)null)));
             Assert.Throws<ArgumentNullException>((() => result.Ensure(null, "Error", (Func<CustomErrorTest>)null)));
             Assert.Throws<ArgumentNullException>((() => result.Ensure(null, null, (Func<CustomErrorTest>)null)));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
 
         [Test]
@@ -743,6 +750,7 @@ namespace Here.Tests.Results
             CheckResultFail(result, "My failure", customErrorObject);
 
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>((() => result.Ensure(null, "Error", customErrorObject)));
             Assert.Throws<ArgumentNullException>((() => result.Ensure(val => true, null, customErrorObject)));
             Assert.Throws<ArgumentNullException>((() => result.Ensure(val => true, "Error", (CustomErrorTest)null)));
@@ -758,6 +766,7 @@ namespace Here.Tests.Results
             Assert.Throws<ArgumentNullException>((() => result.Ensure(val => true, null, (Func<CustomErrorTest>)null)));
             Assert.Throws<ArgumentNullException>((() => result.Ensure(null, "Error", (Func<CustomErrorTest>)null)));
             Assert.Throws<ArgumentNullException>((() => result.Ensure(null, null, (Func<CustomErrorTest>)null)));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
 
         #endregion

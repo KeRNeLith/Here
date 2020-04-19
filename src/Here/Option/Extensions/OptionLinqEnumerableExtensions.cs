@@ -42,7 +42,7 @@ namespace Here.Extensions
 
             if (option.HasValue)
             {
-                foreach (var item in option.Value)
+                foreach (object item in option.Value)
                 {
                     if (predicate(item))
                         return true;
@@ -88,7 +88,7 @@ namespace Here.Extensions
 
             if (option.HasValue)
             {
-                foreach (var item in option.Value)
+                foreach (object item in option.Value)
                 {
                     if (!predicate(item))
                         return false;
@@ -133,7 +133,7 @@ namespace Here.Extensions
         {
             if (option.HasValue)
             {
-                foreach (var item in option.Value)
+                foreach (object item in option.Value)
                 {
                     if (EqualityComparer<object>.Default.Equals(item, value))
                         return true;
@@ -160,7 +160,7 @@ namespace Here.Extensions
 
             if (option.HasValue)
             {
-                foreach (var item in option.Value)
+                foreach (object item in option.Value)
                 {
                     if (comparer.Equals(item, value))
                         return true;
@@ -226,7 +226,7 @@ namespace Here.Extensions
             if (option.HasValue)
             {
                 var result = new List<TItemOut>();
-                foreach (var item in option.Value)
+                foreach (object item in option.Value)
                     result.Add(selector(item));
 
                 // At least one match
@@ -255,7 +255,7 @@ namespace Here.Extensions
 
             if (option.HasValue)
             {
-                var selectedItems = option.Value.Select(selector).ToArray();
+                TItemOut[] selectedItems = option.Value.Select(selector).ToArray();
                 if (selectedItems.Length > 0)
                     return selectedItems;
             }
@@ -280,7 +280,7 @@ namespace Here.Extensions
             if (option.HasValue)
             {
                 var result = new List<object>();
-                foreach (var item in option.Value)
+                foreach (object item in option.Value)
                 {
                     if (predicate(item))
                         result.Add(item);
@@ -311,7 +311,7 @@ namespace Here.Extensions
 
             if (option.HasValue)
             {
-                var matchingItems = option.Value.Where(item => predicate(item)).ToArray();
+                TItem[] matchingItems = option.Value.Where(item => predicate(item)).ToArray();
                 // At least one match
                 if (matchingItems.Length > 0)
                     return matchingItems;
@@ -336,7 +336,7 @@ namespace Here.Extensions
 
             if (option.HasValue)
             {
-                foreach (var item in option.Value)
+                foreach (object item in option.Value)
                     onItem(item);
             }
 
@@ -360,7 +360,7 @@ namespace Here.Extensions
 
             if (option.HasValue)
             {
-                foreach (var item in option.Value)
+                foreach (TItem item in option.Value)
                     onItem(item);
             }
 
@@ -392,7 +392,7 @@ namespace Here.Extensions
             if (option.HasValue)
             {
                 TAggregate aggregate = initialValue;
-                foreach (var item in option.Value)
+                foreach (object item in option.Value)
                     aggregate = aggregator(aggregate, item);
 
                 return aggregate;

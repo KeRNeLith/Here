@@ -22,8 +22,10 @@ namespace Here.Tests.Eithers
             either = optionInt.ToEither(() => "Error");
             CheckRightEither(either, 42);
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => optionInt.ToEither((string)null));
             Assert.Throws<ArgumentNullException>(() => optionInt.ToEither((Func<string>)null));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
 
             // Empty Option
             var emptyOptionInt = Option<int>.None;
@@ -33,8 +35,10 @@ namespace Here.Tests.Eithers
             either = emptyOptionInt.ToEither(() => "Error 2");
             CheckLeftEither(either, "Error 2");
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => emptyOptionInt.ToEither((string)null));
             Assert.Throws<ArgumentNullException>(() => emptyOptionInt.ToEither((Func<string>)null));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
     }
 }

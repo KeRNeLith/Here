@@ -2274,7 +2274,7 @@ namespace Here.Tests.Options
         }
 
         [TestCaseSource(nameof(CreateCastFromIntToDoubleTestCases))]
-        public void CastIntToFloat(Option<int> option, bool mustHaveValue, double expectedValue)
+        public void CastIntToDouble(Option<int> option, bool mustHaveValue, double expectedValue)
         {
             CastTest(() => option.ToDouble(), mustHaveValue, expectedValue);
         }

@@ -47,6 +47,7 @@ namespace Here.Tests.Options
             Assert.AreEqual(1, counter);
             Assert.AreEqual(default(float), res);
 
+            // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => optionInt.If<float>(null));
         }
 
@@ -128,9 +129,11 @@ namespace Here.Tests.Options
             Assert.AreEqual(1, counterIf);
             Assert.AreEqual(1, counterElse);
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => optionInt.IfElse(val => 12.2f, null));
             Assert.Throws<ArgumentNullException>(() => optionInt.IfElse(null, () => 12.2f));
             Assert.Throws<ArgumentNullException>(() => optionInt.IfElse(null, null));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
 
         [Test]
@@ -157,6 +160,7 @@ namespace Here.Tests.Options
                 12.2f));
             Assert.AreEqual(1, counterIf);
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => optionInt.IfOr(null, 1));
             var optionPerson = Option<Person>.Some(new Person("Test"));
             Assert.Throws<ArgumentNullException>(() => optionPerson.IfOr(person => person, null));
@@ -164,6 +168,7 @@ namespace Here.Tests.Options
 
             Assert.Throws<NullResultException>(() => optionPerson.IfOr(person => null, new Person("Test")));
             Assert.DoesNotThrow(() => Option<Person>.None.IfOr(person => null, new Person("Test")));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
 
         [Test]
@@ -194,6 +199,7 @@ namespace Here.Tests.Options
             Assert.AreSame(person, optionPerson.IfOrDefault(p => person));
             Assert.IsNull(Option<Person>.None.IfOrDefault(p => person));
 
+            // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => optionInt.IfOrDefault<int>(null));
         }
 
@@ -221,6 +227,7 @@ namespace Here.Tests.Options
                 42.2f));
             Assert.AreEqual(1, counterElse);
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => optionInt.ElseOr(null, 1));
             var optionPerson = Option<Person>.Some(new Person("Test"));
             Assert.Throws<ArgumentNullException>(() => optionPerson.ElseOr(() => (Person)null, null));
@@ -228,6 +235,7 @@ namespace Here.Tests.Options
 
             Assert.DoesNotThrow(() => optionPerson.ElseOr(() => null, new Person("Test")));
             Assert.Throws<NullResultException>(() => Option<Person>.None.ElseOr(() => null, new Person("Test")));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
 
         [Test]
@@ -258,6 +266,7 @@ namespace Here.Tests.Options
             Assert.IsNull(Option<Person>.None.ElseOrDefault<Person>(() => null));
             Assert.AreSame(person, Option<Person>.None.ElseOrDefault(() => person));
 
+            // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => optionInt.ElseOrDefault<int>(null));
         }
 
@@ -324,6 +333,7 @@ namespace Here.Tests.Options
             optionResultClass = emptyOptionClass.Or(() => Option<TestClass>.None);
             CheckEmptyOption(optionResultClass);
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => optionClass.Or((TestClass)null));
             Assert.Throws<ArgumentNullException>(() => optionClass.Or((Func<TestClass>)null));
             optionResultClass = optionClass.Or(() => null);     // We don't detect the null return of the factory,
@@ -332,6 +342,7 @@ namespace Here.Tests.Options
             Assert.Throws<NullResultException>(() => emptyOptionClass.Or(() => null));
             Assert.Throws<ArgumentNullException>(() => optionInt.Or((Func<Option<int>>)null));
             Assert.Throws<ArgumentNullException>(() => optionInt.Or((Func<Option<int>>)null));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
 
             Assert.AreEqual(null, emptyOptionClass.OrDefault());
         }
@@ -447,11 +458,13 @@ namespace Here.Tests.Options
             Assert.AreEqual(15.2f, emptyOptionClass.Unwrap(value => 25.5f, () => 15.2f));
             Assert.AreEqual(null, emptyOptionClass.Unwrap(value => (TestClass)null, () => null));
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => optionInt.Unwrap(null));
             Assert.Throws<ArgumentNullException>(() => optionInt.Unwrap(null, 12.2f));
             Assert.Throws<ArgumentNullException>(() => optionInt.Unwrap(null, () => 12.2f));
             Assert.Throws<ArgumentNullException>(() => optionInt.Unwrap(val => 12.2f, null));
             Assert.Throws<ArgumentNullException>(() => optionInt.Unwrap((Func<int, float>)null, null));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
 
         [Test]
@@ -493,6 +506,7 @@ namespace Here.Tests.Options
             optionClass = emptyOptionClassLeaf.Cast<TestClass>();
             CheckEmptyOption(optionClass);
 
+            // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => optionInt.Cast<float>(null));
         }
 
@@ -508,6 +522,7 @@ namespace Here.Tests.Options
             Option<int> emptyOptionInt = Option.None;
             Assert.IsFalse(emptyOptionInt.Exists(intValue => intValue == 12));
 
+            // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => optionInt.Exists(null));
         }
 
@@ -527,10 +542,12 @@ namespace Here.Tests.Options
             CheckEmptyOption(emptyOptionInt.NoneIf(intValue => intValue == 42));
             CheckEmptyOption(emptyOptionInt.NoneIf(intValue => intValue > 12, intValue => intValue + 0.5f));
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => optionInt.NoneIf(null));
             Assert.Throws<ArgumentNullException>(() => optionInt.NoneIf(intValue => intValue > 12, (Func<int, float>)null));
             Assert.Throws<ArgumentNullException>(() => optionInt.NoneIf(null, intValue => intValue + 0.5f));
             Assert.Throws<ArgumentNullException>(() => optionInt.NoneIf(null, (Func<int, float>)null));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
     }
 }

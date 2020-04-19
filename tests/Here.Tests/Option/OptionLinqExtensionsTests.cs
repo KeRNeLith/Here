@@ -25,6 +25,7 @@ namespace Here.Tests.Options
             Assert.IsFalse(emptyOptionInt.Any());
             Assert.IsFalse(emptyOptionInt.Any(intValue => intValue == 12));
 
+            // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => optionInt.Any(null));
         }
 
@@ -40,6 +41,7 @@ namespace Here.Tests.Options
             Option<int> emptyOptionInt = Option.None;
             Assert.IsFalse(emptyOptionInt.All(intValue => intValue == 12));
 
+            // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => optionInt.All(null));
         }
 
@@ -95,6 +97,7 @@ namespace Here.Tests.Options
             optionIntResult = emptyOptionClass.Select(obj => obj.TestInt);
             CheckEmptyOption(optionIntResult);
 
+            // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => optionInt.Select((Func<int, int>)null));
         }
 
@@ -114,6 +117,7 @@ namespace Here.Tests.Options
             optionIntResult = emptyOptionInt.Where(intValue => intValue == 1);
             CheckEmptyOption(optionIntResult);
 
+            // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => optionInt.Where(null));
         }
 
@@ -168,9 +172,11 @@ namespace Here.Tests.Options
             Option<int> emptyOptionInt = Option.None;
             Assert.AreEqual(3, emptyOptionInt.Aggregate(3, (intValue, initValue) => intValue + initValue));
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => optionInt.Aggregate(1, null));
             Assert.Throws<ArgumentNullException>(() => optionInt.Aggregate((Person)null, (person, int32) => null));
             Assert.Throws<ArgumentNullException>(() => optionInt.Aggregate((Person)null, null));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
     }
 }

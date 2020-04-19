@@ -32,6 +32,7 @@ namespace Here.Tests.Options
             optionString = dictionaryStringString.TryGetValue(null);
             CheckEmptyOption(optionString);
 
+            // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => ((IDictionary<string, object>)null).TryGetValue("2"));
 
@@ -53,6 +54,7 @@ namespace Here.Tests.Options
             optionString = readonlyDictionaryStringString.TryGetReadonlyValue(null);
             CheckEmptyOption(optionString);
 
+            // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => ((IReadOnlyDictionary<string, object>)null).TryGetReadonlyValue("2"));
 #endif
@@ -81,6 +83,7 @@ namespace Here.Tests.Options
             optionString = dictionaryStringObject.TryGetValue<string, string>(null);
             CheckEmptyOption(optionString);
 
+            // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => ((IDictionary<string, object>)null).TryGetValue<string, string>("2"));
 
@@ -105,6 +108,7 @@ namespace Here.Tests.Options
             optionString = readonlyDictionaryStringObject.TryGetReadonlyValue<string, string>(null);
             CheckEmptyOption(optionString);
 
+            // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
             // ReSharper disable once AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => ((IReadOnlyDictionary<string, object>)null).TryGetReadonlyValue<string, string>("2"));
 #endif

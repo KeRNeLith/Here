@@ -57,7 +57,7 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
         /// <exception cref="InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state without providing a <paramref name="none"/> action.</exception>
-        [PublicAPI, Pure]
+        [PublicAPI]
         public Unit Match(
             [NotNull, InstantHandle] in Action<TRight> onRight,
             [NotNull, InstantHandle] in Action<TLeft> onLeft,

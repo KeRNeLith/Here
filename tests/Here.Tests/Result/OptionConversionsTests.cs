@@ -103,8 +103,10 @@ namespace Here.Tests.Results
             result = emptyOptionInt.ToCustomResult(() => customErrorObject, "Empty emptyOptionInt");
             CheckResultFail(result, "Empty emptyOptionInt", customErrorObject);
             
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => optionInt.ToCustomResult((CustomErrorTest)null, "Useless"));
             Assert.Throws<ArgumentNullException>(() => optionInt.ToCustomResult((Func<CustomErrorTest>)null, "Useless"));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
 
         [Test]
@@ -139,8 +141,10 @@ namespace Here.Tests.Results
             result = emptyOptionInt.ToValueCustomResult(() => customErrorObject, "Empty emptyOptionInt");
             CheckResultFail(result, "Empty emptyOptionInt", customErrorObject);
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => optionInt.ToValueCustomResult((CustomErrorTest)null, "Useless"));
             Assert.Throws<ArgumentNullException>(() => optionInt.ToValueCustomResult((Func<CustomErrorTest>)null, "Useless"));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using JetBrains.Annotations;
-using NUnit.Framework;
-
-namespace Here.Tests.Results
+﻿namespace Here.Tests.Results
 {
     /// <summary>
     /// Base class for <see cref="Result"/>, <see cref="Result{T}"/>, <see cref="CustomResult{TError}"/> and <see cref="Result{T, TError}"/> tests.

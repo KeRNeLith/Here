@@ -38,7 +38,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(enumerable, nameof(enumerable));
             Throw.IfArgumentNull(predicate, nameof(predicate));
 
-            foreach (var item in enumerable)
+            foreach (T item in enumerable)
             {
                 if (predicate(item))
                     return item;
@@ -62,7 +62,7 @@ namespace Here.Extensions
         {
             Throw.IfArgumentNull(enumerable, nameof(enumerable));
 
-            using (var enumerator = enumerable.GetEnumerator())
+            using (IEnumerator<T> enumerator = enumerable.GetEnumerator())
             {
                 if (enumerator.MoveNext())
                 {
@@ -95,7 +95,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(enumerable, nameof(enumerable));
             Throw.IfArgumentNull(predicate, nameof(predicate));
 
-            using (var enumerator = enumerable.GetEnumerator())
+            using (IEnumerator<T> enumerator = enumerable.GetEnumerator())
             {
                 while (enumerator.MoveNext())
                 {
@@ -151,7 +151,7 @@ namespace Here.Extensions
             T matchedItem = default;
             bool match = false;
 
-            foreach (var item in enumerable)
+            foreach (T item in enumerable)
             {
                 if (predicate(item))
                 {
@@ -186,14 +186,14 @@ namespace Here.Extensions
                 }
                 else
                 {
-                    using (var enumerator = enumerable.GetEnumerator())
+                    using (IEnumerator<T> enumerator = enumerable.GetEnumerator())
                     {
                         while (enumerator.MoveNext())
                         {
                             if (index == 0)
                                 return enumerator.Current;
 
-                            index--;
+                            --index;
                         }
                     }
                 }
@@ -240,7 +240,7 @@ namespace Here.Extensions
         {
             Throw.IfArgumentNull(enumerable, nameof(enumerable));
 
-            foreach (var option in enumerable)
+            foreach (Option<T> option in enumerable)
             {
                 if (option.HasValue)
                     yield return option.Value;

@@ -50,7 +50,7 @@ namespace Here.Extensions
         {
             Throw.IfArgumentNull(dictionary, nameof(dictionary));
 
-            var objectValue = dictionary.TryGetValue(key);
+            Option<object> objectValue = dictionary.TryGetValue(key);
             if (objectValue.HasValue && objectValue.Value is TValue expectedValue)
                 return Option<TValue>.Some(expectedValue);
             return Option<TValue>.None;
@@ -88,7 +88,7 @@ namespace Here.Extensions
         {
             Throw.IfArgumentNull(dictionary, nameof(dictionary));
 
-            var objectValue = dictionary.TryGetReadonlyValue(key);
+            Option<object> objectValue = dictionary.TryGetReadonlyValue(key);
             if (objectValue.HasValue && objectValue.Value is TValue expectedValue)
                 return Option<TValue>.Some(expectedValue);
             return Option<TValue>.None;

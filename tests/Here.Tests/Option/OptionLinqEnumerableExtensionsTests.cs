@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
 using Here.Extensions;
+using JetBrains.Annotations;
 using static Here.Tests.Options.OptionTestHelpers;
 
 namespace Here.Tests.Options
@@ -15,6 +16,7 @@ namespace Here.Tests.Options
     {
         #region Test property
 
+        [NotNull, ItemNotNull]
         private IEnumerable Items
         {
             get
@@ -88,9 +90,11 @@ namespace Here.Tests.Options
             Assert.IsFalse(emptyOption.AnyItem((int value) => true));
 
             // ReSharper disable AssignNullToNotNullAttribute
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.AnyItem(null));
             Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.AnyItem((Predicate<int>)null));
             // ReSharper restore AssignNullToNotNullAttribute
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
 
         [Test]
@@ -148,10 +152,12 @@ namespace Here.Tests.Options
             Assert.IsFalse(emptyOption.AllItems(value => true));
             Assert.IsFalse(emptyOption.AllItems((int value) => true));
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             // ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.AllItems(null));
             Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.AllItems((Predicate<int>)null));
             // ReSharper restore AssignNullToNotNullAttribute
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
 
         [Test]
@@ -226,8 +232,10 @@ namespace Here.Tests.Options
             Assert.IsFalse(emptyOption.ContainsItem(testObject1));
             Assert.IsFalse(emptyOption.ContainsItem(testObject2, EqualityComparer<TestClass>.Default));
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => optionEnumerableTestClasses.ContainsItem<IEnumerable<TestClass>, TestClass>(null, null));
             Assert.Throws<ArgumentNullException>(() => optionEnumerable.ContainsItem(null, null));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
 
         [Test]
@@ -318,8 +326,10 @@ namespace Here.Tests.Options
             CheckEmptyOption(emptyOption.SelectItems(selectFromObject));
             CheckEmptyOption(emptyOption.SelectItems(selectFromInt));
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.SelectItems((Func<object, int>)null));
             Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.SelectItems((Func<int, int>)null));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
 
         [Test]
@@ -377,10 +387,12 @@ namespace Here.Tests.Options
             CheckEmptyOption(emptyOption.WhereItems(item => true));
             CheckEmptyOption(emptyOption.WhereItems((int value) => value > 1));
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             // ReSharper disable AssignNullToNotNullAttribute
             Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.WhereItems(null));
             Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.WhereItems((Predicate<int>)null));
             // ReSharper restore AssignNullToNotNullAttribute
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
 
         [Test]
@@ -518,12 +530,14 @@ namespace Here.Tests.Options
             Assert.AreEqual(1, emptyOption.AggregateItems(1, (acc, cur) => accumulatorFromObject(acc, cur)));
             Assert.AreEqual(1, emptyOption.AggregateItems(1, (int acc, int cur) => accumulatorFromInt(acc, cur)));
 
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.AggregateItems(1, null));
             Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.AggregateItems((Person)null, (acc, cur) => null));
             Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.AggregateItems((Person)null, null));
             Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.AggregateItems<IEnumerable<int>, int, float>(1.0f, null));
             Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.AggregateItems(null, (Person acc, int cur) => null));
             Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.AggregateItems<IEnumerable<int>, int, Person>(null, null));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }
     }
 }
