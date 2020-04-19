@@ -225,13 +225,10 @@ namespace Here.Extensions
 
             if (option.HasValue)
             {
-                var result = new List<TItemOut>();
-                foreach (object item in option.Value)
-                    result.Add(selector(item));
-
-                // At least one match
-                if (result.Count > 0)
-                    return result;
+                return option.Value
+                    .Cast<object>()
+                    .Select(selector)
+                    .ToOption();
             }
 
             return Option<IEnumerable<TItemOut>>.None;
@@ -254,12 +251,111 @@ namespace Here.Extensions
             Throw.IfArgumentNull(selector, nameof(selector));
 
             if (option.HasValue)
+                return option.Value.Select(selector).ToOption();
+            return Option<IEnumerable<TItemOut>>.None;
+        }
+
+        /// <summary>
+        /// Selects via the <paramref name="selector"/> something from each element of this <see cref="Option{T}"/> wrapped enumerable if it has value and returns selected items.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Option{T}"/>.</typeparam>
+        /// <typeparam name="TItemOut">Enumerable item output type.</typeparam>
+        /// <param name="option"><see cref="Option{T}"/> on which performing the selection.</param>
+        /// <param name="selector">Method called to select the value from this <see cref="Option{T}"/> enumerable items.</param>
+        /// <returns>A <see cref="Option{T}"/> with selected items.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="selector"/> is null.</exception>
+        [PublicAPI, Pure]
+        public static Option<IEnumerable<TItemOut>> SelectManyItems<T, TItemOut>(in this Option<T> option, [NotNull, InstantHandle] in Func<object, IEnumerable<TItemOut>> selector)
+            where T : IEnumerable
+        {
+            Throw.IfArgumentNull(selector, nameof(selector));
+
+            if (option.HasValue)
             {
-                TItemOut[] selectedItems = option.Value.Select(selector).ToArray();
-                if (selectedItems.Length > 0)
-                    return selectedItems;
+                return option.Value
+                    .Cast<object>()
+                    .SelectMany(selector)
+                    .ToOption();
             }
 
+            return Option<IEnumerable<TItemOut>>.None;
+        }
+
+        /// <summary>
+        /// Selects via the <paramref name="selector"/> something from each element of this <see cref="Option{T}"/> wrapped enumerable if it has value and returns selected items.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Option{T}"/>.</typeparam>
+        /// <typeparam name="TItemIn">Enumerable item input type.</typeparam>
+        /// <typeparam name="TItemOut">Enumerable item output type.</typeparam>
+        /// <param name="option"><see cref="Option{T}"/> on which performing the selection.</param>
+        /// <param name="selector">Method called to select the value from this <see cref="Option{T}"/> enumerable items.</param>
+        /// <returns>A <see cref="Option{T}"/> with selected items.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="selector"/> is null.</exception>
+        [PublicAPI, Pure]
+        public static Option<IEnumerable<TItemOut>> SelectManyItems<T, TItemIn, TItemOut>(in this Option<T> option, [NotNull, InstantHandle] in Func<TItemIn, IEnumerable<TItemOut>> selector)
+            where T : IEnumerable<TItemIn>
+        {
+            Throw.IfArgumentNull(selector, nameof(selector));
+
+            if (option.HasValue)
+                return option.Value.SelectMany(selector).ToOption();
+            return Option<IEnumerable<TItemOut>>.None;
+        }
+
+        /// <summary>
+        /// Projects each element of this <see cref="Option{T}"/> wrapped enumerable to an <see cref="IEnumerable{TItemCollection}"/>
+        /// via <paramref name="collectionSelector"/>, and flattens the resulting sequences into one sequence using <paramref name="resultSelector"/>.
+        /// Does this only if the <paramref name="option"/> has value, otherwise returns an empty <see cref="Option{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Option{T}"/>.</typeparam>
+        /// <typeparam name="TItemCollection">Enumerable intermediate item type.</typeparam>
+        /// <typeparam name="TItemOut">Enumerable item output type.</typeparam>
+        /// <param name="option"><see cref="Option{T}"/> on which performing the selection.</param>
+        /// <param name="collectionSelector">Method called to select the intermediate value from this <see cref="Option{T}"/> enumerable items.</param>
+        /// <param name="resultSelector">Method called to select the result value from intermediate items.</param>
+        /// <returns>A <see cref="Option{T}"/> with selected items.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="collectionSelector"/> or <paramref name="resultSelector"/> is null.</exception>
+        [PublicAPI, Pure]
+        public static Option<IEnumerable<TItemOut>> SelectManyItems<T, TItemCollection, TItemOut>(
+            in this Option<T> option,
+            [NotNull, InstantHandle] in Func<object, IEnumerable<TItemCollection>> collectionSelector,
+            [NotNull, InstantHandle] in Func<object, TItemCollection, TItemOut> resultSelector)
+            where T : IEnumerable
+        {
+            Throw.IfArgumentNull(collectionSelector, nameof(collectionSelector));
+            Throw.IfArgumentNull(resultSelector, nameof(resultSelector));
+
+            if (option.HasValue)
+                return option.Value.Cast<object>().SelectMany(collectionSelector, resultSelector).ToOption();
+            return Option<IEnumerable<TItemOut>>.None;
+        }
+
+        /// <summary>
+        /// Projects each element of this <see cref="Option{T}"/> wrapped enumerable to an <see cref="IEnumerable{TItemCollection}"/>
+        /// via <paramref name="collectionSelector"/>, and flattens the resulting sequences into one sequence using <paramref name="resultSelector"/>.
+        /// Does this only if the <paramref name="option"/> has value, otherwise returns an empty <see cref="Option{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the value embedded in this <see cref="Option{T}"/>.</typeparam>
+        /// <typeparam name="TItemIn">Enumerable item input type.</typeparam>
+        /// <typeparam name="TItemCollection">Enumerable intermediate item type.</typeparam>
+        /// <typeparam name="TItemOut">Enumerable item output type.</typeparam>
+        /// <param name="option"><see cref="Option{T}"/> on which performing the selection.</param>
+        /// <param name="collectionSelector">Method called to select the intermediate value from this <see cref="Option{T}"/> enumerable items.</param>
+        /// <param name="resultSelector">Method called to select the result value from intermediate items.</param>
+        /// <returns>A <see cref="Option{T}"/> with selected items.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="collectionSelector"/> or <paramref name="resultSelector"/> is null.</exception>
+        [PublicAPI, Pure]
+        public static Option<IEnumerable<TItemOut>> SelectManyItems<T, TItemIn, TItemCollection, TItemOut>(
+            in this Option<T> option,
+            [NotNull, InstantHandle] in Func<TItemIn, IEnumerable<TItemCollection>> collectionSelector,
+            [NotNull, InstantHandle] in Func<TItemIn, TItemCollection, TItemOut> resultSelector)
+            where T : IEnumerable<TItemIn>
+        {
+            Throw.IfArgumentNull(collectionSelector, nameof(collectionSelector));
+            Throw.IfArgumentNull(resultSelector, nameof(resultSelector));
+
+            if (option.HasValue)
+                return option.Value.SelectMany(collectionSelector, resultSelector).ToOption();
             return Option<IEnumerable<TItemOut>>.None;
         }
 
@@ -278,20 +374,21 @@ namespace Here.Extensions
             Throw.IfArgumentNull(predicate, nameof(predicate));
 
             if (option.HasValue)
-            {
-                var result = new List<object>();
-                foreach (object item in option.Value)
-                {
-                    if (predicate(item))
-                        result.Add(item);
-                }
+                return GetMatchingItems(option.Value, predicate).ToOption();
+            return Option<IEnumerable>.None;
 
-                // At least one match
-                if (result.Count > 0)
-                    return result;
+            #region Local function
+
+            IEnumerable GetMatchingItems(IEnumerable enumerable, Predicate<object> condition)
+            {
+                foreach (object item in enumerable)
+                {
+                    if (condition(item))
+                        yield return item;
+                }
             }
 
-            return Option<IEnumerable>.None;
+            #endregion
         }
 
         /// <summary>
@@ -311,10 +408,9 @@ namespace Here.Extensions
 
             if (option.HasValue)
             {
-                TItem[] matchingItems = option.Value.Where(item => predicate(item)).ToArray();
-                // At least one match
-                if (matchingItems.Length > 0)
-                    return matchingItems;
+                return option.Value
+                    .Where(item => predicate(item))
+                    .ToOption();
             }
 
             return Option<IEnumerable<TItem>>.None;

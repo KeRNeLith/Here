@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using Here.Extensions;
 using JetBrains.Annotations;
@@ -263,8 +264,8 @@ namespace Here.Tests.Options
             // Not empty option
             // Enumerable<int>
             var optionEnumerableInts = Option<IEnumerable<int>>.Some(emptyEnumerable);
-            CheckEmptyOption(optionEnumerableInts.SelectItems(selectFromObject));
-            CheckEmptyOption(optionEnumerableInts.SelectItems(selectFromInt));
+            CheckOptionValue(optionEnumerableInts.SelectItems(selectFromObject), Enumerable.Empty<float>());
+            CheckOptionValue(optionEnumerableInts.SelectItems(selectFromInt), Enumerable.Empty<float>());
 
             optionEnumerableInts = Option<IEnumerable<int>>.Some(enumerableInts);
             CheckOptionCollectionValue(optionEnumerableInts.SelectItems(
@@ -333,6 +334,254 @@ namespace Here.Tests.Options
         }
 
         [Test]
+        public void OptionSelectManyItems()
+        {
+            Func<object, IEnumerable<float>> selectFromObject = value =>
+            {
+                if (value is int i)
+                    return new[] { i + 0.1f, i + 0.2f };
+                return new[]{ 0.5f, 0.6f };
+            };
+
+            Func<int, IEnumerable<float>> selectFromInt = value => new[] { value + 0.5f, value + 0.6f };
+
+            IEnumerable<int> emptyEnumerable = new List<int>();
+            IEnumerable<int> enumerableInts = new List<int> { 3, 4, 5 };
+            IList<int> listInts = new List<int> { 4, 5, 6 };
+            IDictionary<string, int> dictionaryStringsInts = new Dictionary<string, int>
+            {
+                ["3"] = 3,
+                ["4"] = 4,
+                ["5"] = 5
+            };
+
+            // Not empty option
+            // Enumerable<int>
+            var optionEnumerableInts = Option<IEnumerable<int>>.Some(emptyEnumerable);
+            CheckOptionValue(optionEnumerableInts.SelectManyItems(selectFromObject), Enumerable.Empty<float>());
+            CheckOptionValue(optionEnumerableInts.SelectManyItems(selectFromInt), Enumerable.Empty<float>());
+
+            optionEnumerableInts = Option<IEnumerable<int>>.Some(enumerableInts);
+            CheckOptionCollectionValue(
+                optionEnumerableInts.SelectManyItems(selectFromObject),
+                new[] { 3.1f, 3.2f, 4.1f, 4.2f, 5.1f, 5.2f });
+            CheckOptionCollectionValue(
+                optionEnumerableInts.SelectManyItems(selectFromInt),
+                new[] { 3.5f, 3.6f, 4.5f, 4.6f, 5.5f, 5.6f });
+
+            // List<int>
+            var optionListInts = Option<IList<int>>.Some(listInts);
+            CheckOptionCollectionValue(
+                optionListInts.SelectManyItems(selectFromObject),
+                new[] { 4.1f, 4.2f, 5.1f, 5.2f, 6.1f, 6.2f });
+            CheckOptionCollectionValue(
+                optionListInts.SelectManyItems(selectFromInt),
+                new[] { 4.5f, 4.6f, 5.5f, 5.6f, 6.5f, 6.6f });
+
+            // Dictionary<string, int>
+            var optionStringsInts = Option<IDictionary<string, int>>.Some(dictionaryStringsInts);
+            CheckOptionCollectionValue(optionStringsInts.SelectManyItems(
+                 value =>
+                 {
+                     if (value is KeyValuePair<string, int> pair)
+                         return new[] { pair.Value + 0.2f, pair.Value + 0.3f };
+                     return new[] { 0.4f, 0.5f };
+                 }),
+                 new[] { 3.2f, 3.3f, 4.2f, 4.3f, 5.2f, 5.3f });
+            CheckOptionCollectionValue(optionStringsInts.SelectManyItems(
+                (KeyValuePair<string, int> pair) =>
+                {
+                    return new[] { pair.Value + 0.3f, pair.Value + 0.4f };
+                }),
+                new[] { 3.3f, 3.4f, 4.3f, 4.4f, 5.3f, 5.4f });
+
+            // Enumerable
+            var optionEnumerable = Option<IEnumerable>.Some(Items);
+            CheckOptionCollectionValue(optionEnumerable.SelectManyItems(
+                 value =>
+                 {
+                     if (value is int i)
+                         return new[] { i + 1, i + 2 };
+                     return new[] { 42, 45 };
+                 }),
+                 new[] { 2, 3, 42, 45, 42, 45 });
+
+            optionEnumerable = Option<IEnumerable>.Some(listInts);
+            CheckOptionCollectionValue(optionEnumerable.SelectManyItems(
+                  value =>
+                  {
+                      if (value is int i)
+                          return new[] { i + 1, i + 2 };
+                      return new[] { 42, 45 };
+                  }),
+                  new[] { 5, 6, 6, 7, 7, 8 });
+
+            // Empty option
+            var emptyOption = Option<IList<int>>.None;
+            CheckEmptyOption(emptyOption.SelectManyItems(selectFromObject));
+            CheckEmptyOption(emptyOption.SelectManyItems(selectFromInt));
+
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
+            Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.SelectManyItems((Func<object, IEnumerable<int>>)null));
+            Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.SelectManyItems((Func<int, IEnumerable<int>>)null));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
+        }
+
+        [Test]
+        public void OptionSelectManyItems2()
+        {
+            Func<object, IEnumerable<float>> selectFromObject = value =>
+            {
+                if (value is int i)
+                    return new[] { i, i + 1.0f };
+                return new[] { -0.5f, -0.6f };
+            };
+
+            Func<int, IEnumerable<float>> selectFromInt = value => new[] { value, value + 1.0f };
+
+            IEnumerable<int> emptyEnumerable = new List<int>();
+            IEnumerable<int> enumerableInts = new List<int> { 3, 4, 5 };
+            IList<int> listInts = new List<int> { 4, 5, 6 };
+            IDictionary<string, int> dictionaryStringsInts = new Dictionary<string, int>
+            {
+                ["3"] = 3,
+                ["4"] = 4,
+                ["5"] = 5
+            };
+
+            // Not empty option
+            // Enumerable<int>
+            var optionEnumerableInts = Option<IEnumerable<int>>.Some(emptyEnumerable);
+            CheckOptionValue(
+                optionEnumerableInts.SelectManyItems(
+                    selectFromObject,
+                    (value, intermediate) =>
+                    {
+                        if (value is int i)
+                            return i * intermediate;
+                        return -1.0f;
+                    }),
+                Enumerable.Empty<float>());
+            CheckOptionValue(
+                optionEnumerableInts.SelectManyItems(
+                    selectFromInt,
+                    (value, intermediate) => value * intermediate),
+                Enumerable.Empty<float>());
+
+            optionEnumerableInts = Option<IEnumerable<int>>.Some(enumerableInts);
+            CheckOptionCollectionValue(
+                optionEnumerableInts.SelectManyItems(
+                    selectFromObject,
+                    (value, intermediate) =>
+                    {
+                        if (value is int i)
+                            return i * intermediate;
+                        return -1.0f;
+                    }),
+                new[] { 9.0f, 12.0f, 16.0f, 20.0f, 25.0f, 30.0f });
+            CheckOptionCollectionValue(
+                optionEnumerableInts.SelectManyItems(
+                    selectFromInt,
+                    (value, intermediate) => value * intermediate),
+                new[] { 9.0f, 12.0f, 16.0f, 20.0f, 25.0f, 30.0f });
+
+            // List<int>
+            var optionListInts = Option<IList<int>>.Some(listInts);
+            CheckOptionCollectionValue(
+                optionListInts.SelectManyItems(
+                    selectFromObject,
+                    (value, intermediate) =>
+                    {
+                        if (value is int i)
+                            return i * intermediate;
+                        return -1.0f;
+                    }),
+                new[] { 16.0f, 20.0f, 25.0f, 30.0f, 36.0f, 42.0f });
+            CheckOptionCollectionValue(optionListInts.SelectManyItems(
+                selectFromInt,
+                (value, intermediate) => value * intermediate),
+                new[] { 16.0f, 20.0f, 25.0f, 30.0f, 36.0f, 42.0f });
+
+            // Dictionary<string, int>
+            var optionStringsInts = Option<IDictionary<string, int>>.Some(dictionaryStringsInts);
+            CheckOptionCollectionValue(
+                optionStringsInts.SelectManyItems(
+                    value =>
+                    {
+                        if (value is KeyValuePair<string, int> pair)
+                            return new[] { pair.Value, pair.Value + 1.0f };
+                        return new[] { 0.4f, 0.5f };
+                    },
+                    (value, intermediate) =>
+                    {
+                        if (value is KeyValuePair<string, int> pair)
+                            return pair.Value * intermediate;
+                        return -1.0f;
+                    }),
+                 new[] { 9.0f, 12.0f, 16.0f, 20.0f, 25.0f, 30.0f });
+            CheckOptionCollectionValue(
+                optionStringsInts.SelectManyItems(
+                    (KeyValuePair<string, int> pair) =>
+                    {
+                        return new[] { pair.Value, pair.Value + 1.0f };
+                    },
+                    (pair, intermediate) => pair.Value * intermediate),
+                new[] { 9.0f, 12.0f, 16.0f, 20.0f, 25.0f, 30.0f });
+
+            // Enumerable
+            var optionEnumerable = Option<IEnumerable>.Some(Items);
+            CheckOptionCollectionValue(
+                optionEnumerable.SelectManyItems(
+                    value =>
+                    {
+                        if (value is int i)
+                            return new[] { i, i + 1 };
+                        return new[] { -1, -2 };
+                    },
+                    (value, intermediate) =>
+                    {
+                        if (value is int i)
+                            return i * intermediate;
+                        return -1.0f;
+                    }),
+                 new[] { 1.0f, 2.0f, -1.0f, -1.0f, -1.0f, -1.0f });
+
+            optionEnumerable = Option<IEnumerable>.Some(listInts);
+            CheckOptionCollectionValue(
+                optionEnumerable.SelectManyItems(
+                    value =>
+                    {
+                        if (value is int i)
+                            return new[] { i, i + 1 };
+                        return new[] { -1, -2 };
+                    },
+                    (value, intermediate) =>
+                    {
+                        if (value is int i)
+                            return i * intermediate;
+                        return -1.0f;
+                    }),
+                new[] { 16.0f, 20.0f, 25.0f, 30.0f, 36.0f, 42.0f });
+
+            // Empty option
+            var emptyOption = Option<IList<int>>.None;
+            CheckEmptyOption(emptyOption.SelectManyItems(selectFromObject, (value, intermediate) => intermediate));
+            CheckEmptyOption(emptyOption.SelectManyItems(selectFromInt, (value, intermediate) => intermediate));
+
+            // Cannot test this in NET20 and NET30 due to NUnit package
+#if SUPPORTS_SYSTEM_DELEGATES
+            // ReSharper disable ReturnValueOfPureMethodIsNotUsed
+            Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.SelectManyItems(i => new[] { 1, 2 }, (Func<object, int, int>)null));
+            Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.SelectManyItems((Func<object, IEnumerable<int>>)null, (v, intermediate) => intermediate));
+            Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.SelectManyItems(null, (Func<object, int, int>)null));
+            Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.SelectManyItems(i => new[] { i }, (Func<int, int, int>)null));
+            Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.SelectManyItems((Func<int, IEnumerable<int>>)null, (i, intermediate) => i + intermediate));
+            Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.SelectManyItems(null, (Func<int, int, int>)null));
+            // ReSharper restore ReturnValueOfPureMethodIsNotUsed
+#endif
+        }
+
+        [Test]
         public void OptionWhereItems()
         {
             IEnumerable<int> emptyEnumerable = new List<int>();
@@ -348,21 +597,21 @@ namespace Here.Tests.Options
             // Not empty option
             // Enumerable<int>
             var optionEnumerableInts = Option<IEnumerable<int>>.Some(emptyEnumerable);
-            CheckEmptyOption(optionEnumerableInts.WhereItems(value => true));
-            CheckEmptyOption(optionEnumerableInts.WhereItems((int value) => true));
+            CheckOptionValue(optionEnumerableInts.WhereItems(value => true), Enumerable.Empty<int>());
+            CheckOptionValue(optionEnumerableInts.WhereItems((int value) => true), Enumerable.Empty<int>());
 
             optionEnumerableInts = Option<IEnumerable<int>>.Some(enumerableInts);
             CheckOptionCollectionValue(optionEnumerableInts.WhereItems(value => (int)value >= 3), new[] { 3, 4, 5 });
             CheckOptionCollectionValue(optionEnumerableInts.WhereItems((int value) => value >= 4), new[] { 4, 5 });
-            CheckEmptyOption(optionEnumerableInts.WhereItems(value => (int)value >= 6));
-            CheckEmptyOption(optionEnumerableInts.WhereItems((int value) => value >= 7));
+            CheckOptionValue(optionEnumerableInts.WhereItems(value => (int)value >= 6), Enumerable.Empty<int>());
+            CheckOptionValue(optionEnumerableInts.WhereItems((int value) => value >= 7), Enumerable.Empty<int>());
 
             // List<int>
             var optionListInts = Option<IList<int>>.Some(listInts);
             CheckOptionCollectionValue(optionListInts.WhereItems(value => (int)value >= 3), new[] { 3, 4, 5, 6 });
             CheckOptionCollectionValue(optionListInts.WhereItems((int value) => value >= 4), new[] { 4, 5, 6 });
-            CheckEmptyOption(optionListInts.WhereItems(value => (int)value > 6));
-            CheckEmptyOption(optionListInts.WhereItems((int value) => value >= 7));
+            CheckOptionValue(optionListInts.WhereItems(value => (int)value > 6), Enumerable.Empty<int>());
+            CheckOptionValue(optionListInts.WhereItems((int value) => value >= 7), Enumerable.Empty<int>());
 
             // Dictionary<string, int>
             var optionStringsInts = Option<IDictionary<string, int>>.Some(dictionaryStringsInts);
@@ -372,8 +621,10 @@ namespace Here.Tests.Options
             CheckOptionDictionaryValue(
                 optionStringsInts.WhereItems((KeyValuePair<string, int> pair) => pair.Value >= 4),
                 new Dictionary<string, int> { ["4"] = 4, ["5"] = 5 });
-            CheckEmptyOption(optionStringsInts.WhereItems(pair => false));
-            CheckEmptyOption(optionStringsInts.WhereItems((KeyValuePair<string, int> pair) => pair.Value >= 7));
+            CheckOptionValue(optionStringsInts.WhereItems(pair => false), Enumerable.Empty<object>());
+            CheckOptionValue(optionStringsInts.WhereItems(
+                (KeyValuePair<string, int> pair) => pair.Value >= 7),
+                Enumerable.Empty<KeyValuePair<string, int>>());
 
             // Enumerable
             var optionEnumerable = Option<IEnumerable>.Some(Items);
