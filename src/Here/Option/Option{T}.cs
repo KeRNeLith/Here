@@ -16,7 +16,7 @@ namespace Here
 #if SUPPORTS_SERIALIZATION
     [Serializable]
 #endif
-    [DebuggerDisplay("{" + nameof(HasValue) + " ? \"Value = \" + " + nameof(Value) + " : \"No value\"}")]
+    [DebuggerDisplay("{" + nameof(HasValue) + " ? \"Value = \" + " + nameof(_value) + " : \"No value\"}")]
     public readonly partial struct Option<T>
         : IEquatable<T>
         , IEquatable<Option<T>>
@@ -47,7 +47,6 @@ namespace Here
         /// <summary>
         /// Option value.
         /// </summary>
-        [CanBeNull]
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         // ReSharper disable once InconsistentNaming
         internal readonly T _value;
@@ -63,7 +62,6 @@ namespace Here
             {
                 if (HasNoValue)
                     throw new InvalidOperationException("Trying to get the value while there is none.");
-                // ReSharper disable once AssignNullToNotNullAttribute, Justification: Here the option has a value.
                 return _value;
             }
         }
@@ -319,8 +317,7 @@ namespace Here
         /// Gets an enumerator of this <see cref="Option{T}"/> giving the wrapped <see cref="Value"/> if there is one.
         /// </summary>
         /// <returns>An <see cref="IEnumerator{T}"/> for this <see cref="Option{T}"/>.</returns>
-        [Pure]
-        [NotNull]
+        [PublicAPI, Pure, NotNull]
         public IEnumerator<T> GetEnumerator()
         {
             if (HasValue)
@@ -354,7 +351,7 @@ namespace Here
         {
             if (HasNoValue)
                 return "None";
-            return Value.ToString();
+            return _value.ToString();
         }
     }
 }

@@ -212,7 +212,7 @@ namespace Here.Extensions
         public static IEnumerable<T> ToEnumerable<T>(this Option<T> option)
         {
             if (option.HasValue)
-                yield return option.Value;
+                yield return option._value;
         }
 
         /// <summary>
@@ -224,8 +224,7 @@ namespace Here.Extensions
         [PublicAPI, Pure, NotNull]
         public static IEnumerator<T> ToEnumerator<T>(this Option<T> option)
         {
-            if (option.HasValue)
-                yield return option.Value;
+            return option.GetEnumerator();
         }
 
         /// <summary>
@@ -243,7 +242,7 @@ namespace Here.Extensions
             foreach (Option<T> option in enumerable)
             {
                 if (option.HasValue)
-                    yield return option.Value;
+                    yield return option._value;
             }
         }
 

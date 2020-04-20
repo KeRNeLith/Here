@@ -60,7 +60,7 @@ namespace Here.Extensions
         public static bool Contains<T>(in this Option<T> option, [CanBeNull] in T value)
         {
             if (option.HasValue)
-                return EqualityComparer<T>.Default.Equals(option.Value, value);
+                return EqualityComparer<T>.Default.Equals(option._value, value);
             return false;
         }
 
@@ -79,7 +79,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(selector, nameof(selector));
 
             if (option.HasValue)
-                return selector(option.Value);
+                return selector(option._value);
             return Option<TOut>.None;
         }
 
@@ -113,7 +113,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(doAction, nameof(doAction));
 
             if (option.HasValue)
-                doAction(option.Value);
+                doAction(option._value);
             return Unit.Default;
         }
 
@@ -139,7 +139,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(aggregator, nameof(aggregator));
 
             if (option.HasValue)
-                return aggregator(initialValue, option.Value);
+                return aggregator(initialValue, option._value);
             return initialValue;
         }
     }

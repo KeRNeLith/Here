@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using JetBrains.Annotations;
 
 namespace Here.Extensions
@@ -248,7 +248,7 @@ namespace Here.Extensions
 
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return onFailure(result);
-            return valueFactory(result.Value);
+            return valueFactory(result._value);
         }
 
         #endregion
@@ -574,7 +574,7 @@ namespace Here.Extensions
 
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return onFailure(result);
-            return valueFactory(result.Value);
+            return valueFactory(result._value);
         }
 
         #endregion

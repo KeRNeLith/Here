@@ -61,7 +61,6 @@ namespace Here
             {
                 if (!IsSuccess)
                     throw new InvalidOperationException("Cannot get the value of a failed Result.");
-
                 return _value;
             }
         }
@@ -437,7 +436,7 @@ namespace Here
             {
                 if (_value is IComparable comparable)
                     return comparable.CompareTo(other._value);
-                else if (_value is IComparable<T> comparableT)
+                if (_value is IComparable<T> comparableT)
                     return comparableT.CompareTo(other._value);
             }
 

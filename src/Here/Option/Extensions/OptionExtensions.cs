@@ -49,7 +49,7 @@ namespace Here.Extensions
             where T : struct
         {
             return option.HasValue
-                ? option.Value
+                ? option._value
                 : new T?();
         }
 
@@ -61,7 +61,7 @@ namespace Here.Extensions
         [PublicAPI, Pure]
         public static Option<T> Flatten<T>(in this Option<Option<T>> embeddedOption)
         {
-            return embeddedOption.HasValue ? embeddedOption.Value : Option<T>.None;
+            return embeddedOption.HasValue ? embeddedOption._value : Option<T>.None;
         }
 
         /// <summary>

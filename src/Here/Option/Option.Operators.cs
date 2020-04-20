@@ -24,7 +24,7 @@ namespace Here
             where TOut : class
         {
             if (HasValue)
-                return Value as TOut;
+                return _value as TOut;
             return Option<TOut>.None;
         }
 

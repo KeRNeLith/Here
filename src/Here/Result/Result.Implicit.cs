@@ -101,7 +101,7 @@ namespace Here
         public static implicit operator Result<T>(in Result<T, TError> result)
         {
             return new Result<T>(
-                result.IsSuccess ? result.Value : default,
+                result._value,
                 ResultLogic.ToResultLogic(result.Logic));
         }
 

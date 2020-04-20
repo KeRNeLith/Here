@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using JetBrains.Annotations;
 
 namespace Here.Extensions
@@ -96,7 +96,7 @@ namespace Here.Extensions
         public static T Unwrap<T>(in this Result<T> result, [CanBeNull] in T defaultValue = default)
         {
             if (result.IsSuccess)
-                return result.Value;
+                return result._value;
             return defaultValue;
         }
 
@@ -115,7 +115,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(orFunc, nameof(orFunc));
 
             if (result.IsSuccess)
-                return result.Value;
+                return result._value;
             return orFunc();
         }
 
@@ -140,7 +140,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(converter, nameof(converter));
 
             if (result.IsSuccess)
-                return converter(result.Value);
+                return converter(result._value);
             return defaultValue;
         }
 
@@ -167,7 +167,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(orFunc, nameof(orFunc));
 
             if (result.IsSuccess)
-                return converter(result.Value);
+                return converter(result._value);
             return orFunc();
         }
 
@@ -190,7 +190,7 @@ namespace Here.Extensions
             if (result.IsFailure)
                 return result;
 
-            if (!predicate(result.Value))
+            if (!predicate(result._value))
                 return Result.Fail<T>(errorMessage);
 
             return result;
@@ -211,26 +211,26 @@ namespace Here.Extensions
 
             if (embeddedResult.IsWarning)
             {
-                Exception chosenException = embeddedResult.Value.Exception ?? embeddedResult.Exception; // Keep deepest exception
+                Exception chosenException = embeddedResult._value.Exception ?? embeddedResult.Exception; // Keep deepest exception
 
-                if (embeddedResult.Value.IsFailure)
+                if (embeddedResult._value.IsFailure)
                 {
-                    return embeddedResult.Value.ToFailResult(
+                    return embeddedResult._value.ToFailResult(
                         $"{Environment.NewLine}Resulting in: {embeddedResult.Message}",
                         chosenException);
                 }
 
-                if (embeddedResult.Value.IsWarning)
+                if (embeddedResult._value.IsWarning)
                 {
-                    return embeddedResult.Value.ToWarnResult(
-                        $"{embeddedResult.Value.Message}{Environment.NewLine}Resulting in: {embeddedResult.Message}",
+                    return embeddedResult._value.ToWarnResult(
+                        $"{embeddedResult._value.Message}{Environment.NewLine}Resulting in: {embeddedResult.Message}",
                         chosenException);
                 }
 
-                return embeddedResult.Value.ToWarnResult(embeddedResult.Message, chosenException);
+                return embeddedResult._value.ToWarnResult(embeddedResult.Message, chosenException);
             }
 
-            return embeddedResult.Value;
+            return embeddedResult._value;
         }
 
         /// <summary>
@@ -248,26 +248,26 @@ namespace Here.Extensions
 
             if (embeddedResult.IsWarning)
             {
-                Exception chosenException = embeddedResult.Value.Exception ?? embeddedResult.Exception; // Keep deepest exception
+                Exception chosenException = embeddedResult._value.Exception ?? embeddedResult.Exception; // Keep deepest exception
 
-                if (embeddedResult.Value.IsFailure)
+                if (embeddedResult._value.IsFailure)
                 {
-                    return embeddedResult.Value.ToFailValueResult<T>(
+                    return embeddedResult._value.ToFailValueResult<T>(
                         $"{Environment.NewLine}Resulting in: {embeddedResult.Message}",
                         chosenException);
                 }
 
-                if (embeddedResult.Value.IsWarning)
+                if (embeddedResult._value.IsWarning)
                 {
-                    return embeddedResult.Value.ToWarnValueResult(
-                        $"{embeddedResult.Value.Message}{Environment.NewLine}Resulting in: {embeddedResult.Message}",
+                    return embeddedResult._value.ToWarnValueResult(
+                        $"{embeddedResult._value.Message}{Environment.NewLine}Resulting in: {embeddedResult.Message}",
                         chosenException);
                 }
 
-                return embeddedResult.Value.ToWarnValueResult(embeddedResult.Message, chosenException);
+                return embeddedResult._value.ToWarnValueResult(embeddedResult.Message, chosenException);
             }
 
-            return embeddedResult.Value;
+            return embeddedResult._value;
         }
 
         #endregion
@@ -399,7 +399,7 @@ namespace Here.Extensions
         public static T Unwrap<T, TError>(in this Result<T, TError> result, [CanBeNull] in T defaultValue = default)
         {
             if (result.IsSuccess)
-                return result.Value;
+                return result._value;
             return defaultValue;
         }
 
@@ -419,7 +419,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(orFunc, nameof(orFunc));
 
             if (result.IsSuccess)
-                return result.Value;
+                return result._value;
             return orFunc();
         }
 
@@ -445,7 +445,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(converter, nameof(converter));
 
             if (result.IsSuccess)
-                return converter(result.Value);
+                return converter(result._value);
             return defaultValue;
         }
 
@@ -473,7 +473,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(orFunc, nameof(orFunc));
 
             if (result.IsSuccess)
-                return converter(result.Value);
+                return converter(result._value);
             return orFunc();
         }
 
@@ -503,7 +503,7 @@ namespace Here.Extensions
             if (result.IsFailure)
                 return result;
 
-            if (!predicate(result.Value))
+            if (!predicate(result._value))
                 return Result.Fail<T, TError>(errorMessage, errorObject);
 
             return result;
@@ -535,7 +535,7 @@ namespace Here.Extensions
             if (result.IsFailure)
                 return result;
 
-            if (!predicate(result.Value))
+            if (!predicate(result._value))
                 return Result.Fail<T, TError>(errorMessage, errorFactory());
 
             return result;
@@ -580,26 +580,26 @@ namespace Here.Extensions
 
             if (embeddedResult.IsWarning)
             {
-                Exception chosenException = embeddedResult.Value.Exception ?? embeddedResult.Exception; // Keep deepest exception
+                Exception chosenException = embeddedResult._value.Exception ?? embeddedResult.Exception; // Keep deepest exception
 
-                if (embeddedResult.Value.IsFailure)
+                if (embeddedResult._value.IsFailure)
                 {
-                    return embeddedResult.Value.ToFailCustomResult(
+                    return embeddedResult._value.ToFailCustomResult(
                         $"{Environment.NewLine}Resulting in: {embeddedResult.Message}",
                         chosenException);
                 }
 
-                if (embeddedResult.Value.IsWarning)
+                if (embeddedResult._value.IsWarning)
                 {
-                    return embeddedResult.Value.ToWarnValueCustomResult(
-                        $"{embeddedResult.Value.Message}{Environment.NewLine}Resulting in: {embeddedResult.Message}",
+                    return embeddedResult._value.ToWarnValueCustomResult(
+                        $"{embeddedResult._value.Message}{Environment.NewLine}Resulting in: {embeddedResult.Message}",
                         chosenException);
                 }
 
-                return embeddedResult.Value.ToWarnValueCustomResult(embeddedResult.Message, chosenException);
+                return embeddedResult._value.ToWarnValueCustomResult(embeddedResult.Message, chosenException);
             }
 
-            return embeddedResult.Value;
+            return embeddedResult._value;
         }
 
         /// <summary>
@@ -617,26 +617,26 @@ namespace Here.Extensions
 
             if (embeddedResult.IsWarning)
             {
-                Exception chosenException = embeddedResult.Value.Exception ?? embeddedResult.Exception; // Keep deepest exception
+                Exception chosenException = embeddedResult._value.Exception ?? embeddedResult.Exception; // Keep deepest exception
 
-                if (embeddedResult.Value.IsFailure)
+                if (embeddedResult._value.IsFailure)
                 {
-                    return embeddedResult.Value.ToFailValueCustomResult<T>(
+                    return embeddedResult._value.ToFailValueCustomResult<T>(
                         $"{Environment.NewLine}Resulting in: {embeddedResult.Message}",
                         chosenException);
                 }
 
-                if (embeddedResult.Value.IsWarning)
+                if (embeddedResult._value.IsWarning)
                 {
-                    return embeddedResult.Value.ToWarnValueCustomResult(
-                        $"{embeddedResult.Value.Message}{Environment.NewLine}Resulting in: {embeddedResult.Message}",
+                    return embeddedResult._value.ToWarnValueCustomResult(
+                        $"{embeddedResult._value.Message}{Environment.NewLine}Resulting in: {embeddedResult.Message}",
                         chosenException);
                 }
 
-                return embeddedResult.Value.ToWarnValueCustomResult(embeddedResult.Message, chosenException);
+                return embeddedResult._value.ToWarnValueCustomResult(embeddedResult.Message, chosenException);
             }
 
-            return embeddedResult.Value;
+            return embeddedResult._value;
         }
 
         #endregion

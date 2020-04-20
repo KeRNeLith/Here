@@ -22,7 +22,7 @@ namespace Here.Extensions
             where T : IEnumerable
         {
             if (option.HasValue)
-                return option.Value.GetEnumerator().MoveNext();
+                return option._value.GetEnumerator().MoveNext();
             return false;
         }
 
@@ -42,7 +42,7 @@ namespace Here.Extensions
 
             if (option.HasValue)
             {
-                foreach (object item in option.Value)
+                foreach (object item in option._value)
                 {
                     if (predicate(item))
                         return true;
@@ -68,7 +68,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(predicate, nameof(predicate));
 
             if (option.HasValue)
-                return option.Value.Any(item => predicate(item));
+                return option._value.Any(item => predicate(item));
             return false;
         }
 
@@ -88,7 +88,7 @@ namespace Here.Extensions
 
             if (option.HasValue)
             {
-                foreach (object item in option.Value)
+                foreach (object item in option._value)
                 {
                     if (!predicate(item))
                         return false;
@@ -116,7 +116,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(predicate, nameof(predicate));
 
             if (option.HasValue)
-                return option.Value.All(item => predicate(item));
+                return option._value.All(item => predicate(item));
             return false;
         }
 
@@ -133,7 +133,7 @@ namespace Here.Extensions
         {
             if (option.HasValue)
             {
-                foreach (object item in option.Value)
+                foreach (object item in option._value)
                 {
                     if (EqualityComparer<object>.Default.Equals(item, value))
                         return true;
@@ -160,7 +160,7 @@ namespace Here.Extensions
 
             if (option.HasValue)
             {
-                foreach (object item in option.Value)
+                foreach (object item in option._value)
                 {
                     if (comparer.Equals(item, value))
                         return true;
@@ -183,7 +183,7 @@ namespace Here.Extensions
             where T : IEnumerable<TItem>
         {
             if (option.HasValue)
-                return option.Value.Contains(value);
+                return option._value.Contains(value);
             return false;
         }
 
@@ -204,7 +204,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(comparer, nameof(comparer));
 
             if (option.HasValue)
-                return option.Value.Contains(value, comparer);
+                return option._value.Contains(value, comparer);
             return false;
         }
 
@@ -225,7 +225,7 @@ namespace Here.Extensions
 
             if (option.HasValue)
             {
-                return option.Value
+                return option._value
                     .Cast<object>()
                     .Select(selector)
                     .ToOption();
@@ -251,7 +251,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(selector, nameof(selector));
 
             if (option.HasValue)
-                return option.Value.Select(selector).ToOption();
+                return option._value.Select(selector).ToOption();
             return Option<IEnumerable<TItemOut>>.None;
         }
 
@@ -272,7 +272,7 @@ namespace Here.Extensions
 
             if (option.HasValue)
             {
-                return option.Value
+                return option._value
                     .Cast<object>()
                     .SelectMany(selector)
                     .ToOption();
@@ -298,7 +298,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(selector, nameof(selector));
 
             if (option.HasValue)
-                return option.Value.SelectMany(selector).ToOption();
+                return option._value.SelectMany(selector).ToOption();
             return Option<IEnumerable<TItemOut>>.None;
         }
 
@@ -326,7 +326,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(resultSelector, nameof(resultSelector));
 
             if (option.HasValue)
-                return option.Value.Cast<object>().SelectMany(collectionSelector, resultSelector).ToOption();
+                return option._value.Cast<object>().SelectMany(collectionSelector, resultSelector).ToOption();
             return Option<IEnumerable<TItemOut>>.None;
         }
 
@@ -355,7 +355,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(resultSelector, nameof(resultSelector));
 
             if (option.HasValue)
-                return option.Value.SelectMany(collectionSelector, resultSelector).ToOption();
+                return option._value.SelectMany(collectionSelector, resultSelector).ToOption();
             return Option<IEnumerable<TItemOut>>.None;
         }
 
@@ -374,7 +374,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(predicate, nameof(predicate));
 
             if (option.HasValue)
-                return GetMatchingItems(option.Value, predicate).ToOption();
+                return GetMatchingItems(option._value, predicate).ToOption();
             return Option<IEnumerable>.None;
 
             #region Local function
@@ -408,7 +408,7 @@ namespace Here.Extensions
 
             if (option.HasValue)
             {
-                return option.Value
+                return option._value
                     .Where(item => predicate(item))
                     .ToOption();
             }
@@ -432,7 +432,7 @@ namespace Here.Extensions
 
             if (option.HasValue)
             {
-                foreach (object item in option.Value)
+                foreach (object item in option._value)
                     onItem(item);
             }
 
@@ -456,7 +456,7 @@ namespace Here.Extensions
 
             if (option.HasValue)
             {
-                foreach (TItem item in option.Value)
+                foreach (TItem item in option._value)
                     onItem(item);
             }
 
@@ -488,7 +488,7 @@ namespace Here.Extensions
             if (option.HasValue)
             {
                 TAggregate aggregate = initialValue;
-                foreach (object item in option.Value)
+                foreach (object item in option._value)
                     aggregate = aggregator(aggregate, item);
 
                 return aggregate;
@@ -521,7 +521,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(aggregator, nameof(aggregator));
 
             if (option.HasValue)
-                return option.Value.Aggregate(initialValue, aggregator);
+                return option._value.Aggregate(initialValue, aggregator);
             return initialValue;
         }
     }

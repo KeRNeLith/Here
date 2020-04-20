@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 #if SUPPORTS_AGGRESSIVE_INLINING
 using System.Runtime.CompilerServices;
 #endif
@@ -324,7 +324,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
             if (IsConsideredSuccess(result.Logic, treatWarningAsError))
-                onSuccess(result.Value);
+                onSuccess(result._value);
 
             return result;
         }
@@ -349,7 +349,7 @@ namespace Here.Extensions
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return result.ToFailValueResult<TOut>();
 
-            return new Result<TOut>(converter(result.Value), result.Logic);
+            return new Result<TOut>(converter(result._value), result.Logic);
         }
 
         /// <summary>
@@ -374,7 +374,7 @@ namespace Here.Extensions
                 return result.IsWarning ? result.ToFailResult() : result;
             }
 
-            return onSuccess(result.Value);
+            return onSuccess(result._value);
         }
 
         /// <summary>
@@ -397,7 +397,7 @@ namespace Here.Extensions
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return result.ToFailValueResult<TOut>();
 
-            return onSuccess(result.Value);
+            return onSuccess(result._value);
         }
 
         /// <summary>
@@ -426,7 +426,7 @@ namespace Here.Extensions
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return result.ToFailCustomResult(errorObject);
 
-            return onSuccess(result.Value);
+            return onSuccess(result._value);
         }
 
         /// <summary>
@@ -455,7 +455,7 @@ namespace Here.Extensions
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return result.ToFailCustomResult(errorFactory(result));
 
-            return onSuccess(result.Value);
+            return onSuccess(result._value);
         }
 
         /// <summary>
@@ -485,7 +485,7 @@ namespace Here.Extensions
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return result.ToFailValueCustomResult<TOut, TError>(errorObject);
 
-            return onSuccess(result.Value);
+            return onSuccess(result._value);
         }
 
         /// <summary>
@@ -515,7 +515,7 @@ namespace Here.Extensions
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return result.ToFailValueCustomResult<TOut, TError>(errorFactory(result));
 
-            return onSuccess(result.Value);
+            return onSuccess(result._value);
         }
 
         /// <summary>
@@ -924,7 +924,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
             if (IsConsideredSuccess(result.Logic, treatWarningAsError))
-                onSuccess(result.Value);
+                onSuccess(result._value);
 
             return result;
         }
@@ -958,7 +958,7 @@ namespace Here.Extensions
                 return result.ToFailValueCustomResult<TOut>();
             }
 
-            return new Result<TOut, TError>(converter(result.Value), result.Logic);
+            return new Result<TOut, TError>(converter(result._value), result.Logic);
         }
 
         /// <summary>
@@ -990,7 +990,7 @@ namespace Here.Extensions
                 return result.ToFailValueCustomResult<TOut>();
             }
 
-            return new Result<TOut, TError>(converter(result.Value), result.Logic);
+            return new Result<TOut, TError>(converter(result._value), result.Logic);
         }
 
         /// <summary>
@@ -1016,7 +1016,7 @@ namespace Here.Extensions
                 return result.IsWarning ? result.ToFailResult() : result;
             }
 
-            return onSuccess(result.Value);
+            return onSuccess(result._value);
         }
 
         /// <summary>
@@ -1040,7 +1040,7 @@ namespace Here.Extensions
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return result.ToFailValueResult<TOut>();
 
-            return onSuccess(result.Value);
+            return onSuccess(result._value);
         }
 
         /// <summary>
@@ -1070,7 +1070,7 @@ namespace Here.Extensions
                 return result.IsWarning ? result.ToFailCustomResult(errorObject) : result;
             }
 
-            return onSuccess(result.Value);
+            return onSuccess(result._value);
         }
 
         /// <summary>
@@ -1100,7 +1100,7 @@ namespace Here.Extensions
                 return result.IsWarning ? result.ToFailCustomResult(errorFactory(result)) : result;
             }
 
-            return onSuccess(result.Value);
+            return onSuccess(result._value);
         }
 
         /// <summary>
@@ -1133,7 +1133,7 @@ namespace Here.Extensions
                     : result.ToFailValueCustomResult<TOut>();
             }
 
-            return onSuccess(result.Value);
+            return onSuccess(result._value);
         }
 
         /// <summary>
@@ -1166,7 +1166,7 @@ namespace Here.Extensions
                     : result.ToFailValueCustomResult<TOut>();
             }
 
-            return onSuccess(result.Value);
+            return onSuccess(result._value);
         }
 
         /// <summary>

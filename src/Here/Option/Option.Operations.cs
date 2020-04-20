@@ -183,7 +183,6 @@ namespace Here
             Throw.IfArgumentNull(orValue, nameof(orValue));
 
             if (HasValue)
-                // ReSharper disable once AssignNullToNotNullAttribute, Justification: Here the value should be not null because the Option has a value.
                 return _value;
             return orValue;
         }
@@ -201,7 +200,6 @@ namespace Here
             Throw.IfArgumentNull(orFunc, nameof(orFunc));
 
             if (HasValue)
-                // ReSharper disable once AssignNullToNotNullAttribute, Justification: Here the value should be not null because the Option has a value.
                 return _value;
 
             T orValue = orFunc();
@@ -327,7 +325,6 @@ namespace Here
             Throw.IfArgumentNull(exception, nameof(exception));
 
             if (HasValue)
-                // ReSharper disable once AssignNullToNotNullAttribute, Justification: Here the value should be not null because the Option has a value.
                 return _value;
             throw exception;
         }
@@ -344,7 +341,6 @@ namespace Here
             Throw.IfArgumentNull(exceptionFunc, nameof(exceptionFunc));
 
             if (HasValue)
-                // ReSharper disable once AssignNullToNotNullAttribute, Justification: Here the value should be not null because the Option has a value.
                 return _value;
             throw exceptionFunc();
         }
