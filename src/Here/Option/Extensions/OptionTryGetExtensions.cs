@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 #if !SUPPORTS_SYSTEM_TYPE_IS_ENUM
 using System.Reflection;
@@ -457,12 +457,14 @@ namespace Here.Extensions
         /// <exception cref="ArgumentException">If the <paramref name="enumType"/> is not an enumeration type.</exception>
         [PublicAPI, Pure]
         public static Option<object> TryParseEnum([CanBeNull] this string str, [NotNull] Type enumType)
-        {
-            Throw.IfArgumentNull(enumType, nameof(enumType));
+        {            if (enumType is null)
+                throw new ArgumentNullException(nameof(enumType));
 #if SUPPORTS_SYSTEM_TYPE_IS_ENUM
-            Throw.IfArgument(!enumType.IsEnum, nameof(enumType));
+            if (!enumType.IsEnum)
+                throw new ArgumentException("Not an enum type.", nameof(enumType));
 #else
-            Throw.IfArgument(!enumType.GetTypeInfo().IsEnum, nameof(enumType));
+            if (!enumType.GetTypeInfo().IsEnum)
+                throw new ArgumentException("Not an enum type.", nameof(enumType));
 #endif
 
 #if SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE

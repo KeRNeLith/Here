@@ -100,8 +100,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<T> Cast<T>([NotNull, InstantHandle] in Func<T> valueFactory)
-        {
-            Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
+        {            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
 
             if (IsFailure)
                 return ToFailValueResult<T>();
@@ -133,8 +133,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<T, TError> CustomCast<T>([NotNull, InstantHandle] in Func<T> valueFactory)
-        {
-            Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
+        {            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
 
             if (IsFailure)
                 return ToFailValueCustomResult<T>();

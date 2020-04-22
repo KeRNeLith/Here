@@ -122,8 +122,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<TOut> Cast<TOut>([NotNull, InstantHandle] in Func<T, TOut> converter)
-        {
-            Throw.IfArgumentNull(converter, nameof(converter));
+        {            if (converter is null)
+                throw new ArgumentNullException(nameof(converter));
 
             if (IsFailure)
                 return ToFailValueResult<TOut>();
@@ -139,8 +139,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI, Pure]
         public CustomResult<TError> CustomCast<TError>([NotNull] in TError errorObject)
-        {
-            Throw.IfArgumentNull(errorObject, nameof(errorObject));
+        {            if (errorObject == null)
+                throw new ArgumentNullException(nameof(errorObject));
 
             if (IsFailure)
                 return ToFailCustomResult(errorObject);
@@ -158,8 +158,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public CustomResult<TError> CustomCast<TError>([NotNull, InstantHandle] in Func<TError> errorFactory)
-        {
-            Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
+        {            if (errorFactory is null)
+                throw new ArgumentNullException(nameof(errorFactory));
 
             if (IsFailure)
                 return ToFailCustomResult(errorFactory());
@@ -179,8 +179,8 @@ namespace Here
         [PublicAPI, Pure]
         public Result<TOut, TError> Cast<TOut, TError>([NotNull] in TError errorObject)
             where TOut : class
-        {
-            Throw.IfArgumentNull(errorObject, nameof(errorObject));
+        {            if (errorObject == null)
+                throw new ArgumentNullException(nameof(errorObject));
 
             if (IsFailure)
                 return ToFailValueCustomResult<TOut, TError>(errorObject);
@@ -200,8 +200,8 @@ namespace Here
         [PublicAPI, Pure]
         public Result<TOut, TError> Cast<TOut, TError>([NotNull, InstantHandle] in Func<TError> errorFactory)
             where TOut : class
-        {
-            Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
+        {            if (errorFactory is null)
+                throw new ArgumentNullException(nameof(errorFactory));
 
             if (IsFailure)
                 return ToFailValueCustomResult<TOut, TError>(errorFactory());
@@ -222,9 +222,9 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<TOut, TError> Cast<TOut, TError>([NotNull, InstantHandle] in Func<T, TOut> converter, [NotNull] in TError errorObject)
-        {
-            Throw.IfArgumentNull(converter, nameof(converter));
-            Throw.IfArgumentNull(errorObject, nameof(errorObject));
+        {            if (converter is null)
+                throw new ArgumentNullException(nameof(converter));            if (errorObject == null)
+                throw new ArgumentNullException(nameof(errorObject));
 
             if (IsFailure)
                 return ToFailValueCustomResult<TOut, TError>(errorObject);
@@ -245,9 +245,9 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<TOut, TError> Cast<TOut, TError>([NotNull, InstantHandle] in Func<T, TOut> converter, [NotNull, InstantHandle] in Func<TError> errorFactory)
-        {
-            Throw.IfArgumentNull(converter, nameof(converter));
-            Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
+        {            if (converter is null)
+                throw new ArgumentNullException(nameof(converter));            if (errorFactory is null)
+                throw new ArgumentNullException(nameof(errorFactory));
 
             if (IsFailure)
                 return ToFailValueCustomResult<TOut, TError>(errorFactory());

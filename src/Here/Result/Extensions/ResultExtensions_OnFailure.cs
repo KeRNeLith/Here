@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using JetBrains.Annotations;
 
 namespace Here.Extensions
@@ -20,8 +20,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
         public static Result OnFailure(in this Result result, [NotNull, InstantHandle] in Action onFailure, in bool treatWarningAsError = false)
-        {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+        {            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 onFailure();
@@ -39,8 +39,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
         public static Result OnFailure(in this Result result, [NotNull, InstantHandle] in Action<Result> onFailure, in bool treatWarningAsError = false)
-        {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+        {            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 onFailure(result);
@@ -58,8 +58,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
         public static Result OnFailure(in this Result result, [NotNull, InstantHandle] in Func<Result, Result> onFailure, in bool treatWarningAsError = false)
-        {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+        {            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return onFailure(result);
@@ -82,8 +82,8 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Func<Result, TOut> onFailure, 
             [CanBeNull] in TOut defaultValue,
             in bool treatWarningAsError = false)
-        {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+        {            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return onFailure(result);
@@ -107,9 +107,9 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Func<Result, TOut> onFailure,
             [NotNull, InstantHandle] in Func<TOut> valueFactory,
             in bool treatWarningAsError = false)
-        {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
-            Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
+        {            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
 
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return onFailure(result);
@@ -131,8 +131,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
         public static Result<T> OnFailure<T>(in this Result<T> result, [NotNull, InstantHandle] in Action onFailure, in bool treatWarningAsError = false)
-        {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+        {            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 onFailure();
@@ -151,8 +151,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
         public static Result<T> OnFailure<T>(in this Result<T> result, [NotNull, InstantHandle] in Action<Result<T>> onFailure, in bool treatWarningAsError = false)
-        {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+        {            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 onFailure(result);
@@ -171,8 +171,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
         public static Result OnFailure<T>(in this Result<T> result, [NotNull, InstantHandle] in Func<Result<T>, Result> onFailure, in bool treatWarningAsError = false)
-        {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+        {            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return onFailure(result);
@@ -191,8 +191,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
         public static Result<T> OnFailure<T>(in this Result<T> result, [NotNull, InstantHandle] in Func<Result<T>, Result<T>> onFailure, in bool treatWarningAsError = false)
-        {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+        {            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return onFailure(result);
@@ -217,8 +217,8 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Func<Result<TIn>, TOut> onFailure,
             [CanBeNull] in TOut defaultValue,
             in bool treatWarningAsError = false)
-        {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+        {            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return onFailure(result);
@@ -244,9 +244,9 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Func<Result<TIn>, TOut> onFailure,
             [NotNull, InstantHandle] in Func<TIn, TOut> valueFactory,
             in bool treatWarningAsError = false)
-        {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
-            Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
+        {            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
 
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return onFailure(result);
@@ -271,8 +271,8 @@ namespace Here.Extensions
             in this CustomResult<TError> result, 
             [NotNull, InstantHandle] in Action onFailure,
             in bool treatWarningAsError = false)
-        {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+        {            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 onFailure();
@@ -294,8 +294,8 @@ namespace Here.Extensions
             in this CustomResult<TError> result, 
             [NotNull, InstantHandle] in Action<CustomResult<TError>> onFailure,
             in bool treatWarningAsError = false)
-        {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+        {            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 onFailure(result);
@@ -314,8 +314,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
         public static Result OnFailure<TError>(in this CustomResult<TError> result, [NotNull, InstantHandle] in Func<CustomResult<TError>, Result> onFailure, in bool treatWarningAsError = false)
-        {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+        {            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return onFailure(result);
@@ -334,8 +334,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
         public static CustomResult<TError> OnFailure<TError>(in this CustomResult<TError> result, [NotNull, InstantHandle] in Func<CustomResult<TError>, CustomResult<TError>> onFailure, in bool treatWarningAsError = false)
-        {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+        {            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return onFailure(result);
@@ -360,8 +360,8 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Func<CustomResult<TError>, TOut> onFailure,
             [CanBeNull] in TOut defaultValue,
             in bool treatWarningAsError = false)
-        {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+        {            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return onFailure(result);
@@ -387,9 +387,9 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Func<CustomResult<TError>, TOut> onFailure,
             [NotNull, InstantHandle] in Func<TOut> valueFactory,
             in bool treatWarningAsError = false)
-        {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
-            Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
+        {            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
 
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return onFailure(result);
@@ -415,8 +415,8 @@ namespace Here.Extensions
             in this Result<T, TError> result,
             [NotNull, InstantHandle] in Action onFailure,
             in bool treatWarningAsError = false)
-        {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+        {            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 onFailure();
@@ -439,8 +439,8 @@ namespace Here.Extensions
             in this Result<T, TError> result,
             [NotNull, InstantHandle] in Action<Result<T, TError>> onFailure,
             in bool treatWarningAsError = false)
-        {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+        {            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 onFailure(result);
@@ -460,8 +460,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
         public static Result OnFailure<T, TError>(in this Result<T, TError> result, [NotNull, InstantHandle] in Func<Result<T, TError>, Result> onFailure, in bool treatWarningAsError = false)
-        {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+        {            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return onFailure(result);
@@ -481,8 +481,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
         public static Result<T> OnFailure<T, TError>(in this Result<T, TError> result, [NotNull, InstantHandle] in Func<Result<T, TError>, Result<T>> onFailure, in bool treatWarningAsError = false)
-        {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+        {            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return onFailure(result);
@@ -502,8 +502,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
         public static CustomResult<TError> OnFailure<T, TError>(in this Result<T, TError> result, [NotNull, InstantHandle] in Func<Result<T, TError>, CustomResult<TError>> onFailure, in bool treatWarningAsError = false)
-        {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+        {            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return onFailure(result);
@@ -523,8 +523,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
         public static Result<T, TError> OnFailure<T, TError>(in this Result<T, TError> result, [NotNull, InstantHandle] in Func<Result<T, TError>, Result<T, TError>> onFailure, in bool treatWarningAsError = false)
-        {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+        {            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return onFailure(result);
@@ -550,8 +550,8 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Func<Result<TIn, TError>, TOut> onFailure,
             [CanBeNull] in TOut defaultValue,
             in bool treatWarningAsError = false)
-        {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+        {            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return onFailure(result);
@@ -578,9 +578,9 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Func<Result<TIn, TError>, TOut> onFailure,
             [NotNull, InstantHandle] in Func<TIn, TOut> valueFactory,
             in bool treatWarningAsError = false)
-        {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
-            Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
+        {            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
 
             if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return onFailure(result);

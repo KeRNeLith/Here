@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 
@@ -30,8 +30,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="dictionary"/> is null.</exception>
         [PublicAPI, Pure]
         public static Option<TValue> TryGetValue<TKey, TValue>([NotNull] this IDictionary<TKey, TValue> dictionary, [CanBeNull] in TKey key)
-        {
-            Throw.IfArgumentNull(dictionary, nameof(dictionary));
+        {            if (dictionary is null)
+                throw new ArgumentNullException(nameof(dictionary));
 
             return TryGetValue<TKey, TValue>(dictionary.TryGetValue, key);
         }
@@ -47,8 +47,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="dictionary"/> is null.</exception>
         [PublicAPI, Pure]
         public static Option<TValue> TryGetValue<TKey, TValue>([NotNull] this IDictionary<TKey, object> dictionary, [CanBeNull] in TKey key)
-        {
-            Throw.IfArgumentNull(dictionary, nameof(dictionary));
+        {            if (dictionary is null)
+                throw new ArgumentNullException(nameof(dictionary));
 
             Option<object> objectValue = dictionary.TryGetValue(key);
             if (objectValue.HasValue && objectValue._value is TValue expectedValue)
@@ -68,8 +68,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="dictionary"/> is null.</exception>
         [PublicAPI, Pure]
         public static Option<TValue> TryGetReadonlyValue<TKey, TValue>([NotNull] this IReadOnlyDictionary<TKey, TValue> dictionary, [CanBeNull] in TKey key)
-        {
-            Throw.IfArgumentNull(dictionary, nameof(dictionary));
+        {            if (dictionary is null)
+                throw new ArgumentNullException(nameof(dictionary));
 
             return TryGetValue<TKey, TValue>(dictionary.TryGetValue, key);
         }
@@ -85,8 +85,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="dictionary"/> is null.</exception>
         [PublicAPI, Pure]
         public static Option<TValue> TryGetReadonlyValue<TKey, TValue>([NotNull] this IReadOnlyDictionary<TKey, object> dictionary, [CanBeNull] in TKey key)
-        {
-            Throw.IfArgumentNull(dictionary, nameof(dictionary));
+        {            if (dictionary is null)
+                throw new ArgumentNullException(nameof(dictionary));
 
             Option<object> objectValue = dictionary.TryGetReadonlyValue(key);
             if (objectValue.HasValue && objectValue._value is TValue expectedValue)

@@ -219,8 +219,8 @@ namespace Here
         [PublicAPI, Pure]
         public static Either<TLeft, TRight> ToEither<TLeft, TRight>([CanBeNull] this TRight value, [NotNull] in TLeft defaultLeftValue)
             where TRight : class
-        {
-            Throw.IfArgumentNull(defaultLeftValue, nameof(defaultLeftValue));
+        {            if (defaultLeftValue == null)
+                throw new ArgumentNullException(nameof(defaultLeftValue));
 
             return value is null
                 ? Left<TLeft, TRight>(defaultLeftValue)
@@ -242,8 +242,8 @@ namespace Here
         [PublicAPI, Pure]
         public static Either<TLeft, TRight> ToEither<TLeft, TRight>([CanBeNull] this TRight value, [NotNull, InstantHandle] in Func<TLeft> leftValueFactory)
             where TRight : class
-        {
-            Throw.IfArgumentNull(leftValueFactory, nameof(leftValueFactory));
+        {            if (leftValueFactory is null)
+                throw new ArgumentNullException(nameof(leftValueFactory));
 
             return value is null
                 ? Left<TLeft, TRight>(leftValueFactory())
@@ -264,8 +264,8 @@ namespace Here
         [PublicAPI, Pure]
         public static Either<TLeft, TRight> ToEither<TLeft, TRight>([CanBeNull] in this TRight? nullable, [NotNull] in TLeft defaultLeftValue)
             where TRight : struct
-        {
-            Throw.IfArgumentNull(defaultLeftValue, nameof(defaultLeftValue));
+        {            if (defaultLeftValue == null)
+                throw new ArgumentNullException(nameof(defaultLeftValue));
 
             return nullable.HasValue
                 ? Right<TLeft, TRight>(nullable.Value)
@@ -287,8 +287,8 @@ namespace Here
         [PublicAPI, Pure]
         public static Either<TLeft, TRight> ToEither<TLeft, TRight>([CanBeNull] in this TRight? nullable, [NotNull, InstantHandle] in Func<TLeft> leftValueFactory)
             where TRight : struct
-        {
-            Throw.IfArgumentNull(leftValueFactory, nameof(leftValueFactory));
+        {            if (leftValueFactory is null)
+                throw new ArgumentNullException(nameof(leftValueFactory));
 
             return nullable.HasValue
                 ? Right<TLeft, TRight>(nullable.Value)

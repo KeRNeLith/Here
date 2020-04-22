@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 
@@ -75,8 +75,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="selector"/> is null.</exception>
         [PublicAPI, Pure]
         public static Option<TOut> Select<TIn, TOut>(in this Option<TIn> option, [NotNull, InstantHandle] in Func<TIn, TOut> selector)
-        {
-            Throw.IfArgumentNull(selector, nameof(selector));
+        {            if (selector is null)
+                throw new ArgumentNullException(nameof(selector));
 
             if (option.HasValue)
                 return selector(option._value);
@@ -109,8 +109,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="doAction"/> is null.</exception>
         [PublicAPI]
         public static Unit ForEach<T>(in this Option<T> option, [NotNull, InstantHandle] in Action<T> doAction)
-        {
-            Throw.IfArgumentNull(doAction, nameof(doAction));
+        {            if (doAction is null)
+                throw new ArgumentNullException(nameof(doAction));
 
             if (option.HasValue)
                 doAction(option._value);
@@ -134,9 +134,9 @@ namespace Here.Extensions
         public static TAggregate Aggregate<T, TAggregate>(in this Option<T> option, 
             [NotNull] in TAggregate initialValue, 
             [NotNull, InstantHandle] in Func<TAggregate, T, TAggregate> aggregator)
-        {
-            Throw.IfArgumentNull(initialValue, nameof(initialValue));
-            Throw.IfArgumentNull(aggregator, nameof(aggregator));
+        {            if (initialValue == null)
+                throw new ArgumentNullException(nameof(initialValue));            if (aggregator is null)
+                throw new ArgumentNullException(nameof(aggregator));
 
             if (option.HasValue)
                 return aggregator(initialValue, option._value);

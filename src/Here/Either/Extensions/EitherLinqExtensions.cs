@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 #if SUPPORTS_AGGRESSIVE_INLINING
 using System.Runtime.CompilerServices;
@@ -37,7 +37,8 @@ namespace Here.Extensions
         [PublicAPI, Pure]
         public static bool Any<TLeft, TRight>(in this Either<TLeft, TRight> either, [NotNull, InstantHandle] in Predicate<TRight> predicate)
         {
-            Throw.IfArgumentNull(predicate, nameof(predicate));
+            if (predicate is null)
+                throw new ArgumentNullException(nameof(predicate));
 
             return either.IsRight && predicate(either._right);
         }

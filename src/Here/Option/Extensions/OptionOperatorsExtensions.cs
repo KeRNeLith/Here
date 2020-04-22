@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using JetBrains.Annotations;
 
 namespace Here.Extensions
@@ -54,8 +54,8 @@ namespace Here.Extensions
         public static CustomResult<TError> ToCustomResult<T, TError>(in this Option<T> option, 
             [NotNull, InstantHandle] in Func<TError> errorFactory, 
             [CanBeNull] in string failureMessage = null)
-        {
-            Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
+        {            if (errorFactory is null)
+                throw new ArgumentNullException(nameof(errorFactory));
 
             if (option.HasValue)
                 return Result.CustomOk<TError>();
@@ -76,8 +76,8 @@ namespace Here.Extensions
         public static CustomResult<TError> ToCustomResult<T, TError>(in this Option<T> option, 
             [NotNull] in TError errorObject, 
             [CanBeNull] in string failureMessage = null)
-        {
-            Throw.IfArgumentNull(errorObject, nameof(errorObject));
+        {            if (errorObject == null)
+                throw new ArgumentNullException(nameof(errorObject));
 
             if (option.HasValue)
                 return Result.CustomOk<TError>();
@@ -98,8 +98,8 @@ namespace Here.Extensions
         public static Result<T, TError> ToValueCustomResult<T, TError>(in this Option<T> option, 
             [NotNull, InstantHandle] in Func<TError> errorFactory, 
             [CanBeNull] in string failureMessage = null)
-        {
-            Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
+        {            if (errorFactory is null)
+                throw new ArgumentNullException(nameof(errorFactory));
 
             if (option.HasValue)
                 return Result.Ok<T, TError>(option._value);
@@ -120,8 +120,8 @@ namespace Here.Extensions
         public static Result<T, TError> ToValueCustomResult<T, TError>(in this Option<T> option, 
             [NotNull] in TError errorObject, 
             [CanBeNull] in string failureMessage = null)
-        {
-            Throw.IfArgumentNull(errorObject, nameof(errorObject));
+        {            if (errorObject == null)
+                throw new ArgumentNullException(nameof(errorObject));
 
             if (option.HasValue)
                 return Result.Ok<T, TError>(option._value);
@@ -143,8 +143,8 @@ namespace Here.Extensions
         /// <returns>The corresponding <see cref="Either{TLeft,T}"/>.</returns>
         [PublicAPI, Pure]
         public static Either<TLeft, T> ToEither<T, TLeft>(in this Option<T> option, [NotNull] in TLeft defaultLeftValue)
-        {
-            Throw.IfArgumentNull(defaultLeftValue, nameof(defaultLeftValue));
+        {            if (defaultLeftValue == null)
+                throw new ArgumentNullException(nameof(defaultLeftValue));
 
             if (option.HasValue)
                 return Either<TLeft, T>.Right(option._value);
@@ -163,8 +163,8 @@ namespace Here.Extensions
         /// <returns>The corresponding <see cref="Either{TLeft,T}"/>.</returns>
         [PublicAPI, Pure]
         public static Either<TLeft, T> ToEither<T, TLeft>(in this Option<T> option, [NotNull, InstantHandle] in Func<TLeft> leftValueFactory)
-        {
-            Throw.IfArgumentNull(leftValueFactory, nameof(leftValueFactory));
+        {            if (leftValueFactory is null)
+                throw new ArgumentNullException(nameof(leftValueFactory));
 
             if (option.HasValue)
                 return Either<TLeft, T>.Right(option._value);

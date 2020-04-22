@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,8 +37,8 @@ namespace Here.Extensions
         [PublicAPI, Pure]
         public static bool AnyItem<T>(in this Option<T> option, [NotNull, InstantHandle] in Predicate<object> predicate)
             where T : IEnumerable
-        {
-            Throw.IfArgumentNull(predicate, nameof(predicate));
+        {            if (predicate is null)
+                throw new ArgumentNullException(nameof(predicate));
 
             if (option.HasValue)
             {
@@ -64,8 +64,8 @@ namespace Here.Extensions
         [PublicAPI, Pure]
         public static bool AnyItem<T, TItem>(in this Option<T> option, [NotNull, InstantHandle] Predicate<TItem> predicate)
             where T : IEnumerable<TItem>
-        {
-            Throw.IfArgumentNull(predicate, nameof(predicate));
+        {            if (predicate is null)
+                throw new ArgumentNullException(nameof(predicate));
 
             if (option.HasValue)
                 return option._value.Any(item => predicate(item));
@@ -83,8 +83,8 @@ namespace Here.Extensions
         [PublicAPI, Pure]
         public static bool AllItems<T>(in this Option<T> option, [NotNull, InstantHandle] in Predicate<object> predicate)
             where T : IEnumerable
-        {
-            Throw.IfArgumentNull(predicate, nameof(predicate));
+        {            if (predicate is null)
+                throw new ArgumentNullException(nameof(predicate));
 
             if (option.HasValue)
             {
@@ -112,8 +112,8 @@ namespace Here.Extensions
         [PublicAPI, Pure]
         public static bool AllItems<T, TItem>(in this Option<T> option, [NotNull, InstantHandle] Predicate<TItem> predicate)
             where T : IEnumerable<TItem>
-        {
-            Throw.IfArgumentNull(predicate, nameof(predicate));
+        {            if (predicate is null)
+                throw new ArgumentNullException(nameof(predicate));
 
             if (option.HasValue)
                 return option._value.All(item => predicate(item));
@@ -155,8 +155,8 @@ namespace Here.Extensions
         [PublicAPI, Pure]
         public static bool ContainsItem<T>(in this Option<T> option, [CanBeNull] in object value, [NotNull] in IEqualityComparer<object> comparer)
             where T : IEnumerable
-        {
-            Throw.IfArgumentNull(comparer, nameof(comparer));
+        {            if (comparer is null)
+                throw new ArgumentNullException(nameof(comparer));
 
             if (option.HasValue)
             {
@@ -200,8 +200,8 @@ namespace Here.Extensions
         [PublicAPI, Pure]
         public static bool ContainsItem<T, TItem>(in this Option<T> option, [CanBeNull] in TItem value, [NotNull] in IEqualityComparer<TItem> comparer)
             where T : IEnumerable<TItem>
-        {
-            Throw.IfArgumentNull(comparer, nameof(comparer));
+        {            if (comparer is null)
+                throw new ArgumentNullException(nameof(comparer));
 
             if (option.HasValue)
                 return option._value.Contains(value, comparer);
@@ -220,8 +220,8 @@ namespace Here.Extensions
         [PublicAPI, Pure]
         public static Option<IEnumerable<TItemOut>> SelectItems<T, TItemOut>(in this Option<T> option, [NotNull, InstantHandle] in Func<object, TItemOut> selector)
             where T : IEnumerable
-        {
-            Throw.IfArgumentNull(selector, nameof(selector));
+        {            if (selector is null)
+                throw new ArgumentNullException(nameof(selector));
 
             if (option.HasValue)
             {
@@ -247,8 +247,8 @@ namespace Here.Extensions
         [PublicAPI, Pure]
         public static Option<IEnumerable<TItemOut>> SelectItems<T, TItemIn, TItemOut>(in this Option<T> option, [NotNull, InstantHandle] in Func<TItemIn, TItemOut> selector)
             where T : IEnumerable<TItemIn>
-        {
-            Throw.IfArgumentNull(selector, nameof(selector));
+        {            if (selector is null)
+                throw new ArgumentNullException(nameof(selector));
 
             if (option.HasValue)
                 return option._value.Select(selector).ToOption();
@@ -267,8 +267,8 @@ namespace Here.Extensions
         [PublicAPI, Pure]
         public static Option<IEnumerable<TItemOut>> SelectManyItems<T, TItemOut>(in this Option<T> option, [NotNull, InstantHandle] in Func<object, IEnumerable<TItemOut>> selector)
             where T : IEnumerable
-        {
-            Throw.IfArgumentNull(selector, nameof(selector));
+        {            if (selector is null)
+                throw new ArgumentNullException(nameof(selector));
 
             if (option.HasValue)
             {
@@ -294,8 +294,8 @@ namespace Here.Extensions
         [PublicAPI, Pure]
         public static Option<IEnumerable<TItemOut>> SelectManyItems<T, TItemIn, TItemOut>(in this Option<T> option, [NotNull, InstantHandle] in Func<TItemIn, IEnumerable<TItemOut>> selector)
             where T : IEnumerable<TItemIn>
-        {
-            Throw.IfArgumentNull(selector, nameof(selector));
+        {            if (selector is null)
+                throw new ArgumentNullException(nameof(selector));
 
             if (option.HasValue)
                 return option._value.SelectMany(selector).ToOption();
@@ -321,9 +321,9 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Func<object, IEnumerable<TItemCollection>> collectionSelector,
             [NotNull, InstantHandle] in Func<object, TItemCollection, TItemOut> resultSelector)
             where T : IEnumerable
-        {
-            Throw.IfArgumentNull(collectionSelector, nameof(collectionSelector));
-            Throw.IfArgumentNull(resultSelector, nameof(resultSelector));
+        {            if (collectionSelector is null)
+                throw new ArgumentNullException(nameof(collectionSelector));            if (resultSelector is null)
+                throw new ArgumentNullException(nameof(resultSelector));
 
             if (option.HasValue)
                 return option._value.Cast<object>().SelectMany(collectionSelector, resultSelector).ToOption();
@@ -350,9 +350,9 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Func<TItemIn, IEnumerable<TItemCollection>> collectionSelector,
             [NotNull, InstantHandle] in Func<TItemIn, TItemCollection, TItemOut> resultSelector)
             where T : IEnumerable<TItemIn>
-        {
-            Throw.IfArgumentNull(collectionSelector, nameof(collectionSelector));
-            Throw.IfArgumentNull(resultSelector, nameof(resultSelector));
+        {            if (collectionSelector is null)
+                throw new ArgumentNullException(nameof(collectionSelector));            if (resultSelector is null)
+                throw new ArgumentNullException(nameof(resultSelector));
 
             if (option.HasValue)
                 return option._value.SelectMany(collectionSelector, resultSelector).ToOption();
@@ -370,8 +370,8 @@ namespace Here.Extensions
         [PublicAPI, Pure]
         public static Option<IEnumerable> WhereItems<T>(in this Option<T> option, [NotNull, InstantHandle] in Predicate<object> predicate)
             where T : IEnumerable
-        {
-            Throw.IfArgumentNull(predicate, nameof(predicate));
+        {            if (predicate is null)
+                throw new ArgumentNullException(nameof(predicate));
 
             if (option.HasValue)
                 return GetMatchingItems(option._value, predicate).ToOption();
@@ -403,8 +403,8 @@ namespace Here.Extensions
         [PublicAPI, Pure]
         public static Option<IEnumerable<TItem>> WhereItems<T, TItem>(in this Option<T> option, [NotNull, InstantHandle] Predicate<TItem> predicate)
             where T : IEnumerable<TItem>
-        {
-            Throw.IfArgumentNull(predicate, nameof(predicate));
+        {            if (predicate is null)
+                throw new ArgumentNullException(nameof(predicate));
 
             if (option.HasValue)
             {
@@ -427,8 +427,8 @@ namespace Here.Extensions
         [PublicAPI]
         public static Option<T> ForEachItems<T>(in this Option<T> option, [NotNull, InstantHandle] in Action<object> onItem)
             where T : IEnumerable
-        {
-            Throw.IfArgumentNull(onItem, nameof(onItem));
+        {            if (onItem is null)
+                throw new ArgumentNullException(nameof(onItem));
 
             if (option.HasValue)
             {
@@ -451,8 +451,8 @@ namespace Here.Extensions
         [PublicAPI]
         public static Option<T> ForEachItems<T, TItem>(in this Option<T> option, [NotNull, InstantHandle] in Action<TItem> onItem)
             where T : IEnumerable<TItem>
-        {
-            Throw.IfArgumentNull(onItem, nameof(onItem));
+        {            if (onItem is null)
+                throw new ArgumentNullException(nameof(onItem));
 
             if (option.HasValue)
             {
@@ -481,9 +481,9 @@ namespace Here.Extensions
             [NotNull] in TAggregate initialValue,
             [NotNull, InstantHandle] in Func<TAggregate, object, TAggregate> aggregator)
             where T : IEnumerable
-        {
-            Throw.IfArgumentNull(initialValue, nameof(initialValue));
-            Throw.IfArgumentNull(aggregator, nameof(aggregator));
+        {            if (initialValue == null)
+                throw new ArgumentNullException(nameof(initialValue));            if (aggregator is null)
+                throw new ArgumentNullException(nameof(aggregator));
 
             if (option.HasValue)
             {
@@ -516,9 +516,9 @@ namespace Here.Extensions
             [NotNull] in TAggregate initialValue,
             [NotNull, InstantHandle] in Func<TAggregate, TItem, TAggregate> aggregator)
             where T : IEnumerable<TItem>
-        {
-            Throw.IfArgumentNull(initialValue, nameof(initialValue));
-            Throw.IfArgumentNull(aggregator, nameof(aggregator));
+        {            if (initialValue == null)
+                throw new ArgumentNullException(nameof(initialValue));            if (aggregator is null)
+                throw new ArgumentNullException(nameof(aggregator));
 
             if (option.HasValue)
                 return option._value.Aggregate(initialValue, aggregator);

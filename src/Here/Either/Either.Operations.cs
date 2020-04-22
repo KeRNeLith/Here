@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 #if SUPPORTS_AGGRESSIVE_INLINING
 using System.Runtime.CompilerServices;
 #endif
@@ -29,9 +29,9 @@ namespace Here
             [NotNull, InstantHandle] in Func<TRight, TOut> onRight,
             [NotNull, InstantHandle] in Func<TLeft, TOut> onLeft,
             [CanBeNull, InstantHandle] in Func<TOut> none = null)
-        {
-            Throw.IfArgumentNull(onRight, nameof(onRight));
-            Throw.IfArgumentNull(onLeft, nameof(onLeft));
+        {            if (onRight is null)
+                throw new ArgumentNullException(nameof(onRight));            if (onLeft is null)
+                throw new ArgumentNullException(nameof(onLeft));
 
             if (IsNone)
             {
@@ -62,9 +62,9 @@ namespace Here
             [NotNull, InstantHandle] in Action<TRight> onRight,
             [NotNull, InstantHandle] in Action<TLeft> onLeft,
             [CanBeNull, InstantHandle] in Action none = null)
-        {
-            Throw.IfArgumentNull(onRight, nameof(onRight));
-            Throw.IfArgumentNull(onLeft, nameof(onLeft));
+        {            if (onRight is null)
+                throw new ArgumentNullException(nameof(onRight));            if (onLeft is null)
+                throw new ArgumentNullException(nameof(onLeft));
 
             if (IsNone)
             {
@@ -122,8 +122,8 @@ namespace Here
         [PublicAPI, Pure]
         public Either<TLeftOut, TRight> Map<TLeftOut>(
             [NotNull, InstantHandle] Func<TLeft, TLeftOut> onLeft)
-        {
-            Throw.IfArgumentNull(onLeft, nameof(onLeft));
+        {            if (onLeft is null)
+                throw new ArgumentNullException(nameof(onLeft));
 
             return Match(
                 right => Either<TLeftOut, TRight>.Right(right),
@@ -142,8 +142,8 @@ namespace Here
         [PublicAPI, Pure]
         public Either<TLeft, TRightOut> Map<TRightOut>(
             [NotNull, InstantHandle] Func<TRight, TRightOut> onRight)
-        {
-            Throw.IfArgumentNull(onRight, nameof(onRight));
+        {            if (onRight is null)
+                throw new ArgumentNullException(nameof(onRight));
 
             return Match(
                 right => Either<TLeft, TRightOut>.Right(Throw.IfResultNull(onRight(right))),
@@ -166,9 +166,9 @@ namespace Here
         public Either<TLeft, TRightOut> BiMap<TRightOut>(
             [NotNull, InstantHandle] Func<TRight, TRightOut> onRight,
             [NotNull, InstantHandle] Func<TLeft, TRightOut> onLeft)
-        {
-            Throw.IfArgumentNull(onRight, nameof(onRight));
-            Throw.IfArgumentNull(onLeft, nameof(onLeft));
+        {            if (onRight is null)
+                throw new ArgumentNullException(nameof(onRight));            if (onLeft is null)
+                throw new ArgumentNullException(nameof(onLeft));
 
             return Match(
                 right => Either<TLeft, TRightOut>.Right(Throw.IfResultNull(onRight(right))),
@@ -192,9 +192,9 @@ namespace Here
         public Either<TLeftOut, TRightOut> BiMap<TLeftOut, TRightOut>(
             [NotNull, InstantHandle] Func<TRight, TRightOut> onRight,
             [NotNull, InstantHandle] Func<TLeft, TLeftOut> onLeft)
-        {
-            Throw.IfArgumentNull(onRight, nameof(onRight));
-            Throw.IfArgumentNull(onLeft, nameof(onLeft));
+        {            if (onRight is null)
+                throw new ArgumentNullException(nameof(onRight));            if (onLeft is null)
+                throw new ArgumentNullException(nameof(onLeft));
 
             return Match(
                 right => Either<TLeftOut, TRightOut>.Right(Throw.IfResultNull(onRight(right))),
@@ -216,8 +216,8 @@ namespace Here
         [PublicAPI, Pure]
         public Either<TLeftOut, TRight> Bind<TLeftOut>(
             [NotNull, InstantHandle] Func<TLeft, Either<TLeftOut, TRight>> onLeft)
-        {
-            Throw.IfArgumentNull(onLeft, nameof(onLeft));
+        {            if (onLeft is null)
+                throw new ArgumentNullException(nameof(onLeft));
 
             return Match(
                 right => Either<TLeftOut, TRight>.Right(right),
@@ -235,8 +235,8 @@ namespace Here
         [PublicAPI, Pure]
         public Either<TLeft, TRightOut> Bind<TRightOut>(
             [NotNull, InstantHandle] Func<TRight, Either<TLeft, TRightOut>> onRight)
-        {
-            Throw.IfArgumentNull(onRight, nameof(onRight));
+        {            if (onRight is null)
+                throw new ArgumentNullException(nameof(onRight));
 
             return Match(
                 onRight,
@@ -258,9 +258,9 @@ namespace Here
         public Either<TLeft, TRightOut> BiBind<TRightOut>(
             [NotNull, InstantHandle] Func<TRight, Either<TLeft, TRightOut>> onRight,
             [NotNull, InstantHandle] Func<TLeft, Either<TLeft, TRightOut>> onLeft)
-        {
-            Throw.IfArgumentNull(onRight, nameof(onRight));
-            Throw.IfArgumentNull(onLeft, nameof(onLeft));
+        {            if (onRight is null)
+                throw new ArgumentNullException(nameof(onRight));            if (onLeft is null)
+                throw new ArgumentNullException(nameof(onLeft));
 
             return Match(
                 onRight,
@@ -287,9 +287,9 @@ namespace Here
         public TState Fold<TState>(
             [NotNull] TState state,
             [NotNull, InstantHandle] Func<TState, TLeft, TState> onLeft)
-        {
-            Throw.IfArgumentNull(state, nameof(state));
-            Throw.IfArgumentNull(onLeft, nameof(onLeft));
+        {            if (state == null)
+                throw new ArgumentNullException(nameof(state));            if (onLeft is null)
+                throw new ArgumentNullException(nameof(onLeft));
 
             return 
                 Throw.IfResultNull(
@@ -314,9 +314,9 @@ namespace Here
         public TState Fold<TState>(
             [NotNull] TState state,
             [NotNull, InstantHandle] Func<TState, TRight, TState> onRight)
-        {
-            Throw.IfArgumentNull(state, nameof(state));
-            Throw.IfArgumentNull(onRight, nameof(onRight));
+        {            if (state == null)
+                throw new ArgumentNullException(nameof(state));            if (onRight is null)
+                throw new ArgumentNullException(nameof(onRight));
 
             return 
                 Throw.IfResultNull(
@@ -345,10 +345,10 @@ namespace Here
             [NotNull] TState state,
             [NotNull, InstantHandle] Func<TState, TRight, TState> onRight,
             [NotNull, InstantHandle] Func<TState, TLeft, TState> onLeft)
-        {
-            Throw.IfArgumentNull(state, nameof(state));
-            Throw.IfArgumentNull(onRight, nameof(onRight));
-            Throw.IfArgumentNull(onLeft, nameof(onLeft));
+        {            if (state == null)
+                throw new ArgumentNullException(nameof(state));            if (onRight is null)
+                throw new ArgumentNullException(nameof(onRight));            if (onLeft is null)
+                throw new ArgumentNullException(nameof(onLeft));
 
             return 
                 Throw.IfResultNull(
@@ -385,8 +385,8 @@ namespace Here
         /// <exception cref="InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state.</exception>
         [PublicAPI, NotNull]
         public TRight IfLeft([NotNull] TRight defaultValue)
-        {
-            Throw.IfArgumentNull(defaultValue, nameof(defaultValue));
+        {            if (defaultValue == null)
+                throw new ArgumentNullException(nameof(defaultValue));
 
             return Match(Identity, _ => defaultValue);
         }
@@ -403,8 +403,8 @@ namespace Here
         /// <exception cref="InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state.</exception>
         [PublicAPI, NotNull]
         public TRight IfLeft([NotNull, InstantHandle] Func<TRight> onLeft)
-        {
-            Throw.IfArgumentNull(onLeft, nameof(onLeft));
+        {            if (onLeft is null)
+                throw new ArgumentNullException(nameof(onLeft));
 
             return Match(Identity, _ => onLeft());
         }
@@ -421,8 +421,8 @@ namespace Here
         /// <exception cref="InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state.</exception>
         [PublicAPI, NotNull]
         public TRight IfLeft([NotNull, InstantHandle] Func<TLeft, TRight> onLeft)
-        {
-            Throw.IfArgumentNull(onLeft, nameof(onLeft));
+        {            if (onLeft is null)
+                throw new ArgumentNullException(nameof(onLeft));
 
             return Match(Identity, onLeft);
         }
@@ -444,9 +444,9 @@ namespace Here
         public TOut IfLeft<TOut>(
             [NotNull, InstantHandle] Func<TLeft, TOut> onLeft,
             [NotNull] TOut defaultValue)
-        {
-            Throw.IfArgumentNull(onLeft, nameof(onLeft));
-            Throw.IfArgumentNull(defaultValue, nameof(defaultValue));
+        {            if (onLeft is null)
+                throw new ArgumentNullException(nameof(onLeft));            if (defaultValue == null)
+                throw new ArgumentNullException(nameof(defaultValue));
 
             return Match(_ => defaultValue, onLeft);
         }
@@ -468,9 +468,9 @@ namespace Here
         public TOut IfLeft<TOut>(
             [NotNull, InstantHandle] Func<TLeft, TOut> onLeft,
             [NotNull, InstantHandle] Func<TOut> valueFactory)
-        {
-            Throw.IfArgumentNull(onLeft, nameof(onLeft));
-            Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
+        {            if (onLeft is null)
+                throw new ArgumentNullException(nameof(onLeft));            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
 
             return Match(_ => valueFactory(), onLeft);
         }
@@ -502,8 +502,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
         [PublicAPI]
         public Either<TLeft, TRight> OnLeft([NotNull, InstantHandle] in Action<TLeft> onLeft)
-        {
-            Throw.IfArgumentNull(onLeft, nameof(onLeft));
+        {            if (onLeft is null)
+                throw new ArgumentNullException(nameof(onLeft));
 
             if (IsLeft)
                 onLeft(_left);
@@ -552,8 +552,8 @@ namespace Here
         /// <exception cref="InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state.</exception>
         [PublicAPI, NotNull]
         public TLeft IfRight([NotNull] TLeft defaultValue)
-        {
-            Throw.IfArgumentNull(defaultValue, nameof(defaultValue));
+        {            if (defaultValue == null)
+                throw new ArgumentNullException(nameof(defaultValue));
 
             return Match(_ => defaultValue, Identity);
         }
@@ -570,8 +570,8 @@ namespace Here
         /// <exception cref="InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state.</exception>
         [PublicAPI, NotNull]
         public TLeft IfRight([NotNull, InstantHandle] Func<TLeft> onRight)
-        {
-            Throw.IfArgumentNull(onRight, nameof(onRight));
+        {            if (onRight is null)
+                throw new ArgumentNullException(nameof(onRight));
 
             return Match(_ => onRight(), Identity);
         }
@@ -588,8 +588,8 @@ namespace Here
         /// <exception cref="InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state.</exception>
         [PublicAPI, NotNull]
         public TLeft IfRight([NotNull, InstantHandle] Func<TRight, TLeft> onRight)
-        {
-            Throw.IfArgumentNull(onRight, nameof(onRight));
+        {            if (onRight is null)
+                throw new ArgumentNullException(nameof(onRight));
 
             return Match(onRight, Identity);
         }
@@ -611,9 +611,9 @@ namespace Here
         public TOut IfRight<TOut>(
             [NotNull, InstantHandle] Func<TRight, TOut> onRight,
             [NotNull] TOut defaultValue)
-        {
-            Throw.IfArgumentNull(onRight, nameof(onRight));
-            Throw.IfArgumentNull(defaultValue, nameof(defaultValue));
+        {            if (onRight is null)
+                throw new ArgumentNullException(nameof(onRight));            if (defaultValue == null)
+                throw new ArgumentNullException(nameof(defaultValue));
 
             return Match(onRight, _ => defaultValue);
         }
@@ -635,9 +635,9 @@ namespace Here
         public TOut IfRight<TOut>(
             [NotNull, InstantHandle] Func<TRight, TOut> onRight,
             [NotNull, InstantHandle] Func<TOut> valueFactory)
-        {
-            Throw.IfArgumentNull(onRight, nameof(onRight));
-            Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
+        {            if (onRight is null)
+                throw new ArgumentNullException(nameof(onRight));            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
 
             return Match(onRight, _ => valueFactory());
         }
@@ -669,8 +669,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
         [PublicAPI]
         public Either<TLeft, TRight> OnRight([NotNull, InstantHandle] in Action<TRight> onRight)
-        {
-            Throw.IfArgumentNull(onRight, nameof(onRight));
+        {            if (onRight is null)
+                throw new ArgumentNullException(nameof(onRight));
 
             if (IsRight)
                 onRight(_right);
@@ -709,9 +709,9 @@ namespace Here
         public Either<TLeft, TRight> OnRightOrLeft(
             [NotNull, InstantHandle] in Action<TRight> onRight,
             [NotNull, InstantHandle] in Action<TLeft> onLeft)
-        {
-            Throw.IfArgumentNull(onRight, nameof(onRight));
-            Throw.IfArgumentNull(onLeft, nameof(onLeft));
+        {            if (onRight is null)
+                throw new ArgumentNullException(nameof(onRight));            if (onLeft is null)
+                throw new ArgumentNullException(nameof(onLeft));
 
             if (IsRight)
             {
@@ -769,8 +769,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="defaultValue"/> is null.</exception>
         [PublicAPI, Pure, NotNull]
         public TRight RightOr([NotNull] in TRight defaultValue)
-        {
-            Throw.IfArgumentNull(defaultValue, nameof(defaultValue));
+        {            if (defaultValue == null)
+                throw new ArgumentNullException(nameof(defaultValue));
 
             if (IsRight)
             {
@@ -791,8 +791,8 @@ namespace Here
         /// <exception cref="NullResultException">If the result of the <paramref name="valueFactory"/> function is null.</exception>
         [PublicAPI, Pure, NotNull]
         public TRight RightOr([NotNull, InstantHandle] in Func<TRight> valueFactory)
-        {
-            Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
+        {            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
 
             if (IsRight)
             {
@@ -824,8 +824,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="defaultValue"/> is null.</exception>
         [PublicAPI, Pure, NotNull]
         public TLeft LeftOr([NotNull] in TLeft defaultValue)
-        {
-            Throw.IfArgumentNull(defaultValue, nameof(defaultValue));
+        {            if (defaultValue == null)
+                throw new ArgumentNullException(nameof(defaultValue));
 
             if (IsLeft)
             {
@@ -846,8 +846,8 @@ namespace Here
         /// <exception cref="NullResultException">If the result of the <paramref name="valueFactory"/> function is null.</exception>
         [PublicAPI, Pure, NotNull]
         public TLeft LeftOr([NotNull, InstantHandle] in Func<TLeft> valueFactory)
-        {
-            Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
+        {            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
 
             if (IsLeft)
             {

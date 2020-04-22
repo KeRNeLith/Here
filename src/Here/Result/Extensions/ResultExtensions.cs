@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using JetBrains.Annotations;
 
 namespace Here.Extensions
@@ -47,9 +47,9 @@ namespace Here.Extensions
             in this Result result,
             [NotNull, InstantHandle] in Func<bool> predicate,
             [NotNull] in string errorMessage)
-        {
-            Throw.IfArgumentNull(predicate, nameof(predicate));
-            Throw.IfArgumentNull(errorMessage, nameof(errorMessage));
+        {            if (predicate is null)
+                throw new ArgumentNullException(nameof(predicate));            if (errorMessage is null)
+                throw new ArgumentNullException(nameof(errorMessage));
 
             if (result.IsFailure)
                 return result;
@@ -116,8 +116,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="orFunc"/> is null.</exception>
         [PublicAPI, Pure]
         public static T Unwrap<T>(in this Result<T> result, [NotNull, InstantHandle] in Func<T> orFunc)
-        {
-            Throw.IfArgumentNull(orFunc, nameof(orFunc));
+        {            if (orFunc is null)
+                throw new ArgumentNullException(nameof(orFunc));
 
             if (result.IsSuccess)
                 return result._value;
@@ -141,8 +141,8 @@ namespace Here.Extensions
             in this Result<T> result,
             [NotNull, InstantHandle] in Func<T, TOut> converter,
             [CanBeNull] in TOut defaultValue = default)
-        {
-            Throw.IfArgumentNull(converter, nameof(converter));
+        {            if (converter is null)
+                throw new ArgumentNullException(nameof(converter));
 
             if (result.IsSuccess)
                 return converter(result._value);
@@ -167,9 +167,9 @@ namespace Here.Extensions
             in this Result<T> result,
             [NotNull, InstantHandle] in Func<T, TOut> converter,
             [NotNull, InstantHandle] in Func<TOut> orFunc)
-        {
-            Throw.IfArgumentNull(converter, nameof(converter));
-            Throw.IfArgumentNull(orFunc, nameof(orFunc));
+        {            if (converter is null)
+                throw new ArgumentNullException(nameof(converter));            if (orFunc is null)
+                throw new ArgumentNullException(nameof(orFunc));
 
             if (result.IsSuccess)
                 return converter(result._value);
@@ -191,9 +191,9 @@ namespace Here.Extensions
             in this Result<T> result,
             [NotNull, InstantHandle] in Predicate<T> predicate,
             [NotNull] in string errorMessage)
-        {
-            Throw.IfArgumentNull(predicate, nameof(predicate));
-            Throw.IfArgumentNull(errorMessage, nameof(errorMessage));
+        {            if (predicate is null)
+                throw new ArgumentNullException(nameof(predicate));            if (errorMessage is null)
+                throw new ArgumentNullException(nameof(errorMessage));
 
             if (result.IsFailure)
                 return result;
@@ -326,10 +326,10 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Func<bool> predicate, 
             [NotNull] in string errorMessage, 
             [NotNull] in TError errorObject)
-        {
-            Throw.IfArgumentNull(predicate, nameof(predicate));
-            Throw.IfArgumentNull(errorMessage, nameof(errorMessage));
-            Throw.IfArgumentNull(errorObject, nameof(errorObject));
+        {            if (predicate is null)
+                throw new ArgumentNullException(nameof(predicate));            if (errorMessage is null)
+                throw new ArgumentNullException(nameof(errorMessage));            if (errorObject == null)
+                throw new ArgumentNullException(nameof(errorObject));
 
             if (result.IsFailure)
                 return result;
@@ -358,10 +358,10 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Func<bool> predicate,
             [NotNull] in string errorMessage,
             [NotNull, InstantHandle] in Func<TError> errorFactory)
-        {
-            Throw.IfArgumentNull(predicate, nameof(predicate));
-            Throw.IfArgumentNull(errorMessage, nameof(errorMessage));
-            Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
+        {            if (predicate is null)
+                throw new ArgumentNullException(nameof(predicate));            if (errorMessage is null)
+                throw new ArgumentNullException(nameof(errorMessage));            if (errorFactory is null)
+                throw new ArgumentNullException(nameof(errorFactory));
 
             if (result.IsFailure)
                 return result;
@@ -432,8 +432,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="orFunc"/> is null.</exception>
         [PublicAPI, Pure]
         public static T Unwrap<T, TError>(in this Result<T, TError> result, [NotNull, InstantHandle] in Func<T> orFunc)
-        {
-            Throw.IfArgumentNull(orFunc, nameof(orFunc));
+        {            if (orFunc is null)
+                throw new ArgumentNullException(nameof(orFunc));
 
             if (result.IsSuccess)
                 return result._value;
@@ -458,8 +458,8 @@ namespace Here.Extensions
             in this Result<T, TError> result,
             [NotNull, InstantHandle] in Func<T, TOut> converter,
             [CanBeNull] in TOut defaultValue = default)
-        {
-            Throw.IfArgumentNull(converter, nameof(converter));
+        {            if (converter is null)
+                throw new ArgumentNullException(nameof(converter));
 
             if (result.IsSuccess)
                 return converter(result._value);
@@ -485,9 +485,9 @@ namespace Here.Extensions
             in this Result<T, TError> result,
             [NotNull, InstantHandle] in Func<T, TOut> converter,
             [NotNull, InstantHandle] in Func<TOut> orFunc)
-        {
-            Throw.IfArgumentNull(converter, nameof(converter));
-            Throw.IfArgumentNull(orFunc, nameof(orFunc));
+        {            if (converter is null)
+                throw new ArgumentNullException(nameof(converter));            if (orFunc is null)
+                throw new ArgumentNullException(nameof(orFunc));
 
             if (result.IsSuccess)
                 return converter(result._value);
@@ -513,10 +513,10 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Predicate<T> predicate,
             [NotNull] in string errorMessage,
             [NotNull] in TError errorObject)
-        {
-            Throw.IfArgumentNull(predicate, nameof(predicate));
-            Throw.IfArgumentNull(errorMessage, nameof(errorMessage));
-            Throw.IfArgumentNull(errorObject, nameof(errorObject));
+        {            if (predicate is null)
+                throw new ArgumentNullException(nameof(predicate));            if (errorMessage is null)
+                throw new ArgumentNullException(nameof(errorMessage));            if (errorObject == null)
+                throw new ArgumentNullException(nameof(errorObject));
 
             if (result.IsFailure)
                 return result;
@@ -546,10 +546,10 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Predicate<T> predicate,
             [NotNull] in string errorMessage,
             [NotNull, InstantHandle] in Func<TError> errorFactory)
-        {
-            Throw.IfArgumentNull(predicate, nameof(predicate));
-            Throw.IfArgumentNull(errorMessage, nameof(errorMessage));
-            Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
+        {            if (predicate is null)
+                throw new ArgumentNullException(nameof(predicate));            if (errorMessage is null)
+                throw new ArgumentNullException(nameof(errorMessage));            if (errorFactory is null)
+                throw new ArgumentNullException(nameof(errorFactory));
 
             if (result.IsFailure)
                 return result;
