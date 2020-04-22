@@ -125,7 +125,7 @@ namespace Here.Extensions
         /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success,
         /// otherwise the <paramref name="onFailure"/>.
         /// </summary>
-        /// <typeparam name="T">Result value type.</typeparam>
+        /// <typeparam name="T">Type of the result value.</typeparam>
         /// <param name="result"><see cref="Result{TIn}"/> to check.</param>
         /// <param name="onSuccess">Function to run if the <see cref="Result{TIn}"/> is a success.</param>
         /// <param name="onFailure">Function to run if the <see cref="Result{TIn}"/> is a failure.</param>
@@ -153,7 +153,7 @@ namespace Here.Extensions
         /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success,
         /// otherwise the <paramref name="onFailure"/>.
         /// </summary>
-        /// <typeparam name="T">Result value type.</typeparam>
+        /// <typeparam name="T">Type of the result value.</typeparam>
         /// <param name="result"><see cref="Result{TIn}"/> to check.</param>
         /// <param name="onSuccess">Function to run if the <see cref="Result{TIn}"/> is a success.</param>
         /// <param name="onFailure">Function to run if the <see cref="Result{TIn}"/> is a failure.</param>
@@ -181,7 +181,7 @@ namespace Here.Extensions
         /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success,
         /// otherwise the <paramref name="onFailure"/>.
         /// </summary>
-        /// <typeparam name="TIn">Result input value type.</typeparam>
+        /// <typeparam name="TIn">Type of the input result value type.</typeparam>
         /// <typeparam name="TOut">Type of the output value.</typeparam>
         /// <param name="result"><see cref="Result{TIn}"/> to check.</param>
         /// <param name="onSuccess">Function to run if the <see cref="Result{TIn}"/> is a success.</param>
@@ -212,7 +212,7 @@ namespace Here.Extensions
         /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success,
         /// otherwise the <paramref name="onFailure"/>.
         /// </summary>
-        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
         /// <param name="onSuccess">Function to run if the <see cref="CustomResult{TError}"/> is a success.</param>
         /// <param name="onFailure">Function to run if the <see cref="CustomResult{TError}"/> is a failure.</param>
@@ -240,7 +240,7 @@ namespace Here.Extensions
         /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success,
         /// otherwise the <paramref name="onFailure"/>.
         /// </summary>
-        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
         /// <param name="onSuccess">Function to run if the <see cref="CustomResult{TError}"/> is a success.</param>
         /// <param name="onFailure">Function to run if the <see cref="CustomResult{TError}"/> is a failure.</param>
@@ -268,7 +268,7 @@ namespace Here.Extensions
         /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success,
         /// otherwise the <paramref name="onFailure"/>.
         /// </summary>
-        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
         /// <param name="onSuccess">Function to run if the <see cref="CustomResult{TError}"/> is a success.</param>
         /// <param name="onFailure">Function to run if the <see cref="CustomResult{TError}"/> is a failure.</param>
@@ -297,7 +297,7 @@ namespace Here.Extensions
         /// otherwise the <paramref name="onFailure"/>.
         /// </summary>
         /// <typeparam name="TOut">Type of the output value.</typeparam>
-        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
         /// <param name="onSuccess">Function to run if the <see cref="CustomResult{TError}"/> is a success.</param>
         /// <param name="onFailure">Function to run if the <see cref="CustomResult{TError}"/> is a failure.</param>
@@ -327,8 +327,8 @@ namespace Here.Extensions
         /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success,
         /// otherwise the <paramref name="onFailure"/>.
         /// </summary>
-        /// <typeparam name="T">Result value type.</typeparam>
-        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <typeparam name="T">Type of the result value.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="Result{TIn, TError}"/> to check.</param>
         /// <param name="onSuccess">Function to run if the <see cref="Result{TIn, TError}"/> is a success.</param>
         /// <param name="onFailure">Function to run if the <see cref="Result{TIn, TError}"/> is a failure.</param>
@@ -356,8 +356,8 @@ namespace Here.Extensions
         /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success,
         /// otherwise the <paramref name="onFailure"/>.
         /// </summary>
-        /// <typeparam name="T">Result value type.</typeparam>
-        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <typeparam name="T">Type of the result value.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="Result{TIn, TError}"/> to check.</param>
         /// <param name="onSuccess">Function to run if the <see cref="Result{TIn, TError}"/> is a success.</param>
         /// <param name="onFailure">Function to run if the <see cref="Result{TIn, TError}"/> is a failure.</param>
@@ -385,9 +385,9 @@ namespace Here.Extensions
         /// Calls the <paramref name="onSuccess"/> function when the <paramref name="result"/> is a success,
         /// otherwise the <paramref name="onFailure"/>.
         /// </summary>
-        /// <typeparam name="TIn">Result input value type.</typeparam>
+        /// <typeparam name="TIn">Type of the input result value type.</typeparam>
         /// <typeparam name="TOut">Type of the output value.</typeparam>
-        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="Result{TIn, TError}"/> to check.</param>
         /// <param name="onSuccess">Function to run if the <see cref="Result{TIn, TError}"/> is a success.</param>
         /// <param name="onFailure">Function to run if the <see cref="Result{TIn, TError}"/> is a failure.</param>

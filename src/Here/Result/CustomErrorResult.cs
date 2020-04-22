@@ -11,6 +11,7 @@ namespace Here
     /// <see cref="CustomResult{TError}"/> is an object that represents the result/state of a treatment.
     /// It provides a custom error object in case of failure.
     /// </summary>
+    /// <typeparam name="TError">Type of the result error object.</typeparam>
     [PublicAPI]
 #if SUPPORTS_SERIALIZATION
     [Serializable]

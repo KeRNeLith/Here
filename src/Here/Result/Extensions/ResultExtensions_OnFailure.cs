@@ -123,7 +123,7 @@ namespace Here.Extensions
         /// <summary>
         /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
         /// </summary>
-        /// <typeparam name="T">Result value type.</typeparam>
+        /// <typeparam name="T">Type of the result value.</typeparam>
         /// <param name="result"><see cref="Result{T}"/> to check.</param>
         /// <param name="onFailure">Action to run if the <see cref="Result{T}"/> is failure.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
@@ -143,7 +143,7 @@ namespace Here.Extensions
         /// <summary>
         /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
         /// </summary>
-        /// <typeparam name="T">Result value type.</typeparam>
+        /// <typeparam name="T">Type of the result value.</typeparam>
         /// <param name="result"><see cref="Result{T}"/> to check.</param>
         /// <param name="onFailure">Action to run if the <see cref="Result{T}"/> is failure.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
@@ -163,7 +163,7 @@ namespace Here.Extensions
         /// <summary>
         /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
         /// </summary>
-        /// <typeparam name="T">Result value type.</typeparam>
+        /// <typeparam name="T">Type of the result value.</typeparam>
         /// <param name="result"><see cref="Result{T}"/> to check.</param>
         /// <param name="onFailure">Function to run if the <see cref="Result{T}"/> is failure.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
@@ -183,7 +183,7 @@ namespace Here.Extensions
         /// <summary>
         /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
         /// </summary>
-        /// <typeparam name="T">Result value type.</typeparam>
+        /// <typeparam name="T">Type of the result value.</typeparam>
         /// <param name="result"><see cref="Result{T}"/> to check.</param>
         /// <param name="onFailure">Function to run if the <see cref="Result{T}"/> is failure.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
@@ -203,7 +203,7 @@ namespace Here.Extensions
         /// <summary>
         /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure, otherwise return the <paramref name="defaultValue"/>.
         /// </summary>
-        /// <typeparam name="TIn">Result value type.</typeparam>
+        /// <typeparam name="TIn">Type of the result value.</typeparam>
         /// <typeparam name="TOut">Type of the output value.</typeparam>
         /// <param name="result"><see cref="Result{TIn}"/> to check.</param>
         /// <param name="onFailure">Function to run if the <see cref="Result{TIn}"/> is failure.</param>
@@ -212,7 +212,8 @@ namespace Here.Extensions
         /// <returns>An output value.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static TOut OnFailure<TIn, TOut>(in this Result<TIn> result,
+        public static TOut OnFailure<TIn, TOut>(
+            in this Result<TIn> result,
             [NotNull, InstantHandle] in Func<Result<TIn>, TOut> onFailure,
             [CanBeNull] in TOut defaultValue,
             in bool treatWarningAsError = false)
@@ -228,7 +229,7 @@ namespace Here.Extensions
         /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure,
         /// otherwise return the <paramref name="valueFactory"/> return value.
         /// </summary>
-        /// <typeparam name="TIn">Result value type.</typeparam>
+        /// <typeparam name="TIn">Type of the result value.</typeparam>
         /// <typeparam name="TOut">Type of the output value.</typeparam>
         /// <param name="result"><see cref="Result{TIn}"/> to check.</param>
         /// <param name="onFailure">Function to run if the <see cref="Result{TIn}"/> is failure.</param>
@@ -238,7 +239,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI]
-        public static TOut OnFailure<TIn, TOut>(in this Result<TIn> result,
+        public static TOut OnFailure<TIn, TOut>(
+            in this Result<TIn> result,
             [NotNull, InstantHandle] in Func<Result<TIn>, TOut> onFailure,
             [NotNull, InstantHandle] in Func<TIn, TOut> valueFactory,
             in bool treatWarningAsError = false)
@@ -258,14 +260,15 @@ namespace Here.Extensions
         /// <summary>
         /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
         /// </summary>
-        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
         /// <param name="onFailure">Action to run if the <see cref="CustomResult{TError}"/> is failure.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>This <see cref="CustomResult{TError}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static CustomResult<TError> OnFailure<TError>(in this CustomResult<TError> result, 
+        public static CustomResult<TError> OnFailure<TError>(
+            in this CustomResult<TError> result, 
             [NotNull, InstantHandle] in Action onFailure,
             in bool treatWarningAsError = false)
         {
@@ -280,14 +283,15 @@ namespace Here.Extensions
         /// <summary>
         /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
         /// </summary>
-        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
         /// <param name="onFailure">Action to run if the <see cref="CustomResult{TError}"/> is failure.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>This <see cref="CustomResult{TError}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static CustomResult<TError> OnFailure<TError>(in this CustomResult<TError> result, 
+        public static CustomResult<TError> OnFailure<TError>(
+            in this CustomResult<TError> result, 
             [NotNull, InstantHandle] in Action<CustomResult<TError>> onFailure,
             in bool treatWarningAsError = false)
         {
@@ -302,7 +306,7 @@ namespace Here.Extensions
         /// <summary>
         /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
         /// </summary>
-        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
         /// <param name="onFailure">Function to run if the <see cref="CustomResult{TError}"/> is failure.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
@@ -322,7 +326,7 @@ namespace Here.Extensions
         /// <summary>
         /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
         /// </summary>
-        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
         /// <param name="onFailure">Function to run if the <see cref="CustomResult{TError}"/> is failure.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
@@ -343,7 +347,7 @@ namespace Here.Extensions
         /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure, otherwise return the <paramref name="defaultValue"/>.
         /// </summary>
         /// <typeparam name="TOut">Type of the output value.</typeparam>
-        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
         /// <param name="onFailure">Function to run if the <see cref="CustomResult{TError}"/> is failure.</param>
         /// <param name="defaultValue">Value to return if the result is not a failure.</param>
@@ -351,7 +355,8 @@ namespace Here.Extensions
         /// <returns>An output value.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static TOut OnFailure<TOut, TError>(in this CustomResult<TError> result,
+        public static TOut OnFailure<TOut, TError>(
+            in this CustomResult<TError> result,
             [NotNull, InstantHandle] in Func<CustomResult<TError>, TOut> onFailure,
             [CanBeNull] in TOut defaultValue,
             in bool treatWarningAsError = false)
@@ -368,7 +373,7 @@ namespace Here.Extensions
         /// otherwise return the <paramref name="valueFactory"/> return value.
         /// </summary>
         /// <typeparam name="TOut">Type of the output value.</typeparam>
-        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
         /// <param name="onFailure">Function to run if the <see cref="CustomResult{TError}"/> is failure.</param>
         /// <param name="valueFactory">Function called to create a value to return if the result is a success.</param>
@@ -377,7 +382,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI]
-        public static TOut OnFailure<TOut, TError>(in this CustomResult<TError> result,
+        public static TOut OnFailure<TOut, TError>(
+            in this CustomResult<TError> result,
             [NotNull, InstantHandle] in Func<CustomResult<TError>, TOut> onFailure,
             [NotNull, InstantHandle] in Func<TOut> valueFactory,
             in bool treatWarningAsError = false)
@@ -397,15 +403,16 @@ namespace Here.Extensions
         /// <summary>
         /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
         /// </summary>
-        /// <typeparam name="T">Result value type.</typeparam>
-        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <typeparam name="T">Type of the result value.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/> to check.</param>
         /// <param name="onFailure">Action to run if the <see cref="Result{T, TError}"/> is failure.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>This <see cref="Result{T, TError}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static Result<T, TError> OnFailure<T, TError>(in this Result<T, TError> result,
+        public static Result<T, TError> OnFailure<T, TError>(
+            in this Result<T, TError> result,
             [NotNull, InstantHandle] in Action onFailure,
             in bool treatWarningAsError = false)
         {
@@ -420,15 +427,16 @@ namespace Here.Extensions
         /// <summary>
         /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
         /// </summary>
-        /// <typeparam name="T">Result value type.</typeparam>
-        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <typeparam name="T">Type of the result value.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/> to check.</param>
         /// <param name="onFailure">Action to run if the <see cref="Result{T, TError}"/> is failure.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>This <see cref="Result{T, TError}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static Result<T, TError> OnFailure<T, TError>(in this Result<T, TError> result,
+        public static Result<T, TError> OnFailure<T, TError>(
+            in this Result<T, TError> result,
             [NotNull, InstantHandle] in Action<Result<T, TError>> onFailure,
             in bool treatWarningAsError = false)
         {
@@ -443,8 +451,8 @@ namespace Here.Extensions
         /// <summary>
         /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
         /// </summary>
-        /// <typeparam name="T">Result value type.</typeparam>
-        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <typeparam name="T">Type of the result value.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="Result{T,TError}"/> to check.</param>
         /// <param name="onFailure">Function to run if the <see cref="Result{T,TError}"/> is failure.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
@@ -464,8 +472,8 @@ namespace Here.Extensions
         /// <summary>
         /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
         /// </summary>
-        /// <typeparam name="T">Result value type.</typeparam>
-        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <typeparam name="T">Type of the result value.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="Result{T,TError}"/> to check.</param>
         /// <param name="onFailure">Function to run if the <see cref="Result{T,TError}"/> is failure.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
@@ -485,8 +493,8 @@ namespace Here.Extensions
         /// <summary>
         /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
         /// </summary>
-        /// <typeparam name="T">Result value type.</typeparam>
-        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <typeparam name="T">Type of the result value.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="Result{T,TError}"/> to check.</param>
         /// <param name="onFailure">Function to run if the <see cref="Result{T,TError}"/> is failure.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
@@ -506,8 +514,8 @@ namespace Here.Extensions
         /// <summary>
         /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure.
         /// </summary>
-        /// <typeparam name="T">Result value type.</typeparam>
-        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <typeparam name="T">Type of the result value.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="Result{T,TError}"/> to check.</param>
         /// <param name="onFailure">Function to run if the <see cref="Result{T,TError}"/> is failure.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
@@ -527,9 +535,9 @@ namespace Here.Extensions
         /// <summary>
         /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure, otherwise return the <paramref name="defaultValue"/>.
         /// </summary>
-        /// <typeparam name="TIn">Result value type.</typeparam>
+        /// <typeparam name="TIn">Type of the result value.</typeparam>
         /// <typeparam name="TOut">Type of the output value.</typeparam>
-        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="Result{TIn, TError}"/> to check.</param>
         /// <param name="onFailure">Function to run if the <see cref="Result{TIn, TError}"/> is failure.</param>
         /// <param name="defaultValue">Value to return if the result is not a failure.</param>
@@ -537,7 +545,8 @@ namespace Here.Extensions
         /// <returns>An output value.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static TOut OnFailure<TIn, TOut, TError>(in this Result<TIn, TError> result,
+        public static TOut OnFailure<TIn, TOut, TError>(
+            in this Result<TIn, TError> result,
             [NotNull, InstantHandle] in Func<Result<TIn, TError>, TOut> onFailure,
             [CanBeNull] in TOut defaultValue,
             in bool treatWarningAsError = false)
@@ -553,9 +562,9 @@ namespace Here.Extensions
         /// Calls the <paramref name="onFailure"/> action when the <paramref name="result"/> is failure
         /// otherwise return the <paramref name="valueFactory"/> return value.
         /// </summary>
-        /// <typeparam name="TIn">Result value type.</typeparam>
+        /// <typeparam name="TIn">Type of the result value.</typeparam>
         /// <typeparam name="TOut">Type of the output value.</typeparam>
-        /// <typeparam name="TError">Result custom error type.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="Result{TIn, TError}"/> to check.</param>
         /// <param name="onFailure">Function to run if the <see cref="Result{TIn, TError}"/> is failure.</param>
         /// <param name="valueFactory">Function called to create a value to return if the result is a success.</param>
@@ -564,7 +573,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI]
-        public static TOut OnFailure<TIn, TOut, TError>(in this Result<TIn, TError> result,
+        public static TOut OnFailure<TIn, TOut, TError>(
+            in this Result<TIn, TError> result,
             [NotNull, InstantHandle] in Func<Result<TIn, TError>, TOut> onFailure,
             [NotNull, InstantHandle] in Func<TIn, TOut> valueFactory,
             in bool treatWarningAsError = false)

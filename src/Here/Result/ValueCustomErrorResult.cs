@@ -13,6 +13,8 @@ namespace Here
     /// This <see cref="Result{T, TError}"/> embed a <see cref="Value"/> resulting of the treatment
     /// or a custom error object in case of failed.
     /// </summary>
+    /// <typeparam name="T">Type of the result value.</typeparam>
+    /// <typeparam name="TError">Type of the result error object.</typeparam>
     [PublicAPI]
 #if SUPPORTS_SERIALIZATION
     [Serializable]

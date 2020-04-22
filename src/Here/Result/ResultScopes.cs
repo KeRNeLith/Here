@@ -55,6 +55,7 @@ namespace Here
         /// <summary>
         /// Runs the given <paramref name="action"/> in a safe scope that always returns a <see cref="Result{T}"/>.
         /// </summary>
+        /// <typeparam name="T">Type of the result value.</typeparam>
         /// <param name="action">Function to call.</param>
         /// <returns>A <see cref="Result{T}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="action"/> is null.</exception>
@@ -76,6 +77,7 @@ namespace Here
         /// <summary>
         /// Runs the given <paramref name="action"/> in a safe scope that always returns a <see cref="CustomResult{TError}"/>.
         /// </summary>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="action">Function to call.</param>
         /// <param name="errorObject">Error object to return in case an exception is thrown.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
@@ -100,6 +102,7 @@ namespace Here
         /// <summary>
         /// Runs the given <paramref name="action"/> in a safe scope that always returns a <see cref="CustomResult{TError}"/>.
         /// </summary>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="action">Function to call.</param>
         /// <param name="errorFactory">Function to create a custom error object in case an exception is thrown.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
@@ -124,6 +127,8 @@ namespace Here
         /// <summary>
         /// Runs the given <paramref name="action"/> in a safe scope that always returns a <see cref="Result{T, TError}"/>.
         /// </summary>
+        /// <typeparam name="T">Type of the result value.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="action">Function to call.</param>
         /// <param name="errorObject">Error object to return in case an exception is thrown.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
@@ -148,6 +153,8 @@ namespace Here
         /// <summary>
         /// Runs the given <paramref name="action"/> in a safe scope that always returns a <see cref="Result{T, TError}"/>.
         /// </summary>
+        /// <typeparam name="T">Type of the result value.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="action">Function to call.</param>
         /// <param name="errorFactory">Function to create a custom error object in case an exception is thrown.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>

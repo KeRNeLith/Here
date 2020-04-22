@@ -36,7 +36,7 @@ namespace Here.Extensions
         /// <summary>
         /// Converts this <see cref="CustomResult{TError}"/> to an <see cref="Option{Boolean}"/>.
         /// </summary>
-        /// <typeparam name="TError">Error type of the result.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to convert.</param>
         /// <returns>An <see cref="Option{Boolean}"/>.</returns>
         public static Option<bool> ToOption<TError>(in this CustomResult<TError> result)
@@ -48,7 +48,7 @@ namespace Here.Extensions
         /// Converts this <see cref="Result{T, TError}"/> to an <see cref="Option{T}"/>.
         /// </summary>
         /// <typeparam name="T">Type of the result value.</typeparam>
-        /// <typeparam name="TError">Error type of the result.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/> to convert.</param>
         /// <returns>An <see cref="Option{T}"/>.</returns>
         public static Option<T> ToOption<T, TError>(in this Result<T, TError> result)
@@ -84,7 +84,7 @@ namespace Here.Extensions
         /// Converts this <see cref="Result{T, TError}"/> to an <see cref="Either{TError,T}"/>.
         /// </summary>
         /// <typeparam name="T">Type of the result value.</typeparam>
-        /// <typeparam name="TError">Error type of the result.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/> to convert.</param>
         /// <returns>An <see cref="Either{TError,T}"/>.</returns>
         public static Either<TError, T> ToEither<T, TError>(in this Result<T, TError> result)
@@ -107,7 +107,7 @@ namespace Here.Extensions
         /// Converts this <see cref="Result{T, TError}"/> to an <see cref="Either{String,T}"/>.
         /// </summary>
         /// <typeparam name="T">Type of the result value.</typeparam>
-        /// <typeparam name="TError">Error type of the result.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/> to convert.</param>
         /// <returns>An <see cref="Either{String,T}"/>.</returns>
         public static Either<string, T> ToMessageEither<T, TError>(in this Result<T, TError> result)

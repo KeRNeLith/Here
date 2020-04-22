@@ -43,7 +43,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
         [PublicAPI, Pure]
-        public static Result Ensure(in this Result result, [NotNull, InstantHandle] in Func<bool> predicate, [NotNull] in string errorMessage)
+        public static Result Ensure(
+            in this Result result,
+            [NotNull, InstantHandle] in Func<bool> predicate,
+            [NotNull] in string errorMessage)
         {
             Throw.IfArgumentNull(predicate, nameof(predicate));
             Throw.IfArgumentNull(errorMessage, nameof(errorMessage));
@@ -64,6 +67,7 @@ namespace Here.Extensions
         /// <summary>
         /// Indicates if this <see cref="Result{T}"/> is a success without warning.
         /// </summary>
+        /// <typeparam name="T">Type of the result value.</typeparam>
         /// <param name="result"><see cref="Result{T}"/> to check.</param>
         /// <returns>True if the result is a success without warning, otherwise false.</returns>
         [PublicAPI, Pure]
@@ -75,6 +79,7 @@ namespace Here.Extensions
         /// <summary>
         /// Throws this <see cref="Result{T}"/> exception if it has one, otherwise do nothing.
         /// </summary>
+        /// <typeparam name="T">Type of the result value.</typeparam>
         /// <param name="result"><see cref="Result{T}"/> to check.</param>
         [PublicAPI]
         public static void Throws<T>(in this Result<T> result)
@@ -182,7 +187,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
         [PublicAPI, Pure]
-        public static Result<T> Ensure<T>(in this Result<T> result, [NotNull, InstantHandle] in Predicate<T> predicate, [NotNull] in string errorMessage)
+        public static Result<T> Ensure<T>(
+            in this Result<T> result,
+            [NotNull, InstantHandle] in Predicate<T> predicate,
+            [NotNull] in string errorMessage)
         {
             Throw.IfArgumentNull(predicate, nameof(predicate));
             Throw.IfArgumentNull(errorMessage, nameof(errorMessage));
@@ -236,6 +244,7 @@ namespace Here.Extensions
         /// <summary>
         /// Flattens this <see cref="Result{Result}"/> to a <see cref="Result{T}"/>.
         /// </summary>
+        /// <typeparam name="T">Type of the result value.</typeparam>
         /// <param name="embeddedResult">A <see cref="Result{Result}"/>.</param>
         /// <returns>Flattened <see cref="Result{T}"/>.</returns>
         [PublicAPI, Pure]
@@ -277,6 +286,7 @@ namespace Here.Extensions
         /// <summary>
         /// Indicates if this <see cref="CustomResult{TError}"/> is a success without warning.
         /// </summary>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
         /// <returns>True if the result is a success without warning, otherwise false.</returns>
         [PublicAPI, Pure]
@@ -288,6 +298,7 @@ namespace Here.Extensions
         /// <summary>
         /// Throws this <see cref="CustomResult{TError}"/> exception if it has one, otherwise do nothing.
         /// </summary>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
         [PublicAPI]
         public static void Throws<TError>(in this CustomResult<TError> result)
@@ -300,7 +311,7 @@ namespace Here.Extensions
         /// <summary>
         /// Ensures that this <see cref="CustomResult{TError}"/> fulfill the given <paramref name="predicate"/>.
         /// </summary>
-        /// <typeparam name="TError">Error type of the result.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/>.</param>
         /// <param name="predicate">Predicate to match.</param>
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
@@ -310,7 +321,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null or empty.</exception>
         [PublicAPI, Pure]
-        public static CustomResult<TError> Ensure<TError>(in this CustomResult<TError> result, 
+        public static CustomResult<TError> Ensure<TError>(
+            in this CustomResult<TError> result, 
             [NotNull, InstantHandle] in Func<bool> predicate, 
             [NotNull] in string errorMessage, 
             [NotNull] in TError errorObject)
@@ -331,7 +343,7 @@ namespace Here.Extensions
         /// <summary>
         /// Ensures that this <see cref="CustomResult{TError}"/> fulfill the given <paramref name="predicate"/>.
         /// </summary>
-        /// <typeparam name="TError">Error type of the result.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/>.</param>
         /// <param name="predicate">Predicate to match.</param>
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
@@ -341,7 +353,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null or empty.</exception>
         [PublicAPI, Pure]
-        public static CustomResult<TError> Ensure<TError>(in this CustomResult<TError> result,
+        public static CustomResult<TError> Ensure<TError>(
+            in this CustomResult<TError> result,
             [NotNull, InstantHandle] in Func<bool> predicate,
             [NotNull] in string errorMessage,
             [NotNull, InstantHandle] in Func<TError> errorFactory)
@@ -366,6 +379,8 @@ namespace Here.Extensions
         /// <summary>
         /// Indicates if this <see cref="Result{T, TError}"/> is a success without warning.
         /// </summary>
+        /// <typeparam name="T">Type of the result value.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/> to check.</param>
         /// <returns>True if the result is a success without warning, otherwise false.</returns>
         [PublicAPI, Pure]
@@ -377,6 +392,8 @@ namespace Here.Extensions
         /// <summary>
         /// Throws this <see cref="Result{T, TError}"/> exception if it has one, otherwise do nothing.
         /// </summary>
+        /// <typeparam name="T">Type of the result value.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/> to check.</param>
         [PublicAPI]
         public static void Throws<T, TError>(in this Result<T, TError> result)
@@ -387,11 +404,11 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Unwraps this <see cref="IResult{T}"/> value if it is a success, 
+        /// Unwraps this <see cref="Result{T, TError}"/> value if it is a success, 
         /// otherwise returns the <paramref name="defaultValue"/>.
         /// </summary>
         /// <typeparam name="T">Type of the result value.</typeparam>
-        /// <typeparam name="TError">Error type of the result.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/> to unwrap value.</param>
         /// <param name="defaultValue">Default value to use.</param>
         /// <returns>The unwrapped value from this <see cref="Result{T, TError}"/> if it has a value, otherwise the default value.</returns>
@@ -408,7 +425,7 @@ namespace Here.Extensions
         /// otherwise returns the result from <paramref name="orFunc"/>.
         /// </summary>
         /// <typeparam name="T">Type of the result value.</typeparam>
-        /// <typeparam name="TError">Error type of the result.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/> to unwrap value.</param>
         /// <param name="orFunc">Default value factory method.</param>
         /// <returns>The unwrapped value from this <see cref="Result{T, TError}"/> if it has a value, otherwise the default value.</returns>
@@ -429,7 +446,7 @@ namespace Here.Extensions
         /// otherwise returns the <paramref name="defaultValue"/>.
         /// </summary>
         /// <typeparam name="T">Type of the result value.</typeparam>
-        /// <typeparam name="TError">Error type of the result.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <typeparam name="TOut">Output value type.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/> to unwrap value.</param>
         /// <param name="converter">Function called to convert this <see cref="Result{T, TError}"/> value.</param>
@@ -455,7 +472,7 @@ namespace Here.Extensions
         /// otherwise returns the result from <paramref name="orFunc"/>.
         /// </summary>
         /// <typeparam name="T">Type of the result value.</typeparam>
-        /// <typeparam name="TError">Error type of the result.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <typeparam name="TOut">Output value type.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/> to unwrap value.</param>
         /// <param name="converter">Function called to convert this <see cref="Result{T, TError}"/> value.</param>
@@ -481,7 +498,7 @@ namespace Here.Extensions
         /// Ensures that this <see cref="Result{T, TError}"/> fulfill the given <paramref name="predicate"/>.
         /// </summary>
         /// <typeparam name="T">Type of the result value.</typeparam>
-        /// <typeparam name="TError">Error type of the result.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/> to check.</param>
         /// <param name="predicate">Predicate to match.</param>
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
@@ -491,7 +508,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null or empty.</exception>
         [PublicAPI, Pure]
-        public static Result<T, TError> Ensure<T, TError>(in this Result<T, TError> result,
+        public static Result<T, TError> Ensure<T, TError>(
+            in this Result<T, TError> result,
             [NotNull, InstantHandle] in Predicate<T> predicate,
             [NotNull] in string errorMessage,
             [NotNull] in TError errorObject)
@@ -513,7 +531,7 @@ namespace Here.Extensions
         /// Ensures that this <see cref="Result{T, TError}"/> fulfill the given <paramref name="predicate"/>.
         /// </summary>
         /// <typeparam name="T">Type of the result value.</typeparam>
-        /// <typeparam name="TError">Error type of the result.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/> to check.</param>
         /// <param name="predicate">Predicate to match.</param>
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
@@ -523,7 +541,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null or empty.</exception>
         [PublicAPI, Pure]
-        public static Result<T, TError> Ensure<T, TError>(in this Result<T, TError> result,
+        public static Result<T, TError> Ensure<T, TError>(
+            in this Result<T, TError> result,
             [NotNull, InstantHandle] in Predicate<T> predicate,
             [NotNull] in string errorMessage,
             [NotNull, InstantHandle] in Func<TError> errorFactory)
@@ -544,6 +563,7 @@ namespace Here.Extensions
         /// <summary>
         /// Flattens this <see cref="Result{Result, TError}"/> to a <see cref="Result"/>.
         /// </summary>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="embeddedResult">A <see cref="Result{Result, TError}"/>.</param>
         /// <returns>Flattened <see cref="Result"/>.</returns>
         [PublicAPI, Pure]
@@ -556,6 +576,8 @@ namespace Here.Extensions
         /// <summary>
         /// Flattens this <see cref="Result{Result, TError}"/> to a <see cref="Result{T}"/>.
         /// </summary>
+        /// <typeparam name="T">Type of the result value.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="embeddedResult">A <see cref="Result{Result, TError}"/>.</param>
         /// <returns>Flattened <see cref="Result{T}"/>.</returns>
         [PublicAPI, Pure]
@@ -568,6 +590,7 @@ namespace Here.Extensions
         /// <summary>
         /// Flattens this <see cref="Result{Result, TError}"/> to a <see cref="CustomResult{TError}"/>.
         /// </summary>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="embeddedResult">A <see cref="Result{Result, TError}"/>.</param>
         /// <returns>Flattened <see cref="CustomResult{TError}"/>.</returns>
         [PublicAPI, Pure]
@@ -605,6 +628,8 @@ namespace Here.Extensions
         /// <summary>
         /// Flattens this <see cref="Result{Result, TError}"/> to a <see cref="Result{T, TError}"/>.
         /// </summary>
+        /// <typeparam name="T">Type of the result value.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="embeddedResult">A <see cref="Result{Result, TError}"/>.</param>
         /// <returns>Flattened <see cref="Result{T, TError}"/>.</returns>
         [PublicAPI, Pure]

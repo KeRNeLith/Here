@@ -180,7 +180,7 @@ namespace Here.Extensions
         /// <summary>
         /// Calls the <paramref name="onAny"/> action all the time.
         /// </summary>
-        /// <typeparam name="TError">Type of the result error.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/>.</param>
         /// <param name="onAny">Action to run.</param>
         /// <returns>This <see cref="CustomResult{TError}"/>.</returns>
@@ -200,7 +200,7 @@ namespace Here.Extensions
         /// <summary>
         /// Calls the <paramref name="onAny"/> action all the time.
         /// </summary>
-        /// <typeparam name="TError">Type of the result error.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/>.</param>
         /// <param name="onAny">Action to run.</param>
         /// <returns>This <see cref="CustomResult{TError}"/>.</returns>
@@ -220,7 +220,7 @@ namespace Here.Extensions
         /// <summary>
         /// Calls the <paramref name="onAny"/> function all the time.
         /// </summary>
-        /// <typeparam name="TError">Type of the result error.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <typeparam name="TOut">Type of the output value.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/>.</param>
         /// <param name="onAny">Function to run.</param>
@@ -240,7 +240,7 @@ namespace Here.Extensions
         /// <summary>
         /// Calls the <paramref name="onAny"/> function all the time.
         /// </summary>
-        /// <typeparam name="TError">Type of the result error.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <typeparam name="TOut">Type of the output value.</typeparam>
         /// <param name="result"><see cref="CustomResult{TError}"/>.</param>
         /// <param name="onAny">Function to run.</param>
@@ -265,7 +265,7 @@ namespace Here.Extensions
         /// Calls the <paramref name="onAny"/> action all the time.
         /// </summary>
         /// <typeparam name="T">Type of the result value.</typeparam>
-        /// <typeparam name="TError">Type of the result error.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/>.</param>
         /// <param name="onAny">Action to run.</param>
         /// <returns>This <see cref="Result{T, TError}"/>.</returns>
@@ -286,7 +286,7 @@ namespace Here.Extensions
         /// Calls the <paramref name="onAny"/> action all the time.
         /// </summary>
         /// <typeparam name="T">Type of the result value.</typeparam>
-        /// <typeparam name="TError">Type of the result error.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="Result{T, TError}"/>.</param>
         /// <param name="onAny">Action to run.</param>
         /// <returns>This <see cref="Result{T, TError}"/>.</returns>
@@ -308,7 +308,7 @@ namespace Here.Extensions
         /// </summary>
         /// <typeparam name="TIn">Type of the input result value.</typeparam>
         /// <typeparam name="TOut">Type of the output value.</typeparam>
-        /// <typeparam name="TError">Type of the result error.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="Result{TIn, TError}"/>.</param>
         /// <param name="onAny">Function to run.</param>
         /// <returns>An output value.</returns>
@@ -329,7 +329,7 @@ namespace Here.Extensions
         /// </summary>
         /// <typeparam name="TIn">Type of the input result value.</typeparam>
         /// <typeparam name="TOut">Type of the output value.</typeparam>
-        /// <typeparam name="TError">Type of the result error.</typeparam>
+        /// <typeparam name="TError">Type of the result error object.</typeparam>
         /// <param name="result"><see cref="Result{TIn, TError}"/>.</param>
         /// <param name="onAny">Function to run.</param>
         /// <returns>An output value.</returns>

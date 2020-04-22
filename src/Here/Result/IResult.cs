@@ -43,6 +43,7 @@ namespace Here
     /// <summary>
     /// Represents the result of an operation/treatment with a custom error object.
     /// </summary>
+    /// <typeparam name="TError">Type of the result error object.</typeparam>
     [PublicAPI]
     public interface IResultError<out TError> : IResult
     {
@@ -56,7 +57,7 @@ namespace Here
     /// <summary>
     /// Represents the result of an operation/treatment with a <see cref="Value"/>.
     /// </summary>
-    /// <typeparam name="T">Type of the embedded value.</typeparam>
+    /// <typeparam name="T">Type of the result value.</typeparam>
     [PublicAPI]
     public interface IResult<out T> : IResult
     {

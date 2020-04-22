@@ -12,6 +12,7 @@ namespace Here
     /// <see cref="Result{T}"/> is an object that represents the result/state of a treatment.
     /// This <see cref="Result{T}"/> embed a <see cref="Value"/> resulting of the treatment.
     /// </summary>
+    /// <typeparam name="T">Type of the result value.</typeparam>
     [PublicAPI]
 #if SUPPORTS_SERIALIZATION
     [Serializable]
