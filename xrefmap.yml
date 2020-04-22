@@ -3300,6 +3300,49 @@ references:
   fullName.vb: Here.Extensions.OptionLinqEnumerableExtensions.SelectItems(Of T, TItemIn, TItemOut)(ByRef Here.Option(Of T), ByRef System.Func(Of TItemIn, TItemOut))
   nameWithType: OptionLinqEnumerableExtensions.SelectItems<T, TItemIn, TItemOut>(Option<T>, Func<TItemIn, TItemOut>)
   nameWithType.vb: OptionLinqEnumerableExtensions.SelectItems(Of T, TItemIn, TItemOut)(ByRef Option(Of T), ByRef Func(Of TItemIn, TItemOut))
+- uid: Here.Extensions.OptionLinqEnumerableExtensions.SelectManyItems*
+  name: SelectManyItems
+  href: api/Here.Extensions.OptionLinqEnumerableExtensions.html#Here_Extensions_OptionLinqEnumerableExtensions_SelectManyItems_
+  commentId: Overload:Here.Extensions.OptionLinqEnumerableExtensions.SelectManyItems
+  isSpec: "True"
+  fullName: Here.Extensions.OptionLinqEnumerableExtensions.SelectManyItems
+  nameWithType: OptionLinqEnumerableExtensions.SelectManyItems
+- uid: Here.Extensions.OptionLinqEnumerableExtensions.SelectManyItems``2(Here.Option{``0}@,System.Func{System.Object,System.Collections.Generic.IEnumerable{``1}}@)
+  name: SelectManyItems<T, TItemOut>(Option<T>, Func<Object, IEnumerable<TItemOut>>)
+  href: api/Here.Extensions.OptionLinqEnumerableExtensions.html#Here_Extensions_OptionLinqEnumerableExtensions_SelectManyItems__2_Here_Option___0___System_Func_System_Object_System_Collections_Generic_IEnumerable___1____
+  commentId: M:Here.Extensions.OptionLinqEnumerableExtensions.SelectManyItems``2(Here.Option{``0}@,System.Func{System.Object,System.Collections.Generic.IEnumerable{``1}}@)
+  name.vb: SelectManyItems(Of T, TItemOut)(ByRef Option(Of T), ByRef Func(Of Object, IEnumerable(Of TItemOut)))
+  fullName: Here.Extensions.OptionLinqEnumerableExtensions.SelectManyItems<T, TItemOut>(Here.Option<T>, System.Func<System.Object, System.Collections.Generic.IEnumerable<TItemOut>>)
+  fullName.vb: Here.Extensions.OptionLinqEnumerableExtensions.SelectManyItems(Of T, TItemOut)(ByRef Here.Option(Of T), ByRef System.Func(Of System.Object, System.Collections.Generic.IEnumerable(Of TItemOut)))
+  nameWithType: OptionLinqEnumerableExtensions.SelectManyItems<T, TItemOut>(Option<T>, Func<Object, IEnumerable<TItemOut>>)
+  nameWithType.vb: OptionLinqEnumerableExtensions.SelectManyItems(Of T, TItemOut)(ByRef Option(Of T), ByRef Func(Of Object, IEnumerable(Of TItemOut)))
+- uid: Here.Extensions.OptionLinqEnumerableExtensions.SelectManyItems``3(Here.Option{``0}@,System.Func{``1,System.Collections.Generic.IEnumerable{``2}}@)
+  name: SelectManyItems<T, TItemIn, TItemOut>(Option<T>, Func<TItemIn, IEnumerable<TItemOut>>)
+  href: api/Here.Extensions.OptionLinqEnumerableExtensions.html#Here_Extensions_OptionLinqEnumerableExtensions_SelectManyItems__3_Here_Option___0___System_Func___1_System_Collections_Generic_IEnumerable___2____
+  commentId: M:Here.Extensions.OptionLinqEnumerableExtensions.SelectManyItems``3(Here.Option{``0}@,System.Func{``1,System.Collections.Generic.IEnumerable{``2}}@)
+  name.vb: SelectManyItems(Of T, TItemIn, TItemOut)(ByRef Option(Of T), ByRef Func(Of TItemIn, IEnumerable(Of TItemOut)))
+  fullName: Here.Extensions.OptionLinqEnumerableExtensions.SelectManyItems<T, TItemIn, TItemOut>(Here.Option<T>, System.Func<TItemIn, System.Collections.Generic.IEnumerable<TItemOut>>)
+  fullName.vb: Here.Extensions.OptionLinqEnumerableExtensions.SelectManyItems(Of T, TItemIn, TItemOut)(ByRef Here.Option(Of T), ByRef System.Func(Of TItemIn, System.Collections.Generic.IEnumerable(Of TItemOut)))
+  nameWithType: OptionLinqEnumerableExtensions.SelectManyItems<T, TItemIn, TItemOut>(Option<T>, Func<TItemIn, IEnumerable<TItemOut>>)
+  nameWithType.vb: OptionLinqEnumerableExtensions.SelectManyItems(Of T, TItemIn, TItemOut)(ByRef Option(Of T), ByRef Func(Of TItemIn, IEnumerable(Of TItemOut)))
+- uid: Here.Extensions.OptionLinqEnumerableExtensions.SelectManyItems``3(Here.Option{``0}@,System.Func{System.Object,System.Collections.Generic.IEnumerable{``1}}@,System.Func{System.Object,``1,``2}@)
+  name: SelectManyItems<T, TItemCollection, TItemOut>(Option<T>, Func<Object, IEnumerable<TItemCollection>>, Func<Object, TItemCollection, TItemOut>)
+  href: api/Here.Extensions.OptionLinqEnumerableExtensions.html#Here_Extensions_OptionLinqEnumerableExtensions_SelectManyItems__3_Here_Option___0___System_Func_System_Object_System_Collections_Generic_IEnumerable___1____System_Func_System_Object___1___2___
+  commentId: M:Here.Extensions.OptionLinqEnumerableExtensions.SelectManyItems``3(Here.Option{``0}@,System.Func{System.Object,System.Collections.Generic.IEnumerable{``1}}@,System.Func{System.Object,``1,``2}@)
+  name.vb: SelectManyItems(Of T, TItemCollection, TItemOut)(ByRef Option(Of T), ByRef Func(Of Object, IEnumerable(Of TItemCollection)), ByRef Func(Of Object, TItemCollection, TItemOut))
+  fullName: Here.Extensions.OptionLinqEnumerableExtensions.SelectManyItems<T, TItemCollection, TItemOut>(Here.Option<T>, System.Func<System.Object, System.Collections.Generic.IEnumerable<TItemCollection>>, System.Func<System.Object, TItemCollection, TItemOut>)
+  fullName.vb: Here.Extensions.OptionLinqEnumerableExtensions.SelectManyItems(Of T, TItemCollection, TItemOut)(ByRef Here.Option(Of T), ByRef System.Func(Of System.Object, System.Collections.Generic.IEnumerable(Of TItemCollection)), ByRef System.Func(Of System.Object, TItemCollection, TItemOut))
+  nameWithType: OptionLinqEnumerableExtensions.SelectManyItems<T, TItemCollection, TItemOut>(Option<T>, Func<Object, IEnumerable<TItemCollection>>, Func<Object, TItemCollection, TItemOut>)
+  nameWithType.vb: OptionLinqEnumerableExtensions.SelectManyItems(Of T, TItemCollection, TItemOut)(ByRef Option(Of T), ByRef Func(Of Object, IEnumerable(Of TItemCollection)), ByRef Func(Of Object, TItemCollection, TItemOut))
+- uid: Here.Extensions.OptionLinqEnumerableExtensions.SelectManyItems``4(Here.Option{``0}@,System.Func{``1,System.Collections.Generic.IEnumerable{``2}}@,System.Func{``1,``2,``3}@)
+  name: SelectManyItems<T, TItemIn, TItemCollection, TItemOut>(Option<T>, Func<TItemIn, IEnumerable<TItemCollection>>, Func<TItemIn, TItemCollection, TItemOut>)
+  href: api/Here.Extensions.OptionLinqEnumerableExtensions.html#Here_Extensions_OptionLinqEnumerableExtensions_SelectManyItems__4_Here_Option___0___System_Func___1_System_Collections_Generic_IEnumerable___2____System_Func___1___2___3___
+  commentId: M:Here.Extensions.OptionLinqEnumerableExtensions.SelectManyItems``4(Here.Option{``0}@,System.Func{``1,System.Collections.Generic.IEnumerable{``2}}@,System.Func{``1,``2,``3}@)
+  name.vb: SelectManyItems(Of T, TItemIn, TItemCollection, TItemOut)(ByRef Option(Of T), ByRef Func(Of TItemIn, IEnumerable(Of TItemCollection)), ByRef Func(Of TItemIn, TItemCollection, TItemOut))
+  fullName: Here.Extensions.OptionLinqEnumerableExtensions.SelectManyItems<T, TItemIn, TItemCollection, TItemOut>(Here.Option<T>, System.Func<TItemIn, System.Collections.Generic.IEnumerable<TItemCollection>>, System.Func<TItemIn, TItemCollection, TItemOut>)
+  fullName.vb: Here.Extensions.OptionLinqEnumerableExtensions.SelectManyItems(Of T, TItemIn, TItemCollection, TItemOut)(ByRef Here.Option(Of T), ByRef System.Func(Of TItemIn, System.Collections.Generic.IEnumerable(Of TItemCollection)), ByRef System.Func(Of TItemIn, TItemCollection, TItemOut))
+  nameWithType: OptionLinqEnumerableExtensions.SelectManyItems<T, TItemIn, TItemCollection, TItemOut>(Option<T>, Func<TItemIn, IEnumerable<TItemCollection>>, Func<TItemIn, TItemCollection, TItemOut>)
+  nameWithType.vb: OptionLinqEnumerableExtensions.SelectManyItems(Of T, TItemIn, TItemCollection, TItemOut)(ByRef Option(Of T), ByRef Func(Of TItemIn, IEnumerable(Of TItemCollection)), ByRef Func(Of TItemIn, TItemCollection, TItemOut))
 - uid: Here.Extensions.OptionLinqEnumerableExtensions.WhereItems*
   name: WhereItems
   href: api/Here.Extensions.OptionLinqEnumerableExtensions.html#Here_Extensions_OptionLinqEnumerableExtensions_WhereItems_
@@ -5273,12 +5316,15 @@ references:
   fullName.vb: Here.Extensions.ResultExtensions.Flatten(Of T, TError)(ByRef Here.Result(Of Here.Result(Of T), TError))
   nameWithType: ResultExtensions.Flatten<T, TError>(Result<Result<T>, TError>)
   nameWithType.vb: ResultExtensions.Flatten(Of T, TError)(ByRef Result(Of Result(Of T), TError))
-- uid: Here.Extensions.ResultExtensions.IsOnlySuccess(Here.IResult)
-  name: IsOnlySuccess(IResult)
-  href: api/Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_IsOnlySuccess_Here_IResult_
-  commentId: M:Here.Extensions.ResultExtensions.IsOnlySuccess(Here.IResult)
-  fullName: Here.Extensions.ResultExtensions.IsOnlySuccess(Here.IResult)
-  nameWithType: ResultExtensions.IsOnlySuccess(IResult)
+- uid: Here.Extensions.ResultExtensions.IsOnlySuccess(Here.Result@)
+  name: IsOnlySuccess(Result)
+  href: api/Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_IsOnlySuccess_Here_Result__
+  commentId: M:Here.Extensions.ResultExtensions.IsOnlySuccess(Here.Result@)
+  name.vb: IsOnlySuccess(ByRef Result)
+  fullName: Here.Extensions.ResultExtensions.IsOnlySuccess(Here.Result)
+  fullName.vb: Here.Extensions.ResultExtensions.IsOnlySuccess(ByRef Here.Result)
+  nameWithType: ResultExtensions.IsOnlySuccess(Result)
+  nameWithType.vb: ResultExtensions.IsOnlySuccess(ByRef Result)
 - uid: Here.Extensions.ResultExtensions.IsOnlySuccess*
   name: IsOnlySuccess
   href: api/Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_IsOnlySuccess_
@@ -5286,6 +5332,33 @@ references:
   isSpec: "True"
   fullName: Here.Extensions.ResultExtensions.IsOnlySuccess
   nameWithType: ResultExtensions.IsOnlySuccess
+- uid: Here.Extensions.ResultExtensions.IsOnlySuccess``1(Here.CustomResult{``0}@)
+  name: IsOnlySuccess<TError>(CustomResult<TError>)
+  href: api/Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_IsOnlySuccess__1_Here_CustomResult___0___
+  commentId: M:Here.Extensions.ResultExtensions.IsOnlySuccess``1(Here.CustomResult{``0}@)
+  name.vb: IsOnlySuccess(Of TError)(ByRef CustomResult(Of TError))
+  fullName: Here.Extensions.ResultExtensions.IsOnlySuccess<TError>(Here.CustomResult<TError>)
+  fullName.vb: Here.Extensions.ResultExtensions.IsOnlySuccess(Of TError)(ByRef Here.CustomResult(Of TError))
+  nameWithType: ResultExtensions.IsOnlySuccess<TError>(CustomResult<TError>)
+  nameWithType.vb: ResultExtensions.IsOnlySuccess(Of TError)(ByRef CustomResult(Of TError))
+- uid: Here.Extensions.ResultExtensions.IsOnlySuccess``1(Here.Result{``0}@)
+  name: IsOnlySuccess<T>(Result<T>)
+  href: api/Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_IsOnlySuccess__1_Here_Result___0___
+  commentId: M:Here.Extensions.ResultExtensions.IsOnlySuccess``1(Here.Result{``0}@)
+  name.vb: IsOnlySuccess(Of T)(ByRef Result(Of T))
+  fullName: Here.Extensions.ResultExtensions.IsOnlySuccess<T>(Here.Result<T>)
+  fullName.vb: Here.Extensions.ResultExtensions.IsOnlySuccess(Of T)(ByRef Here.Result(Of T))
+  nameWithType: ResultExtensions.IsOnlySuccess<T>(Result<T>)
+  nameWithType.vb: ResultExtensions.IsOnlySuccess(Of T)(ByRef Result(Of T))
+- uid: Here.Extensions.ResultExtensions.IsOnlySuccess``2(Here.Result{``0,``1}@)
+  name: IsOnlySuccess<T, TError>(Result<T, TError>)
+  href: api/Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_IsOnlySuccess__2_Here_Result___0___1___
+  commentId: M:Here.Extensions.ResultExtensions.IsOnlySuccess``2(Here.Result{``0,``1}@)
+  name.vb: IsOnlySuccess(Of T, TError)(ByRef Result(Of T, TError))
+  fullName: Here.Extensions.ResultExtensions.IsOnlySuccess<T, TError>(Here.Result<T, TError>)
+  fullName.vb: Here.Extensions.ResultExtensions.IsOnlySuccess(Of T, TError)(ByRef Here.Result(Of T, TError))
+  nameWithType: ResultExtensions.IsOnlySuccess<T, TError>(Result<T, TError>)
+  nameWithType.vb: ResultExtensions.IsOnlySuccess(Of T, TError)(ByRef Result(Of T, TError))
 - uid: Here.Extensions.ResultExtensions.OnAny(Here.Result@,System.Action@)
   name: OnAny(Result, Action)
   href: api/Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnAny_Here_Result__System_Action__
@@ -6205,12 +6278,15 @@ references:
   fullName.vb: Here.Extensions.ResultExtensions.OnSuccessOrFailure(Of TIn, TOut, TError)(ByRef Here.Result(Of TIn, TError), ByRef System.Func(Of Here.Result(Of TIn, TError), TOut), ByRef System.Func(Of Here.Result(Of TIn, TError), TOut), ByRef System.Boolean)
   nameWithType: ResultExtensions.OnSuccessOrFailure<TIn, TOut, TError>(Result<TIn, TError>, Func<Result<TIn, TError>, TOut>, Func<Result<TIn, TError>, TOut>, Boolean)
   nameWithType.vb: ResultExtensions.OnSuccessOrFailure(Of TIn, TOut, TError)(ByRef Result(Of TIn, TError), ByRef Func(Of Result(Of TIn, TError), TOut), ByRef Func(Of Result(Of TIn, TError), TOut), ByRef Boolean)
-- uid: Here.Extensions.ResultExtensions.Throws(Here.IResult)
-  name: Throws(IResult)
-  href: api/Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_Throws_Here_IResult_
-  commentId: M:Here.Extensions.ResultExtensions.Throws(Here.IResult)
-  fullName: Here.Extensions.ResultExtensions.Throws(Here.IResult)
-  nameWithType: ResultExtensions.Throws(IResult)
+- uid: Here.Extensions.ResultExtensions.Throws(Here.Result@)
+  name: Throws(Result)
+  href: api/Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_Throws_Here_Result__
+  commentId: M:Here.Extensions.ResultExtensions.Throws(Here.Result@)
+  name.vb: Throws(ByRef Result)
+  fullName: Here.Extensions.ResultExtensions.Throws(Here.Result)
+  fullName.vb: Here.Extensions.ResultExtensions.Throws(ByRef Here.Result)
+  nameWithType: ResultExtensions.Throws(Result)
+  nameWithType.vb: ResultExtensions.Throws(ByRef Result)
 - uid: Here.Extensions.ResultExtensions.Throws*
   name: Throws
   href: api/Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_Throws_
@@ -6218,6 +6294,33 @@ references:
   isSpec: "True"
   fullName: Here.Extensions.ResultExtensions.Throws
   nameWithType: ResultExtensions.Throws
+- uid: Here.Extensions.ResultExtensions.Throws``1(Here.CustomResult{``0}@)
+  name: Throws<TError>(CustomResult<TError>)
+  href: api/Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_Throws__1_Here_CustomResult___0___
+  commentId: M:Here.Extensions.ResultExtensions.Throws``1(Here.CustomResult{``0}@)
+  name.vb: Throws(Of TError)(ByRef CustomResult(Of TError))
+  fullName: Here.Extensions.ResultExtensions.Throws<TError>(Here.CustomResult<TError>)
+  fullName.vb: Here.Extensions.ResultExtensions.Throws(Of TError)(ByRef Here.CustomResult(Of TError))
+  nameWithType: ResultExtensions.Throws<TError>(CustomResult<TError>)
+  nameWithType.vb: ResultExtensions.Throws(Of TError)(ByRef CustomResult(Of TError))
+- uid: Here.Extensions.ResultExtensions.Throws``1(Here.Result{``0}@)
+  name: Throws<T>(Result<T>)
+  href: api/Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_Throws__1_Here_Result___0___
+  commentId: M:Here.Extensions.ResultExtensions.Throws``1(Here.Result{``0}@)
+  name.vb: Throws(Of T)(ByRef Result(Of T))
+  fullName: Here.Extensions.ResultExtensions.Throws<T>(Here.Result<T>)
+  fullName.vb: Here.Extensions.ResultExtensions.Throws(Of T)(ByRef Here.Result(Of T))
+  nameWithType: ResultExtensions.Throws<T>(Result<T>)
+  nameWithType.vb: ResultExtensions.Throws(Of T)(ByRef Result(Of T))
+- uid: Here.Extensions.ResultExtensions.Throws``2(Here.Result{``0,``1}@)
+  name: Throws<T, TError>(Result<T, TError>)
+  href: api/Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_Throws__2_Here_Result___0___1___
+  commentId: M:Here.Extensions.ResultExtensions.Throws``2(Here.Result{``0,``1}@)
+  name.vb: Throws(Of T, TError)(ByRef Result(Of T, TError))
+  fullName: Here.Extensions.ResultExtensions.Throws<T, TError>(Here.Result<T, TError>)
+  fullName.vb: Here.Extensions.ResultExtensions.Throws(Of T, TError)(ByRef Here.Result(Of T, TError))
+  nameWithType: ResultExtensions.Throws<T, TError>(Result<T, TError>)
+  nameWithType.vb: ResultExtensions.Throws(Of T, TError)(ByRef Result(Of T, TError))
 - uid: Here.Extensions.ResultExtensions.Unwrap*
   name: Unwrap
   href: api/Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_Unwrap_
@@ -6225,42 +6328,78 @@ references:
   isSpec: "True"
   fullName: Here.Extensions.ResultExtensions.Unwrap
   nameWithType: ResultExtensions.Unwrap
-- uid: Here.Extensions.ResultExtensions.Unwrap``1(Here.IResult{``0},``0@)
-  name: Unwrap<T>(IResult<T>, T)
-  href: api/Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_Unwrap__1_Here_IResult___0____0__
-  commentId: M:Here.Extensions.ResultExtensions.Unwrap``1(Here.IResult{``0},``0@)
-  name.vb: Unwrap(Of T)(IResult(Of T), ByRef T)
-  fullName: Here.Extensions.ResultExtensions.Unwrap<T>(Here.IResult<T>, T)
-  fullName.vb: Here.Extensions.ResultExtensions.Unwrap(Of T)(Here.IResult(Of T), ByRef T)
-  nameWithType: ResultExtensions.Unwrap<T>(IResult<T>, T)
-  nameWithType.vb: ResultExtensions.Unwrap(Of T)(IResult(Of T), ByRef T)
-- uid: Here.Extensions.ResultExtensions.Unwrap``1(Here.IResult{``0},System.Func{``0}@)
-  name: Unwrap<T>(IResult<T>, Func<T>)
-  href: api/Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_Unwrap__1_Here_IResult___0__System_Func___0___
-  commentId: M:Here.Extensions.ResultExtensions.Unwrap``1(Here.IResult{``0},System.Func{``0}@)
-  name.vb: Unwrap(Of T)(IResult(Of T), ByRef Func(Of T))
-  fullName: Here.Extensions.ResultExtensions.Unwrap<T>(Here.IResult<T>, System.Func<T>)
-  fullName.vb: Here.Extensions.ResultExtensions.Unwrap(Of T)(Here.IResult(Of T), ByRef System.Func(Of T))
-  nameWithType: ResultExtensions.Unwrap<T>(IResult<T>, Func<T>)
-  nameWithType.vb: ResultExtensions.Unwrap(Of T)(IResult(Of T), ByRef Func(Of T))
-- uid: Here.Extensions.ResultExtensions.Unwrap``2(Here.IResult{``0},System.Func{``0,``1}@,``1@)
-  name: Unwrap<T, TOut>(IResult<T>, Func<T, TOut>, TOut)
-  href: api/Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_Unwrap__2_Here_IResult___0__System_Func___0___1_____1__
-  commentId: M:Here.Extensions.ResultExtensions.Unwrap``2(Here.IResult{``0},System.Func{``0,``1}@,``1@)
-  name.vb: Unwrap(Of T, TOut)(IResult(Of T), ByRef Func(Of T, TOut), ByRef TOut)
-  fullName: Here.Extensions.ResultExtensions.Unwrap<T, TOut>(Here.IResult<T>, System.Func<T, TOut>, TOut)
-  fullName.vb: Here.Extensions.ResultExtensions.Unwrap(Of T, TOut)(Here.IResult(Of T), ByRef System.Func(Of T, TOut), ByRef TOut)
-  nameWithType: ResultExtensions.Unwrap<T, TOut>(IResult<T>, Func<T, TOut>, TOut)
-  nameWithType.vb: ResultExtensions.Unwrap(Of T, TOut)(IResult(Of T), ByRef Func(Of T, TOut), ByRef TOut)
-- uid: Here.Extensions.ResultExtensions.Unwrap``2(Here.IResult{``0},System.Func{``0,``1}@,System.Func{``1}@)
-  name: Unwrap<T, TOut>(IResult<T>, Func<T, TOut>, Func<TOut>)
-  href: api/Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_Unwrap__2_Here_IResult___0__System_Func___0___1___System_Func___1___
-  commentId: M:Here.Extensions.ResultExtensions.Unwrap``2(Here.IResult{``0},System.Func{``0,``1}@,System.Func{``1}@)
-  name.vb: Unwrap(Of T, TOut)(IResult(Of T), ByRef Func(Of T, TOut), ByRef Func(Of TOut))
-  fullName: Here.Extensions.ResultExtensions.Unwrap<T, TOut>(Here.IResult<T>, System.Func<T, TOut>, System.Func<TOut>)
-  fullName.vb: Here.Extensions.ResultExtensions.Unwrap(Of T, TOut)(Here.IResult(Of T), ByRef System.Func(Of T, TOut), ByRef System.Func(Of TOut))
-  nameWithType: ResultExtensions.Unwrap<T, TOut>(IResult<T>, Func<T, TOut>, Func<TOut>)
-  nameWithType.vb: ResultExtensions.Unwrap(Of T, TOut)(IResult(Of T), ByRef Func(Of T, TOut), ByRef Func(Of TOut))
+- uid: Here.Extensions.ResultExtensions.Unwrap``1(Here.Result{``0}@,``0@)
+  name: Unwrap<T>(Result<T>, T)
+  href: api/Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_Unwrap__1_Here_Result___0_____0__
+  commentId: M:Here.Extensions.ResultExtensions.Unwrap``1(Here.Result{``0}@,``0@)
+  name.vb: Unwrap(Of T)(ByRef Result(Of T), ByRef T)
+  fullName: Here.Extensions.ResultExtensions.Unwrap<T>(Here.Result<T>, T)
+  fullName.vb: Here.Extensions.ResultExtensions.Unwrap(Of T)(ByRef Here.Result(Of T), ByRef T)
+  nameWithType: ResultExtensions.Unwrap<T>(Result<T>, T)
+  nameWithType.vb: ResultExtensions.Unwrap(Of T)(ByRef Result(Of T), ByRef T)
+- uid: Here.Extensions.ResultExtensions.Unwrap``1(Here.Result{``0}@,System.Func{``0}@)
+  name: Unwrap<T>(Result<T>, Func<T>)
+  href: api/Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_Unwrap__1_Here_Result___0___System_Func___0___
+  commentId: M:Here.Extensions.ResultExtensions.Unwrap``1(Here.Result{``0}@,System.Func{``0}@)
+  name.vb: Unwrap(Of T)(ByRef Result(Of T), ByRef Func(Of T))
+  fullName: Here.Extensions.ResultExtensions.Unwrap<T>(Here.Result<T>, System.Func<T>)
+  fullName.vb: Here.Extensions.ResultExtensions.Unwrap(Of T)(ByRef Here.Result(Of T), ByRef System.Func(Of T))
+  nameWithType: ResultExtensions.Unwrap<T>(Result<T>, Func<T>)
+  nameWithType.vb: ResultExtensions.Unwrap(Of T)(ByRef Result(Of T), ByRef Func(Of T))
+- uid: Here.Extensions.ResultExtensions.Unwrap``2(Here.Result{``0,``1}@,``0@)
+  name: Unwrap<T, TError>(Result<T, TError>, T)
+  href: api/Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_Unwrap__2_Here_Result___0___1_____0__
+  commentId: M:Here.Extensions.ResultExtensions.Unwrap``2(Here.Result{``0,``1}@,``0@)
+  name.vb: Unwrap(Of T, TError)(ByRef Result(Of T, TError), ByRef T)
+  fullName: Here.Extensions.ResultExtensions.Unwrap<T, TError>(Here.Result<T, TError>, T)
+  fullName.vb: Here.Extensions.ResultExtensions.Unwrap(Of T, TError)(ByRef Here.Result(Of T, TError), ByRef T)
+  nameWithType: ResultExtensions.Unwrap<T, TError>(Result<T, TError>, T)
+  nameWithType.vb: ResultExtensions.Unwrap(Of T, TError)(ByRef Result(Of T, TError), ByRef T)
+- uid: Here.Extensions.ResultExtensions.Unwrap``2(Here.Result{``0,``1}@,System.Func{``0}@)
+  name: Unwrap<T, TError>(Result<T, TError>, Func<T>)
+  href: api/Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_Unwrap__2_Here_Result___0___1___System_Func___0___
+  commentId: M:Here.Extensions.ResultExtensions.Unwrap``2(Here.Result{``0,``1}@,System.Func{``0}@)
+  name.vb: Unwrap(Of T, TError)(ByRef Result(Of T, TError), ByRef Func(Of T))
+  fullName: Here.Extensions.ResultExtensions.Unwrap<T, TError>(Here.Result<T, TError>, System.Func<T>)
+  fullName.vb: Here.Extensions.ResultExtensions.Unwrap(Of T, TError)(ByRef Here.Result(Of T, TError), ByRef System.Func(Of T))
+  nameWithType: ResultExtensions.Unwrap<T, TError>(Result<T, TError>, Func<T>)
+  nameWithType.vb: ResultExtensions.Unwrap(Of T, TError)(ByRef Result(Of T, TError), ByRef Func(Of T))
+- uid: Here.Extensions.ResultExtensions.Unwrap``2(Here.Result{``0}@,System.Func{``0,``1}@,``1@)
+  name: Unwrap<T, TOut>(Result<T>, Func<T, TOut>, TOut)
+  href: api/Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_Unwrap__2_Here_Result___0___System_Func___0___1_____1__
+  commentId: M:Here.Extensions.ResultExtensions.Unwrap``2(Here.Result{``0}@,System.Func{``0,``1}@,``1@)
+  name.vb: Unwrap(Of T, TOut)(ByRef Result(Of T), ByRef Func(Of T, TOut), ByRef TOut)
+  fullName: Here.Extensions.ResultExtensions.Unwrap<T, TOut>(Here.Result<T>, System.Func<T, TOut>, TOut)
+  fullName.vb: Here.Extensions.ResultExtensions.Unwrap(Of T, TOut)(ByRef Here.Result(Of T), ByRef System.Func(Of T, TOut), ByRef TOut)
+  nameWithType: ResultExtensions.Unwrap<T, TOut>(Result<T>, Func<T, TOut>, TOut)
+  nameWithType.vb: ResultExtensions.Unwrap(Of T, TOut)(ByRef Result(Of T), ByRef Func(Of T, TOut), ByRef TOut)
+- uid: Here.Extensions.ResultExtensions.Unwrap``2(Here.Result{``0}@,System.Func{``0,``1}@,System.Func{``1}@)
+  name: Unwrap<T, TOut>(Result<T>, Func<T, TOut>, Func<TOut>)
+  href: api/Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_Unwrap__2_Here_Result___0___System_Func___0___1___System_Func___1___
+  commentId: M:Here.Extensions.ResultExtensions.Unwrap``2(Here.Result{``0}@,System.Func{``0,``1}@,System.Func{``1}@)
+  name.vb: Unwrap(Of T, TOut)(ByRef Result(Of T), ByRef Func(Of T, TOut), ByRef Func(Of TOut))
+  fullName: Here.Extensions.ResultExtensions.Unwrap<T, TOut>(Here.Result<T>, System.Func<T, TOut>, System.Func<TOut>)
+  fullName.vb: Here.Extensions.ResultExtensions.Unwrap(Of T, TOut)(ByRef Here.Result(Of T), ByRef System.Func(Of T, TOut), ByRef System.Func(Of TOut))
+  nameWithType: ResultExtensions.Unwrap<T, TOut>(Result<T>, Func<T, TOut>, Func<TOut>)
+  nameWithType.vb: ResultExtensions.Unwrap(Of T, TOut)(ByRef Result(Of T), ByRef Func(Of T, TOut), ByRef Func(Of TOut))
+- uid: Here.Extensions.ResultExtensions.Unwrap``3(Here.Result{``0,``1}@,System.Func{``0,``2}@,``2@)
+  name: Unwrap<T, TError, TOut>(Result<T, TError>, Func<T, TOut>, TOut)
+  href: api/Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_Unwrap__3_Here_Result___0___1___System_Func___0___2_____2__
+  commentId: M:Here.Extensions.ResultExtensions.Unwrap``3(Here.Result{``0,``1}@,System.Func{``0,``2}@,``2@)
+  name.vb: Unwrap(Of T, TError, TOut)(ByRef Result(Of T, TError), ByRef Func(Of T, TOut), ByRef TOut)
+  fullName: Here.Extensions.ResultExtensions.Unwrap<T, TError, TOut>(Here.Result<T, TError>, System.Func<T, TOut>, TOut)
+  fullName.vb: Here.Extensions.ResultExtensions.Unwrap(Of T, TError, TOut)(ByRef Here.Result(Of T, TError), ByRef System.Func(Of T, TOut), ByRef TOut)
+  nameWithType: ResultExtensions.Unwrap<T, TError, TOut>(Result<T, TError>, Func<T, TOut>, TOut)
+  nameWithType.vb: ResultExtensions.Unwrap(Of T, TError, TOut)(ByRef Result(Of T, TError), ByRef Func(Of T, TOut), ByRef TOut)
+- uid: Here.Extensions.ResultExtensions.Unwrap``3(Here.Result{``0,``1}@,System.Func{``0,``2}@,System.Func{``2}@)
+  name: Unwrap<T, TError, TOut>(Result<T, TError>, Func<T, TOut>, Func<TOut>)
+  href: api/Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_Unwrap__3_Here_Result___0___1___System_Func___0___2___System_Func___2___
+  commentId: M:Here.Extensions.ResultExtensions.Unwrap``3(Here.Result{``0,``1}@,System.Func{``0,``2}@,System.Func{``2}@)
+  name.vb: Unwrap(Of T, TError, TOut)(ByRef Result(Of T, TError), ByRef Func(Of T, TOut), ByRef Func(Of TOut))
+  fullName: Here.Extensions.ResultExtensions.Unwrap<T, TError, TOut>(Here.Result<T, TError>, System.Func<T, TOut>, System.Func<TOut>)
+  fullName.vb: Here.Extensions.ResultExtensions.Unwrap(Of T, TError, TOut)(ByRef Here.Result(Of T, TError), ByRef System.Func(Of T, TOut), ByRef System.Func(Of TOut))
+  nameWithType: ResultExtensions.Unwrap<T, TError, TOut>(Result<T, TError>, Func<T, TOut>, Func<TOut>)
+  nameWithType.vb: ResultExtensions.Unwrap(Of T, TError, TOut)(ByRef Result(Of T, TError), ByRef Func(Of T, TOut), ByRef Func(Of TOut))
 - uid: Here.Extensions.ResultOperatorsExtensions
   name: ResultOperatorsExtensions
   href: api/Here.Extensions.ResultOperatorsExtensions.html
