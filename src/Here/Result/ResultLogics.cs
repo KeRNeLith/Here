@@ -74,6 +74,7 @@ namespace Here
         /// <param name="logic"><see cref="ResultLogic{TError}"/> to convert.</param>
         /// <returns>A <see cref="ResultLogic"/>.</returns>
         [Pure]
+        [NotNull]
         internal static ResultLogic ToResultLogic<TError>(in ResultLogic<TError> logic)
         {
             if (logic.IsSuccess && !logic.IsWarning)

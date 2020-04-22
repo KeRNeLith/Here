@@ -30,7 +30,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(onFailure, nameof(onFailure));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 onSuccess();
             else
                 onFailure();
@@ -57,7 +57,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(onFailure, nameof(onFailure));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 onSuccess();
             else
                 onFailure(result);
@@ -84,7 +84,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(onFailure, nameof(onFailure));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 onSuccess(result);
             else
                 onFailure(result);
@@ -112,7 +112,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(onFailure, nameof(onFailure));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 return onSuccess(result);
             return onFailure(result);
         }
@@ -142,7 +142,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(onFailure, nameof(onFailure));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 onSuccess();
             else
                 onFailure();
@@ -170,7 +170,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(onFailure, nameof(onFailure));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 onSuccess(result);
             else
                 onFailure(result);
@@ -199,7 +199,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(onFailure, nameof(onFailure));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 return onSuccess(result);
             return onFailure(result);
         }
@@ -229,7 +229,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(onFailure, nameof(onFailure));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 onSuccess();
             else
                 onFailure();
@@ -257,7 +257,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(onFailure, nameof(onFailure));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 onSuccess();
             else
                 onFailure(result);
@@ -285,7 +285,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(onFailure, nameof(onFailure));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 onSuccess(result);
             else
                 onFailure(result);
@@ -314,7 +314,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(onFailure, nameof(onFailure));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 return onSuccess(result);
             return onFailure(result);
         }
@@ -345,7 +345,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(onFailure, nameof(onFailure));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 onSuccess();
             else
                 onFailure();
@@ -374,7 +374,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(onFailure, nameof(onFailure));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 onSuccess(result);
             else
                 onFailure(result);
@@ -404,7 +404,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(onFailure, nameof(onFailure));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 return onSuccess(result);
             return onFailure(result);
         }

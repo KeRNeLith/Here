@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 #if SUPPORTS_AGGRESSIVE_INLINING
 using System.Runtime.CompilerServices;
 #endif
@@ -54,7 +54,7 @@ namespace Here.Extensions
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 onSuccess();
 
             return result;
@@ -73,7 +73,7 @@ namespace Here.Extensions
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 onSuccess(result);
 
             return result;
@@ -92,7 +92,7 @@ namespace Here.Extensions
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 return onSuccess(result);
             if (result.IsWarning)  // Warning as error
                 return result.ToFailResult();
@@ -114,7 +114,7 @@ namespace Here.Extensions
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return result.ToFailValueResult<T>();
 
             return new Result<T>(onSuccess(result), result.Logic);
@@ -134,7 +134,7 @@ namespace Here.Extensions
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return result.ToFailValueResult<T>();
 
             return onSuccess(result);
@@ -162,7 +162,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorObject, nameof(errorObject));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return result.ToFailCustomResult(errorObject);
 
             return onSuccess(result);
@@ -190,7 +190,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return result.ToFailCustomResult(errorFactory(result));
 
             return onSuccess(result);
@@ -219,7 +219,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorObject, nameof(errorObject));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return result.ToFailValueCustomResult<T, TError>(errorObject);
 
             return onSuccess(result);
@@ -248,7 +248,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return result.ToFailValueCustomResult<T, TError>(errorFactory(result));
 
             return onSuccess(result);
@@ -272,7 +272,7 @@ namespace Here.Extensions
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 return onSuccess(result);
             return defaultValue;
         }
@@ -298,7 +298,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 return onSuccess(result);
             return valueFactory(result);
         }
@@ -323,7 +323,7 @@ namespace Here.Extensions
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 onSuccess(result.Value);
 
             return result;
@@ -346,7 +346,7 @@ namespace Here.Extensions
         {
             Throw.IfArgumentNull(converter, nameof(converter));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return result.ToFailValueResult<TOut>();
 
             return new Result<TOut>(converter(result.Value), result.Logic);
@@ -368,7 +368,7 @@ namespace Here.Extensions
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
             {
                 // Warning as error
                 return result.IsWarning ? result.ToFailResult() : result;
@@ -394,7 +394,7 @@ namespace Here.Extensions
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return result.ToFailValueResult<TOut>();
 
             return onSuccess(result.Value);
@@ -423,7 +423,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorObject, nameof(errorObject));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return result.ToFailCustomResult(errorObject);
 
             return onSuccess(result.Value);
@@ -452,7 +452,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return result.ToFailCustomResult(errorFactory(result));
 
             return onSuccess(result.Value);
@@ -482,7 +482,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorObject, nameof(errorObject));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return result.ToFailValueCustomResult<TOut, TError>(errorObject);
 
             return onSuccess(result.Value);
@@ -512,7 +512,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return result.ToFailValueCustomResult<TOut, TError>(errorFactory(result));
 
             return onSuccess(result.Value);
@@ -537,7 +537,7 @@ namespace Here.Extensions
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 return onSuccess(result._value);
             return defaultValue;
         }
@@ -564,7 +564,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 return onSuccess(result._value);
             return valueFactory(result);
         }
@@ -589,7 +589,7 @@ namespace Here.Extensions
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 onSuccess();
 
             return result;
@@ -611,7 +611,7 @@ namespace Here.Extensions
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 onSuccess(result);
 
             return result;
@@ -638,7 +638,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorObject, nameof(errorObject));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
             {
                 // Warning as error
                 return result.IsWarning 
@@ -670,7 +670,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
             {
                 // Warning as error
                 return result.IsWarning
@@ -697,7 +697,7 @@ namespace Here.Extensions
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
             {
                 // Warning as error
                 return result.IsWarning ? result.ToFailResult() : result;
@@ -723,7 +723,7 @@ namespace Here.Extensions
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return result.ToFailValueResult<T>();
 
             return onSuccess(result);
@@ -749,7 +749,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorObject, nameof(errorObject));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
             {
                 // Warning as error
                 return result.IsWarning ? result.ToFailCustomResult(errorObject) : result;
@@ -778,7 +778,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
             {
                 // Warning as error
                 return result.IsWarning ? result.ToFailCustomResult(errorFactory(result)) : result;
@@ -808,7 +808,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorObject, nameof(errorObject));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
             {
                 // Warning as error
                 return result.IsWarning
@@ -840,7 +840,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
             {
                 // Warning as error
                 return result.IsWarning
@@ -870,7 +870,7 @@ namespace Here.Extensions
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 return onSuccess(result);
             return defaultValue;
         }
@@ -897,7 +897,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 return onSuccess(result);
             return valueFactory(result);
         }
@@ -923,7 +923,7 @@ namespace Here.Extensions
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 onSuccess(result.Value);
 
             return result;
@@ -951,7 +951,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(converter, nameof(converter));
             Throw.IfArgumentNull(errorObject, nameof(errorObject));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
             {
                 if (result.IsWarning)
                     return result.ToFailValueCustomResult<TOut>(errorObject);
@@ -983,7 +983,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(converter, nameof(converter));
             Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
             {
                 if (result.IsWarning)
                     return result.ToFailValueCustomResult<TOut>(errorFactory(result));
@@ -1010,7 +1010,7 @@ namespace Here.Extensions
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
             {
                 // Warning as error
                 return result.IsWarning ? result.ToFailResult() : result;
@@ -1037,7 +1037,7 @@ namespace Here.Extensions
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
                 return result.ToFailValueResult<TOut>();
 
             return onSuccess(result.Value);
@@ -1064,7 +1064,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorObject, nameof(errorObject));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
             {
                 // Warning as error
                 return result.IsWarning ? result.ToFailCustomResult(errorObject) : result;
@@ -1094,7 +1094,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
             {
                 // Warning as error
                 return result.IsWarning ? result.ToFailCustomResult(errorFactory(result)) : result;
@@ -1125,7 +1125,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorObject, nameof(errorObject));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
             {
                 // Warning as error
                 return result.IsWarning 
@@ -1158,7 +1158,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(errorFactory, nameof(errorFactory));
 
-            if (IsConsideredFailure(result, treatWarningAsError))
+            if (IsConsideredFailure(result.Logic, treatWarningAsError))
             {
                 // Warning as error
                 return result.IsWarning
@@ -1189,7 +1189,7 @@ namespace Here.Extensions
         {
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 return onSuccess(result._value);
             return defaultValue;
         }
@@ -1217,7 +1217,7 @@ namespace Here.Extensions
             Throw.IfArgumentNull(onSuccess, nameof(onSuccess));
             Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
 
-            if (IsConsideredSuccess(result, treatWarningAsError))
+            if (IsConsideredSuccess(result.Logic, treatWarningAsError))
                 return onSuccess(result._value);
             return valueFactory(result);
         }

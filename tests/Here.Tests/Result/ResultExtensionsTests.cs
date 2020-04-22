@@ -54,10 +54,6 @@ namespace Here.Tests.Results
 
             var valueCustomFailure = Result.Fail<int, CustomErrorTest>("My failure", new CustomErrorTest());
             Assert.IsFalse(valueCustomFailure.IsOnlySuccess());
-
-
-            // ReSharper disable once AssignNullToNotNullAttribute
-            Assert.Throws<NullReferenceException>(() => { var _ = ((IResult)null).IsOnlySuccess(); });
         }
 
         [Test]
@@ -119,10 +115,6 @@ namespace Here.Tests.Results
             Assert.DoesNotThrow(() => valueCustomFailure1.Throws());
             var valueCustomFailure2 = Result.Fail<int, CustomErrorTest>(new CustomErrorTest(), new InvalidOperationException("Failure will throw."));
             Assert.Throws<InvalidOperationException>(() => valueCustomFailure2.Throws());
-
-
-            // ReSharper disable once AssignNullToNotNullAttribute
-            Assert.Throws<NullReferenceException>(() => ((IResult)null).Throws());
         }
 
         #region Unwrapping
@@ -185,21 +177,10 @@ namespace Here.Tests.Results
 
             // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             // ReSharper disable AssignNullToNotNullAttribute
-            Assert.Throws<NullReferenceException>(() => ((IResult<int>) null).Unwrap());
-            Assert.Throws<ArgumentNullException>(() => ((IResult<int>) null).Unwrap(null));
             Assert.Throws<ArgumentNullException>(() => valueResultOk.Unwrap(null));
-
-            Assert.Throws<NullReferenceException>(() => ((IResult<int>)null).Unwrap(val => 12.5f, 12.5f));
-            Assert.Throws<ArgumentNullException>(() => ((IResult<int>)null).Unwrap(null, 12.5f));
             Assert.Throws<ArgumentNullException>(() => valueResultOk.Unwrap(null, 12.5f));
-
-            Assert.Throws<NullReferenceException>(() => ((IResult<int>)null).Unwrap(val => 12.5f, () => 12.5f));
-            Assert.Throws<ArgumentNullException>(() => ((IResult<int>)null).Unwrap(null, () => 12.5f));
             Assert.Throws<ArgumentNullException>(() => valueResultOk.Unwrap(null, () => 12.5f));
-            Assert.Throws<ArgumentNullException>(() => ((IResult<int>)null).Unwrap(val => 12.5f, null));
             Assert.Throws<ArgumentNullException>(() => valueResultOk.Unwrap(val => 12.5f, null));
-
-            Assert.Throws<ArgumentNullException>(() => ((IResult<int>)null).Unwrap((Func<int, TestClass>)null, (Func<TestClass>)null));
             Assert.Throws<ArgumentNullException>(() => valueResultOk.Unwrap((Func<int, TestClass>)null, (Func<TestClass>)null));
             // ReSharper restore AssignNullToNotNullAttribute
             // ReSharper restore ReturnValueOfPureMethodIsNotUsed
