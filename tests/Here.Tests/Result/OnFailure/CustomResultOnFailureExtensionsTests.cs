@@ -76,6 +76,8 @@ namespace Here.Tests.Results
             CheckOnFailureFunc(failure, true, true);
 
             Assert.Throws<ArgumentNullException>(() => ok.OnFailure(null, 12.5f));
+            Assert.Throws<ArgumentNullException>(() => ok.OnFailure(null, () => 12.5f));
+            Assert.Throws<ArgumentNullException>(() => ok.OnFailure(r => 1.0f, null));
             Assert.Throws<ArgumentNullException>(() => ok.OnFailure((Func<CustomResult<CustomErrorTest>, float>)null, null));
         }
 

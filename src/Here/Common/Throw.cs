@@ -1,4 +1,3 @@
-using System;
 using System.Diagnostics;
 #if SUPPORTS_AGGRESSIVE_INLINING
 using System.Runtime.CompilerServices;

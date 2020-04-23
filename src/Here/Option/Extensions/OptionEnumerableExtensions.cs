@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+#if SUPPORTS_AGGRESSIVE_INLINING
+using System.Runtime.CompilerServices;
+#endif
 using JetBrains.Annotations;
 
 namespace Here.Extensions
@@ -100,6 +103,12 @@ namespace Here.Extensions
             if (predicate is null)
                 throw new ArgumentNullException(nameof(predicate));
 
+            return SingleOrNoneIterator(enumerable, predicate, throwInvalidException);
+        }
+
+        [Pure]
+        private static Option<T> SingleOrNoneIterator<T>([NotNull] IEnumerable<T> enumerable, [NotNull, InstantHandle] in Predicate<T> predicate, in bool throwInvalidException = true)
+        {
             using (IEnumerator<T> enumerator = enumerable.GetEnumerator())
             {
                 while (enumerator.MoveNext())
@@ -248,6 +257,15 @@ namespace Here.Extensions
             if (enumerable is null)
                 throw new ArgumentNullException(nameof(enumerable));
 
+            return ExtractValuesIterator(enumerable);
+        }
+
+        [Pure, NotNull]
+#if SUPPORTS_AGGRESSIVE_INLINING
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
+        private static IEnumerable<T> ExtractValuesIterator<T>([NotNull] this IEnumerable<Option<T>> enumerable)
+        {
             foreach (Option<T> option in enumerable)
             {
                 if (option.HasValue)

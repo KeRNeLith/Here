@@ -1000,9 +1000,9 @@ namespace Here.Tests.Eithers
             CheckNoneEither(result);
 
             // ReSharper disable AssignNullToNotNullAttribute
-            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.Map((Func<int, Either<string, float>>)null); });
-            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.Map((Func<int, Either<string, float>>)null); });
-            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.Map((Func<int, Either<string, float>>)null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.Bind((Func<int, Either<string, float>>)null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.Bind((Func<int, Either<string, float>>)null); });
+            Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.Bind((Func<int, Either<string, float>>)null); });
             // ReSharper restore AssignNullToNotNullAttribute
         }
 

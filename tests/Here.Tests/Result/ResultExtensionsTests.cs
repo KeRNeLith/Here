@@ -182,6 +182,12 @@ namespace Here.Tests.Results
             Assert.Throws<ArgumentNullException>(() => valueResultOk.Unwrap(null, () => 12.5f));
             Assert.Throws<ArgumentNullException>(() => valueResultOk.Unwrap(val => 12.5f, null));
             Assert.Throws<ArgumentNullException>(() => valueResultOk.Unwrap((Func<int, TestClass>)null, (Func<TestClass>)null));
+
+            Assert.Throws<ArgumentNullException>(() => customValueResultOk.Unwrap(null));
+            Assert.Throws<ArgumentNullException>(() => customValueResultOk.Unwrap(null, 12.5f));
+            Assert.Throws<ArgumentNullException>(() => customValueResultOk.Unwrap(null, () => 12.5f));
+            Assert.Throws<ArgumentNullException>(() => customValueResultOk.Unwrap(val => 12.5f, null));
+            Assert.Throws<ArgumentNullException>(() => customValueResultOk.Unwrap((Func<int, TestClass>)null, (Func<TestClass>)null));
             // ReSharper restore AssignNullToNotNullAttribute
             // ReSharper restore ReturnValueOfPureMethodIsNotUsed
         }

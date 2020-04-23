@@ -91,6 +91,8 @@ namespace Here.Tests.Options
             Assert.AreEqual(1, counterIf);
             Assert.AreEqual(1, counterElse);
 
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfElse(v => { }, null));
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfElse(null, () => { }));
             Assert.Throws<ArgumentNullException>(() => optionInt.IfElse(null, null));
         }
 
@@ -381,11 +383,11 @@ namespace Here.Tests.Options
             Assert.Throws<InvalidOperationException>(() => emptyOptionInt.IfOrThrows(value => { }, () => new InvalidOperationException()));
 
             Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows(value => 12, (Exception)null));
-            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows(null, new InvalidOperationException()));
-            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows(null, (Exception)null));
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows((Func<int, int>)null, new InvalidOperationException()));
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows((Func<int, int>)null, (Exception)null));
             Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows(value => 12, (Func<Exception>)null));
-            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows(null, () => new InvalidOperationException()));
-            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows(null, (Func<Exception>)null));
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows((Func<int, int>)null, () => new InvalidOperationException()));
+            Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows((Func<int, int>)null, (Func<Exception>)null));
 
             Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows(value => { }, (Exception)null));
             Assert.Throws<ArgumentNullException>(() => optionInt.IfOrThrows(null, new InvalidOperationException()));

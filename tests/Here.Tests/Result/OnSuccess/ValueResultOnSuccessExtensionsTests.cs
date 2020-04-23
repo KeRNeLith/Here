@@ -849,6 +849,8 @@ namespace Here.Tests.Results
             CheckResultFail(result, produceFailureMessage, customErrorObject);
 
             Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<int, CustomResult<CustomErrorTest>>)null, customErrorObject));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess(val => CustomResult<CustomErrorTest>.ResultOk, (CustomErrorTest)null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<int, CustomResult<CustomErrorTest>>)null, (CustomErrorTest)null));
             
             Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<int, CustomResult<CustomErrorTest>>)null, r => customErrorObjectFactory));
             Assert.Throws<ArgumentNullException>(() => ok.OnSuccess(val => CustomResult<CustomErrorTest>.ResultOk, (Func<Result<int>, CustomErrorTest>)null));
@@ -1396,6 +1398,8 @@ namespace Here.Tests.Results
             CheckResultFail(result, produceFailureMessage, customErrorObject);
 
             Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<int, Result<int, CustomErrorTest>>)null, customErrorObject));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess(val => Result.Ok<int, CustomErrorTest>(12), (CustomErrorTest)null));
+            Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<int, Result<int, CustomErrorTest>>)null, (CustomErrorTest)null));
 
             Assert.Throws<ArgumentNullException>(() => ok.OnSuccess((Func<int, Result<int, CustomErrorTest>>)null, r => customErrorObjectFactory));
             Assert.Throws<ArgumentNullException>(() => ok.OnSuccess(val => Result.Ok<int, CustomErrorTest>(12), (Func<Result<int>, CustomErrorTest>)null));
