@@ -122,7 +122,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<TOut> Cast<TOut>([NotNull, InstantHandle] in Func<T, TOut> converter)
-        {            if (converter is null)
+        {
+            if (converter is null)
                 throw new ArgumentNullException(nameof(converter));
 
             if (IsFailure)
@@ -139,7 +140,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI, Pure]
         public CustomResult<TError> CustomCast<TError>([NotNull] in TError errorObject)
-        {            if (errorObject == null)
+        {
+            if (errorObject == null)
                 throw new ArgumentNullException(nameof(errorObject));
 
             if (IsFailure)
@@ -158,7 +160,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public CustomResult<TError> CustomCast<TError>([NotNull, InstantHandle] in Func<TError> errorFactory)
-        {            if (errorFactory is null)
+        {
+            if (errorFactory is null)
                 throw new ArgumentNullException(nameof(errorFactory));
 
             if (IsFailure)
@@ -179,7 +182,8 @@ namespace Here
         [PublicAPI, Pure]
         public Result<TOut, TError> Cast<TOut, TError>([NotNull] in TError errorObject)
             where TOut : class
-        {            if (errorObject == null)
+        {
+            if (errorObject == null)
                 throw new ArgumentNullException(nameof(errorObject));
 
             if (IsFailure)
@@ -200,7 +204,8 @@ namespace Here
         [PublicAPI, Pure]
         public Result<TOut, TError> Cast<TOut, TError>([NotNull, InstantHandle] in Func<TError> errorFactory)
             where TOut : class
-        {            if (errorFactory is null)
+        {
+            if (errorFactory is null)
                 throw new ArgumentNullException(nameof(errorFactory));
 
             if (IsFailure)
@@ -222,8 +227,10 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<TOut, TError> Cast<TOut, TError>([NotNull, InstantHandle] in Func<T, TOut> converter, [NotNull] in TError errorObject)
-        {            if (converter is null)
-                throw new ArgumentNullException(nameof(converter));            if (errorObject == null)
+        {
+            if (converter is null)
+                throw new ArgumentNullException(nameof(converter));
+            if (errorObject == null)
                 throw new ArgumentNullException(nameof(errorObject));
 
             if (IsFailure)
@@ -245,8 +252,10 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<TOut, TError> Cast<TOut, TError>([NotNull, InstantHandle] in Func<T, TOut> converter, [NotNull, InstantHandle] in Func<TError> errorFactory)
-        {            if (converter is null)
-                throw new ArgumentNullException(nameof(converter));            if (errorFactory is null)
+        {
+            if (converter is null)
+                throw new ArgumentNullException(nameof(converter));
+            if (errorFactory is null)
                 throw new ArgumentNullException(nameof(errorFactory));
 
             if (IsFailure)

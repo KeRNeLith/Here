@@ -457,7 +457,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentException">If the <paramref name="enumType"/> is not an enumeration type.</exception>
         [PublicAPI, Pure]
         public static Option<object> TryParseEnum([CanBeNull] this string str, [NotNull] Type enumType)
-        {            if (enumType is null)
+        {
+            if (enumType is null)
                 throw new ArgumentNullException(nameof(enumType));
 #if SUPPORTS_SYSTEM_TYPE_IS_ENUM
             if (!enumType.IsEnum)

@@ -142,7 +142,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<TOut, TError> Cast<TOut>([NotNull, InstantHandle] in Func<T, TOut> converter)
-        {            if (converter is null)
+        {
+            if (converter is null)
                 throw new ArgumentNullException(nameof(converter));
 
             if (IsFailure)

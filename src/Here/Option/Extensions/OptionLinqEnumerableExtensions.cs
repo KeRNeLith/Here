@@ -37,7 +37,8 @@ namespace Here.Extensions
         [PublicAPI, Pure]
         public static bool AnyItem<T>(in this Option<T> option, [NotNull, InstantHandle] in Predicate<object> predicate)
             where T : IEnumerable
-        {            if (predicate is null)
+        {
+            if (predicate is null)
                 throw new ArgumentNullException(nameof(predicate));
 
             if (option.HasValue)
@@ -64,7 +65,8 @@ namespace Here.Extensions
         [PublicAPI, Pure]
         public static bool AnyItem<T, TItem>(in this Option<T> option, [NotNull, InstantHandle] Predicate<TItem> predicate)
             where T : IEnumerable<TItem>
-        {            if (predicate is null)
+        {
+            if (predicate is null)
                 throw new ArgumentNullException(nameof(predicate));
 
             if (option.HasValue)
@@ -83,7 +85,8 @@ namespace Here.Extensions
         [PublicAPI, Pure]
         public static bool AllItems<T>(in this Option<T> option, [NotNull, InstantHandle] in Predicate<object> predicate)
             where T : IEnumerable
-        {            if (predicate is null)
+        {
+            if (predicate is null)
                 throw new ArgumentNullException(nameof(predicate));
 
             if (option.HasValue)
@@ -112,7 +115,8 @@ namespace Here.Extensions
         [PublicAPI, Pure]
         public static bool AllItems<T, TItem>(in this Option<T> option, [NotNull, InstantHandle] Predicate<TItem> predicate)
             where T : IEnumerable<TItem>
-        {            if (predicate is null)
+        {
+            if (predicate is null)
                 throw new ArgumentNullException(nameof(predicate));
 
             if (option.HasValue)
@@ -155,7 +159,8 @@ namespace Here.Extensions
         [PublicAPI, Pure]
         public static bool ContainsItem<T>(in this Option<T> option, [CanBeNull] in object value, [NotNull] in IEqualityComparer<object> comparer)
             where T : IEnumerable
-        {            if (comparer is null)
+        {
+            if (comparer is null)
                 throw new ArgumentNullException(nameof(comparer));
 
             if (option.HasValue)
@@ -200,7 +205,8 @@ namespace Here.Extensions
         [PublicAPI, Pure]
         public static bool ContainsItem<T, TItem>(in this Option<T> option, [CanBeNull] in TItem value, [NotNull] in IEqualityComparer<TItem> comparer)
             where T : IEnumerable<TItem>
-        {            if (comparer is null)
+        {
+            if (comparer is null)
                 throw new ArgumentNullException(nameof(comparer));
 
             if (option.HasValue)
@@ -220,7 +226,8 @@ namespace Here.Extensions
         [PublicAPI, Pure]
         public static Option<IEnumerable<TItemOut>> SelectItems<T, TItemOut>(in this Option<T> option, [NotNull, InstantHandle] in Func<object, TItemOut> selector)
             where T : IEnumerable
-        {            if (selector is null)
+        {
+            if (selector is null)
                 throw new ArgumentNullException(nameof(selector));
 
             if (option.HasValue)
@@ -247,7 +254,8 @@ namespace Here.Extensions
         [PublicAPI, Pure]
         public static Option<IEnumerable<TItemOut>> SelectItems<T, TItemIn, TItemOut>(in this Option<T> option, [NotNull, InstantHandle] in Func<TItemIn, TItemOut> selector)
             where T : IEnumerable<TItemIn>
-        {            if (selector is null)
+        {
+            if (selector is null)
                 throw new ArgumentNullException(nameof(selector));
 
             if (option.HasValue)
@@ -267,7 +275,8 @@ namespace Here.Extensions
         [PublicAPI, Pure]
         public static Option<IEnumerable<TItemOut>> SelectManyItems<T, TItemOut>(in this Option<T> option, [NotNull, InstantHandle] in Func<object, IEnumerable<TItemOut>> selector)
             where T : IEnumerable
-        {            if (selector is null)
+        {
+            if (selector is null)
                 throw new ArgumentNullException(nameof(selector));
 
             if (option.HasValue)
@@ -294,7 +303,8 @@ namespace Here.Extensions
         [PublicAPI, Pure]
         public static Option<IEnumerable<TItemOut>> SelectManyItems<T, TItemIn, TItemOut>(in this Option<T> option, [NotNull, InstantHandle] in Func<TItemIn, IEnumerable<TItemOut>> selector)
             where T : IEnumerable<TItemIn>
-        {            if (selector is null)
+        {
+            if (selector is null)
                 throw new ArgumentNullException(nameof(selector));
 
             if (option.HasValue)
@@ -321,8 +331,10 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Func<object, IEnumerable<TItemCollection>> collectionSelector,
             [NotNull, InstantHandle] in Func<object, TItemCollection, TItemOut> resultSelector)
             where T : IEnumerable
-        {            if (collectionSelector is null)
-                throw new ArgumentNullException(nameof(collectionSelector));            if (resultSelector is null)
+        {
+            if (collectionSelector is null)
+                throw new ArgumentNullException(nameof(collectionSelector));
+            if (resultSelector is null)
                 throw new ArgumentNullException(nameof(resultSelector));
 
             if (option.HasValue)
@@ -350,8 +362,10 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Func<TItemIn, IEnumerable<TItemCollection>> collectionSelector,
             [NotNull, InstantHandle] in Func<TItemIn, TItemCollection, TItemOut> resultSelector)
             where T : IEnumerable<TItemIn>
-        {            if (collectionSelector is null)
-                throw new ArgumentNullException(nameof(collectionSelector));            if (resultSelector is null)
+        {
+            if (collectionSelector is null)
+                throw new ArgumentNullException(nameof(collectionSelector));
+            if (resultSelector is null)
                 throw new ArgumentNullException(nameof(resultSelector));
 
             if (option.HasValue)
@@ -370,7 +384,8 @@ namespace Here.Extensions
         [PublicAPI, Pure]
         public static Option<IEnumerable> WhereItems<T>(in this Option<T> option, [NotNull, InstantHandle] in Predicate<object> predicate)
             where T : IEnumerable
-        {            if (predicate is null)
+        {
+            if (predicate is null)
                 throw new ArgumentNullException(nameof(predicate));
 
             if (option.HasValue)
@@ -403,7 +418,8 @@ namespace Here.Extensions
         [PublicAPI, Pure]
         public static Option<IEnumerable<TItem>> WhereItems<T, TItem>(in this Option<T> option, [NotNull, InstantHandle] Predicate<TItem> predicate)
             where T : IEnumerable<TItem>
-        {            if (predicate is null)
+        {
+            if (predicate is null)
                 throw new ArgumentNullException(nameof(predicate));
 
             if (option.HasValue)
@@ -427,7 +443,8 @@ namespace Here.Extensions
         [PublicAPI]
         public static Option<T> ForEachItems<T>(in this Option<T> option, [NotNull, InstantHandle] in Action<object> onItem)
             where T : IEnumerable
-        {            if (onItem is null)
+        {
+            if (onItem is null)
                 throw new ArgumentNullException(nameof(onItem));
 
             if (option.HasValue)
@@ -451,7 +468,8 @@ namespace Here.Extensions
         [PublicAPI]
         public static Option<T> ForEachItems<T, TItem>(in this Option<T> option, [NotNull, InstantHandle] in Action<TItem> onItem)
             where T : IEnumerable<TItem>
-        {            if (onItem is null)
+        {
+            if (onItem is null)
                 throw new ArgumentNullException(nameof(onItem));
 
             if (option.HasValue)
@@ -481,8 +499,10 @@ namespace Here.Extensions
             [NotNull] in TAggregate initialValue,
             [NotNull, InstantHandle] in Func<TAggregate, object, TAggregate> aggregator)
             where T : IEnumerable
-        {            if (initialValue == null)
-                throw new ArgumentNullException(nameof(initialValue));            if (aggregator is null)
+        {
+            if (initialValue == null)
+                throw new ArgumentNullException(nameof(initialValue));
+            if (aggregator is null)
                 throw new ArgumentNullException(nameof(aggregator));
 
             if (option.HasValue)
@@ -516,8 +536,10 @@ namespace Here.Extensions
             [NotNull] in TAggregate initialValue,
             [NotNull, InstantHandle] in Func<TAggregate, TItem, TAggregate> aggregator)
             where T : IEnumerable<TItem>
-        {            if (initialValue == null)
-                throw new ArgumentNullException(nameof(initialValue));            if (aggregator is null)
+        {
+            if (initialValue == null)
+                throw new ArgumentNullException(nameof(initialValue));
+            if (aggregator is null)
                 throw new ArgumentNullException(nameof(aggregator));
 
             if (option.HasValue)

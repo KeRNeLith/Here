@@ -34,8 +34,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         [PublicAPI, Pure]
         public static Option<T> FirstOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull, InstantHandle] in Predicate<T> predicate)
-        {            if (enumerable is null)
-                throw new ArgumentNullException(nameof(enumerable));            if (predicate is null)
+        {
+            if (enumerable is null)
+                throw new ArgumentNullException(nameof(enumerable));
+            if (predicate is null)
                 throw new ArgumentNullException(nameof(predicate));
 
             foreach (T item in enumerable)
@@ -59,7 +61,8 @@ namespace Here.Extensions
         /// <exception cref="InvalidOperationException">If the <paramref name="enumerable"/> contains more than one element.</exception>
         [PublicAPI, Pure]
         public static Option<T> SingleOrNone<T>([NotNull] this IEnumerable<T> enumerable, in bool throwInvalidException = true)
-        {            if (enumerable is null)
+        {
+            if (enumerable is null)
                 throw new ArgumentNullException(nameof(enumerable));
 
             using (IEnumerator<T> enumerator = enumerable.GetEnumerator())
@@ -91,8 +94,10 @@ namespace Here.Extensions
         /// <exception cref="InvalidOperationException">If the <paramref name="enumerable"/> contains more than one element matching the <paramref name="predicate"/>.</exception>
         [PublicAPI, Pure]
         public static Option<T> SingleOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull, InstantHandle] in Predicate<T> predicate, in bool throwInvalidException = true)
-        {            if (enumerable is null)
-                throw new ArgumentNullException(nameof(enumerable));            if (predicate is null)
+        {
+            if (enumerable is null)
+                throw new ArgumentNullException(nameof(enumerable));
+            if (predicate is null)
                 throw new ArgumentNullException(nameof(predicate));
 
             using (IEnumerator<T> enumerator = enumerable.GetEnumerator())
@@ -144,8 +149,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         [PublicAPI, Pure]
         public static Option<T> LastOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull, InstantHandle] in Predicate<T> predicate)
-        {            if (enumerable is null)
-                throw new ArgumentNullException(nameof(enumerable));            if (predicate is null)
+        {
+            if (enumerable is null)
+                throw new ArgumentNullException(nameof(enumerable));
+            if (predicate is null)
                 throw new ArgumentNullException(nameof(predicate));
 
             T matchedItem = default;
@@ -174,7 +181,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
         [PublicAPI, Pure]
         public static Option<T> ElementAtOrNone<T>([NotNull] this IEnumerable<T> enumerable, int index)
-        {            if (enumerable is null)
+        {
+            if (enumerable is null)
                 throw new ArgumentNullException(nameof(enumerable));
 
             if (index >= 0)
@@ -236,7 +244,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
         [PublicAPI, Pure, NotNull]
         public static IEnumerable<T> ExtractValues<T>([NotNull] this IEnumerable<Option<T>> enumerable)
-        {            if (enumerable is null)
+        {
+            if (enumerable is null)
                 throw new ArgumentNullException(nameof(enumerable));
 
             foreach (Option<T> option in enumerable)
@@ -255,7 +264,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
         [PublicAPI, Pure, NotNull]
         public static T[] ToArray<T>([NotNull] this IEnumerable<Option<T>> enumerable)
-        {            if (enumerable is null)
+        {
+            if (enumerable is null)
                 throw new ArgumentNullException(nameof(enumerable));
 
             return enumerable.ExtractValues().ToArray();
@@ -270,7 +280,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
         [PublicAPI, Pure, NotNull]
         public static List<T> ToList<T>([NotNull] this IEnumerable<Option<T>> enumerable)
-        {            if (enumerable is null)
+        {
+            if (enumerable is null)
                 throw new ArgumentNullException(nameof(enumerable));
 
             return enumerable.ExtractValues().ToList();
@@ -288,8 +299,10 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="keySelector"/> is null.</exception>
         [PublicAPI, Pure, NotNull]
         public static Dictionary<TKey, TValue> ToDictionary<TValue, TKey>([NotNull] this IEnumerable<Option<TValue>> enumerable, [NotNull, InstantHandle] in Func<TValue, TKey> keySelector)
-        {            if (enumerable is null)
-                throw new ArgumentNullException(nameof(enumerable));            if (keySelector is null)
+        {
+            if (enumerable is null)
+                throw new ArgumentNullException(nameof(enumerable));
+            if (keySelector is null)
                 throw new ArgumentNullException(nameof(keySelector));
 
             return enumerable.ExtractValues().ToDictionary(keySelector);

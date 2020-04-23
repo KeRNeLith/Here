@@ -26,8 +26,10 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Action onSuccess,
             [NotNull, InstantHandle] in Action onFailure,
             in bool treatWarningAsError = false)
-        {            if (onSuccess is null)
-                throw new ArgumentNullException(nameof(onSuccess));            if (onFailure is null)
+        {
+            if (onSuccess is null)
+                throw new ArgumentNullException(nameof(onSuccess));
+            if (onFailure is null)
                 throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredSuccess(result.Logic, treatWarningAsError))
@@ -53,8 +55,10 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Action onSuccess,
             [NotNull, InstantHandle] in Action<Result> onFailure,
             in bool treatWarningAsError = false)
-        {            if (onSuccess is null)
-                throw new ArgumentNullException(nameof(onSuccess));            if (onFailure is null)
+        {
+            if (onSuccess is null)
+                throw new ArgumentNullException(nameof(onSuccess));
+            if (onFailure is null)
                 throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredSuccess(result.Logic, treatWarningAsError))
@@ -80,8 +84,10 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Action<Result> onSuccess,
             [NotNull, InstantHandle] in Action<Result> onFailure,
             in bool treatWarningAsError = false)
-        {            if (onSuccess is null)
-                throw new ArgumentNullException(nameof(onSuccess));            if (onFailure is null)
+        {
+            if (onSuccess is null)
+                throw new ArgumentNullException(nameof(onSuccess));
+            if (onFailure is null)
                 throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredSuccess(result.Logic, treatWarningAsError))
@@ -108,8 +114,10 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Func<Result, TOut> onSuccess,
             [NotNull, InstantHandle] in Func<Result, TOut> onFailure,
             in bool treatWarningAsError = false)
-        {            if (onSuccess is null)
-                throw new ArgumentNullException(nameof(onSuccess));            if (onFailure is null)
+        {
+            if (onSuccess is null)
+                throw new ArgumentNullException(nameof(onSuccess));
+            if (onFailure is null)
                 throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredSuccess(result.Logic, treatWarningAsError))
@@ -138,8 +146,10 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Action onSuccess,
             [NotNull, InstantHandle] in Action onFailure,
             in bool treatWarningAsError = false)
-        {            if (onSuccess is null)
-                throw new ArgumentNullException(nameof(onSuccess));            if (onFailure is null)
+        {
+            if (onSuccess is null)
+                throw new ArgumentNullException(nameof(onSuccess));
+            if (onFailure is null)
                 throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredSuccess(result.Logic, treatWarningAsError))
@@ -166,8 +176,10 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Action<Result<T>> onSuccess,
             [NotNull, InstantHandle] in Action<Result<T>> onFailure,
             in bool treatWarningAsError = false)
-        {            if (onSuccess is null)
-                throw new ArgumentNullException(nameof(onSuccess));            if (onFailure is null)
+        {
+            if (onSuccess is null)
+                throw new ArgumentNullException(nameof(onSuccess));
+            if (onFailure is null)
                 throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredSuccess(result.Logic, treatWarningAsError))
@@ -195,8 +207,10 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Func<Result<TIn>, TOut> onSuccess,
             [NotNull, InstantHandle] in Func<Result<TIn>, TOut> onFailure,
             in bool treatWarningAsError = false)
-        {            if (onSuccess is null)
-                throw new ArgumentNullException(nameof(onSuccess));            if (onFailure is null)
+        {
+            if (onSuccess is null)
+                throw new ArgumentNullException(nameof(onSuccess));
+            if (onFailure is null)
                 throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredSuccess(result.Logic, treatWarningAsError))
@@ -225,8 +239,10 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Action onSuccess,
             [NotNull, InstantHandle] in Action onFailure,
             in bool treatWarningAsError = false)
-        {            if (onSuccess is null)
-                throw new ArgumentNullException(nameof(onSuccess));            if (onFailure is null)
+        {
+            if (onSuccess is null)
+                throw new ArgumentNullException(nameof(onSuccess));
+            if (onFailure is null)
                 throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredSuccess(result.Logic, treatWarningAsError))
@@ -253,8 +269,10 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Action onSuccess,
             [NotNull, InstantHandle] in Action<CustomResult<TError>> onFailure,
             in bool treatWarningAsError = false)
-        {            if (onSuccess is null)
-                throw new ArgumentNullException(nameof(onSuccess));            if (onFailure is null)
+        {
+            if (onSuccess is null)
+                throw new ArgumentNullException(nameof(onSuccess));
+            if (onFailure is null)
                 throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredSuccess(result.Logic, treatWarningAsError))
@@ -281,8 +299,10 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Action<CustomResult<TError>> onSuccess,
             [NotNull, InstantHandle] in Action<CustomResult<TError>> onFailure,
             in bool treatWarningAsError = false)
-        {            if (onSuccess is null)
-                throw new ArgumentNullException(nameof(onSuccess));            if (onFailure is null)
+        {
+            if (onSuccess is null)
+                throw new ArgumentNullException(nameof(onSuccess));
+            if (onFailure is null)
                 throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredSuccess(result.Logic, treatWarningAsError))
@@ -310,8 +330,10 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Func<CustomResult<TError>, TOut> onSuccess,
             [NotNull, InstantHandle] in Func<CustomResult<TError>, TOut> onFailure,
             in bool treatWarningAsError = false)
-        {            if (onSuccess is null)
-                throw new ArgumentNullException(nameof(onSuccess));            if (onFailure is null)
+        {
+            if (onSuccess is null)
+                throw new ArgumentNullException(nameof(onSuccess));
+            if (onFailure is null)
                 throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredSuccess(result.Logic, treatWarningAsError))
@@ -341,8 +363,10 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Action onSuccess,
             [NotNull, InstantHandle] in Action onFailure,
             in bool treatWarningAsError = false)
-        {            if (onSuccess is null)
-                throw new ArgumentNullException(nameof(onSuccess));            if (onFailure is null)
+        {
+            if (onSuccess is null)
+                throw new ArgumentNullException(nameof(onSuccess));
+            if (onFailure is null)
                 throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredSuccess(result.Logic, treatWarningAsError))
@@ -370,8 +394,10 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Action<Result<T, TError>> onSuccess,
             [NotNull, InstantHandle] in Action<Result<T, TError>> onFailure,
             in bool treatWarningAsError = false)
-        {            if (onSuccess is null)
-                throw new ArgumentNullException(nameof(onSuccess));            if (onFailure is null)
+        {
+            if (onSuccess is null)
+                throw new ArgumentNullException(nameof(onSuccess));
+            if (onFailure is null)
                 throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredSuccess(result.Logic, treatWarningAsError))
@@ -400,8 +426,10 @@ namespace Here.Extensions
             [NotNull, InstantHandle] in Func<Result<TIn, TError>, TOut> onSuccess,
             [NotNull, InstantHandle] in Func<Result<TIn, TError>, TOut> onFailure,
             in bool treatWarningAsError = false)
-        {            if (onSuccess is null)
-                throw new ArgumentNullException(nameof(onSuccess));            if (onFailure is null)
+        {
+            if (onSuccess is null)
+                throw new ArgumentNullException(nameof(onSuccess));
+            if (onFailure is null)
                 throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredSuccess(result.Logic, treatWarningAsError))

@@ -75,7 +75,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="selector"/> is null.</exception>
         [PublicAPI, Pure]
         public static Option<TOut> Select<TIn, TOut>(in this Option<TIn> option, [NotNull, InstantHandle] in Func<TIn, TOut> selector)
-        {            if (selector is null)
+        {
+            if (selector is null)
                 throw new ArgumentNullException(nameof(selector));
 
             if (option.HasValue)
@@ -109,7 +110,8 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="doAction"/> is null.</exception>
         [PublicAPI]
         public static Unit ForEach<T>(in this Option<T> option, [NotNull, InstantHandle] in Action<T> doAction)
-        {            if (doAction is null)
+        {
+            if (doAction is null)
                 throw new ArgumentNullException(nameof(doAction));
 
             if (option.HasValue)
@@ -134,8 +136,10 @@ namespace Here.Extensions
         public static TAggregate Aggregate<T, TAggregate>(in this Option<T> option, 
             [NotNull] in TAggregate initialValue, 
             [NotNull, InstantHandle] in Func<TAggregate, T, TAggregate> aggregator)
-        {            if (initialValue == null)
-                throw new ArgumentNullException(nameof(initialValue));            if (aggregator is null)
+        {
+            if (initialValue == null)
+                throw new ArgumentNullException(nameof(initialValue));
+            if (aggregator is null)
                 throw new ArgumentNullException(nameof(aggregator));
 
             if (option.HasValue)

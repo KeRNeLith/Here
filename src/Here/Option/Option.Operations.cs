@@ -17,7 +17,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="then"/> is null.</exception>
         [PublicAPI]
         public Option<T> If([NotNull, InstantHandle] in Action<T> then)
-        {            if (then is null)
+        {
+            if (then is null)
                 throw new ArgumentNullException(nameof(then));
 
             if (HasValue)
@@ -33,7 +34,8 @@ namespace Here
         /// <returns>Output value of <paramref name="then"/> function, or the default value of <typeparamref name="TResult"/>.</returns>
         [PublicAPI, Pure, CanBeNull]
         public TResult If<TResult>([NotNull, InstantHandle] in Func<T, TResult> then)
-        {            if (then is null)
+        {
+            if (then is null)
                 throw new ArgumentNullException(nameof(then));
 
             if (HasValue)
@@ -68,7 +70,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="else"/> is null.</exception>
         [PublicAPI]
         public Option<T> IfElse([NotNull, InstantHandle] in Action<T> then, [NotNull, InstantHandle] in Action @else)
-        {            if (then is null)
+        {
+            if (then is null)
                 throw new ArgumentNullException(nameof(then));
             if (@else is null)
                 throw new ArgumentNullException(nameof(@else));
@@ -92,7 +95,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="else"/> is null.</exception>
         [PublicAPI, Pure]
         public TResult IfElse<TResult>([NotNull, InstantHandle] in Func<T, TResult> then, [NotNull, InstantHandle] in Func<TResult> @else)
-        {            if (then is null)
+        {
+            if (then is null)
                 throw new ArgumentNullException(nameof(then));
             if (@else is null)
                 throw new ArgumentNullException(nameof(@else));
@@ -114,8 +118,10 @@ namespace Here
         /// <exception cref="NullResultException">If this <see cref="Option{T}"/> has a value and <paramref name="then"/> returns null.</exception>
         [PublicAPI, Pure, NotNull]
         public TResult IfOr<TResult>([NotNull, InstantHandle] in Func<T, TResult> then, [NotNull] in TResult orValue)
-        {            if (then is null)
-                throw new ArgumentNullException(nameof(then));            if (orValue == null)
+        {
+            if (then is null)
+                throw new ArgumentNullException(nameof(then));
+            if (orValue == null)
                 throw new ArgumentNullException(nameof(orValue));
 
             if (HasValue)
@@ -150,7 +156,8 @@ namespace Here
         public TResult ElseOr<TResult>([NotNull, InstantHandle] in Func<TResult> @else, [NotNull] in TResult orValue)
         {
             if (@else is null)
-                throw new ArgumentNullException(nameof(@else));            if (orValue == null)
+                throw new ArgumentNullException(nameof(@else));
+            if (orValue == null)
                 throw new ArgumentNullException(nameof(orValue));
 
             if (HasNoValue)
@@ -184,7 +191,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="orValue"/> is null.</exception>
         [PublicAPI, Pure, NotNull]
         public T Or([NotNull] in T orValue)
-        {            if (orValue == null)
+        {
+            if (orValue == null)
                 throw new ArgumentNullException(nameof(orValue));
 
             if (HasValue)
@@ -201,7 +209,8 @@ namespace Here
         /// <exception cref="NullResultException">If the <see cref="Option{T}"/> has no value and <paramref name="orFunc"/> returns null.</exception>
         [PublicAPI, Pure, NotNull]
         public T Or([NotNull, InstantHandle] in Func<T> orFunc)
-        {            if (orFunc is null)
+        {
+            if (orFunc is null)
                 throw new ArgumentNullException(nameof(orFunc));
 
             if (HasValue)
@@ -219,7 +228,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="orFunc"/> is null.</exception>
         [PublicAPI, Pure]
         public Option<T> Or([NotNull, InstantHandle] in Func<Option<T>> orFunc)
-        {            if (orFunc is null)
+        {
+            if (orFunc is null)
                 throw new ArgumentNullException(nameof(orFunc));
 
             if (HasValue)
@@ -249,8 +259,10 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="exception"/> is null.</exception>
         [PublicAPI]
         public void IfOrThrows([NotNull, InstantHandle] in Action<T> then, [NotNull] in Exception exception)
-        {            if (then is null)
-                throw new ArgumentNullException(nameof(then));            if (exception is null)
+        {
+            if (then is null)
+                throw new ArgumentNullException(nameof(then));
+            if (exception is null)
                 throw new ArgumentNullException(nameof(exception));
 
             if (HasNoValue)
@@ -268,8 +280,10 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="exceptionFunc"/> is null.</exception>
         [PublicAPI]
         public void IfOrThrows([NotNull, InstantHandle] in Action<T> then, [NotNull, InstantHandle] in Func<Exception> exceptionFunc)
-        {            if (then is null)
-                throw new ArgumentNullException(nameof(then));            if (exceptionFunc is null)
+        {
+            if (then is null)
+                throw new ArgumentNullException(nameof(then));
+            if (exceptionFunc is null)
                 throw new ArgumentNullException(nameof(exceptionFunc));
 
             if (HasNoValue)
@@ -289,8 +303,10 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="exception"/> is null.</exception>
         [PublicAPI]
         public TResult IfOrThrows<TResult>([NotNull, InstantHandle] in Func<T, TResult> then, [NotNull] in Exception exception)
-        {            if (then is null)
-                throw new ArgumentNullException(nameof(then));            if (exception is null)
+        {
+            if (then is null)
+                throw new ArgumentNullException(nameof(then));
+            if (exception is null)
                 throw new ArgumentNullException(nameof(exception));
 
             if (HasValue)
@@ -309,8 +325,10 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="exceptionFunc"/> is null.</exception>
         [PublicAPI]
         public TResult IfOrThrows<TResult>([NotNull, InstantHandle] in Func<T, TResult> then, [NotNull, InstantHandle] in Func<Exception> exceptionFunc)
-        {            if (then is null)
-                throw new ArgumentNullException(nameof(then));            if (exceptionFunc is null)
+        {
+            if (then is null)
+                throw new ArgumentNullException(nameof(then));
+            if (exceptionFunc is null)
                 throw new ArgumentNullException(nameof(exceptionFunc));
 
             if (HasValue)
@@ -326,7 +344,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="exception"/> is null.</exception>
         [PublicAPI, NotNull]
         public T OrThrows([NotNull] in Exception exception)
-        {            if (exception is null)
+        {
+            if (exception is null)
                 throw new ArgumentNullException(nameof(exception));
 
             if (HasValue)
@@ -342,7 +361,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="exceptionFunc"/> is null.</exception>
         [PublicAPI, NotNull]
         public T OrThrows([NotNull, InstantHandle] in Func<Exception> exceptionFunc)
-        {            if (exceptionFunc is null)
+        {
+            if (exceptionFunc is null)
                 throw new ArgumentNullException(nameof(exceptionFunc));
 
             if (HasValue)
@@ -371,7 +391,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="orFunc"/> is null.</exception>
         [PublicAPI, Pure, CanBeNull]
         public T Unwrap([NotNull, InstantHandle] in Func<T> orFunc)
-        {            if (orFunc is null)
+        {
+            if (orFunc is null)
                 throw new ArgumentNullException(nameof(orFunc));
 
             if (HasValue)
@@ -393,7 +414,8 @@ namespace Here
         public TOut Unwrap<TOut>(
             [NotNull, InstantHandle] in Func<T, TOut> converter, 
             [CanBeNull] in TOut defaultValue = default)
-        {            if (converter is null)
+        {
+            if (converter is null)
                 throw new ArgumentNullException(nameof(converter));
 
             if (HasValue)
@@ -416,8 +438,10 @@ namespace Here
         public TOut Unwrap<TOut>(
             [NotNull, InstantHandle] in Func<T, TOut> converter, 
             [NotNull, InstantHandle] in Func<TOut> orFunc)
-        {            if (converter is null)
-                throw new ArgumentNullException(nameof(converter));            if (orFunc is null)
+        {
+            if (converter is null)
+                throw new ArgumentNullException(nameof(converter));
+            if (orFunc is null)
                 throw new ArgumentNullException(nameof(orFunc));
 
             if (HasValue)
@@ -434,7 +458,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
         [PublicAPI, Pure]
         public Option<TTo> Cast<TTo>([NotNull, InstantHandle] in Func<T, TTo> converter)
-        {            if (converter is null)
+        {
+            if (converter is null)
                 throw new ArgumentNullException(nameof(converter));
 
             if (HasValue)
@@ -450,7 +475,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         [PublicAPI, Pure]
         public bool Exists([NotNull, InstantHandle] in Predicate<T> predicate)
-        {            if (predicate is null)
+        {
+            if (predicate is null)
                 throw new ArgumentNullException(nameof(predicate));
 
             if (HasValue)
@@ -467,7 +493,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         [PublicAPI, Pure]
         public Option<T> NoneIf([NotNull, InstantHandle] in Predicate<T> predicate)
-        {            if (predicate is null)
+        {
+            if (predicate is null)
                 throw new ArgumentNullException(nameof(predicate));
 
             if (HasValue && predicate(_value))
@@ -488,8 +515,10 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
         [PublicAPI, Pure]
         public Option<TOut> NoneIf<TOut>([NotNull, InstantHandle] in Predicate<T> predicate, [NotNull, InstantHandle] in Func<T, TOut> converter)
-        {            if (predicate is null)
-                throw new ArgumentNullException(nameof(predicate));            if (converter is null)
+        {
+            if (predicate is null)
+                throw new ArgumentNullException(nameof(predicate));
+            if (converter is null)
                 throw new ArgumentNullException(nameof(converter));
 
             if (HasValue && !predicate(_value))

@@ -219,7 +219,8 @@ namespace Here
         [PublicAPI, Pure]
         public static Either<TLeft, TRight> ToEither<TLeft, TRight>([CanBeNull] this TRight value, [NotNull] in TLeft defaultLeftValue)
             where TRight : class
-        {            if (defaultLeftValue == null)
+        {
+            if (defaultLeftValue == null)
                 throw new ArgumentNullException(nameof(defaultLeftValue));
 
             return value is null
@@ -242,7 +243,8 @@ namespace Here
         [PublicAPI, Pure]
         public static Either<TLeft, TRight> ToEither<TLeft, TRight>([CanBeNull] this TRight value, [NotNull, InstantHandle] in Func<TLeft> leftValueFactory)
             where TRight : class
-        {            if (leftValueFactory is null)
+        {
+            if (leftValueFactory is null)
                 throw new ArgumentNullException(nameof(leftValueFactory));
 
             return value is null
@@ -264,7 +266,8 @@ namespace Here
         [PublicAPI, Pure]
         public static Either<TLeft, TRight> ToEither<TLeft, TRight>([CanBeNull] in this TRight? nullable, [NotNull] in TLeft defaultLeftValue)
             where TRight : struct
-        {            if (defaultLeftValue == null)
+        {
+            if (defaultLeftValue == null)
                 throw new ArgumentNullException(nameof(defaultLeftValue));
 
             return nullable.HasValue
@@ -287,7 +290,8 @@ namespace Here
         [PublicAPI, Pure]
         public static Either<TLeft, TRight> ToEither<TLeft, TRight>([CanBeNull] in this TRight? nullable, [NotNull, InstantHandle] in Func<TLeft> leftValueFactory)
             where TRight : struct
-        {            if (leftValueFactory is null)
+        {
+            if (leftValueFactory is null)
                 throw new ArgumentNullException(nameof(leftValueFactory));
 
             return nullable.HasValue

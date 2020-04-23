@@ -87,7 +87,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<T> Cast<T>([NotNull, InstantHandle] in Func<T> valueFactory)
-        {            if (valueFactory is null)
+        {
+            if (valueFactory is null)
                 throw new ArgumentNullException(nameof(valueFactory));
 
             if (IsFailure)
@@ -104,7 +105,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI, Pure]
         public CustomResult<TError> CustomCast<TError>([NotNull] in TError errorObject)
-        {            if (errorObject == null)
+        {
+            if (errorObject == null)
                 throw new ArgumentNullException(nameof(errorObject));
 
             if (IsFailure)
@@ -123,7 +125,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public CustomResult<TError> CustomCast<TError>([NotNull, InstantHandle] in Func<TError> errorFactory)
-        {            if (errorFactory is null)
+        {
+            if (errorFactory is null)
                 throw new ArgumentNullException(nameof(errorFactory));
 
             if (IsFailure)
@@ -144,7 +147,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<T, TError> Cast<T, TError>([CanBeNull] in T value, [NotNull] in TError errorObject)
-        {            if (errorObject == null)
+        {
+            if (errorObject == null)
                 throw new ArgumentNullException(nameof(errorObject));
 
             if (IsFailure)
@@ -165,7 +169,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<T, TError> Cast<T, TError>([CanBeNull] in T value, [NotNull, InstantHandle] in Func<TError> errorFactory)
-        {            if (errorFactory is null)
+        {
+            if (errorFactory is null)
                 throw new ArgumentNullException(nameof(errorFactory));
 
             if (IsFailure)
@@ -187,8 +192,10 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<T, TError> Cast<T, TError>([NotNull, InstantHandle] in Func<T> valueFactory, [NotNull] in TError errorObject)
-        {            if (valueFactory is null)
-                throw new ArgumentNullException(nameof(valueFactory));            if (errorObject == null)
+        {
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
+            if (errorObject == null)
                 throw new ArgumentNullException(nameof(errorObject));
 
             if (IsFailure)
@@ -210,8 +217,10 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<T, TError> Cast<T, TError>([NotNull, InstantHandle] in Func<T> valueFactory, [NotNull, InstantHandle] in Func<TError> errorFactory)
-        {            if (valueFactory is null)
-                throw new ArgumentNullException(nameof(valueFactory));            if (errorFactory is null)
+        {
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
+            if (errorFactory is null)
                 throw new ArgumentNullException(nameof(errorFactory));
 
             if (IsFailure)
@@ -545,7 +554,8 @@ namespace Here
         [PublicAPI, Pure]
         [ContractAnnotation("exception:null => halt")]
         public static Result Fail([NotNull] in Exception exception)
-        {            if (exception is null)
+        {
+            if (exception is null)
                 throw new ArgumentNullException(nameof(exception));
 
             return new Result(false, exception.Message, exception);
@@ -604,7 +614,8 @@ namespace Here
         [PublicAPI, Pure]
         [ContractAnnotation("exception:null => halt")]
         public static Result<T> Fail<T>([NotNull] in Exception exception)
-        {            if (exception is null)
+        {
+            if (exception is null)
                 throw new ArgumentNullException(nameof(exception));
 
             return new Result<T>(false, default, exception.Message, exception);
@@ -693,7 +704,8 @@ namespace Here
         [PublicAPI, Pure]
         [ContractAnnotation("error:null => halt; exception:null => halt")]
         public static CustomResult<TError> CustomFail<TError>([NotNull] in TError error, [NotNull] in Exception exception)
-        {            if (exception is null)
+        {
+            if (exception is null)
                 throw new ArgumentNullException(nameof(exception));
 
             return new CustomResult<TError>(false, exception.Message, error, exception);
@@ -756,7 +768,8 @@ namespace Here
         [PublicAPI, Pure]
         [ContractAnnotation("error:null => halt; exception:null => halt")]
         public static Result<T, TError> Fail<T, TError>([NotNull] in TError error, [NotNull] in Exception exception)
-        {            if (exception is null)
+        {
+            if (exception is null)
                 throw new ArgumentNullException(nameof(exception));
 
             return new Result<T, TError>(exception.Message, error, exception);

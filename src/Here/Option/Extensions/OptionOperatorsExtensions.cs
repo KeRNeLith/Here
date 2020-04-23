@@ -54,7 +54,8 @@ namespace Here.Extensions
         public static CustomResult<TError> ToCustomResult<T, TError>(in this Option<T> option, 
             [NotNull, InstantHandle] in Func<TError> errorFactory, 
             [CanBeNull] in string failureMessage = null)
-        {            if (errorFactory is null)
+        {
+            if (errorFactory is null)
                 throw new ArgumentNullException(nameof(errorFactory));
 
             if (option.HasValue)
@@ -76,7 +77,8 @@ namespace Here.Extensions
         public static CustomResult<TError> ToCustomResult<T, TError>(in this Option<T> option, 
             [NotNull] in TError errorObject, 
             [CanBeNull] in string failureMessage = null)
-        {            if (errorObject == null)
+        {
+            if (errorObject == null)
                 throw new ArgumentNullException(nameof(errorObject));
 
             if (option.HasValue)
@@ -98,7 +100,8 @@ namespace Here.Extensions
         public static Result<T, TError> ToValueCustomResult<T, TError>(in this Option<T> option, 
             [NotNull, InstantHandle] in Func<TError> errorFactory, 
             [CanBeNull] in string failureMessage = null)
-        {            if (errorFactory is null)
+        {
+            if (errorFactory is null)
                 throw new ArgumentNullException(nameof(errorFactory));
 
             if (option.HasValue)
@@ -120,7 +123,8 @@ namespace Here.Extensions
         public static Result<T, TError> ToValueCustomResult<T, TError>(in this Option<T> option, 
             [NotNull] in TError errorObject, 
             [CanBeNull] in string failureMessage = null)
-        {            if (errorObject == null)
+        {
+            if (errorObject == null)
                 throw new ArgumentNullException(nameof(errorObject));
 
             if (option.HasValue)
@@ -143,7 +147,8 @@ namespace Here.Extensions
         /// <returns>The corresponding <see cref="Either{TLeft,T}"/>.</returns>
         [PublicAPI, Pure]
         public static Either<TLeft, T> ToEither<T, TLeft>(in this Option<T> option, [NotNull] in TLeft defaultLeftValue)
-        {            if (defaultLeftValue == null)
+        {
+            if (defaultLeftValue == null)
                 throw new ArgumentNullException(nameof(defaultLeftValue));
 
             if (option.HasValue)
@@ -163,7 +168,8 @@ namespace Here.Extensions
         /// <returns>The corresponding <see cref="Either{TLeft,T}"/>.</returns>
         [PublicAPI, Pure]
         public static Either<TLeft, T> ToEither<T, TLeft>(in this Option<T> option, [NotNull, InstantHandle] in Func<TLeft> leftValueFactory)
-        {            if (leftValueFactory is null)
+        {
+            if (leftValueFactory is null)
                 throw new ArgumentNullException(nameof(leftValueFactory));
 
             if (option.HasValue)

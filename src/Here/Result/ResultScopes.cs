@@ -17,7 +17,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="action"/> is null.</exception>
         [PublicAPI]
         public static Result SafeResult([NotNull, InstantHandle] in Action action)
-        {            if (action is null)
+        {
+            if (action is null)
                 throw new ArgumentNullException(nameof(action));
 
             try
@@ -39,7 +40,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="action"/> is null.</exception>
         [PublicAPI]
         public static Result SafeResult([NotNull, InstantHandle] in Func<Result> action)
-        {            if (action is null)
+        {
+            if (action is null)
                 throw new ArgumentNullException(nameof(action));
 
             try
@@ -61,7 +63,8 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="action"/> is null.</exception>
         [PublicAPI]
         public static Result<T> SafeValueResult<T>([NotNull, InstantHandle] in Func<Result<T>> action)
-        {            if (action is null)
+        {
+            if (action is null)
                 throw new ArgumentNullException(nameof(action));
 
             try
@@ -85,8 +88,10 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI]
         public static CustomResult<TError> SafeCustomResult<TError>([NotNull, InstantHandle] in Func<CustomResult<TError>> action, [NotNull] in TError errorObject)
-        {            if (action is null)
-                throw new ArgumentNullException(nameof(action));            if (errorObject == null)
+        {
+            if (action is null)
+                throw new ArgumentNullException(nameof(action));
+            if (errorObject == null)
                 throw new ArgumentNullException(nameof(errorObject));
 
             try
@@ -110,8 +115,10 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI]
         public static CustomResult<TError> SafeCustomResult<TError>([NotNull, InstantHandle] in Func<CustomResult<TError>> action, [NotNull] in Func<TError> errorFactory)
-        {            if (action is null)
-                throw new ArgumentNullException(nameof(action));            if (errorFactory is null)
+        {
+            if (action is null)
+                throw new ArgumentNullException(nameof(action));
+            if (errorFactory is null)
                 throw new ArgumentNullException(nameof(errorFactory));
 
             try
@@ -136,8 +143,10 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI]
         public static Result<T, TError> SafeValueCustomResult<T, TError>([NotNull, InstantHandle] in Func<Result<T, TError>> action, [NotNull] in TError errorObject)
-        {            if (action is null)
-                throw new ArgumentNullException(nameof(action));            if (errorObject == null)
+        {
+            if (action is null)
+                throw new ArgumentNullException(nameof(action));
+            if (errorObject == null)
                 throw new ArgumentNullException(nameof(errorObject));
 
             try
@@ -162,8 +171,10 @@ namespace Here
         /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI]
         public static Result<T, TError> SafeValueCustomResult<T, TError>([NotNull, InstantHandle] in Func<Result<T, TError>> action, [NotNull] in Func<TError> errorFactory)
-        {            if (action is null)
-                throw new ArgumentNullException(nameof(action));            if (errorFactory is null)
+        {
+            if (action is null)
+                throw new ArgumentNullException(nameof(action));
+            if (errorFactory is null)
                 throw new ArgumentNullException(nameof(errorFactory));
 
             try
