@@ -1,7 +1,11 @@
 ﻿using System;
 using NUnit.Framework;
 using System.Collections.Generic;
+#if SUPPORTS_SYSTEM_CORE
 using System.Linq;
+#else
+using Here.Utils;
+#endif
 using JetBrains.Annotations;
 
 namespace Here.Tests.ValueObjects

@@ -1163,16 +1163,12 @@ namespace Here.Tests.Eithers
             Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.Fold(null, (TestClass seed, string l) => seed); });
             Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.Fold(null, (TestClass seed, string l) => seed); });
             Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.Fold(null, (TestClass seed, string l) => seed); });
-
-            // Cannot test this in NET20 and NET30 due to NUnit package
-#if SUPPORTS_SYSTEM_DELEGATES
             Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.Fold(testObject, (Func<TestClass, string, TestClass>)null); });
             Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.Fold(null, (Func<TestClass, string, TestClass>)null); });
             Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.Fold(testObject, (Func<TestClass, string, TestClass>)null); });
             Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.Fold(null, (Func<TestClass, string, TestClass>)null); });
             Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.Fold(testObject, (Func<TestClass, string, TestClass>)null); });
             Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.Fold(null, (Func<TestClass, string, TestClass>)null); });
-#endif
             // ReSharper restore AssignNullToNotNullAttribute
         }
 
@@ -1252,16 +1248,12 @@ namespace Here.Tests.Eithers
             Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.Fold(null, (TestClass seed, int r) => seed); });
             Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.Fold(null, (TestClass seed, int r) => seed); });
             Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.Fold(null, (TestClass seed, int r) => seed); });
-
-            // Cannot test this in NET20 and NET30 due to NUnit package
-#if SUPPORTS_SYSTEM_DELEGATES
             Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.Fold(testObject, (Func<TestClass, int, TestClass>)null); });
             Assert.Throws<ArgumentNullException>(() => { var _ = eitherLeft.Fold(null, (Func<TestClass, int, TestClass>)null); });
             Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.Fold(testObject, (Func<TestClass, int, TestClass>)null); });
             Assert.Throws<ArgumentNullException>(() => { var _ = eitherRight.Fold(null, (Func<TestClass, int, TestClass>)null); });
             Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.Fold(testObject, (Func<TestClass, int, TestClass>)null); });
             Assert.Throws<ArgumentNullException>(() => { var _ = eitherNone.Fold(null, (Func<TestClass, int, TestClass>)null); });
-#endif
             // ReSharper restore AssignNullToNotNullAttribute
         }
 

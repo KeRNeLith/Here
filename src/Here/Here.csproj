@@ -60,28 +60,23 @@ Supports Source Link</Description>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net35'">
     <AssemblyTitle>Here .NET 3.5</AssemblyTitle>
-    <DefineConstants>$(DefineConstants);NET35;SUPPORTS_SERIALIZATION;SUPPORTS_SYSTEM_TYPE_IS_ENUM;$(AdditionalConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET35;SUPPORTS_SERIALIZATION;SUPPORTS_SYSTEM_TYPE_IS_ENUM;SUPPORTS_EXTENSIONS;SUPPORTS_SYSTEM_CORE;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net40'">
     <AssemblyTitle>Here .NET 4.0</AssemblyTitle>
-    <DefineConstants>$(DefineConstants);NET40;SUPPORTS_SERIALIZATION;SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE;SUPPORTS_PARSE_GUID;SUPPORTS_TRY_PARSE_ENUM;SUPPORTS_SYSTEM_TYPE_IS_ENUM;$(AdditionalConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET40;SUPPORTS_SERIALIZATION;SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE;SUPPORTS_PARSE_GUID;SUPPORTS_TRY_PARSE_ENUM;SUPPORTS_SYSTEM_TYPE_IS_ENUM;SUPPORTS_EXTENSIONS;SUPPORTS_SYSTEM_CORE;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <!-- NET20, NET30 and NET35 do not provide Task, NET40 provides Task but no ConfigureAwait / Task.FromResult, etc. -->
   <PropertyGroup Condition="'$(TargetFramework)'=='net45'">
     <AssemblyTitle>Here .NET 4.5</AssemblyTitle>
-    <DefineConstants>$(DefineConstants);NET45;SUPPORTS_SERIALIZATION;SUPPORTS_AGGRESSIVE_INLINING;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE;SUPPORTS_PARSE_GUID;SUPPORTS_TRY_PARSE_ENUM;SUPPORTS_SYSTEM_TYPE_IS_ENUM;SUPPORTS_ASYNC;$(AdditionalConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET45;SUPPORTS_SERIALIZATION;SUPPORTS_AGGRESSIVE_INLINING;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE;SUPPORTS_PARSE_GUID;SUPPORTS_TRY_PARSE_ENUM;SUPPORTS_SYSTEM_TYPE_IS_ENUM;SUPPORTS_ASYNC;SUPPORTS_EXTENSIONS;SUPPORTS_SYSTEM_CORE;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='netstandard1.0'">
     <AssemblyTitle>Here .NET Standard 1.0</AssemblyTitle>
-    <DefineConstants>$(DefineConstants);NETSTANDARD1_0;SUPPORTS_AGGRESSIVE_INLINING;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE;SUPPORTS_PARSE_GUID;SUPPORTS_TRY_PARSE_ENUM;SUPPORTS_ASYNC;$(AdditionalConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);NETSTANDARD1_0;SUPPORTS_AGGRESSIVE_INLINING;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE;SUPPORTS_PARSE_GUID;SUPPORTS_TRY_PARSE_ENUM;SUPPORTS_ASYNC;SUPPORTS_EXTENSIONS;SUPPORTS_SYSTEM_CORE;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
     <AssemblyTitle>Here .NET Standard 2.0</AssemblyTitle>
-    <DefineConstants>$(DefineConstants);NETSTANDARD2_0;SUPPORTS_SERIALIZATION;SUPPORTS_AGGRESSIVE_INLINING;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE;SUPPORTS_PARSE_GUID;SUPPORTS_TRY_PARSE_ENUM;SUPPORTS_SYSTEM_TYPE_IS_ENUM;SUPPORTS_ASYNC;$(AdditionalConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);NETSTANDARD2_0;SUPPORTS_SERIALIZATION;SUPPORTS_AGGRESSIVE_INLINING;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE;SUPPORTS_PARSE_GUID;SUPPORTS_TRY_PARSE_ENUM;SUPPORTS_SYSTEM_TYPE_IS_ENUM;SUPPORTS_ASYNC;SUPPORTS_EXTENSIONS;SUPPORTS_SYSTEM_CORE;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
-
-  <!-- Dependencies -->
-  <ItemGroup Condition="'$(TargetFramework)' == 'net20'">
-    <PackageReference Include="System.Core" Version="3.5.21022.801" />
-  </ItemGroup>
 </Project>

@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+#if SUPPORTS_SYSTEM_CORE
 using System.Linq;
+#else
+using Here.Utils;
+#endif
 using NUnit.Framework;
 using Here.Extensions;
 using JetBrains.Annotations;
@@ -568,8 +572,6 @@ namespace Here.Tests.Options
             CheckEmptyOption(emptyOption.SelectManyItems(selectFromObject, (value, intermediate) => intermediate));
             CheckEmptyOption(emptyOption.SelectManyItems(selectFromInt, (value, intermediate) => intermediate));
 
-            // Cannot test this in NET20 and NET30 due to NUnit package
-#if SUPPORTS_SYSTEM_DELEGATES
             // ReSharper disable ReturnValueOfPureMethodIsNotUsed
             Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.SelectManyItems(i => new[] { 1, 2 }, (Func<object, int, int>)null));
             Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.SelectManyItems((Func<object, IEnumerable<int>>)null, (v, intermediate) => intermediate));
@@ -578,7 +580,6 @@ namespace Here.Tests.Options
             Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.SelectManyItems((Func<int, IEnumerable<int>>)null, (i, intermediate) => i + intermediate));
             Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.SelectManyItems(null, (Func<int, int, int>)null));
             // ReSharper restore ReturnValueOfPureMethodIsNotUsed
-#endif
         }
 
         [Test]
@@ -716,12 +717,6 @@ namespace Here.Tests.Options
             Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.ForEachItems(null));
             Assert.Throws<ArgumentNullException>(() => optionEnumerableInts.ForEachItems((Action<int>)null));
         }
-
-#if !SUPPORTS_SYSTEM_DELEGATES
-        // System.Core and NUnit both define this delegate that is conflicting
-        // Defining it here allows to use it without conflict.
-        public delegate TResult Func<in T1, in T2, out TResult>(T1 arg1, T2 arg2);
-#endif
 
         [Test]
         public void OptionAggregateItems()

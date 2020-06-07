@@ -1,6 +1,10 @@
 #if !SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE
 using JetBrains.Annotations;
+#if SUPPORTS_SYSTEM_CORE
 using System.Linq;
+#else
+using Here.Utils;
+#endif
 #endif
 
 namespace Here

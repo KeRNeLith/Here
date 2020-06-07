@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+#if SUPPORTS_SYSTEM_CORE
 using System.Linq;
+#else
+using Here.Utils;
+#endif
 using NUnit.Framework;
 using Here.Extensions;
 using static Here.Tests.Options.OptionTestHelpers;

@@ -26,43 +26,43 @@
     <DefineConstants>$(DefineConstants);NET30;SUPPORTS_SERIALIZATION;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net35'">
-    <DefineConstants>$(DefineConstants);NET35;SUPPORTS_SERIALIZATION;SUPPORTS_SYSTEM_DELEGATES;$(AdditionalConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET35;SUPPORTS_SERIALIZATION;SUPPORTS_SYSTEM_CORE;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net40'">
-    <DefineConstants>$(DefineConstants);NET40;SUPPORTS_SERIALIZATION;SUPPORTS_PARSE_GUID;SUPPORTS_SYSTEM_DELEGATES;$(AdditionalConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET40;SUPPORTS_SERIALIZATION;SUPPORTS_PARSE_GUID;SUPPORTS_SYSTEM_CORE;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net45'">
-    <DefineConstants>$(DefineConstants);NET45;SUPPORTS_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_DELEGATES;$(AdditionalConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET45;SUPPORTS_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_CORE;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net451'">
-    <DefineConstants>$(DefineConstants);NET451;SUPPORTS_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_DELEGATES;$(AdditionalConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET451;SUPPORTS_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_CORE;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net452'">
-    <DefineConstants>$(DefineConstants);NET452;SUPPORTS_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_DELEGATES;$(AdditionalConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET452;SUPPORTS_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_CORE;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net46'">
-    <DefineConstants>$(DefineConstants);NET46;SUPPORTS_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_DELEGATES;$(AdditionalConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET46;SUPPORTS_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_CORE;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net461'">
-    <DefineConstants>$(DefineConstants);NET461;SUPPORTS_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_DELEGATES;$(AdditionalConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET461;SUPPORTS_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_CORE;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net462'">
-    <DefineConstants>$(DefineConstants);NET462;SUPPORTS_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_DELEGATES;$(AdditionalConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET462;SUPPORTS_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_CORE;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net47'">
-    <DefineConstants>$(DefineConstants);NET47;SUPPORTS_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_DELEGATES;$(AdditionalConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET47;SUPPORTS_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_CORE;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net471'">
-    <DefineConstants>$(DefineConstants);NET471;SUPPORTS_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_DELEGATES;$(AdditionalConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET471;SUPPORTS_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_CORE;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='net472'">
-    <DefineConstants>$(DefineConstants);NET472;SUPPORTS_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_DELEGATES;$(AdditionalConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);NET472;SUPPORTS_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_CORE;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp1.0'">
-    <DefineConstants>$(DefineConstants);NETCOREAPP1_0;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_DELEGATES;$(AdditionalConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);NETCOREAPP1_0;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_CORE;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp2.0'">
-    <DefineConstants>$(DefineConstants);NETCOREAPP2_0;SUPPORTS_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_DELEGATES;$(AdditionalConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);NETCOREAPP2_0;SUPPORTS_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_CORE;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
 
   <!-- Dependencies -->

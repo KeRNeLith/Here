@@ -1,6 +1,10 @@
 using System;
 using System.Collections.Generic;
+#if SUPPORTS_SYSTEM_CORE
 using System.Linq;
+#else
+using Here.Utils;
+#endif
 #if SUPPORTS_AGGRESSIVE_INLINING
 using System.Runtime.CompilerServices;
 #endif
