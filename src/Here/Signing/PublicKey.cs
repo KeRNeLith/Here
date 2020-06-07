@@ -1,0 +1,12 @@
+namespace Here
+{
+    internal static class PublicKey
+    {
+        public const string Key =
+#if DEPLOY_BUILD
+            ", PublicKey=00240000048000009400000006020000002400005253413100040000010001001595a6650a7ec5c1502179663c04962d59b9b27b597a1d25a57ef96008edcfd77f84087505bd3e688e466d2a0c41876319768e632211c7305410351e478428e601e22f3ec7f9f8f68d5073fb3d83e1b308698d76d9b9df5edfb36110e7b7a1efbe2b869ffe55faf9b103d3b17dfa4b1ab7afe42ec58996ed0a8307ae9d3c17f3";
+#else
+            "";
+#endif
+    }
+}
