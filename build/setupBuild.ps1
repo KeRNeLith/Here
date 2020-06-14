@@ -29,12 +29,16 @@ function UpdateDeployBuild()
 if ($env:APPVEYOR_REPO_TAG -eq "true")
 {
     UpdateDeployBuild;
+    $env:IsFullIntegrationBuild = $false;   # Run only tests on deploy builds (not coverage, etc.)
+}
+else
+{
+    $env:IsFullIntegrationBuild = "$env:APPVEYOR_PULL_REQUEST_NUMBER" -eq "" -And $env:Configuration -eq "Release";
 }
 
 UpdateAllPackagesGeneration;
 $env:Build_Version = "$($env:APPVEYOR_BUILD_VERSION)";
 $env:Release_Name = $env:Build_Version;
-$env:IsFullIntegrationBuild = "$env:APPVEYOR_PULL_REQUEST_NUMBER" -eq "" -And $env:Configuration -eq "Release";
 $env:Build_Assembly_Version = "$env:Build_Version" -replace "\-.*","";
 
 "Building version: $env:Build_Version";
