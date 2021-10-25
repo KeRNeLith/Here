@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Struct Unit
    ">
-    <meta name="generator" content="docfx 2.51.0.0">
+    <meta name="generator" content="docfx 2.58.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -99,7 +99,7 @@
   <h5 id="Here_Unit_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Serializable]
-public struct Unit : IEquatable&lt;Unit&gt;, IComparable, IComparable&lt;Unit&gt;</code></pre>
+public readonly struct Unit : IEquatable&lt;Unit&gt;, IComparable, IComparable&lt;Unit&gt;</code></pre>
   </div>
   <h3 id="fields">Fields
   </h3>
@@ -148,7 +148,7 @@ public struct Unit : IEquatable&lt;Unit&gt;, IComparable, IComparable&lt;Unit&gt
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int CompareTo(Unit other)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly int CompareTo(Unit other)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -198,7 +198,7 @@ public struct Unit : IEquatable&lt;Unit&gt;, IComparable, IComparable&lt;Unit&gt
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int CompareTo(object obj)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly int CompareTo(object obj)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -248,7 +248,7 @@ public struct Unit : IEquatable&lt;Unit&gt;, IComparable, IComparable&lt;Unit&gt
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Equals(Unit other)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly bool Equals(Unit other)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -295,7 +295,7 @@ public struct Unit : IEquatable&lt;Unit&gt;, IComparable, IComparable&lt;Unit&gt
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+    <pre><code class="lang-csharp hljs">public override readonly bool Equals(object obj)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -344,7 +344,7 @@ public struct Unit : IEquatable&lt;Unit&gt;, IComparable, IComparable&lt;Unit&gt
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+    <pre><code class="lang-csharp hljs">public override readonly int GetHashCode()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -377,7 +377,7 @@ public struct Unit : IEquatable&lt;Unit&gt;, IComparable, IComparable&lt;Unit&gt
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public T Return&lt;T&gt;(T value)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly T Return&lt;T&gt;(T value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -443,7 +443,7 @@ public struct Unit : IEquatable&lt;Unit&gt;, IComparable, IComparable&lt;Unit&gt
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public T Return&lt;T&gt;(Func&lt;T&gt; valueFactory)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly T Return&lt;T&gt;(Func&lt;T&gt; valueFactory)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -508,7 +508,7 @@ public struct Unit : IEquatable&lt;Unit&gt;, IComparable, IComparable&lt;Unit&gt
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+    <pre><code class="lang-csharp hljs">public override readonly string ToString()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -901,7 +901,8 @@ public struct Unit : IEquatable&lt;Unit&gt;, IComparable, IComparable&lt;Unit&gt
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+                <h5>In This Article</h5>
+                <div></div>
               </nav>
             </div>
           </div>

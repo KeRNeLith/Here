@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Struct Result
    ">
-    <meta name="generator" content="docfx 2.51.0.0">
+    <meta name="generator" content="docfx 2.58.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -101,7 +101,7 @@
   <h5 id="Here_Result_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Serializable]
-public struct Result : IResult, IEquatable&lt;Result&gt;, IComparable, IComparable&lt;Result&gt;, ISerializable</code></pre>
+public readonly struct Result : IResult, IEquatable&lt;Result&gt;, IComparable, IComparable&lt;Result&gt;, ISerializable</code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>
@@ -119,7 +119,7 @@ public struct Result : IResult, IEquatable&lt;Result&gt;, IComparable, IComparab
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Exception Exception { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly Exception Exception { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -150,7 +150,7 @@ public struct Result : IResult, IEquatable&lt;Result&gt;, IComparable, IComparab
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsFailure { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly bool IsFailure { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -181,7 +181,7 @@ public struct Result : IResult, IEquatable&lt;Result&gt;, IComparable, IComparab
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsSuccess { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly bool IsSuccess { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -212,7 +212,7 @@ public struct Result : IResult, IEquatable&lt;Result&gt;, IComparable, IComparab
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsWarning { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly bool IsWarning { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -243,7 +243,7 @@ public struct Result : IResult, IEquatable&lt;Result&gt;, IComparable, IComparab
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Message { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly string Message { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -270,13 +270,13 @@ public struct Result : IResult, IEquatable&lt;Result&gt;, IComparable, IComparab
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L73">View Source</a>
   </span>
   <a id="Here_Result_Cast_" data-uid="Here.Result.Cast*"></a>
-  <h4 id="Here_Result_Cast__1___0__" data-uid="Here.Result.Cast``1(``0@)">Cast&lt;T&gt;(T)</h4>
+  <h4 id="Here_Result_Cast__1___0__" data-uid="Here.Result.Cast``1(``0@)">Cast&lt;T&gt;(in T)</h4>
   <div class="markdown level1 summary"><p>Converts this <a class="xref" href="Here.Result.html">Result</a> to a <a class="xref" href="Here.Result-1.html">Result&lt;T&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Result&lt;T&gt; Cast&lt;T&gt;(in T value)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly Result&lt;T&gt; Cast&lt;T&gt;(in T value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -336,13 +336,13 @@ public struct Result : IResult, IEquatable&lt;Result&gt;, IComparable, IComparab
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L88">View Source</a>
   </span>
   <a id="Here_Result_Cast_" data-uid="Here.Result.Cast*"></a>
-  <h4 id="Here_Result_Cast__1_System_Func___0___" data-uid="Here.Result.Cast``1(System.Func{``0}@)">Cast&lt;T&gt;(Func&lt;T&gt;)</h4>
+  <h4 id="Here_Result_Cast__1_System_Func___0___" data-uid="Here.Result.Cast``1(System.Func{``0}@)">Cast&lt;T&gt;(in Func&lt;T&gt;)</h4>
   <div class="markdown level1 summary"><p>Converts this <a class="xref" href="Here.Result.html">Result</a> to a <a class="xref" href="Here.Result-1.html">Result&lt;T&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Result&lt;T&gt; Cast&lt;T&gt;(in Func&lt;T&gt; valueFactory)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly Result&lt;T&gt; Cast&lt;T&gt;(in Func&lt;T&gt; valueFactory)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -418,13 +418,13 @@ public struct Result : IResult, IEquatable&lt;Result&gt;, IComparable, IComparab
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L148">View Source</a>
   </span>
   <a id="Here_Result_Cast_" data-uid="Here.Result.Cast*"></a>
-  <h4 id="Here_Result_Cast__2___0____1__" data-uid="Here.Result.Cast``2(``0@,``1@)">Cast&lt;T, TError&gt;(T, TError)</h4>
+  <h4 id="Here_Result_Cast__2___0____1__" data-uid="Here.Result.Cast``2(``0@,``1@)">Cast&lt;T, TError&gt;(in T, in TError)</h4>
   <div class="markdown level1 summary"><p>Converts this <a class="xref" href="Here.Result.html">Result</a> to a <a class="xref" href="Here.Result-2.html">Result&lt;T, TError&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Result&lt;T, TError&gt; Cast&lt;T, TError&gt;(in T value, in TError errorObject)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly Result&lt;T, TError&gt; Cast&lt;T, TError&gt;(in T value, in TError errorObject)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -511,13 +511,13 @@ public struct Result : IResult, IEquatable&lt;Result&gt;, IComparable, IComparab
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L170">View Source</a>
   </span>
   <a id="Here_Result_Cast_" data-uid="Here.Result.Cast*"></a>
-  <h4 id="Here_Result_Cast__2___0__System_Func___1___" data-uid="Here.Result.Cast``2(``0@,System.Func{``1}@)">Cast&lt;T, TError&gt;(T, Func&lt;TError&gt;)</h4>
+  <h4 id="Here_Result_Cast__2___0__System_Func___1___" data-uid="Here.Result.Cast``2(``0@,System.Func{``1}@)">Cast&lt;T, TError&gt;(in T, in Func&lt;TError&gt;)</h4>
   <div class="markdown level1 summary"><p>Converts this <a class="xref" href="Here.Result.html">Result</a> to a <a class="xref" href="Here.Result-2.html">Result&lt;T, TError&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Result&lt;T, TError&gt; Cast&lt;T, TError&gt;(in T value, in Func&lt;TError&gt; errorFactory)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly Result&lt;T, TError&gt; Cast&lt;T, TError&gt;(in T value, in Func&lt;TError&gt; errorFactory)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -604,13 +604,13 @@ public struct Result : IResult, IEquatable&lt;Result&gt;, IComparable, IComparab
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L193">View Source</a>
   </span>
   <a id="Here_Result_Cast_" data-uid="Here.Result.Cast*"></a>
-  <h4 id="Here_Result_Cast__2_System_Func___0_____1__" data-uid="Here.Result.Cast``2(System.Func{``0}@,``1@)">Cast&lt;T, TError&gt;(Func&lt;T&gt;, TError)</h4>
+  <h4 id="Here_Result_Cast__2_System_Func___0_____1__" data-uid="Here.Result.Cast``2(System.Func{``0}@,``1@)">Cast&lt;T, TError&gt;(in Func&lt;T&gt;, in TError)</h4>
   <div class="markdown level1 summary"><p>Converts this <a class="xref" href="Here.Result.html">Result</a> to a <a class="xref" href="Here.Result-2.html">Result&lt;T, TError&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Result&lt;T, TError&gt; Cast&lt;T, TError&gt;(in Func&lt;T&gt; valueFactory, in TError errorObject)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly Result&lt;T, TError&gt; Cast&lt;T, TError&gt;(in Func&lt;T&gt; valueFactory, in TError errorObject)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -702,13 +702,13 @@ public struct Result : IResult, IEquatable&lt;Result&gt;, IComparable, IComparab
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L218">View Source</a>
   </span>
   <a id="Here_Result_Cast_" data-uid="Here.Result.Cast*"></a>
-  <h4 id="Here_Result_Cast__2_System_Func___0___System_Func___1___" data-uid="Here.Result.Cast``2(System.Func{``0}@,System.Func{``1}@)">Cast&lt;T, TError&gt;(Func&lt;T&gt;, Func&lt;TError&gt;)</h4>
+  <h4 id="Here_Result_Cast__2_System_Func___0___System_Func___1___" data-uid="Here.Result.Cast``2(System.Func{``0}@,System.Func{``1}@)">Cast&lt;T, TError&gt;(in Func&lt;T&gt;, in Func&lt;TError&gt;)</h4>
   <div class="markdown level1 summary"><p>Converts this <a class="xref" href="Here.Result.html">Result</a> to a <a class="xref" href="Here.Result-2.html">Result&lt;T, TError&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Result&lt;T, TError&gt; Cast&lt;T, TError&gt;(in Func&lt;T&gt; valueFactory, in Func&lt;TError&gt; errorFactory)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly Result&lt;T, TError&gt; Cast&lt;T, TError&gt;(in Func&lt;T&gt; valueFactory, in Func&lt;TError&gt; errorFactory)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -807,7 +807,7 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int CompareTo(Result other)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly int CompareTo(Result other)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -854,7 +854,7 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int CompareTo(object obj)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly int CompareTo(object obj)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -896,13 +896,13 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L106">View Source</a>
   </span>
   <a id="Here_Result_CustomCast_" data-uid="Here.Result.CustomCast*"></a>
-  <h4 id="Here_Result_CustomCast__1___0__" data-uid="Here.Result.CustomCast``1(``0@)">CustomCast&lt;TError&gt;(TError)</h4>
+  <h4 id="Here_Result_CustomCast__1___0__" data-uid="Here.Result.CustomCast``1(``0@)">CustomCast&lt;TError&gt;(in TError)</h4>
   <div class="markdown level1 summary"><p>Converts this <a class="xref" href="Here.Result.html">Result</a> to a <a class="xref" href="Here.CustomResult-1.html">CustomResult&lt;TError&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public CustomResult&lt;TError&gt; CustomCast&lt;TError&gt;(in TError errorObject)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly CustomResult&lt;TError&gt; CustomCast&lt;TError&gt;(in TError errorObject)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -978,13 +978,13 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L126">View Source</a>
   </span>
   <a id="Here_Result_CustomCast_" data-uid="Here.Result.CustomCast*"></a>
-  <h4 id="Here_Result_CustomCast__1_System_Func___0___" data-uid="Here.Result.CustomCast``1(System.Func{``0}@)">CustomCast&lt;TError&gt;(Func&lt;TError&gt;)</h4>
+  <h4 id="Here_Result_CustomCast__1_System_Func___0___" data-uid="Here.Result.CustomCast``1(System.Func{``0}@)">CustomCast&lt;TError&gt;(in Func&lt;TError&gt;)</h4>
   <div class="markdown level1 summary"><p>Converts this <a class="xref" href="Here.Result.html">Result</a> to a <a class="xref" href="Here.CustomResult-1.html">CustomResult&lt;TError&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public CustomResult&lt;TError&gt; CustomCast&lt;TError&gt;(in Func&lt;TError&gt; errorFactory)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly CustomResult&lt;TError&gt; CustomCast&lt;TError&gt;(in Func&lt;TError&gt; errorFactory)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1060,7 +1060,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L704">View Source</a>
   </span>
   <a id="Here_Result_CustomFail_" data-uid="Here.Result.CustomFail*"></a>
-  <h4 id="Here_Result_CustomFail__1___0__System_Exception__" data-uid="Here.Result.CustomFail``1(``0@,System.Exception@)">CustomFail&lt;TError&gt;(TError, Exception)</h4>
+  <h4 id="Here_Result_CustomFail__1___0__System_Exception__" data-uid="Here.Result.CustomFail``1(``0@,System.Exception@)">CustomFail&lt;TError&gt;(in TError, in Exception)</h4>
   <div class="markdown level1 summary"><p>Gets a failure <a class="xref" href="Here.CustomResult-1.html">CustomResult&lt;TError&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1152,7 +1152,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L689">View Source</a>
   </span>
   <a id="Here_Result_CustomFail_" data-uid="Here.Result.CustomFail*"></a>
-  <h4 id="Here_Result_CustomFail__1_System_String____0__System_Exception__" data-uid="Here.Result.CustomFail``1(System.String@,``0@,System.Exception@)">CustomFail&lt;TError&gt;(String, TError, Exception)</h4>
+  <h4 id="Here_Result_CustomFail__1_System_String____0__System_Exception__" data-uid="Here.Result.CustomFail``1(System.String@,``0@,System.Exception@)">CustomFail&lt;TError&gt;(in String, in TError, in Exception)</h4>
   <div class="markdown level1 summary"><p>Gets a failure <a class="xref" href="Here.CustomResult-1.html">CustomResult&lt;TError&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1297,7 +1297,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L673">View Source</a>
   </span>
   <a id="Here_Result_CustomWarn_" data-uid="Here.Result.CustomWarn*"></a>
-  <h4 id="Here_Result_CustomWarn__1_System_String__System_Exception__" data-uid="Here.Result.CustomWarn``1(System.String@,System.Exception@)">CustomWarn&lt;TError&gt;(String, Exception)</h4>
+  <h4 id="Here_Result_CustomWarn__1_System_String__System_Exception__" data-uid="Here.Result.CustomWarn``1(System.String@,System.Exception@)">CustomWarn&lt;TError&gt;(in String, in Exception)</h4>
   <div class="markdown level1 summary"><p>Gets a success <a class="xref" href="Here.CustomResult-1.html">CustomResult&lt;TError&gt;</a> with warning.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1389,7 +1389,7 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Equals(Result other)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly bool Equals(Result other)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1436,7 +1436,7 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+    <pre><code class="lang-csharp hljs">public override readonly bool Equals(object obj)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1480,7 +1480,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L554">View Source</a>
   </span>
   <a id="Here_Result_Fail_" data-uid="Here.Result.Fail*"></a>
-  <h4 id="Here_Result_Fail_System_Exception__" data-uid="Here.Result.Fail(System.Exception@)">Fail(Exception)</h4>
+  <h4 id="Here_Result_Fail_System_Exception__" data-uid="Here.Result.Fail(System.Exception@)">Fail(in Exception)</h4>
   <div class="markdown level1 summary"><p>Gets a failure <a class="xref" href="Here.Result.html">Result</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1546,7 +1546,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L541">View Source</a>
   </span>
   <a id="Here_Result_Fail_" data-uid="Here.Result.Fail*"></a>
-  <h4 id="Here_Result_Fail_System_String__System_Exception__" data-uid="Here.Result.Fail(System.String@,System.Exception@)">Fail(String, Exception)</h4>
+  <h4 id="Here_Result_Fail_System_String__System_Exception__" data-uid="Here.Result.Fail(System.String@,System.Exception@)">Fail(in String, in Exception)</h4>
   <div class="markdown level1 summary"><p>Gets a failure <a class="xref" href="Here.Result.html">Result</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1618,7 +1618,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L630">View Source</a>
   </span>
   <a id="Here_Result_Fail_" data-uid="Here.Result.Fail*"></a>
-  <h4 id="Here_Result_Fail__1_Here_Result__" data-uid="Here.Result.Fail``1(Here.Result@)">Fail&lt;T&gt;(Result)</h4>
+  <h4 id="Here_Result_Fail__1_Here_Result__" data-uid="Here.Result.Fail``1(Here.Result@)">Fail&lt;T&gt;(in Result)</h4>
   <div class="markdown level1 summary"><p>Gets a failure <a class="xref" href="Here.Result-1.html">Result&lt;T&gt;</a> from a <a class="xref" href="Here.Result.html">Result</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1699,7 +1699,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L614">View Source</a>
   </span>
   <a id="Here_Result_Fail_" data-uid="Here.Result.Fail*"></a>
-  <h4 id="Here_Result_Fail__1_System_Exception__" data-uid="Here.Result.Fail``1(System.Exception@)">Fail&lt;T&gt;(Exception)</h4>
+  <h4 id="Here_Result_Fail__1_System_Exception__" data-uid="Here.Result.Fail``1(System.Exception@)">Fail&lt;T&gt;(in Exception)</h4>
   <div class="markdown level1 summary"><p>Gets a failure <a class="xref" href="Here.Result-1.html">Result&lt;T&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1780,7 +1780,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L601">View Source</a>
   </span>
   <a id="Here_Result_Fail_" data-uid="Here.Result.Fail*"></a>
-  <h4 id="Here_Result_Fail__1_System_String__System_Exception__" data-uid="Here.Result.Fail``1(System.String@,System.Exception@)">Fail&lt;T&gt;(String, Exception)</h4>
+  <h4 id="Here_Result_Fail__1_System_String__System_Exception__" data-uid="Here.Result.Fail``1(System.String@,System.Exception@)">Fail&lt;T&gt;(in String, in Exception)</h4>
   <div class="markdown level1 summary"><p>Gets a failure <a class="xref" href="Here.Result-1.html">Result&lt;T&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1867,7 +1867,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L768">View Source</a>
   </span>
   <a id="Here_Result_Fail_" data-uid="Here.Result.Fail*"></a>
-  <h4 id="Here_Result_Fail__2___1__System_Exception__" data-uid="Here.Result.Fail``2(``1@,System.Exception@)">Fail&lt;T, TError&gt;(TError, Exception)</h4>
+  <h4 id="Here_Result_Fail__2___1__System_Exception__" data-uid="Here.Result.Fail``2(``1@,System.Exception@)">Fail&lt;T, TError&gt;(in TError, in Exception)</h4>
   <div class="markdown level1 summary"><p>Gets a failure <a class="xref" href="Here.Result-2.html">Result&lt;T, TError&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1963,7 +1963,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L784">View Source</a>
   </span>
   <a id="Here_Result_Fail_" data-uid="Here.Result.Fail*"></a>
-  <h4 id="Here_Result_Fail__2_Here_CustomResult___1___" data-uid="Here.Result.Fail``2(Here.CustomResult{``1}@)">Fail&lt;T, TError&gt;(CustomResult&lt;TError&gt;)</h4>
+  <h4 id="Here_Result_Fail__2_Here_CustomResult___1___" data-uid="Here.Result.Fail``2(Here.CustomResult{``1}@)">Fail&lt;T, TError&gt;(in CustomResult&lt;TError&gt;)</h4>
   <div class="markdown level1 summary"><p>Gets a failure <a class="xref" href="Here.Result-2.html">Result&lt;T, TError&gt;</a> from a <a class="xref" href="Here.CustomResult-1.html">CustomResult&lt;TError&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -2048,7 +2048,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L644">View Source</a>
   </span>
   <a id="Here_Result_Fail_" data-uid="Here.Result.Fail*"></a>
-  <h4 id="Here_Result_Fail__2_Here_Result___0___" data-uid="Here.Result.Fail``2(Here.Result{``0}@)">Fail&lt;TIn, TOut&gt;(Result&lt;TIn&gt;)</h4>
+  <h4 id="Here_Result_Fail__2_Here_Result___0___" data-uid="Here.Result.Fail``2(Here.Result{``0}@)">Fail&lt;TIn, TOut&gt;(in Result&lt;TIn&gt;)</h4>
   <div class="markdown level1 summary"><p>Gets a failure <a class="xref" href="Here.Result-1.html">Result&lt;T&gt;</a> from a <a class="xref" href="Here.Result-1.html">Result&lt;T&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -2133,7 +2133,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L753">View Source</a>
   </span>
   <a id="Here_Result_Fail_" data-uid="Here.Result.Fail*"></a>
-  <h4 id="Here_Result_Fail__2_System_String____1__System_Exception__" data-uid="Here.Result.Fail``2(System.String@,``1@,System.Exception@)">Fail&lt;T, TError&gt;(String, TError, Exception)</h4>
+  <h4 id="Here_Result_Fail__2_System_String____1__System_Exception__" data-uid="Here.Result.Fail``2(System.String@,``1@,System.Exception@)">Fail&lt;T, TError&gt;(in String, in TError, in Exception)</h4>
   <div class="markdown level1 summary"><p>Gets a failure <a class="xref" href="Here.Result-2.html">Result&lt;T, TError&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -2235,7 +2235,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L798">View Source</a>
   </span>
   <a id="Here_Result_Fail_" data-uid="Here.Result.Fail*"></a>
-  <h4 id="Here_Result_Fail__3_Here_Result___0___2___" data-uid="Here.Result.Fail``3(Here.Result{``0,``2}@)">Fail&lt;TIn, TOut, TError&gt;(Result&lt;TIn, TError&gt;)</h4>
+  <h4 id="Here_Result_Fail__3_Here_Result___0___2___" data-uid="Here.Result.Fail``3(Here.Result{``0,``2}@)">Fail&lt;TIn, TOut, TError&gt;(in Result&lt;TIn, TError&gt;)</h4>
   <div class="markdown level1 summary"><p>Gets a failure <a class="xref" href="Here.Result-2.html">Result&lt;T, TError&gt;</a> from a <a class="xref" href="Here.Result-2.html">Result&lt;T, TError&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -2329,7 +2329,7 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+    <pre><code class="lang-csharp hljs">public override readonly int GetHashCode()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2361,7 +2361,7 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void GetObjectData(SerializationInfo info, StreamingContext context)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly void GetObjectData(SerializationInfo info, StreamingContext context)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2425,7 +2425,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L573">View Source</a>
   </span>
   <a id="Here_Result_Ok_" data-uid="Here.Result.Ok*"></a>
-  <h4 id="Here_Result_Ok__1___0__" data-uid="Here.Result.Ok``1(``0@)">Ok&lt;T&gt;(T)</h4>
+  <h4 id="Here_Result_Ok__1___0__" data-uid="Here.Result.Ok``1(``0@)">Ok&lt;T&gt;(in T)</h4>
   <div class="markdown level1 summary"><p>Gets a success <a class="xref" href="Here.Result-1.html">Result&lt;T&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -2490,7 +2490,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L723">View Source</a>
   </span>
   <a id="Here_Result_Ok_" data-uid="Here.Result.Ok*"></a>
-  <h4 id="Here_Result_Ok__2___0__" data-uid="Here.Result.Ok``2(``0@)">Ok&lt;T, TError&gt;(T)</h4>
+  <h4 id="Here_Result_Ok__2___0__" data-uid="Here.Result.Ok``2(``0@)">Ok&lt;T, TError&gt;(in T)</h4>
   <div class="markdown level1 summary"><p>Gets a success <a class="xref" href="Here.Result-2.html">Result&lt;T, TError&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -2559,13 +2559,13 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L330">View Source</a>
   </span>
   <a id="Here_Result_SuccessEquals_" data-uid="Here.Result.SuccessEquals*"></a>
-  <h4 id="Here_Result_SuccessEquals_Here_Result__" data-uid="Here.Result.SuccessEquals(Here.Result@)">SuccessEquals(Result)</h4>
+  <h4 id="Here_Result_SuccessEquals_Here_Result__" data-uid="Here.Result.SuccessEquals(Here.Result@)">SuccessEquals(in Result)</h4>
   <div class="markdown level1 summary"><p>Checks that this <a class="xref" href="Here.Result.html">Result</a> is equals to the given one and that they are successful.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool SuccessEquals(in Result other)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly bool SuccessEquals(in Result other)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2614,7 +2614,7 @@ Order keeps failures first, then warnings and finally successes.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+    <pre><code class="lang-csharp hljs">public override readonly string ToString()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2641,7 +2641,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L527">View Source</a>
   </span>
   <a id="Here_Result_Warn_" data-uid="Here.Result.Warn*"></a>
-  <h4 id="Here_Result_Warn_System_String__System_Exception__" data-uid="Here.Result.Warn(System.String@,System.Exception@)">Warn(String, Exception)</h4>
+  <h4 id="Here_Result_Warn_System_String__System_Exception__" data-uid="Here.Result.Warn(System.String@,System.Exception@)">Warn(in String, in Exception)</h4>
   <div class="markdown level1 summary"><p>Gets a success <a class="xref" href="Here.Result.html">Result</a> with warning.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -2713,7 +2713,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L587">View Source</a>
   </span>
   <a id="Here_Result_Warn_" data-uid="Here.Result.Warn*"></a>
-  <h4 id="Here_Result_Warn__1___0__System_String__System_Exception__" data-uid="Here.Result.Warn``1(``0@,System.String@,System.Exception@)">Warn&lt;T&gt;(T, String, Exception)</h4>
+  <h4 id="Here_Result_Warn__1___0__System_String__System_Exception__" data-uid="Here.Result.Warn``1(``0@,System.String@,System.Exception@)">Warn&lt;T&gt;(in T, in String, in Exception)</h4>
   <div class="markdown level1 summary"><p>Gets a success <a class="xref" href="Here.Result-1.html">Result&lt;T&gt;</a> with warning.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -2806,7 +2806,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L737">View Source</a>
   </span>
   <a id="Here_Result_Warn_" data-uid="Here.Result.Warn*"></a>
-  <h4 id="Here_Result_Warn__2___0__System_String__System_Exception__" data-uid="Here.Result.Warn``2(``0@,System.String@,System.Exception@)">Warn&lt;T, TError&gt;(T, String, Exception)</h4>
+  <h4 id="Here_Result_Warn__2___0__System_String__System_Exception__" data-uid="Here.Result.Warn``2(``0@,System.String@,System.Exception@)">Warn&lt;T, TError&gt;(in T, in String, in Exception)</h4>
   <div class="markdown level1 summary"><p>Gets a success <a class="xref" href="Here.Result-2.html">Result&lt;T, TError&gt;</a> with warning.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -2905,7 +2905,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L358">View Source</a>
   </span>
   <a id="Here_Result_op_Equality_" data-uid="Here.Result.op_Equality*"></a>
-  <h4 id="Here_Result_op_Equality_Here_Result__Here_Result__" data-uid="Here.Result.op_Equality(Here.Result@,Here.Result@)">Equality(Result, Result)</h4>
+  <h4 id="Here_Result_op_Equality_Here_Result__Here_Result__" data-uid="Here.Result.op_Equality(Here.Result@,Here.Result@)">Equality(in Result, in Result)</h4>
   <div class="markdown level1 summary"><p>Indicates whether both <a class="xref" href="Here.Result.html">Result</a> are equal.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -2961,7 +2961,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L433">View Source</a>
   </span>
   <a id="Here_Result_op_GreaterThan_" data-uid="Here.Result.op_GreaterThan*"></a>
-  <h4 id="Here_Result_op_GreaterThan_Here_Result__Here_Result__" data-uid="Here.Result.op_GreaterThan(Here.Result@,Here.Result@)">GreaterThan(Result, Result)</h4>
+  <h4 id="Here_Result_op_GreaterThan_Here_Result__Here_Result__" data-uid="Here.Result.op_GreaterThan(Here.Result@,Here.Result@)">GreaterThan(in Result, in Result)</h4>
   <div class="markdown level1 summary"><p>Determines if this <a class="xref" href="Here.Result.html">Result</a> is &quot;greater&quot; than the other one.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -3017,7 +3017,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L444">View Source</a>
   </span>
   <a id="Here_Result_op_GreaterThanOrEqual_" data-uid="Here.Result.op_GreaterThanOrEqual*"></a>
-  <h4 id="Here_Result_op_GreaterThanOrEqual_Here_Result__Here_Result__" data-uid="Here.Result.op_GreaterThanOrEqual(Here.Result@,Here.Result@)">GreaterThanOrEqual(Result, Result)</h4>
+  <h4 id="Here_Result_op_GreaterThanOrEqual_Here_Result__Here_Result__" data-uid="Here.Result.op_GreaterThanOrEqual(Here.Result@,Here.Result@)">GreaterThanOrEqual(in Result, in Result)</h4>
   <div class="markdown level1 summary"><p>Determines if this <a class="xref" href="Here.Result.html">Result</a> is &quot;greater&quot; than or equal to the other one.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -3073,7 +3073,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.Implicit.cs/#L14">View Source</a>
   </span>
   <a id="Here_Result_op_Implicit_" data-uid="Here.Result.op_Implicit*"></a>
-  <h4 id="Here_Result_op_Implicit_Here_Result___Here_Option_System_Boolean_" data-uid="Here.Result.op_Implicit(Here.Result@)~Here.Option{System.Boolean}">Implicit(Result to Option&lt;Boolean&gt;)</h4>
+  <h4 id="Here_Result_op_Implicit_Here_Result___Here_Option_System_Boolean_" data-uid="Here.Result.op_Implicit(Here.Result@)~Here.Option{System.Boolean}">Implicit(in Result to Option&lt;Boolean&gt;)</h4>
   <div class="markdown level1 summary"><p>Implicit conversion from <a class="xref" href="Here.Result.html">Result</a> to an <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -3123,7 +3123,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L369">View Source</a>
   </span>
   <a id="Here_Result_op_Inequality_" data-uid="Here.Result.op_Inequality*"></a>
-  <h4 id="Here_Result_op_Inequality_Here_Result__Here_Result__" data-uid="Here.Result.op_Inequality(Here.Result@,Here.Result@)">Inequality(Result, Result)</h4>
+  <h4 id="Here_Result_op_Inequality_Here_Result__Here_Result__" data-uid="Here.Result.op_Inequality(Here.Result@,Here.Result@)">Inequality(in Result, in Result)</h4>
   <div class="markdown level1 summary"><p>Indicates whether both <a class="xref" href="Here.Result.html">Result</a> are not equal.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -3179,7 +3179,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L411">View Source</a>
   </span>
   <a id="Here_Result_op_LessThan_" data-uid="Here.Result.op_LessThan*"></a>
-  <h4 id="Here_Result_op_LessThan_Here_Result__Here_Result__" data-uid="Here.Result.op_LessThan(Here.Result@,Here.Result@)">LessThan(Result, Result)</h4>
+  <h4 id="Here_Result_op_LessThan_Here_Result__Here_Result__" data-uid="Here.Result.op_LessThan(Here.Result@,Here.Result@)">LessThan(in Result, in Result)</h4>
   <div class="markdown level1 summary"><p>Determines if this <a class="xref" href="Here.Result.html">Result</a> is &quot;less&quot; than the other one.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -3235,7 +3235,7 @@ Order keeps failures first, then warnings and finally successes.</p>
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Result/Result.cs/#L422">View Source</a>
   </span>
   <a id="Here_Result_op_LessThanOrEqual_" data-uid="Here.Result.op_LessThanOrEqual*"></a>
-  <h4 id="Here_Result_op_LessThanOrEqual_Here_Result__Here_Result__" data-uid="Here.Result.op_LessThanOrEqual(Here.Result@,Here.Result@)">LessThanOrEqual(Result, Result)</h4>
+  <h4 id="Here_Result_op_LessThanOrEqual_Here_Result__Here_Result__" data-uid="Here.Result.op_LessThanOrEqual(Here.Result@,Here.Result@)">LessThanOrEqual(in Result, in Result)</h4>
   <div class="markdown level1 summary"><p>Determines if this <a class="xref" href="Here.Result.html">Result</a> is &quot;less&quot; than or equal to the other one.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -3310,88 +3310,88 @@ Order keeps failures first, then warnings and finally successes.</p>
       <a class="xref" href="Here.Extensions.OptionExtensions.html#Here_Extensions_OptionExtensions_ToOption__1___0_">OptionExtensions.ToOption&lt;T&gt;(T)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_IsOnlySuccess_Here_Result__">ResultExtensions.IsOnlySuccess(Result)</a>
+      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_IsOnlySuccess_Here_Result__">ResultExtensions.IsOnlySuccess(in Result)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_Throws_Here_Result__">ResultExtensions.Throws(Result)</a>
+      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_Throws_Here_Result__">ResultExtensions.Throws(in Result)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_Ensure_Here_Result__System_Func_System_Boolean___System_String__">ResultExtensions.Ensure(Result, Func&lt;Boolean&gt;, String)</a>
+      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_Ensure_Here_Result__System_Func_System_Boolean___System_String__">ResultExtensions.Ensure(in Result, in Func&lt;Boolean&gt;, in String)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnAny_Here_Result__System_Action__">ResultExtensions.OnAny(Result, Action)</a>
+      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnAny_Here_Result__System_Action__">ResultExtensions.OnAny(in Result, in Action)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnAny_Here_Result__System_Action_Here_Result___">ResultExtensions.OnAny(Result, Action&lt;Result&gt;)</a>
+      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnAny_Here_Result__System_Action_Here_Result___">ResultExtensions.OnAny(in Result, in Action&lt;Result&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnAny__1_Here_Result__System_Func___0___">ResultExtensions.OnAny&lt;TOut&gt;(Result, Func&lt;TOut&gt;)</a>
+      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnAny__1_Here_Result__System_Func___0___">ResultExtensions.OnAny&lt;TOut&gt;(in Result, in Func&lt;TOut&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnAny__1_Here_Result__System_Func_Here_Result___0___">ResultExtensions.OnAny&lt;TOut&gt;(Result, Func&lt;Result, TOut&gt;)</a>
+      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnAny__1_Here_Result__System_Func_Here_Result___0___">ResultExtensions.OnAny&lt;TOut&gt;(in Result, in Func&lt;Result, TOut&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnFailure_Here_Result__System_Action__System_Boolean__">ResultExtensions.OnFailure(Result, Action, Boolean)</a>
+      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnFailure_Here_Result__System_Action__System_Boolean__">ResultExtensions.OnFailure(in Result, in Action, in Boolean)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnFailure_Here_Result__System_Action_Here_Result___System_Boolean__">ResultExtensions.OnFailure(Result, Action&lt;Result&gt;, Boolean)</a>
+      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnFailure_Here_Result__System_Action_Here_Result___System_Boolean__">ResultExtensions.OnFailure(in Result, in Action&lt;Result&gt;, in Boolean)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnFailure_Here_Result__System_Func_Here_Result_Here_Result___System_Boolean__">ResultExtensions.OnFailure(Result, Func&lt;Result, Result&gt;, Boolean)</a>
+      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnFailure_Here_Result__System_Func_Here_Result_Here_Result___System_Boolean__">ResultExtensions.OnFailure(in Result, in Func&lt;Result, Result&gt;, in Boolean)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnFailure__1_Here_Result__System_Func_Here_Result___0_____0__System_Boolean__">ResultExtensions.OnFailure&lt;TOut&gt;(Result, Func&lt;Result, TOut&gt;, TOut, Boolean)</a>
+      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnFailure__1_Here_Result__System_Func_Here_Result___0_____0__System_Boolean__">ResultExtensions.OnFailure&lt;TOut&gt;(in Result, in Func&lt;Result, TOut&gt;, in TOut, in Boolean)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnFailure__1_Here_Result__System_Func_Here_Result___0___System_Func___0___System_Boolean__">ResultExtensions.OnFailure&lt;TOut&gt;(Result, Func&lt;Result, TOut&gt;, Func&lt;TOut&gt;, Boolean)</a>
+      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnFailure__1_Here_Result__System_Func_Here_Result___0___System_Func___0___System_Boolean__">ResultExtensions.OnFailure&lt;TOut&gt;(in Result, in Func&lt;Result, TOut&gt;, in Func&lt;TOut&gt;, in Boolean)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccess_Here_Result__System_Action__System_Boolean__">ResultExtensions.OnSuccess(Result, Action, Boolean)</a>
+      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccess_Here_Result__System_Action__System_Boolean__">ResultExtensions.OnSuccess(in Result, in Action, in Boolean)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccess_Here_Result__System_Action_Here_Result___System_Boolean__">ResultExtensions.OnSuccess(Result, Action&lt;Result&gt;, Boolean)</a>
+      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccess_Here_Result__System_Action_Here_Result___System_Boolean__">ResultExtensions.OnSuccess(in Result, in Action&lt;Result&gt;, in Boolean)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccess_Here_Result__System_Func_Here_Result_Here_Result___System_Boolean__">ResultExtensions.OnSuccess(Result, Func&lt;Result, Result&gt;, Boolean)</a>
+      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccess_Here_Result__System_Func_Here_Result_Here_Result___System_Boolean__">ResultExtensions.OnSuccess(in Result, in Func&lt;Result, Result&gt;, in Boolean)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccess__1_Here_Result__System_Func_Here_Result___0___System_Boolean__">ResultExtensions.OnSuccess&lt;T&gt;(Result, Func&lt;Result, T&gt;, Boolean)</a>
+      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccess__1_Here_Result__System_Func_Here_Result___0___System_Boolean__">ResultExtensions.OnSuccess&lt;T&gt;(in Result, in Func&lt;Result, T&gt;, in Boolean)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccess__1_Here_Result__System_Func_Here_Result_Here_Result___0____System_Boolean__">ResultExtensions.OnSuccess&lt;T&gt;(Result, Func&lt;Result, Result&lt;T&gt;&gt;, Boolean)</a>
+      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccess__1_Here_Result__System_Func_Here_Result_Here_Result___0____System_Boolean__">ResultExtensions.OnSuccess&lt;T&gt;(in Result, in Func&lt;Result, Result&lt;T&gt;&gt;, in Boolean)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccess__1_Here_Result__System_Func_Here_Result_Here_CustomResult___0______0__System_Boolean__">ResultExtensions.OnSuccess&lt;TError&gt;(Result, Func&lt;Result, CustomResult&lt;TError&gt;&gt;, TError, Boolean)</a>
+      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccess__1_Here_Result__System_Func_Here_Result_Here_CustomResult___0______0__System_Boolean__">ResultExtensions.OnSuccess&lt;TError&gt;(in Result, in Func&lt;Result, CustomResult&lt;TError&gt;&gt;, in TError, in Boolean)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccess__1_Here_Result__System_Func_Here_Result_Here_CustomResult___0____System_Func_Here_Result___0___System_Boolean__">ResultExtensions.OnSuccess&lt;TError&gt;(Result, Func&lt;Result, CustomResult&lt;TError&gt;&gt;, Func&lt;Result, TError&gt;, Boolean)</a>
+      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccess__1_Here_Result__System_Func_Here_Result_Here_CustomResult___0____System_Func_Here_Result___0___System_Boolean__">ResultExtensions.OnSuccess&lt;TError&gt;(in Result, in Func&lt;Result, CustomResult&lt;TError&gt;&gt;, in Func&lt;Result, TError&gt;, in Boolean)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccess__2_Here_Result__System_Func_Here_Result_Here_Result___0___1______1__System_Boolean__">ResultExtensions.OnSuccess&lt;T, TError&gt;(Result, Func&lt;Result, Result&lt;T, TError&gt;&gt;, TError, Boolean)</a>
+      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccess__2_Here_Result__System_Func_Here_Result_Here_Result___0___1______1__System_Boolean__">ResultExtensions.OnSuccess&lt;T, TError&gt;(in Result, in Func&lt;Result, Result&lt;T, TError&gt;&gt;, in TError, in Boolean)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccess__2_Here_Result__System_Func_Here_Result_Here_Result___0___1____System_Func_Here_Result___1___System_Boolean__">ResultExtensions.OnSuccess&lt;T, TError&gt;(Result, Func&lt;Result, Result&lt;T, TError&gt;&gt;, Func&lt;Result, TError&gt;, Boolean)</a>
+      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccess__2_Here_Result__System_Func_Here_Result_Here_Result___0___1____System_Func_Here_Result___1___System_Boolean__">ResultExtensions.OnSuccess&lt;T, TError&gt;(in Result, in Func&lt;Result, Result&lt;T, TError&gt;&gt;, in Func&lt;Result, TError&gt;, in Boolean)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccess__1_Here_Result__System_Func_Here_Result___0_____0__System_Boolean__">ResultExtensions.OnSuccess&lt;TOut&gt;(Result, Func&lt;Result, TOut&gt;, TOut, Boolean)</a>
+      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccess__1_Here_Result__System_Func_Here_Result___0_____0__System_Boolean__">ResultExtensions.OnSuccess&lt;TOut&gt;(in Result, in Func&lt;Result, TOut&gt;, in TOut, in Boolean)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccess__1_Here_Result__System_Func_Here_Result___0___System_Func_Here_Result___0___System_Boolean__">ResultExtensions.OnSuccess&lt;TOut&gt;(Result, Func&lt;Result, TOut&gt;, Func&lt;Result, TOut&gt;, Boolean)</a>
+      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccess__1_Here_Result__System_Func_Here_Result___0___System_Func_Here_Result___0___System_Boolean__">ResultExtensions.OnSuccess&lt;TOut&gt;(in Result, in Func&lt;Result, TOut&gt;, in Func&lt;Result, TOut&gt;, in Boolean)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccessOrFailure_Here_Result__System_Action__System_Action__System_Boolean__">ResultExtensions.OnSuccessOrFailure(Result, Action, Action, Boolean)</a>
+      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccessOrFailure_Here_Result__System_Action__System_Action__System_Boolean__">ResultExtensions.OnSuccessOrFailure(in Result, in Action, in Action, in Boolean)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccessOrFailure_Here_Result__System_Action__System_Action_Here_Result___System_Boolean__">ResultExtensions.OnSuccessOrFailure(Result, Action, Action&lt;Result&gt;, Boolean)</a>
+      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccessOrFailure_Here_Result__System_Action__System_Action_Here_Result___System_Boolean__">ResultExtensions.OnSuccessOrFailure(in Result, in Action, in Action&lt;Result&gt;, in Boolean)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccessOrFailure_Here_Result__System_Action_Here_Result___System_Action_Here_Result___System_Boolean__">ResultExtensions.OnSuccessOrFailure(Result, Action&lt;Result&gt;, Action&lt;Result&gt;, Boolean)</a>
+      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccessOrFailure_Here_Result__System_Action_Here_Result___System_Action_Here_Result___System_Boolean__">ResultExtensions.OnSuccessOrFailure(in Result, in Action&lt;Result&gt;, in Action&lt;Result&gt;, in Boolean)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccessOrFailure__1_Here_Result__System_Func_Here_Result___0___System_Func_Here_Result___0___System_Boolean__">ResultExtensions.OnSuccessOrFailure&lt;TOut&gt;(Result, Func&lt;Result, TOut&gt;, Func&lt;Result, TOut&gt;, Boolean)</a>
+      <a class="xref" href="Here.Extensions.ResultExtensions.html#Here_Extensions_ResultExtensions_OnSuccessOrFailure__1_Here_Result__System_Func_Here_Result___0___System_Func_Here_Result___0___System_Boolean__">ResultExtensions.OnSuccessOrFailure&lt;TOut&gt;(in Result, in Func&lt;Result, TOut&gt;, in Func&lt;Result, TOut&gt;, in Boolean)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.ResultOperatorsExtensions.html#Here_Extensions_ResultOperatorsExtensions_ToOption_Here_Result__">ResultOperatorsExtensions.ToOption(Result)</a>
+      <a class="xref" href="Here.Extensions.ResultOperatorsExtensions.html#Here_Extensions_ResultOperatorsExtensions_ToOption_Here_Result__">ResultOperatorsExtensions.ToOption(in Result)</a>
   </div>
 </article>
           </div>
@@ -3409,7 +3409,8 @@ Order keeps failures first, then warnings and finally successes.</p>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+                <h5>In This Article</h5>
+                <div></div>
               </nav>
             </div>
           </div>

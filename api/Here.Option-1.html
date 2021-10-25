@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Struct Option&lt;T&gt;
    ">
-    <meta name="generator" content="docfx 2.51.0.0">
+    <meta name="generator" content="docfx 2.58.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -101,7 +101,7 @@
   <h5 id="Here_Option_1_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Serializable]
-public struct Option&lt;T&gt; : IEquatable&lt;T&gt;, IEquatable&lt;Option&lt;T&gt;&gt;, IComparable, IComparable&lt;Option&lt;T&gt;&gt;, ISerializable</code></pre>
+public readonly struct Option&lt;T&gt; : IEquatable&lt;T&gt;, IEquatable&lt;Option&lt;T&gt;&gt;, IComparable, IComparable&lt;Option&lt;T&gt;&gt;, ISerializable</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -167,7 +167,7 @@ public struct Option&lt;T&gt; : IEquatable&lt;T&gt;, IEquatable&lt;Option&lt;T&g
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool HasNoValue { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly bool HasNoValue { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -198,7 +198,7 @@ public struct Option&lt;T&gt; : IEquatable&lt;T&gt;, IEquatable&lt;Option&lt;T&g
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool HasValue { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly bool HasValue { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -229,7 +229,7 @@ public struct Option&lt;T&gt; : IEquatable&lt;T&gt;, IEquatable&lt;Option&lt;T&g
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public T Value { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly T Value { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -278,7 +278,7 @@ public struct Option&lt;T&gt; : IEquatable&lt;T&gt;, IEquatable&lt;Option&lt;T&g
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Option&lt;TOut&gt; Cast&lt;TOut&gt;()
+    <pre><code class="lang-csharp hljs">public readonly Option&lt;TOut&gt; Cast&lt;TOut&gt;()
     where TOut : class</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
@@ -321,13 +321,13 @@ public struct Option&lt;T&gt; : IEquatable&lt;T&gt;, IEquatable&lt;Option&lt;T&g
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L459">View Source</a>
   </span>
   <a id="Here_Option_1_Cast_" data-uid="Here.Option`1.Cast*"></a>
-  <h4 id="Here_Option_1_Cast__1_System_Func__0___0___" data-uid="Here.Option`1.Cast``1(System.Func{`0,``0}@)">Cast&lt;TTo&gt;(Func&lt;T, TTo&gt;)</h4>
+  <h4 id="Here_Option_1_Cast__1_System_Func__0___0___" data-uid="Here.Option`1.Cast``1(System.Func{`0,``0}@)">Cast&lt;TTo&gt;(in Func&lt;T, TTo&gt;)</h4>
   <div class="markdown level1 summary"><p>Converts this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> to an <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Option&lt;TTo&gt; Cast&lt;TTo&gt;(in Func&lt;T, TTo&gt; converter)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly Option&lt;TTo&gt; Cast&lt;TTo&gt;(in Func&lt;T, TTo&gt; converter)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -411,7 +411,7 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int CompareTo(Option&lt;T&gt; other)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly int CompareTo(Option&lt;T&gt; other)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -458,7 +458,7 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int CompareTo(object obj)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly int CompareTo(object obj)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -500,13 +500,13 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L52">View Source</a>
   </span>
   <a id="Here_Option_1_Else_" data-uid="Here.Option`1.Else*"></a>
-  <h4 id="Here_Option_1_Else_System_Action__" data-uid="Here.Option`1.Else(System.Action@)">Else(Action)</h4>
+  <h4 id="Here_Option_1_Else_System_Action__" data-uid="Here.Option`1.Else(System.Action@)">Else(in Action)</h4>
   <div class="markdown level1 summary"><p>Calls the <code data-dev-comment-type="paramref" class="paramref">else</code> function if this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> has no value.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Option&lt;T&gt; Else(in Action else)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly Option&lt;T&gt; Else(in Action else)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -566,13 +566,13 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L155">View Source</a>
   </span>
   <a id="Here_Option_1_ElseOr_" data-uid="Here.Option`1.ElseOr*"></a>
-  <h4 id="Here_Option_1_ElseOr__1_System_Func___0_____0__" data-uid="Here.Option`1.ElseOr``1(System.Func{``0}@,``0@)">ElseOr&lt;TResult&gt;(Func&lt;TResult&gt;, TResult)</h4>
+  <h4 id="Here_Option_1_ElseOr__1_System_Func___0_____0__" data-uid="Here.Option`1.ElseOr``1(System.Func{``0}@,``0@)">ElseOr&lt;TResult&gt;(in Func&lt;TResult&gt;, in TResult)</h4>
   <div class="markdown level1 summary"><p>Calls the <code data-dev-comment-type="paramref" class="paramref">else</code> function if this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> has no value, otherwise returns the <code data-dev-comment-type="paramref" class="paramref">orValue</code>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TResult ElseOr&lt;TResult&gt;(in Func&lt;TResult&gt; else, in TResult orValue)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly TResult ElseOr&lt;TResult&gt;(in Func&lt;TResult&gt; else, in TResult orValue)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -664,13 +664,13 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L175">View Source</a>
   </span>
   <a id="Here_Option_1_ElseOrDefault_" data-uid="Here.Option`1.ElseOrDefault*"></a>
-  <h4 id="Here_Option_1_ElseOrDefault__1_System_Func___0___" data-uid="Here.Option`1.ElseOrDefault``1(System.Func{``0}@)">ElseOrDefault&lt;TResult&gt;(Func&lt;TResult&gt;)</h4>
+  <h4 id="Here_Option_1_ElseOrDefault__1_System_Func___0___" data-uid="Here.Option`1.ElseOrDefault``1(System.Func{``0}@)">ElseOrDefault&lt;TResult&gt;(in Func&lt;TResult&gt;)</h4>
   <div class="markdown level1 summary"><p>Calls the <code data-dev-comment-type="paramref" class="paramref">else</code> function if this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> has no value, otherwise returns the default value of <code data-dev-comment-type="typeparamref" class="typeparamref">TResult</code>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TResult ElseOrDefault&lt;TResult&gt;(in Func&lt;TResult&gt; else)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly TResult ElseOrDefault&lt;TResult&gt;(in Func&lt;TResult&gt; else)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -751,7 +751,7 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Equals(T other)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly bool Equals(T other)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -798,7 +798,7 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Equals(Option&lt;T&gt; other)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly bool Equals(Option&lt;T&gt; other)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -845,7 +845,7 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+    <pre><code class="lang-csharp hljs">public override readonly bool Equals(object obj)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -889,13 +889,13 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L476">View Source</a>
   </span>
   <a id="Here_Option_1_Exists_" data-uid="Here.Option`1.Exists*"></a>
-  <h4 id="Here_Option_1_Exists_System_Predicate__0___" data-uid="Here.Option`1.Exists(System.Predicate{`0}@)">Exists(Predicate&lt;T&gt;)</h4>
+  <h4 id="Here_Option_1_Exists_System_Predicate__0___" data-uid="Here.Option`1.Exists(System.Predicate{`0}@)">Exists(in Predicate&lt;T&gt;)</h4>
   <div class="markdown level1 summary"><p>Checks if this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> matches the <code data-dev-comment-type="paramref" class="paramref">predicate</code>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Exists(in Predicate&lt;T&gt; predicate)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly bool Exists(in Predicate&lt;T&gt; predicate)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -961,7 +961,7 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IEnumerator&lt;T&gt; GetEnumerator()</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly IEnumerator&lt;T&gt; GetEnumerator()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -992,7 +992,7 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+    <pre><code class="lang-csharp hljs">public override readonly int GetHashCode()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1024,7 +1024,7 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void GetObjectData(SerializationInfo info, StreamingContext context)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly void GetObjectData(SerializationInfo info, StreamingContext context)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1056,13 +1056,13 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L18">View Source</a>
   </span>
   <a id="Here_Option_1_If_" data-uid="Here.Option`1.If*"></a>
-  <h4 id="Here_Option_1_If_System_Action__0___" data-uid="Here.Option`1.If(System.Action{`0}@)">If(Action&lt;T&gt;)</h4>
+  <h4 id="Here_Option_1_If_System_Action__0___" data-uid="Here.Option`1.If(System.Action{`0}@)">If(in Action&lt;T&gt;)</h4>
   <div class="markdown level1 summary"><p>Calls the <code data-dev-comment-type="paramref" class="paramref">then</code> function if this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> has a value.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Option&lt;T&gt; If(in Action&lt;T&gt; then)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly Option&lt;T&gt; If(in Action&lt;T&gt; then)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1122,13 +1122,13 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L35">View Source</a>
   </span>
   <a id="Here_Option_1_If_" data-uid="Here.Option`1.If*"></a>
-  <h4 id="Here_Option_1_If__1_System_Func__0___0___" data-uid="Here.Option`1.If``1(System.Func{`0,``0}@)">If&lt;TResult&gt;(Func&lt;T, TResult&gt;)</h4>
+  <h4 id="Here_Option_1_If__1_System_Func__0___0___" data-uid="Here.Option`1.If``1(System.Func{`0,``0}@)">If&lt;TResult&gt;(in Func&lt;T, TResult&gt;)</h4>
   <div class="markdown level1 summary"><p>Calls the <code data-dev-comment-type="paramref" class="paramref">then</code> function if this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> has a value.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TResult If&lt;TResult&gt;(in Func&lt;T, TResult&gt; then)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly TResult If&lt;TResult&gt;(in Func&lt;T, TResult&gt; then)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1188,13 +1188,13 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L71">View Source</a>
   </span>
   <a id="Here_Option_1_IfElse_" data-uid="Here.Option`1.IfElse*"></a>
-  <h4 id="Here_Option_1_IfElse_System_Action__0___System_Action__" data-uid="Here.Option`1.IfElse(System.Action{`0}@,System.Action@)">IfElse(Action&lt;T&gt;, Action)</h4>
+  <h4 id="Here_Option_1_IfElse_System_Action__0___System_Action__" data-uid="Here.Option`1.IfElse(System.Action{`0}@,System.Action@)">IfElse(in Action&lt;T&gt;, in Action)</h4>
   <div class="markdown level1 summary"><p>Calls the <code data-dev-comment-type="paramref" class="paramref">then</code> function if this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> has a value, otherwise calls <code data-dev-comment-type="paramref" class="paramref">else</code>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Option&lt;T&gt; IfElse(in Action&lt;T&gt; then, in Action else)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly Option&lt;T&gt; IfElse(in Action&lt;T&gt; then, in Action else)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1265,13 +1265,13 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L96">View Source</a>
   </span>
   <a id="Here_Option_1_IfElse_" data-uid="Here.Option`1.IfElse*"></a>
-  <h4 id="Here_Option_1_IfElse__1_System_Func__0___0___System_Func___0___" data-uid="Here.Option`1.IfElse``1(System.Func{`0,``0}@,System.Func{``0}@)">IfElse&lt;TResult&gt;(Func&lt;T, TResult&gt;, Func&lt;TResult&gt;)</h4>
+  <h4 id="Here_Option_1_IfElse__1_System_Func__0___0___System_Func___0___" data-uid="Here.Option`1.IfElse``1(System.Func{`0,``0}@,System.Func{``0}@)">IfElse&lt;TResult&gt;(in Func&lt;T, TResult&gt;, in Func&lt;TResult&gt;)</h4>
   <div class="markdown level1 summary"><p>Calls the <code data-dev-comment-type="paramref" class="paramref">then</code> function if this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> has a value.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TResult IfElse&lt;TResult&gt;(in Func&lt;T, TResult&gt; then, in Func&lt;TResult&gt; else)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly TResult IfElse&lt;TResult&gt;(in Func&lt;T, TResult&gt; then, in Func&lt;TResult&gt; else)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1358,13 +1358,13 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L119">View Source</a>
   </span>
   <a id="Here_Option_1_IfOr_" data-uid="Here.Option`1.IfOr*"></a>
-  <h4 id="Here_Option_1_IfOr__1_System_Func__0___0_____0__" data-uid="Here.Option`1.IfOr``1(System.Func{`0,``0}@,``0@)">IfOr&lt;TResult&gt;(Func&lt;T, TResult&gt;, TResult)</h4>
+  <h4 id="Here_Option_1_IfOr__1_System_Func__0___0_____0__" data-uid="Here.Option`1.IfOr``1(System.Func{`0,``0}@,``0@)">IfOr&lt;TResult&gt;(in Func&lt;T, TResult&gt;, in TResult)</h4>
   <div class="markdown level1 summary"><p>Calls the <code data-dev-comment-type="paramref" class="paramref">then</code> function if this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> has a value, otherwise returns the <code data-dev-comment-type="paramref" class="paramref">orValue</code>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TResult IfOr&lt;TResult&gt;(in Func&lt;T, TResult&gt; then, in TResult orValue)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly TResult IfOr&lt;TResult&gt;(in Func&lt;T, TResult&gt; then, in TResult orValue)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1456,13 +1456,13 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L139">View Source</a>
   </span>
   <a id="Here_Option_1_IfOrDefault_" data-uid="Here.Option`1.IfOrDefault*"></a>
-  <h4 id="Here_Option_1_IfOrDefault__1_System_Func__0___0___" data-uid="Here.Option`1.IfOrDefault``1(System.Func{`0,``0}@)">IfOrDefault&lt;TResult&gt;(Func&lt;T, TResult&gt;)</h4>
+  <h4 id="Here_Option_1_IfOrDefault__1_System_Func__0___0___" data-uid="Here.Option`1.IfOrDefault``1(System.Func{`0,``0}@)">IfOrDefault&lt;TResult&gt;(in Func&lt;T, TResult&gt;)</h4>
   <div class="markdown level1 summary"><p>Calls the <code data-dev-comment-type="paramref" class="paramref">then</code> function if this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> has a value, otherwise returns the default value of <code data-dev-comment-type="typeparamref" class="typeparamref">TResult</code>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TResult IfOrDefault&lt;TResult&gt;(in Func&lt;T, TResult&gt; then)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly TResult IfOrDefault&lt;TResult&gt;(in Func&lt;T, TResult&gt; then)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1538,13 +1538,13 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L260">View Source</a>
   </span>
   <a id="Here_Option_1_IfOrThrows_" data-uid="Here.Option`1.IfOrThrows*"></a>
-  <h4 id="Here_Option_1_IfOrThrows_System_Action__0___System_Exception__" data-uid="Here.Option`1.IfOrThrows(System.Action{`0}@,System.Exception@)">IfOrThrows(Action&lt;T&gt;, Exception)</h4>
+  <h4 id="Here_Option_1_IfOrThrows_System_Action__0___System_Exception__" data-uid="Here.Option`1.IfOrThrows(System.Action{`0}@,System.Exception@)">IfOrThrows(in Action&lt;T&gt;, in Exception)</h4>
   <div class="markdown level1 summary"><p>Calls the <code data-dev-comment-type="paramref" class="paramref">then</code> function if this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> has a value, otherwise throws the given exception.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void IfOrThrows(in Action&lt;T&gt; then, in Exception exception)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly void IfOrThrows(in Action&lt;T&gt; then, in Exception exception)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1599,13 +1599,13 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L281">View Source</a>
   </span>
   <a id="Here_Option_1_IfOrThrows_" data-uid="Here.Option`1.IfOrThrows*"></a>
-  <h4 id="Here_Option_1_IfOrThrows_System_Action__0___System_Func_System_Exception___" data-uid="Here.Option`1.IfOrThrows(System.Action{`0}@,System.Func{System.Exception}@)">IfOrThrows(Action&lt;T&gt;, Func&lt;Exception&gt;)</h4>
+  <h4 id="Here_Option_1_IfOrThrows_System_Action__0___System_Func_System_Exception___" data-uid="Here.Option`1.IfOrThrows(System.Action{`0}@,System.Func{System.Exception}@)">IfOrThrows(in Action&lt;T&gt;, in Func&lt;Exception&gt;)</h4>
   <div class="markdown level1 summary"><p>Calls the <code data-dev-comment-type="paramref" class="paramref">then</code> function if this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> has a value, otherwise throws the given exception.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void IfOrThrows(in Action&lt;T&gt; then, in Func&lt;Exception&gt; exceptionFunc)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly void IfOrThrows(in Action&lt;T&gt; then, in Func&lt;Exception&gt; exceptionFunc)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1660,13 +1660,13 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L304">View Source</a>
   </span>
   <a id="Here_Option_1_IfOrThrows_" data-uid="Here.Option`1.IfOrThrows*"></a>
-  <h4 id="Here_Option_1_IfOrThrows__1_System_Func__0___0___System_Exception__" data-uid="Here.Option`1.IfOrThrows``1(System.Func{`0,``0}@,System.Exception@)">IfOrThrows&lt;TResult&gt;(Func&lt;T, TResult&gt;, Exception)</h4>
+  <h4 id="Here_Option_1_IfOrThrows__1_System_Func__0___0___System_Exception__" data-uid="Here.Option`1.IfOrThrows``1(System.Func{`0,``0}@,System.Exception@)">IfOrThrows&lt;TResult&gt;(in Func&lt;T, TResult&gt;, in Exception)</h4>
   <div class="markdown level1 summary"><p>Calls the <code data-dev-comment-type="paramref" class="paramref">then</code> function if this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> has a value, otherwise throws the given exception.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TResult IfOrThrows&lt;TResult&gt;(in Func&lt;T, TResult&gt; then, in Exception exception)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly TResult IfOrThrows&lt;TResult&gt;(in Func&lt;T, TResult&gt; then, in Exception exception)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1753,13 +1753,13 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L326">View Source</a>
   </span>
   <a id="Here_Option_1_IfOrThrows_" data-uid="Here.Option`1.IfOrThrows*"></a>
-  <h4 id="Here_Option_1_IfOrThrows__1_System_Func__0___0___System_Func_System_Exception___" data-uid="Here.Option`1.IfOrThrows``1(System.Func{`0,``0}@,System.Func{System.Exception}@)">IfOrThrows&lt;TResult&gt;(Func&lt;T, TResult&gt;, Func&lt;Exception&gt;)</h4>
+  <h4 id="Here_Option_1_IfOrThrows__1_System_Func__0___0___System_Func_System_Exception___" data-uid="Here.Option`1.IfOrThrows``1(System.Func{`0,``0}@,System.Func{System.Exception}@)">IfOrThrows&lt;TResult&gt;(in Func&lt;T, TResult&gt;, in Func&lt;Exception&gt;)</h4>
   <div class="markdown level1 summary"><p>Calls the <code data-dev-comment-type="paramref" class="paramref">then</code> function if this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> has a value, otherwise throws the exception from factory method.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TResult IfOrThrows&lt;TResult&gt;(in Func&lt;T, TResult&gt; then, in Func&lt;Exception&gt; exceptionFunc)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly TResult IfOrThrows&lt;TResult&gt;(in Func&lt;T, TResult&gt; then, in Func&lt;Exception&gt; exceptionFunc)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1846,14 +1846,14 @@ Then it uses the <a class="xref" href="Here.Option-1.html#Here_Option_1_Value">V
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L494">View Source</a>
   </span>
   <a id="Here_Option_1_NoneIf_" data-uid="Here.Option`1.NoneIf*"></a>
-  <h4 id="Here_Option_1_NoneIf_System_Predicate__0___" data-uid="Here.Option`1.NoneIf(System.Predicate{`0}@)">NoneIf(Predicate&lt;T&gt;)</h4>
+  <h4 id="Here_Option_1_NoneIf_System_Predicate__0___" data-uid="Here.Option`1.NoneIf(System.Predicate{`0}@)">NoneIf(in Predicate&lt;T&gt;)</h4>
   <div class="markdown level1 summary"><p>Checks if this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> has a value and matches the <code data-dev-comment-type="paramref" class="paramref">predicate</code>,
 if yes returns <a class="xref" href="Here.Option-1.html#Here_Option_1_None">None</a>, otherwise this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Option&lt;T&gt; NoneIf(in Predicate&lt;T&gt; predicate)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly Option&lt;T&gt; NoneIf(in Predicate&lt;T&gt; predicate)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1913,7 +1913,7 @@ if yes returns <a class="xref" href="Here.Option-1.html#Here_Option_1_None">None
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L516">View Source</a>
   </span>
   <a id="Here_Option_1_NoneIf_" data-uid="Here.Option`1.NoneIf*"></a>
-  <h4 id="Here_Option_1_NoneIf__1_System_Predicate__0___System_Func__0___0___" data-uid="Here.Option`1.NoneIf``1(System.Predicate{`0}@,System.Func{`0,``0}@)">NoneIf&lt;TOut&gt;(Predicate&lt;T&gt;, Func&lt;T, TOut&gt;)</h4>
+  <h4 id="Here_Option_1_NoneIf__1_System_Predicate__0___System_Func__0___0___" data-uid="Here.Option`1.NoneIf``1(System.Predicate{`0}@,System.Func{`0,``0}@)">NoneIf&lt;TOut&gt;(in Predicate&lt;T&gt;, in Func&lt;T, TOut&gt;)</h4>
   <div class="markdown level1 summary"><p>Checks if this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> has a value and matches the <code data-dev-comment-type="paramref" class="paramref">predicate</code>,
 if yes returns <a class="xref" href="Here.Option-1.html#Here_Option_1_None">None</a>, otherwise an <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> initialized
 with <code data-dev-comment-type="paramref" class="paramref">converter</code> based on this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> value.</p>
@@ -1921,7 +1921,7 @@ with <code data-dev-comment-type="paramref" class="paramref">converter</code> ba
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Option&lt;TOut&gt; NoneIf&lt;TOut&gt;(in Predicate&lt;T&gt; predicate, in Func&lt;T, TOut&gt; converter)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly Option&lt;TOut&gt; NoneIf&lt;TOut&gt;(in Predicate&lt;T&gt; predicate, in Func&lt;T, TOut&gt; converter)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2014,7 +2014,7 @@ with <code data-dev-comment-type="paramref" class="paramref">converter</code> ba
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Option&lt;TOut&gt; OfType&lt;TOut&gt;()
+    <pre><code class="lang-csharp hljs">public readonly Option&lt;TOut&gt; OfType&lt;TOut&gt;()
     where TOut : class</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
@@ -2057,13 +2057,13 @@ with <code data-dev-comment-type="paramref" class="paramref">converter</code> ba
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L192">View Source</a>
   </span>
   <a id="Here_Option_1_Or_" data-uid="Here.Option`1.Or*"></a>
-  <h4 id="Here_Option_1_Or__0__" data-uid="Here.Option`1.Or(`0@)">Or(T)</h4>
+  <h4 id="Here_Option_1_Or__0__" data-uid="Here.Option`1.Or(`0@)">Or(in T)</h4>
   <div class="markdown level1 summary"><p>Returns this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> value if it has value, otherwise returns the <code data-dev-comment-type="paramref" class="paramref">orValue</code>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public T Or(in T orValue)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly T Or(in T orValue)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2123,13 +2123,13 @@ with <code data-dev-comment-type="paramref" class="paramref">converter</code> ba
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L210">View Source</a>
   </span>
   <a id="Here_Option_1_Or_" data-uid="Here.Option`1.Or*"></a>
-  <h4 id="Here_Option_1_Or_System_Func__0___" data-uid="Here.Option`1.Or(System.Func{`0}@)">Or(Func&lt;T&gt;)</h4>
+  <h4 id="Here_Option_1_Or_System_Func__0___" data-uid="Here.Option`1.Or(System.Func{`0}@)">Or(in Func&lt;T&gt;)</h4>
   <div class="markdown level1 summary"><p>Returns this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> value if it has one, otherwise returns the result from <code data-dev-comment-type="paramref" class="paramref">orFunc</code>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public T Or(in Func&lt;T&gt; orFunc)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly T Or(in Func&lt;T&gt; orFunc)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2194,13 +2194,13 @@ with <code data-dev-comment-type="paramref" class="paramref">converter</code> ba
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L229">View Source</a>
   </span>
   <a id="Here_Option_1_Or_" data-uid="Here.Option`1.Or*"></a>
-  <h4 id="Here_Option_1_Or_System_Func_Here_Option__0____" data-uid="Here.Option`1.Or(System.Func{Here.Option{`0}}@)">Or(Func&lt;Option&lt;T&gt;&gt;)</h4>
+  <h4 id="Here_Option_1_Or_System_Func_Here_Option__0____" data-uid="Here.Option`1.Or(System.Func{Here.Option{`0}}@)">Or(in Func&lt;Option&lt;T&gt;&gt;)</h4>
   <div class="markdown level1 summary"><p>Returns this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> if it has a value, otherwise returns a <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> returned by <code data-dev-comment-type="paramref" class="paramref">orFunc</code>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Option&lt;T&gt; Or(in Func&lt;Option&lt;T&gt;&gt; orFunc)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly Option&lt;T&gt; Or(in Func&lt;Option&lt;T&gt;&gt; orFunc)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2266,7 +2266,7 @@ with <code data-dev-comment-type="paramref" class="paramref">converter</code> ba
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public T OrDefault()</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly T OrDefault()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2292,13 +2292,13 @@ with <code data-dev-comment-type="paramref" class="paramref">converter</code> ba
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L345">View Source</a>
   </span>
   <a id="Here_Option_1_OrThrows_" data-uid="Here.Option`1.OrThrows*"></a>
-  <h4 id="Here_Option_1_OrThrows_System_Exception__" data-uid="Here.Option`1.OrThrows(System.Exception@)">OrThrows(Exception)</h4>
+  <h4 id="Here_Option_1_OrThrows_System_Exception__" data-uid="Here.Option`1.OrThrows(System.Exception@)">OrThrows(in Exception)</h4>
   <div class="markdown level1 summary"><p>Returns this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> value if it has one, otherwise throws the given exception.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public T OrThrows(in Exception exception)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly T OrThrows(in Exception exception)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2358,13 +2358,13 @@ with <code data-dev-comment-type="paramref" class="paramref">converter</code> ba
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L362">View Source</a>
   </span>
   <a id="Here_Option_1_OrThrows_" data-uid="Here.Option`1.OrThrows*"></a>
-  <h4 id="Here_Option_1_OrThrows_System_Func_System_Exception___" data-uid="Here.Option`1.OrThrows(System.Func{System.Exception}@)">OrThrows(Func&lt;Exception&gt;)</h4>
+  <h4 id="Here_Option_1_OrThrows_System_Func_System_Exception___" data-uid="Here.Option`1.OrThrows(System.Func{System.Exception}@)">OrThrows(in Func&lt;Exception&gt;)</h4>
   <div class="markdown level1 summary"><p>Returns this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> value if it has one, otherwise throws the given exception.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public T OrThrows(in Func&lt;Exception&gt; exceptionFunc)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly T OrThrows(in Func&lt;Exception&gt; exceptionFunc)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2424,7 +2424,7 @@ with <code data-dev-comment-type="paramref" class="paramref">converter</code> ba
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option{T}.cs/#L84">View Source</a>
   </span>
   <a id="Here_Option_1_Some_" data-uid="Here.Option`1.Some*"></a>
-  <h4 id="Here_Option_1_Some__0__" data-uid="Here.Option`1.Some(`0@)">Some(T)</h4>
+  <h4 id="Here_Option_1_Some__0__" data-uid="Here.Option`1.Some(`0@)">Some(in T)</h4>
   <div class="markdown level1 summary"><p>Constructs an <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> with a value.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -2494,7 +2494,7 @@ with <code data-dev-comment-type="paramref" class="paramref">converter</code> ba
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+    <pre><code class="lang-csharp hljs">public override readonly string ToString()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2521,13 +2521,13 @@ with <code data-dev-comment-type="paramref" class="paramref">converter</code> ba
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L378">View Source</a>
   </span>
   <a id="Here_Option_1_Unwrap_" data-uid="Here.Option`1.Unwrap*"></a>
-  <h4 id="Here_Option_1_Unwrap__0__" data-uid="Here.Option`1.Unwrap(`0@)">Unwrap(T)</h4>
+  <h4 id="Here_Option_1_Unwrap__0__" data-uid="Here.Option`1.Unwrap(`0@)">Unwrap(in T)</h4>
   <div class="markdown level1 summary"><p>Unwraps this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> value if it has one, otherwise returns the <code data-dev-comment-type="paramref" class="paramref">defaultValue</code>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public T Unwrap(in T defaultValue = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly T Unwrap(in T defaultValue = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2571,13 +2571,13 @@ with <code data-dev-comment-type="paramref" class="paramref">converter</code> ba
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L392">View Source</a>
   </span>
   <a id="Here_Option_1_Unwrap_" data-uid="Here.Option`1.Unwrap*"></a>
-  <h4 id="Here_Option_1_Unwrap_System_Func__0___" data-uid="Here.Option`1.Unwrap(System.Func{`0}@)">Unwrap(Func&lt;T&gt;)</h4>
+  <h4 id="Here_Option_1_Unwrap_System_Func__0___" data-uid="Here.Option`1.Unwrap(System.Func{`0}@)">Unwrap(in Func&lt;T&gt;)</h4>
   <div class="markdown level1 summary"><p>Unwraps this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> value if it has one, otherwise returns the result from <code data-dev-comment-type="paramref" class="paramref">orFunc</code>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public T Unwrap(in Func&lt;T&gt; orFunc)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly T Unwrap(in Func&lt;T&gt; orFunc)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2637,7 +2637,7 @@ with <code data-dev-comment-type="paramref" class="paramref">converter</code> ba
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L413">View Source</a>
   </span>
   <a id="Here_Option_1_Unwrap_" data-uid="Here.Option`1.Unwrap*"></a>
-  <h4 id="Here_Option_1_Unwrap__1_System_Func__0___0_____0__" data-uid="Here.Option`1.Unwrap``1(System.Func{`0,``0}@,``0@)">Unwrap&lt;TOut&gt;(Func&lt;T, TOut&gt;, TOut)</h4>
+  <h4 id="Here_Option_1_Unwrap__1_System_Func__0___0_____0__" data-uid="Here.Option`1.Unwrap``1(System.Func{`0,``0}@,``0@)">Unwrap&lt;TOut&gt;(in Func&lt;T, TOut&gt;, in TOut)</h4>
   <div class="markdown level1 summary"><p>Unwraps this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> value if it has one,
 uses the <code data-dev-comment-type="paramref" class="paramref">converter</code> to convert the value,
 otherwise returns the <code data-dev-comment-type="paramref" class="paramref">defaultValue</code>.</p>
@@ -2645,7 +2645,7 @@ otherwise returns the <code data-dev-comment-type="paramref" class="paramref">de
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TOut Unwrap&lt;TOut&gt;(in Func&lt;T, TOut&gt; converter, in TOut defaultValue = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly TOut Unwrap&lt;TOut&gt;(in Func&lt;T, TOut&gt; converter, in TOut defaultValue = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2727,7 +2727,7 @@ otherwise returns the <code data-dev-comment-type="paramref" class="paramref">de
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operations.cs/#L437">View Source</a>
   </span>
   <a id="Here_Option_1_Unwrap_" data-uid="Here.Option`1.Unwrap*"></a>
-  <h4 id="Here_Option_1_Unwrap__1_System_Func__0___0___System_Func___0___" data-uid="Here.Option`1.Unwrap``1(System.Func{`0,``0}@,System.Func{``0}@)">Unwrap&lt;TOut&gt;(Func&lt;T, TOut&gt;, Func&lt;TOut&gt;)</h4>
+  <h4 id="Here_Option_1_Unwrap__1_System_Func__0___0___System_Func___0___" data-uid="Here.Option`1.Unwrap``1(System.Func{`0,``0}@,System.Func{``0}@)">Unwrap&lt;TOut&gt;(in Func&lt;T, TOut&gt;, in Func&lt;TOut&gt;)</h4>
   <div class="markdown level1 summary"><p>Unwraps this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> value if it has one,
 uses the <code data-dev-comment-type="paramref" class="paramref">converter</code> to convert the value,
 otherwise returns the result from <code data-dev-comment-type="paramref" class="paramref">orFunc</code>.</p>
@@ -2735,7 +2735,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TOut Unwrap&lt;TOut&gt;(in Func&lt;T, TOut&gt; converter, in Func&lt;TOut&gt; orFunc)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly TOut Unwrap&lt;TOut&gt;(in Func&lt;T, TOut&gt; converter, in Func&lt;TOut&gt; orFunc)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2824,7 +2824,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option{T}.cs/#L207">View Source</a>
   </span>
   <a id="Here_Option_1_op_Equality_" data-uid="Here.Option`1.op_Equality*"></a>
-  <h4 id="Here_Option_1_op_Equality__0__Here_Option__0___" data-uid="Here.Option`1.op_Equality(`0@,Here.Option{`0}@)">Equality(T, Option&lt;T&gt;)</h4>
+  <h4 id="Here_Option_1_op_Equality__0__Here_Option__0___" data-uid="Here.Option`1.op_Equality(`0@,Here.Option{`0}@)">Equality(in T, in Option&lt;T&gt;)</h4>
   <div class="markdown level1 summary"><p>Indicates whether <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> value is equals to the given value.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -2880,7 +2880,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option{T}.cs/#L185">View Source</a>
   </span>
   <a id="Here_Option_1_op_Equality_" data-uid="Here.Option`1.op_Equality*"></a>
-  <h4 id="Here_Option_1_op_Equality_Here_Option__0____0__" data-uid="Here.Option`1.op_Equality(Here.Option{`0}@,`0@)">Equality(Option&lt;T&gt;, T)</h4>
+  <h4 id="Here_Option_1_op_Equality_Here_Option__0____0__" data-uid="Here.Option`1.op_Equality(Here.Option{`0}@,`0@)">Equality(in Option&lt;T&gt;, in T)</h4>
   <div class="markdown level1 summary"><p>Indicates whether <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> value is equals to the given value.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -2936,7 +2936,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option{T}.cs/#L163">View Source</a>
   </span>
   <a id="Here_Option_1_op_Equality_" data-uid="Here.Option`1.op_Equality*"></a>
-  <h4 id="Here_Option_1_op_Equality_Here_Option__0___Here_Option__0___" data-uid="Here.Option`1.op_Equality(Here.Option{`0}@,Here.Option{`0}@)">Equality(Option&lt;T&gt;, Option&lt;T&gt;)</h4>
+  <h4 id="Here_Option_1_op_Equality_Here_Option__0___Here_Option__0___" data-uid="Here.Option`1.op_Equality(Here.Option{`0}@,Here.Option{`0}@)">Equality(in Option&lt;T&gt;, in Option&lt;T&gt;)</h4>
   <div class="markdown level1 summary"><p>Indicates whether both <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> are equal.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -2992,7 +2992,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option{T}.cs/#L296">View Source</a>
   </span>
   <a id="Here_Option_1_op_GreaterThan_" data-uid="Here.Option`1.op_GreaterThan*"></a>
-  <h4 id="Here_Option_1_op_GreaterThan_Here_Option__0___Here_Option__0___" data-uid="Here.Option`1.op_GreaterThan(Here.Option{`0}@,Here.Option{`0}@)">GreaterThan(Option&lt;T&gt;, Option&lt;T&gt;)</h4>
+  <h4 id="Here_Option_1_op_GreaterThan_Here_Option__0___Here_Option__0___" data-uid="Here.Option`1.op_GreaterThan(Here.Option{`0}@,Here.Option{`0}@)">GreaterThan(in Option&lt;T&gt;, in Option&lt;T&gt;)</h4>
   <div class="markdown level1 summary"><p>Determines if this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> is &quot;greater&quot; than the other one.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -3048,7 +3048,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option{T}.cs/#L307">View Source</a>
   </span>
   <a id="Here_Option_1_op_GreaterThanOrEqual_" data-uid="Here.Option`1.op_GreaterThanOrEqual*"></a>
-  <h4 id="Here_Option_1_op_GreaterThanOrEqual_Here_Option__0___Here_Option__0___" data-uid="Here.Option`1.op_GreaterThanOrEqual(Here.Option{`0}@,Here.Option{`0}@)">GreaterThanOrEqual(Option&lt;T&gt;, Option&lt;T&gt;)</h4>
+  <h4 id="Here_Option_1_op_GreaterThanOrEqual_Here_Option__0___Here_Option__0___" data-uid="Here.Option`1.op_GreaterThanOrEqual(Here.Option{`0}@,Here.Option{`0}@)">GreaterThanOrEqual(in Option&lt;T&gt;, in Option&lt;T&gt;)</h4>
   <div class="markdown level1 summary"><p>Determines if this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> is &quot;greater&quot; than or equal to the other one.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -3104,7 +3104,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Implicit.cs/#L24">View Source</a>
   </span>
   <a id="Here_Option_1_op_Implicit_" data-uid="Here.Option`1.op_Implicit*"></a>
-  <h4 id="Here_Option_1_op_Implicit__0___Here_Option__0_" data-uid="Here.Option`1.op_Implicit(`0@)~Here.Option{`0}">Implicit(T to Option&lt;T&gt;)</h4>
+  <h4 id="Here_Option_1_op_Implicit__0___Here_Option__0_" data-uid="Here.Option`1.op_Implicit(`0@)~Here.Option{`0}">Implicit(in T to Option&lt;T&gt;)</h4>
   <div class="markdown level1 summary"><p>Implicit constructor of <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -3154,7 +3154,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Implicit.cs/#L13">View Source</a>
   </span>
   <a id="Here_Option_1_op_Implicit_" data-uid="Here.Option`1.op_Implicit*"></a>
-  <h4 id="Here_Option_1_op_Implicit_Here_Option_NoneOption___Here_Option__0_" data-uid="Here.Option`1.op_Implicit(Here.Option.NoneOption@)~Here.Option{`0}">Implicit(Option.NoneOption to Option&lt;T&gt;)</h4>
+  <h4 id="Here_Option_1_op_Implicit_Here_Option_NoneOption___Here_Option__0_" data-uid="Here.Option`1.op_Implicit(Here.Option.NoneOption@)~Here.Option{`0}">Implicit(in Option.NoneOption to Option&lt;T&gt;)</h4>
   <div class="markdown level1 summary"><p>Implicit constructor for an empty <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -3203,7 +3203,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Implicit.cs/#L57">View Source</a>
   </span>
   <a id="Here_Option_1_op_Implicit_" data-uid="Here.Option`1.op_Implicit*"></a>
-  <h4 id="Here_Option_1_op_Implicit_Here_Option__0____Here_Result" data-uid="Here.Option`1.op_Implicit(Here.Option{`0}@)~Here.Result">Implicit(Option&lt;T&gt; to Result)</h4>
+  <h4 id="Here_Option_1_op_Implicit_Here_Option__0____Here_Result" data-uid="Here.Option`1.op_Implicit(Here.Option{`0}@)~Here.Result">Implicit(in Option&lt;T&gt; to Result)</h4>
   <div class="markdown level1 summary"><p>Implicit conversion from <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> to an <a class="xref" href="Here.Result.html">Result</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -3253,7 +3253,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Implicit.cs/#L68">View Source</a>
   </span>
   <a id="Here_Option_1_op_Implicit_" data-uid="Here.Option`1.op_Implicit*"></a>
-  <h4 id="Here_Option_1_op_Implicit_Here_Option__0____Here_Result__0_" data-uid="Here.Option`1.op_Implicit(Here.Option{`0}@)~Here.Result{`0}">Implicit(Option&lt;T&gt; to Result&lt;T&gt;)</h4>
+  <h4 id="Here_Option_1_op_Implicit_Here_Option__0____Here_Result__0_" data-uid="Here.Option`1.op_Implicit(Here.Option{`0}@)~Here.Result{`0}">Implicit(in Option&lt;T&gt; to Result&lt;T&gt;)</h4>
   <div class="markdown level1 summary"><p>Implicit conversion from <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> to an <a class="xref" href="Here.Result-1.html">Result&lt;T&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -3303,7 +3303,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Implicit.cs/#L46">View Source</a>
   </span>
   <a id="Here_Option_1_op_Implicit_" data-uid="Here.Option`1.op_Implicit*"></a>
-  <h4 id="Here_Option_1_op_Implicit_Here_Option__0____System_Boolean" data-uid="Here.Option`1.op_Implicit(Here.Option{`0}@)~System.Boolean">Implicit(Option&lt;T&gt; to Boolean)</h4>
+  <h4 id="Here_Option_1_op_Implicit_Here_Option__0____System_Boolean" data-uid="Here.Option`1.op_Implicit(Here.Option{`0}@)~System.Boolean">Implicit(in Option&lt;T&gt; to Boolean)</h4>
   <div class="markdown level1 summary"><p>Implicit conversion from <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> to a boolean.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -3353,7 +3353,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Implicit.cs/#L35">View Source</a>
   </span>
   <a id="Here_Option_1_op_Implicit_" data-uid="Here.Option`1.op_Implicit*"></a>
-  <h4 id="Here_Option_1_op_Implicit_Here_Option_Here_Option__0_____Here_Option__0_" data-uid="Here.Option`1.op_Implicit(Here.Option{Here.Option{`0}}@)~Here.Option{`0}">Implicit(Option&lt;Option&lt;T&gt;&gt; to Option&lt;T&gt;)</h4>
+  <h4 id="Here_Option_1_op_Implicit_Here_Option_Here_Option__0_____Here_Option__0_" data-uid="Here.Option`1.op_Implicit(Here.Option{Here.Option{`0}}@)~Here.Option{`0}">Implicit(in Option&lt;Option&lt;T&gt;&gt; to Option&lt;T&gt;)</h4>
   <div class="markdown level1 summary"><p>Implicit conversion from <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> to an <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -3403,7 +3403,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option{T}.cs/#L218">View Source</a>
   </span>
   <a id="Here_Option_1_op_Inequality_" data-uid="Here.Option`1.op_Inequality*"></a>
-  <h4 id="Here_Option_1_op_Inequality__0__Here_Option__0___" data-uid="Here.Option`1.op_Inequality(`0@,Here.Option{`0}@)">Inequality(T, Option&lt;T&gt;)</h4>
+  <h4 id="Here_Option_1_op_Inequality__0__Here_Option__0___" data-uid="Here.Option`1.op_Inequality(`0@,Here.Option{`0}@)">Inequality(in T, in Option&lt;T&gt;)</h4>
   <div class="markdown level1 summary"><p>Indicates whether <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> value is not equals to the given value.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -3459,7 +3459,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option{T}.cs/#L196">View Source</a>
   </span>
   <a id="Here_Option_1_op_Inequality_" data-uid="Here.Option`1.op_Inequality*"></a>
-  <h4 id="Here_Option_1_op_Inequality_Here_Option__0____0__" data-uid="Here.Option`1.op_Inequality(Here.Option{`0}@,`0@)">Inequality(Option&lt;T&gt;, T)</h4>
+  <h4 id="Here_Option_1_op_Inequality_Here_Option__0____0__" data-uid="Here.Option`1.op_Inequality(Here.Option{`0}@,`0@)">Inequality(in Option&lt;T&gt;, in T)</h4>
   <div class="markdown level1 summary"><p>Indicates whether <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> value is not equals to the given value.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -3515,7 +3515,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option{T}.cs/#L174">View Source</a>
   </span>
   <a id="Here_Option_1_op_Inequality_" data-uid="Here.Option`1.op_Inequality*"></a>
-  <h4 id="Here_Option_1_op_Inequality_Here_Option__0___Here_Option__0___" data-uid="Here.Option`1.op_Inequality(Here.Option{`0}@,Here.Option{`0}@)">Inequality(Option&lt;T&gt;, Option&lt;T&gt;)</h4>
+  <h4 id="Here_Option_1_op_Inequality_Here_Option__0___Here_Option__0___" data-uid="Here.Option`1.op_Inequality(Here.Option{`0}@,Here.Option{`0}@)">Inequality(in Option&lt;T&gt;, in Option&lt;T&gt;)</h4>
   <div class="markdown level1 summary"><p>Indicates whether both <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> are not equal.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -3571,7 +3571,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option{T}.cs/#L274">View Source</a>
   </span>
   <a id="Here_Option_1_op_LessThan_" data-uid="Here.Option`1.op_LessThan*"></a>
-  <h4 id="Here_Option_1_op_LessThan_Here_Option__0___Here_Option__0___" data-uid="Here.Option`1.op_LessThan(Here.Option{`0}@,Here.Option{`0}@)">LessThan(Option&lt;T&gt;, Option&lt;T&gt;)</h4>
+  <h4 id="Here_Option_1_op_LessThan_Here_Option__0___Here_Option__0___" data-uid="Here.Option`1.op_LessThan(Here.Option{`0}@,Here.Option{`0}@)">LessThan(in Option&lt;T&gt;, in Option&lt;T&gt;)</h4>
   <div class="markdown level1 summary"><p>Determines if this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> is &quot;less&quot; than the other one.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -3627,7 +3627,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option{T}.cs/#L285">View Source</a>
   </span>
   <a id="Here_Option_1_op_LessThanOrEqual_" data-uid="Here.Option`1.op_LessThanOrEqual*"></a>
-  <h4 id="Here_Option_1_op_LessThanOrEqual_Here_Option__0___Here_Option__0___" data-uid="Here.Option`1.op_LessThanOrEqual(Here.Option{`0}@,Here.Option{`0}@)">LessThanOrEqual(Option&lt;T&gt;, Option&lt;T&gt;)</h4>
+  <h4 id="Here_Option_1_op_LessThanOrEqual_Here_Option__0___Here_Option__0___" data-uid="Here.Option`1.op_LessThanOrEqual(Here.Option{`0}@,Here.Option{`0}@)">LessThanOrEqual(in Option&lt;T&gt;, in Option&lt;T&gt;)</h4>
   <div class="markdown level1 summary"><p>Determines if this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> is &quot;less&quot; than or equal to the other one.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -3683,7 +3683,7 @@ otherwise returns the result from <code data-dev-comment-type="paramref" class="
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Option/Option.Operators.cs/#L14">View Source</a>
   </span>
   <a id="Here_Option_1_op_LogicalNot_" data-uid="Here.Option`1.op_LogicalNot*"></a>
-  <h4 id="Here_Option_1_op_LogicalNot_Here_Option__0___" data-uid="Here.Option`1.op_LogicalNot(Here.Option{`0}@)">LogicalNot(Option&lt;T&gt;)</h4>
+  <h4 id="Here_Option_1_op_LogicalNot_Here_Option__0___" data-uid="Here.Option`1.op_LogicalNot(Here.Option{`0}@)">LogicalNot(in Option&lt;T&gt;)</h4>
   <div class="markdown level1 summary"><p>Checks if the <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> state is empty.
 It means that it <a class="xref" href="Here.Option-1.html#Here_Option_1_HasNoValue">HasNoValue</a>.</p>
 </div>
@@ -3759,82 +3759,82 @@ It means that it <a class="xref" href="Here.Option-1.html#Here_Option_1_HasNoVal
       <a class="xref" href="Here.Extensions.OptionExtensions.html#Here_Extensions_OptionExtensions_ToOption__1___0_">OptionExtensions.ToOption&lt;T&gt;(T)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.OptionLinqEnumerableExtensions.html#Here_Extensions_OptionLinqEnumerableExtensions_AnyItem__2_Here_Option___0___System_Predicate___1__">OptionLinqEnumerableExtensions.AnyItem&lt;T, TItem&gt;(Option&lt;T&gt;, Predicate&lt;TItem&gt;)</a>
+      <a class="xref" href="Here.Extensions.OptionLinqEnumerableExtensions.html#Here_Extensions_OptionLinqEnumerableExtensions_AnyItem__2_Here_Option___0___System_Predicate___1__">OptionLinqEnumerableExtensions.AnyItem&lt;T, TItem&gt;(in Option&lt;T&gt;, Predicate&lt;TItem&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.OptionLinqEnumerableExtensions.html#Here_Extensions_OptionLinqEnumerableExtensions_AllItems__2_Here_Option___0___System_Predicate___1__">OptionLinqEnumerableExtensions.AllItems&lt;T, TItem&gt;(Option&lt;T&gt;, Predicate&lt;TItem&gt;)</a>
+      <a class="xref" href="Here.Extensions.OptionLinqEnumerableExtensions.html#Here_Extensions_OptionLinqEnumerableExtensions_AllItems__2_Here_Option___0___System_Predicate___1__">OptionLinqEnumerableExtensions.AllItems&lt;T, TItem&gt;(in Option&lt;T&gt;, Predicate&lt;TItem&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.OptionLinqEnumerableExtensions.html#Here_Extensions_OptionLinqEnumerableExtensions_ContainsItem__2_Here_Option___0_____1__">OptionLinqEnumerableExtensions.ContainsItem&lt;T, TItem&gt;(Option&lt;T&gt;, TItem)</a>
+      <a class="xref" href="Here.Extensions.OptionLinqEnumerableExtensions.html#Here_Extensions_OptionLinqEnumerableExtensions_ContainsItem__2_Here_Option___0_____1__">OptionLinqEnumerableExtensions.ContainsItem&lt;T, TItem&gt;(in Option&lt;T&gt;, in TItem)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.OptionLinqEnumerableExtensions.html#Here_Extensions_OptionLinqEnumerableExtensions_ContainsItem__2_Here_Option___0_____1__System_Collections_Generic_IEqualityComparer___1___">OptionLinqEnumerableExtensions.ContainsItem&lt;T, TItem&gt;(Option&lt;T&gt;, TItem, IEqualityComparer&lt;TItem&gt;)</a>
+      <a class="xref" href="Here.Extensions.OptionLinqEnumerableExtensions.html#Here_Extensions_OptionLinqEnumerableExtensions_ContainsItem__2_Here_Option___0_____1__System_Collections_Generic_IEqualityComparer___1___">OptionLinqEnumerableExtensions.ContainsItem&lt;T, TItem&gt;(in Option&lt;T&gt;, in TItem, in IEqualityComparer&lt;TItem&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.OptionLinqEnumerableExtensions.html#Here_Extensions_OptionLinqEnumerableExtensions_SelectItems__3_Here_Option___0___System_Func___1___2___">OptionLinqEnumerableExtensions.SelectItems&lt;T, TItemIn, TItemOut&gt;(Option&lt;T&gt;, Func&lt;TItemIn, TItemOut&gt;)</a>
+      <a class="xref" href="Here.Extensions.OptionLinqEnumerableExtensions.html#Here_Extensions_OptionLinqEnumerableExtensions_SelectItems__3_Here_Option___0___System_Func___1___2___">OptionLinqEnumerableExtensions.SelectItems&lt;T, TItemIn, TItemOut&gt;(in Option&lt;T&gt;, in Func&lt;TItemIn, TItemOut&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.OptionLinqEnumerableExtensions.html#Here_Extensions_OptionLinqEnumerableExtensions_SelectManyItems__3_Here_Option___0___System_Func___1_System_Collections_Generic_IEnumerable___2____">OptionLinqEnumerableExtensions.SelectManyItems&lt;T, TItemIn, TItemOut&gt;(Option&lt;T&gt;, Func&lt;TItemIn, IEnumerable&lt;TItemOut&gt;&gt;)</a>
+      <a class="xref" href="Here.Extensions.OptionLinqEnumerableExtensions.html#Here_Extensions_OptionLinqEnumerableExtensions_SelectManyItems__3_Here_Option___0___System_Func___1_System_Collections_Generic_IEnumerable___2____">OptionLinqEnumerableExtensions.SelectManyItems&lt;T, TItemIn, TItemOut&gt;(in Option&lt;T&gt;, in Func&lt;TItemIn, IEnumerable&lt;TItemOut&gt;&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.OptionLinqEnumerableExtensions.html#Here_Extensions_OptionLinqEnumerableExtensions_SelectManyItems__4_Here_Option___0___System_Func___1_System_Collections_Generic_IEnumerable___2____System_Func___1___2___3___">OptionLinqEnumerableExtensions.SelectManyItems&lt;T, TItemIn, TItemCollection, TItemOut&gt;(Option&lt;T&gt;, Func&lt;TItemIn, IEnumerable&lt;TItemCollection&gt;&gt;, Func&lt;TItemIn, TItemCollection, TItemOut&gt;)</a>
+      <a class="xref" href="Here.Extensions.OptionLinqEnumerableExtensions.html#Here_Extensions_OptionLinqEnumerableExtensions_SelectManyItems__4_Here_Option___0___System_Func___1_System_Collections_Generic_IEnumerable___2____System_Func___1___2___3___">OptionLinqEnumerableExtensions.SelectManyItems&lt;T, TItemIn, TItemCollection, TItemOut&gt;(in Option&lt;T&gt;, in Func&lt;TItemIn, IEnumerable&lt;TItemCollection&gt;&gt;, in Func&lt;TItemIn, TItemCollection, TItemOut&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.OptionLinqEnumerableExtensions.html#Here_Extensions_OptionLinqEnumerableExtensions_WhereItems__2_Here_Option___0___System_Predicate___1__">OptionLinqEnumerableExtensions.WhereItems&lt;T, TItem&gt;(Option&lt;T&gt;, Predicate&lt;TItem&gt;)</a>
+      <a class="xref" href="Here.Extensions.OptionLinqEnumerableExtensions.html#Here_Extensions_OptionLinqEnumerableExtensions_WhereItems__2_Here_Option___0___System_Predicate___1__">OptionLinqEnumerableExtensions.WhereItems&lt;T, TItem&gt;(in Option&lt;T&gt;, Predicate&lt;TItem&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.OptionLinqEnumerableExtensions.html#Here_Extensions_OptionLinqEnumerableExtensions_ForEachItems__2_Here_Option___0___System_Action___1___">OptionLinqEnumerableExtensions.ForEachItems&lt;T, TItem&gt;(Option&lt;T&gt;, Action&lt;TItem&gt;)</a>
+      <a class="xref" href="Here.Extensions.OptionLinqEnumerableExtensions.html#Here_Extensions_OptionLinqEnumerableExtensions_ForEachItems__2_Here_Option___0___System_Action___1___">OptionLinqEnumerableExtensions.ForEachItems&lt;T, TItem&gt;(in Option&lt;T&gt;, in Action&lt;TItem&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.OptionLinqEnumerableExtensions.html#Here_Extensions_OptionLinqEnumerableExtensions_AggregateItems__3_Here_Option___0_____2__System_Func___2___1___2___">OptionLinqEnumerableExtensions.AggregateItems&lt;T, TItem, TAggregate&gt;(Option&lt;T&gt;, TAggregate, Func&lt;TAggregate, TItem, TAggregate&gt;)</a>
+      <a class="xref" href="Here.Extensions.OptionLinqEnumerableExtensions.html#Here_Extensions_OptionLinqEnumerableExtensions_AggregateItems__3_Here_Option___0_____2__System_Func___2___1___2___">OptionLinqEnumerableExtensions.AggregateItems&lt;T, TItem, TAggregate&gt;(in Option&lt;T&gt;, in TAggregate, in Func&lt;TAggregate, TItem, TAggregate&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.OptionLinqExtensions.html#Here_Extensions_OptionLinqExtensions_Any__1_Here_Option___0___">OptionLinqExtensions.Any&lt;T&gt;(Option&lt;T&gt;)</a>
+      <a class="xref" href="Here.Extensions.OptionLinqExtensions.html#Here_Extensions_OptionLinqExtensions_Any__1_Here_Option___0___">OptionLinqExtensions.Any&lt;T&gt;(in Option&lt;T&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.OptionLinqExtensions.html#Here_Extensions_OptionLinqExtensions_Any__1_Here_Option___0___System_Predicate___0___">OptionLinqExtensions.Any&lt;T&gt;(Option&lt;T&gt;, Predicate&lt;T&gt;)</a>
+      <a class="xref" href="Here.Extensions.OptionLinqExtensions.html#Here_Extensions_OptionLinqExtensions_Any__1_Here_Option___0___System_Predicate___0___">OptionLinqExtensions.Any&lt;T&gt;(in Option&lt;T&gt;, in Predicate&lt;T&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.OptionLinqExtensions.html#Here_Extensions_OptionLinqExtensions_All__1_Here_Option___0___System_Predicate___0___">OptionLinqExtensions.All&lt;T&gt;(Option&lt;T&gt;, Predicate&lt;T&gt;)</a>
+      <a class="xref" href="Here.Extensions.OptionLinqExtensions.html#Here_Extensions_OptionLinqExtensions_All__1_Here_Option___0___System_Predicate___0___">OptionLinqExtensions.All&lt;T&gt;(in Option&lt;T&gt;, in Predicate&lt;T&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.OptionLinqExtensions.html#Here_Extensions_OptionLinqExtensions_Contains__1_Here_Option___0_____0__">OptionLinqExtensions.Contains&lt;T&gt;(Option&lt;T&gt;, T)</a>
+      <a class="xref" href="Here.Extensions.OptionLinqExtensions.html#Here_Extensions_OptionLinqExtensions_Contains__1_Here_Option___0_____0__">OptionLinqExtensions.Contains&lt;T&gt;(in Option&lt;T&gt;, in T)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.OptionLinqExtensions.html#Here_Extensions_OptionLinqExtensions_Select__2_Here_Option___0___System_Func___0___1___">OptionLinqExtensions.Select&lt;TIn, TOut&gt;(Option&lt;TIn&gt;, Func&lt;TIn, TOut&gt;)</a>
+      <a class="xref" href="Here.Extensions.OptionLinqExtensions.html#Here_Extensions_OptionLinqExtensions_Select__2_Here_Option___0___System_Func___0___1___">OptionLinqExtensions.Select&lt;TIn, TOut&gt;(in Option&lt;TIn&gt;, in Func&lt;TIn, TOut&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.OptionLinqExtensions.html#Here_Extensions_OptionLinqExtensions_Where__1_Here_Option___0___System_Predicate___0___">OptionLinqExtensions.Where&lt;T&gt;(Option&lt;T&gt;, Predicate&lt;T&gt;)</a>
+      <a class="xref" href="Here.Extensions.OptionLinqExtensions.html#Here_Extensions_OptionLinqExtensions_Where__1_Here_Option___0___System_Predicate___0___">OptionLinqExtensions.Where&lt;T&gt;(in Option&lt;T&gt;, in Predicate&lt;T&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.OptionLinqExtensions.html#Here_Extensions_OptionLinqExtensions_ForEach__1_Here_Option___0___System_Action___0___">OptionLinqExtensions.ForEach&lt;T&gt;(Option&lt;T&gt;, Action&lt;T&gt;)</a>
+      <a class="xref" href="Here.Extensions.OptionLinqExtensions.html#Here_Extensions_OptionLinqExtensions_ForEach__1_Here_Option___0___System_Action___0___">OptionLinqExtensions.ForEach&lt;T&gt;(in Option&lt;T&gt;, in Action&lt;T&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.OptionLinqExtensions.html#Here_Extensions_OptionLinqExtensions_Aggregate__2_Here_Option___0_____1__System_Func___1___0___1___">OptionLinqExtensions.Aggregate&lt;T, TAggregate&gt;(Option&lt;T&gt;, TAggregate, Func&lt;TAggregate, T, TAggregate&gt;)</a>
+      <a class="xref" href="Here.Extensions.OptionLinqExtensions.html#Here_Extensions_OptionLinqExtensions_Aggregate__2_Here_Option___0_____1__System_Func___1___0___1___">OptionLinqExtensions.Aggregate&lt;T, TAggregate&gt;(in Option&lt;T&gt;, in TAggregate, in Func&lt;TAggregate, T, TAggregate&gt;)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.OptionOperatorsExtensions.html#Here_Extensions_OptionOperatorsExtensions_ToResult__1_Here_Option___0___System_String__">OptionOperatorsExtensions.ToResult&lt;T&gt;(Option&lt;T&gt;, String)</a>
+      <a class="xref" href="Here.Extensions.OptionOperatorsExtensions.html#Here_Extensions_OptionOperatorsExtensions_ToResult__1_Here_Option___0___System_String__">OptionOperatorsExtensions.ToResult&lt;T&gt;(in Option&lt;T&gt;, in String)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.OptionOperatorsExtensions.html#Here_Extensions_OptionOperatorsExtensions_ToValueResult__1_Here_Option___0___System_String__">OptionOperatorsExtensions.ToValueResult&lt;T&gt;(Option&lt;T&gt;, String)</a>
+      <a class="xref" href="Here.Extensions.OptionOperatorsExtensions.html#Here_Extensions_OptionOperatorsExtensions_ToValueResult__1_Here_Option___0___System_String__">OptionOperatorsExtensions.ToValueResult&lt;T&gt;(in Option&lt;T&gt;, in String)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.OptionOperatorsExtensions.html#Here_Extensions_OptionOperatorsExtensions_ToCustomResult__2_Here_Option___0___System_Func___1___System_String__">OptionOperatorsExtensions.ToCustomResult&lt;T, TError&gt;(Option&lt;T&gt;, Func&lt;TError&gt;, String)</a>
+      <a class="xref" href="Here.Extensions.OptionOperatorsExtensions.html#Here_Extensions_OptionOperatorsExtensions_ToCustomResult__2_Here_Option___0___System_Func___1___System_String__">OptionOperatorsExtensions.ToCustomResult&lt;T, TError&gt;(in Option&lt;T&gt;, in Func&lt;TError&gt;, in String)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.OptionOperatorsExtensions.html#Here_Extensions_OptionOperatorsExtensions_ToCustomResult__2_Here_Option___0_____1__System_String__">OptionOperatorsExtensions.ToCustomResult&lt;T, TError&gt;(Option&lt;T&gt;, TError, String)</a>
+      <a class="xref" href="Here.Extensions.OptionOperatorsExtensions.html#Here_Extensions_OptionOperatorsExtensions_ToCustomResult__2_Here_Option___0_____1__System_String__">OptionOperatorsExtensions.ToCustomResult&lt;T, TError&gt;(in Option&lt;T&gt;, in TError, in String)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.OptionOperatorsExtensions.html#Here_Extensions_OptionOperatorsExtensions_ToValueCustomResult__2_Here_Option___0___System_Func___1___System_String__">OptionOperatorsExtensions.ToValueCustomResult&lt;T, TError&gt;(Option&lt;T&gt;, Func&lt;TError&gt;, String)</a>
+      <a class="xref" href="Here.Extensions.OptionOperatorsExtensions.html#Here_Extensions_OptionOperatorsExtensions_ToValueCustomResult__2_Here_Option___0___System_Func___1___System_String__">OptionOperatorsExtensions.ToValueCustomResult&lt;T, TError&gt;(in Option&lt;T&gt;, in Func&lt;TError&gt;, in String)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.OptionOperatorsExtensions.html#Here_Extensions_OptionOperatorsExtensions_ToValueCustomResult__2_Here_Option___0_____1__System_String__">OptionOperatorsExtensions.ToValueCustomResult&lt;T, TError&gt;(Option&lt;T&gt;, TError, String)</a>
+      <a class="xref" href="Here.Extensions.OptionOperatorsExtensions.html#Here_Extensions_OptionOperatorsExtensions_ToValueCustomResult__2_Here_Option___0_____1__System_String__">OptionOperatorsExtensions.ToValueCustomResult&lt;T, TError&gt;(in Option&lt;T&gt;, in TError, in String)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.OptionOperatorsExtensions.html#Here_Extensions_OptionOperatorsExtensions_ToEither__2_Here_Option___0_____1__">OptionOperatorsExtensions.ToEither&lt;T, TLeft&gt;(Option&lt;T&gt;, TLeft)</a>
+      <a class="xref" href="Here.Extensions.OptionOperatorsExtensions.html#Here_Extensions_OptionOperatorsExtensions_ToEither__2_Here_Option___0_____1__">OptionOperatorsExtensions.ToEither&lt;T, TLeft&gt;(in Option&lt;T&gt;, in TLeft)</a>
   </div>
   <div>
-      <a class="xref" href="Here.Extensions.OptionOperatorsExtensions.html#Here_Extensions_OptionOperatorsExtensions_ToEither__2_Here_Option___0___System_Func___1___">OptionOperatorsExtensions.ToEither&lt;T, TLeft&gt;(Option&lt;T&gt;, Func&lt;TLeft&gt;)</a>
+      <a class="xref" href="Here.Extensions.OptionOperatorsExtensions.html#Here_Extensions_OptionOperatorsExtensions_ToEither__2_Here_Option___0___System_Func___1___">OptionOperatorsExtensions.ToEither&lt;T, TLeft&gt;(in Option&lt;T&gt;, in Func&lt;TLeft&gt;)</a>
   </div>
 </article>
           </div>
@@ -3852,7 +3852,8 @@ It means that it <a class="xref" href="Here.Option-1.html#Here_Option_1_HasNoVal
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+                <h5>In This Article</h5>
+                <div></div>
               </nav>
             </div>
           </div>

@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Struct EitherLeft&lt;TLeft&gt;
    ">
-    <meta name="generator" content="docfx 2.51.0.0">
+    <meta name="generator" content="docfx 2.58.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -104,7 +104,7 @@ Convention is that Left is used for failure.</p>
   <h5 id="Here_EitherLeft_1_syntax">Syntax</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Serializable]
-public struct EitherLeft&lt;TLeft&gt; : IEither, IEquatable&lt;TLeft&gt;, IEquatable&lt;EitherLeft&lt;TLeft&gt;&gt;, IComparable, IComparable&lt;TLeft&gt;, IComparable&lt;EitherLeft&lt;TLeft&gt;&gt;, ISerializable</code></pre>
+public readonly struct EitherLeft&lt;TLeft&gt; : IEither, IEquatable&lt;TLeft&gt;, IEquatable&lt;EitherLeft&lt;TLeft&gt;&gt;, IComparable, IComparable&lt;TLeft&gt;, IComparable&lt;EitherLeft&lt;TLeft&gt;&gt;, ISerializable</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -138,7 +138,7 @@ public struct EitherLeft&lt;TLeft&gt; : IEither, IEquatable&lt;TLeft&gt;, IEquat
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsLeft { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly bool IsLeft { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -169,7 +169,7 @@ public struct EitherLeft&lt;TLeft&gt; : IEither, IEquatable&lt;TLeft&gt;, IEquat
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsRight { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly bool IsRight { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -201,7 +201,7 @@ public struct EitherLeft&lt;TLeft&gt; : IEither, IEquatable&lt;TLeft&gt;, IEquat
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int CompareTo(TLeft other)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly int CompareTo(TLeft other)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -248,7 +248,7 @@ public struct EitherLeft&lt;TLeft&gt; : IEither, IEquatable&lt;TLeft&gt;, IEquat
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int CompareTo(EitherLeft&lt;TLeft&gt; other)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly int CompareTo(EitherLeft&lt;TLeft&gt; other)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -295,7 +295,7 @@ public struct EitherLeft&lt;TLeft&gt; : IEither, IEquatable&lt;TLeft&gt;, IEquat
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int CompareTo(object obj)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly int CompareTo(object obj)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -342,7 +342,7 @@ public struct EitherLeft&lt;TLeft&gt; : IEither, IEquatable&lt;TLeft&gt;, IEquat
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Equals(TLeft other)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly bool Equals(TLeft other)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -389,7 +389,7 @@ public struct EitherLeft&lt;TLeft&gt; : IEither, IEquatable&lt;TLeft&gt;, IEquat
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Equals(EitherLeft&lt;TLeft&gt; other)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly bool Equals(EitherLeft&lt;TLeft&gt; other)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -436,7 +436,7 @@ public struct EitherLeft&lt;TLeft&gt; : IEither, IEquatable&lt;TLeft&gt;, IEquat
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+    <pre><code class="lang-csharp hljs">public override readonly bool Equals(object obj)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -485,7 +485,7 @@ public struct EitherLeft&lt;TLeft&gt; : IEither, IEquatable&lt;TLeft&gt;, IEquat
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+    <pre><code class="lang-csharp hljs">public override readonly int GetHashCode()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -517,7 +517,7 @@ public struct EitherLeft&lt;TLeft&gt; : IEither, IEquatable&lt;TLeft&gt;, IEquat
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void GetObjectData(SerializationInfo info, StreamingContext context)</code></pre>
+    <pre><code class="lang-csharp hljs">public readonly void GetObjectData(SerializationInfo info, StreamingContext context)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -554,7 +554,7 @@ public struct EitherLeft&lt;TLeft&gt; : IEither, IEquatable&lt;TLeft&gt;, IEquat
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+    <pre><code class="lang-csharp hljs">public override readonly string ToString()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -583,7 +583,7 @@ public struct EitherLeft&lt;TLeft&gt; : IEither, IEquatable&lt;TLeft&gt;, IEquat
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherLeft.cs/#L84">View Source</a>
   </span>
   <a id="Here_EitherLeft_1_op_Equality_" data-uid="Here.EitherLeft`1.op_Equality*"></a>
-  <h4 id="Here_EitherLeft_1_op_Equality_Here_EitherLeft__0___Here_EitherLeft__0___" data-uid="Here.EitherLeft`1.op_Equality(Here.EitherLeft{`0}@,Here.EitherLeft{`0}@)">Equality(EitherLeft&lt;TLeft&gt;, EitherLeft&lt;TLeft&gt;)</h4>
+  <h4 id="Here_EitherLeft_1_op_Equality_Here_EitherLeft__0___Here_EitherLeft__0___" data-uid="Here.EitherLeft`1.op_Equality(Here.EitherLeft{`0}@,Here.EitherLeft{`0}@)">Equality(in EitherLeft&lt;TLeft&gt;, in EitherLeft&lt;TLeft&gt;)</h4>
   <div class="markdown level1 summary"><p>Indicates whether both <a class="xref" href="Here.EitherLeft-1.html">EitherLeft&lt;TLeft&gt;</a> are equal.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -639,7 +639,7 @@ public struct EitherLeft&lt;TLeft&gt; : IEither, IEquatable&lt;TLeft&gt;, IEquat
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherLeft.cs/#L161">View Source</a>
   </span>
   <a id="Here_EitherLeft_1_op_GreaterThan_" data-uid="Here.EitherLeft`1.op_GreaterThan*"></a>
-  <h4 id="Here_EitherLeft_1_op_GreaterThan_Here_EitherLeft__0___Here_EitherLeft__0___" data-uid="Here.EitherLeft`1.op_GreaterThan(Here.EitherLeft{`0}@,Here.EitherLeft{`0}@)">GreaterThan(EitherLeft&lt;TLeft&gt;, EitherLeft&lt;TLeft&gt;)</h4>
+  <h4 id="Here_EitherLeft_1_op_GreaterThan_Here_EitherLeft__0___Here_EitherLeft__0___" data-uid="Here.EitherLeft`1.op_GreaterThan(Here.EitherLeft{`0}@,Here.EitherLeft{`0}@)">GreaterThan(in EitherLeft&lt;TLeft&gt;, in EitherLeft&lt;TLeft&gt;)</h4>
   <div class="markdown level1 summary"><p>Determines if this <a class="xref" href="Here.EitherLeft-1.html">EitherLeft&lt;TLeft&gt;</a> is &quot;greater&quot; than the other one.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -695,7 +695,7 @@ public struct EitherLeft&lt;TLeft&gt; : IEither, IEquatable&lt;TLeft&gt;, IEquat
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherLeft.cs/#L172">View Source</a>
   </span>
   <a id="Here_EitherLeft_1_op_GreaterThanOrEqual_" data-uid="Here.EitherLeft`1.op_GreaterThanOrEqual*"></a>
-  <h4 id="Here_EitherLeft_1_op_GreaterThanOrEqual_Here_EitherLeft__0___Here_EitherLeft__0___" data-uid="Here.EitherLeft`1.op_GreaterThanOrEqual(Here.EitherLeft{`0}@,Here.EitherLeft{`0}@)">GreaterThanOrEqual(EitherLeft&lt;TLeft&gt;, EitherLeft&lt;TLeft&gt;)</h4>
+  <h4 id="Here_EitherLeft_1_op_GreaterThanOrEqual_Here_EitherLeft__0___Here_EitherLeft__0___" data-uid="Here.EitherLeft`1.op_GreaterThanOrEqual(Here.EitherLeft{`0}@,Here.EitherLeft{`0}@)">GreaterThanOrEqual(in EitherLeft&lt;TLeft&gt;, in EitherLeft&lt;TLeft&gt;)</h4>
   <div class="markdown level1 summary"><p>Determines if this <a class="xref" href="Here.EitherLeft-1.html">EitherLeft&lt;TLeft&gt;</a> is &quot;greater&quot; than or equal to the other one.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -751,7 +751,7 @@ public struct EitherLeft&lt;TLeft&gt; : IEither, IEquatable&lt;TLeft&gt;, IEquat
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherLeft.cs/#L95">View Source</a>
   </span>
   <a id="Here_EitherLeft_1_op_Inequality_" data-uid="Here.EitherLeft`1.op_Inequality*"></a>
-  <h4 id="Here_EitherLeft_1_op_Inequality_Here_EitherLeft__0___Here_EitherLeft__0___" data-uid="Here.EitherLeft`1.op_Inequality(Here.EitherLeft{`0}@,Here.EitherLeft{`0}@)">Inequality(EitherLeft&lt;TLeft&gt;, EitherLeft&lt;TLeft&gt;)</h4>
+  <h4 id="Here_EitherLeft_1_op_Inequality_Here_EitherLeft__0___Here_EitherLeft__0___" data-uid="Here.EitherLeft`1.op_Inequality(Here.EitherLeft{`0}@,Here.EitherLeft{`0}@)">Inequality(in EitherLeft&lt;TLeft&gt;, in EitherLeft&lt;TLeft&gt;)</h4>
   <div class="markdown level1 summary"><p>Indicates whether both <a class="xref" href="Here.EitherLeft-1.html">EitherLeft&lt;TLeft&gt;</a> are not equal.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -807,7 +807,7 @@ public struct EitherLeft&lt;TLeft&gt; : IEither, IEquatable&lt;TLeft&gt;, IEquat
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherLeft.cs/#L139">View Source</a>
   </span>
   <a id="Here_EitherLeft_1_op_LessThan_" data-uid="Here.EitherLeft`1.op_LessThan*"></a>
-  <h4 id="Here_EitherLeft_1_op_LessThan_Here_EitherLeft__0___Here_EitherLeft__0___" data-uid="Here.EitherLeft`1.op_LessThan(Here.EitherLeft{`0}@,Here.EitherLeft{`0}@)">LessThan(EitherLeft&lt;TLeft&gt;, EitherLeft&lt;TLeft&gt;)</h4>
+  <h4 id="Here_EitherLeft_1_op_LessThan_Here_EitherLeft__0___Here_EitherLeft__0___" data-uid="Here.EitherLeft`1.op_LessThan(Here.EitherLeft{`0}@,Here.EitherLeft{`0}@)">LessThan(in EitherLeft&lt;TLeft&gt;, in EitherLeft&lt;TLeft&gt;)</h4>
   <div class="markdown level1 summary"><p>Determines if this <a class="xref" href="Here.EitherLeft-1.html">EitherLeft&lt;TLeft&gt;</a> is &quot;less&quot; than the other one.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -863,7 +863,7 @@ public struct EitherLeft&lt;TLeft&gt; : IEither, IEquatable&lt;TLeft&gt;, IEquat
     <a href="https://github.com/KeRNeLith/Here/blob/master/src/Here/Either/EitherLeft.cs/#L150">View Source</a>
   </span>
   <a id="Here_EitherLeft_1_op_LessThanOrEqual_" data-uid="Here.EitherLeft`1.op_LessThanOrEqual*"></a>
-  <h4 id="Here_EitherLeft_1_op_LessThanOrEqual_Here_EitherLeft__0___Here_EitherLeft__0___" data-uid="Here.EitherLeft`1.op_LessThanOrEqual(Here.EitherLeft{`0}@,Here.EitherLeft{`0}@)">LessThanOrEqual(EitherLeft&lt;TLeft&gt;, EitherLeft&lt;TLeft&gt;)</h4>
+  <h4 id="Here_EitherLeft_1_op_LessThanOrEqual_Here_EitherLeft__0___Here_EitherLeft__0___" data-uid="Here.EitherLeft`1.op_LessThanOrEqual(Here.EitherLeft{`0}@,Here.EitherLeft{`0}@)">LessThanOrEqual(in EitherLeft&lt;TLeft&gt;, in EitherLeft&lt;TLeft&gt;)</h4>
   <div class="markdown level1 summary"><p>Determines if this <a class="xref" href="Here.EitherLeft-1.html">EitherLeft&lt;TLeft&gt;</a> is &quot;less&quot; than or equal to the other one.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -965,7 +965,8 @@ public struct EitherLeft&lt;TLeft&gt; : IEither, IEquatable&lt;TLeft&gt;, IEquat
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+                <h5>In This Article</h5>
+                <div></div>
               </nav>
             </div>
           </div>
