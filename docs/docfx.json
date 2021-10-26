@@ -64,6 +64,11 @@
       }
     ],
     "dest": "_site",
+    "globalMetadata": {
+      "_appFaviconPath": "images/favicon.ico",
+      "_appLogoPath": "images/logo.svg",
+      "_appFooter": "Here"
+    },
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
     "template": [ "default", "templates/material" ],
