@@ -83,7 +83,7 @@ namespace Here.Extensions
         /// </summary>
         /// <param name="either"><see cref="Either{TLeft,TRight}"/> to convert.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
-        /// <exception cref="InvalidOperationException">If the either is in <see cref="EitherStates.None"/> state.</exception>
+        /// <exception cref="T:System.InvalidOperationException">If the either is in <see cref="EitherStates.None"/> state.</exception>
         public static CustomResult<TLeft> ToCustomResult<TLeft, TRight>(in this Either<TLeft, TRight> either)
         {
             if (either.IsRight)
@@ -99,7 +99,7 @@ namespace Here.Extensions
         /// </summary>
         /// <param name="either"><see cref="Either{TLeft,TRight}"/> to convert.</param>
         /// <returns>A <see cref="Result{TRight, TLeft}"/>.</returns>
-        /// <exception cref="InvalidOperationException">If the either is in <see cref="EitherStates.None"/> state.</exception>
+        /// <exception cref="T:System.InvalidOperationException">If the either is in <see cref="EitherStates.None"/> state.</exception>
         public static Result<TRight, TLeft> ToValueCustomResult<TLeft, TRight>(in this Either<TLeft, TRight> either)
         {
             if (either.IsRight)

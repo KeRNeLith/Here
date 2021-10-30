@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 #if SUPPORTS_SYSTEM_CORE
 using System.Linq;
@@ -13,17 +13,17 @@ using JetBrains.Annotations;
 namespace Here.Extensions
 {
     /// <summary>
-    /// Extensions related to <see cref="Option{T}"/> for <see cref="IEnumerable{T}"/>.
+    /// Extensions related to <see cref="Option{T}"/> for <see cref="T:System.Collections.Generic.IEnumerable{T}"/>.
     /// </summary>
     public static class OptionEnumerableExtensions
     {
         /// <summary>
-        /// Gets an <see cref="Option{T}"/> of the first element of this <see cref="IEnumerable{T}"/>.
+        /// Gets an <see cref="Option{T}"/> of the first element of this <see cref="T:System.Collections.Generic.IEnumerable{T}"/>.
         /// </summary>
-        /// <typeparam name="T"><see cref="IEnumerable{T}"/> element type.</typeparam>
+        /// <typeparam name="T"><see cref="T:System.Collections.Generic.IEnumerable{T}"/> element type.</typeparam>
         /// <param name="enumerable">Enumerable..</param>
         /// <returns><see cref="Option{T}"/> wrapping the first element.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
         [PublicAPI, Pure]
         public static Option<T> FirstOrNone<T>([NotNull] this IEnumerable<T> enumerable)
         {
@@ -31,14 +31,14 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Gets an <see cref="Option{T}"/> of the first element of this <see cref="IEnumerable{T}"/> that matches the <paramref name="predicate"/>.
+        /// Gets an <see cref="Option{T}"/> of the first element of this <see cref="T:System.Collections.Generic.IEnumerable{T}"/> that matches the <paramref name="predicate"/>.
         /// </summary>
-        /// <typeparam name="T"><see cref="IEnumerable{T}"/> element type.</typeparam>
+        /// <typeparam name="T"><see cref="T:System.Collections.Generic.IEnumerable{T}"/> element type.</typeparam>
         /// <param name="enumerable">Enumerable.</param>
         /// <param name="predicate">Predicate to check on items.</param>
         /// <returns><see cref="Option{T}"/> wrapping the first matching element.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         [PublicAPI, Pure]
         public static Option<T> FirstOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull, InstantHandle] in Predicate<T> predicate)
         {
@@ -57,15 +57,15 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Gets an <see cref="Option{T}"/> of the single element of this <see cref="IEnumerable{T}"/>.
+        /// Gets an <see cref="Option{T}"/> of the single element of this <see cref="T:System.Collections.Generic.IEnumerable{T}"/>.
         /// </summary>
-        /// <typeparam name="T"><see cref="IEnumerable{T}"/> element type.</typeparam>
+        /// <typeparam name="T"><see cref="T:System.Collections.Generic.IEnumerable{T}"/> element type.</typeparam>
         /// <param name="enumerable">Enumerable.</param>
-        /// <param name="throwInvalidException">Indicates if the method should throw an <see cref="InvalidOperationException"/> 
+        /// <param name="throwInvalidException">Indicates if the method should throw an <see cref="T:System.InvalidOperationException"/> 
         /// if the enumerable has more than one value. Otherwise it will just return an empty <see cref="Option{T}"/>.</param>
         /// <returns><see cref="Option{T}"/> wrapping the single element.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
-        /// <exception cref="InvalidOperationException">If the <paramref name="enumerable"/> contains more than one element.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
+        /// <exception cref="T:System.InvalidOperationException">If the <paramref name="enumerable"/> contains more than one element.</exception>
         [PublicAPI, Pure]
         public static Option<T> SingleOrNone<T>([NotNull] this IEnumerable<T> enumerable, in bool throwInvalidException = true)
         {
@@ -88,17 +88,17 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Gets an <see cref="Option{T}"/> of the single element of this <see cref="IEnumerable{T}"/> that matches the <paramref name="predicate"/>.
+        /// Gets an <see cref="Option{T}"/> of the single element of this <see cref="T:System.Collections.Generic.IEnumerable{T}"/> that matches the <paramref name="predicate"/>.
         /// </summary>
-        /// <typeparam name="T"><see cref="IEnumerable{T}"/> element type.</typeparam>
+        /// <typeparam name="T"><see cref="T:System.Collections.Generic.IEnumerable{T}"/> element type.</typeparam>
         /// <param name="enumerable">Enumerable.</param>
         /// <param name="predicate">Predicate to check on items.</param>
-        /// <param name="throwInvalidException">Indicates if the method should throw an <see cref="InvalidOperationException"/> 
+        /// <param name="throwInvalidException">Indicates if the method should throw an <see cref="T:System.InvalidOperationException"/> 
         /// if the enumerable has more than one value that matches the predicate. Otherwise it will just return an empty <see cref="Option{T}"/>.</param>
         /// <returns><see cref="Option{T}"/> wrapping the matching single element.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
-        /// <exception cref="InvalidOperationException">If the <paramref name="enumerable"/> contains more than one element matching the <paramref name="predicate"/>.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
+        /// <exception cref="T:System.InvalidOperationException">If the <paramref name="enumerable"/> contains more than one element matching the <paramref name="predicate"/>.</exception>
         [PublicAPI, Pure]
         public static Option<T> SingleOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull, InstantHandle] in Predicate<T> predicate, in bool throwInvalidException = true)
         {
@@ -139,12 +139,12 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Gets an <see cref="Option{T}"/> of the last element of this <see cref="IEnumerable{T}"/>.
+        /// Gets an <see cref="Option{T}"/> of the last element of this <see cref="T:System.Collections.Generic.IEnumerable{T}"/>.
         /// </summary>
-        /// <typeparam name="T"><see cref="IEnumerable{T}"/> element type.</typeparam>
+        /// <typeparam name="T"><see cref="T:System.Collections.Generic.IEnumerable{T}"/> element type.</typeparam>
         /// <param name="enumerable">Enumerable.</param>
         /// <returns><see cref="Option{T}"/> wrapping the last element.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
         [PublicAPI, Pure]
         public static Option<T> LastOrNone<T>([NotNull] this IEnumerable<T> enumerable)
         {
@@ -152,14 +152,14 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Get an <see cref="Option{T}"/> of the last element of this <see cref="IEnumerable{T}"/> that matches the <paramref name="predicate"/>.
+        /// Get an <see cref="Option{T}"/> of the last element of this <see cref="T:System.Collections.Generic.IEnumerable{T}"/> that matches the <paramref name="predicate"/>.
         /// </summary>
-        /// <typeparam name="T"><see cref="IEnumerable{T}"/> element type.</typeparam>
+        /// <typeparam name="T"><see cref="T:System.Collections.Generic.IEnumerable{T}"/> element type.</typeparam>
         /// <param name="enumerable">Enumerable.</param>
         /// <param name="predicate">Predicate to check on items.</param>
         /// <returns><see cref="Option{T}"/> wrapping the matching last element.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         [PublicAPI, Pure]
         public static Option<T> LastOrNone<T>([NotNull] this IEnumerable<T> enumerable, [NotNull, InstantHandle] in Predicate<T> predicate)
         {
@@ -184,14 +184,14 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Gets the element at the given index in the given <see cref="IEnumerable{T}"/> and returns <see cref="Option{T}"/> that wrap it.
+        /// Gets the element at the given index in the given <see cref="T:System.Collections.Generic.IEnumerable{T}"/> and returns <see cref="Option{T}"/> that wrap it.
         /// Note that if the index is out of range it will return an empty <see cref="Option{T}"/>.
         /// </summary>
-        /// <typeparam name="T"><see cref="IEnumerable{T}"/> element type.</typeparam>
+        /// <typeparam name="T"><see cref="T:System.Collections.Generic.IEnumerable{T}"/> element type.</typeparam>
         /// <param name="enumerable">Enumerable.</param>
         /// <param name="index">Index of the element to get in the collection.</param>
         /// <returns><see cref="Option{T}"/> wrapping the element.</returns> 
-        /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
         [PublicAPI, Pure]
         public static Option<T> ElementAtOrNone<T>([NotNull] this IEnumerable<T> enumerable, int index)
         {
@@ -224,11 +224,11 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Converts this <see cref="Option{T}"/> to an <see cref="IEnumerable{T}"/> with one or no element.
+        /// Converts this <see cref="Option{T}"/> to an <see cref="T:System.Collections.Generic.IEnumerable{T}"/> with one or no element.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Option{T}"/>.</typeparam>
         /// <param name="option">This <see cref="Option{T}"/> to convert.</param>
-        /// <returns>An <see cref="IEnumerable{T}"/> generated from this <see cref="Option{T}"/>.</returns>
+        /// <returns>An <see cref="T:System.Collections.Generic.IEnumerable{T}"/> generated from this <see cref="Option{T}"/>.</returns>
         [PublicAPI, Pure, NotNull]
         public static IEnumerable<T> ToEnumerable<T>(this Option<T> option)
         {
@@ -237,11 +237,11 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Converts this <see cref="Option{T}"/> to an <see cref="IEnumerator{T}"/> with one or no element.
+        /// Converts this <see cref="Option{T}"/> to an <see cref="T:System.Collections.Generic.IEnumerator{T}"/> with one or no element.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Option{T}"/>.</typeparam>
         /// <param name="option">This <see cref="Option{T}"/> to convert.</param>
-        /// <returns>An <see cref="IEnumerator{T}"/> generated from this <see cref="Option{T}"/>.</returns>
+        /// <returns>An <see cref="T:System.Collections.Generic.IEnumerator{T}"/> generated from this <see cref="Option{T}"/>.</returns>
         [PublicAPI, Pure, NotNull]
         public static IEnumerator<T> ToEnumerator<T>(this Option<T> option)
         {
@@ -249,12 +249,12 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Extracts values from this <see cref="IEnumerable{Option}"/> to convert it to an <see cref="IEnumerable{T}"/>.
+        /// Extracts values from this <see cref="T:System.Collections.Generic.IEnumerable{Option}"/> to convert it to an <see cref="T:System.Collections.Generic.IEnumerable{T}"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in <see cref="Option{T}"/>.</typeparam>
         /// <param name="enumerable">Enumerable of <see cref="Option{T}"/>.</param>
-        /// <returns>An <see cref="IEnumerable{T}"/> generated from this enumerable of <see cref="Option{T}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
+        /// <returns>An <see cref="T:System.Collections.Generic.IEnumerable{T}"/> generated from this enumerable of <see cref="Option{T}"/>.</returns>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
         [PublicAPI, Pure, NotNull]
         public static IEnumerable<T> ExtractValues<T>([NotNull] this IEnumerable<Option<T>> enumerable)
         {
@@ -278,12 +278,12 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Extracts values from this <see cref="IEnumerable{Option}"/> to convert it to an array.
+        /// Extracts values from this <see cref="T:System.Collections.Generic.IEnumerable{Option}"/> to convert it to an array.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in <see cref="Option{T}"/>.</typeparam>
         /// <param name="enumerable">Enumerable of <see cref="Option{T}"/>.</param>
         /// <returns>An array generated from this enumerable of <see cref="Option{T}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
         [PublicAPI, Pure, NotNull]
         public static T[] ToArray<T>([NotNull] this IEnumerable<Option<T>> enumerable)
         {
@@ -294,12 +294,12 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Extracts values from this <see cref="IEnumerable{Option}"/> to convert it to a <see cref="List{T}"/>.
+        /// Extracts values from this <see cref="T:System.Collections.Generic.IEnumerable{Option}"/> to convert it to a <see cref="T:System.Collections.Generic.List{T}"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in <see cref="Option{T}"/>.</typeparam>
         /// <param name="enumerable">Enumerable of <see cref="Option{T}"/>.</param>
-        /// <returns>A <see cref="List{T}"/> generated from this enumerable of <see cref="Option{T}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
+        /// <returns>A <see cref="T:System.Collections.Generic.List{T}"/> generated from this enumerable of <see cref="Option{T}"/>.</returns>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
         [PublicAPI, Pure, NotNull]
         public static List<T> ToList<T>([NotNull] this IEnumerable<Option<T>> enumerable)
         {
@@ -310,15 +310,15 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Extracts values from this <see cref="IEnumerable{Option}"/> to convert it to a <see cref="Dictionary{TKey, TValue}"/>.
+        /// Extracts values from this <see cref="T:System.Collections.Generic.IEnumerable{Option}"/> to convert it to a <see cref="T:System.Collections.Generic.Dictionary`2{TKey,TValue}"/>.
         /// </summary>
         /// <typeparam name="TKey">Type of the output dictionary key.</typeparam>
         /// <typeparam name="TValue">Type of the value embedded in <see cref="Option{T}"/>.</typeparam>
         /// <param name="enumerable">Enumerable of <see cref="Option{T}"/>.</param>
         /// <param name="keySelector">Method called to create dictionary keys.</param>
-        /// <returns>A <see cref="Dictionary{TKey, TValue}"/> generated from this enumerable of <see cref="Option{T}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="keySelector"/> is null.</exception>
+        /// <returns>A <see cref="T:System.Collections.Generic.Dictionary`2{TKey,TValue}"/> generated from this enumerable of <see cref="Option{T}"/>.</returns>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="enumerable"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="keySelector"/> is null.</exception>
         [PublicAPI, Pure, NotNull]
         public static Dictionary<TKey, TValue> ToDictionary<TValue, TKey>([NotNull] this IEnumerable<Option<TValue>> enumerable, [NotNull, InstantHandle] in Func<TValue, TKey> keySelector)
         {

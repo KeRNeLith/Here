@@ -39,11 +39,11 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Converts this <see cref="Option{T}"/> to a <see cref="Nullable{T}"/>.
+        /// Converts this <see cref="Option{T}"/> to a <see cref="T:System.Nullable{T}"/>.
         /// </summary>
         /// <typeparam name="T">Type of the value embedded in this <see cref="Option{T}"/>.</typeparam>
         /// <param name="option"><see cref="Option{T}"/> to convert.</param>
-        /// <returns>An <see cref="Nullable{T}"/>.</returns>
+        /// <returns>An <see cref="T:System.Nullable{T}"/>.</returns>
         [PublicAPI, Pure]
         public static T? ToNullable<T>(in this Option<T> option)
             where T : struct
@@ -65,7 +65,7 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Converts this string to an <see cref="Option{T}"/> after applying <see cref="string.IsNullOrEmpty(string)"/>.
+        /// Converts this string to an <see cref="Option{T}"/> after applying <see cref="M:string.IsNullOrEmpty(string)"/>.
         /// </summary>
         /// <param name="str">String to convert.</param>
         /// <returns>An <see cref="Option{T}"/>.</returns>
@@ -78,7 +78,7 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Converts this <see cref="Option{T}"/> to another <see cref="Option{T}"/> after applying <see cref="string.IsNullOrEmpty(string)"/>.
+        /// Converts this <see cref="Option{T}"/> to another <see cref="Option{T}"/> after applying <see cref="M:string.IsNullOrEmpty(string)"/>.
         /// </summary>
         /// <param name="option"><see cref="Option{T}"/> on which applying the treatment.</param>
         /// <returns>An <see cref="Option{T}"/>.</returns>
@@ -92,7 +92,7 @@ namespace Here.Extensions
 
 #if SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE
         /// <summary>
-        /// Converts this string to an <see cref="Option{T}"/> after applying <see cref="string.IsNullOrWhiteSpace(string)"/>.
+        /// Converts this string to an <see cref="Option{T}"/> after applying <see cref="M:string.IsNullOrWhiteSpace(string)"/>.
         /// </summary>
         /// <param name="str">String to convert.</param>
         /// <returns>An <see cref="Option{T}"/>.</returns>
@@ -117,7 +117,7 @@ namespace Here.Extensions
 
 #if SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE
         /// <summary>
-        /// Converts this <see cref="Option{T}"/> to another <see cref="Option{T}"/> after applying <see cref="string.IsNullOrWhiteSpace(string)"/>.
+        /// Converts this <see cref="Option{T}"/> to another <see cref="Option{T}"/> after applying <see cref="M:string.IsNullOrWhiteSpace(string)"/>.
         /// </summary>
         /// <param name="option"><see cref="Option{T}"/> on which applying the treatment.</param>
         /// <returns>An <see cref="Option{T}"/>.</returns>

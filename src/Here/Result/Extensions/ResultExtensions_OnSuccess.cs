@@ -48,7 +48,7 @@ namespace Here.Extensions
         /// <param name="onSuccess">Action to run if the <see cref="Result"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>This <see cref="Result"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
         public static Result OnSuccess(in this Result result, [NotNull, InstantHandle] in Action onSuccess, in bool treatWarningAsError = false)
         {
@@ -68,7 +68,7 @@ namespace Here.Extensions
         /// <param name="onSuccess">Action to run if the <see cref="Result"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>This <see cref="Result"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
         public static Result OnSuccess(in this Result result, [NotNull, InstantHandle] in Action<Result> onSuccess, in bool treatWarningAsError = false)
         {
@@ -88,7 +88,7 @@ namespace Here.Extensions
         /// <param name="onSuccess">Function to run if the <see cref="Result"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
         public static Result OnSuccess(in this Result result, [NotNull, InstantHandle] in Func<Result, Result> onSuccess, in bool treatWarningAsError = false)
         {
@@ -111,7 +111,7 @@ namespace Here.Extensions
         /// <param name="onSuccess">Function to run if the <see cref="Result"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
         public static Result<T> OnSuccess<T>(in this Result result, [NotNull, InstantHandle] in Func<Result, T> onSuccess, in bool treatWarningAsError = false)
         {
@@ -132,7 +132,7 @@ namespace Here.Extensions
         /// <param name="onSuccess">Function to run if the <see cref="Result"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
         public static Result<T> OnSuccess<T>(in this Result result, [NotNull, InstantHandle] in Func<Result, Result<T>> onSuccess, in bool treatWarningAsError = false)
         {
@@ -156,8 +156,8 @@ namespace Here.Extensions
         /// <param name="errorObject">Custom error object to use if this <see cref="Result.IsFailure"/>.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="CustomResult{TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI]
         public static CustomResult<TError> OnSuccess<TError>(
             in this Result result,
@@ -187,8 +187,8 @@ namespace Here.Extensions
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="CustomResult{TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI]
         public static CustomResult<TError> OnSuccess<TError>(
             in this Result result,
@@ -219,8 +219,8 @@ namespace Here.Extensions
         /// <param name="errorObject">Custom error object to use if this <see cref="Result.IsFailure"/>.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T, TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI]
         public static Result<T, TError> OnSuccess<T, TError>(
             in this Result result,
@@ -251,8 +251,8 @@ namespace Here.Extensions
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T, TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI]
         public static Result<T, TError> OnSuccess<T, TError>(
             in this Result result, 
@@ -280,7 +280,7 @@ namespace Here.Extensions
         /// <param name="defaultValue">Value to return if the result is not a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>An output value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
         public static TOut OnSuccess<TOut>(
             in this Result result,
@@ -306,8 +306,8 @@ namespace Here.Extensions
         /// <param name="valueFactory">Function called to create a value to return if the result is not a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>An output value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI]
         public static TOut OnSuccess<TOut>(
             in this Result result,
@@ -337,7 +337,7 @@ namespace Here.Extensions
         /// <param name="onSuccess">Action to run if the <see cref="Result{T}"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>This <see cref="Result{T}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
         public static Result<T> OnSuccess<T>(
             in this Result<T> result,
@@ -362,7 +362,7 @@ namespace Here.Extensions
         /// <param name="converter">Function to run if the <see cref="Result{TIn}"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{TOut}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
         [PublicAPI]
         public static Result<TOut> OnSuccess<TIn, TOut>(
             in this Result<TIn> result,
@@ -386,7 +386,7 @@ namespace Here.Extensions
         /// <param name="onSuccess">Function to run if the <see cref="Result{T}"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
         public static Result OnSuccess<T>(
             in this Result<T> result,
@@ -414,7 +414,7 @@ namespace Here.Extensions
         /// <param name="onSuccess">Function to run if the <see cref="Result{TIn}"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{TOut}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
         public static Result<TOut> OnSuccess<TIn, TOut>(
             in this Result<TIn> result,
@@ -442,8 +442,8 @@ namespace Here.Extensions
         /// <param name="errorObject">Custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="CustomResult{TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI]
         public static CustomResult<TError> OnSuccess<T, TError>(
             in this Result<T> result,
@@ -474,8 +474,8 @@ namespace Here.Extensions
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="CustomResult{TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI]
         public static CustomResult<TError> OnSuccess<T, TError>(
             in this Result<T> result,
@@ -507,8 +507,8 @@ namespace Here.Extensions
         /// <param name="errorObject">Custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{TOut, TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI]
         public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(
             in this Result<TIn> result,
@@ -540,8 +540,8 @@ namespace Here.Extensions
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{TOut, TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI]
         public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(
             in this Result<TIn> result,
@@ -570,7 +570,7 @@ namespace Here.Extensions
         /// <param name="defaultValue">Value to return if the result is not a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>An output value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
         public static TOut OnSuccess<TIn, TOut>(
             in this Result<TIn> result,
@@ -597,8 +597,8 @@ namespace Here.Extensions
         /// <param name="valueFactory">Function called to create a value to return if the result is not a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>An output value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI]
         public static TOut OnSuccess<TIn, TOut>(
             in this Result<TIn> result,
@@ -628,7 +628,7 @@ namespace Here.Extensions
         /// <param name="onSuccess">Action to run if the <see cref="CustomResult{TError}"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>This <see cref="CustomResult{TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
         public static CustomResult<TError> OnSuccess<TError>(
             in this CustomResult<TError> result,
@@ -652,7 +652,7 @@ namespace Here.Extensions
         /// <param name="onSuccess">Action to run if the <see cref="CustomResult{TError}"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>This <see cref="CustomResult{TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
         public static CustomResult<TError> OnSuccess<TError>(
             in this CustomResult<TError> result,
@@ -678,8 +678,8 @@ namespace Here.Extensions
         /// <param name="errorObject">Custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI]
         public static Result<T, TError> OnSuccess<T, TError>(
             in this CustomResult<TError> result,
@@ -713,8 +713,8 @@ namespace Here.Extensions
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI]
         public static Result<T, TError> OnSuccess<T, TError>(
             in this CustomResult<TError> result,
@@ -746,7 +746,7 @@ namespace Here.Extensions
         /// <param name="onSuccess">Function to run if the <see cref="CustomResult{TError}"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
         public static Result OnSuccess<TError>(
             in this CustomResult<TError> result,
@@ -774,7 +774,7 @@ namespace Here.Extensions
         /// <param name="onSuccess">Function to run if the <see cref="CustomResult{TError}"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
         public static Result<T> OnSuccess<T, TError>(
             in this CustomResult<TError> result,
@@ -799,8 +799,8 @@ namespace Here.Extensions
         /// <param name="errorObject">Custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="CustomResult{TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI]
         public static CustomResult<TError> OnSuccess<TError>(
             in this CustomResult<TError> result,
@@ -831,8 +831,8 @@ namespace Here.Extensions
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="CustomResult{TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI]
         public static CustomResult<TError> OnSuccess<TError>(
             in this CustomResult<TError> result,
@@ -864,8 +864,8 @@ namespace Here.Extensions
         /// <param name="errorObject">Custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T, TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI]
         public static Result<T, TError> OnSuccess<T, TError>(
             in this CustomResult<TError> result,
@@ -899,8 +899,8 @@ namespace Here.Extensions
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{T, TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI]
         public static Result<T, TError> OnSuccess<T, TError>(
             in this CustomResult<TError> result,
@@ -934,7 +934,7 @@ namespace Here.Extensions
         /// <param name="defaultValue">Value to return if the result is not a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>An output value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
         public static TOut OnSuccess<TOut, TError>(
             in this CustomResult<TError> result,
@@ -961,8 +961,8 @@ namespace Here.Extensions
         /// <param name="valueFactory">Function called to create a value to return if the result is not a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>An output value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI]
         public static TOut OnSuccess<TOut, TError>(
             in this CustomResult<TError> result,
@@ -993,7 +993,7 @@ namespace Here.Extensions
         /// <param name="onSuccess">Action to run if the <see cref="Result{T, TError}"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>This <see cref="Result{T, TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
         public static Result<T, TError> OnSuccess<T, TError>(
             in this Result<T, TError> result,
@@ -1020,8 +1020,8 @@ namespace Here.Extensions
         /// <param name="errorObject">Custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{TOut, TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI]
         public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(
             in this Result<TIn, TError> result,
@@ -1055,8 +1055,8 @@ namespace Here.Extensions
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{TOut, TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI]
         public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(
             in this Result<TIn, TError> result,
@@ -1088,7 +1088,7 @@ namespace Here.Extensions
         /// <param name="onSuccess">Function to run if the <see cref="Result{T, TError}"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
         public static Result OnSuccess<T, TError>(
             in this Result<T, TError> result,
@@ -1117,7 +1117,7 @@ namespace Here.Extensions
         /// <param name="onSuccess">Function to run if the <see cref="Result{TIn, TError}"/> is a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{TOut}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
         public static Result<TOut> OnSuccess<TIn, TOut, TError>(
             in this Result<TIn, TError> result,
@@ -1143,8 +1143,8 @@ namespace Here.Extensions
         /// <param name="errorObject">Custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="CustomResult{TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI]
         public static CustomResult<TError> OnSuccess<T, TError>(
             in this Result<T, TError> result,
@@ -1176,8 +1176,8 @@ namespace Here.Extensions
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="CustomResult{TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI]
         public static CustomResult<TError> OnSuccess<T, TError>(
             in this Result<T, TError> result,
@@ -1210,8 +1210,8 @@ namespace Here.Extensions
         /// <param name="errorObject">Custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{TOut, TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI]
         public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(
             in this Result<TIn, TError> result,
@@ -1246,8 +1246,8 @@ namespace Here.Extensions
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>A <see cref="Result{TOut, TError}"/> resulting of <paramref name="onSuccess"/>, otherwise a failure.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI]
         public static Result<TOut, TError> OnSuccess<TIn, TOut, TError>(
             in this Result<TIn, TError> result,
@@ -1282,7 +1282,7 @@ namespace Here.Extensions
         /// <param name="defaultValue">Value to return if the result is not a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>An output value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
         public static TOut OnSuccess<TIn, TOut, TError>(
             in this Result<TIn, TError> result,
@@ -1310,8 +1310,8 @@ namespace Here.Extensions
         /// <param name="valueFactory">Function called to create a value to return if the result is not a success.</param>
         /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
         /// <returns>An output value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI]
         public static TOut OnSuccess<TIn, TOut, TError>(
             in this Result<TIn, TError> result,

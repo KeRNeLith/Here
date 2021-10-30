@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Globalization;
 #if !SUPPORTS_SYSTEM_TYPE_IS_ENUM
 using System.Reflection;
@@ -19,7 +19,7 @@ namespace Here.Extensions
     public static class OptionTryGetExtensions
     {
         /// <summary>
-        /// Try Get delegate that allow to get value from an object.
+        /// Tries Get delegate that allow to get value from an object.
         /// </summary>
         /// <typeparam name="TInput">Type of the input in which getting the value.</typeparam>
         /// <typeparam name="TValue">Type of the value to try get.</typeparam>
@@ -29,7 +29,7 @@ namespace Here.Extensions
         public delegate bool TryGet<in TInput, TValue>([CanBeNull] TInput input, out TValue value);
 
         /// <summary>
-        /// Try parse delegate that allow to parse a string to get a value.
+        /// Tries parse delegate that allow to parse a string to get a value.
         /// </summary>
         /// <typeparam name="TValue">Type of the value to try parse.</typeparam>
         /// <param name="input">Input string to parse.</param>
@@ -103,7 +103,7 @@ namespace Here.Extensions
         #region Common TryParse
 
         /// <summary>
-        /// Try to parse a <see cref="Boolean"/> from the given string.
+        /// Tries to parse a <see cref="T:System.Boolean"/> from the given string.
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
@@ -114,7 +114,7 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Try to parse a <see cref="Char"/> from the given string.
+        /// Tries to parse a <see cref="T:System.Char"/> from the given string.
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
@@ -125,7 +125,7 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Try to parse a <see cref="Byte"/> from the given string.
+        /// Tries to parse a <see cref="T:System.Byte"/> from the given string.
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
@@ -136,7 +136,7 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Try to parse a <see cref="Byte"/> from the given string.
+        /// Tries to parse a <see cref="T:System.Byte"/> from the given string.
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <param name="style">Style number to use.</param>
@@ -149,7 +149,7 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Try to parse an <see cref="SByte"/> from the given string.
+        /// Tries to parse an <see cref="T:System.SByte"/> from the given string.
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
@@ -160,7 +160,7 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Try to parse an <see cref="SByte"/> from the given string.
+        /// Tries to parse an <see cref="T:System.SByte"/> from the given string.
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <param name="style">Style number to use.</param>
@@ -173,7 +173,7 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Try to parse a <see cref="Int16"/> from the given string.
+        /// Tries to parse a <see cref="T:System.Int16"/> from the given string.
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
@@ -184,7 +184,7 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Try to parse a <see cref="Int16"/> from the given string.
+        /// Tries to parse a <see cref="T:System.Int16"/> from the given string.
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <param name="style">Style number to use.</param>
@@ -197,7 +197,7 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Try to parse an <see cref="UInt16"/> from the given string.
+        /// Tries to parse an <see cref="T:System.UInt16"/> from the given string.
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
@@ -208,7 +208,7 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Try to parse an <see cref="UInt16"/> from the given string.
+        /// Tries to parse an <see cref="T:System.UInt16"/> from the given string.
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <param name="style">Style number to use.</param>
@@ -221,7 +221,7 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Try to parse an <see cref="Int32"/> from the given string.
+        /// Tries to parse an <see cref="T:System.Int32"/> from the given string.
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
@@ -232,7 +232,7 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Try to parse an <see cref="Int32"/> from the given string.
+        /// Tries to parse an <see cref="T:System.Int32"/> from the given string.
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <param name="style">Style number to use.</param>
@@ -245,7 +245,7 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Try to parse an <see cref="UInt32"/> from the given string.
+        /// Tries to parse an <see cref="T:System.UInt32"/> from the given string.
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
@@ -256,7 +256,7 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Try to parse an <see cref="UInt32"/> from the given string.
+        /// Tries to parse an <see cref="T:System.UInt32"/> from the given string.
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <param name="style">Style number to use.</param>
@@ -269,7 +269,7 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Try to parse a <see cref="Int64"/> from the given string.
+        /// Tries to parse a <see cref="T:System.Int64"/> from the given string.
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
@@ -280,7 +280,7 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Try to parse a <see cref="Int64"/> from the given string.
+        /// Tries to parse a <see cref="T:System.Int64"/> from the given string.
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <param name="style">Style number to use.</param>
@@ -293,7 +293,7 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Try to parse an <see cref="UInt64"/> from the given string.
+        /// Tries to parse an <see cref="T:System.UInt64"/> from the given string.
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
@@ -304,7 +304,7 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Try to parse an <see cref="UInt64"/> from the given string.
+        /// Tries to parse an <see cref="T:System.UInt64"/> from the given string.
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <param name="style">Style number to use.</param>
@@ -317,7 +317,7 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Try to parse a <see cref="Decimal"/> from the given string.
+        /// Tries to parse a <see cref="T:System.Decimal"/> from the given string.
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
@@ -328,7 +328,7 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Try to parse a <see cref="Decimal"/> from the given string.
+        /// Tries to parse a <see cref="T:System.Decimal"/> from the given string.
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <param name="style">Style number to use.</param>
@@ -341,7 +341,7 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Try to parse a <see cref="Single"/> from the given string.
+        /// Tries to parse a <see cref="T:System.Single"/> from the given string.
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
@@ -352,7 +352,7 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Try to parse a <see cref="Single"/> from the given string.
+        /// Tries to parse a <see cref="T:System.Single"/> from the given string.
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <param name="style">Style number to use.</param>
@@ -365,7 +365,7 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Try to parse a <see cref="Double"/> from the given string.
+        /// Tries to parse a <see cref="T:System.Double"/> from the given string.
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
@@ -376,7 +376,7 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Try to parse a <see cref="Double"/> from the given string.
+        /// Tries to parse a <see cref="T:System.Double"/> from the given string.
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <param name="style">Style number to use.</param>
@@ -390,7 +390,7 @@ namespace Here.Extensions
 
 #if SUPPORTS_PARSE_GUID
         /// <summary>
-        /// Try to parse a <see cref="Guid"/> from the given string.
+        /// Tries to parse a <see cref="T:System.Guid"/> from the given string.
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
@@ -402,7 +402,7 @@ namespace Here.Extensions
 #endif
 
         /// <summary>
-        /// Try to parse a <see cref="DateTime"/> from the given string.
+        /// Tries to parse a <see cref="T:System.DateTime"/> from the given string.
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
@@ -413,7 +413,7 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Try to parse a <see cref="DateTimeOffset"/> from the given string.
+        /// Tries to parse a <see cref="T:System.DateTimeOffset"/> from the given string.
         /// </summary>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
@@ -424,12 +424,12 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Try to parse an enumeration value from the given string to its <see cref="Enum"/> equivalent.
+        /// Tries to parse an enumeration value from the given string to its <see cref="T:System.Enum"/> equivalent.
         /// </summary>
         /// <typeparam name="TEnum">Enumeration type.</typeparam>
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Option{TEnum}"/> that wrap the result of the parse.</returns>
-        /// <exception cref="ArgumentException">If the <typeparamref name="TEnum"/> is not an enumeration type.</exception>
+        /// <exception cref="T:System.ArgumentException">If the <typeparamref name="TEnum"/> is not an enumeration type.</exception>
         [PublicAPI, Pure]
 #if SUPPORTS_TRY_PARSE_ENUM && SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -448,13 +448,13 @@ namespace Here.Extensions
         }
 
         /// <summary>
-        /// Try to parse an enumeration value from the given string to its <see cref="Enum"/> equivalent.
+        /// Tries to parse an enumeration value from the given string to its <see cref="T:System.Enum"/> equivalent.
         /// </summary>
         /// <param name="str">String to parse.</param>
-        /// <param name="enumType">Type of the <see cref="Enum"/> to parse.</param>
+        /// <param name="enumType">Type of the <see cref="T:System.Enum"/> to parse.</param>
         /// <returns><see cref="Option{Object}"/> that wrap the result of the parse.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="enumType"/> is null.</exception>
-        /// <exception cref="ArgumentException">If the <paramref name="enumType"/> is not an enumeration type.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="enumType"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentException">If the <paramref name="enumType"/> is not an enumeration type.</exception>
         [PublicAPI, Pure]
         public static Option<object> TryParseEnum([CanBeNull] this string str, [NotNull] Type enumType)
         {

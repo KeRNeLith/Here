@@ -49,7 +49,7 @@ namespace Here.Extensions
         /// <param name="errorFactory">Function that create the custom error object to use to construct the result in case this <see cref="Option{T}"/> has no value.</param>
         /// <param name="failureMessage">Failure message in case the <see cref="Option{T}"/> has no value.</param>
         /// <returns>The corresponding <see cref="CustomResult{TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public static CustomResult<TError> ToCustomResult<T, TError>(in this Option<T> option, 
             [NotNull, InstantHandle] in Func<TError> errorFactory, 
@@ -72,7 +72,7 @@ namespace Here.Extensions
         /// <param name="errorObject">Custom error object to use to construct the result in case this <see cref="Option{T}"/> has no value.</param>
         /// <param name="failureMessage">Failure message in case the <see cref="Option{T}"/> has no value.</param>
         /// <returns>The corresponding <see cref="CustomResult{TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI, Pure]
         public static CustomResult<TError> ToCustomResult<T, TError>(in this Option<T> option, 
             [NotNull] in TError errorObject, 
@@ -95,7 +95,7 @@ namespace Here.Extensions
         /// <param name="errorFactory">Function that create the custom error object to use to construct the result in case this <see cref="Option{T}"/> has no value.</param>
         /// <param name="failureMessage">Failure message in case the <see cref="Option{T}"/> has no value.</param>
         /// <returns>The corresponding <see cref="Result{T, TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public static Result<T, TError> ToValueCustomResult<T, TError>(in this Option<T> option, 
             [NotNull, InstantHandle] in Func<TError> errorFactory, 
@@ -118,7 +118,7 @@ namespace Here.Extensions
         /// <param name="errorObject">Custom error object to use to construct the result in case this <see cref="Option{T}"/> has no value.</param>
         /// <param name="failureMessage">Failure message in case the <see cref="Option{T}"/> has no value.</param>
         /// <returns>The corresponding <see cref="Result{T, TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI, Pure]
         public static Result<T, TError> ToValueCustomResult<T, TError>(in this Option<T> option, 
             [NotNull] in TError errorObject, 

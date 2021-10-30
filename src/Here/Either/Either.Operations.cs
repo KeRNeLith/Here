@@ -21,9 +21,9 @@ namespace Here
         /// <param name="onLeft">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
         /// <param name="none">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/>.</param>
         /// <returns>The result of the applied treatment.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
-        /// <exception cref="InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state without providing a <paramref name="none"/> action.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
+        /// <exception cref="T:System.InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state without providing a <paramref name="none"/> action.</exception>
         [PublicAPI, CanBeNull, Pure]
         public TOut MatchNullable<TOut>(
             [NotNull, InstantHandle] in Func<TRight, TOut> onRight,
@@ -56,9 +56,9 @@ namespace Here
         /// <param name="onLeft">Action to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
         /// <param name="none">Action to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/>.</param>
         /// <returns>A <see cref="Unit"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
-        /// <exception cref="InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state without providing a <paramref name="none"/> action.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
+        /// <exception cref="T:System.InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state without providing a <paramref name="none"/> action.</exception>
         [PublicAPI]
         public Unit Match(
             [NotNull, InstantHandle] in Action<TRight> onRight,
@@ -97,9 +97,9 @@ namespace Here
         /// <param name="onLeft">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
         /// <param name="none">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/>.</param>
         /// <returns>The result of the applied treatment.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
-        /// <exception cref="InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state without providing a <paramref name="none"/> action.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
+        /// <exception cref="T:System.InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state without providing a <paramref name="none"/> action.</exception>
         /// <exception cref="NullResultException">If the result of the match is null.</exception>
         [PublicAPI, NotNull, Pure]
         public TOut Match<TOut>(
@@ -121,7 +121,7 @@ namespace Here
         /// <typeparam name="TLeftOut">Type of the value embedded as left value in the output <see cref="Either{TLeftOut, TRight}"/>.</typeparam>
         /// <param name="onLeft">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
         /// <returns>An <see cref="Either{TLeftOut,TRight}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
         /// <exception cref="NullResultException">If the result of the <paramref name="onLeft"/> is null.</exception>
         [PublicAPI, Pure]
         public Either<TLeftOut, TRight> Map<TLeftOut>(
@@ -142,7 +142,7 @@ namespace Here
         /// <typeparam name="TRightOut">Type of the value embedded as right value in the output <see cref="Either{TLeft, TRightOut}"/>.</typeparam>
         /// <param name="onRight">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
         /// <returns>An <see cref="Either{TLeft,TRightOut}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
         /// <exception cref="NullResultException">If the result of the <paramref name="onRight"/> is null.</exception>
         [PublicAPI, Pure]
         public Either<TLeft, TRightOut> Map<TRightOut>(
@@ -165,8 +165,8 @@ namespace Here
         /// <param name="onRight">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
         /// <param name="onLeft">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
         /// <returns>An <see cref="Either{TLeft,TRightOut}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
         /// <exception cref="NullResultException">If the result of the <paramref name="onRight"/> or <paramref name="onLeft"/> is null.</exception>
         [PublicAPI, Pure]
         public Either<TLeft, TRightOut> BiMap<TRightOut>(
@@ -193,8 +193,8 @@ namespace Here
         /// <param name="onRight">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
         /// <param name="onLeft">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
         /// <returns>An <see cref="Either{TLeftOut,TRightOut}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
         /// <exception cref="NullResultException">If the result of the <paramref name="onRight"/> or <paramref name="onLeft"/> is null.</exception>
         [PublicAPI, Pure]
         public Either<TLeftOut, TRightOut> BiMap<TLeftOut, TRightOut>(
@@ -222,7 +222,7 @@ namespace Here
         /// <typeparam name="TLeftOut">Type of the value embedded as left value in the output <see cref="Either{TLeftOut, TRight}"/>.</typeparam>
         /// <param name="onLeft">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
         /// <returns>An <see cref="Either{TLeftOut,TRight}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
         [PublicAPI, Pure]
         public Either<TLeftOut, TRight> Bind<TLeftOut>(
             [NotNull, InstantHandle] Func<TLeft, Either<TLeftOut, TRight>> onLeft)
@@ -242,7 +242,7 @@ namespace Here
         /// <typeparam name="TRightOut">Type of the value embedded as right value in the output <see cref="Either{TLeft, TRightOut}"/>.</typeparam>
         /// <param name="onRight">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
         /// <returns>An <see cref="Either{TLeft,TRightOut}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
         [PublicAPI, Pure]
         public Either<TLeft, TRightOut> Bind<TRightOut>(
             [NotNull, InstantHandle] Func<TRight, Either<TLeft, TRightOut>> onRight)
@@ -264,8 +264,8 @@ namespace Here
         /// <param name="onRight">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
         /// <param name="onLeft">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
         /// <returns>An <see cref="Either{TLeft,TRightOut}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
         [PublicAPI, Pure]
         public Either<TLeft, TRightOut> BiBind<TRightOut>(
             [NotNull, InstantHandle] Func<TRight, Either<TLeft, TRightOut>> onRight,
@@ -294,8 +294,8 @@ namespace Here
         /// <param name="state">The initial value to combine with the left value.</param>
         /// <param name="onLeft">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
         /// <returns>Combined state value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="state"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="state"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
         /// <exception cref="NullResultException">If the result of the <paramref name="onLeft"/> is null.</exception>
         [PublicAPI, Pure]
         public TState Fold<TState>(
@@ -323,8 +323,8 @@ namespace Here
         /// <param name="state">The initial value to combine with the left value.</param>
         /// <param name="onRight">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
         /// <returns>Combined state value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="state"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="state"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
         /// <exception cref="NullResultException">If the result of the <paramref name="onRight"/> is null.</exception>
         [PublicAPI, Pure]
         public TState Fold<TState>(
@@ -354,9 +354,9 @@ namespace Here
         /// <param name="onRight">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
         /// <param name="onLeft">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
         /// <returns>Combined state value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="state"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="state"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
         /// <exception cref="NullResultException">If the result of the <paramref name="onRight"/> or <paramref name="onLeft"/> is null.</exception>
         [PublicAPI, Pure]
         public TState BiFold<TState>(
@@ -388,7 +388,7 @@ namespace Here
         /// </summary>
         /// <param name="onLeft">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
         /// <returns>The result of the applied treatment.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
         [PublicAPI]
         public Unit IfLeft([NotNull, InstantHandle] in Action<TLeft> onLeft)
         {
@@ -402,8 +402,8 @@ namespace Here
         /// </summary>
         /// <param name="defaultValue">Default right value to use if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
         /// <returns>A right value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="defaultValue"/> is null.</exception>
-        /// <exception cref="InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="defaultValue"/> is null.</exception>
+        /// <exception cref="T:System.InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state.</exception>
         [PublicAPI, NotNull]
         public TRight IfLeft([NotNull] TRight defaultValue)
         {
@@ -420,9 +420,9 @@ namespace Here
         /// </summary>
         /// <param name="onLeft">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
         /// <returns>A right value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
         /// <exception cref="NullResultException">If the result of the <paramref name="onLeft"/> function is null.</exception>
-        /// <exception cref="InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state.</exception>
+        /// <exception cref="T:System.InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state.</exception>
         [PublicAPI, NotNull]
         public TRight IfLeft([NotNull, InstantHandle] Func<TRight> onLeft)
         {
@@ -439,9 +439,9 @@ namespace Here
         /// </summary>
         /// <param name="onLeft">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
         /// <returns>A right value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
         /// <exception cref="NullResultException">If the result of the <paramref name="onLeft"/> function is null.</exception>
-        /// <exception cref="InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state.</exception>
+        /// <exception cref="T:System.InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state.</exception>
         [PublicAPI, NotNull]
         public TRight IfLeft([NotNull, InstantHandle] Func<TLeft, TRight> onLeft)
         {
@@ -460,10 +460,10 @@ namespace Here
         /// <param name="onLeft">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
         /// <param name="defaultValue">Default value to use if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
         /// <returns>An output value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="defaultValue"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="defaultValue"/> is null.</exception>
         /// <exception cref="NullResultException">If the result of the <paramref name="onLeft"/> function is null.</exception>
-        /// <exception cref="InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state.</exception>
+        /// <exception cref="T:System.InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state.</exception>
         [PublicAPI, NotNull]
         public TOut IfLeft<TOut>(
             [NotNull, InstantHandle] Func<TLeft, TOut> onLeft,
@@ -486,10 +486,10 @@ namespace Here
         /// <param name="onLeft">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
         /// <param name="valueFactory">Function to run to create a value if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
         /// <returns>An output value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         /// <exception cref="NullResultException">If the result of the <paramref name="onLeft"/> or <paramref name="valueFactory"/> function is null.</exception>
-        /// <exception cref="InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state.</exception>
+        /// <exception cref="T:System.InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state.</exception>
         [PublicAPI, NotNull]
         public TOut IfLeft<TOut>(
             [NotNull, InstantHandle] Func<TLeft, TOut> onLeft,
@@ -508,7 +508,7 @@ namespace Here
         /// </summary>
         /// <param name="onFailure">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
         /// <returns>The result of the applied treatment.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -527,7 +527,7 @@ namespace Here
         /// </summary>
         /// <param name="onLeft">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
         /// <returns>This <see cref="Either{TLeft,TRight}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
         [PublicAPI]
         public Either<TLeft, TRight> OnLeft([NotNull, InstantHandle] in Action<TLeft> onLeft)
         {
@@ -544,7 +544,7 @@ namespace Here
         /// </summary>
         /// <param name="onFailure">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
         /// <returns>This <see cref="Either{TLeft,TRight}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -563,7 +563,7 @@ namespace Here
         /// </summary>
         /// <param name="onRight">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
         /// <returns>A <see cref="Unit"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
         [PublicAPI]
         public Unit IfRight([NotNull, InstantHandle] in Action<TRight> onRight)
         {
@@ -577,8 +577,8 @@ namespace Here
         /// </summary>
         /// <param name="defaultValue">Default left value to use if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
         /// <returns>A left value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="defaultValue"/> is null.</exception>
-        /// <exception cref="InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="defaultValue"/> is null.</exception>
+        /// <exception cref="T:System.InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state.</exception>
         [PublicAPI, NotNull]
         public TLeft IfRight([NotNull] TLeft defaultValue)
         {
@@ -595,9 +595,9 @@ namespace Here
         /// </summary>
         /// <param name="onRight">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
         /// <returns>A left value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
         /// <exception cref="NullResultException">If the result of the <paramref name="onRight"/> function is null.</exception>
-        /// <exception cref="InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state.</exception>
+        /// <exception cref="T:System.InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state.</exception>
         [PublicAPI, NotNull]
         public TLeft IfRight([NotNull, InstantHandle] Func<TLeft> onRight)
         {
@@ -614,9 +614,9 @@ namespace Here
         /// </summary>
         /// <param name="onRight">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
         /// <returns>A left value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
         /// <exception cref="NullResultException">If the result of the <paramref name="onRight"/> function is null.</exception>
-        /// <exception cref="InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state.</exception>
+        /// <exception cref="T:System.InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state.</exception>
         [PublicAPI, NotNull]
         public TLeft IfRight([NotNull, InstantHandle] Func<TRight, TLeft> onRight)
         {
@@ -635,10 +635,10 @@ namespace Here
         /// <param name="onRight">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
         /// <param name="defaultValue">Default value to use if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
         /// <returns>An output value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="defaultValue"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="defaultValue"/> is null.</exception>
         /// <exception cref="NullResultException">If the result of the <paramref name="onRight"/> function is null.</exception>
-        /// <exception cref="InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state.</exception>
+        /// <exception cref="T:System.InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state.</exception>
         [PublicAPI, NotNull]
         public TOut IfRight<TOut>(
             [NotNull, InstantHandle] Func<TRight, TOut> onRight,
@@ -661,10 +661,10 @@ namespace Here
         /// <param name="onRight">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
         /// <param name="valueFactory">Function to run to create a value if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
         /// <returns>An output value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         /// <exception cref="NullResultException">If the result of the <paramref name="onRight"/> or <paramref name="valueFactory"/> function is null.</exception>
-        /// <exception cref="InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state.</exception>
+        /// <exception cref="T:System.InvalidOperationException">If this <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.None"/> state.</exception>
         [PublicAPI, NotNull]
         public TOut IfRight<TOut>(
             [NotNull, InstantHandle] Func<TRight, TOut> onRight,
@@ -683,7 +683,7 @@ namespace Here
         /// </summary>
         /// <param name="onSuccess">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
         /// <returns>A <see cref="Unit"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -702,7 +702,7 @@ namespace Here
         /// </summary>
         /// <param name="onRight">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
         /// <returns>This <see cref="Either{TLeft,TRight}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
         [PublicAPI]
         public Either<TLeft, TRight> OnRight([NotNull, InstantHandle] in Action<TRight> onRight)
         {
@@ -719,7 +719,7 @@ namespace Here
         /// </summary>
         /// <param name="onSuccess">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
         /// <returns>This <see cref="Either{TLeft,TRight}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
         [PublicAPI]
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -740,8 +740,8 @@ namespace Here
         /// <param name="onRight">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
         /// <param name="onLeft">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
         /// <returns>This <see cref="Either{TLeft,TRight}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onRight"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onLeft"/> is null.</exception>
         [PublicAPI]
         public Either<TLeft, TRight> OnRightOrLeft(
             [NotNull, InstantHandle] in Action<TRight> onRight,
@@ -771,8 +771,8 @@ namespace Here
         /// <param name="onSuccess">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Right"/> state.</param>
         /// <param name="onFailure">Function to run if the <see cref="Either{TLeft,TRight}"/> is in <see cref="EitherStates.Left"/> state.</param>
         /// <returns>This <see cref="Either{TLeft,TRight}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onSuccess"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -805,7 +805,7 @@ namespace Here
         /// </summary>
         /// <param name="defaultValue">Default value to use if the <see cref="Either{TLeft,TRight}"/> is not in <see cref="EitherStates.Right"/> state.</param>
         /// <returns>The either right value, otherwise the provided default value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="defaultValue"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="defaultValue"/> is null.</exception>
         [PublicAPI, Pure, NotNull]
         public TRight RightOr([NotNull] in TRight defaultValue)
         {
@@ -827,7 +827,7 @@ namespace Here
         /// </summary>
         /// <param name="valueFactory">Function to create a value to use if the <see cref="Either{TLeft,TRight}"/> is not in <see cref="EitherStates.Right"/> state.</param>
         /// <returns>The either right value, otherwise the provided default value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         /// <exception cref="NullResultException">If the result of the <paramref name="valueFactory"/> function is null.</exception>
         [PublicAPI, Pure, NotNull]
         public TRight RightOr([NotNull, InstantHandle] in Func<TRight> valueFactory)
@@ -862,7 +862,7 @@ namespace Here
         /// </summary>
         /// <param name="defaultValue">Default value to use if the <see cref="Either{TLeft,TRight}"/> is not in <see cref="EitherStates.Left"/> state.</param>
         /// <returns>The either left value, otherwise the provided default value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="defaultValue"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="defaultValue"/> is null.</exception>
         [PublicAPI, Pure, NotNull]
         public TLeft LeftOr([NotNull] in TLeft defaultValue)
         {
@@ -884,7 +884,7 @@ namespace Here
         /// </summary>
         /// <param name="valueFactory">Function to create a value to use if the <see cref="Either{TLeft,TRight}"/> is not in <see cref="EitherStates.Left"/> state.</param>
         /// <returns>The either left value, otherwise the provided default value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         /// <exception cref="NullResultException">If the result of the <paramref name="valueFactory"/> function is null.</exception>
         [PublicAPI, Pure, NotNull]
         public TLeft LeftOr([NotNull, InstantHandle] in Func<TLeft> valueFactory)

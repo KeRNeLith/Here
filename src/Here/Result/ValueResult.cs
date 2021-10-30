@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 #if SUPPORTS_SERIALIZATION
@@ -49,7 +49,7 @@ namespace Here
         internal readonly T _value;
 
         /// <inheritdoc />
-        /// <exception cref="InvalidOperationException">If the result is not a success.</exception>
+        /// <exception cref="T:System.InvalidOperationException">If the result is not a success.</exception>
         public T Value
         {
             get
@@ -119,7 +119,7 @@ namespace Here
         /// <typeparam name="TOut">Type of the output result value.</typeparam>
         /// <param name="converter">Function that converts this result value from input type to output type.</param>
         /// <returns>A <see cref="Result{TOut}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<TOut> Cast<TOut>([NotNull, InstantHandle] in Func<T, TOut> converter)
         {
@@ -137,7 +137,7 @@ namespace Here
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
         /// <param name="errorObject">Custom error object.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI, Pure]
         public CustomResult<TError> CustomCast<TError>([NotNull] in TError errorObject)
         {
@@ -157,7 +157,7 @@ namespace Here
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
         /// <param name="errorFactory">Factory method that creates a custom error object.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public CustomResult<TError> CustomCast<TError>([NotNull, InstantHandle] in Func<TError> errorFactory)
         {
@@ -178,7 +178,7 @@ namespace Here
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
         /// <param name="errorObject">Custom error object.</param>
         /// <returns>A <see cref="Result{TOut, TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<TOut, TError> Cast<TOut, TError>([NotNull] in TError errorObject)
             where TOut : class
@@ -200,7 +200,7 @@ namespace Here
         /// <typeparam name="TError">Type of the output result error type.</typeparam>
         /// <param name="errorFactory">Factory method that creates a custom error object.</param>
         /// <returns>A <see cref="Result{TOut, TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<TOut, TError> Cast<TOut, TError>([NotNull, InstantHandle] in Func<TError> errorFactory)
             where TOut : class
@@ -223,8 +223,8 @@ namespace Here
         /// <param name="converter">Function that converts this result value from input type to output type.</param>
         /// <param name="errorObject">Custom error object.</param>
         /// <returns>A <see cref="Result{TOut, TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorObject"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<TOut, TError> Cast<TOut, TError>([NotNull, InstantHandle] in Func<T, TOut> converter, [NotNull] in TError errorObject)
         {
@@ -248,8 +248,8 @@ namespace Here
         /// <param name="converter">Function that converts this result value from input type to output type.</param>
         /// <param name="errorFactory">Factory method that creates a custom error object.</param>
         /// <returns>A <see cref="Result{TOut, TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<TOut, TError> Cast<TOut, TError>([NotNull, InstantHandle] in Func<T, TOut> converter, [NotNull, InstantHandle] in Func<TError> errorFactory)
         {
@@ -583,7 +583,7 @@ namespace Here
         /// <summary>
         /// Gets an enumerator of this <see cref="Result{T}"/> giving the wrapped <see cref="Value"/> if there is one.
         /// </summary>
-        /// <returns>An <see cref="IEnumerator{T}"/> for this <see cref="Result{T}"/>.</returns>
+        /// <returns>An <see cref="T:System.Collections.Generic.IEnumerator{T}"/> for this <see cref="Result{T}"/>.</returns>
         [Pure]
         public IEnumerator<T> GetEnumerator()
         {

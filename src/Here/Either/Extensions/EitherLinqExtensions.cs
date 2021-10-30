@@ -33,7 +33,7 @@ namespace Here.Extensions
         /// <param name="either"><see cref="Either{TLeft,TRight}"/> on which performing the check.</param>
         /// <param name="predicate">Predicate to use.</param>
         /// <returns>True if this <see cref="Either{TLeft,TRight}"/> has a right value and matches the predicate, otherwise false.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         [PublicAPI, Pure]
         public static bool Any<TLeft, TRight>(in this Either<TLeft, TRight> either, [NotNull, InstantHandle] in Predicate<TRight> predicate)
         {
@@ -51,7 +51,7 @@ namespace Here.Extensions
         /// <param name="either"><see cref="Either{TLeft,TRight}"/> on which performing the check.</param>
         /// <param name="predicate">Predicate to check.</param>
         /// <returns>True if this <see cref="Either{TLeft,TRight}"/> has a right value and matches the predicate, otherwise false.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         [PublicAPI, Pure]
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -84,7 +84,7 @@ namespace Here.Extensions
         /// <param name="either"><see cref="Either{TLeft,TRight}"/> on which performing the treatment.</param>
         /// <param name="selector">Method called to select the value from this <see cref="Either{TLeft,TRight}"/> value.</param>
         /// <returns>An <see cref="Either{TLeft,TRight}"/> wrapping selected value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="selector"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="selector"/> is null.</exception>
         [PublicAPI, Pure]
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -102,7 +102,7 @@ namespace Here.Extensions
         /// <param name="either"><see cref="Either{TLeft,TRight}"/> on which performing the check.</param>
         /// <param name="predicate">Condition to match.</param>
         /// <returns>This <see cref="Option{T}"/> if it matches the <paramref name="predicate"/>, otherwise an empty <see cref="Option{T}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
         [PublicAPI, Pure]
         public static Either<TLeft, TRight> Where<TLeft, TRight>(in this Either<TLeft, TRight> either, [NotNull, InstantHandle] in Predicate<TRight> predicate)
         {
@@ -119,7 +119,7 @@ namespace Here.Extensions
         /// <param name="either"><see cref="Either{TLeft,TRight}"/> on which performing the treatment.</param>
         /// <param name="doAction">Action to perform on this <see cref="Either{TLeft,TRight}"/> right value.</param>
         /// <returns>A <see cref="Unit"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="doAction"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="doAction"/> is null.</exception>
         [PublicAPI]
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -141,8 +141,8 @@ namespace Here.Extensions
         /// <param name="aggregator">The aggregator function called on this <see cref="Either{TLeft,TRight}"/> value.</param>
         /// <returns>This <see cref="Either{TLeft,TRight}"/> right value aggregated with <paramref name="initialValue"/>, 
         /// otherwise <paramref name="initialValue"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="initialValue"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="aggregator"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="initialValue"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="aggregator"/> is null.</exception>
         [PublicAPI, NotNull, Pure]
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

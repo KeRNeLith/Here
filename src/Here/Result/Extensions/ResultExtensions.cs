@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using JetBrains.Annotations;
 
 namespace Here.Extensions
@@ -40,8 +40,8 @@ namespace Here.Extensions
         /// <param name="predicate">Predicate to match.</param>
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
         /// <returns>A <see cref="Result"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
         [PublicAPI, Pure]
         public static Result Ensure(
             in this Result result,
@@ -115,7 +115,7 @@ namespace Here.Extensions
         /// <param name="result"><see cref="Result{T}"/> to unwrap value.</param>
         /// <param name="orFunc">Default value factory method.</param>
         /// <returns>The unwrapped value from this <see cref="Result{T}"/> if it has a value, otherwise the default value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="orFunc"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="orFunc"/> is null.</exception>
         [PublicAPI, Pure]
         public static T Unwrap<T>(in this Result<T> result, [NotNull, InstantHandle] in Func<T> orFunc)
         {
@@ -138,7 +138,7 @@ namespace Here.Extensions
         /// <param name="converter">Function called to convert this <see cref="Result{T}"/> value.</param>
         /// <param name="defaultValue">Default value to use.</param>
         /// <returns>The unwrapped value from this <see cref="Result{T}"/> if it has a value, otherwise the default value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
         [PublicAPI, Pure]
         public static TOut Unwrap<T, TOut>(
             in this Result<T> result,
@@ -164,8 +164,8 @@ namespace Here.Extensions
         /// <param name="converter">Function called to convert this <see cref="Result{T}"/> value.</param>
         /// <param name="orFunc">Default value factory method.</param>
         /// <returns>The unwrapped value from this <see cref="Result{T}"/> if it has a value, otherwise the default value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="orFunc"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="orFunc"/> is null.</exception>
         [PublicAPI, Pure]
         public static TOut Unwrap<T, TOut>(
             in this Result<T> result,
@@ -190,8 +190,8 @@ namespace Here.Extensions
         /// <param name="predicate">Predicate to match.</param>
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
         /// <returns>A <see cref="Result{T}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
         [PublicAPI, Pure]
         public static Result<T> Ensure<T>(
             in this Result<T> result,
@@ -325,9 +325,9 @@ namespace Here.Extensions
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
         /// <param name="errorObject">Custom error object.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null or empty.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorObject"/> is null or empty.</exception>
         [PublicAPI, Pure]
         public static CustomResult<TError> Ensure<TError>(
             in this CustomResult<TError> result, 
@@ -360,9 +360,9 @@ namespace Here.Extensions
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null or empty.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorFactory"/> is null or empty.</exception>
         [PublicAPI, Pure]
         public static CustomResult<TError> Ensure<TError>(
             in this CustomResult<TError> result,
@@ -443,7 +443,7 @@ namespace Here.Extensions
         /// <param name="result"><see cref="Result{T, TError}"/> to unwrap value.</param>
         /// <param name="orFunc">Default value factory method.</param>
         /// <returns>The unwrapped value from this <see cref="Result{T, TError}"/> if it has a value, otherwise the default value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="orFunc"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="orFunc"/> is null.</exception>
         [PublicAPI, Pure]
         public static T Unwrap<T, TError>(in this Result<T, TError> result, [NotNull, InstantHandle] in Func<T> orFunc)
         {
@@ -467,7 +467,7 @@ namespace Here.Extensions
         /// <param name="converter">Function called to convert this <see cref="Result{T, TError}"/> value.</param>
         /// <param name="defaultValue">Default value to use.</param>
         /// <returns>The unwrapped value from this <see cref="Result{T, TError}"/> if it has a value, otherwise the default value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
         [PublicAPI, Pure]
         public static TOut Unwrap<T, TError, TOut>(
             in this Result<T, TError> result,
@@ -494,8 +494,8 @@ namespace Here.Extensions
         /// <param name="converter">Function called to convert this <see cref="Result{T, TError}"/> value.</param>
         /// <param name="orFunc">Default value factory method.</param>
         /// <returns>The unwrapped value from this <see cref="Result{T}"/> if it has a value, otherwise the default value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="orFunc"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="orFunc"/> is null.</exception>
         [PublicAPI, Pure]
         public static TOut Unwrap<T, TError, TOut>(
             in this Result<T, TError> result,
@@ -522,9 +522,9 @@ namespace Here.Extensions
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
         /// <param name="errorObject">Custom error object.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorObject"/> is null or empty.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorObject"/> is null or empty.</exception>
         [PublicAPI, Pure]
         public static Result<T, TError> Ensure<T, TError>(
             in this Result<T, TError> result,
@@ -558,9 +558,9 @@ namespace Here.Extensions
         /// <param name="errorMessage">The error message to use if the predicate is not fulfilled.</param>
         /// <param name="errorFactory">Function to create a custom error object.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
-        /// <exception cref="ArgumentNullException">If the <paramref name="errorFactory"/> is null or empty.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="predicate"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorMessage"/> is null or empty.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="errorFactory"/> is null or empty.</exception>
         [PublicAPI, Pure]
         public static Result<T, TError> Ensure<T, TError>(
             in this Result<T, TError> result,

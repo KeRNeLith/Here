@@ -70,7 +70,7 @@ namespace Here
         /// <summary>
         /// Gets the left value.
         /// </summary>
-        /// <exception cref="InvalidOperationException">If the either is not in <see cref="EitherStates.Left"/> state.</exception>
+        /// <exception cref="T:System.InvalidOperationException">If the either is not in <see cref="EitherStates.Left"/> state.</exception>
         [PublicAPI, NotNull]
         public TLeft LeftValue
         {
@@ -92,7 +92,7 @@ namespace Here
         /// <summary>
         /// Gets the right value.
         /// </summary>
-        /// <exception cref="InvalidOperationException">If the either is not in <see cref="EitherStates.Right"/> state.</exception>
+        /// <exception cref="T:System.InvalidOperationException">If the either is not in <see cref="EitherStates.Right"/> state.</exception>
         [PublicAPI, NotNull]
         public TRight RightValue
         {
@@ -110,7 +110,7 @@ namespace Here
         /// Constructs an <see cref="Either{TLeft,TRight}"/> in a <see cref="EitherStates.Left"/> state.
         /// </summary>
         /// <param name="value">Left value.</param>
-        /// <exception cref="ArgumentNullException">If the <paramref name="value"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="value"/> is null.</exception>
         private Either([NotNull] in TLeft value)
         {
             if (value == null)
@@ -125,7 +125,7 @@ namespace Here
         /// Constructs an <see cref="Either{TLeft,TRight}"/> in a <see cref="EitherStates.Right"/> state.
         /// </summary>
         /// <param name="value">Right value.</param>
-        /// <exception cref="ArgumentNullException">If the <paramref name="value"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="value"/> is null.</exception>
         private Either([NotNull] in TRight value)
         {
             if (value == null)
@@ -141,7 +141,7 @@ namespace Here
         /// </summary>
         /// <param name="value">Left value.</param>
         /// <returns>An <see cref="Either{TLeft,TRight}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="value"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="value"/> is null.</exception>
         [Pure]
         internal static Either<TLeft, TRight> Left([NotNull] in TLeft value)
         {
@@ -153,7 +153,7 @@ namespace Here
         /// </summary>
         /// <param name="value">Right value.</param>
         /// <returns>An <see cref="Either{TLeft,TRight}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="value"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="value"/> is null.</exception>
         [Pure]
         internal static Either<TLeft, TRight> Right([NotNull] in TRight value)
         {
@@ -165,7 +165,7 @@ namespace Here
         /// </summary>
         /// <param name="either"><see cref="Either{TLeft,TRight}"/> to convert.</param>
         /// <returns>The left value.</returns>
-        /// <exception cref="InvalidCastException">If the either is cast to a left value while not being in <see cref="EitherStates.Left"/> state.</exception>
+        /// <exception cref="T:System.InvalidCastException">If the either is cast to a left value while not being in <see cref="EitherStates.Left"/> state.</exception>
         [PublicAPI, Pure]
         public static explicit operator TLeft(in Either<TLeft, TRight> either)
         {
@@ -179,7 +179,7 @@ namespace Here
         /// </summary>
         /// <param name="either"><see cref="Either{TLeft,TRight}"/> to convert.</param>
         /// <returns>The right value.</returns>
-        /// <exception cref="InvalidCastException">If the either is cast to a left value while not being in <see cref="EitherStates.Right"/> state.</exception>
+        /// <exception cref="T:System.InvalidCastException">If the either is cast to a left value while not being in <see cref="EitherStates.Right"/> state.</exception>
         [PublicAPI, Pure]
         public static explicit operator TRight(in Either<TLeft, TRight> either)
         {

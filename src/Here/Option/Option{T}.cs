@@ -54,7 +54,7 @@ namespace Here
         /// <summary>
         /// Gets the value stored in the <see cref="Option{T}"/> if present otherwise throws.
         /// </summary>
-        /// <exception cref="InvalidOperationException"> if the <see cref="Option{T}"/> has no value.</exception>
+        /// <exception cref="T:System.InvalidOperationException"> if the <see cref="Option{T}"/> has no value.</exception>
         [PublicAPI, NotNull]
         public T Value
         {
@@ -80,7 +80,7 @@ namespace Here
         /// Constructs an <see cref="Option{T}"/> with a value.
         /// </summary>
         /// <param name="value">A value.</param>
-        /// <exception cref="ArgumentNullException">If the <paramref name="value"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="value"/> is null.</exception>
         [PublicAPI, Pure]
         public static Option<T> Some([NotNull] in T value)
         {
@@ -316,7 +316,7 @@ namespace Here
         /// <summary>
         /// Gets an enumerator of this <see cref="Option{T}"/> giving the wrapped <see cref="Value"/> if there is one.
         /// </summary>
-        /// <returns>An <see cref="IEnumerator{T}"/> for this <see cref="Option{T}"/>.</returns>
+        /// <returns>An <see cref="T:System.Collections.Generic.IEnumerator{T}"/> for this <see cref="Option{T}"/>.</returns>
         [PublicAPI, Pure, NotNull]
         public IEnumerator<T> GetEnumerator()
         {

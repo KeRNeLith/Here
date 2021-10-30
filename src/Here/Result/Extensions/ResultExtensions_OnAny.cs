@@ -19,7 +19,7 @@ namespace Here.Extensions
         /// <param name="result"><see cref="Result"/>.</param>
         /// <param name="onAny">Action to run.</param>
         /// <returns>This <see cref="Result"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -39,7 +39,7 @@ namespace Here.Extensions
         /// <param name="result"><see cref="Result"/>.</param>
         /// <param name="onAny">Action to run.</param>
         /// <returns>This <see cref="Result"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -60,7 +60,7 @@ namespace Here.Extensions
         /// <param name="result"><see cref="Result"/>.</param>
         /// <param name="onAny">Function to run.</param>
         /// <returns>An output value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -80,7 +80,7 @@ namespace Here.Extensions
         /// <param name="result"><see cref="Result"/>.</param>
         /// <param name="onAny">Function to run.</param>
         /// <returns>An output value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -104,7 +104,7 @@ namespace Here.Extensions
         /// <param name="result"><see cref="Result{T}"/>.</param>
         /// <param name="onAny">Action to run.</param>
         /// <returns>This <see cref="Result{T}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -125,7 +125,7 @@ namespace Here.Extensions
         /// <param name="result"><see cref="Result{T}"/>.</param>
         /// <param name="onAny">Action to run.</param>
         /// <returns>This <see cref="Result{T}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -147,7 +147,7 @@ namespace Here.Extensions
         /// <param name="result"><see cref="Result{TIn}"/>.</param>
         /// <param name="onAny">Function to run.</param>
         /// <returns>An output value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -168,7 +168,7 @@ namespace Here.Extensions
         /// <param name="result"><see cref="Result{TIn}"/>.</param>
         /// <param name="onAny">Function to run.</param>
         /// <returns>An output value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -192,7 +192,7 @@ namespace Here.Extensions
         /// <param name="result"><see cref="CustomResult{TError}"/>.</param>
         /// <param name="onAny">Action to run.</param>
         /// <returns>This <see cref="CustomResult{TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -213,7 +213,7 @@ namespace Here.Extensions
         /// <param name="result"><see cref="CustomResult{TError}"/>.</param>
         /// <param name="onAny">Action to run.</param>
         /// <returns>This <see cref="CustomResult{TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -235,7 +235,7 @@ namespace Here.Extensions
         /// <param name="result"><see cref="CustomResult{TError}"/>.</param>
         /// <param name="onAny">Function to run.</param>
         /// <returns>An output value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -256,7 +256,7 @@ namespace Here.Extensions
         /// <param name="result"><see cref="CustomResult{TError}"/>.</param>
         /// <param name="onAny">Function to run.</param>
         /// <returns>An output value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -281,7 +281,7 @@ namespace Here.Extensions
         /// <param name="result"><see cref="Result{T, TError}"/>.</param>
         /// <param name="onAny">Action to run.</param>
         /// <returns>This <see cref="Result{T, TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -303,7 +303,7 @@ namespace Here.Extensions
         /// <param name="result"><see cref="Result{T, TError}"/>.</param>
         /// <param name="onAny">Action to run.</param>
         /// <returns>This <see cref="Result{T, TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -326,7 +326,7 @@ namespace Here.Extensions
         /// <param name="result"><see cref="Result{TIn, TError}"/>.</param>
         /// <param name="onAny">Function to run.</param>
         /// <returns>An output value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -348,7 +348,7 @@ namespace Here.Extensions
         /// <param name="result"><see cref="Result{TIn, TError}"/>.</param>
         /// <param name="onAny">Function to run.</param>
         /// <returns>An output value.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="onAny"/> is null.</exception>
         [PublicAPI]
 #if SUPPORTS_AGGRESSIVE_INLINING
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

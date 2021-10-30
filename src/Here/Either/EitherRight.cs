@@ -45,7 +45,7 @@ namespace Here
         /// Construct an <see cref="EitherRight{TRight}"/> with a value.
         /// </summary>
         /// <param name="value">A value.</param>
-        /// <exception cref="ArgumentNullException">If the <paramref name="value"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="value"/> is null.</exception>
         internal EitherRight([NotNull] TRight value)
         {
             if (value == null)

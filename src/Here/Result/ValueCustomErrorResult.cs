@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 #if SUPPORTS_SERIALIZATION
@@ -47,7 +47,7 @@ namespace Here
         public Exception Exception => Logic.Exception;
 
         /// <inheritdoc />
-        /// <exception cref="InvalidOperationException">If the result is not a failure.</exception>
+        /// <exception cref="T:System.InvalidOperationException">If the result is not a failure.</exception>
         public TError Error => Logic.Error;
 
         [CanBeNull]
@@ -56,7 +56,7 @@ namespace Here
         internal readonly T _value;
 
         /// <inheritdoc />
-        /// <exception cref="InvalidOperationException">If the result is not a success.</exception>
+        /// <exception cref="T:System.InvalidOperationException">If the result is not a success.</exception>
         public T Value
         {
             get
@@ -139,7 +139,7 @@ namespace Here
         /// <typeparam name="TOut">Type of the output result value.</typeparam>
         /// <param name="converter">Function that convert this result value from input type to output type.</param>
         /// <returns>A <see cref="Result{TOut, TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="converter"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<TOut, TError> Cast<TOut>([NotNull, InstantHandle] in Func<T, TOut> converter)
         {
@@ -497,7 +497,7 @@ namespace Here
         /// <summary>
         /// Gets an enumerator of this <see cref="Result{T, TError}"/> giving the wrapped <see cref="Value"/> if there is one.
         /// </summary>
-        /// <returns>An <see cref="IEnumerator{T}"/> for this <see cref="Result{T, TError}"/>.</returns>
+        /// <returns>An <see cref="T:System.Collections.Generic.IEnumerator{T}"/> for this <see cref="Result{T, TError}"/>.</returns>
         [Pure]
         public IEnumerator<T> GetEnumerator()
         {

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Diagnostics;
 #if SUPPORTS_SERIALIZATION
 using System.Runtime.Serialization;
@@ -48,7 +48,7 @@ namespace Here
         public Exception Exception => Logic.Exception;
 
         /// <inheritdoc />
-        /// <exception cref="InvalidOperationException">If the result is not a failure.</exception>
+        /// <exception cref="T:System.InvalidOperationException">If the result is not a failure.</exception>
         public TError Error => Logic.Error;
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -97,7 +97,7 @@ namespace Here
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <param name="valueFactory">Factory method that creates a value.</param>
         /// <returns>A <see cref="CustomResult{TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<T> Cast<T>([NotNull, InstantHandle] in Func<T> valueFactory)
         {
@@ -131,7 +131,7 @@ namespace Here
         /// <typeparam name="T">Type of the output result value.</typeparam>
         /// <param name="valueFactory">Factory method that creates a value.</param>
         /// <returns>A <see cref="Result{T, TError}"/>.</returns>
-        /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
+        /// <exception cref="T:System.ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI, Pure]
         public Result<T, TError> CustomCast<T>([NotNull, InstantHandle] in Func<T> valueFactory)
         {
