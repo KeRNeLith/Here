@@ -1689,7 +1689,7 @@ Use the <code data-dev-comment-type="paramref" class="paramref">initialValue</co
   </span>
   <a id="Here_Extensions_OptionLinqEnumerableExtensions_SelectManyItems_" data-uid="Here.Extensions.OptionLinqEnumerableExtensions.SelectManyItems*"></a>
   <h4 id="Here_Extensions_OptionLinqEnumerableExtensions_SelectManyItems__3_Here_Option___0___System_Func_System_Object_System_Collections_Generic_IEnumerable___1____System_Func_System_Object___1___2___" data-uid="Here.Extensions.OptionLinqEnumerableExtensions.SelectManyItems``3(Here.Option{``0}@,System.Func{System.Object,System.Collections.Generic.IEnumerable{``1}}@,System.Func{System.Object,``1,``2}@)">SelectManyItems&lt;T, TItemCollection, TItemOut&gt;(in Option&lt;T&gt;, in Func&lt;Object, IEnumerable&lt;TItemCollection&gt;&gt;, in Func&lt;Object, TItemCollection, TItemOut&gt;)</h4>
-  <div class="markdown level1 summary"><p>Projects each element of this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> wrapped enumerable to an <span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>
+  <div class="markdown level1 summary"><p>Projects each element of this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> wrapped enumerable to an <span class="xref">System.Collections.Generic.IEnumerable{TItemCollection}</span>
 via <code data-dev-comment-type="paramref" class="paramref">collectionSelector</code>, and flattens the resulting sequences into one sequence using <code data-dev-comment-type="paramref" class="paramref">resultSelector</code>.
 Does this only if the <code data-dev-comment-type="paramref" class="paramref">option</code> has value, otherwise returns an empty <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a>.</p>
 </div>
@@ -1796,7 +1796,7 @@ Does this only if the <code data-dev-comment-type="paramref" class="paramref">op
   </span>
   <a id="Here_Extensions_OptionLinqEnumerableExtensions_SelectManyItems_" data-uid="Here.Extensions.OptionLinqEnumerableExtensions.SelectManyItems*"></a>
   <h4 id="Here_Extensions_OptionLinqEnumerableExtensions_SelectManyItems__4_Here_Option___0___System_Func___1_System_Collections_Generic_IEnumerable___2____System_Func___1___2___3___" data-uid="Here.Extensions.OptionLinqEnumerableExtensions.SelectManyItems``4(Here.Option{``0}@,System.Func{``1,System.Collections.Generic.IEnumerable{``2}}@,System.Func{``1,``2,``3}@)">SelectManyItems&lt;T, TItemIn, TItemCollection, TItemOut&gt;(in Option&lt;T&gt;, in Func&lt;TItemIn, IEnumerable&lt;TItemCollection&gt;&gt;, in Func&lt;TItemIn, TItemCollection, TItemOut&gt;)</h4>
-  <div class="markdown level1 summary"><p>Projects each element of this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> wrapped enumerable to an <span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>
+  <div class="markdown level1 summary"><p>Projects each element of this <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a> wrapped enumerable to an <span class="xref">System.Collections.Generic.IEnumerable{TItemCollection}</span>
 via <code data-dev-comment-type="paramref" class="paramref">collectionSelector</code>, and flattens the resulting sequences into one sequence using <code data-dev-comment-type="paramref" class="paramref">resultSelector</code>.
 Does this only if the <code data-dev-comment-type="paramref" class="paramref">option</code> has value, otherwise returns an empty <a class="xref" href="Here.Option-1.html">Option&lt;T&gt;</a>.</p>
 </div>
