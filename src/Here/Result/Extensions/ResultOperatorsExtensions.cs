@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using static Here.ResultConstants;
 
 namespace Here.Extensions

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 #if SUPPORTS_SYSTEM_CORE
 using System.Linq;

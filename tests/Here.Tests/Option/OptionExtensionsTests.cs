@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using Here.Extensions;
 using static Here.Tests.Options.OptionTestHelpers;
 

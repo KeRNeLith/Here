@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using JetBrains.Annotations;
 #if !SUPPORTS_NULL_EMPTY_OR_WHITE_SPACE
 using static Here.HereHelpers;

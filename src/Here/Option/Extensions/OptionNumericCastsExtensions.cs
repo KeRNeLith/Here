@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 #if SUPPORTS_AGGRESSIVE_INLINING
 using System.Runtime.CompilerServices;
 #endif
