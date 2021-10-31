@@ -1,4 +1,4 @@
-#if !SUPPORTS_SYSTEM_CORE
+﻿#if !SUPPORTS_SYSTEM_CORE
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -32,13 +32,7 @@ namespace Here.Utils
                 comparer = EqualityComparer<TSource>.Default;
             }
 
-            foreach (TSource element in source)
-            {
-                if (comparer.Equals(element, value))
-                    return true;
-            }
-
-            return false;
+            return source.Any(element => comparer.Equals(element, value));
         }
 
         /// <summary>
