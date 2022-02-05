@@ -23,12 +23,15 @@ namespace Here.Extensions
         /// <returns>A <see cref="Task"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task OnFailureAsync(this Result result,
+        [NotNull]
+        public static async Task OnFailureAsync(
+            this Result result,
             [NotNull, InstantHandle] Func<Result, Task> onFailure,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result, treatWarningAsError))
                 await onFailure(result).ConfigureAwait(continueOnCapturedContext);
@@ -46,13 +49,16 @@ namespace Here.Extensions
         /// <returns>A <see cref="Task{TOut}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task<TOut> OnFailureAsync<TOut>(this Result result,
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TOut>(
+            this Result result,
             [NotNull, InstantHandle] Func<Result, Task<TOut>> onFailure,
             [CanBeNull] TOut defaultValue,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result, treatWarningAsError))
                 return await onFailure(result).ConfigureAwait(continueOnCapturedContext);
@@ -73,19 +79,55 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI]
-        public static async Task<TOut> OnFailureAsync<TOut>(this Result result,
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TOut>(
+            this Result result,
             [NotNull, InstantHandle] Func<Result, Task<TOut>> onFailure,
             [NotNull, InstantHandle] Func<TOut> valueFactory,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
-            Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
 
             if (IsConsideredFailure(result, treatWarningAsError))
                 return await onFailure(result).ConfigureAwait(continueOnCapturedContext);
 
             return valueFactory();
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onFailure"/> function when the <paramref name="result"/> is failure.
+        /// </summary>
+        /// <typeparam name="TOut">Type of the output value.</typeparam>
+        /// <param name="result"><see cref="Result"/> to check.</param>
+        /// <param name="onFailure">Function to run if the <see cref="Result"/> is failure.</param>
+        /// <param name="valueFactory">Function called to create a value to return if the result is a success.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
+        /// <returns>A <see cref="Task{TOut}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
+        [PublicAPI]
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TOut>(
+            this Result result,
+            [NotNull, InstantHandle] Func<Result, Task<TOut>> onFailure,
+            [NotNull, InstantHandle] Func<Task<TOut>> valueFactory,
+            bool treatWarningAsError = false,
+            bool continueOnCapturedContext = false)
+        {
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
+
+            if (IsConsideredFailure(result, treatWarningAsError))
+                return await onFailure(result).ConfigureAwait(continueOnCapturedContext);
+
+            return await valueFactory().ConfigureAwait(continueOnCapturedContext);
         }
 
         /// <summary>
@@ -99,13 +141,17 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task OnFailureAsync([NotNull] this Task<Result> resultTask,
+        [NotNull]
+        public static async Task OnFailureAsync(
+            [NotNull] this Task<Result> resultTask,
             [NotNull, InstantHandle] Action onFailure,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             Result result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
@@ -124,13 +170,17 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task OnFailureAsync([NotNull] this Task<Result> resultTask,
+        [NotNull]
+        public static async Task OnFailureAsync(
+            [NotNull] this Task<Result> resultTask,
             [NotNull, InstantHandle] Action<Result> onFailure,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             Result result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
@@ -151,14 +201,18 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task<TOut> OnFailureAsync<TOut>([NotNull] this Task<Result> resultTask,
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TOut>(
+            [NotNull] this Task<Result> resultTask,
             [NotNull, InstantHandle] Func<Result, TOut> onFailure,
             [CanBeNull] TOut defaultValue,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             Result result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
@@ -182,15 +236,20 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI]
-        public static async Task<TOut> OnFailureAsync<TOut>([NotNull] this Task<Result> resultTask,
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TOut>(
+            [NotNull] this Task<Result> resultTask,
             [NotNull, InstantHandle] Func<Result, TOut> onFailure,
             [NotNull, InstantHandle] Func<TOut> valueFactory,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
-            Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
 
             Result result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
@@ -198,6 +257,43 @@ namespace Here.Extensions
                 return onFailure(result);
 
             return valueFactory();
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onFailure"/> function when the <paramref name="resultTask"/> embed a failed <see cref="Result"/>.
+        /// </summary>
+        /// <typeparam name="TOut">Type of the output value.</typeparam>
+        /// <param name="resultTask"><see cref="Task{Result}"/>.</param>
+        /// <param name="valueFactory">Function called to create a value to return if the result is a success.</param>
+        /// <param name="onFailure">Function to run if the <see cref="Result"/> is failure.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
+        /// <returns>A <see cref="Task{TOut}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
+        [PublicAPI]
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TOut>(
+            [NotNull] this Task<Result> resultTask,
+            [NotNull, InstantHandle] Func<Result, TOut> onFailure,
+            [NotNull, InstantHandle] Func<Task<TOut>> valueFactory,
+            bool treatWarningAsError = false,
+            bool continueOnCapturedContext = false)
+        {
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
+
+            Result result = await resultTask.ConfigureAwait(continueOnCapturedContext);
+
+            if (IsConsideredFailure(result, treatWarningAsError))
+                return onFailure(result);
+
+            return await valueFactory().ConfigureAwait(continueOnCapturedContext);
         }
 
         /// <summary>
@@ -211,18 +307,22 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task OnFailureAsync([NotNull] this Task<Result> resultTask,
+        [NotNull]
+        public static async Task OnFailureAsync(
+            [NotNull] this Task<Result> resultTask,
             [NotNull, InstantHandle] Func<Result, Task> onFailure,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             Result result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
             if (IsConsideredFailure(result, treatWarningAsError))
-                await onFailure(result);
+                await onFailure(result).ConfigureAwait(continueOnCapturedContext);
         }
 
         /// <summary>
@@ -238,19 +338,23 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task<TOut> OnFailureAsync<TOut>([NotNull] this Task<Result> resultTask,
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TOut>(
+            [NotNull] this Task<Result> resultTask,
             [NotNull, InstantHandle] Func<Result, Task<TOut>> onFailure,
             [CanBeNull] TOut defaultValue,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             Result result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
             if (IsConsideredFailure(result, treatWarningAsError))
-                return await onFailure(result);
+                return await onFailure(result).ConfigureAwait(continueOnCapturedContext);
 
             return defaultValue;
         }
@@ -269,22 +373,64 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI]
-        public static async Task<TOut> OnFailureAsync<TOut>([NotNull] this Task<Result> resultTask,
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TOut>(
+            [NotNull] this Task<Result> resultTask,
             [NotNull, InstantHandle] Func<Result, Task<TOut>> onFailure,
             [NotNull, InstantHandle] Func<TOut> valueFactory,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
-            Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
 
             Result result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
             if (IsConsideredFailure(result, treatWarningAsError))
-                return await onFailure(result);
+                return await onFailure(result).ConfigureAwait(continueOnCapturedContext);
 
             return valueFactory();
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onFailure"/> function when the <paramref name="resultTask"/> embed a failed <see cref="Result"/>.
+        /// </summary>
+        /// <typeparam name="TOut">Type of the output value.</typeparam>
+        /// <param name="resultTask"><see cref="Task{Result}"/>.</param>
+        /// <param name="valueFactory">Function called to create a value to return if the result is a success.</param>
+        /// <param name="onFailure">Function to run if the <see cref="Result"/> is failure.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
+        /// <returns>A <see cref="Task{TOut}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
+        [PublicAPI]
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TOut>(
+            [NotNull] this Task<Result> resultTask,
+            [NotNull, InstantHandle] Func<Result, Task<TOut>> onFailure,
+            [NotNull, InstantHandle] Func<Task<TOut>> valueFactory,
+            bool treatWarningAsError = false,
+            bool continueOnCapturedContext = false)
+        {
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
+
+            Result result = await resultTask.ConfigureAwait(continueOnCapturedContext);
+
+            if (IsConsideredFailure(result, treatWarningAsError))
+                return await onFailure(result).ConfigureAwait(continueOnCapturedContext);
+
+            return await valueFactory().ConfigureAwait(continueOnCapturedContext);
         }
 
         #endregion
@@ -302,12 +448,15 @@ namespace Here.Extensions
         /// <returns>A <see cref="Task"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task OnFailureAsync<T>(this Result<T> result,
+        [NotNull]
+        public static async Task OnFailureAsync<T>(
+            this Result<T> result,
             [NotNull, InstantHandle] Func<Result<T>, Task> onFailure,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result, treatWarningAsError))
                 await onFailure(result).ConfigureAwait(continueOnCapturedContext);
@@ -326,13 +475,16 @@ namespace Here.Extensions
         /// <returns>A <see cref="Task{TOut}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task<TOut> OnFailureAsync<TIn, TOut>(this Result<TIn> result,
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TIn, TOut>(
+            this Result<TIn> result,
             [NotNull, InstantHandle] Func<Result<TIn>, Task<TOut>> onFailure,
             [CanBeNull] TOut defaultValue,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result, treatWarningAsError))
                 return await onFailure(result).ConfigureAwait(continueOnCapturedContext);
@@ -354,19 +506,56 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI]
-        public static async Task<TOut> OnFailureAsync<TIn, TOut>(this Result<TIn> result,
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TIn, TOut>(
+            this Result<TIn> result,
             [NotNull, InstantHandle] Func<Result<TIn>, Task<TOut>> onFailure,
             [NotNull, InstantHandle] Func<TOut> valueFactory,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
-            Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
 
             if (IsConsideredFailure(result, treatWarningAsError))
                 return await onFailure(result).ConfigureAwait(continueOnCapturedContext);
 
             return valueFactory();
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onFailure"/> function when the <paramref name="result"/> is failure.
+        /// </summary>
+        /// <typeparam name="TIn">Type of the input result value.</typeparam>
+        /// <typeparam name="TOut">Type of the output value.</typeparam>
+        /// <param name="result"><see cref="Result{TIn}"/> to check.</param>
+        /// <param name="onFailure">Function to run if the <see cref="Result{TIn}"/> is failure.</param>
+        /// <param name="valueFactory">Function called to create a value to return if the result is a success.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
+        /// <returns>A <see cref="Task{TOut}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
+        [PublicAPI]
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TIn, TOut>(
+            this Result<TIn> result,
+            [NotNull, InstantHandle] Func<Result<TIn>, Task<TOut>> onFailure,
+            [NotNull, InstantHandle] Func<Task<TOut>> valueFactory,
+            bool treatWarningAsError = false,
+            bool continueOnCapturedContext = false)
+        {
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
+
+            if (IsConsideredFailure(result, treatWarningAsError))
+                return await onFailure(result).ConfigureAwait(continueOnCapturedContext);
+
+            return await valueFactory().ConfigureAwait(continueOnCapturedContext);
         }
 
         /// <summary>
@@ -381,13 +570,17 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task OnFailureAsync<T>([NotNull] this Task<Result<T>> resultTask,
+        [NotNull]
+        public static async Task OnFailureAsync<T>(
+            [NotNull] this Task<Result<T>> resultTask,
             [NotNull, InstantHandle] Action onFailure,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             Result<T> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
@@ -407,13 +600,17 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task OnFailureAsync<T>([NotNull] this Task<Result<T>> resultTask,
+        [NotNull]
+        public static async Task OnFailureAsync<T>(
+            [NotNull] this Task<Result<T>> resultTask,
             [NotNull, InstantHandle] Action<Result<T>> onFailure,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             Result<T> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
@@ -435,14 +632,18 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task<TOut> OnFailureAsync<TIn, TOut>([NotNull] this Task<Result<TIn>> resultTask,
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TIn, TOut>(
+            [NotNull] this Task<Result<TIn>> resultTask,
             [NotNull, InstantHandle] Func<Result<TIn>, TOut> onFailure,
             [CanBeNull] TOut defaultValue,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             Result<TIn> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
@@ -467,15 +668,20 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI]
-        public static async Task<TOut> OnFailureAsync<TIn, TOut>([NotNull] this Task<Result<TIn>> resultTask,
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TIn, TOut>(
+            [NotNull] this Task<Result<TIn>> resultTask,
             [NotNull, InstantHandle] Func<Result<TIn>, TOut> onFailure,
             [NotNull, InstantHandle] Func<TOut> valueFactory,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
-            Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
 
             Result<TIn> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
@@ -483,6 +689,44 @@ namespace Here.Extensions
                 return onFailure(result);
 
             return valueFactory();
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onFailure"/> function when the <paramref name="resultTask"/> embed a failed <see cref="Result{TIn}"/>.
+        /// </summary>
+        /// <typeparam name="TIn">Type of the input result value.</typeparam>
+        /// <typeparam name="TOut">Type of the output value.</typeparam>
+        /// <param name="resultTask"><see cref="Task{Result}"/>.</param>
+        /// <param name="valueFactory">Function called to create a value to return if the result is a success.</param>
+        /// <param name="onFailure">Function to run if the <see cref="Result{TIn}"/> is failure.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
+        /// <returns>A <see cref="Task{TOut}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
+        [PublicAPI]
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TIn, TOut>(
+            [NotNull] this Task<Result<TIn>> resultTask,
+            [NotNull, InstantHandle] Func<Result<TIn>, TOut> onFailure,
+            [NotNull, InstantHandle] Func<Task<TOut>> valueFactory,
+            bool treatWarningAsError = false,
+            bool continueOnCapturedContext = false)
+        {
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
+
+            Result<TIn> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
+
+            if (IsConsideredFailure(result, treatWarningAsError))
+                return onFailure(result);
+
+            return await valueFactory().ConfigureAwait(continueOnCapturedContext);
         }
 
         /// <summary>
@@ -497,18 +741,22 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task OnFailureAsync<T>([NotNull] this Task<Result<T>> resultTask,
+        [NotNull]
+        public static async Task OnFailureAsync<T>(
+            [NotNull] this Task<Result<T>> resultTask,
             [NotNull, InstantHandle] Func<Result<T>, Task> onFailure,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             Result<T> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
             if (IsConsideredFailure(result, treatWarningAsError))
-                await onFailure(result);
+                await onFailure(result).ConfigureAwait(continueOnCapturedContext);
         }
 
         /// <summary>
@@ -525,19 +773,23 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task<TOut> OnFailureAsync<TIn, TOut>([NotNull] this Task<Result<TIn>> resultTask,
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TIn, TOut>(
+            [NotNull] this Task<Result<TIn>> resultTask,
             [NotNull, InstantHandle] Func<Result<TIn>, Task<TOut>> onFailure,
             [CanBeNull] TOut defaultValue,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             Result<TIn> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
             if (IsConsideredFailure(result, treatWarningAsError))
-                return await onFailure(result);
+                return await onFailure(result).ConfigureAwait(continueOnCapturedContext);
 
             return defaultValue;
         }
@@ -557,22 +809,65 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI]
-        public static async Task<TOut> OnFailureAsync<TIn, TOut>([NotNull] this Task<Result<TIn>> resultTask,
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TIn, TOut>(
+            [NotNull] this Task<Result<TIn>> resultTask,
             [NotNull, InstantHandle] Func<Result<TIn>, Task<TOut>> onFailure,
             [NotNull, InstantHandle] Func<TOut> valueFactory,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
-            Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
 
             Result<TIn> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
             if (IsConsideredFailure(result, treatWarningAsError))
-                return await onFailure(result);
+                return await onFailure(result).ConfigureAwait(continueOnCapturedContext);
 
             return valueFactory();
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onFailure"/> function when the <paramref name="resultTask"/> embed a failed <see cref="Result{TIn}"/>.
+        /// </summary>
+        /// <typeparam name="TIn">Type of the input result value.</typeparam>
+        /// <typeparam name="TOut">Type of the output value.</typeparam>
+        /// <param name="resultTask"><see cref="Task{Result}"/>.</param>
+        /// <param name="valueFactory">Function called to create a value to return if the result is a success.</param>
+        /// <param name="onFailure">Function to run if the <see cref="Result{TIn}"/> is failure.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
+        /// <returns>A <see cref="Task{TOut}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
+        [PublicAPI]
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TIn, TOut>(
+            [NotNull] this Task<Result<TIn>> resultTask,
+            [NotNull, InstantHandle] Func<Result<TIn>, Task<TOut>> onFailure,
+            [NotNull, InstantHandle] Func<Task<TOut>> valueFactory,
+            bool treatWarningAsError = false,
+            bool continueOnCapturedContext = false)
+        {
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
+
+            Result<TIn> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
+
+            if (IsConsideredFailure(result, treatWarningAsError))
+                return await onFailure(result).ConfigureAwait(continueOnCapturedContext);
+
+            return await valueFactory().ConfigureAwait(continueOnCapturedContext);
         }
 
         #endregion
@@ -590,12 +885,15 @@ namespace Here.Extensions
         /// <returns>A <see cref="Task"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task OnFailureAsync<TError>(this CustomResult<TError> result,
+        [NotNull]
+        public static async Task OnFailureAsync<TError>(
+            this CustomResult<TError> result,
             [NotNull, InstantHandle] Func<CustomResult<TError>, Task> onFailure,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result, treatWarningAsError))
                 await onFailure(result).ConfigureAwait(continueOnCapturedContext);
@@ -614,13 +912,16 @@ namespace Here.Extensions
         /// <returns>A <see cref="Task{TOut}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task<TOut> OnFailureAsync<TError, TOut>(this CustomResult<TError> result,
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TError, TOut>(
+            this CustomResult<TError> result,
             [NotNull, InstantHandle] Func<CustomResult<TError>, Task<TOut>> onFailure,
             [CanBeNull] TOut defaultValue,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result, treatWarningAsError))
                 return await onFailure(result).ConfigureAwait(continueOnCapturedContext);
@@ -642,19 +943,56 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI]
-        public static async Task<TOut> OnFailureAsync<TError, TOut>(this CustomResult<TError> result,
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TError, TOut>(
+            this CustomResult<TError> result,
             [NotNull, InstantHandle] Func<CustomResult<TError>, Task<TOut>> onFailure,
             [NotNull, InstantHandle] Func<TOut> valueFactory,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
-            Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
 
             if (IsConsideredFailure(result, treatWarningAsError))
                 return await onFailure(result).ConfigureAwait(continueOnCapturedContext);
 
             return valueFactory();
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onFailure"/> function when the <paramref name="result"/> is failure.
+        /// </summary>
+        /// <typeparam name="TError">Type of the result error.</typeparam>
+        /// <typeparam name="TOut">Type of the output value.</typeparam>
+        /// <param name="result"><see cref="CustomResult{TError}"/> to check.</param>
+        /// <param name="onFailure">Function to run if the <see cref="CustomResult{TError}"/> is failure.</param>
+        /// <param name="valueFactory">Function called to create a value to return if the result is a success.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
+        /// <returns>A <see cref="Task{TOut}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
+        [PublicAPI]
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TError, TOut>(
+            this CustomResult<TError> result,
+            [NotNull, InstantHandle] Func<CustomResult<TError>, Task<TOut>> onFailure,
+            [NotNull, InstantHandle] Func<Task<TOut>> valueFactory,
+            bool treatWarningAsError = false,
+            bool continueOnCapturedContext = false)
+        {
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
+
+            if (IsConsideredFailure(result, treatWarningAsError))
+                return await onFailure(result).ConfigureAwait(continueOnCapturedContext);
+
+            return await valueFactory().ConfigureAwait(continueOnCapturedContext);
         }
 
         /// <summary>
@@ -669,13 +1007,17 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task OnFailureAsync<TError>([NotNull] this Task<CustomResult<TError>> resultTask,
+        [NotNull]
+        public static async Task OnFailureAsync<TError>(
+            [NotNull] this Task<CustomResult<TError>> resultTask,
             [NotNull, InstantHandle] Action onFailure,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             CustomResult<TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
@@ -695,13 +1037,17 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task OnFailureAsync<TError>([NotNull] this Task<CustomResult<TError>> resultTask,
+        [NotNull]
+        public static async Task OnFailureAsync<TError>(
+            [NotNull] this Task<CustomResult<TError>> resultTask,
             [NotNull, InstantHandle] Action<CustomResult<TError>> onFailure,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             CustomResult<TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
@@ -723,14 +1069,18 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task<TOut> OnFailureAsync<TError, TOut>([NotNull] this Task<CustomResult<TError>> resultTask,
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TError, TOut>(
+            [NotNull] this Task<CustomResult<TError>> resultTask,
             [NotNull, InstantHandle] Func<CustomResult<TError>, TOut> onFailure,
             [CanBeNull] TOut defaultValue,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             CustomResult<TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
@@ -755,15 +1105,20 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI]
-        public static async Task<TOut> OnFailureAsync<TError, TOut>([NotNull] this Task<CustomResult<TError>> resultTask,
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TError, TOut>(
+            [NotNull] this Task<CustomResult<TError>> resultTask,
             [NotNull, InstantHandle] Func<CustomResult<TError>, TOut> onFailure,
             [NotNull, InstantHandle] Func<TOut> valueFactory,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
-            Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
 
             CustomResult<TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
@@ -771,6 +1126,44 @@ namespace Here.Extensions
                 return onFailure(result);
 
             return valueFactory();
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onFailure"/> function when the <paramref name="resultTask"/> embed a failed <see cref="CustomResult{TError}"/>.
+        /// </summary>
+        /// <typeparam name="TError">Type of the result error.</typeparam>
+        /// <typeparam name="TOut">Type of the output value.</typeparam>
+        /// <param name="resultTask"><see cref="Task{Result}"/>.</param>
+        /// <param name="valueFactory">Function called to create a value to return if the result is a success.</param>
+        /// <param name="onFailure">Function to run if the <see cref="CustomResult{TError}"/> is failure.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
+        /// <returns>A <see cref="Task{TOut}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
+        [PublicAPI]
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TError, TOut>(
+            [NotNull] this Task<CustomResult<TError>> resultTask,
+            [NotNull, InstantHandle] Func<CustomResult<TError>, TOut> onFailure,
+            [NotNull, InstantHandle] Func<Task<TOut>> valueFactory,
+            bool treatWarningAsError = false,
+            bool continueOnCapturedContext = false)
+        {
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
+
+            CustomResult<TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
+
+            if (IsConsideredFailure(result, treatWarningAsError))
+                return onFailure(result);
+
+            return await valueFactory().ConfigureAwait(continueOnCapturedContext);
         }
 
         /// <summary>
@@ -785,18 +1178,22 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task OnFailureAsync<TError>([NotNull] this Task<CustomResult<TError>> resultTask,
+        [NotNull]
+        public static async Task OnFailureAsync<TError>(
+            [NotNull] this Task<CustomResult<TError>> resultTask,
             [NotNull, InstantHandle] Func<CustomResult<TError>, Task> onFailure,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             CustomResult<TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
             if (IsConsideredFailure(result, treatWarningAsError))
-                await onFailure(result);
+                await onFailure(result).ConfigureAwait(continueOnCapturedContext);
         }
 
         /// <summary>
@@ -813,19 +1210,23 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task<TOut> OnFailureAsync<TError, TOut>([NotNull] this Task<CustomResult<TError>> resultTask,
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TError, TOut>(
+            [NotNull] this Task<CustomResult<TError>> resultTask,
             [NotNull, InstantHandle] Func<CustomResult<TError>, Task<TOut>> onFailure,
             [CanBeNull] TOut defaultValue,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             CustomResult<TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
             if (IsConsideredFailure(result, treatWarningAsError))
-                return await onFailure(result);
+                return await onFailure(result).ConfigureAwait(continueOnCapturedContext);
 
             return defaultValue;
         }
@@ -845,22 +1246,65 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI]
-        public static async Task<TOut> OnFailureAsync<TError, TOut>([NotNull] this Task<CustomResult<TError>> resultTask,
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TError, TOut>(
+            [NotNull] this Task<CustomResult<TError>> resultTask,
             [NotNull, InstantHandle] Func<CustomResult<TError>, Task<TOut>> onFailure,
             [NotNull, InstantHandle] Func<TOut> valueFactory,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
-            Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
 
             CustomResult<TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
             if (IsConsideredFailure(result, treatWarningAsError))
-                return await onFailure(result);
+                return await onFailure(result).ConfigureAwait(continueOnCapturedContext);
 
             return valueFactory();
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onFailure"/> function when the <paramref name="resultTask"/> embed a failed <see cref="CustomResult{TError}"/>.
+        /// </summary>
+        /// <typeparam name="TError">Type of the result error.</typeparam>
+        /// <typeparam name="TOut">Type of the output value.</typeparam>
+        /// <param name="resultTask"><see cref="Task{Result}"/>.</param>
+        /// <param name="valueFactory">Function called to create a value to return if the result is a success.</param>
+        /// <param name="onFailure">Function to run if the <see cref="CustomResult{TError}"/> is failure.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
+        /// <returns>A <see cref="Task{TOut}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
+        [PublicAPI]
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TError, TOut>(
+            [NotNull] this Task<CustomResult<TError>> resultTask,
+            [NotNull, InstantHandle] Func<CustomResult<TError>, Task<TOut>> onFailure,
+            [NotNull, InstantHandle] Func<Task<TOut>> valueFactory,
+            bool treatWarningAsError = false,
+            bool continueOnCapturedContext = false)
+        {
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
+
+            CustomResult<TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
+
+            if (IsConsideredFailure(result, treatWarningAsError))
+                return await onFailure(result).ConfigureAwait(continueOnCapturedContext);
+
+            return await valueFactory().ConfigureAwait(continueOnCapturedContext);
         }
 
         #endregion
@@ -879,12 +1323,15 @@ namespace Here.Extensions
         /// <returns>A <see cref="Task"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task OnFailureAsync<T, TError>(this Result<T, TError> result,
+        [NotNull]
+        public static async Task OnFailureAsync<T, TError>(
+            this Result<T, TError> result,
             [NotNull, InstantHandle] Func<Result<T, TError>, Task> onFailure,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result, treatWarningAsError))
                 await onFailure(result).ConfigureAwait(continueOnCapturedContext);
@@ -904,13 +1351,16 @@ namespace Here.Extensions
         /// <returns>A <see cref="Task{TOut}"/>.</returns>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task<TOut> OnFailureAsync<TIn, TError, TOut>(this Result<TIn, TError> result,
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TIn, TError, TOut>(
+            this Result<TIn, TError> result,
             [NotNull, InstantHandle] Func<Result<TIn, TError>, Task<TOut>> onFailure,
             [CanBeNull] TOut defaultValue,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             if (IsConsideredFailure(result, treatWarningAsError))
                 return await onFailure(result).ConfigureAwait(continueOnCapturedContext);
@@ -933,19 +1383,57 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI]
-        public static async Task<TOut> OnFailureAsync<TIn, TError, TOut>(this Result<TIn, TError> result,
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TIn, TError, TOut>(
+            this Result<TIn, TError> result,
             [NotNull, InstantHandle] Func<Result<TIn, TError>, Task<TOut>> onFailure,
             [NotNull, InstantHandle] Func<TOut> valueFactory,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
-            Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
 
             if (IsConsideredFailure(result, treatWarningAsError))
                 return await onFailure(result).ConfigureAwait(continueOnCapturedContext);
 
             return valueFactory();
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onFailure"/> function when the <paramref name="result"/> is failure.
+        /// </summary>
+        /// <typeparam name="TIn">Type of the input result value.</typeparam>
+        /// <typeparam name="TError">Type of the result error.</typeparam>
+        /// <typeparam name="TOut">Type of the output value.</typeparam>
+        /// <param name="result"><see cref="Result{TIn, TError}"/> to check.</param>
+        /// <param name="onFailure">Function to run if the <see cref="Result{TIn, TError}"/> is failure.</param>
+        /// <param name="valueFactory">Function called to create a value to return if the result is a success.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
+        /// <returns>A <see cref="Task{TOut}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
+        [PublicAPI]
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TIn, TError, TOut>(
+            this Result<TIn, TError> result,
+            [NotNull, InstantHandle] Func<Result<TIn, TError>, Task<TOut>> onFailure,
+            [NotNull, InstantHandle] Func<Task<TOut>> valueFactory,
+            bool treatWarningAsError = false,
+            bool continueOnCapturedContext = false)
+        {
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
+
+            if (IsConsideredFailure(result, treatWarningAsError))
+                return await onFailure(result).ConfigureAwait(continueOnCapturedContext);
+
+            return await valueFactory().ConfigureAwait(continueOnCapturedContext);
         }
 
         /// <summary>
@@ -961,13 +1449,17 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task OnFailureAsync<T, TError>([NotNull] this Task<Result<T, TError>> resultTask,
+        [NotNull]
+        public static async Task OnFailureAsync<T, TError>(
+            [NotNull] this Task<Result<T, TError>> resultTask,
             [NotNull, InstantHandle] Action onFailure,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             Result<T, TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
@@ -988,13 +1480,17 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task OnFailureAsync<T, TError>([NotNull] this Task<Result<T, TError>> resultTask,
+        [NotNull]
+        public static async Task OnFailureAsync<T, TError>(
+            [NotNull] this Task<Result<T, TError>> resultTask,
             [NotNull, InstantHandle] Action<Result<T, TError>> onFailure,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             Result<T, TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
@@ -1017,14 +1513,18 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task<TOut> OnFailureAsync<TIn, TError, TOut>([NotNull] this Task<Result<TIn, TError>> resultTask,
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TIn, TError, TOut>(
+            [NotNull] this Task<Result<TIn, TError>> resultTask,
             [NotNull, InstantHandle] Func<Result<TIn, TError>, TOut> onFailure,
             [CanBeNull] TOut defaultValue,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             Result<TIn, TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
@@ -1050,15 +1550,20 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI]
-        public static async Task<TOut> OnFailureAsync<TIn, TError, TOut>([NotNull] this Task<Result<TIn, TError>> resultTask,
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TIn, TError, TOut>(
+            [NotNull] this Task<Result<TIn, TError>> resultTask,
             [NotNull, InstantHandle] Func<Result<TIn, TError>, TOut> onFailure,
             [NotNull, InstantHandle] Func<TOut> valueFactory,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
-            Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
 
             Result<TIn, TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
@@ -1066,6 +1571,45 @@ namespace Here.Extensions
                 return onFailure(result);
 
             return valueFactory();
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onFailure"/> function when the <paramref name="resultTask"/> embed a failed <see cref="Result{TIn, TError}"/>.
+        /// </summary>
+        /// <typeparam name="TIn">Type of the input result value.</typeparam>
+        /// <typeparam name="TError">Type of the result error.</typeparam>
+        /// <typeparam name="TOut">Type of the output value.</typeparam>
+        /// <param name="resultTask"><see cref="Task{Result}"/>.</param>
+        /// <param name="valueFactory">Function called to create a value to return if the result is a success.</param>
+        /// <param name="onFailure">Function to run if the <see cref="Result{TIn, TError}"/> is failure.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
+        /// <returns>A <see cref="Task{TOut}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
+        [PublicAPI]
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TIn, TError, TOut>(
+            [NotNull] this Task<Result<TIn, TError>> resultTask,
+            [NotNull, InstantHandle] Func<Result<TIn, TError>, TOut> onFailure,
+            [NotNull, InstantHandle] Func<Task<TOut>> valueFactory,
+            bool treatWarningAsError = false,
+            bool continueOnCapturedContext = false)
+        {
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
+
+            Result<TIn, TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
+
+            if (IsConsideredFailure(result, treatWarningAsError))
+                return onFailure(result);
+
+            return await valueFactory().ConfigureAwait(continueOnCapturedContext);
         }
 
         /// <summary>
@@ -1081,18 +1625,22 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task OnFailureAsync<T, TError>([NotNull] this Task<Result<T, TError>> resultTask,
+        [NotNull]
+        public static async Task OnFailureAsync<T, TError>(
+            [NotNull] this Task<Result<T, TError>> resultTask,
             [NotNull, InstantHandle] Func<Result<T, TError>, Task> onFailure,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             Result<T, TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
             if (IsConsideredFailure(result, treatWarningAsError))
-                await onFailure(result);
+                await onFailure(result).ConfigureAwait(continueOnCapturedContext);
         }
 
         /// <summary>
@@ -1110,19 +1658,23 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         [PublicAPI]
-        public static async Task<TOut> OnFailureAsync<TIn, TError, TOut>([NotNull] this Task<Result<TIn, TError>> resultTask,
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TIn, TError, TOut>(
+            [NotNull] this Task<Result<TIn, TError>> resultTask,
             [NotNull, InstantHandle] Func<Result<TIn, TError>, Task<TOut>> onFailure,
             [CanBeNull] TOut defaultValue,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
 
             Result<TIn, TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
             if (IsConsideredFailure(result, treatWarningAsError))
-                return await onFailure(result);
+                return await onFailure(result).ConfigureAwait(continueOnCapturedContext);
 
             return defaultValue;
         }
@@ -1143,22 +1695,66 @@ namespace Here.Extensions
         /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
         /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
         [PublicAPI]
-        public static async Task<TOut> OnFailureAsync<TIn, TError, TOut>([NotNull] this Task<Result<TIn, TError>> resultTask,
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TIn, TError, TOut>(
+            [NotNull] this Task<Result<TIn, TError>> resultTask,
             [NotNull, InstantHandle] Func<Result<TIn, TError>, Task<TOut>> onFailure,
             [NotNull, InstantHandle] Func<TOut> valueFactory,
             bool treatWarningAsError = false,
             bool continueOnCapturedContext = false)
         {
-            Throw.IfArgumentNull(resultTask, nameof(resultTask));
-            Throw.IfArgumentNull(onFailure, nameof(onFailure));
-            Throw.IfArgumentNull(valueFactory, nameof(valueFactory));
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
 
             Result<TIn, TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
 
             if (IsConsideredFailure(result, treatWarningAsError))
-                return await onFailure(result);
+                return await onFailure(result).ConfigureAwait(continueOnCapturedContext);
 
             return valueFactory();
+        }
+
+        /// <summary>
+        /// Calls the <paramref name="onFailure"/> function when the <paramref name="resultTask"/> embed a failed <see cref="Result{TIn}"/>.
+        /// </summary>
+        /// <typeparam name="TIn">Type of the input result value.</typeparam>
+        /// <typeparam name="TError">Type of the result error.</typeparam>
+        /// <typeparam name="TOut">Type of the output value.</typeparam>
+        /// <param name="resultTask"><see cref="Task{Result}"/>.</param>
+        /// <param name="valueFactory">Function called to create a value to return if the result is a success.</param>
+        /// <param name="onFailure">Function to run if the <see cref="Result{TIn}"/> is failure.</param>
+        /// <param name="treatWarningAsError">Flag to indicate how to treat warning (By default as success).</param>
+        /// <param name="continueOnCapturedContext">Indicates if asynchronous execution should continue on captured context.</param>
+        /// <returns>A <see cref="Task{TOut}"/>.</returns>
+        /// <exception cref="ArgumentNullException">If the <paramref name="resultTask"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="onFailure"/> is null.</exception>
+        /// <exception cref="ArgumentNullException">If the <paramref name="valueFactory"/> is null.</exception>
+        [PublicAPI]
+        [NotNull]
+        public static async Task<TOut> OnFailureAsync<TIn, TError, TOut>(
+            [NotNull] this Task<Result<TIn, TError>> resultTask,
+            [NotNull, InstantHandle] Func<Result<TIn, TError>, Task<TOut>> onFailure,
+            [NotNull, InstantHandle] Func<Task<TOut>> valueFactory,
+            bool treatWarningAsError = false,
+            bool continueOnCapturedContext = false)
+        {
+            if (resultTask is null)
+                throw new ArgumentNullException(nameof(resultTask));
+            if (onFailure is null)
+                throw new ArgumentNullException(nameof(onFailure));
+            if (valueFactory is null)
+                throw new ArgumentNullException(nameof(valueFactory));
+
+            Result<TIn, TError> result = await resultTask.ConfigureAwait(continueOnCapturedContext);
+
+            if (IsConsideredFailure(result, treatWarningAsError))
+                return await onFailure(result).ConfigureAwait(continueOnCapturedContext);
+
+            return await valueFactory().ConfigureAwait(continueOnCapturedContext);
         }
 
         #endregion
