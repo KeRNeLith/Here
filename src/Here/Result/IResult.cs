@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using JetBrains.Annotations;
 
 namespace Here
@@ -16,7 +16,7 @@ namespace Here
         bool IsSuccess { get; }
 
         /// <summary>
-        /// Indicates if this result succeed with warning or not.
+        /// Indicates if this result succeeded with warning or not.
         /// </summary>
         [PublicAPI]
         bool IsWarning { get; }
