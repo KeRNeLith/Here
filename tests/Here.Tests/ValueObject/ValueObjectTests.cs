@@ -221,7 +221,7 @@ namespace Here.Tests.ValueObjects
         public void ValueObjectsEdgeCases()
         {
             var address = new Address(1, "Pila", "Montpellier");
-            Assert.AreNotEqual(address, null);
+            Assert.IsFalse(address.Equals(null));
             Assert.AreNotEqual(null, address);
         }
 

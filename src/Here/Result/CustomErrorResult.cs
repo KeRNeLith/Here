@@ -372,7 +372,7 @@ namespace Here
 #if SUPPORTS_SERIALIZATION
         #region ISerializable
 
-        private CustomResult(SerializationInfo info, StreamingContext context)
+        private CustomResult([NotNull] SerializationInfo info, StreamingContext context)
         {
             bool isSuccess = (bool)info.GetValue("IsSuccess", typeof(bool));
             if (isSuccess)

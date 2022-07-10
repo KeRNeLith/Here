@@ -272,7 +272,7 @@ namespace Here.Utils
                 _count = count;
             }
 
-            internal TElement[] ToArray()
+            internal TElement[] BufferToArray()
             {
                 if (_count == 0)
                     return new TElement[0];
@@ -300,7 +300,7 @@ namespace Here.Utils
         {
             Debug.Assert(source != null);
 
-            return new Buffer<T>(source).ToArray();
+            return new Buffer<T>(source).BufferToArray();
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Diagnostics;
 #if SUPPORTS_SERIALIZATION
 using System.Runtime.Serialization;
@@ -451,7 +451,7 @@ namespace Here
 #if SUPPORTS_SERIALIZATION
         #region ISerializable
 
-        private Result(SerializationInfo info, StreamingContext context)
+        private Result([NotNull] SerializationInfo info, StreamingContext context)
         {
             bool isSuccess = (bool)info.GetValue("IsSuccess", typeof(bool));
             if (isSuccess)

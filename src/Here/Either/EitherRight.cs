@@ -182,9 +182,9 @@ namespace Here
 #if SUPPORTS_SERIALIZATION
         #region ISerializable
 
-        private EitherRight(SerializationInfo info, StreamingContext context)
+        private EitherRight([NotNull] SerializationInfo info, StreamingContext context)
+            : this((TRight)info.GetValue("Value", typeof(TRight)))
         {
-            Value = (TRight)info.GetValue("Value", typeof(TRight));
         }
 
         /// <inheritdoc />

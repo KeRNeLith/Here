@@ -1,4 +1,5 @@
-using System;
+﻿using System;
+using JetBrains.Annotations;
 #if SUPPORTS_SERIALIZATION
 using System.Runtime.Serialization;
 #endif
@@ -25,7 +26,7 @@ namespace Here
         /// <summary>
         /// Serialization constructor.
         /// </summary>
-        private NullResultException(SerializationInfo info, StreamingContext context)
+        private NullResultException([NotNull] SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }

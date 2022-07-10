@@ -179,9 +179,9 @@ namespace Here
 #if SUPPORTS_SERIALIZATION
         #region ISerializable
 
-        private EitherLeft(SerializationInfo info, StreamingContext context)
+        private EitherLeft([NotNull] SerializationInfo info, StreamingContext context)
+            : this((TLeft)info.GetValue("Value", typeof(TLeft)))
         {
-            Left = (TLeft)info.GetValue("Value", typeof(TLeft));
         }
 
         /// <inheritdoc />

@@ -801,7 +801,7 @@ namespace Here
 #if SUPPORTS_SERIALIZATION
         #region ISerializable
 
-        private Either(SerializationInfo info, StreamingContext context)
+        private Either([NotNull] SerializationInfo info, StreamingContext context)
         {
             _state = (EitherStates)info.GetValue("State", typeof(EitherStates));
             if (_state == EitherStates.None)

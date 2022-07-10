@@ -121,14 +121,8 @@ namespace Here.Tests.Results
             Assert.AreNotEqual(new TestClass(), logicOk1);
 
             // Checks with null
-            Assert.AreNotEqual(logicOk1, null);
             Assert.AreNotEqual(null, logicOk1);
             Assert.IsFalse(logicOk1.Equals(null));
-            Assert.IsFalse(logicOk1.Equals((object)null));
-            Assert.IsFalse(logicOk1 == null);
-            Assert.IsFalse(null == logicOk1);
-            Assert.IsTrue(logicOk1 != null);
-            Assert.IsTrue(null != logicOk1);
         }
 
         [Test]
@@ -201,14 +195,8 @@ namespace Here.Tests.Results
             Assert.AreNotEqual(new TestClass(), logicOk1);
 
             // Checks with null
-            Assert.AreNotEqual(logicOk1, null);
             Assert.AreNotEqual(null, logicOk1);
             Assert.IsFalse(logicOk1.Equals(null));
-            Assert.IsFalse(logicOk1.Equals((object)null));
-            Assert.IsFalse(logicOk1 == null);
-            Assert.IsFalse(null == logicOk1);
-            Assert.IsTrue(logicOk1 != null);
-            Assert.IsTrue(null != logicOk1);
         }
 
         [Test]

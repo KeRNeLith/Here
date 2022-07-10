@@ -327,7 +327,7 @@ namespace Here
 #if SUPPORTS_SERIALIZATION
         #region ISerializable
 
-        private Option(SerializationInfo info, StreamingContext context)
+        private Option([NotNull] SerializationInfo info, StreamingContext context)
         {
             HasValue = (bool)info.GetValue("HasValue", typeof(bool));
             _value = HasValue
