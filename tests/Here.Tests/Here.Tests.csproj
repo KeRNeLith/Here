@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net20;net30;net35;net40;net45;net451;net452;net46;net461;net462;net47;net471;net472;netcoreapp2.1</TargetFrameworks>
+    <TargetFrameworks>net20;net30;net35;net40;net45;net451;net452;net46;net461;net462;net47;net471;net472;netcoreapp3.1</TargetFrameworks>
 
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
@@ -56,8 +56,8 @@
   <PropertyGroup Condition="'$(TargetFramework)'=='net472'">
     <DefineConstants>$(DefineConstants);NET472;SUPPORTS_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_CORE;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp2.1'">
-    <DefineConstants>$(DefineConstants);NETCOREAPP2_1;SUPPORTS_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_CORE;$(AdditionalConstants)</DefineConstants>
+  <PropertyGroup Condition="'$(TargetFramework)'=='netcoreapp3.1'">
+    <DefineConstants>$(DefineConstants);NETCOREAPP3_1;SUPPORTS_SERIALIZATION;SUPPORTS_READONLY_DICTIONARY;SUPPORTS_PARSE_GUID;SUPPORTS_ASYNC;SUPPORTS_SYSTEM_CORE;$(AdditionalConstants)</DefineConstants>
   </PropertyGroup>
 
   <!-- Dependencies -->
