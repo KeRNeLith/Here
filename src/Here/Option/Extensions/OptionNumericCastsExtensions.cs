@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 #if SUPPORTS_AGGRESSIVE_INLINING
 using System.Runtime.CompilerServices;
 #endif
@@ -49,6 +49,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<sbyte> ToSByte(in this Option<byte> option)
         {
             return SafeConvert(option, Convert.ToSByte);
@@ -71,6 +72,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<ushort> ToUShort(in this Option<byte> option)
         {
             return SafeConvert(option, Convert.ToUInt16);
@@ -93,6 +95,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<uint> ToUInt(in this Option<byte> option)
         {
             return SafeConvert(option, Convert.ToUInt32);
@@ -115,6 +118,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<ulong> ToULong(in this Option<byte> option)
         {
             return SafeConvert(option, Convert.ToUInt64);
@@ -163,6 +167,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<bool> ToBool(in this Option<sbyte> option)
         {
             return SafeConvert(option, Convert.ToBoolean);
@@ -174,6 +179,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<byte> ToByte(in this Option<sbyte> option)
         {
             return SafeConvert(option, Convert.ToByte);
@@ -185,6 +191,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<short> ToShort(in this Option<sbyte> option)
         {
             return SafeConvert(option, Convert.ToInt16);
@@ -196,6 +203,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<ushort> ToUShort(in this Option<sbyte> option)
         {
             return SafeConvert(option, Convert.ToUInt16);
@@ -207,6 +215,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<int> ToInt(in this Option<sbyte> option)
         {
             return SafeConvert(option, Convert.ToInt32);
@@ -218,6 +227,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<uint> ToUInt(in this Option<sbyte> option)
         {
             return SafeConvert(option, Convert.ToUInt32);
@@ -229,6 +239,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<long> ToLong(in this Option<sbyte> option)
         {
             return SafeConvert(option, Convert.ToInt64);
@@ -240,6 +251,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<ulong> ToULong(in this Option<sbyte> option)
         {
             return SafeConvert(option, Convert.ToUInt64);
@@ -251,6 +263,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<decimal> ToDecimal(in this Option<sbyte> option)
         {
             return SafeConvert(option, Convert.ToDecimal);
@@ -262,6 +275,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<float> ToFloat(in this Option<sbyte> option)
         {
             return SafeConvert(option, Convert.ToSingle);
@@ -273,6 +287,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<double> ToDouble(in this Option<sbyte> option)
         {
             return SafeConvert(option, Convert.ToDouble);
@@ -310,6 +325,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<sbyte> ToSByte(in this Option<short> option)
         {
             return SafeConvert(option, Convert.ToSByte);
@@ -321,6 +337,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<ushort> ToUShort(in this Option<short> option)
         {
             return SafeConvert(option, Convert.ToUInt16);
@@ -343,6 +360,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<uint> ToUInt(in this Option<short> option)
         {
             return SafeConvert(option, Convert.ToUInt32);
@@ -365,6 +383,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<ulong> ToULong(in this Option<short> option)
         {
             return SafeConvert(option, Convert.ToUInt64);
@@ -413,6 +432,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<bool> ToBool(in this Option<ushort> option)
         {
             return SafeConvert(option, Convert.ToBoolean);
@@ -424,6 +444,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<byte> ToByte(in this Option<ushort> option)
         {
             return SafeConvert(option, Convert.ToByte);
@@ -435,6 +456,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<sbyte> ToSByte(in this Option<ushort> option)
         {
             return SafeConvert(option, Convert.ToSByte);
@@ -446,6 +468,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<short> ToShort(in this Option<ushort> option)
         {
             return SafeConvert(option, Convert.ToInt16);
@@ -457,6 +480,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<int> ToInt(in this Option<ushort> option)
         {
             return SafeConvert(option, Convert.ToInt32);
@@ -468,6 +492,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<uint> ToUInt(in this Option<ushort> option)
         {
             return SafeConvert(option, Convert.ToUInt32);
@@ -479,6 +504,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<long> ToLong(in this Option<ushort> option)
         {
             return SafeConvert(option, Convert.ToInt64);
@@ -490,6 +516,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<ulong> ToULong(in this Option<ushort> option)
         {
             return SafeConvert(option, Convert.ToUInt64);
@@ -501,6 +528,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<decimal> ToDecimal(in this Option<ushort> option)
         {
             return SafeConvert(option, Convert.ToDecimal);
@@ -512,6 +540,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<float> ToFloat(in this Option<ushort> option)
         {
             return SafeConvert(option, Convert.ToSingle);
@@ -523,6 +552,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<double> ToDouble(in this Option<ushort> option)
         {
             return SafeConvert(option, Convert.ToDouble);
@@ -560,6 +590,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<sbyte> ToSByte(in this Option<int> option)
         {
             return SafeConvert(option, Convert.ToSByte);
@@ -582,6 +613,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<ushort> ToUShort(in this Option<int> option)
         {
             return SafeConvert(option, Convert.ToUInt16);
@@ -593,6 +625,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<uint> ToUInt(in this Option<int> option)
         {
             return SafeConvert(option, Convert.ToUInt32);
@@ -615,6 +648,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<ulong> ToULong(in this Option<int> option)
         {
             return SafeConvert(option, Convert.ToUInt64);
@@ -663,6 +697,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<bool> ToBool(in this Option<uint> option)
         {
             return SafeConvert(option, Convert.ToBoolean);
@@ -674,6 +709,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<byte> ToByte(in this Option<uint> option)
         {
             return SafeConvert(option, Convert.ToByte);
@@ -685,6 +721,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<sbyte> ToSByte(in this Option<uint> option)
         {
             return SafeConvert(option, Convert.ToSByte);
@@ -696,6 +733,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<short> ToShort(in this Option<uint> option)
         {
             return SafeConvert(option, Convert.ToInt16);
@@ -707,6 +745,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<ushort> ToUShort(in this Option<uint> option)
         {
             return SafeConvert(option, Convert.ToUInt16);
@@ -718,6 +757,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<int> ToInt(in this Option<uint> option)
         {
             return SafeConvert(option, Convert.ToInt32);
@@ -729,6 +769,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<long> ToLong(in this Option<uint> option)
         {
             return SafeConvert(option, Convert.ToInt64);
@@ -740,6 +781,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<ulong> ToULong(in this Option<uint> option)
         {
             return SafeConvert(option, Convert.ToUInt64);
@@ -751,6 +793,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<decimal> ToDecimal(in this Option<uint> option)
         {
             return SafeConvert(option, Convert.ToDecimal);
@@ -762,6 +805,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<float> ToFloat(in this Option<uint> option)
         {
             return SafeConvert(option, Convert.ToSingle);
@@ -773,6 +817,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<double> ToDouble(in this Option<uint> option)
         {
             return SafeConvert(option, Convert.ToDouble);
@@ -810,6 +855,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<sbyte> ToSByte(in this Option<long> option)
         {
             return SafeConvert(option, Convert.ToSByte);
@@ -832,6 +878,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<ushort> ToUShort(in this Option<long> option)
         {
             return SafeConvert(option, Convert.ToUInt16);
@@ -854,6 +901,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<uint> ToUInt(in this Option<long> option)
         {
             return SafeConvert(option, Convert.ToUInt32);
@@ -865,6 +913,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<ulong> ToULong(in this Option<long> option)
         {
             return SafeConvert(option, Convert.ToUInt64);
@@ -913,6 +962,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<bool> ToBool(in this Option<ulong> option)
         {
             return SafeConvert(option, Convert.ToBoolean);
@@ -924,6 +974,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<byte> ToByte(in this Option<ulong> option)
         {
             return SafeConvert(option, Convert.ToByte);
@@ -935,6 +986,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<sbyte> ToSByte(in this Option<ulong> option)
         {
             return SafeConvert(option, Convert.ToSByte);
@@ -946,6 +998,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<short> ToShort(in this Option<ulong> option)
         {
             return SafeConvert(option, Convert.ToInt16);
@@ -957,6 +1010,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<ushort> ToUShort(in this Option<ulong> option)
         {
             return SafeConvert(option, Convert.ToUInt16);
@@ -968,6 +1022,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<int> ToInt(in this Option<ulong> option)
         {
             return SafeConvert(option, Convert.ToInt32);
@@ -979,6 +1034,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<uint> ToUInt(in this Option<ulong> option)
         {
             return SafeConvert(option, Convert.ToUInt32);
@@ -990,6 +1046,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<long> ToLong(in this Option<ulong> option)
         {
             return SafeConvert(option, Convert.ToInt64);
@@ -1001,6 +1058,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<decimal> ToDecimal(in this Option<ulong> option)
         {
             return SafeConvert(option, Convert.ToDecimal);
@@ -1012,6 +1070,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<float> ToFloat(in this Option<ulong> option)
         {
             return SafeConvert(option, Convert.ToSingle);
@@ -1023,6 +1082,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<double> ToDouble(in this Option<ulong> option)
         {
             return SafeConvert(option, Convert.ToDouble);
@@ -1060,6 +1120,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<sbyte> ToSByte(in this Option<decimal> option)
         {
             return SafeConvert(option, Convert.ToSByte);
@@ -1082,6 +1143,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<ushort> ToUShort(in this Option<decimal> option)
         {
             return SafeConvert(option, Convert.ToUInt16);
@@ -1104,6 +1166,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<uint> ToUInt(in this Option<decimal> option)
         {
             return SafeConvert(option, Convert.ToUInt32);
@@ -1126,6 +1189,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<ulong> ToULong(in this Option<decimal> option)
         {
             return SafeConvert(option, Convert.ToUInt64);
@@ -1185,6 +1249,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<sbyte> ToSByte(in this Option<float> option)
         {
             return SafeConvert(option, Convert.ToSByte);
@@ -1207,6 +1272,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<ushort> ToUShort(in this Option<float> option)
         {
             return SafeConvert(option, Convert.ToUInt16);
@@ -1229,6 +1295,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<uint> ToUInt(in this Option<float> option)
         {
             return SafeConvert(option, Convert.ToUInt32);
@@ -1251,6 +1318,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<ulong> ToULong(in this Option<float> option)
         {
             return SafeConvert(option, Convert.ToUInt64);
@@ -1310,6 +1378,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<sbyte> ToSByte(in this Option<double> option)
         {
             return SafeConvert(option, Convert.ToSByte);
@@ -1332,6 +1401,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<ushort> ToUShort(in this Option<double> option)
         {
             return SafeConvert(option, Convert.ToUInt16);
@@ -1354,6 +1424,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<uint> ToUInt(in this Option<double> option)
         {
             return SafeConvert(option, Convert.ToUInt32);
@@ -1376,6 +1447,7 @@ namespace Here.Extensions
         /// <param name="option">The <see cref="Option{T}"/> to convert.</param>
         /// <returns>The result of the conversion.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<ulong> ToULong(in this Option<double> option)
         {
             return SafeConvert(option, Convert.ToUInt64);

@@ -154,6 +154,7 @@ namespace Here.Extensions
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<sbyte> TryParseSByte([CanBeNull] this string str)
         {
             return Get<string, sbyte>(str, sbyte.TryParse);
@@ -167,6 +168,7 @@ namespace Here.Extensions
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<sbyte> TryParseSByte([CanBeNull] this string str, in NumberStyles style, in IFormatProvider culture)
         {
             return Parse<sbyte>(str, sbyte.TryParse, style, culture);
@@ -202,6 +204,7 @@ namespace Here.Extensions
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<ushort> TryParseUShort([CanBeNull] this string str)
         {       
             return Get<string, ushort>(str, ushort.TryParse);
@@ -215,6 +218,7 @@ namespace Here.Extensions
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<ushort> TryParseUShort([CanBeNull] this string str, in NumberStyles style, in IFormatProvider culture)
         {
             return Parse<ushort>(str, ushort.TryParse, style, culture);
@@ -250,6 +254,7 @@ namespace Here.Extensions
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<uint> TryParseUInt([CanBeNull] this string str)
         {
             return Get<string, uint>(str, uint.TryParse);
@@ -263,6 +268,7 @@ namespace Here.Extensions
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<uint> TryParseUInt([CanBeNull] this string str, in NumberStyles style, in IFormatProvider culture)
         {
             return Parse<uint>(str, uint.TryParse, style, culture);
@@ -298,6 +304,7 @@ namespace Here.Extensions
         /// <param name="str">String to parse.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<ulong> TryParseULong([CanBeNull] this string str)
         {
             return Get<string, ulong>(str, ulong.TryParse);
@@ -311,6 +318,7 @@ namespace Here.Extensions
         /// <param name="culture">Format provider (culture) to use.</param>
         /// <returns><see cref="Option{T}"/> that wrap the result of the parse.</returns>
         [PublicAPI, Pure]
+        [CLSCompliant(false)]
         public static Option<ulong> TryParseULong([CanBeNull] this string str, in NumberStyles style, in IFormatProvider culture)
         {
             return Parse<ulong>(str, ulong.TryParse, style, culture);

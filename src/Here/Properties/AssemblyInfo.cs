@@ -1,4 +1,6 @@
+﻿using System;
 using System.Runtime.CompilerServices;
 using Here;
 
-[assembly:InternalsVisibleTo("Here.Tests" + PublicKey.Key)]
+[assembly: CLSCompliant(true)]
+[assembly: InternalsVisibleTo("Here.Tests" + PublicKey.Key)]
