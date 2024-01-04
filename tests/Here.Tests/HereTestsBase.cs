@@ -1,5 +1,6 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 
 namespace Here.Tests
@@ -31,6 +32,7 @@ namespace Here.Tests
                 _name = name;
             }
 
+            /// <inheritdoc />
             public int CompareTo(PersonComparable other)
             {
                 return Comparer<string>.Default.Compare(_name, other._name);
@@ -46,12 +48,14 @@ namespace Here.Tests
                 _name = name;
             }
 
+            /// <inheritdoc />
             public override bool Equals(object obj)
             {
                 return obj is Person otherPerson
                     && _name.Equals(otherPerson._name, StringComparison.Ordinal);
             }
 
+            /// <inheritdoc />
             public override int GetHashCode()
             {
                 return _name.GetHashCode();
@@ -62,13 +66,27 @@ namespace Here.Tests
         {
             public int TestInt { get; set; }
 
+            /// <inheritdoc />
             public bool Equals(TestClass other)
             {
-                if (other == null)
+                if (other is null)
                     return false;
                 return TestInt == other.TestInt;
             }
 
+            /// <inheritdoc />
+            public override bool Equals(object obj)
+            {
+                return Equals(obj as TestClass);
+            }
+
+            /// <inheritdoc />
+            public override int GetHashCode()
+            {
+                return RuntimeHelpers.GetHashCode(this);
+            }
+
+            /// <inheritdoc />
             public override string ToString()
             {
                 return $"TestClass: {TestInt}";
@@ -77,13 +95,27 @@ namespace Here.Tests
 
         protected class TestClassLeaf : TestClass, IEquatable<TestClassLeaf>
         {
+            /// <inheritdoc />
             public bool Equals(TestClassLeaf other)
             {
-                if (other == null)
+                if (other is null)
                     return false;
-                return Equals(other);
+                return base.Equals(other);
             }
 
+            /// <inheritdoc />
+            public override bool Equals(object obj)
+            {
+                return Equals(obj as TestClassLeaf);
+            }
+
+            /// <inheritdoc />
+            public override int GetHashCode()
+            {
+                return RuntimeHelpers.GetHashCode(this);
+            }
+
+            /// <inheritdoc />
             public override string ToString()
             {
                 return $"TestLeaf: {TestInt}";

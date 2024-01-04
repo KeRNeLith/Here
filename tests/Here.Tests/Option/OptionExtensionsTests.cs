@@ -1,4 +1,4 @@
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Here.Extensions;
 using static Here.Tests.Options.OptionTestHelpers;
 
@@ -12,27 +12,27 @@ namespace Here.Tests.Options
     {
         #region Test methods
 
-        private int GetInt()
+        private static int GetInt()
         {
             return 12;
         }
 
-        private int? GetNullableInt()
+        private static int? GetNullableInt()
         {
             return 42;
         }
 
-        private int? GetNullNullableInt()
+        private static int? GetNullNullableInt()
         {
             return null;
         }
 
-        private TestClass GetTestClass()
+        private static TestClass GetTestClass()
         {
             return new TestClass();
         }
 
-        private TestClass GetNullTestClass()
+        private static TestClass GetNullTestClass()
         {
             return null;
         }

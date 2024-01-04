@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 #if SUPPORTS_SYSTEM_CORE
@@ -20,7 +20,7 @@ namespace Here.Tests.Options
     {
         #region Test property
 
-        private IEnumerable<int> Items
+        private static IEnumerable<int> Items
         {
             get
             {

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 #if SUPPORTS_SYSTEM_CORE
@@ -22,7 +22,7 @@ namespace Here.Tests.Options
         #region Test property
 
         [NotNull, ItemNotNull]
-        private IEnumerable Items
+        private static IEnumerable Items
         {
             get
             {
